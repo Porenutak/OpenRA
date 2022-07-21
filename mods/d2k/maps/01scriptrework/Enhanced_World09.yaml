@@ -1,0 +1,688 @@
+^BaseWorld:
+	Faction@Atreides:
+		Name: Atreides
+		InternalName: atreides
+		Description: House Atreides\nThe noble Atreides, from the water world of Caladan,\nrely on their ornithopters to ensure air superiority.\nThey have allied themselves with the Fremen, the fearsome\nnative warriors of Dune that can move undetected in battle.\n\nFaction Variations:\n    - Combat tanks are balanced in terms of speed and durability\n\nSpecial Units:\n    - Grenadier\n    - Fremen\n    - Sonic Tank\n\nSuperweapon:\n    - Airstrike
+	Faction@Harkonnen:
+		Name: Harkonnen
+		InternalName: harkonnen
+		Description: House Harkonnen\nThe evil Harkonnen will stop at nothing to gain control of the spice.\nThey rely on brute force and atomic weapons to achieve their goals:\nwealth, and the destruction of House Atreides.\n\nFaction Variations:\n    - Combat Tanks are more durable but slower \n\nSpecial Units:\n    - Sardaukar\n    - Devastator\n\nSuperweapon: \n    - Death Hand Missile
+	Faction@Ordos:
+		Name: Ordos
+		InternalName: ordos
+	Faction@Random:
+		Name: Any
+		InternalName: Random
+		RandomFactionMembers: atreides, harkonnen, ordos
+		Description: Random House\nA random house will be chosen when the game starts.
+	Faction@Corrino:
+		Name: Corrino
+		InternalName: corrino
+		Selectable: true
+		Description: Corrino house
+	Faction@Mercenaries:
+		Name: Mercenaries
+		InternalName: mercenary
+		Selectable: true
+		Description: mercenaries troops
+	Faction@Smugglers:
+		Name: Smugglers
+		InternalName: smuggler
+		Selectable: true
+	Faction@Fremen:
+		Name: Fremen
+		InternalName: fremen
+		Selectable: true
+	Locomotor@TANK_harkonnen:
+		Name: tank_harkonnen
+		Crushes: crate, infantry, spicebloom
+		TerrainSpeeds:
+			Sand: 100
+			Rock: 100
+			Transition: 100
+			Concrete: 100
+			SpiceSand: 100
+			Spice: 100
+			SpiceBlobs: 100
+			Dune: 70
+	Locomotor@TANK:
+		Name: tank
+		Crushes: crate, infantry, spicebloom
+		TerrainSpeeds:
+			Sand: 100
+			Rock: 100
+			Transition: 100
+			Concrete: 100
+			SpiceSand: 100
+			Spice: 100
+			SpiceBlobs: 100
+			Dune: 60
+	Locomotor@LIGHTVEHICLE:
+		Name: light_vehicle
+		Crushes: crate, spicebloom
+		WaitAverage: 20
+		TerrainSpeeds:
+			Sand: 100
+			Rock: 100
+			Transition: 100
+			Concrete: 100
+			SpiceSand: 100
+			Spice: 100
+			SpiceBlobs: 100
+			Dune: 50
+	Locomotor@WORMMP:
+		Name: worm_mp
+		Crushes: crate, worm_dinner, spicebloom, vehicle
+		TerrainSpeeds:
+			Sand: 100
+			Dune: 100
+			SpiceSand: 100
+			Spice: 100
+World:
+	LuaScript:
+		Scripts: scripts_new.lua
+	MissionData:
+		Briefing: \n\n**** Enhanced D2k ver 0.96 **** \n\nFor more competitive and fun MP games \n\nHighlights: \n* New playable sub-factions: FREMENS, CORRINO, SMUGGLERS, MERCENARIES (Use Playable Factions Dropbox to activate) \n* Original D2k Starport and Airstrike implementation \n* New Map Options:  FreeCarryall, Worm Spawn, Factions options \n* Competitive balance, Super weapons rebalanced \n* Refinery with alternative docking angles. \n* Engineer can repair passages/buildings and capture husks \n* Better AI \n* new Neutral buildings, map Tilesets, VFX, SFX and decorations. \nAdditional Assets by SirCake, Fey, Kipp, N.N.> and Fed2k forum \nFULL CHANGELOG AT MAP FILE.
+	MapOptions:
+		TechLevelDropdownVisible: false
+		TechLevel: unrestricted
+		ShortGameCheckboxVisible: true
+		GameSpeed: fast
+	MapCreeps:
+		CheckboxEnabled: true
+		CheckboxLocked: true
+		CheckboxVisible: false
+	SpawnStartingUnits:
+		DropdownDisplayOrder: 70
+	TimeLimitManager:
+		TimeLimitDisplayOrder: 3
+	ScriptLobbyDropdown@WormsSpawnDelay:
+		ID: WormsSpawnDelay
+		Label: Spawn Worms
+		Description: Spawn worms options
+		Default: 10
+		Values:
+			5: After 5 min
+			10: After 10 min
+			15: After 15 min
+			0: Never
+		Locked: false
+		Visible: true
+		DisplayOrder: 30
+	ScriptLobbyDropdown@factionoptions:
+		ID: fation_mode
+		Label:  Playable Factions
+		Description: 1. Just vanilla D2k.  2. SUB+Main: Choose between Main faction or one of its sub-factions.  3. Merged: Subfaction tech tree is merged into your tech tree.
+		Default: 0
+		Values:
+			0: Main factions only
+			1: Main & Subfactions
+			2: Subfactions in Main Fac.
+		Visible: true
+		DisplayOrder: 2
+	SmudgeLayer@RockSmoke:
+		Type: RockCrater_with_smoke
+		Sequence: rockcraters
+		SmokeChance: 100
+		SmokeImage: smoke_m
+		SmokeSequences: smokeFromRA01loop
+	SmudgeLayer@SandSmoke:
+		Type: SandCrater_with_smoke
+		Sequence: sandcraters
+		SmokeChance: 100
+		SmokeImage: smoke_m
+		SmokeSequences: smokeFromRA01loop
+	StartingUnits@mcv:
+		Class: none
+		ClassName: MCV Only
+		BaseActor: choosefaction
+		Factions: atreides, ordos, harkonnen, corrino, mercenary, smuggler, fremen
+	StartingUnits@lightatreides:
+		Class: light
+		ClassName: Light Support
+		Factions: atreides, fremen
+		BaseActor: choosefaction
+		SupportActors: light_inf, light_inf, light_inf, trooper, grenadier, trike, quad
+		InnerSupportRadius: 3
+		OuterSupportRadius: 5
+	StartingUnits@lightharkonnen:
+		Class: light
+		ClassName: Light Support
+		Factions: harkonnen, corrino
+		BaseActor: choosefaction
+		SupportActors: light_inf, light_inf, light_inf, trooper, trooper, trike, quad
+		InnerSupportRadius: 3
+		OuterSupportRadius: 5
+	StartingUnits@lightordos:
+		Class: light
+		ClassName: Light Support
+		Factions: ordos, mercenary, smuggler
+		BaseActor: choosefaction
+		SupportActors: light_inf, light_inf, light_inf, trooper, engineer, raider, quad
+		InnerSupportRadius: 3
+		OuterSupportRadius: 5
+	StartingUnits@heavyatreides:
+		Class: heavy
+		ClassName: Heavy Support
+		Factions: atreides, fremen
+		BaseActor: choosefaction
+		SupportActors: light_inf, light_inf, light_inf, trooper, grenadier, trike, combat_tank_a, missile_tank
+		InnerSupportRadius: 3
+		OuterSupportRadius: 5
+	StartingUnits@heavyharkonnen:
+		Class: heavy
+		ClassName: Heavy Support
+		Factions: harkonnen, corrino
+		BaseActor: choosefaction
+		SupportActors: light_inf, light_inf, light_inf, trooper, engineer, quad, combat_tank_h, siege_tank
+		InnerSupportRadius: 3
+		OuterSupportRadius: 5
+	StartingUnits@heavyordos:
+		Class: heavy
+		ClassName: Heavy Support
+		Factions: ordos, mercenary, smuggler
+		BaseActor: choosefaction
+		SupportActors: light_inf, light_inf, light_inf, trooper, engineer, raider, combat_tank_o, missile_tank
+		InnerSupportRadius: 3
+		OuterSupportRadius: 5
+	FlashPostProcessEffect:
+		Type: flash
+		Color: E2DD8F4D
+	TerrainLighting:
+
+
+Player:
+	DeveloperMode:
+		CheckboxEnabled: true
+		CheckboxLocked: true
+	Shroud:
+		ExploredMapCheckboxEnabled: true
+		FogCheckboxEnabled: true
+		FogCheckboxLocked: true
+	LobbyPrerequisiteCheckbox@AUTOCONCRETE:
+		Enabled: True
+	LobbyPrerequisiteCheckbox@FreeCarryCheckBox:
+		ID: FreeCarryCheckBox
+		Label: Free Carryall
+		Description: Give 1 free Carryall to all Players
+		Enabled: true
+		Visible: true
+		DisplayOrder: 7
+		Prerequisites: FreeCarry
+	ExternalCondition@vanilla_factions_Only:
+		Condition: vanilla_factions_Only
+	ExternalCondition@subfactions:
+		Condition: subfactions
+	ExternalCondition@merged:
+		Condition: mergedsubfactions
+	ProvidesPrerequisite@merged:
+		Prerequisite: factions.merged
+		RequiresCondition: mergedsubfactions
+	ProvidesPrerequisite@subfactions:
+		Prerequisite: factions.subfaction_allowed
+		RequiresCondition: subfactions
+	ProvidesPrerequisite@vanila_factions:
+		Prerequisite: factions.standard
+		RequiresCondition: vanilla_factions_Only
+	ExternalCondition@frigateCheck:
+		Condition: frigate_not_empty
+	ProvidesPrerequisite@frigatenotempty:
+		Prerequisite: frigate.not_empty
+		RequiresCondition: frigate_not_empty
+	ExternalCondition@frigatefull:
+		Condition: frigate_full
+	ClassicProductionQueue@Infantry:
+		BuildTimeSpeedReduction: 100, 80, 60, 50
+	ClassicProductionQueue@Building:
+		BuildTimeSpeedReduction: 100, 75, 50
+	ClassicProductionQueue@Armor:
+		BuildTimeSpeedReduction: 100, 75, 50
+	ClassicProductionQueue@Aircraft:
+		BuildTimeSpeedReduction: 100, 75, 50
+	ClassicProductionQueue@Starport:
+		Type: Starport
+		DisplayOrder: 4
+		DisallowPaused: true
+		BuildDurationModifier: 100
+		BlockedAudio: NoRoom
+		BlockedTextNotification: No room for new unit.
+		QueuedAudio: Silent
+		OnHoldAudio: Silent
+		CancelledAudio: Silent
+		QueueLimit: 6
+	PlaceBuilding:
+		ToggleVariantKey: ToggleVariant
+	ProductionIconOverlayManager:
+		Image: iconchevrons
+		Sequence: veteran
+		Type: veteran
+	ProvidesPrerequisite@FrigateFULL:
+		RequiresCondition: frigate_full
+		Prerequisite: frigate.full
+	ProductionIconOverlayManager@StarportsOverlay1:
+		Image: choam_unit_number
+		Sequence: 1
+		Type: 1
+	ProductionIconOverlayManager@StarportsOverlay2:
+		Image: choam_unit_number
+		Sequence: 2
+		Type: 2
+	ProductionIconOverlayManager@StarportsOverlay3:
+		Image: choam_unit_number
+		Sequence: 3
+		Type: 3
+	ProductionIconOverlayManager@StarportsOverlay4:
+		Image: choam_unit_number
+		Sequence: 4
+		Type: 4
+	ProductionIconOverlayManager@StarportsOverlay5:
+		Image: choam_unit_number
+		Sequence: 5
+		Type: 5
+	ProductionIconOverlayManager@StarportsOverlay6:
+		Image: choam_unit_number
+		Sequence: 6
+		Type: 6
+	GrantConditionOnBotOwner@bot:
+		Condition: bot
+		Bots: omnius, vidious, gladius
+	ProvidesPrerequisite:
+		RequiresCondition: bot
+		Prerequisite: repair_pad.bot
+
+
+
+wormspawner:
+	ExternalCondition:
+		Condition: WormSpamDelayed
+	ActorSpawner:
+		RequiresCondition: WormSpamDelayed
+
+choosefaction:
+	Inherits@1: ^ExistsInWorld
+	Inherits@2: ^SpriteActor
+	Building:
+		Footprint: xxx xxx ===
+		Dimensions: 3,3
+		LocalCenterOffset: -1024,-1536,0
+	Health:
+		HP: 30000
+	HitShape:
+		Type: Rectangle
+			TopLeft: -1536, -1024
+			BottomRight: 1536, 1024
+	Armor:
+		Type: invulnerable
+	RevealsShroud:
+		Range: 5c768
+	HiddenUnderFog:
+	MustBeDestroyed:
+		RequiredForShortGame: true
+	WithSpriteBody:
+	ProvidesPrerequisite@upgradename:
+	Production:
+		Produces: Upgrade
+	ProvidesPrerequisite@bluesubfactions:
+		Prerequisite: bluesubfactions
+		Factions: atreides, fremen
+	ProvidesPrerequisite@redsubfactions:
+		Prerequisite: redsubfactions
+		Factions: harkonnen, corrino
+	ProvidesPrerequisite@greensubfactions:
+		Prerequisite: greensubfactions
+		Factions: ordos, smuggler, mercenary
+	ProvidesPrerequisite@mergedsubfactions:
+		Prerequisite: mergedsubfactions
+
+subfaction.random_blue:
+	Interactable:
+	HiddenUnderFog:
+		Type: CenterPosition
+	ScriptTriggers:
+	Tooltip:
+		Name: Random
+	Buildable:
+		BuildPaletteOrder: 11
+		Prerequisites: ~bluesubfactions, ~factions.subfaction_allowed
+		Queue: Upgrade
+		BuildLimit: 1
+		BuildDuration: 1
+		BuildDurationModifier: 100
+		Description: Random selection
+	Valued:
+		Cost: 0
+	RenderSprites:
+		Image: subfaction.random
+	GrantRandomCondition:
+		Conditions: atreides, fremen
+	ProvidesPrerequisite@Atreides:
+		Prerequisite: subfaction.atreides
+		RequiresCondition: atreides
+	ProvidesPrerequisite@Fremen:
+		Prerequisite: subfaction.fremen
+		RequiresCondition: fremen
+
+subfaction.atreides:
+	Interactable:
+	HiddenUnderFog:
+		Type: CenterPosition
+	ScriptTriggers:
+	Tooltip:
+		Name: Atreides
+	Buildable:
+		BuildPaletteOrder: 12
+		Prerequisites: ~bluesubfactions, ~factions.subfaction_allowed
+		Queue: Upgrade
+		BuildLimit: 1
+		BuildDuration: 1
+		BuildDurationModifier: 100
+		Description: Atreides \n special units: Grenadier, Sonic tank \n Support powers: AirStrike, Officer
+	Valued:
+		Cost: 0
+	RenderSprites:
+		Image: subfaction.atreides
+	ProvidesPrerequisite@upgradename:
+
+subfaction.fremen:
+	Interactable:
+	HiddenUnderFog:
+		Type: CenterPosition
+	ScriptTriggers:
+	Tooltip:
+		Name: Fremen
+	Buildable:
+		BuildPaletteOrder: 13
+		Prerequisites: ~bluesubfactions, ~factions.subfaction_allowed
+		Queue: Upgrade
+		BuildLimit: 1
+		BuildDuration: 1
+		BuildDurationModifier: 100
+		Description: Fremen \n Special units: Fremen Fedaykin, Hunt trike, Bison tank \n Support powers: Hide units, WormRider
+	Valued:
+		Cost: 0
+	RenderSprites:
+		Image: subfaction.fremen
+	ProvidesPrerequisite@upgradename:
+
+subfaction.random_red:
+	Interactable:
+	ScriptTriggers:
+	HiddenUnderFog:
+		Type: CenterPosition
+	Tooltip:
+		Name: Random
+	Buildable:
+		BuildPaletteOrder: 14
+		Prerequisites: ~redsubfactions, ~factions.subfaction_allowed
+		Queue: Upgrade
+		BuildLimit: 1
+		BuildDuration: 1
+		BuildDurationModifier: 100
+		Description: Random selection
+	Valued:
+		Cost: 0
+	RenderSprites:
+		Image: subfaction.random
+	GrantRandomCondition:
+		Conditions: harkonnen, corrino
+	ProvidesPrerequisite@Harkonnen:
+		Prerequisite: subfaction.harkonnen
+		RequiresCondition: harkonnen
+	ProvidesPrerequisite@Corrino:
+		Prerequisite: subfaction.corrino
+		RequiresCondition: corrino
+
+subfaction.harkonnen:
+	Interactable:
+	ScriptTriggers:
+	HiddenUnderFog:
+		Type: CenterPosition
+	Tooltip:
+		Name: Harkonnen
+	Buildable:
+		BuildPaletteOrder: 15
+		Prerequisites: ~redsubfactions, ~factions.subfaction_allowed
+		Queue: Upgrade
+		BuildLimit: 1
+		BuildDuration: 1
+		BuildDurationModifier: 100
+		Description: Harkonnen \n Special units: Assassin, Devastator \n Support powers: Death hand
+	Valued:
+		Cost: 0
+	RenderSprites:
+		Image: subfaction.harkonnen
+	ProvidesPrerequisite@upgradename:
+
+subfaction.corrino:
+	Interactable:
+	ScriptTriggers:
+	HiddenUnderFog:
+		Type: CenterPosition
+	Tooltip:
+		Name: Corrino
+	Buildable:
+		BuildPaletteOrder: 16
+		Prerequisites: ~redsubfactions, ~factions.subfaction_allowed
+		Queue: Upgrade
+		BuildLimit: 1
+		BuildDuration: 1
+		BuildDurationModifier: 100
+		Description: Corrino \n Special units: Sardaukar, Bombardment tank \n Support powers: Rally Sardaudars \n Passive bonus: Defenses on Palace
+	Valued:
+		Cost: 0
+	RenderSprites:
+		Image: subfaction.corrino
+	ProvidesPrerequisite@upgradename:
+
+subfaction.random_green:
+	Interactable:
+	ScriptTriggers:
+	HiddenUnderFog:
+		Type: CenterPosition
+	Tooltip:
+		Name: Random
+	Buildable:
+		BuildPaletteOrder: 17
+		Prerequisites: ~greensubfactions, ~factions.subfaction_allowed
+		Queue: Upgrade
+		BuildLimit: 1
+		BuildDuration: 1
+		BuildDurationModifier: 100
+		Description: Random selection
+	Valued:
+		Cost: 0
+	RenderSprites:
+		Image: subfaction.random
+	GrantRandomCondition:
+		Conditions: ordos, mercenary, smuggler
+	ProvidesPrerequisite@Ordos:
+		Prerequisite: subfaction.ordos
+		RequiresCondition: ordos
+	ProvidesPrerequisite@mercenary:
+		Prerequisite: subfaction.mercenary
+		RequiresCondition: mercenary
+	ProvidesPrerequisite@smuggler:
+		Prerequisite: subfaction.smuggler
+		RequiresCondition: smuggler
+
+subfaction.ordos:
+	Interactable:
+	ScriptTriggers:
+	HiddenUnderFog:
+		Type: CenterPosition
+	Tooltip:
+		Name: Ordos
+	Buildable:
+		BuildPaletteOrder: 18
+		Prerequisites: ~greensubfactions, ~factions.subfaction_allowed
+		Queue: Upgrade
+		BuildLimit: 1
+		BuildDuration: 1
+		BuildDurationModifier: 100
+		Description: Ordos \n Special unit: Deviator, Raider, Stealth Raider \n Support powers: Chaos bomb \n no Missile tank
+	Valued:
+		Cost: 0
+	RenderSprites:
+		Image: subfaction.ordos
+	ProvidesPrerequisite@upgradename:
+
+subfaction.smuggler:
+	Interactable:
+	ScriptTriggers:
+	HiddenUnderFog:
+		Type: CenterPosition
+	Tooltip:
+		Name: Smugglers
+	Buildable:
+		BuildPaletteOrder: 19
+		Prerequisites: ~greensubfactions, ~factions.subfaction_allowed
+		Queue: Upgrade
+		BuildLimit: 1
+		BuildDuration: 1
+		BuildDurationModifier: 100
+		Description: Smugglers \n Special units: Flamer, Hunt trike\n Support powers: Saboteur, Jammer \n Passive bonus: 10% discout from Starport purchases \n no missile tank
+	Valued:
+		Cost: 0
+	RenderSprites:
+		Image: subfaction.smuggler
+	ProvidesPrerequisite@upgradename:
+
+subfaction.mercenary:
+	Interactable:
+	ScriptTriggers:
+	HiddenUnderFog:
+		Type: CenterPosition
+	Tooltip:
+		Name: Mercenaries
+	Buildable:
+		BuildPaletteOrder: 20
+		Prerequisites: ~greensubfactions, ~factions.subfaction_allowed
+		Queue: Upgrade
+		BuildLimit: 1
+		BuildDuration: 1
+		BuildDurationModifier: 100
+		Description: Mercenaries \n Special units: Bison tank, Mortar infantry, Crawler \n Support powers: Hire Contractors
+	Valued:
+		Cost: 0
+	RenderSprites:
+		Image: subfaction.mercenary
+	ProvidesPrerequisite@upgradename:
+
+merged.random:
+	Interactable:
+	ScriptTriggers:
+	HiddenUnderFog:
+		Type: CenterPosition
+	Tooltip:
+		Name: Random
+	Buildable:
+		BuildPaletteOrder: 21
+		Prerequisites: ~mergedsubfactions, ~factions.merged
+		Queue: Upgrade
+		BuildLimit: 1
+		BuildDuration: 1
+		BuildDurationModifier: 100
+		Description: Randowm selection
+	Valued:
+		Cost: 0
+	RenderSprites:
+		Image: subfaction.random
+	GrantRandomCondition:
+		Conditions: fremen, corrino, smuggler, mercenary
+	ProvidesPrerequisite@fremen:
+		Prerequisite: merged.fremen
+		RequiresCondition: fremen
+	ProvidesPrerequisite@corrino:
+		Prerequisite: merged.corrino
+		RequiresCondition: corrino
+	ProvidesPrerequisite@smuggler:
+		Prerequisite: merged.smuggler
+		RequiresCondition: smuggler
+	ProvidesPrerequisite@mercenary:
+		Prerequisite: merged.mercenary
+		RequiresCondition: mercenary
+
+
+merged.fremen:
+	Interactable:
+	HiddenUnderFog:
+		Type: CenterPosition
+	ScriptTriggers:
+	Tooltip:
+		Name: Fremen
+	Buildable:
+		BuildPaletteOrder: 22
+		Prerequisites: ~mergedsubfactions, ~factions.merged
+		Queue: Upgrade
+		BuildLimit: 1
+		BuildDuration: 1
+		BuildDurationModifier: 100
+		Description: Fremen \n Special Building: Sietch \n Special units: Fremen Fedaykin \n Support powers: Hide units, WormRider
+	Valued:
+		Cost: 0
+	RenderSprites:
+		Image: subfaction.fremen
+	ProvidesPrerequisite@upgradename:
+
+merged.corrino:
+	Interactable:
+	ScriptTriggers:
+	HiddenUnderFog:
+		Type: CenterPosition
+	Tooltip:
+		Name: Corrino
+	Buildable:
+		BuildPaletteOrder: 23
+		Prerequisites: ~mergedsubfactions, ~factions.merged
+		Queue: Upgrade
+		BuildLimit: 1
+		BuildDuration: 1
+		BuildDurationModifier: 100
+		Description: Corrino \n Special Building: Corrino Palace\n Special units: Sardaukar, Bombardment tank \n Passive bonus: Defenses on Palace
+	Valued:
+		Cost: 0
+	RenderSprites:
+		Image: subfaction.corrino
+	ProvidesPrerequisite@upgradename:
+
+merged.smuggler:
+	Interactable:
+	ScriptTriggers:
+	HiddenUnderFog:
+		Type: CenterPosition
+	Tooltip:
+		Name: Smugglers
+	Buildable:
+		BuildPaletteOrder: 24
+		Prerequisites: ~mergedsubfactions, ~factions.merged
+		Queue: Upgrade
+		BuildLimit: 1
+		BuildDuration: 1
+		BuildDurationModifier: 100
+		Description: Smugglers \n Special Building: Smugglers Starport \n Special units: Hunter trike, Flamer \n Support powers: Saboteur \n Passive bonus: 10% discout from Starport purchases
+	Valued:
+		Cost: 0
+	RenderSprites:
+		Image: subfaction.smuggler
+	ProvidesPrerequisite@upgradename:
+
+merged.mercenary:
+	Interactable:
+	ScriptTriggers:
+	HiddenUnderFog:
+		Type: CenterPosition
+	Tooltip:
+		Name: Mercenaries
+	Buildable:
+		BuildPaletteOrder: 25
+		Prerequisites: ~mergedsubfactions, ~factions.merged
+		Queue: Upgrade
+		BuildLimit: 1
+		BuildDuration: 1
+		BuildDurationModifier: 100
+		Description: Mercenaries \n Special Building: Mercenary factory \n Special units: Mortar Infantry, Crawler \n Support powers: Hire Contractors, Area jammer
+	Valued:
+		Cost: 0
+	RenderSprites:
+		Image: subfaction.mercenary
+	ProvidesPrerequisite@upgradename:

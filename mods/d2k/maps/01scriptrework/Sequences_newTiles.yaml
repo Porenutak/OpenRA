@@ -1,0 +1,1528 @@
+invisible_blocking_actor:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 0
+		ZOffset: -1
+		Offset: -16,-16
+
+invisible_blocking_actor_editor:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 0
+		ZOffset: -1
+		Offset: -16,-16
+
+rockpass01_left:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 1
+		ZOffset: -2048
+		Offset: -48, -48
+
+rockpass01_right:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 2
+		ZOffset: -2048
+		Offset: -48, -48
+
+rockpass01_top:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 3
+		ZOffset: -2048
+		Offset: -48, -48
+
+rockpass01_bottom:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 4
+		ZOffset: -2048
+		Offset: -48, -48
+
+
+rockpass01_destroyed_left:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 6
+		ZOffset: -2048
+		Offset: -48, -48
+
+rockpass01_destroyed_right:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 5
+		
+		ZOffset: -2048
+		Offset: -48, -48
+
+rockpass01_destroyed_top:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 7
+		ZOffset: -2512
+		Offset: -48, -48
+
+rockpass01_destroyed_bottom:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 8
+		ZOffset: -2048
+		Offset: -48, -48
+
+sandpass01_bottom:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 9
+		ZOffset: -2048
+		Offset: -16, -32
+
+sandpass01_top:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 10
+		ZOffset: -2048
+		Offset: -16, -32
+
+sandpass01_left:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 11
+		ZOffset: -2048
+		Offset: -32, -16
+
+sandpass01_right:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 12
+		Offset: -32, -16
+		ZOffset: -2048
+
+rockslip01_right:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 13
+		Offset: -32, -32
+		ZOffset: -2048
+
+rockslip01_right_alter:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 14
+		Offset: -32, -32
+		ZOffset: -2048
+
+rockslip01_top:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 15
+		Offset: -32, -32
+		ZOffset: -2048
+
+rockslip01_left:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 16
+		Offset: -32, -32
+		ZOffset: -2048
+
+rockslip02_top_right:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 17
+		Offset: -48, -32
+		ZOffset: -2048
+
+rockslip02_top_left:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 18
+		Offset: -48, -32
+		ZOffset: -2048
+
+merge_title01:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 19
+		Offset: -32, -32
+merge_title02:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 20
+		Offset: -32, -32
+merge_title03:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 21
+		Offset: -32, -32
+merge_title04:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 22
+		Offset: -32, -32
+
+transition_tile_01:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 23
+		Offset: -48, -32
+		ZOffset: -2048
+
+transition_tile_02:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 24
+		Offset: -48, -32
+		ZOffset: -2048
+
+transition_tile_03:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 25
+		Offset: -48, -32
+		ZOffset: -2048
+
+transition_tile_04:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 26
+		Offset: -48, -32
+		ZOffset: -2048
+
+transition_tile_05:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 27
+		Offset: -48, -32
+		ZOffset: -2048
+
+transition_tile_06:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 28
+		Offset: -48, -32
+		ZOffset: -2048
+
+bridge1_end_top_left:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 29
+		Offset: -32, -16
+		ZOffset: -2048
+
+bridge1_end_bottom_left:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 30
+		Offset: -32, -16
+		ZOffset: -2048
+
+bridge1_end_top:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 31
+		Offset: -16, -16
+		ZOffset: -2048
+
+bridge1_end_bottom:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 32
+		Offset: -16, -16
+		ZOffset: -2048
+
+bridge1_end_left:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 33
+		Offset: -16, -16
+		ZOffset: -2048
+
+bridge1_end_right:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 34
+		Offset: -16, -16
+		ZOffset: -2048
+
+platform_sand_bottom:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 39
+		Offset: -16, -16
+		ZOffset: -2048
+
+platform_sand_bottom_left:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 37
+		Offset: -32, -32
+		ZOffset: -2048
+
+platform_sand_bottom_right:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 38
+		Offset: -32, -32
+		ZOffset: -2048
+
+platform_rock_right_bottom:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 35
+		Offset: -16, -16
+		ZOffset: -2048
+
+platform_rock_righ_top:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 36
+		Offset: -16, -16
+		ZOffset: -2048
+
+bridge01_sand_right:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 40
+		Offset: -16, -16
+		ZOffset: -2048
+
+sand_end01:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 41
+		Offset: -32, -32
+		ZOffset: -2048
+
+signle_cell1:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 42
+		Offset: -24, -24
+		ZOffset: -2048
+
+signle_cell2:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 43
+		Offset: -32, -18
+		ZOffset: -2048
+
+signle_cell3:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 44
+		Offset: -18, -32
+		ZOffset: -2048
+signle_cell4:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 45
+		Offset: -32,-18
+		ZOffset: -2048
+
+platform_left_01:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 46
+		Offset: -16, -16
+		ZOffset: -2048
+
+platform_left_02:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 47
+		Offset: -16, -16
+		ZOffset: -2048
+
+platform_left_03:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 48
+		Offset: -16, -16
+		ZOffset: -2048
+
+platform_right_01:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 49
+		Offset: -16, -16
+		ZOffset: -2048
+
+platform_right_02:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 50
+		Offset: -16, -16
+		ZOffset: -2048
+
+platform_right_03:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 51
+		Offset: -16, -16
+		ZOffset: -2048
+
+
+fremen_temple:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 52
+		Offset: -64, -32
+		ZOffset: -2048
+
+building_rock01:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 53
+		Offset: -64, -64
+		ZOffset: -2048
+
+custom_rock02_ecology_station:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 54
+		Offset: -48, -48
+		ZOffset: -2048
+
+custom_rock03_h_barracks:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 55
+		Offset: -32, -48
+		ZOffset: -2048
+
+fremen_tent01:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 56
+		Offset: -25, -48
+
+custom_rock04_a_barracks:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 57
+		Offset: -32, -32
+		ZOffset: -2048
+
+custom_rock05_o_barracks:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 58
+		Offset: -32, -48
+		ZOffset: -2048
+
+bridge_tile01:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 59
+		ZOffset: -2048
+		Offset: -16,-15
+
+pips:
+	healt_cross:
+		Filename: NewTiles_assets.R8
+		Start: 60
+		Offset: -5,-5
+
+tree01:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 61
+		Offset: -32, -32
+		ZOffset: -2048
+		Scale: 0.8
+
+rock_decoration01:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 62
+		Offset: -32, -32
+		ZOffset: -2048
+
+
+
+
+
+ice_tileset_small01:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 63
+		Offset: -16,-16
+		ZOffset: -10c512
+
+ice_tileset_small02:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 64
+		Offset: -16,-16
+		ZOffset: -10c512
+
+ice_tileset_small03:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 65
+		Offset: -16,-16
+		ZOffset: -10c512
+
+ice_tileset_small04:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 86
+		Offset: -16,-16
+		ZOffset: -10c512
+
+ice_tileset_small05:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 66
+		Offset: -16,-16
+		ZOffset: -10c512
+
+ice_tileset_small06:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 67
+		Offset: -16,-16
+		ZOffset: -10c512
+
+ice_tileset_small07:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 68
+		Offset: -16,-16
+		ZOffset: -10c512
+
+ice_tileset_small08:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 69
+		Offset: -16,-16
+		ZOffset: -10c512
+
+ice_tileset_small09:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 70
+		Offset: -16,-16
+		ZOffset: -10c512
+
+ice_tileset_small10:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 71
+		Offset: -16,-16
+		ZOffset: -10c512
+
+ice_tileset_small11:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 72
+		Offset: -16,-16
+		ZOffset: -10c512
+
+ice_tileset_small12:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 73
+		Offset: -16,-16
+		ZOffset: -10c512
+
+ice_tileset_small13:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 74
+		Offset: -16,-16
+		ZOffset: -10c512
+
+ice_tileset_small14:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 75
+		Offset: -16,-16
+		ZOffset: -10c512
+
+ice_tileset_small15:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 76
+		Offset: -16,-16
+		ZOffset: -10c512
+
+ice_tileset_small16:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 77
+		Offset: -16,-16
+		ZOffset: -10c512
+
+ice_tileset_small17:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 78
+		Offset: -16,-16
+		ZOffset: -10c512
+
+ice_tileset_small18:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 79
+		Offset: -16,-16
+		ZOffset: -10c512
+
+ice_tileset_small19:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 80
+		Offset: -16,-16
+		ZOffset: -10c512
+
+ice_tileset_small20:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 81
+		Offset: -16,-16
+		ZOffset: -10c512
+
+ice_tileset_small21:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 82
+		Offset: -16,-16
+		ZOffset: -10c512
+
+ice_tileset_small22:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 83
+		Offset: -16,-16
+		ZOffset: -10c512
+
+ice_tileset_small23:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 84
+		Offset: -16,-16
+		ZOffset: -10c512
+
+ice_tileset_small24:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 85
+		Offset: -16,-16
+		ZOffset: -10c512
+
+ice_tileset_small25:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 88
+		Offset: -16,-16
+		ZOffset: -10c512
+
+ice_tileset_big01:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 89
+		Offset: -32,-32
+		ZOffset: -10c512
+
+ice_tileset_big02:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 90
+		Offset: -32,-32
+		ZOffset: -10c512
+
+ice_tileset_big03:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 91
+		Offset: -48, -32
+		ZOffset: -10c512
+
+ice_tileset_big03_1:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 108
+		Offset: -48, -32
+		ZOffset: -10c512
+
+ice_tileset_big03_2:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 109
+		Offset: -48, -32
+		ZOffset: -10c512
+
+ice_tileset_big03_3:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 110
+		Offset: -48, -32
+		ZOffset: -10c512
+
+ice_tileset_big04:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 92
+		Offset: -32,-32
+		ZOffset: -10c512
+
+ice_tileset_big05:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 93
+		Offset: -32,-32
+		ZOffset: -10c512
+
+ice_tileset_big06:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 94
+		Offset: -32,-32
+		ZOffset: -10c512
+
+ice_tileset_big07:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 95
+		Offset: -32,-32
+		ZOffset: -10c512
+
+ice_tileset_big08:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 96
+		Offset: -32,-32
+		ZOffset: -10c512
+
+ice_tileset_big09:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 97
+		Offset: -32, -48
+		ZOffset: -10c512
+
+ice_tileset_big10:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 98
+		Offset: -32,-48
+		ZOffset: -10c512
+
+ice_tileset_big11:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 99
+		Offset: -32,-32
+		ZOffset: -10c512
+
+ice_tileset_big12:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 100
+		Offset: -32,-32
+		ZOffset: -10c512
+
+ice_tileset_big13:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 101
+		Offset: -32,-32
+		ZOffset: -10c512
+
+ice_tileset_big14:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 102
+		Offset: -32,-32
+		ZOffset: -10c512
+
+ice_tileset_big15:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 103
+		Offset: -32,-32
+		ZOffset: -10c512
+
+ice_tileset_big16:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 104
+		Offset: -32,-32
+		ZOffset: -10c512
+
+ice_tileset_big17:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 105
+		Offset: -32,-32
+		ZOffset: -10c512
+
+ice_tileset_big18:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 106
+		Offset: -32,-32
+		ZOffset: -10c512
+
+ice_tileset_big19:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 107
+		Offset: -32,-32
+		ZOffset: -10c512
+
+ice_tileset_big20:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 108
+		Offset: -48,-32
+		ZOffset: -10c512
+
+ice_tileset_big21:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 111
+		Offset: -32,-32
+		ZOffset: -10c512
+
+ice_tileset_big22:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 112
+		Offset: -32,-32
+		ZOffset: -10c512
+
+ice_tileset_big23:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 113
+		Offset: -32,-32
+		ZOffset: -10c512
+
+ice_tileset_big24:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 114
+		Offset: -32,-32
+		ZOffset: -10c512
+
+ice_tileset_big25:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 115
+		Offset: -32,-32
+		ZOffset: -10c512
+
+ice_tileset_big26:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 116
+		Offset: -32,-16
+		ZOffset: -10c512
+
+ice_tileset_big27:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 117
+		Offset: -32,-16
+		ZOffset: -10c512
+
+ice_tileset_big28:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 118
+		Offset: -16,-32
+		ZOffset: -10c512
+
+ice_tileset_big29:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 119
+		Offset: -16,-32
+		ZOffset: -10c512
+
+ice_tileset_big_smooth01:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 217
+		Offset: -32,-32
+		ZOffset: -10c512
+
+ice_tileset_big_smooth02:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 218
+		Offset: -32,-32
+		ZOffset: -10c512
+
+ice_tileset_big_smooth03:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 219
+		Offset: -32,-32
+		ZOffset: -10c512
+
+ice_tileset_big_smooth04:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 220
+		Offset: -32,-32
+		ZOffset: -10c512
+
+ice_tileset_big_smooth05:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 221
+		Offset: -32,-32
+		ZOffset: -10c512
+
+ice_tileset_big_smooth06:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 222
+		Offset: -32,-32
+		ZOffset: -10c512
+
+ice_tileset_big_smooth07:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 223
+		Offset: -32,-32
+		ZOffset: -10c512
+
+ice_tileset_big_smooth08:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 224
+		Offset: -32,-32
+		ZOffset: -10c512
+
+ice_tileset_transition01:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 120
+		Offset: -32,-32
+		ZOffset: -10c512
+
+ice_tileset_transition02:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 121
+		Offset: -32,-32
+		ZOffset: -10c512
+
+ice_tileset_transition03:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 122
+		Offset: -32,-32
+		ZOffset: -10c512
+
+ice_tileset_transition04:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 123
+		Offset: -32,-32
+		ZOffset: -10c512
+
+ice_tileset_transition05:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 124
+		Offset: -32,-32
+		ZOffset: -10c512
+
+ice_tileset_transition06:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 125
+		Offset: -32,-32
+		ZOffset: -10c512
+
+ice_tileset_transition07:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 126
+		Offset: -32,-32
+		ZOffset: -10c512
+
+ice_tileset_decoration01:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 127
+		Offset: -16,-16
+		ZOffset: -10c512
+
+ice_tileset_decoration02:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 128
+		Offset: -16,-16
+		ZOffset: -10c512
+
+ice_tileset_decoration03:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 129
+		Offset: -16,-32
+		ZOffset: -10c512
+
+ice_tileset_decoration04:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 130
+		Offset: -48,-48
+		ZOffset: -10c512
+
+ice_tileset_decoration05:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 131
+		Offset: -48,-32
+		ZOffset: -10c512
+
+ice_tileset_decoration06:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 132
+		Offset: -32,-32
+		ZOffset: -10c512
+
+ice_tileset_decoration07:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 133
+		Offset: -32,-32
+		ZOffset: -10c512
+
+ice_tileset_decoration08:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 134
+		Offset: -32,-32
+		ZOffset: -10c512
+
+ice_tileset_decoration09:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 135
+		Offset: -32,-16
+		ZOffset: -10c512
+
+ice_tileset_decoration10:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 136
+		Offset: -32,-16
+		ZOffset: -10c512
+
+ice_tileset_decoration11:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 137
+		Offset: -32,-16
+		ZOffset: -10c512
+
+ice_tileset_decoration12:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 138
+		Offset: -32,-32
+		ZOffset: -10c512
+
+ice_tileset_decoration13:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 139
+		Offset: -32,-32
+		ZOffset: -10c512
+
+ice_tileset_decoration14:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 140
+		Offset: -16,-32
+		ZOffset: -10c512
+
+ice_tileset_decoration15:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 225
+		Offset: -32,-32
+		ZOffset: -10c512
+
+ice_tileset_decoration16:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 226
+		Offset: -32,-32
+		ZOffset: -10c512
+
+ice_tileset_decoration18:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 141
+		Offset: -32,-32
+		ZOffset: -10c512
+
+
+
+
+
+
+
+water_tileset_01:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 142
+		Offset: -16,-16
+		ZOffset: -10c512
+water_tileset_02:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 143
+		Offset: -16,-16
+		ZOffset: -10c512
+water_tileset_03:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 144
+		Offset: -16,-16
+		ZOffset: -10c512
+water_tileset_04:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 145
+		Offset: -16,-16
+		ZOffset: -10c512
+water_tileset_05:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 146
+		Offset: -16,-16
+		ZOffset: -10c512
+water_tileset_06:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 147
+		Offset: -16,-16
+		ZOffset: -10c512
+water_tileset_07:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 148
+		Offset: -16,-16
+		ZOffset: -10c512
+water_tileset_08:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 149
+		Offset: -16,-16
+		ZOffset: -10c512
+water_tileset_09:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 150
+		Offset: -16,-16
+		ZOffset: -10c512
+
+water_tileset_09_1:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 197
+		Offset: -16,-16
+		ZOffset: -10c512
+
+water_tileset_09_2:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 198
+		Offset: -16,-16
+		ZOffset: -10c512
+
+water_tileset_09_3:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 199
+		Offset: -16,-16
+		ZOffset: -10c512
+
+water_tileset_09_4:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 200
+		Offset: -16,-16
+		ZOffset: -10c512
+
+water_tileset_09_5:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 201
+		Offset: -16,-16
+		ZOffset: -10c512
+
+
+water_tileset_10:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 151
+		Offset: -16,-16
+		ZOffset: -10c512
+water_tileset_11:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 152
+		Offset: -16,-16
+		ZOffset: -10c512
+water_tileset_12:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 153
+		Offset: -16,-16
+		ZOffset: -10c512
+water_tileset_13:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 154
+		Offset: -16,-16
+		ZOffset: -10c512
+water_tileset_14:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 154
+		Offset: -16,-16
+		ZOffset: -10c512
+water_tileset_15:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 155
+		Offset: -16,-16
+		ZOffset: -10c512
+water_tileset_16:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 156
+		Offset: -16,-16
+		ZOffset: -10c512
+water_tileset_17:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 157
+		Offset: -16,-16
+		ZOffset: -10c512
+water_tileset_18:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 158
+		Offset: -16,-16
+		ZOffset: -10c512
+water_tileset_19:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 159
+		Offset: -16,-16
+		ZOffset: -10c512
+water_tileset_20:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 160
+		Offset: -16,-16
+		ZOffset: -10c512
+water_tileset_21:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 161
+		Offset: -16,-16
+		ZOffset: -10c512
+water_tileset_22:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 162
+		Offset: -16,-16
+		ZOffset: -10c512
+water_tileset_23:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 163
+		Offset: -16,-16
+		ZOffset: -10c512
+water_tileset_24:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 164
+		Offset: -16,-16
+		ZOffset: -10c512
+water_tileset_25:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 165
+		Offset: -16,-16
+		ZOffset: -10c512
+water_tileset_26:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 166
+		Offset: -16,-16
+		ZOffset: -10c512
+water_tileset_27:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 167
+		Offset: -16,-16
+		ZOffset: -10c512
+water_tileset_28:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 168
+		Offset: -16,-16
+		ZOffset: -10c512
+water_tileset_29:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 169
+		Offset: -16,-32
+		ZOffset: -10c512
+water_tileset_30:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 170
+		Offset: -16,-32
+		ZOffset: -10c512
+water_tileset_31:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 171
+		Offset: -32,-16
+		ZOffset: -10c512
+water_tileset_32:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 172
+		Offset: -32,-16
+		ZOffset: -10c512
+water_tileset_33:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 173
+		Offset: -16,-16
+		ZOffset: -10c512
+water_tileset_34:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 174
+		Offset: -16,-16
+		ZOffset: -10c512
+water_tileset_35:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 175
+		Offset: -16,-16
+		ZOffset: -10c512
+water_tileset_36:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 176
+		Offset: -16,-16
+		ZOffset: -10c512
+water_tileset_37:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 177
+		Offset: -16,-16
+		ZOffset: -10c512
+water_tileset_38:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 178
+		Offset: -16,-16
+		ZOffset: -10c512
+water_tileset_39:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 179
+		Offset: -16,-16
+		ZOffset: -10c512
+water_tileset_40:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 180
+		Offset: -16,-16
+		ZOffset: -10c512
+water_tileset_41:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 181
+		Offset: -16,-16
+		ZOffset: -10c512
+water_tileset_42:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 182
+		Offset: -16,-16
+		ZOffset: -10c512
+water_tileset_43:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 183
+		Offset: -16,-16
+		ZOffset: -10c512
+water_tileset_44:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 184
+		Offset: -16,-16
+		ZOffset: -10c512
+water_tileset_45:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 185
+		Offset: -16,-16
+		ZOffset: -10c512
+water_tileset_46:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 186
+		Offset: -16,-16
+		ZOffset: -10c512
+water_tileset_47:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 187
+		Offset: -16,-16
+		ZOffset: -10c512
+water_tileset_48:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 188
+		Offset: -16,-16
+		ZOffset: -10c512
+water_tileset_49:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 189
+		Offset: -16,-16
+		ZOffset: -10c512
+water_tileset_50:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 190
+		Offset: -16,-16
+		ZOffset: -10c512
+water_tileset_51:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 191
+		Offset: -16,-16
+		ZOffset: -10c512
+water_tileset_52:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 192
+		Offset: -16,-16
+		ZOffset: -10c512
+water_tileset_53:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 193
+		Offset: -32,-16
+		ZOffset: -10c512
+water_tileset_54:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 194
+		Offset: -32,-16
+		ZOffset: -10c512
+
+
+water_tileset_big01:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 203
+		Offset: -32,-32
+		ZOffset: -10c512
+water_tileset_big02:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 204
+		Offset: -32,-32
+		ZOffset: -10c512
+water_tileset_big03:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 205
+		Offset: -32,-32
+		ZOffset: -10c512
+water_tileset_big04:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 206
+		Offset: -32,-32
+		ZOffset: -10c512
+water_tileset_big05:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 207
+		Offset: -32,-32
+		ZOffset: -10c512
+water_tileset_big06:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 208
+		Offset: -32,-32
+		ZOffset: -10c512
+water_tileset_big07:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 209
+		Offset: -32,-32
+		ZOffset: -10c512
+water_tileset_big08:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 210
+		Offset: -32,-32
+		ZOffset: -10c512
+water_tileset_big09:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 211
+		Offset: -32,-32
+		ZOffset: -10c512
+water_tileset_big10:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 212
+		Offset: -32,-32
+		ZOffset: -10c512
+water_tileset_big11:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 213
+		Offset: -32,-32
+		ZOffset: -10c512
+water_tileset_big12:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 214
+		Offset: -32,-32
+		ZOffset: -10c512
+water_tileset_big13:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 215
+		Offset: -32,-32
+		ZOffset: -10c512
+water_tileset_big14:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 216
+		Offset: -32,-32
+		ZOffset: -10c512
+water_tileset_big15:
+	idle:
+		Filename: NewTiles_assets.R8
+		Start: 217
+		Offset: -32,-32
+		ZOffset: -10c512

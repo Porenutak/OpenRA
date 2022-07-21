@@ -1,0 +1,101 @@
+GenericVoice:
+	DefaultVariant: .AUD
+	Variants:
+		atreides: .WAV
+		ordos: .WAV
+		harkonnen: .WAV
+		smuggler: .WAV
+		mercenary: .WAV
+		corrino: .WAV
+		fremen: .WAV
+	Voices:
+		Choke: audio/choke_dying_2, audio/choke_dying_6
+		Burn: audio/burn_dying_1, audio/burn_dying_2, audio/burn_dying_6
+
+
+InfantryVoice:
+	DefaultVariant: .AUD
+	Variants:
+		atreides: .WAV
+		ordos: .WAV
+		harkonnen: .WAV
+		smuggler: .WAV
+		mercenary: .WAV
+		corrino: .WAV
+		fremen: .WAV
+	Voices:
+		Choke: audio/choke_dying_2, audio/choke_dying_6
+		Burn: audio/burn_dying_1, audio/burn_dying_2, audio/burn_dying_6, KILLGUY5,KILLGUY6,KILLGUY7
+	DisablePrefixes: Die, Choke, Burn
+	DisableVariants: Select, Action, Guard
+
+EngineerVoice:
+	DefaultVariant: .AUD
+	Variants:
+		atreides: .WAV
+		ordos: .WAV
+		harkonnen: .WAV
+		smuggler: .WAV
+		mercenary: .WAV
+		corrino: .WAV
+		fremen: .WAV
+	Voices:
+		Choke: audio/choke_dying_2, audio/choke_dying_6
+		Burn: audio/burn_dying_1, audio/burn_dying_2, audio/burn_dying_6
+	DisablePrefixes: Die, Choke, Burn
+	DisableVariants: Select, Action, Guard
+
+FremenVoice:
+	DefaultVariant: .AUD
+	Variants:
+		atreides: .WAV
+		ordos: .WAV
+		harkonnen: .WAV
+		smuggler: .WAV
+		mercenary: .WAV
+		corrino: .WAV
+		fremen: .WAV
+	Voices:
+		Choke: audio/choke_dying_2, audio/choke_dying_6
+		Burn: audio/burn_dying_1, audio/burn_dying_2, audio/burn_dying_6, KILLGUY5,KILLGUY6,KILLGUY7
+	DisablePrefixes: Select, Action, Die, Choke, Burn
+
+AssassinVoice:
+	DefaultVariant: .AUD
+	Variants:
+		atreides: .WAV
+		ordos: .WAV
+		harkonnen: .WAV
+	Prefixes:
+		atreides: A
+		fremen: A
+		ordos: O
+		smuggler: O
+		mercenary: O
+		harkonnen: H
+		corrino: H
+	Voices:
+		Select: H__ESEL1,H_ESEL2,H_ESEL3
+		Action: O_SCONF1,O_SCONF2,O_SCONF3
+		Move: O_SCONF1,O_SCONF2,O_SCONF3
+		Die: KILLGUY1,KILLGUY2,KILLGUY3,KILLGUY4,KILLGUY5,KILLGUY6,KILLGUY7,KILLGUY8,KILLGUY9
+		Guard: I_GUARD
+		Choke: audio/choke_dying_2, audio/choke_dying_6
+		Burn: audio/burn_dying_1, audio/burn_dying_2, audio/burn_dying_6, KILLGUY5,KILLGUY6,KILLGUY7
+	DisablePrefixes: Select, Action, Die, Choke, Burn
+	DisableVariants: Select, Action, Guard
+
+SaboteurVoice:
+	DefaultVariant: .AUD
+	Variants:
+		atreides: .WAV
+		ordos: .WAV
+		harkonnen: .WAV
+		smuggler: .WAV
+		mercenary: .WAV
+		corrino: .WAV
+		fremen: .WAV
+	Voices:
+		Choke: audio/choke_dying_2, audio/choke_dying_6
+		Burn: audio/burn_dying_1, audio/burn_dying_2, audio/burn_dying_6
+	DisablePrefixes: Die, Choke, Burn

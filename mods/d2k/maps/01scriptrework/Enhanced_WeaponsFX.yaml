@@ -1,0 +1,449 @@
+Derbis:
+	Warhead@1Dam: SpreadDamage
+		AffectsParent: False
+
+empty_shell01:
+	ReloadDelay: 60
+	Range: 6c0
+	ValidTargets: Infantry, Vehicle, Building, Wall, Ground, Water, Air
+	Projectile: Bullet
+		Speed: 50, 70
+		Inaccuracy: 1c512
+		InaccuracyType: PerCellIncrement
+		LaunchAngle: 91, 140
+		Image: empty_shell01
+		Shadow: true
+	Warhead@effect: CreateEffect
+		Explosions: empty_shell_frame_01
+
+
+debris_vehicle01:
+	Inherits: Debris2
+	Projectile: Bullet
+		Image: shrapnel_vehicle01
+	Warhead: CreateEffect
+		Explosions: tiny_explosion
+		ImpactSoundChance: 50
+		ImpactActors: false
+		ImpactSounds: audio/new_DerbisHeavy01.wav, audio/new_DerbisHeavy02.wav, audio/new_derbisLight01.wav, audio/new_derbisHeavy_bounce02.wav
+
+debris_vehicle02:
+	Inherits: Debris3
+	Projectile: Bullet
+		Image: shrapnel_vehicle02
+		BounceSound: audio/new_derbisLight_bounce01.wav
+		BounceCount: 2
+	Warhead: CreateEffect
+		Explosions: tiny_explosion
+		ImpactSoundChance: 50
+		ImpactActors: false
+		ImpactSounds: audio/new_DerbisHeavy01.wav, audio/new_DerbisHeavy02.wav, audio/new_derbisHeave_bounce01.wav, audio/new_derbisHeavy_bounce02.wav
+
+debris_harvester_wheel01:
+	Inherits: Debris3
+	Projectile: Bullet
+		Image: harvester_wheel01
+		BounceCount: 2
+	Warhead: CreateEffect
+		Explosions: tiny_explosion
+		ImpactSoundChance: 50
+		ImpactActors: false
+		ImpactSounds: audio/new_DerbisHeavy01.wav, audio/new_DerbisHeavy02.wav, audio/new_derbisHeave_bounce01.wav, audio/new_derbisHeavy_bounce02.wav
+
+debris_harvester_wheel02:
+	Inherits: Debris3
+	Projectile: Bullet
+		Image: harvester_wheel02
+		BounceSound: audio/new_DerbisHeavy02.wav
+		BounceCount: 1
+		TrailImage: bazooka_trail2
+		TrailInterval: 2
+	Warhead: CreateEffect
+		Explosions: tiny_explosion
+		ImpactSoundChance: 50
+		ImpactActors: false
+		ImpactSounds: audio/new_DerbisHeavy01.wav, audio/new_DerbisHeavy02.wav, audio/new_derbisLight01.wav, audio/new_Cliff_Destroyed.wav
+
+debris.rotor:
+	Inherits: ^derbis.turret
+	Range: 1c512
+	Projectile:
+		Image: debris_rotor_anim
+		Speed: 90, 110
+		BounceCount: 2
+		Blockable: false
+		BounceRangeModifier: 60
+		TrailImage: bazooka_trail2
+		TrailInterval: 2
+	Warhead: CreateEffect
+		Explosions: tiny_explosion
+		ImpactSounds: audio/new_Cliff_Destroyed.wav
+
+^derbis.turret:
+	ReloadDelay: 60
+	Range: 0c512
+	Projectile: Bullet
+		Image: siege_turret_husk_anim
+		Speed: 50, 70
+		Inaccuracy: 200
+		Blockable: true
+		LaunchAngle: 40, 150
+		BounceCount: 2
+		Shadow: true
+		BounceRangeModifier: 20
+		BounceSound: audio/new_DerbisHeavy02.wav
+	Warhead: CreateEffect
+		Explosions: tiny_explosion
+		ImpactSoundChance: 50
+		ImpactActors: false
+		ImpactSounds: audio/new_DerbisHeavy01.wav, audio/new_DerbisHeavy02.wav, audio/new_derbisLight01.wav
+	Warhead@dmg: SpreadDamage
+		Damage: 5000
+		Spread: 512
+		Falloff: 100, 0
+		Versus:
+			none: 100
+			wall: 10
+			building: 10
+			buildingWeak: 10
+			wood: 10
+			light: 20
+			heavy: 5
+			invulnerable: 0
+			cy: 5
+			harvester: 5
+		DamageTypes: Prone50Percent, TriggerProne, SmallExplosionDeath
+
+derbisSiegetank.turret:
+	Inherits: ^derbis.turret
+	Warhead: CreateEffect
+		Explosions: siege_turret_frame01, siege_turret_frame02, siege_turret_frame03, siege_turret_frame04, siege_turret_frame05
+
+debris_turret.atreides:
+	Inherits: ^derbis.turret
+	Projectile: Bullet
+		Image: tank_turrethusk_anim.atreides
+	Warhead: CreateEffect
+		Explosions: atreidis_turret_frame01, atreidis_turret_frame02, atreidis_turret_frame03, atreidis_turret_frame04
+
+debris_turret01.atreides:
+	Inherits: debris_turret.atreides
+	Projectile: Bullet
+		Image: tank_turrethusk_anim01.atreides
+
+debris_turret.harkonnen:
+	Inherits: ^derbis.turret
+	Projectile: Bullet
+		Image: tank_turrethusk_anim.harkonnen
+	Warhead: CreateEffect
+		Explosions: harkonnen_turret_frame01, harkonnen_turret_frame02, harkonnen_turret_frame03, harkonnen_turret_frame04
+
+debris_turret01.harkonnen:
+	Inherits: debris_turret.harkonnen
+	Projectile: Bullet
+		Image: tank_turrethusk_anim01.harkonnen
+
+debris_turret.ordos:
+	Inherits: ^derbis.turret
+	Projectile: Bullet
+		Image: tank_turrethusk_anim.ordos
+	Warhead: CreateEffect
+		Explosions: ordos_turret_frame01, ordos_turret_frame02, ordos_turret_frame03, ordos_turret_frame04
+
+derbisRock01:
+	Inherits: Debris
+	Projectile: Bullet
+	Warhead@3Eff: CreateEffect
+		Explosions: tiny_explosion
+		ImpactActors: false
+		ImpactSoundChance: 20
+		ImpactSounds: audio/new_derbisRock01.wav, audio/new_derbisRock02.wav, audio/new_derbisLight01.wav, audio/new_DerbisHeavy01.wav, audio/new_DerbisHeavy02.wav
+
+derbisRock02:
+	Inherits: Debris2
+	Projectile: Bullet
+		Image: shrapnel_rock02
+		-TrailImage:
+		Speed: 64, 90
+		LaunchAngle: 20, 60
+	Warhead@3Eff: CreateEffect
+		Explosions: tiny_explosion
+		ImpactActors: false
+		ImpactSoundChance: 30
+		ImpactSounds: audio/new_derbisRock01.wav, audio/new_derbisRock02.wav, audio/new_derbisRock03.wav
+
+derbisRock03:
+	Inherits: Debris3
+	Projectile: Bullet
+		Image: shrapnel_rock01
+		BounceSound: audio/new_derbisRock02.wav
+		Speed: 40, 70
+		LaunchAngle: 40, 110
+		-TrailImage:
+	Warhead@3Eff: CreateEffect
+		Explosions: tiny_explosion
+		ImpactActors: false
+		ImpactSoundChance: 20
+		ImpactSounds: audio/new_derbisRock01.wav, audio/new_derbisRock03.wav
+
+
+
+UnitExplodeMed:
+	Warhead@2Eff: CreateEffect
+		ImpactSounds: audio/new_DerbisHeavy01.wav, audio/EBoD_MortarExplosion.wav, EXPLSML2.WAV
+		ImpactSoundChance: 20
+		Delay: 10
+		ImpactActors: false
+	Warhead@explosiondmg: SpreadDamage
+		Damage: 1000
+		Falloff: 100, 10
+		DamageTypes: TriggerProne, SmallExplosionDeath
+		DamageCalculationType: ClosestTargetablePosition
+		Spread: 1c112
+			none: 100
+			wall: 20
+			building: 20
+			wood: 50
+			light: 50
+			heavy: 20
+			concrete: 100
+			invulnerable: 0
+			cy: 20
+			harvester: 30
+
+BuildingExplode:
+	Warhead@1Eff: CreateEffect
+		Explosions: building
+		ImpactActors: false
+		Delay: 0
+	Warhead@Smudges: LeaveSmudge
+		SmudgeType: Building_smudge
+		Size: 2,2
+
+cliffExplode01:
+	Warhead@1Eff: CreateEffect
+		Explosions: building
+		ImpactActors: false
+		Delay: 0
+		ImpactSounds: audio/new_Cliff_Destroyed.wav
+	Warhead@rockAvalanche: GrantExternalCondition
+		Condition: rock_avalanche
+		Range: 1c512
+
+buildingExplosions02:
+	Warhead@2Eff: CreateEffect
+		Explosions: self_destruct
+		ImpactActors: false
+		ImpactSounds: EXPLSML1.WAV
+		Delay: 10
+		Inaccuracy: 0c512
+	Warhead@3Eff: CreateEffect
+		Explosions: large_explosion
+		ImpactActors: false
+		ImpactSounds: audio/ExplosionBuildingLightResonance01.wav
+		Delay: 10
+		Inaccuracy: 1c0
+
+buildingExplosions03:
+	Warhead@4Eff: CreateEffect
+		Explosions: building, self_destruct, large_explosion
+		ImpactActors: false
+		ImpactSounds: audio/new_DerbisBigExplosion01.wav
+		ImpactSoundChance: 60
+		Inaccuracy: 1c512
+		Delay: 10
+
+buildingExplosions04_big:
+	Warhead@4Eff: CreateEffect
+		Explosions: building, self_destruct, large_explosion
+		ImpactActors: false
+		ImpactSounds: audio/bigxplosion17.wav
+		Inaccuracy: 1c512
+		Delay: 0
+
+buildingExplosions05:
+	Warhead@3Eff: CreateEffect
+		Explosions: building
+		ImpactActors: false
+		ImpactSounds: audio/explosion_large_2.wav
+		Inaccuracy: 1c512
+		Delay: 10
+
+buildingBigExplosion:
+	Inherits: PlasmaExplosion
+	Warhead@1Dam: SpreadDamage
+		Spread: 3c0
+		Damage: 5000
+		Falloff: 100, 50
+		ValidRelationships: Neutral, Enemy, Ally
+	Warhead@flash: FlashEffect
+		FlashType: flash
+		Duration: 20
+	Warhead@concrete: DamagesConcrete
+		Damage: 10000
+		AffectsParent: true
+	-Warhead@3Smu:
+	-Warhead@4Smu:
+
+huskExplode01:
+	Warhead@1Eff: CreateEffect
+		Explosions: building, self_destruct
+		ImpactSounds: EXPLHG2.WAV , audio/EBoD_MortarExplosion.wav, EXPLSML1.WAV
+		ImpactActors: false
+		ImpactSoundChance: 70
+
+
+ExplosionWithDamege_large:
+	Inherits: UnitExplodeLarge
+	Warhead@dmg: SpreadDamage
+		Damage: 2500
+		Spread: 1c512
+		DamageTypes: Prone50Percent, TriggerProne, ExplosionDeath
+
+ExplosionAircraft:
+	Warhead@sound: CreateEffect
+		Explosions: building
+		ImpactSounds: EXPLLG3.WAV
+		Inaccuracy: 1c0
+	Warhead@eff: CreateEffect
+		Explosions: large_explosion
+		ImpactSounds: audio/bigxplosion17.wav
+		ImpactActors: false
+		Delay: 10
+	Warhead@areadmg: TargetDamage
+		Spread: 1c512
+		Damage: 10000
+		DamageTypes: Prone50Percent, TriggerProne, SmallExplosionDeath
+		Versus:
+			none: 110
+			light: 90
+			heavy: 30
+			building: 120
+			harvester: 70
+			buildingWeak: 120
+			wall: 80
+			invulnerable: 0
+			cy: 30
+
+ExplosionFrigate:
+	Inherits: ExplosionAircraft
+	Warhead@eff: CreateEffect
+		Explosions: large_explosion
+		ImpactSounds: audio/explosion_large_2.wav
+		ImpactActors: false
+		Delay: 10
+	Warhead@areadmg: SpreadDamage
+		Spread: 2c0
+		Damage: 25000
+		Falloff: 100 , 10
+		DamageTypes: Prone50Percent, TriggerProne, SmallExplosionDeath
+		Versus:
+			none: 125
+			light: 100
+			heavy: 50
+			building: 100
+			harvester: 70
+			buildingWeak: 100
+			wall: 80
+			invulnerable: 0
+			cy: 30
+
+worm_explode:
+	Warhead@3Eff: CreateEffect
+		Explosions: worm_explode
+		ImpactSounds: WORM.WAV
+	Warhead@4Eff: CreateEffect
+		Explosions: worm_explode_smoke
+	Warhead@rockAvalanche: GrantExternalCondition
+		Condition: rock_avalanche
+		Range: 1c512
+
+worm_disapier:
+	Warhead@eff: CreateEffect
+		Explosions: wormdisapier
+
+chaosambiencesounds:
+	ReloadDelay: 20
+	InvalidTargets: Structure
+	Range: 3c512
+	Projectile: Bullet
+	Warhead@NeededForTargeting: TargetDamage
+		InvalidTargets: Structure
+	Warhead@sounds: CreateEffect
+		ImpactSoundChance: 5
+		ImpactSounds: audio/burn_dying_6.wavaudio/burn_dying_6.wav, audio/EBoD_normal_dying_2.wav, audio/EBoD_normal_dying_3.wav audio/choke_dying_6.wav, audio/burn_dying_1.wav audio/choke_dying_2.wav, audio/choke_dying_6.wav
+
+flamer_explosion_big:
+	Warhead@damagedarea1: TargetDamage
+		Spread: 2c0
+		Damage: 2000
+		Versus:
+			none: 110
+			wall: 75
+			building: 80
+			buildingWeak: 90
+			wood: 70
+			light: 60
+			heavy: 30
+			invulnerable: 0
+			cy: 20
+			harvester: 50
+		DamageTypes: FireDeath
+	Warhead@damagedarea1: SpreadDamage
+		Spread: 2c0
+		Falloff: 100, 0
+		Damage: 10000
+		Versus:
+			none: 110
+			wall: 75
+			building: 80
+			buildingWeak: 90
+			wood: 70
+			light: 60
+			heavy: 30
+			invulnerable: 0
+			cy: 20
+			harvester: 50
+		DamageTypes: FireDeath
+	Warhead@effec1: CreateEffect
+		Explosions: napalm_big
+		ExplosionPalette: temperat
+		ImpactSounds: NAPALM1.WAV
+
+flamer_explosion_small:
+	Warhead@damagedarea1: SpreadDamage
+		Delay: 5
+		Spread: 600
+		Falloff: 100, 0
+		Damage: 1000
+		Versus:
+			none: 110
+			wall: 75
+			building: 80
+			buildingWeak: 90
+			wood: 70
+			light: 60
+			heavy: 30
+			invulnerable: 0
+			cy: 20
+			harvester: 50
+		DamageTypes: Prone50Percent, TriggerProne, FireDeath
+	Warhead@effec1: CreateEffect
+		Delay: 5
+		Explosions: napalm_big
+		ExplosionPalette: temperat
+		ImpactSounds: FLAMER1.WAV, audio/flamethrower.wav
+		ImpactSoundChance: 50
+
+flamer_explosion_small02:
+	Inherits: flamer_explosion_small
+	Warhead@damagedarea1: SpreadDamage
+		Delay: 10
+	Warhead@effec1: CreateEffect
+		Delay: 10
+flamer_explosion_small03:
+	Inherits: flamer_explosion_small
+	Warhead@damagedarea1: SpreadDamage
+		Delay: 13
+	Warhead@effec1: CreateEffect
+		Delay: 13
