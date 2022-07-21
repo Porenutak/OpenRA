@@ -7,7 +7,7 @@
 		InaccuracyType: PerCellIncrement
 	Warhead@1Dam: SpreadDamage
 		Damage: 1250
-		Spread: 480
+		Spread: 650
 		Falloff: 100, 0
 		Versus:
 			none: 110
