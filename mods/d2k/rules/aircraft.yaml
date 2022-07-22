@@ -5,7 +5,7 @@ carryall.reinforce:
 	UpdatesPlayerStatistics:
 		AddToAssetsValue: false
 	Tooltip:
-		Name: actor-carryall-reinforce.name
+		Name: Carryall
 	Health:
 		HP: 48000
 	Armor:
@@ -46,7 +46,7 @@ carryall.reinforce:
 	Buildable:
 		BuildDuration: 750
 		BuildDurationModifier: 100
-		Description: actor-carryall-reinforce.description
+		Description: Large winged, planet-bound ship\n  Automatically lifts harvesters from and to Spice.\n  Lifts vehicles to Repair Pads when ordered.
 
 carryall:
 	Inherits: carryall.reinforce
@@ -57,10 +57,6 @@ carryall:
 		BeforeLoadDelay: 10
 		BeforeUnloadDelay: 15
 		LocalOffset: 0, 0, -128
-	Encyclopedia:
-		Description: actor-carryall-encyclopedia
-		Order: 230
-		Category: Units
 	Aircraft:
 		MinAirborneAltitude: 400
 	RevealsShroud@lifting_low:
@@ -81,7 +77,7 @@ frigate:
 		DropRange: 1c0
 	Interactable:
 	Tooltip:
-		Name: actor-frigate-name
+		Name: Frigate
 	Aircraft:
 		IdleBehavior: LeaveMap
 		Speed: 189
@@ -99,8 +95,6 @@ frigate:
 
 ornithopter:
 	Inherits: ^Plane
-	Buildable:
-		Prerequisites: upgrade.hightech
 	AttackBomber:
 		FacingTolerance: 8
 	Armament:
@@ -109,21 +103,19 @@ ornithopter:
 		HP: 9000
 	Armor:
 		Type: light
-	Encyclopedia:
-		Description: actor-ornithopter.encyclopedia
-		Order: 240
-		Category: Units
 	Aircraft:
 		Speed: 224
 		TurnSpeed: 8
 		Repulsable: False
 		CruiseAltitude: 1920
-	Targetable:
+		AirborneCondition: airborne
+	Targetable@AIRBORNE:
 		TargetTypes: Air
+		RequiresCondition: airborne
 	AmmoPool:
 		Ammo: 5
 	Tooltip:
-		Name: actor-ornithopter.name
+		Name: Ornithopter
 	SpawnActorOnDeath:
 		Actor: ornithopter.husk
 	RejectsOrders:
@@ -133,7 +125,7 @@ ornithopter:
 ornithopter.husk:
 	Inherits: ^AircraftHusk
 	Tooltip:
-		Name: actor-ornithopter-husk-name
+		Name: Ornithopter
 	Aircraft:
 		TurnSpeed: 20
 		Speed: 224
@@ -143,7 +135,7 @@ ornithopter.husk:
 carryall.husk:
 	Inherits: ^AircraftHusk
 	Tooltip:
-		Name: actor-carryall-husk-name
+		Name: Carryall
 	Aircraft:
 		TurnSpeed: 16
 		Speed: 144
@@ -155,7 +147,7 @@ carryall.husk:
 carryall.huskVTOL:
 	Inherits: ^AircraftHusk
 	Tooltip:
-		Name: actor-carryall-huskvtol-name
+		Name: Carryall
 	FallsToEarth:
 		Moves: False
 		Velocity: 0c128
