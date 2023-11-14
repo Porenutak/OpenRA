@@ -1,0 +1,248 @@
+MapFormat: 12
+
+RequiresMod: d2k
+
+Title: building VFX -TESTCASE
+
+Author: Your name here
+
+Tileset: ARRAKIS
+
+MapSize: 130,130
+
+Bounds: 1,1,128,128
+
+Visibility: Lobby
+
+Categories: Conquest
+
+Players:
+	PlayerReference@Neutral:
+		Name: Neutral
+		OwnsWorld: True
+		NonCombatant: True
+		Faction: atreides
+	PlayerReference@Creeps:
+		Name: Creeps
+		NonCombatant: True
+		Faction: harkonnen
+		Enemies: Multi0
+	PlayerReference@Multi0:
+		Name: Multi0
+		Playable: True
+		Faction: ordos
+		Enemies: Creeps
+
+Actors:
+	Actor0: mpspawn
+		Owner: Neutral
+		Location: 67,57
+	Actor1: construction_yard
+		Owner: Multi0
+		Location: 57,59
+		Health: 41
+	Actor2: wind_trap
+		Owner: Multi0
+		Location: 61,59
+		Health: 35
+	Actor3: barracks
+		Owner: Multi0
+		Location: 63,59
+		Health: 42
+	Actor4: refinery
+		Owner: Multi0
+		Location: 65,59
+		Health: 48
+	Actor5: silo
+		Owner: Multi0
+		Location: 60,70
+	Actor6: silo
+		Owner: Multi0
+		Location: 61,70
+	Actor7: silo
+		Owner: Multi0
+		Location: 62,70
+	Actor8: light_factory
+		Owner: Multi0
+		Location: 68,59
+		Health: 43
+	Actor9: heavy_factory
+		Owner: Multi0
+		Location: 56,62
+		Health: 37
+	Actor10: outpost
+		Owner: Multi0
+		Location: 59,63
+		Health: 47
+	Actor11: starport
+		Owner: Multi0
+		Location: 62,63
+		Health: 42
+	Actor12: repair_pad
+		Owner: Multi0
+		Location: 65,63
+		Health: 47
+	Actor13: high_tech_factory
+		Owner: Multi0
+		Location: 68,62
+		Health: 41
+	Actor14: research_centre
+		Owner: Multi0
+		Location: 72,62
+		Health: 39
+	Actor15: palace
+		Owner: Multi0
+		Location: 72,59
+		Health: 43
+	Actor16: conyard.atreides
+		Owner: Multi0
+		Location: 57,55
+		Health: 48
+	Actor17: conyard.harkonnen
+		Owner: Multi0
+		Location: 60,55
+		Health: 47
+	Actor18: medium_gun_turret
+		Owner: Multi0
+		Location: 63,70
+		Health: 41
+	Actor19: medium_gun_turret
+		Owner: Multi0
+		Location: 64,70
+		Health: 41
+	Actor20: medium_gun_turret
+		Owner: Multi0
+		Location: 65,70
+		Health: 41
+	Actor21: large_gun_turret
+		Owner: Multi0
+		Location: 66,70
+		Health: 41
+	Actor22: large_gun_turret
+		Owner: Multi0
+		Location: 67,70
+		Health: 41
+	Actor23: large_gun_turret
+		Owner: Multi0
+		Location: 68,70
+		Health: 41
+	Actor24: construction_yard
+		Owner: Neutral
+		Location: 57,74
+		Health: 41
+	Actor25: wind_trap
+		Owner: Neutral
+		Location: 60,74
+		Health: 41
+	Actor26: barracks
+		Owner: Neutral
+		Location: 62,74
+		Health: 41
+	Actor27: refinery
+		Owner: Neutral
+		Location: 65,74
+		Health: 41
+	Actor28: silo
+		Owner: Neutral
+		Location: 58,82
+		Health: 41
+	Actor29: silo
+		Owner: Neutral
+		Location: 61,82
+		Health: 41
+	Actor30: silo
+		Owner: Neutral
+		Location: 63,82
+		Health: 41
+	Actor31: light_factory
+		Owner: Neutral
+		Location: 69,74
+		Health: 41
+	Actor32: heavy_factory
+		Owner: Neutral
+		Location: 72,73
+		Health: 41
+	Actor33: outpost
+		Owner: Neutral
+		Location: 75,74
+		Health: 41
+	Actor34: starport
+		Owner: Neutral
+		Location: 57,78
+		Health: 41
+	Actor35: repair_pad
+		Owner: Neutral
+		Location: 61,78
+		Health: 41
+	Actor36: high_tech_factory
+		Owner: Neutral
+		Location: 65,78
+		Health: 41
+	Actor37: research_centre
+		Owner: Neutral
+		Location: 69,78
+		Health: 41
+	Actor38: palace
+		Owner: Neutral
+		Location: 73,78
+		Health: 41
+	Actor39: construction_yard
+		Owner: Creeps
+		Location: 57,84
+		Health: 41
+	Actor40: wind_trap
+		Owner: Creeps
+		Location: 61,84
+		Health: 41
+	Actor41: wind_trap
+		Owner: Creeps
+		Location: 63,84
+		Health: 41
+	Actor42: barracks
+		Owner: Creeps
+		Location: 65,84
+		Health: 41
+	Actor43: refinery
+		Owner: Creeps
+		Location: 67,84
+		Health: 41
+	Actor44: light_factory
+		Owner: Creeps
+		Location: 71,84
+		Health: 41
+	Actor45: heavy_factory
+		Owner: Creeps
+		Location: 74,83
+		Health: 41
+	Actor46: outpost
+		Owner: Creeps
+		Location: 56,87
+		Health: 41
+	Actor47: starport
+		Owner: Creeps
+		Location: 60,87
+		Health: 41
+	Actor48: medium_gun_turret
+		Owner: Creeps
+		Location: 64,90
+		Health: 41
+	Actor49: medium_gun_turret
+		Owner: Creeps
+		Location: 66,90
+		Health: 41
+	Actor52: repair_pad
+		Owner: Creeps
+		Location: 64,87
+		Health: 41
+	Actor51: high_tech_factory
+		Owner: Creeps
+		Location: 68,87
+		Health: 41
+	Actor53: research_centre
+		Owner: Creeps
+		Location: 71,87
+		Health: 41
+	Actor54: palace
+		Owner: Creeps
+		Location: 75,88
+		Health: 41
