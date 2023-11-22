@@ -1,0 +1,21 @@
+Speech:
+	Notifications:
+		release_sardaukars: audio/releaseTheSardaukar01.wav
+		Silent: audio/silent.wav
+
+Sounds:
+	Notifications:
+		LevelUp: audio/veteran_upgrade_1
+		Beacon: MULTI1
+		OrderPlaced: ORDER
+			InterruptType: Overlap
+		TMinusFive: 5MIN
+			InterruptType: Overlap
+		TMinusFour: 4MIN
+			InterruptType: Overlap
+		TMinusOne: 1MIN
+			InterruptType: Overlap
+		TMinusThree: 3MIN
+			InterruptType: Overlap
+		TMinusTwo: 2MIN
+			InterruptType: Overlap

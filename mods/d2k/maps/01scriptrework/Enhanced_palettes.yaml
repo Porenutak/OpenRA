@@ -1,0 +1,40 @@
+^Palettes:
+	PaletteFromRGBA@huskPalette:
+		Name: huskPalette
+		R: 0
+		G: 0
+		B: 0
+		A: 60
+	PaletteFromRGBA@huskBuilding:
+		Name: huskBuilding
+		R: 0
+		G: 0
+		B: 0
+		A: 40
+	PaletteFromFile@d2kpal:
+		Name: palette_d2k
+		ShadowIndex: 1
+		Filename: D2k.pal
+	PaletteFromFile@fromRA:
+		Name: temperat
+		ShadowIndex: 1
+		Filename: temperat.pal
+	PaletteFromRGBA@disabled:
+		Name: disabled
+		R: 0
+		G: 0
+		B: 0
+		A: 80
+	PaletteFromGimpOrJascFile@tree01:
+		Name: tree01
+		Filename: bits/tree01.gpl
+	PaletteFromGimpOrJascFile@waterpalette:
+		Name: water_palette
+		Filename: bits/water_tiles_palette.gpl
+	PaletteFromGimpOrJascFile@r16palete:
+		Name: d2k_r16
+		Filename: bits/d2k_R16.gpl
+	PlayerColorPalette@R16Remap:
+		BasePalette: d2k_r16
+		BaseName: player_r16
+		RemapIndex: 255, 254, 253, 252, 251, 250, 249, 248, 247, 246, 245, 244, 243, 242, 241, 240

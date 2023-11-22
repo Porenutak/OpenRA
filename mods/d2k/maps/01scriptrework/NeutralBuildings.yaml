@@ -1,0 +1,372 @@
+^NeutralBuilding:
+	Inherits@1: ^ExistsInWorld
+	Inherits@2: ^SpriteActor
+	Huntable:
+	Interactable:
+	HitShape:
+		UseTargetableCellsOffsets: true
+		Type: Rectangle
+			TopLeft: -512, -512
+			BottomRight: 512, 512
+	Building:
+		Dimensions: 1,1
+		Footprint: x
+		TerrainTypes: Rock, Concrete, Sand
+		BuildSounds: BUILD1.WAV
+	Health:
+		HP: 25000
+	Armor:
+		Type: building
+	Tooltip:
+		Name: Neutral Building
+		GenericVisibility: None
+	FrozenUnderFog:
+	MapEditorData:
+		Categories: Neutral building
+	Targetable:
+		TargetTypes: Ground, Structure
+		RequiresForceFire: true
+	Explodes:
+		Type: Footprint
+		Weapon: BuildingExplode
+		EmptyWeapon: BuildingExplode
+	WithSpriteBody:
+	ThrowsShrapnel@1:
+		Weapons: derbisRock01, derbisRock02, derbisRock03
+		Pieces: 0, 2
+		Range: 1c0, 4c0
+	ThrowsShrapnel@2:
+		Weapons: derbisRock01, derbisRock02, derbisRock03
+		Pieces: 1, 4
+		Range: 0c512, 2c0
+	ThrowsShrapnel:
+		Weapons: Debris, Debris2, Debris3, Debris4
+		Pieces: 1, 3
+		Range: 1c256, 3c0
+	Crushable:
+		CrushClasses: wall
+	Explodes:
+		Type: CenterPosition
+		Weapon: cliffExplode01
+		EmptyWeapon: cliffExplode01
+
+^NeutralBuildingCapturable:
+	Inherits@1: ^ExistsInWorld
+	Inherits@2: ^SpriteActor
+	Inherits@selection: ^SelectableBuilding
+	FrozenUnderFog:
+	WithSpriteBody:
+	Huntable:
+	HitShape:
+		UseTargetableCellsOffsets: true
+		Type: Rectangle
+			TopLeft: -1024, -1024
+			BottomRight: 1024, 1024
+	D2kBuilding:
+		Dimensions: 2,2
+		Footprint: xx xx
+		TerrainTypes: Rock, Concrete
+		BuildSounds: BUILD1.WAV
+	Health:
+		HP: 25000
+	Armor:
+		Type: building
+	MapEditorData:
+		Categories: Neutral building Capturable
+	Targetable:
+		TargetTypes: Ground, C4, Structure
+		RequiresForceFire: false
+	CaptureManager:
+	RevealsShroud:
+		Range: 4c0
+	Capturable:
+		Types: building
+	Explodes:
+		Type: Footprint
+		Weapon: BuildingExplode
+		EmptyWeapon: BuildingExplode
+	InstantlyRepairable:
+	RepairableBuilding:
+		RepairStep: 500
+		PlayerExperience: 5
+		RepairingNotification: Repairing
+	Demolishable:
+	RevealOnDeath:
+		Duration: 100
+		Radius: 4c768
+	WithBuildingRepairDecoration:
+		Image: allyrepair
+		Sequence: repair
+		Position: Center
+		Palette: player
+		IsPlayerPalette: True
+	OwnerLostAction:
+		Action: ChangeOwner
+	ThrowsShrapnel:
+		Weapons: Debris, Debris2, Debris3, Debris4
+		Pieces: 2, 5
+		Range: 1c512, 4c0
+	Explodes:
+		Type: Footprint
+		Weapon: BuildingExplode
+		EmptyWeapon: BuildingExplode
+	SoundOnDamageTransition:
+		DamagedSounds: EXPLSML1.WAV
+		DestroyedSounds: EXPLHG1.WAV
+
+
+crane:
+	Inherits: ^NeutralBuildingCapturable
+	Tooltip:
+		Name: Crane
+	WithBuildingBib:
+	Power:
+		Amount: 0
+	Health:
+		HP: 20000
+	Armor:
+		Type: cy
+	HitShape:
+		Type: Rectangle
+			TopLeft: -1024, -1024
+			BottomRight: 1024, 1039
+	RevealsShroud:
+		Range: 3c0
+	GivesBuildableArea:
+		AreaTypes: building
+	RenderSprites:
+		
+		Image: crane.ordos
+		FactionImages:
+			atreides: crane.atreides
+			harkonnen: crane.harkonnen
+			fremen: crane.atreides
+			corrino: crane.harkonnen
+			smuggler: crane.ordos
+			mercenary: crane.ordos
+	Tooltip:
+		Name: Crane
+	ProvidesPrerequisite:
+		Prerequisite: bonus.crane
+	TooltipDescription:
+		Description: Provides buildable area. Speed up building production by 10%
+
+spice_sifter:
+	Inherits: ^NeutralBuildingCapturable
+	Inherits@IDISABLE: ^DisableOnLowPowerOrPowerDown
+	Power:
+		Amount: 0
+	WithBuildingBib:
+	D2kBuilding:
+		Dimensions: 2,2
+		Footprint: xx xx
+		TerrainTypes: Rock, Concrete
+		BuildSounds: BUILD1.WAV
+	Tooltip:
+		Name: Spice sifter
+	TooltipDescription:
+		Description: Absorbs Spice obtained by the wind flow. Provides Passive income
+	CashTrickler:
+		Interval: 325
+		Amount: 250
+		PauseOnCondition: lowpower || disabled
+	CashTricklerBar:
+	WithIdleOverlay:
+		RequiresCondition: !damaged
+		PauseOnCondition: disabled
+	GrantConditionOnDamageState@DAMAGED:
+		Condition: damaged
+		ValidDamageStates: Heavy, Critical
+	Explodes:
+		Type: Footprint
+		Weapon: BuildingExplode
+		EmptyWeapon: BuildingExplode
+	ThrowsShrapnel@spice:
+		Weapons: HarvesterSpiceExplosion
+		Pieces: 1, 5
+		Range: 5c0, 10c0
+
+spice_sifter_no_bibs:
+	Inherits: spice_sifter
+	RenderSprites:
+		Image: spice_sifter
+	-WithBuildingBib:
+	EditorOnlyTooltip:
+		Name: Spice sifter (no bibs)
+
+radar_station:
+	Inherits: ^NeutralBuildingCapturable
+	Inherits@IDISABLE: ^DisableOnLowPowerOrPowerDown
+	Tooltip:
+		Name: Radar Station
+	TooltipDescription:
+		Description: Provides Vision and building range
+	Power:
+		Amount: -75
+	WithBuildingBib:
+	HitShape:
+		Type: Rectangle
+			TopLeft: -1536, -1024
+			BottomRight: 1536, 1024
+	Health:
+		HP: 30000
+	RenderSprites:
+		Image: outpost.harkonnen
+	D2kBuilding:
+		Dimensions: 3,2
+		Footprint: xxx xxx
+		TerrainTypes: Rock, Concrete
+		BuildSounds: BUILD1.WAV
+	WithIdleOverlay@DISH:
+		RequiresCondition: !damaged
+		Sequence: idle-dish
+		PauseOnCondition: disabled
+	GrantConditionOnDamageState@DAMAGED:
+		Condition: damaged
+		ValidDamageStates: Heavy, Critical
+	Explodes:
+		Type: Footprint
+		Weapon: BuildingExplode
+		EmptyWeapon: BuildingExplode
+	GivesBuildableArea:
+		AreaTypes: building
+	DetectCloaked:
+		Range: 8c0
+		RequiresCondition: !disabled
+	RevealsShroud:
+		Range: 10c0
+		RequiresCondition: !disabled
+
+radar_station_small:
+	Inherits: ^NeutralBuildingCapturable
+	Inherits@IDISABLE: ^DisableOnLowPowerOrPowerDown
+	Tooltip:
+		Name: Radar Station
+	TooltipDescription:
+		Description: Provides Vision
+	Power:
+		Amount: -75
+	WithBuildingBib:
+	HitShape:
+		Type: Rectangle
+			TopLeft: -1536, -1024
+			BottomRight: 1536, 1024
+	Health:
+		HP: 30000
+	RenderSprites:
+		Image: outpost.harkonnen
+	-D2kBuilding:
+	Building:
+		Dimensions: 3,2
+		Footprint: xxx xxx
+		TerrainTypes: Rock, Concrete
+	WithIdleOverlay@DISH:
+		Sequence: idle-top
+	Explodes:
+		Type: Footprint
+		Weapon: BuildingExplode
+		EmptyWeapon: BuildingExplode
+	GivesBuildableArea:
+		AreaTypes: building
+	Power:
+		Amount: -80
+	DetectCloaked:
+		Range: 8c0
+		RequiresCondition: !disabled
+	RevealsShroud:
+		Range: 10c0
+		RequiresCondition: !disabled
+
+
+building01:
+	Inherits: ^NeutralBuilding
+
+building01_burned:
+	Inherits: ^BuildingHusk
+	Building:
+		Dimensions: 1,1
+		Footprint: _
+	-GrantRandomCondition:
+	-WithBuildingBib:
+
+fremen_temple:
+	Inherits: ^NeutralBuilding
+	RenderSprites:
+		Palette: terrain
+	Building:
+		Dimensions: 3,2
+		Footprint: xxx xxx
+	Tooltip:
+		Name: Fremen Temple
+		GenericVisibility: None
+
+^InfantryHealing:
+	ExternalCondition@healing:
+		Condition: healing
+	WithDecoration@REDCROSS:
+		Image: pips
+		Sequence: healt_cross
+		Position: BottomRight
+		Margin: 5, 5
+		RequiresCondition: healing && damaged
+		BlinkInterval: 32
+		BlinkPattern: Off, On
+		ValidRelationships: Ally, Neutral, Enemy
+	ChangesHealth@HOSPITAL:
+		Step: 400
+		Delay: 60
+		StartIfBelow: 100
+		DamageCooldown: 125
+		RequiresCondition: healing
+	GrantConditionOnDamageState@HOSPITAL:
+		Condition: damaged
+		ValidDamageStates: Light, Medium, Heavy, Critical
+
+
+^Infantry:
+	Inherits@healing: ^InfantryHealing
+
+ecology_station:
+	Inherits: ^NeutralBuilding
+	Inherits@selection: ^SelectableBuilding
+	-Interactable:
+	RenderSprites:
+		Image: custom_rock02_ecology_station
+		Palette: terrain
+	Armor:
+		Type: cy
+	Health:
+		HP: 25000
+	Building:
+		Dimensions: 3,3
+		Footprint: _X_ xxx xxx
+	ProximityExternalCondition@dhealign:
+		Condition: healing
+		Range: 5c0
+		ValidRelationships: Ally, Neutral, Enemy
+	Tooltip:
+		Name: Ecology Station
+		GenericVisibility: None
+	TooltipDescription:
+		Description: Heal nearby infantry units
+
+building_rock01:
+	Inherits: ^NeutralBuilding
+	RenderSprites:
+		Palette: terrain
+	Building:
+		Dimensions: 3,3
+		Footprint: _XX xxx xxx
+
+fremen_tent01:
+	Inherits: ^NeutralBuilding
+	RenderSprites:
+		Palette: terrain
+	Building:
+		Dimensions: 1,1
+		Footprint: x
+	HitShape:
+		UseTargetableCellsOffsets: true
+		Type: Rectangle
+			TopLeft: -512, -512
+			BottomRight: 512, 512

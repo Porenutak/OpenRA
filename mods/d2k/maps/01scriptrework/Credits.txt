@@ -1,0 +1,89 @@
+Thanks to these authors for sharing they work for Enhanced mod:
+SIRCAKE: assassin, Bombardment tank, officer, light crawler, wormrider 
+FEY: Smuggler/Corrino barracks, corrino factory, golden Research center, crawler tank
+
+NN assets: EnhacedAssets.R8
+
+
+
+
+
+
+
+
+Sircake licence terms:
+
+PERMISSIVE ORIGINAL ARTWORK LICENSE (POAL-License)
+Definition: MOD = Dune 2000 Advanced (d2kA)
+1. You may not use any of the artwork included with MOD without notifying the artwork creator SIRCAKE that you intend to use it for your project. Send an e-mail stating your intent to jfgaa[at]web[dot]de BEFORE publishing any project which uses artwork from MOD and wait for clearance.
+2. You are allowed to copy, modify or otherwise use artwork from MOD free of charge for NON-COMMERCIAL purposes only.
+3. If you do use artwork from MOD you MUST include SIRCAKE to your public authors or credits lists.
+4. If you publicly announce news, an update or additional feature of your project which uses artwork from MOD for the first time you MUST put a note there that the "original artwork [was made] by SirCake".
+5. Any reference in your code which directly links artwork which uses artwork from MOD MUST be preceded by a comment which states "original artwork by SirCake. See POAL-License.".
+6. You MUST include a copy of this license with every subset of your project which uses artwork from MOD.
+7. If you fail to comply with any of the above points you cannot use artwork from MOD for your project.
+
+The above license applies to:
+* AtreidesLoyalist.shp
+* AtreidesLoyalistIcon.shp
+* AtreidesTurr.shp
+* extrapips.shp
+* FedaykinTurret.shp
+* GasCloudIcon.shp
+* GuildAgent.shp
+* HarkonnenSiegeTankTurret.shp
+* HeavyPiff.shp
+* paul_atreides.shp
+* PropagandaCorps.shp
+* RocketTankTurr.shp
+* Wormexplode.shp
+* Wormexplode_effect.shp
+* WormRider.shp
+* InvasionNewCameo.shp
+* PaulNewCameo.shp
+
+----------------
+
+The above license DOES NOT APPY TO THE FOLLOWING:
+
+Free, altered sound files:
+* FIREWORKS.wav
+* laserburst.wav
+* unveil.wav
+* veil.wav
+
+Altered artwork originally owned and still owned by Electronic Arts Inc.:
+You may use this modified artwork without limitations as long as you have the same rights on the original WESTWOOD artwork included with a legal Dune 2000 installation:
+* AirReinforcementsIcons.shp
+* AssassinIcon.shp
+* AtreidesHarvesterIcon.shp 
+* AtreidesTrikeIcon.shp
+* Crane.shp
+* GasCloud.shp
+* GuildAgentIcon.shp
+* HarkonnenHarvester.shp
+* HarkonnenHarvesterAnimation.shp
+* HarkonnenHarvesterIcon.shp
+* HarkonnenMissileTank.shp
+* HarkonnenMissileTankIcon.shp
+* HarkonnenSiegeTankIcon.shp
+* LockedTechCameos.shp
+* MerchenaryTankIcon.shp
+* MerchenaryTurr.shp
+* MiniCameos.shp
+* minicameos2.shp
+* MobileCrane.shp
+* MobileCraneIcon.shp
+* OrdosHarvester.shp
+* OrdosHarvesterAnimation.shp
+* OrdosHarvesterIcon.shp
+* PropagandaCorpsIcon.shp
+* RocketQuad.shp
+* RocketQuadIcon.shp
+* RocketTankOIcon.shp
+* Sardaukar-stab.shp
+* SiegeTankOIcon.shp
+* TrikeChassis.shp
+* TroopCrawler.shp
+* TroopCrawlerIcon.shp
+

@@ -1,0 +1,2345 @@
+^Building:
+	InstantlyRepairable:
+		Types: Building
+	ProductionTimeMultiplier@craneBonus:
+		Prerequisites: bonus.crane
+		Multiplier: 95
+	GrantRandomCondition@randomFX:
+		Conditions: explode02, explode03
+	Explodes@02:
+		Type: CenterPosition
+		Weapon: buildingExplosions02
+		EmptyWeapon: buildingExplosions02
+		Chance: 50
+		Offset: 1,0,1
+		RequiresCondition: explode02 && !being-demolished
+	Explodes@03:
+		Type: CenterPosition
+		Weapon: buildingExplosions03
+		EmptyWeapon: buildingExplosions03
+		Chance: 50
+		Offset: 1,2,1
+		RequiresCondition: (explode02 || explode03) && !being-demolished
+	Explodes@sabotuerdemolition:
+		RequiresCondition: being-demolished
+		Type: CenterPosition
+		Weapon: buildingBigExplosion
+		EmptyWeapon: buildingBigExplosion
+	ThrowsShrapnel:
+		Weapons: derbisRock01, derbisRock02, derbisRock03, Debris4
+		Pieces: 2, 5
+		Range: 1c512, 4c0
+	SpawnActorOnDeath@bigcrater:
+		Actor: crater_big
+		Offset: 0,1
+		RequiresCondition: being-demolished
+	AmbientSound@saboteurCharge:
+		SoundFiles: audio/explodeSaboteurEmperor02.wav
+		RequiresCondition: being-demolished
+	WithBuildingRepairDecoration:
+		Palette: player
+		IsPlayerPalette: True
+
+^DamagedBuildingsVFX:
+	GrantConditionOnFaction@atreidesVFX:
+		Condition: atreidesVFX
+		Factions: atreides, fremen
+	GrantConditionOnFaction@harkonnenVFX:
+		Condition: harkonnenVFX
+		Factions: harkonnen, corrino
+	GrantConditionOnFaction@ordosVFX:
+		Condition: ordosVFX
+		Factions: ordos, mercenary, smuggler
+	GrantConditionOnDamageState@heavyDamage:
+		Condition: heavy-damage
+	FloatingSpriteEmitter@smoke_huge_atreides:
+		RequiresCondition: heavy-damage && atreidesVFX
+		Palette: smoke3
+		Image: smoke3
+		Lifetime: 15, 20
+		Speed: 5
+		Gravity: 60
+		SpawnFrequency: 2, 5
+		RandomFacing: true
+		RandomRate: 4
+		TurnRate: 3
+		Duration: 1224
+	FloatingSpriteEmitter@smoke2_small_atreides:
+		RequiresCondition: heavy-damage && atreidesVFX
+		Palette: smoke3
+		Image: smoke3
+		Lifetime: 15, 20
+		Speed: 3
+		Gravity: 50
+		SpawnFrequency: 4, 15
+		RandomFacing: true
+		RandomRate: 4
+		TurnRate: 3
+		Duration: 1024
+	WithIdleOverlay@Burns1_atreides:
+		RequiresCondition: heavy-damage && atreidesVFX
+		Image: fire
+		Sequence: 1
+		IsDecoration: True
+	WithIdleOverlay@Burns2_atreides:
+		RequiresCondition: heavy-damage && atreidesVFX
+		Image: fire
+		Sequence: 2
+		IsDecoration: True
+	FloatingSpriteEmitter@smoke_huge_harkonnen:
+		RequiresCondition: heavy-damage && harkonnenVFX
+		Palette: smoke3
+		Image: smoke4
+		Lifetime: 20,25
+		Speed: 5
+		Gravity: 60
+		SpawnFrequency: 3, 7
+		RandomFacing: true
+		RandomRate: 4
+		TurnRate: 3
+		Duration: 1524
+	FloatingSpriteEmitter@smoke2_small_harkonnen:
+		RequiresCondition: heavy-damage && harkonnenVFX
+		Palette: smoke3
+		Image: smoke3
+		Lifetime: 15, 20
+		Speed: 3
+		Gravity: 50
+		SpawnFrequency: 4, 15
+		RandomFacing: true
+		RandomRate: 4
+		TurnRate: 3
+		Duration: 1024
+	WithIdleOverlay@Burns1_harkonnen:
+		RequiresCondition: heavy-damage && harkonnenVFX
+		Image: fire
+		Sequence: 1
+		IsDecoration: True
+	WithIdleOverlay@Burns2_harkonnen:
+		RequiresCondition: heavy-damage && harkonnenVFX
+		Image: fire
+		Sequence: 2
+		IsDecoration: True
+	FloatingSpriteEmitter@smoke_huge_ordos:
+		RequiresCondition: heavy-damage && ordosVFX
+		Palette: smoke3
+		Image: smoke4
+		Lifetime: 20,25
+		Speed: 7
+		Gravity: 60
+		SpawnFrequency: 3, 8
+		RandomFacing: true
+		RandomRate: 4
+		TurnRate: 3
+		Duration: 1524
+	FloatingSpriteEmitter@smoke2_small_ordos:
+		RequiresCondition: heavy-damage && ordosVFX
+		Palette: smoke3
+		Image: smoke3
+		Lifetime: 15, 20
+		Speed: 3
+		Gravity: 50
+		SpawnFrequency: 4, 15
+		RandomFacing: true
+		RandomRate: 4
+		TurnRate: 3
+		Duration: 1024
+	WithIdleOverlay@Burns1_ordos:
+		RequiresCondition: heavy-damage && ordosVFX
+		Image: fire
+		Sequence: 1
+		IsDecoration: True
+	WithIdleOverlay@Burns2_ordos:
+		RequiresCondition: heavy-damage && ordosVFX
+		Image: fire
+		Sequence: 2
+		IsDecoration: True
+
+construction_yard:
+	Inherits@damageVFX: ^DamagedBuildingsVFX
+	Health:
+		HP: 40000
+	Armor:
+		Type: cy
+	RevealsShroud:
+		Range: 5c768
+	Power:
+		Amount: 50
+	ThrowsShrapnel:
+		Weapons: Debris, Debris2
+		Pieces: 1, 3
+		Range: 1c0, 2c0
+	ThrowsShrapnel@longer:
+		Weapons: Debris, Debris2, Debris3, Debris4
+		Pieces: 5, 7
+		Range: 3c0, 6c0
+	ThrowsShrapnel@longest:
+		Weapons: Debris4, DerbisSiegetank
+		Pieces: 0, 3
+		Range: 6c0, 10c0
+	Explodes@02:
+		RequiresCondition: explode02
+	Explodes@03:
+		RequiresCondition: explode03
+	Tooltip:
+		Name: Atreides Conyard
+		RequiresCondition: !harkonnen && !ordos && !fremen && !corrino && !smuggler && !mercenary
+	Tooltip@harkonnen:
+		Name: Harkonnen Conyard
+		RequiresCondition: harkonnen
+	Tooltip@ordos:
+		Name: Ordos Conyard
+		RequiresCondition: ordos
+	Tooltip@fremen:
+		Name: Fremen Conyard
+		RequiresCondition: fremen
+	Tooltip@corrino:
+		Name: Corrino Conyard
+		RequiresCondition: corrino
+	Tooltip@smuggler:
+		Name: Smuggler Conyard
+		RequiresCondition: smuggler
+	Tooltip@mercenary:
+		Name: Mercenary Conyard
+		RequiresCondition: mercenary
+	GrantConditionOnFaction@harkonnen:
+		Condition: harkonnen
+		Factions: harkonnen
+	GrantConditionOnFaction@ordos:
+		Condition: ordos
+		Factions: ordos
+	GrantConditionOnFaction@corrino:
+		Condition: corrino
+		Factions: corrino
+	GrantConditionOnFaction@fremen:
+		Condition: fremen
+		Factions: fremen
+	GrantConditionOnFaction@smuggler:
+		Condition: smuggler
+		Factions: smuggler
+	GrantConditionOnFaction@mercenary:
+		Condition: mercenary
+		Factions: mercenary
+	ProvidesPrerequisite@fremenBuildins:
+		Prerequisite: conyard.fremen
+		Factions: fremen
+	ProvidesPrerequisite@atreides:
+		Prerequisite: conyard.atreides
+		Factions: atreides
+	ProvidesPrerequisite@harkonnen:
+		Prerequisite: conyard.harkonnen
+		Factions: harkonnen
+	ProvidesPrerequisite@ordos:
+		Prerequisite: conyard.ordos
+		Factions: ordos
+	ProvidesPrerequisite@corrino:
+		Prerequisite: conyard.corrino
+		Factions: corrino
+	FloatingSpriteEmitter@smoke_huge_atreides:
+		Offset: 600, -500, 0
+		Gravity: 70
+	FloatingSpriteEmitter@smoke2_small_atreides:
+		Offset: -300, -1200, 0
+		SpawnFrequency: 3, 13
+	FloatingSpriteEmitter@smoke3_small_conyard:
+		RequiresCondition: heavy-damage && atreidesVFX
+		Offset: -1024, -500, 0
+		SpawnFrequency: 5, 20
+		Palette: smoke3
+		Image: smoke3
+		Lifetime: 15, 20
+		Speed: 3
+		Gravity: 50
+		Duration: 800
+	WithIdleOverlay@Burns1_atreides:
+		Offset: 300, 500, 0
+	WithIdleOverlay@Burns2_atreides:
+		Offset: 2024, -350, 0
+	FloatingSpriteEmitter@smoke_huge_harkonnen:
+		Offset: -100,300,0
+	FloatingSpriteEmitter@smoke2_small_harkonnen:
+		Offset: 800,-200,0
+		Speed: 10
+	WithIdleOverlay@Burns1_harkonnen:
+		Offset: -700, -200,0
+	WithIdleOverlay@Burns2_harkonnen:
+		Offset: 500, 900,0
+	FloatingSpriteEmitter@smoke_huge_ordos:
+		Offset: 500, -1000, 0
+		Gravity: 70
+	FloatingSpriteEmitter@smoke2_small_ordos:
+		Offset: -300, -1200, 0
+		SpawnFrequency: 3, 13
+	WithIdleOverlay@Burns1_ordos:
+		Offset: 300, 500, 0
+	WithIdleOverlay@Burns2_ordos:
+		Offset: 1124, -350, 0
+
+concretea:
+	Buildable:
+		Prerequisites: ~!global-auto-concrete, !choosefaction
+
+concreteb:
+	Buildable:
+		Prerequisites: upgrade.conyard, ~!global-auto-concrete, !choosefaction
+
+wind_trap:
+	Inherits@damageVFX: ^DamagedBuildingsVFX
+	Buildable:
+		Prerequisites: !choosefaction
+		BuildDuration: 208
+		BuildDurationModifier: 100
+	Selectable:
+		Bounds: 2048, 2048
+	Valued:
+		Cost: 225
+	GrantConditionOnPrerequisite:
+		Condition: ArmorUpgrade
+		Prerequisites: upgrade.conyard
+	Health:
+		HP: 35000
+	Armor:
+		Type: building
+		RequiresCondition: ArmorUpgrade
+	Armor@weakArmor:
+		Type: wood
+		RequiresCondition: !ArmorUpgrade
+	Power:
+		Amount: 200
+	RevealOnDeath:
+		Radius: 3c768
+	SpawnActorOnDeath@husktype01:
+		Actor: windTrap.husk
+		RequiresCondition: explode02 && !being-demolished
+	SpawnActorOnDeath@huskType02:
+		Actor: windTrap.husk_passable
+		RequiresCondition: explode03 && !being-demolished
+	FloatingSpriteEmitter@smoke_huge_atreides:
+		Offset: 100, -1024, 0
+	FloatingSpriteEmitter@smoke2_small_atreides:
+		Offset: -580, -400, 0
+	WithIdleOverlay@Burns1_atreides:
+		Offset: 1124, 0, 0
+	-WithIdleOverlay@Burns2_atreides:
+	FloatingSpriteEmitter@smoke_huge_harkonnen:
+		Offset: 100, -1024, 0
+	FloatingSpriteEmitter@smoke2_small_harkonnen:
+		Offset: -500, -400, 0
+	WithIdleOverlay@Burns1_harkonnen:
+		Offset: 300, -500, 0
+	-WithIdleOverlay@Burns2_harkonnen:
+	-FloatingSpriteEmitter@smoke_huge_ordos:
+	FloatingSpriteEmitter@smoke2_small_ordos:
+		Offset: -500, -900, 0
+		SpawnFrequency: 3, 13
+	WithIdleOverlay@Burns1_ordos:
+		Offset: 500, -700, 0
+	-WithIdleOverlay@Burns2_ordos:
+
+
+barracks:
+	Inherits@damageVFX: ^DamagedBuildingsVFX
+	Buildable:
+		BuildDuration: 325
+	Valued:
+		Cost: 400
+	Health:
+		HP: 37000
+	Armor:
+		Type: building
+	RevealsShroud:
+		Range: 3c768
+	GrantConditionOnFaction@fremenExit:
+		Condition: fremen
+		Factions: fremen
+	Exit@1:
+		RequiresCondition: !fremen
+	Exit@2:
+		RequiresCondition: !fremen
+	Exit@3:
+		SpawnOffset: -0,700,0
+		ExitCell: 0,2
+		RequiresCondition: fremen
+	Exit@4:
+		SpawnOffset: -0,700,0
+		ExitCell: 1,2
+		RequiresCondition: fremen
+	RenderSprites:
+		Image: barracks.ordos
+		FactionImages:
+			atreides: barracks.atreides
+			fremen: barracks.fremen
+			harkonnen: barracks.harkonnen
+			corrino: barracks.corrino
+			smuggler: barracks.ordos
+			mercenary: barracks.smuggler
+	Power:
+		Amount: -50
+	GrantConditionOnProduction@ClusterdebrisExplosion:
+		Condition: producing
+	ThrowsShrapnel@explosiveDerbis:
+		Weapons: DeathHandClusterDebris
+		Pieces: 0, 1
+		Range: 1c0, 2c0
+		RequiresCondition: producing
+	ProvidesPrerequisite@smugler:
+		Prerequisite: barracks.smuggler
+		Factions: smuggler
+		RequiresPrerequisites: factions.subfaction_allowed
+	ProvidesPrerequisite@corrino:
+		Prerequisite: barracks.corrino
+		Factions: corrino
+	ProvidesPrerequisite@mercenary:
+		Prerequisite: barracks.mercenary
+		Factions: mercenary
+	ProvidesPrerequisite@fremen:
+		Prerequisite: barracks.fremen
+		Factions: fremen
+	ProvidesPrerequisite@fremenMerged:
+		Prerequisite: barracks.fremen
+		RequiresPrerequisites: merged.fremen
+		ResetOnOwnerChange: false
+	WithIdleOverlay@Burns1_atreides:
+		Offset: 500, 500, 0
+	FloatingSpriteEmitter@smoke2_small_atreides:
+		Offset: 600, -500, 0
+	-FloatingSpriteEmitter@smoke_huge_atreides:
+	-WithIdleOverlay@Burns2_atreides:
+	-FloatingSpriteEmitter@smoke_huge_harkonnen:
+	FloatingSpriteEmitter@smoke2_small_harkonnen:
+		Offset: 0,0,0
+	-WithIdleOverlay@Burns1_harkonnen:
+	WithIdleOverlay@Burns2_harkonnen:
+		Offset: 0,0,0
+	FloatingSpriteEmitter@smoke_huge_ordos:
+		Offset: 300, -800, 0
+	-FloatingSpriteEmitter@smoke2_small_ordos:
+	WithIdleOverlay@Burns1_ordos:
+		Offset: 500, 300, 0
+	-WithIdleOverlay@Burns2_ordos:
+
+
+refinery:
+	Inherits@damageVFX: ^DamagedBuildingsVFX
+	PlaceBuildingVariants:
+		Actors: refinery_inverted
+		Facings: 384, 896
+	Buildable:
+		BuildDuration: 687
+	GrantConditionOnPrerequisite:
+		Condition: ArmorUpgrade
+		Prerequisites: upgrade.conyard
+	Valued:
+		Cost: 1500
+	Health:
+		HP: 43000
+	Armor:
+		Type: building
+		RequiresCondition: ArmorUpgrade
+	Armor@weakArmor:
+		Type: wood
+		RequiresCondition: !ArmorUpgrade
+	RevealsShroud:
+		Range: 3c768
+	StoresResources:
+		Capacity: 2000
+	FreeActorWithDelivery:
+		Actor: harvester
+		DeliveryOffset: 2,2
+		DeliveringActor: carryall.reinforce
+		Facing: 160
+	CustomSellValue:
+	Sellable:
+		RequiresCondition: !build-incomplete && !being-demolished
+		SellSounds: BUILD1.WAV
+	Power:
+		Amount: -75
+	Explodes@big04:
+		Type: CenterPosition
+		Weapon: buildingExplosions04_big
+		EmptyWeapon: buildingExplosions04_big
+		Chance: 100
+		Offset: 2,2,1
+	ThrowsShrapnel:
+		Weapons: Debris, Debris2, Debris3, Debris4, HarvesterSpiceExplosion
+		Pieces: 7, 15
+		Range: 2c0, 10c0
+	GrantConditionOnFaction@Atreides:
+		Condition: atreides
+		Factions: atreides, fremen
+	GrantConditionOnFaction@Harkonnen:
+		Condition: harkonnen
+		Factions: harkonnen, corrino
+	GrantConditionOnFaction@Ordos:
+		Condition: ordos
+		Factions: ordos, mercenary, smuggler
+	SpawnActorOnDeath@ordosHusk:
+		Actor: refinery_husk.ordos
+		RequiresCondition: ordos && !being-demolished
+	SpawnActorOnDeath@atreidesHusk:
+		Actor: refinery_husk.atreides
+		RequiresCondition: atreides && !being-demolished
+	SpawnActorOnDeath@harkonnenHusk:
+		Actor: refinery_husk.harkonnen
+		RequiresCondition: harkonnen && !being-demolished
+	FloatingSpriteEmitter@smoke2_small_atreides:
+		Offset: -900, 0, 0
+	FloatingSpriteEmitter@smoke_huge_atreides:
+		Offset: 700,-612,0
+	WithIdleOverlay@Burns1_atreides:
+		Offset: 950, 600,0
+	WithIdleOverlay@Burns2_atreides:
+		Offset: 700, -800, 0
+		Sequence: 4
+	FloatingSpriteEmitter@smoke_huge_harkonnen:
+		Offset: 1100,-800,0
+	FloatingSpriteEmitter@smoke2_small_harkonnen:
+		Offset: -1024, 0,0
+	WithIdleOverlay@Burns1_harkonnen:
+		Offset: 1200, 1000,0
+	WithIdleOverlay@Burns2_harkonnen:
+		Offset: 0, -1024, 0
+		Sequence: 4
+	FloatingSpriteEmitter@smoke_huge_ordos:
+		Offset: -100, -1050, 0
+		Gravity: 70
+	FloatingSpriteEmitter@smoke2_small_ordos:
+		Offset: -250, 250, 0
+		SpawnFrequency: 3, 13
+	WithIdleOverlay@Burns1_ordos:
+		Offset: 1200, -200, 0
+	WithIdleOverlay@Burns2_ordos:
+		Offset: 0, -200, 0
+
+refinery_inverted:
+	Inherits: refinery
+	PlaceBuildingVariants:
+		Actors: refinery
+		Facings: 896, 384
+	Buildable:
+		Prerequisites: wind_trap
+		Queue: Building
+		BuildPaletteOrder: 310
+		Description: Refinery with docking from north side
+	RenderSprites:
+		Image: refinery_invert.ordos
+		FactionImages:
+			atreides: refinery_invert.atreidis
+			fremen: refinery_invert.atreidis
+			harkonnen: refinery_invert.harkonnen
+			corrino: refinery_invert.harkonnen
+	WithIdleOverlay@front:
+		Sequence: idle-front
+		RequiresCondition: !build-incomplete
+	Selectable:
+		Bounds: 3072, 2048, 0, 1024
+	WithIdleOverlay@top:
+		Sequence: idle-top
+		RequiresCondition: !build-incomplete
+	Refinery:
+	DockHost:
+		Type: Unload
+		DockAngle: 128
+		DockOffset: 0,1c0,0
+	Tooltip:
+		Name: Spice Refinery Inverted
+	D2kBuilding:
+		Footprint: === =xx xx=
+		Dimensions: 3,3
+		LocalCenterOffset: 0,-512,0
+	HitShape:
+		Type: Rectangle
+			TopLeft: -512, 0
+			BottomRight: 1536, 1024
+	HitShape@BOTTOM:
+		Type: Rectangle
+			TopLeft: -1536, 1024
+			BottomRight: 512, 2048
+	ProvidesPrerequisite:
+		Prerequisite: refinery
+	FreeActorWithDelivery:
+		DeliveryOffset: 0,0
+
+silo:
+	Buildable:
+		BuildPaletteOrder: 650
+	Valued:
+		Cost: 120
+	Health:
+		HP: 18000
+	Armor:
+		Type: building
+	RevealsShroud:
+		Range: 2c768
+	StoresResources:
+		Capacity: 2000
+	Power:
+		Amount: -10
+	ThrowsShrapnel:
+		Weapons: Debris, Debris2, Debris3, Debris4
+		Pieces: 3, 5
+		Range: 2c0, 5c0
+	GrantConditionOnDamageState@heavyDamage:
+		Condition: heavy-damage
+	GrantConditionOnDamageState@critical:
+		ValidDamageStates: Critical
+		Condition: critical-damage
+	WithIdleOverlay@Burns1_atreides:
+		RequiresCondition: critical-damage
+		Image: fire
+		Sequence: 1
+		IsDecoration: True
+	FloatingSpriteEmitter@smoke2_small_atreides:
+		Offset: 0, -300, 0
+		RequiresCondition: heavy-damage
+		Palette: smoke3
+		Image: smoke3
+		Lifetime: 15, 20
+		Speed: 3
+		Gravity: 50
+		SpawnFrequency: 4, 15
+		RandomFacing: true
+		RandomRate: 4
+		TurnRate: 3
+		Duration: 1024
+
+light_factory:
+	Inherits@damageVFX: ^DamagedBuildingsVFX
+	Buildable:
+		Prerequisites: refinery
+		BuildDuration: 400
+	GrantConditionOnPrerequisite:
+		Condition: ArmorUpgrade
+		Prerequisites: upgrade.conyard
+	Valued:
+		Cost: 800
+	Health:
+		HP: 41000
+	Armor:
+		Type: building
+		RequiresCondition: ArmorUpgrade
+	Armor@weakArmor:
+		Type: wood
+		RequiresCondition: !ArmorUpgrade
+	RevealsShroud:
+		Range: 5c768
+	Power:
+		Amount: -100
+	ThrowsShrapnel:
+		Weapons: Debris2, derbisRock01, Debris4
+		Pieces: 5, 7
+		Range: 0c512, 3c0
+	ProvidesPrerequisite@hunter:
+		Prerequisite: light.hunter
+		Factions: smuggler, fremen
+	ProvidesPrerequisite@harkonnen:
+		Prerequisite: light.harkonnen
+		Factions: harkonnen
+	ProvidesPrerequisite@atreides:
+		Prerequisite: light.atreides
+		Factions: atreides
+	ProvidesPrerequisite@quad:
+		Prerequisite: light.quad
+		Factions: atreides, fremen, harkonnen, corrino, ordos, mercenary, smuggler
+	ProvidesPrerequisite@trike:
+		Prerequisite: light.trike
+		Factions: atreides, harkonnen, corrino, mercenary
+	ProvidesPrerequisite@raider:
+		Prerequisite: light.raider
+		Factions: ordos
+	ProvidesPrerequisite@crawler:
+		Prerequisite: light.crawler
+		Factions: mercenary
+	GrantConditionOnPrerequisite@smugglertech:
+		Condition: smugglertech
+		Prerequisites: merged.smuggler
+	GrantCondition@smuggler:
+		Condition: enable_hunter
+		GrantPermanently: true
+		RequiresCondition: smugglertech
+	ProvidesPrerequisite@smuglglertech:
+		RequiresCondition: enable_hunter
+		Prerequisite: light.hunter
+	FloatingSpriteEmitter@smoke2_small_atreides:
+		Offset: -400, -500, 0
+	FloatingSpriteEmitter@smoke_huge_atreides:
+		Offset: 400,-612,0
+	WithIdleOverlay@Burns1_atreides:
+		Offset: 1024, 300,0
+	WithIdleOverlay@Burns2_atreides:
+		Offset: 1024, -500, 0
+	FloatingSpriteEmitter@smoke_huge_harkonnen:
+		Offset: -100,300,0
+		Speed: 7
+	FloatingSpriteEmitter@smoke2_small_harkonnen:
+		Offset: -900,-500,0
+		Speed: 10
+	WithIdleOverlay@Burns1_harkonnen:
+		Offset: -0,-950,0
+	WithIdleOverlay@Burns2_harkonnen:
+	FloatingSpriteEmitter@smoke_huge_ordos:
+		Offset: -900, 0, 0
+		Gravity: 70
+	FloatingSpriteEmitter@smoke2_small_ordos:
+		Offset: 300, -200, 0
+		SpawnFrequency: 3, 13
+	WithIdleOverlay@Burns1_ordos:
+		Offset: -600, -1000, 0
+	WithIdleOverlay@Burns2_ordos:
+		Offset: 700, 200, 0
+
+
+heavy_factory:
+	Inherits@damageVFX: ^DamagedBuildingsVFX
+	Buildable:
+		BuildDuration: 750
+	Valued:
+		Cost: 1500
+	Health:
+		HP: 42000
+	RenderSprites:
+		Image: heavy.ordos
+		FactionImages:
+			atreides: heavy.atreides
+			fremen: heavy.atreides
+			harkonnen: heavy.harkonnen
+			corrino: heavy.corrino
+			mercenary: heavy.mercenary
+	Armor:
+		Type: building
+	RevealsShroud:
+		Range: 4c768
+	Power:
+		Amount: -150
+	ProvidesPrerequisite@missile_tank:
+		Prerequisite: heavy.missile_tank
+		Factions: atreides, fremen, harkonnen, corrino, mercenary
+	ProvidesPrerequisite@crawler:
+		Prerequisite: heavy.bison
+		Factions: mercenary
+	ProvidesPrerequisite@smuggler:
+		Prerequisite: heavy.smuggler
+		Factions: smuggler
+	ProvidesPrerequisite@mercenary:
+		Prerequisite: heavy.mercenary
+		Factions: mercenary
+	ProvidesPrerequisite@corrino:
+		Prerequisite: heavy.corrino
+		Factions: corrino
+	ProvidesPrerequisite@atreides_combat:
+		Prerequisite: heavy.atreides_combat
+		Factions: atreides, fremen
+		RequiresCondition: !subfaction_mode
+	ProvidesPrerequisite@ordos_combat:
+		Prerequisite: heavy.ordos_combat
+		Factions: ordos, smuggler, mercenary
+		RequiresCondition: !subfaction_mode
+	ProvidesPrerequisite@harkonnen_combat:
+		Prerequisite: heavy.harkonnen_combat
+		Factions: harkonnen, corrino
+		RequiresCondition: !subfaction_mode
+	ProvidesPrerequisite@atreides_combat_subfactions:
+		Prerequisite: heavy.atreides_combat
+		Factions: atreides
+		RequiresCondition: subfaction_mode
+	ProvidesPrerequisite@ordos_combat_subfactions:
+		Prerequisite: heavy.ordos_combat
+		Factions: ordos
+		RequiresCondition: subfaction_mode
+	ProvidesPrerequisite@harkonnen_combat_subfactions:
+		Prerequisite: heavy.harkonnen_combat
+		Factions: harkonnen
+		RequiresCondition: subfaction_mode
+	ProvidesPrerequisite@cheap_tank:
+		Prerequisite: heavy.cheap_tank
+		Factions: fremen, mercenary, smuggler
+		RequiresCondition: subfaction_mode
+	ProvidesPrerequisite@corrinotank:
+		Prerequisite: heavy.corrino_combat
+		Factions: corrino
+		RequiresCondition: subfaction_mode
+	GrantConditionOnPrerequisite@combattankslogic:
+		Prerequisites: factions.subfaction_allowed
+		Condition: subfaction_mode
+	GrantConditionOnProduction@debrisExplosion:
+		Condition: producing
+	ThrowsShrapnel:
+		Weapons: Debris, Debris2, Debris3, Debris4
+		Pieces: 10, 20
+		Range: 1c0, 5c0
+	ThrowsShrapnel@explosiveDerbis:
+		Weapons: DeathHandClusterDebris
+		Pieces: 0, 1
+		Range: 1c0, 3c0
+	ThrowsShrapnel@explosiveDerbiswhenproducing:
+		Weapons: DeathHandClusterDebris
+		Pieces: 1, 2
+		Range: 1c0, 5c0
+		RequiresCondition: producing
+	SpawnActorOnDeath@bigcrater:
+		Offset: 0,2
+	FloatingSpriteEmitter@smoke_huge_atreides:
+		Offset: 512, 0, 0
+	FloatingSpriteEmitter@smoke2_small_atreides:
+		Offset: -300, -1000, 0
+	WithIdleOverlay@Burns1_atreides:
+		Offset: -200, 300, 0
+	WithIdleOverlay@Burns2_atreides:
+		Offset: 1550, -400, 0
+	FloatingSpriteEmitter@smoke_huge_harkonnen:
+		Offset: -600,-200,0
+	FloatingSpriteEmitter@smoke2_small_harkonnen:
+		Offset: 0, -660,0
+	WithIdleOverlay@Burns1_harkonnen:
+		Offset: 500, -600,0
+	WithIdleOverlay@Burns2_harkonnen:
+		Offset: 1800, 50,0
+	FloatingSpriteEmitter@smoke_huge_ordos:
+		Offset: -700, 100,0
+	FloatingSpriteEmitter@smoke2_small_ordos:
+		Offset: -400, -1000,0
+	WithIdleOverlay@Burns1_ordos:
+		Offset: 1300, -500,0
+	WithIdleOverlay@Burns2_ordos:
+		Offset: 100, -600,0
+		Sequence: 4
+
+outpost:
+	Inherits@damageVFX: ^DamagedBuildingsVFX
+	Buildable:
+		BuildDuration: 420
+	Valued:
+		Cost: 1000
+	Health:
+		HP: 43000
+	GrantConditionOnPrerequisite:
+		Condition: ArmorUpgrade
+		Prerequisites: upgrade.conyard
+	Armor:
+		Type: building
+		RequiresCondition: ArmorUpgrade
+	Armor@weakArmor:
+		Type: wood
+		RequiresCondition: !ArmorUpgrade
+	RevealsShroud:
+		Range: 11c0
+		RequiresCondition: !disabled
+	RevealsShroud@lowpower:
+		Range: 4c0
+		RequiresCondition: disabled
+	Power:
+		Amount: -125
+	DetectCloaked:
+		Range: 6c0
+		RequiresCondition: !disabled
+	ProvidesPrerequisite@mercenary:
+		Prerequisite: outpost.mercenary
+		Factions: mercenary
+		RequiresPrerequisites: factions.merged
+	ProvidesPrerequisite@jammerforsmugglers:
+		Prerequisite: outpost.smuggler
+		Factions: smuggler
+		RequiresPrerequisites: factions.subfaction_allowed
+	ProvidesPrerequisite@fremen:
+		Prerequisite: outpost.fremen
+		Factions: fremen
+	GrantConditionOnFaction@smugglerjammerSubfactionmode:
+		Condition: jammer
+		Factions: smuggler
+	GrantConditionOnFaction@fremen:
+		Condition: fremen
+		Factions: fremen
+	SpawnActorPower@jammer:
+		Actor: jammer_point
+		ChargeInterval: 4200
+		LifeTime: 500
+		Name: Jam communication
+		Description: Reduce enemy vision and Range in the area, for short period of time. Jam long range missiles
+		Icon: jammer
+		RequiresCondition: jammer
+		Prerequisites: ~techlevel.high, ~upgrade.outpost, ~!factions.standard
+		EffectImage: carryall.husk_on_land
+		EffectSequence:
+		LaunchSound: audio/ironcur9.aud
+		DisplayRadarPing: true
+		OrderName: SpawnActorPowerInfoOrder.jammer
+		SupportPowerPaletteOrder: 100
+	SpawnActorPower@hideunits:
+		EffectImage: carryall.husk_on_land
+		EffectSequence:
+		Actor: dummy.hide_units
+		Name: Hide units
+		ChargeInterval: 3700
+		Description: Hide units in selected area for short period of time
+		Prerequisites: ~upgrade.outpost_fremen, ~!factions.standard
+		Icon: hide_units
+		LaunchSound: audio/EBoD_hidenunits1.wav
+		DisplayRadarPing: true
+		RequiresCondition: fremen
+		OrderName: SpawnActorPowerInfoOrder.hideunits
+		SupportPowerPaletteOrder: 110
+	GrantConditionOnPrerequisite@frementech:
+		Condition: frementech
+		Prerequisites: merged.fremen
+	GrantCondition@permanentConditionFremen:
+		Condition: enable_hideunits
+		GrantPermanently: true
+		RequiresCondition: frementech
+	ProvidesPrerequisite@frementech:
+		RequiresCondition: enable_hideunits
+		Prerequisite: outpost.fremen
+	GrantCondition@enableFremenCondition:
+		Condition: fremen
+		GrantPermanently: true
+		RequiresCondition: enable_hideunits
+	ProvidesPrerequisite@mercenarytech:
+		Prerequisite: outpost.smuggler
+		RequiresPrerequisites: merged.smuggler
+	GrantConditionOnPrerequisite@enableSmugglercondition:
+		Condition: jammer
+		Prerequisites: merged.smuggler
+	FloatingSpriteEmitter@smoke2_small_atreides:
+		Offset: -400, -500, 0
+	FloatingSpriteEmitter@smoke_huge_atreides:
+		Offset: 300,0,0
+	WithIdleOverlay@Burns1_atreides:
+		Offset: -150, 300, 0
+	WithIdleOverlay@Burns2_atreides:
+		Offset: 1024, -400, 0
+	FloatingSpriteEmitter@smoke_huge_harkonnen:
+		Offset: -550, -500, 0
+	FloatingSpriteEmitter@smoke2_small_harkonnen:
+		Offset: 400, 0, 0
+	WithIdleOverlay@Burns1_harkonnen:
+		Offset: 600,-600,0
+	-WithIdleOverlay@Burns2_harkonnen:
+	FloatingSpriteEmitter@smoke_huge_ordos:
+		Offset: -600, -300, 0
+		Gravity: 70
+	FloatingSpriteEmitter@smoke2_small_ordos:
+		Offset: 350, 0, 0
+		SpawnFrequency: 3, 13
+	WithIdleOverlay@Burns1_ordos:
+		Offset: 350, -600, 0
+	-WithIdleOverlay@Burns2_ordos:
+
+starport:
+	Inherits@damageVFX: ^DamagedBuildingsVFX
+	Inherits@disablecondition: ^DisableOnLowPower
+	-WithColoredOverlay@IDISABLE:
+	Buildable:
+		BuildDuration: 625
+		Prerequisites: heavy_factory, outpost, ~techlevel.high, ~!factions.merged
+	Valued:
+		Cost: 1500
+	Health:
+		HP: 45500
+	D2kBuilding:
+		Footprint: xxx +=+ =x=
+		Dimensions: 3,3
+	-ProductionAirdrop:
+	ProductionFromMapEdge:
+		Produces: Starport
+	Production:
+		Produces: Starport
+	RenderSprites:
+		Image: starport.ordos
+		FactionImages:
+			atreides: starport.atreides
+			fremen: starport.atreides
+			harkonnen: starport.harkonnen
+			corrino: starport.harkonnen
+			smuggler: starport.smuggler
+			mercenary: starport.mercenary
+	Armor:
+		Type: heavy
+	RevealsShroud:
+		Range: 3c768
+	Tooltip@smuggler:
+		Name: Smuggler Starport
+		RequiresCondition: smuggler
+	Tooltip@mercenary:
+		Name: Mercenary Starport
+		RequiresCondition: mercenary
+	Tooltip:
+		RequiresCondition: !smuggler && !mercenary
+	Power:
+		Amount: -150
+	-Explodes@02:
+	ExternalCondition@lights:
+		Condition: frigate_proximity_influence
+	WithIdleOverlay@LIGHTS:
+		RequiresCondition: !build-incomplete && frigate_proximity_influence
+		Sequence: active
+	ProvidesPrerequisite@atreides_combat:
+		Prerequisite: starport.atreides_combat
+		Factions: atreides
+	ProvidesPrerequisite@ordos_combat:
+		Prerequisite: starport.ordos_combat
+		Factions: ordos
+	ProvidesPrerequisite@harkonnen_combat:
+		Prerequisite: starport.harkonnen_combat
+		Factions: harkonnen
+	ProvidesPrerequisite@corrino_combat:
+		Prerequisite: starport.corrino_combat
+		Factions: corrino
+	ProvidesPrerequisite@cheap_Tank:
+		Prerequisite: starport.cheap_combat
+		Factions: fremen, smuggler, mercenary
+	ProvidesPrerequisite@smugglerstarport:
+		Prerequisite: starport.smuggler
+		Factions: smuggler
+	ProvidesPrerequisite@mercenaryStarport:
+		Prerequisite: starport.mercenary
+		Factions: mercenary
+	ProvidesPrerequisite@ordosstarport:
+		Prerequisite: starport.ordos
+		Factions: ordos
+	GrantConditionOnFaction@mercenary:
+		Condition: mercenary
+		Factions: mercenary
+	GrantConditionOnFaction@smuggler:
+		Condition: smuggler
+		Factions: smuggler
+	Explodes@03:
+		Type: CenterPosition
+		Weapon: buildingExplosions05
+		EmptyWeapon: buildingExplosions05
+		Chance: 80
+	ProduceActorPower@contractors:
+		Name: Hire Contractors
+		Description: AT infantry with modest range. Can fire only when deployed \n Strong VS Vehicles, tanks \n Modest VS infantry
+		Icon: mercenary
+		PauseOnCondition: disabled
+		RequiresCondition: mercenary
+		Prerequisites: upgrade.starport, ~techlevel.superweapons, ~!factions.standard
+		Actors: dummy_mercenary_spawnpoint
+		Type: Starport
+		ChargeInterval: 3200
+		LaunchSpeechNotification: Reinforce
+		BlockedAudio: NoRoom
+		OrderName: ProduceActorPower.contractors
+		SupportPowerPaletteOrder: 30
+	GrantConditionOnPrerequisite@merchtech:
+		Condition: mercenary
+		Prerequisites: merged.mercenary
+	FloatingSpriteEmitter@smoke_huge_atreides:
+		Offset: 900, -1400, 0
+		Gravity: 40
+		Speed: 5
+	FloatingSpriteEmitter@smoke2_small_atreides:
+		Offset: -1224, -1312, 0
+		SpawnFrequency: 3, 13
+	WithIdleOverlay@Burns1_atreides:
+		Offset: 1424, -1390, 0
+	-WithIdleOverlay@Burns2_atreides:
+	FloatingSpriteEmitter@smoke_huge_harkonnen:
+		Offset: -1100,-1000,0
+	FloatingSpriteEmitter@smoke2_small_harkonnen:
+		Offset: 700,-900,0
+		Speed: 10
+	-WithIdleOverlay@Burns1_harkonnen:
+	WithIdleOverlay@Burns2_harkonnen:
+		Offset: 1800, 780,0
+	FloatingSpriteEmitter@smoke_huge_ordos:
+		Offset: -1100,-1000,0
+	FloatingSpriteEmitter@smoke2_small_ordos:
+		Offset: 700,-900,0
+		Speed: 10
+	-WithIdleOverlay@Burns1_ordos:
+	WithIdleOverlay@Burns2_ordos:
+		Offset: 1800, 780,0
+
+
+
+
+
+wall:
+	Buildable:
+		BuildDuration: 100
+	Valued:
+		Cost: 100
+	Health:
+		HP: 20000
+	Armor:
+		Type: wall
+	RevealsShroud:
+		Range: 1c768
+
+medium_gun_turret:
+	Inherits@chaosbomb: ^chaos_bomb_influence
+	Inherits@jammer: ^jammedvision
+	-AttackWander:
+	GrantConditionOnPrerequisite:
+		Condition: ArmorUpgrade
+		Prerequisites: upgrade.conyard
+	Buildable:
+		Prerequisites: barracks
+		BuildDuration: 300
+		Description: Defensive structure.\n  Modest vs everthing\n weak vs Tanks\n detects cloaked units in 2 cell range
+	Valued:
+		Cost: 600
+	Health:
+		HP: 30000
+	Armor:
+		Type: wall
+		RequiresCondition: ArmorUpgrade
+	Armor@weakArmor:
+		Type: heavy
+		RequiresCondition: !ArmorUpgrade
+	RevealsShroud:
+		Range: 5c768
+	Turreted:
+		TurnSpeed: 24
+		InitialFacing: 512
+		RealignDelay: -1
+	WithSpriteTurret:
+		Recoils: false
+	WithSpriteBarrel:
+		RequiresCondition: !build-incomplete
+	Armament:
+		Weapon: 110mm_Gun
+		LocalOffset: 512,0,432
+		MuzzleSequence: muzzle
+		Recoil: 200
+		RecoilRecovery: 25
+		RequiresCondition: !chaos_bomb
+	Armament@chaos_bomb_influence:
+		Weapon: 110mm_Gun
+		LocalOffset: 512,0,432
+		MuzzleSequence: muzzle
+		Recoil: 200
+		RecoilRecovery: 25
+	Power:
+		Amount: -50
+	DetectCloaked:
+		Range: 5c0
+	GrantConditionOnDamageState@heavyDamage:
+		Condition: heavy-damage
+	FloatingSpriteEmitter@smoke2_small:
+		Offset: 0, -700, 0
+		RequiresCondition: heavy-damage
+		Palette: smoke3
+		Image: smoke3
+		Lifetime: 15, 20
+		Speed: 3
+		Gravity: 50
+		SpawnFrequency: 4, 15
+		RandomFacing: true
+		RandomRate: 4
+		TurnRate: 3
+		Duration: 1024
+
+large_gun_turret:
+	Inherits@AUTOTARGET: ^AutoTargetAll
+	Inherits@Jammer: ^jammedvision
+	Inherits@chaosbomb: ^chaos_bomb_influence
+	-AttackWander:
+	Buildable:
+		BuildDuration: 380
+		Description: Defensive structure.\n  Strong vs Tanks, Aircraft\n  Weak vs infantry\n\n  Requires power to operate.
+	Valued:
+		Cost: 800
+	Health:
+		HP: 32000
+	Armor:
+		Type: wall
+	RevealsShroud:
+		Range: 6c768
+	Armament:
+		Weapon: MissleTowerNew
+		LocalOffset: 256,384,768, 256,-384,768
+		RequiresCondition: !chaos_bomb
+	Armament@chaos_bomb_influence:
+		Weapon: MissleTowerNew
+		LocalOffset: 256,384,768, 256,-384,768
+	Turreted:
+		TurnSpeed: 32
+	Power:
+		Amount: -70
+	DetectCloaked:
+		Range: 5c0
+	GrantConditionOnDamageState@heavyDamage:
+		Condition: heavy-damage
+	FloatingSpriteEmitter@smoke2_small:
+		Offset: 0, -700, 0
+		RequiresCondition: heavy-damage
+		Palette: smoke3
+		Image: smoke3
+		Lifetime: 15, 20
+		Speed: 3
+		Gravity: 50
+		SpawnFrequency: 4, 15
+		RandomFacing: true
+		RandomRate: 4
+		TurnRate: 3
+		Duration: 1024
+
+repair_pad:
+	Buildable:
+		Queue: Building
+		Prerequisites: heavy_factory, ~techlevel.medium, ~!repair_pad.bot
+		BuildDuration: 375
+	Valued:
+		Cost: 800
+	Health:
+		HP: 39000
+	Armor:
+		Type: wood
+	RevealsShroud:
+		Range: 3c768
+	Capturable:
+		RequiresCondition: !build-incomplete
+		Types: building
+		CancelActivity: true
+	Power:
+		Amount: -50
+	-Explodes@02:
+	Explodes@03:
+		Type: CenterPosition
+		Weapon: buildingExplosions05
+		EmptyWeapon: buildingExplosions05
+		Chance: 80
+	GrantConditionOnDamageState@heavyDamage:
+		Condition: heavy-damage
+	FloatingSpriteEmitter@smoke2_small:
+		Offset: 100, -1400, 0
+		Gravity: 40
+		RequiresCondition: heavy-damage
+		Palette: smoke3
+		Image: smoke3
+		Lifetime: 15, 20
+		Speed: 3
+		SpawnFrequency: 4, 15
+		RandomFacing: true
+		RandomRate: 4
+		TurnRate: 3
+		Duration: 1024
+	FloatingSpriteEmitter@smoke_huge:
+		Offset: 800,200,0
+		SpawnFrequency: 4,10
+		RequiresCondition: heavy-damage
+		Palette: smoke3
+		Image: smoke3
+		Lifetime: 15, 20
+		Speed: 7
+		Gravity: 60
+		RandomFacing: true
+		RandomRate: 4
+		TurnRate: 3
+		Duration: 1224
+
+
+
+repair_pad.bot:
+	Inherits: repair_pad
+	Buildable:
+		Queue: Building
+		Prerequisites: heavy_factory, ~techlevel.medium, ~repair_pad.bot
+	Tooltip:
+		Name: Repair Pad - bot dummy
+	D2kBuilding:
+		Footprint: +++ +=+ =+=
+	GrantConditionOnBotOwner@enableProximity:
+		Condition: bot
+		Bots: omnius, vidious, gladius
+	ProximityExternalCondition@repairingForbot:
+		Condition: start_repair
+		Range: 2c0
+		RequiresCondition: bot
+	ProvidesPrerequisite@buildingname:
+		Prerequisite: repair_pad
+
+high_tech_factory:
+	Inherits@damageVFX: ^DamagedBuildingsVFX
+	Buildable:
+		BuildDuration: 610
+	Valued:
+		Cost: 1150
+	Health:
+		HP: 45500
+	GrantConditionOnPrerequisite:
+		Condition: ArmorUpgrade
+		Prerequisites: upgrade.conyard
+	Armor:
+		Type: building
+		RequiresCondition: ArmorUpgrade
+	RevealsShroud:
+		Range: 4c768
+	Power:
+		Amount: -100
+	ProvidesPrerequisite@ordosprerequisite:
+		Prerequisite: hightech.ordos
+		Factions: ordos
+	SpawnActorOnDeath@bigcrater:
+		Offset: 0,2
+	GrantConditionOnFaction@airstrike:
+		Condition: atreides
+		Factions: atreides
+	GrantConditionOnFaction@reinforcemets:
+		Condition: ordos
+		Factions: ordos
+	GrantConditionOnFaction@harkonnendropship:
+		Condition: corrino
+		Factions: corrino
+	GrantConditionOnFaction@Corrinodropship:
+		Condition: harkonnen
+		Factions: harkonnen
+	GrantConditionOnFaction@basicReinforcements:
+		Condition: basic_reinforcements
+		Factions: smuggler, mercenary, fremen
+	-AirstrikePower:
+	SpawnActorPower@ordosLightStrike:
+		Icon: lightStrike
+		Name: Light Air Strike
+		Prerequisites: ~techlevel.superweapons, upgrade.hightech
+		ChargeInterval: 6000
+		Description: Ornithopters hit the target with MG guns
+		DisplayBeacon: True
+		SupportPowerPaletteOrder: 15
+		EndChargeTextNotification: Airstrike ready.
+		SelectTargetTextNotification: Select target.
+		OrderName: LightAirstrikePowerInfoOrder
+		RequiresCondition: ordos
+		EffectImage: carryall.husk_on_land
+		EffectSequence:
+		Actor: waypoint.airtstrike_o
+		LifeTime: -1
+		DisplayRadarPing: true
+	SpawnActorPower@BasicReinforce:
+		EffectImage: carryall.husk_on_land
+		EffectSequence:
+		Actor: waypoint.reinforce_o
+		Icon: infantry_reinforcement
+		Prerequisites: ~techlevel.superweapons, upgrade.hightech, ~factions.subfaction_allowed
+		ChargeInterval: 4500
+		LifeTime: 2000
+		Name: Infantry Reinforcements
+		Description: Calls in a carryall to deploy elite squad\n at  target location.
+		EndChargeSpeechNotification: Reinforce
+		SupportPowerPaletteOrder: 50
+		DisplayBeacon: True
+		OrderName: ordos_reinforcements
+		DisplayRadarPing: true
+		RequiresCondition: basic_reinforcements
+	SpawnActorPower@EnhancedAirAtreides:
+		EffectImage: carryall.husk_on_land
+		EffectSequence:
+		Actor: waypoint.airtstrike_a
+		Icon: ornistrike
+		Prerequisites: ~techlevel.superweapons, upgrade.hightech
+		ChargeInterval: 7000
+		LifeTime: -1
+		Name: Airstrike with multiple pass
+		Description: Ornithopters hit the target multiple times with bombs
+		EndChargeSpeechNotification: Reinforce
+		SupportPowerPaletteOrder: 50
+		DisplayBeacon: True
+		DisplayRadarPing: true
+		OrderName: Airstrike_atreidis.multipass
+		RequiresCondition: atreides
+	SpawnActorPower@CorrinoTrueSayer:
+		EffectImage: frigate.harkonnen
+		EffectSequence:
+		Actor: dummy.true_sayer
+		Icon: true_sayer
+		Prerequisites: ~techlevel.superweapons, upgrade.hightech, ~factions.subfaction_allowed
+		ChargeInterval: 4300
+		LifeTime: 500
+		StartFullyCharged: false
+		DeploySound: audio/true_sayer.wav
+		LaunchSound: audio/true_sayer.wav
+		Name: Emperor's True Sayer
+		Description: Reveal target Area
+		SupportPowerPaletteOrder: 60
+		DisplayBeacon: True
+		DisplayRadarPing: true
+		OrderName: corrino_reinforcements
+		RequiresCondition: corrino
+	SpawnActorPower@enhancedAirHarkonnen:
+		EffectImage: frigate.harkonnen
+		EffectSequence:
+		Actor: waypoint.reinforce_h
+		Icon: sardaukarFleet
+		Prerequisites: ~techlevel.superweapons, upgrade.hightech
+		ChargeInterval: 5200
+		LifeTime: 1000
+		StartFullyCharged: false
+		Name: Harkonnen Armorred Dropship
+		Description: Armorred Drop ship that drop reinforcements in targeted area
+		EndChargeSpeechNotification: Reinforce
+		SupportPowerPaletteOrder: 60
+		DisplayBeacon: True
+		OrderName: harkonnen_reinforcements
+		RequiresCondition: harkonnen
+	ProvidesPrerequisite@enableupgradeStandard_enhancedAir:
+		Prerequisite: hightech.enableupgrade
+		Factions: atreides, ordos, harkonnen, corrino
+	ProvidesPrerequisite@enableupgradeSubfaction:
+		Prerequisite: hightech.enableupgrade
+		RequiresPrerequisites: ~factions.subfaction_allowed
+		Factions: mercenary, smuggler, fremen, corrino
+	FloatingSpriteEmitter@smoke_huge_atreides:
+		Offset: 500, -800, 0
+	WithIdleOverlay@Burns1_atreides:
+		Offset: 1100, 500, 0
+	FloatingSpriteEmitter@smoke_huge_harkonnen:
+		Offset: 400,-150,0
+	-FloatingSpriteEmitter@smoke2_small_harkonnen:
+	WithIdleOverlay@Burns1_harkonnen:
+		Offset: -100, 350,0
+	-WithIdleOverlay@Burns2_harkonnen:
+	FloatingSpriteEmitter@smoke_huge_ordos:
+		Offset: 500, -200, 0
+		Gravity: 70
+	FloatingSpriteEmitter@smoke2_small_ordos:
+		Offset: 0, -800, 0
+		SpawnFrequency: 3, 13
+	WithIdleOverlay@Burns1_ordos:
+		Offset: 0, 450, 0
+	-WithIdleOverlay@Burns2_ordos:
+
+
+research_centre:
+	Inherits@IDISABLE: ^DisableOnLowPower
+	Buildable:
+		BuildDuration: 650
+		Prerequisites: outpost, heavy_factory, ~techlevel.high
+	Valued:
+		Cost: 1600
+	Health:
+		HP: 29000
+	GrantConditionOnPrerequisite:
+		Condition: ArmorUpgrade
+		Prerequisites: upgrade.conyard
+	Armor:
+		Type: building
+		RequiresCondition: ArmorUpgrade
+	RevealsShroud:
+		Range: 4c768
+	Power:
+		Amount: -75
+	RenderSprites:
+		Image: research.ordos
+		FactionImages:
+			atreides: research.atreides
+			fremen: research.atreides
+			harkonnen: research.harkonnen
+			corrino: research.harkonnen
+			smuggler: research.smuggler
+	ProduceActorPower@saboteur:
+		Name: Recruit Saboteur
+		Description: Sneaky infantry, pernamently cloak\n Can be detected by Outpost: 6 cell, Turrets: 3 cells, infantry: 2 cells\n  Special Ability: Destroy buildings \n selfkill ability: mass blast damage everthing in 6 cell Radius
+		Icon: saboteur
+		PauseOnCondition: disabled
+		Prerequisites: ~techlevel.superweapons, upgrade.research, barracks, ~!factions.standard
+		Actors: saboteur
+		Type: Infantry
+		ChargeInterval: 2250
+		ReadyAudio: Reinforce
+		BlockedAudio: NoRoom
+		OrderName: ProduceActorPower.Saboteursubfaction
+		SupportPowerPaletteOrder: 30
+	ProvidesPrerequisite@saboteur:
+		Prerequisite: research_centre.smuggler
+		Factions: smuggler
+	GrantConditionOnPrerequisite@smugglertech:
+		Condition: smugglertech
+		Prerequisites: merged.smuggler
+	GrantCondition@smuggler:
+		Condition: enable_saboteur
+		GrantPermanently: true
+		RequiresCondition: smugglertech
+	ProvidesPrerequisite@smuglglertech:
+		RequiresCondition: enable_saboteur
+		Prerequisite: research_centre.smuggler
+	GrantConditionOnDamageState@heavyDamage:
+		Condition: heavy-damage
+	FloatingSpriteEmitter@smoke_huge_atreides:
+		Offset: 512, 0, 0
+		Speed: 10
+		SpawnFrequency: 3,6
+		RequiresCondition: heavy-damage
+		Palette: smoke3
+		Image: smoke3
+		Lifetime: 15, 20
+		Gravity: 60
+		RandomFacing: true
+		RandomRate: 4
+		TurnRate: 3
+		Duration: 1224
+	FloatingSpriteEmitter@smoke2_small_atreides:
+		Offset: 300, -1500, 0
+		RequiresCondition: heavy-damage
+		Palette: smoke3
+		Image: smoke3
+		Lifetime: 15, 20
+		Speed: 3
+		Gravity: 50
+		SpawnFrequency: 4, 15
+		RandomFacing: true
+		RandomRate: 4
+		TurnRate: 3
+		Duration: 1024
+	WithIdleOverlay@Burns1_atreides:
+		Offset: -300, 500, 0
+		RequiresCondition: heavy-damage
+		Image: fire
+		Sequence: 1
+		IsDecoration: True
+
+
+palace:
+	Inherits: ^Building
+	Inherits@PRIMARY: ^PrimaryBuilding
+	Inherits@IDISABLE: ^DisableOnLowPowerOrPowerDown
+	Inherits@damageVFX: ^DamagedBuildingsVFX
+	Buildable:
+		Prerequisites: research_centre, ~techlevel.high, ~!factions.subfaction_allowed
+		Queue: Building
+		BuildPaletteOrder: 620
+		BuildDuration: 937
+		BuildDurationModifier: 100
+		Description: Unlocks elite infantry and weapons.
+	Selectable:
+		Bounds: 3072, 3072
+	Valued:
+		Cost: 1600
+	Tooltip:
+		Name: Palace
+	D2kBuilding:
+		Footprint: xx= xxx =xx
+		Dimensions: 3,3
+	Health:
+		HP: 35000
+	HitShape:
+		Type: Rectangle
+			TopLeft: -1536, -512
+			BottomRight: 1536, 512
+	HitShape@TOP:
+		Type: Rectangle
+			TopLeft: -1536, -1536
+			BottomRight: 512, -512
+	HitShape@BOTTOM:
+		Type: Rectangle
+			TopLeft: -512, 512
+			BottomRight: 1536, 1536
+	Armor:
+		Type: cy
+	RevealsShroud:
+		Range: 4c768
+	RenderSprites:
+		Image: palace.ordos
+		FactionImages:
+			atreides: palace.atreides
+			fremen: palace.atreides
+			harkonnen: palace.harkonnen
+			corrino: palace.corrino
+	WithBuildingBib:
+		HasMinibib: True
+	WithSupportPowerActivationOverlay:
+		RequiresCondition: !build-incomplete && !launchpad-damaged && harkonnen
+	GrantConditionOnDamageState@LAUNCHPADDAMAGED:
+		Condition: launchpad-damaged
+	Power:
+		Amount: -200
+	RallyPoint:
+	ProvidesPrerequisite@nuke:
+		Prerequisite: palace.nuke
+		Factions: harkonnen
+	ProvidesPrerequisite@fremen:
+		Prerequisite: palace.fremen
+		Factions: atreides
+	ProvidesPrerequisite@saboteur:
+		Prerequisite: palace.saboteur
+		Factions: ordos
+	ProvidesPrerequisite@sardaukar:
+		Prerequisite: palace.sardaukar
+		Factions: corrino
+	PrimaryBuilding:
+		ProductionQueues: Fremen, Saboteur
+		RequiresCondition: atreides || ordos
+	WithTextDecoration@primary:
+		RequiresCondition: primary && (atreides || ordos)
+	NukePower:
+		Cursor: nuke
+		Icon: deathhand
+		PauseOnCondition: disabled
+		MissileDelay: 18
+		DetonationAltitude: 6c0
+		RequiresCondition: harkonnen
+		RemoveMissileOnDetonation: True
+		Prerequisites: ~techlevel.superweapons, ~palace.nuke
+		ChargeInterval: 7600
+		Name: Death Hand
+		Description: Excellent VS Infantry, light vehicles, Turrets \n Weak vs Tanks, Buildings
+		BeginChargeSpeechNotification: DeathHandMissilePrepping
+		EndChargeSpeechNotification: DeathHandMissileReady
+		IncomingSpeechNotification: MissileLaunchDetected
+		MissileWeapon: deathhand
+		SpawnOffset: 32,816,0
+		DisplayBeacon: True
+		DisplayRadarPing: True
+		CameraRange: 9c0
+		CameraRemoveDelay: 75
+		ArrowSequence: arrow
+		CircleSequence: circles
+		FlightVelocity: 384
+		TrailInterval: 0
+		TrailImage: large_trail
+		TrailSequences: idle
+		SupportPowerPaletteOrder: 40
+		MissileImage: deathhand
+	ProduceActorPower@fremen:
+		Name: Recruit Fremen
+		Description: Elite infantry unit armed with assault rifles and rockets\n  Strong vs Infantry, Vehicles\n  Weak vs Artillery\n  Special Ability: Invisibility
+		Icon: fremen
+		PauseOnCondition: disabled
+		RequiresCondition: atreides
+		Prerequisites: ~techlevel.superweapons, ~palace.fremen, ~factions.standard
+		Actors: fremen, fremen, fremen, fremen
+		Type: Fremen
+		ChargeInterval: 2850
+		ReadyAudio: Reinforce
+		BlockedAudio: NoRoom
+		OrderName: ProduceActorPower.Fremen
+		SupportPowerPaletteOrder: 20
+	ProduceActorPower@Officer:
+		Name: Recruit Officer
+		Description: Officer provides speed and armor bonus to nearby infantry \n Disable prone effect on infantry
+		Actors: officer
+		Type: Infantry
+		ChargeInterval: 2500
+		Icon: officer
+		PauseOnCondition: disabled
+		RequiresCondition: atreides
+		Prerequisites: ~techlevel.superweapons, ~factions.merged, ~palace.fremen
+		ReadyAudio: Reinforce
+		BlockedAudio: NoRoom
+		OrderName: ProduceActorPower.officerMerged
+		SupportPowerPaletteOrder: 25
+	ProduceActorPower@saboteur:
+		Name: Recruit Saboteur
+		Description: Sneaky infantry, armed with explosives\n  Strong vs Buildings\n  Weak vs Everything\n  Special Ability: destroy buildings
+		Icon: saboteur
+		PauseOnCondition: disabled
+		RequiresCondition: ordos
+		Prerequisites: ~techlevel.superweapons, ~palace.saboteur, ~factions.standard
+		Actors: saboteur
+		Type: Saboteur
+		ChargeInterval: 2200
+		ReadyAudio: Reinforce
+		BlockedAudio: NoRoom
+		OrderName: ProduceActorPower.Saboteur
+		SupportPowerPaletteOrder: 30
+	AirstrikePower@chaosbombMerged:
+		Icon: gascloud
+		Name: Chaos bomb
+		ChargeInterval: 7500
+		SquadSize: 1
+		StartFullyCharged: false
+		PauseOnCondition: disabled
+		Prerequisites: ~techlevel.high, ~palace.saboteur, ~factions.merged
+		Description: Carryall with bomb that force units to kill each other.
+		UnitType: carryall.bomber
+		DisplayBeacon: True
+		CameraActor: camera
+		CameraRemoveDelay: 75
+		ArrowSequence: arrow
+		UseDirectionalTarget: True
+		DirectionArrowAnimation: airstrike_direction
+		CircleSequence: circles
+		SupportPowerPaletteOrder: 35
+		OrderName: Orderproduction.chaosbombmerged
+	Exit@1:
+		SpawnOffset: -704,768,0
+		ExitCell: -1,2
+	Exit@2:
+		SpawnOffset: -704,768,0
+		ExitCell: -1,3
+	Exit@3:
+		SpawnOffset: -704,768,0
+		ExitCell: 0,3
+	Production@Atreides:
+		Produces: Fremen
+		RequiresCondition: atreides
+	Production@OfficerSpawn:
+		Produces: Officer
+		RequiresCondition: atreides
+	Production@Ordos:
+		Produces: Saboteur
+		RequiresCondition: ordos
+	GrantConditionOnFaction@Atreides:
+		Condition: atreides
+		Factions: atreides, fremen
+	GrantConditionOnFaction@Harkonnen:
+		Condition: harkonnen
+		Factions: harkonnen
+	GrantConditionOnFaction@Ordos:
+		Condition: ordos
+		Factions: ordos, mercenary, smuggler
+	SupportPowerChargeBar:
+		RequiresCondition: atreides || harkonnen || ordos
+	ProvidesPrerequisite@buildingname:
+	FloatingSpriteEmitter@smoke_huge_atreides:
+		Offset: 1000, -600, 0
+		Gravity: 70
+	FloatingSpriteEmitter@smoke2_small_atreides:
+		Offset: -300, -2000, 0
+		SpawnFrequency: 2,6
+		Speed: 10
+	WithIdleOverlay@Burns1_atreides:
+		Offset: -200, 800, 0
+	WithIdleOverlay@Burns2_atreides:
+		Offset: 3048, -350, 0
+		Sequence: 4
+	FloatingSpriteEmitter@smoke_huge_harkonnen:
+		Offset: 600,-200,0
+	FloatingSpriteEmitter@smoke2_small_harkonnen:
+		Offset: -100, -660,0
+	WithIdleOverlay@Burns1_harkonnen:
+		Offset: -300, 512,0
+	WithIdleOverlay@Burns2_harkonnen:
+		Offset: 1700, -100,0
+	FloatingSpriteEmitter@smoke_huge_ordos:
+		Offset: 800,0,0
+	FloatingSpriteEmitter@smoke2_small_ordos:
+		Offset: -150, -1200,0
+	WithIdleOverlay@Burns1_ordos:
+		Offset: -500, 750,0
+	WithIdleOverlay@Burns2_ordos:
+		Offset: 2450, -200,0
+
+palace.harkonnen:
+	Inherits: ^Building
+	Inherits@IDISABLE: ^DisableOnLowPowerOrPowerDown
+	Valued:
+		Cost: 2000
+	Health:
+		HP: 35000
+	Armor:
+		Type: cy
+	RevealsShroud:
+		Range: 4c768
+	Power:
+		Amount: -200
+	Buildable:
+		Prerequisites: research_centre, ~techlevel.high, ~factions.subfaction_allowed, ~conyard.harkonnen
+		Queue: Building
+		BuildPaletteOrder: 620
+		BuildDuration: 937
+		BuildDurationModifier: 100
+		Description: Unlocks elite infantry and weapons.
+	Selectable:
+		Bounds: 3072, 3072
+	Tooltip:
+		Name: Harkonnen Palace
+	D2kBuilding:
+		Footprint: xx= xxx =xx
+		Dimensions: 3,3
+	Health:
+		HP: 35000
+	HitShape:
+		Type: Rectangle
+			TopLeft: -1536, -512
+			BottomRight: 1536, 512
+	HitShape@TOP:
+		Type: Rectangle
+			TopLeft: -1536, -1536
+			BottomRight: 512, -512
+	HitShape@BOTTOM:
+		Type: Rectangle
+			TopLeft: -512, 512
+			BottomRight: 1536, 1536
+	RenderSprites:
+		Image: palace.harkonnen
+	WithBuildingBib:
+		HasMinibib: True
+	WithSupportPowerActivationOverlay:
+		RequiresCondition: !build-incomplete && !launchpad-damaged
+	GrantConditionOnDamageState@LAUNCHPADDAMAGED:
+		Condition: launchpad-damaged
+	ProvidesPrerequisite@nuke:
+		Prerequisite: palace.nuke
+		Factions: harkonnen
+	NukePower:
+		LaunchSound: audio/death_hand_launch_1.wav
+		Cursor: nuke
+		Icon: deathhand
+		ChargeInterval: 7600
+		MissileWeapon: deathhand
+		MissileDelay: 18
+		Name: Death Hand \n Excellent VS Infantry, light vehicles, Turrets ;n Weak vs Tanks, Buildings
+		SpawnOffset: 32,816,0
+		DetonationAltitude: 6c0
+		RemoveMissileOnDetonation: True
+		FlightVelocity: 384
+		TrailInterval: 0
+		TrailImage: large_trail
+		TrailSequences: idle
+		CameraRemoveDelay: 80
+		PauseOnCondition: disabled
+		Description: Launches an atomic missile at a target location
+		BeginChargeSpeechNotification: DeathHandMissilePrepping
+		EndChargeSpeechNotification: DeathHandMissileReady
+		IncomingSpeechNotification: MissileLaunchDetected
+		DisplayBeacon: True
+		DisplayRadarPing: True
+		CameraRange: 10c0
+		ArrowSequence: arrow
+		SupportPowerPaletteOrder: 40
+		MissileImage: deathhand
+	SupportPowerChargeBar:
+	ProvidesPrerequisite@buildingname:
+
+palace.atreides:
+	Inherits: ^Building
+	Inherits@PRIMARY: ^PrimaryBuilding
+	Inherits@IDISABLE: ^DisableOnLowPowerOrPowerDown
+	PrimaryBuilding:
+		ProductionQueues: Officer
+	Buildable:
+		Prerequisites: research_centre, ~techlevel.high, ~factions.subfaction_allowed, ~conyard.atreides
+		Queue: Building
+		BuildPaletteOrder: 620
+		BuildDuration: 937
+		BuildDurationModifier: 100
+		Description: Unlocks elite infantry and weapons.
+	Selectable:
+		Bounds: 3072, 3072
+	RallyPoint:
+	Valued:
+		Cost: 2000
+	Tooltip:
+		Name: Atreides Palace
+	D2kBuilding:
+		Footprint: xx= xxx =xx
+		Dimensions: 3,3
+	Health:
+		HP: 35000
+	HitShape:
+		Type: Rectangle
+			TopLeft: -1536, -512
+			BottomRight: 1536, 512
+	HitShape@TOP:
+		Type: Rectangle
+			TopLeft: -1536, -1536
+			BottomRight: 512, -512
+	HitShape@BOTTOM:
+		Type: Rectangle
+			TopLeft: -512, 512
+			BottomRight: 1536, 1536
+	RenderSprites:
+		Image: palace.atreides
+		FactionImages:
+	WithBuildingBib:
+		HasMinibib: True
+	Power:
+		Amount: -200
+	Exit@1:
+		SpawnOffset: -704,768,0
+		ExitCell: -1,2
+	Exit@2:
+		SpawnOffset: -704,768,0
+		ExitCell: -1,3
+	Exit@3:
+		SpawnOffset: -704,768,0
+		ExitCell: 0,3
+	RevealsShroud:
+		Range: 4c768
+	ProduceActorPower@Officer:
+		Name: Recruit Officer
+		Description: Officer provides speed and armor bonus to nearby infantry \n Disable prone effect on infantry
+		Actors: officer
+		Type: Officer
+		ChargeInterval: 2500
+		Icon: officer
+		PauseOnCondition: disabled
+		Prerequisites: ~techlevel.superweapons, ~factions.subfaction_allowed
+		ReadyAudio: Reinforce
+		BlockedAudio: NoRoom
+		OrderName: ProduceActorPower.officer
+		SupportPowerPaletteOrder: 25
+	Production@Atreides:
+		Produces: Officer
+	SupportPowerChargeBar:
+	ProvidesPrerequisite@buildingname:
+
+
+palace.ordos:
+	Inherits: ^Building
+	Inherits@IDISABLE: ^DisableOnLowPowerOrPowerDown
+	Buildable:
+		Prerequisites: research_centre, ~techlevel.high, ~factions.subfaction_allowed, ~conyard.ordos
+		Queue: Building
+		BuildPaletteOrder: 620
+		BuildDuration: 937
+		BuildDurationModifier: 100
+		Description: Unlocks elite infantry and weapons.
+	Selectable:
+		Bounds: 3072, 3072
+	Valued:
+		Cost: 2000
+	Tooltip:
+		Name: Ordos Palace
+	D2kBuilding:
+		Footprint: xx= xxx =xx
+		Dimensions: 3,3
+	Health:
+		HP: 35000
+	HitShape:
+		Type: Rectangle
+			TopLeft: -1536, -512
+			BottomRight: 1536, 512
+	HitShape@TOP:
+		Type: Rectangle
+			TopLeft: -1536, -1536
+			BottomRight: 512, -512
+	HitShape@BOTTOM:
+		Type: Rectangle
+			TopLeft: -512, 512
+			BottomRight: 1536, 1536
+	Armor:
+		Type: cy
+	RevealsShroud:
+		Range: 4c768
+	WithBuildingBib:
+		HasMinibib: True
+	Power:
+		Amount: -200
+	SupportPowerChargeBar:
+	Production:
+		Produces: Building, Elite
+	AirstrikePower@chaosbomb:
+		Icon: gascloud
+		Name: Chaos bomb
+		ChargeInterval: 7500
+		SquadSize: 1
+		StartFullyCharged: false
+		Prerequisites: ~techlevel.high
+		Description: Carryall will drop bomb that force units to kill each other.
+		UnitType: carryall.bomber
+		DisplayBeacon: True
+		CameraActor: camera
+		CameraRemoveDelay: 75
+		PauseOnCondition: disabled
+		ArrowSequence: arrow
+		UseDirectionalTarget: True
+		DirectionArrowAnimation: airstrike_direction
+		CircleSequence: circles
+		SupportPowerPaletteOrder: 80
+		OrderName: Orderproduction.chaosbomb
+	ProvidesPrerequisite@buildingname:
+
+
+palace.corrino:
+	Inherits: ^Building
+	Inherits@PRIMARY: ^PrimaryBuilding
+	Inherits@IDISABLE: ^DisableOnLowPowerOrPowerDown
+	Inherits@AUTOTARGET: ^AutoTargetGround
+	PrimaryBuilding:
+		ProductionQueues: Saudarkar
+	Buildable:
+		Prerequisites: research_centre, ~techlevel.high, ~conyard.corrino, ~factions.subfaction_allowed
+		Queue: Building
+		BuildPaletteOrder: 620
+		BuildDuration: 937
+		BuildDurationModifier: 100
+		Description: Unlocks elite infantry
+	Selectable:
+		Bounds: 3072, 3072
+	Valued:
+		Cost: 2000
+	Tooltip:
+		Name: Palace Corrino
+	D2kBuilding:
+		Footprint: xxx xxx ===
+		Dimensions: 3,3
+	Health:
+		HP: 35000
+	HitShape:
+		Type: Rectangle
+			TopLeft: -1536, -512
+			BottomRight: 1536, 512
+	HitShape@TOP:
+		Type: Rectangle
+			TopLeft: -1536, -1536
+			BottomRight: 1536, -512
+	Armor:
+		Type: cy
+	RevealsShroud:
+		Range: 4c768
+	WithBuildingBib:
+		HasMinibib: True
+	Power:
+		Amount: -200
+	Exit@1:
+		SpawnOffset: 544,-224,0
+		ExitCell: 2,1
+	Exit@2:
+		SpawnOffset: 544,-224,0
+		ExitCell: 2,2
+	Exit@3:
+		SpawnOffset: 544,-224,0
+		ExitCell: 1,0
+	ProvidesPrerequisite@buildingname:
+	ProduceActorPower@releasethesardaukars:
+		Name: Rally Sardaukars
+		Description: Speed up Sardaukars production for short period of time \n Movement speed up for shortperiod of time \n
+		Actors: dummy.sardaukar_production_speed_up
+		Type: Saudarkar
+		ChargeInterval: 5500
+		Icon: sardaukarVeterancy
+		PauseOnCondition: disabled
+		Prerequisites: ~techlevel.superweapons, ~factions.subfaction_allowed
+		ReadyAudio: Reinforce
+		StartFullyCharged: false
+		LaunchSound: audio/HI_releaseTheSardaukar01.wav
+		BlockedAudio: NoRoom
+		LaunchSpeechNotification: release_sardaukars
+		OrderName: Orderproduction.sardaukar
+		SupportPowerPaletteOrder: 25
+	Production@Saudarkar:
+		Produces: Saudarkar
+	Armament:
+		FireDelay: 5
+		Weapon: clusterMissile.palace
+		LocalOffset: -100,0,1024, -100,100,1024, -100,200,1024
+	AttackTurreted:
+		PauseOnCondition: disabled
+		FacingTolerance: 128
+	Turreted:
+		TurnSpeed: 50
+
+fremen_sietch:
+	Inherits: ^Building
+	Inherits@primary: ^PrimaryBuilding
+	-D2kBuilding:
+	WithBuildingBib:
+	Buildable:
+		Queue: Building
+		BuildPaletteOrder: 630
+		BuildDuration: 937
+		BuildDurationModifier: 100
+		Prerequisites: research_centre, ~techlevel.high, ~conyard.fremen, ~factions.subfaction_allowed
+	SpawnActorsOnSell:
+		ActorTypes: nsfremen
+	Valued:
+		Cost: 1800
+	RevealsShroud:
+		Range: 4c768
+	HitShape:
+		Type: Rectangle
+			TopLeft: -1536, -512
+			BottomRight: 1536, 512
+	HitShape@TOP:
+		Type: Rectangle
+			TopLeft: -536, -1536
+			BottomRight: 512, -512
+	HitShape@BOTTOM:
+		Type: Rectangle
+			TopLeft: -512, 512
+			BottomRight: 1536, 1536
+	Building:
+		Footprint: =x= xxx =xx
+		Dimensions: 3,3
+		TerrainTypes: Rock, Concrete
+		BuildSounds: BUILD1.WAV
+	RallyPoint:
+	Tooltip:
+		Name: Sietch
+	Health:
+		HP: 35000
+	Armor:
+		Type: cy
+	Selectable:
+		Bounds: 3072, 3072
+	Exit@1:
+		SpawnOffset: -704,1024,0
+		ExitCell: -1,2
+	Exit@2:
+		SpawnOffset: -704,1024,0
+		ExitCell: -1,3
+	SpawnActorPower@wormrider:
+		EffectImage: Carryall
+		Actor: worm_rider
+		Name: Worm rider
+		Description: Deploy Wormride who can invocate and ride worm
+		ChargeInterval: 6700
+		LifeTime: -1
+		Icon: sandworm
+		StartFullyCharged: false
+		Prerequisites: ~techlevel.high
+		SupportPowerPaletteOrder: 90
+		OrderName: SpawnActorPowerInfoOrder.wormride
+	Production@wormriderproduction:
+		Produces: Fremen
+
+
+upgrade.conyard:
+	Buildable:
+		BuildDuration: 1400
+		Prerequisites: construction_yard, outpost, ~!choosefaction
+		Description: UPGRADE BUILDINGS ARMOR!!! \n Unlock Rocket Turret
+	Valued:
+		Cost: 1000
+
+upgrade.barracks:
+	Buildable:
+		Prerequisites: barracks, ~!choosefaction
+		BuildDuration: 900
+	Valued:
+		Cost: 400
+	RenderSprites:
+		Image: barracks.ordos
+		FactionImages:
+			atreides: barracks.atreides
+			fremen: barracks.fremen
+			harkonnen: barracks.harkonnen
+			corrino: barracks.corrino
+			mercenary: barracks.smuggler
+
+upgrade.light:
+	Buildable:
+		Prerequisites: light_factory, ~!choosefaction
+		BuildDuration: 1000
+	Valued:
+		Cost: 600
+
+upgrade.heavy:
+	Buildable:
+		Prerequisites: heavy_factory, ~!choosefaction
+		BuildDuration: 1200
+	Valued:
+		Cost: 1000
+
+upgrade.outpost:
+	AlwaysVisible:
+	Interactable:
+	ScriptTriggers:
+	Tooltip:
+		Name: Outpost upgrade
+	Buildable:
+		BuildPaletteOrder: 80
+		Prerequisites: ~outpost.smuggler, ~!choosefaction,~factions.subfaction_allowed, high_tech_factory, ~techlevel.superweapons
+		Queue: Upgrade
+		BuildLimit: 1
+		BuildDuration: 1500
+		BuildDurationModifier: 100
+		Description: Unlocks Jam ability
+	Valued:
+		Cost: 1500
+	RenderSprites:
+		Image: outpost.ordos
+	ProvidesPrerequisite@upgradename:
+
+merged_upgrade.outpost:
+	Inherits: upgrade.outpost
+	RenderSprites:
+		Image: outpost.ordos
+	Buildable:
+		Prerequisites: ~outpost, ~!choosefaction,~merged.smuggler,~factions.merged, ~techlevel.superweapons
+	ProvidesPrerequisite@enablejammer:
+		Prerequisite: upgrade.outpost
+
+upgrade.outpost_fremen:
+	AlwaysVisible:
+	Interactable:
+	ScriptTriggers:
+	Tooltip:
+		Name: Fremen Outpost ugrade
+	Buildable:
+		BuildPaletteOrder: 80
+		Prerequisites: ~!choosefaction, ~outpost.fremen, ~!factions.standard, ~techlevel.superweapons
+		Queue: Upgrade
+		BuildLimit: 1
+		BuildDuration: 1500
+		BuildDurationModifier: 100
+		Description: Unlocks Hide ability
+	Valued:
+		Cost: 1200
+	RenderSprites:
+		Image: outpost.atreides
+	ProvidesPrerequisite@upgradename:
+
+upgrade.research:
+	AlwaysVisible:
+	Interactable:
+	ScriptTriggers:
+	Tooltip:
+		Name: Research center ungrade
+	Buildable:
+		BuildPaletteOrder: 50
+		Prerequisites: ~!choosefaction, ~research_centre.smuggler, ~!factions.standard, ~techlevel.high
+		Queue: Upgrade
+		BuildLimit: 1
+		BuildDuration: 937
+		BuildDurationModifier: 100
+		Description: Unlocks Saboteur
+	Valued:
+		Cost: 1500
+	RenderSprites:
+		Image: research.smuggler
+	ProvidesPrerequisite@upgradename:
+
+upgrade.starport:
+	AlwaysVisible:
+	Interactable:
+	ScriptTriggers:
+	Tooltip:
+		Name: Starport upgrade
+	Buildable:
+		BuildPaletteOrder: 50
+		Prerequisites: ~!choosefaction, ~starport.mercenary, ~factions.subfaction_allowed, ~techlevel.high
+		Queue: Upgrade
+		BuildLimit: 1
+		BuildDuration: 937
+		BuildDurationModifier: 100
+		Description: Unlocks Contractors
+	Valued:
+		Cost: 1500
+	RenderSprites:
+		Image: starport.mercenary
+	ProvidesPrerequisite@upgradename:
+
+merged_upgrade.starport:
+	Inherits: upgrade.starport
+	RenderSprites:
+		Image: starport.mercenary
+	Buildable:
+		Prerequisites: ~starport, ~!choosefaction, ~merged.mercenary,~factions.merged, merged.mercenary_factory, ~techlevel.superweapons
+	ProvidesPrerequisite@enablecontractors:
+		Prerequisite: upgrade.starport
+
+upgrade.hightech:
+	Buildable:
+		Prerequisites: ~!choosefaction, ~hightech.enableupgrade, ~techlevel.superweapons
+		BuildDuration: 1500
+		Description: Unlocks Hight tech Support powers
+	Valued:
+		Cost: 1200
+	RenderSprites:
+		Image: hightech.atreides
+		FactionImages:
+			ordos: hightech.ordos
+			harkonnen: hightech.harkonnen
+
+sietch:
+	-GrantRandomCondition@randomFX:
+	-Explodes@02:
+	-Explodes@03:
+	-Explodes@sabotuerdemolition:
+	-Demolishable:
+	Demolishable@testfix:
+		Condition: being-demolished
+	Building:
+		Footprint: xx xx
+		Dimensions: 2,2
+		TerrainTypes: Cliff
+
+merged.fremen_sietch:
+	Inherits: fremen_sietch
+	Buildable:
+		Prerequisites: research_centre, ~merged.fremen, ~techlevel.high, ~factions.merged
+	RenderSprites:
+		Image: fremen_sietch
+	ProvidesPrerequisite@name:
+	ProvidesPrerequisite@frementech:
+		Prerequisite: merged.fremen
+
+merged.corrino_palace:
+	Inherits: palace.corrino
+	Buildable:
+		Prerequisites: research_centre, ~merged.corrino, ~techlevel.high,  ~factions.merged
+	RenderSprites:
+		Image: palace.corrino
+	-ProduceActorPower@releasethesardaukars:
+	ProvidesPrerequisite@name:
+	Production:
+		Produces: palace_corinno
+	RallyPoint:
+	ProvidesPrerequisite@corrinotech:
+		Prerequisite: merged.corrino
+	SpawnActorPower@CorrinoTrueSayer:
+		EffectImage: frigate.harkonnen
+		EffectSequence:
+		Actor: dummy.true_sayer
+		Icon: true_sayer
+		Prerequisites: ~techlevel.superweapons, factions.merged
+		ChargeInterval: 3900
+		LifeTime: 500
+		StartFullyCharged: false
+		DeploySound: audio/true_sayer.wav
+		LaunchSound: audio/true_sayer.wav
+		Name: Emperor's True Sayer
+		Description: Reveal target Area
+		SupportPowerPaletteOrder: 60
+		DisplayBeacon: True
+		OrderName: corrino.true_sayer
+		DisplayRadarPing: true
+
+merged.starport:
+	Inherits: starport
+	Buildable:
+		Prerequisites: heavy_factory, outpost, ~techlevel.high, ~factions.merged, ~!merged.smuggler
+	RenderSprites:
+		Image: starport.ordos
+		FactionImages:
+			atreides: starport.atreides
+			fremen: starport.atreides
+			harkonnen: starport.harkonnen
+			corrino: starport.harkonnen
+			smuggler: starport.smuggler
+			mercenary: starport.mercenary
+	ProvidesPrerequisite@justincase:
+		Prerequisite: starport
+
+
+merged.starport_smuggler:
+	Inherits: starport
+	Buildable:
+		Prerequisites: heavy_factory, outpost, ~techlevel.high, ~factions.merged, ~merged.smuggler
+	RenderSprites:
+		Image: starport.smuggler
+		FactionImages:
+			atreides: starport.smuggler
+			fremen: starport.smuggler
+			harkonnen: starport.smuggler
+			corrino: starport.smuggler
+			smuggler: starport.smuggler
+			mercenary: starport.smuggler
+	Tooltip:
+		Name: Smugglers Starport
+	ProvidesPrerequisite@smugglerstarportmerged:
+		Prerequisite: starport.smuggler
+	ProvidesPrerequisite@default:
+		Prerequisite: starport
+	ProvidesPrerequisite@smugllertech:
+		Prerequisite: merged.smuggler
+
+
+
+merged.mercenary_factory:
+	Inherits: heavy_factory
+	Buildable:
+		BuildDuration: 750
+		Prerequisites: refinery, ~merged.mercenary
+		Queue: Building
+		BuildPaletteOrder: 630
+		BuildDurationModifier: 100
+		Description: Produces mercenary vehicles
+	Tooltip:
+		Name: Mercenary Heavy factory
+	RenderSprites:
+		Image: heavy.mercenary
+		FactionImages:
+			atreides: heavy.mercenary
+			fremen: heavy.mercenary
+			harkonnen: heavy.mercenary
+			corrino: heavy.mercenary
+			mercenary: heavy.mercenary
+	ProvidesPrerequisite@actorsname:
+	ProvidesPrerequisite@mercenarytech:
+		Prerequisite: merged.mercenary
+	ProvidesPrerequisite@buildingname:
+		Prerequisite: heavy_factory
