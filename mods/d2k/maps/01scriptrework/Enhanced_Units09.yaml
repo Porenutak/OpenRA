@@ -1065,6 +1065,18 @@ combat_tank_corrino:
 	Armament@chaos_bomb_influence:
 		Weapon: 80mm_corrino
 
+carryall:
+	-Interactable:
+	AutoCarryall:
+		#AutoCarryCondition: auto_mode
+	Selectable:
+		PriorityModifiers: Ctrl
+		Priority: 9
+	SelectionDecorations:
+	RevealsShroud:
+		Range: 6c0
+		Type: CenterPosition
+	RevealOnDeath:
 
 carryall.reinforce:
 	Inherits: ^Plane
