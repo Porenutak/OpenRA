@@ -1,10 +1,10 @@
 spicebloom:
 	SpiceBloom:
-		Pieces: 7,10
+		Pieces: 9
 
 ^Husk:
 	Health:
-		HP: 15000
+		HP: 12000
 
 ^VehicleHusk:
 	Inherits: ^Husk
@@ -92,6 +92,7 @@ spicebloom:
 		Type: Circle
 			Radius: 16
 	Tooltip:
+		Name: dummy vehicle
 	AutoCarryable:
 		CarriedCondition: notmobile
 		LockedCondition: notmobile
@@ -442,7 +443,7 @@ rotor.flyingdown:
 		Image: debris_rotor_anim
 		Palette: d2k
 	FallsToEarth:
-		Explosion: ExplosionWithDamege_large
+		Explosion: ExplosionRotor
 
 carryall.huskVTOL_reinforce:
 	Inherits: carryall.huskVTOL
@@ -698,8 +699,6 @@ combat_tank_h.husk:
 
 combat_tank_h.husk02:
 	Inherits: ^combat_tank.husk
-	Health:
-		HP: 13000
 	TransformOnCapture:
 		IntoActor: combat_tank_h
 	WithIdleOverlay@Burns:
@@ -748,8 +747,6 @@ combat_tank_o.husk:
 
 combat_tank_o.husk02:
 	Inherits: ^combat_tank.husk
-	Health:
-		HP: 15000
 	TransformOnCapture:
 		IntoActor: combat_tank_o
 	WithIdleOverlay@Burns:
@@ -793,8 +790,6 @@ combat_tank_o.husk04:
 
 devastator.husk:
 	Inherits: ^VehicleHusk
-	Health:
-		HP: 19500
 	Tooltip:
 		Name: Devastator (Destroyed)
 	TransformOnCapture:
@@ -900,7 +895,7 @@ deviator.husk:
 dummygas01:
 	Inherits: ^dummygas
 	KillsSelf:
-		Delay: 100
+		Delay: 115
 
 dummygas02:
 	Inherits: ^dummygas
@@ -945,7 +940,7 @@ dummygas08:
 		Type: wood
 	FrozenUnderFog:
 	Tooltip:
-		GenericName: Destroyed Building
+		Name: Destoyed Byilding
 	WithSpriteBody:
 	HitShape:
 		UseTargetableCellsOffsets: true

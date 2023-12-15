@@ -21,7 +21,6 @@
 	QuantizeFacingsFromSequence:
 	Interactable:
 	Tooltip:
-		GenericName: passage
 		Name: passage
 		ShowOwnerRow: false
 
@@ -35,7 +34,6 @@
 	Health:
 		HP: 20000
 	Tooltip:
-		GenericName: pasage (Destroable)
 		Name: passage (Destroable)
 	OwnerLostAction:
 		Action: ChangeOwner
@@ -65,7 +63,6 @@
 		Action: ChangeOwner
 		Owner: Neutral
 	Tooltip:
-		GenericName: pasage (repairable)
 		Name: passage (repairable)
 	CaptureManager:
 	CapturableProgressBar:

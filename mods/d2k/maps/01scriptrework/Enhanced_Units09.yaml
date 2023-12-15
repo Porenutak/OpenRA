@@ -342,9 +342,6 @@ harvester:
 	Harvester:
 		HarvestFacings: 8
 		Resources: Spice
-		BaleUnloadDelay: 6
-		SearchFromProcRadius: 30
-		SearchFromHarvesterRadius: 15
 		EmptyCondition: harvesterEmpty
 	Health:
 		HP: 45000
@@ -397,7 +394,7 @@ trike:
 	Buildable:
 		Prerequisites: ~light.trike
 		BuildDuration: 225
-			Description: Scout\n Excellent visibility\n Strong vs Infantry\n  Weak vs Tanks, Rockets
+			Description: Scout \n Strong vs Infantry\n  Weak vs Tanks, Rockets
 	Valued:
 		Cost: 300
 	Selectable:
@@ -410,8 +407,6 @@ trike:
 		Locomotor: light_vehicle
 		TurnSpeed: 40
 		Speed: 115
-	RevealsShroud:
-		Range: 7c512
 	Armament@damage:
 		FireDelay: 0
 		Weapon: HMG
@@ -446,8 +441,8 @@ raider:
 		RequiresCondition: ignore-creeps
 	Buildable:
 		Prerequisites: ~light.raider
-		BuildDuration: 225
-		Description: Fast scout \n Excellent visibility \n Strong vs Infantry\n  Weak vs Tanks, Rockets
+		BuildDuration: 250
+		Description: Fast scout \n Strong vs Infantry\n  Weak vs Tanks, Rockets
 	Valued:
 		Cost: 350
 	Tooltip:
@@ -489,7 +484,6 @@ quad:
 		RequiresCondition: ignore-creeps
 	Buildable:
 		Prerequisites: upgrade.light, ~light.quad, ~techlevel.medium
-		BuildDuration: 353
 		BuildDurationModifier: 100
 		Description: Missile Scout\n  Excellent vs Light Armor\n Modest vs Tanks\n Weak vs  Moving Targets, Infantry
 	Valued:
@@ -525,14 +519,12 @@ stealth_raider:
 		Prerequisites: ~light.ordos, upgrade.light, high_tech_factory, ~techlevel.high
 		BuildPaletteOrder: 30
 		BuildDuration: 260
-		Description: Invisible Raider Trike\n Can be detected by infantry(1 cell), Turrets(2 cells), Outpost (5 cells)
+		Description: Invisible Raider\n Can be detected by Infantry (1 cell), Turrets(2 cells), Outpost (5 cells)
 	Valued:
 		Cost: 450
 	Mobile:
 		TurnSpeed: 32
 		Speed: 120
-	Tooltip:
-		Name: Stealth Raider Trike
 	RevealsShroud:
 		Range: 6c0
 	UpdatesPlayerStatistics:
@@ -550,7 +542,7 @@ siege_tank:
 		Prerequisites: upgrade.heavy, ~techlevel.medium
 		BuildDuration: 400
 		BuildDurationModifier: 100
-		Description: Siege Artillery\n  High range, high Inaccuracy\n Strong vs Infantry, Buildings\n  Weak vs Tanks, Quads
+		Description: Siege Artillery\n  High range, high Inaccuracy\n Strong vs Infantry, Buildings\n  Weak vs Tanks
 	AutoTargetPriority@bot:
 		ValidTargets: Infantry, Defense
 		InvalidTargets: Tanks
@@ -566,7 +558,7 @@ siege_tank:
 		TargetFrozenActors: True
 		FacingTolerance: 0
 	Valued:
-		Cost: 800
+		Cost: 700
 	Health:
 		HP: 13000
 	Armor:
@@ -629,11 +621,11 @@ missile_tank:
 	Buildable:
 		BuildDuration: 512
 		Prerequisites: ~heavy.missile_tank, heavy_factory,upgrade.heavy, high_tech_factory, ~techlevel.high
-		Description: Rocket Artillery\n Excellent vs moving targets, Tanks\n Strong vs Vehicles, Aircraft\n  Weak vs Infantry, Quads
+		Description: Rocket Artillery\n Excellent vs moving targets, Tanks\n Strong vs Vehicles, Aircraft\n  Weak vs Infantry
 	Valued:
 		Cost: 900
 	Mobile:
-		Speed: 50
+		Speed: 57
 		TurnSpeed: 20
 	Health:
 		HP: 14000
@@ -685,7 +677,7 @@ sonic_tank:
 		Queue: Armor
 		Prerequisites: ~heavy.atreides,upgrade.heavy, research_centre, ~techlevel.high
 		BuildDuration: 630
-		Description: Fires sonic shocks\n  Excellent vs Infantry, Buildings, Turrets\n Modest vs vehicles \n  Weak vs Tanks, Missiles,\n Friendly Fire
+		Description: Fires sonic shocks\n  Excellent vs Infantry, Vehicles, Buildings\n Modest vs vehicles \n  Weak vs Tanks\n Friendly Fire
 	Valued:
 		Cost: 1100
 	UpdatesPlayerStatistics:
@@ -726,13 +718,13 @@ devastator:
 	Buildable:
 		Prerequisites: ~heavy.harkonnen, research_centre, upgrade.heavy, ~techlevel.high
 		BuildDuration: 700
-		Description: Super Heavy Tank\n  Decent damage vs everthing\n weak vs missile\n SelfDestruction damage 8 square cells
+		Description: Super Heavy Tank\n  Decent damage vs everthing\n weak vs Infantry \n SelfDestruction damage 7 square cells
 	ExternalCondition:
 		Condition: unitCapturated
 	Valued:
 		Cost: 1200
 	Health:
-		HP: 65000
+		HP: 60000
 	Armor:
 		Type: heavy
 	Mobile:
@@ -867,7 +859,7 @@ deviator:
 	Buildable:
 		Queue: Armor
 		BuildDuration: 432
-		Description: Main Battle Tank\n  Modest vs Tanks, vehicles\n  Weak vs Infantry, Missiles \n Can crush Infantry
+		Description: Main Battle Tank\n  Strong  vs Vehicles\n  Weak vs Infantry, Missiles \n Can crush Infantry
 	Valued:
 		Cost: 700
 	UpdatesPlayerStatistics:
@@ -900,7 +892,7 @@ combat_tank_a:
 	Inherits: ^combat_tank
 	Buildable:
 		Prerequisites: ~heavy.atreides_combat
-		Description: Atreides Combat Tank \n Modest speed/HP \n Combat bonus: Longer Range
+		Description: Atreides Combat Tank \n Modest speed/HP \n Longer Range
 	Mobile:
 		TurnSpeed: 20
 	Tooltip:
@@ -937,7 +929,7 @@ combat_tank_h:
 	Inherits: ^combat_tank
 	Buildable:
 		Prerequisites: ~heavy.harkonnen_combat
-		Description: Harkonnen Combat tank \n More Healt, low Speed \n Combat Bonus: Damage \n less affected by Dune terrain
+		Description: Harkonnen Combat tank \n More Healt, low Speed \n Better damage Spread \n less affected by Dune terrain
 	Armament:
 		Weapon: 80mm_H
 	Armament@chaos_bomb_influence:
@@ -1014,7 +1006,7 @@ combat_tank_cheap:
 	Buildable:
 		BuildDuration: 400
 		Prerequisites: ~factions.subfaction_allowed, ~heavy.cheap_tank
-		Description: Standard combat tank licensed by various manufacturers \n Modest speed, Low HP \n Bonus: Cheaper
+		Description: Standard tank licensed by various manufacturers \n Modest speed, Low HP \n Cheap, less building time
 	Valued:
 		Cost: 600
 	Tooltip:
@@ -1051,7 +1043,7 @@ combat_tank_corrino:
 	Inherits: combat_tank_h
 	Buildable:
 		Prerequisites: ~heavy.corrino_combat, ~factions.subfaction_allowed
-		Description: Corrino Combat tank \n  Better HP, low Speed \n Combat bonus: area damage \n Less affected by Dune terrain
+		Description: Corrino Combat tank \n  Better HP, low Speed \n Better area damage \n Less affected by Dune terrain
 	Tooltip:
 		Name: Corrino Combat Tank
 	Health:
@@ -1065,29 +1057,17 @@ combat_tank_corrino:
 	Armament@chaos_bomb_influence:
 		Weapon: 80mm_corrino
 
-carryall:
-	-Interactable:
-	AutoCarryall:
-		#AutoCarryCondition: auto_mode
-	Selectable:
-		PriorityModifiers: Ctrl
-		Priority: 9
-	SelectionDecorations:
-	RevealsShroud:
-		Range: 6c0
-		Type: CenterPosition
-	RevealOnDeath:
 
 carryall.reinforce:
 	Inherits: ^Plane
 	Valued:
-		Cost: 1100
+		Cost: 1000
 	UpdatesPlayerStatistics:
 		AddToAssetsValue: false
 	Tooltip:
 		Name: Carryall
 	Health:
-		HP: 12000
+		HP: 13000
 	Armor:
 		Type: light
 	Aircraft:
@@ -1141,12 +1121,47 @@ carryall.reinforce:
 		TurnRate: 3
 		Duration: 500
 
+carryall:
+	Buildable:
+		Prerequisites: ~!carryall.controllable
 
+carryall.controllable:
+	Inherits: carryall
+	Inherits@selectableEco: ^SelectableSupportUnit
+	Buildable:
+		Prerequisites: ~carryall.controllable
+		Description:  controllable carryall \n Use Ctrl or Alt to select \n Use RMB to pick up vehicle \n use Deploy to unload vehicle
+	-Interactable:
+	AutoCarryall:
+		AutoCarryCondition: !manual
+	GrantConditionOnDeploy:
+		DeployedCondition: manual
+		CanDeployOnRamps: true
+		SkipMakeAnimation: true
+	RevealsShroud:
+		Range: 6c0
+		Type: CenterPosition
+	RevealOnDeath:
+	WithDecoration@AutoCarryall:
+		RequiresCondition: !manual
+		Position: BottomLeft
+		Margin: 3, 4
+		Image: auto-tag
+		RequiresSelection: true
+		Sequence: idle
+		Palette: player
+		IsPlayerPalette: true
+	WithDecoration@manual:
+		RequiresCondition: manual
+		Position: BottomLeft
+		Margin: 3, 4
+		Image: manual-tag
+		Sequence: idle
+		Palette: player
+		IsPlayerPalette: true
 
 carryall.reinforce_with_sound:
 	Inherits: carryall.reinforce
-	Health:
-		HP: 11000
 	-Carryall:
 	Cargo:
 		Types: Infantry, Vehicle
@@ -1393,7 +1408,7 @@ trooper:
 		RequiresCondition: ignore-creeps
 	Buildable:
 		Prerequisites: upgrade.barracks, ~techlevel.medium
-		BuildDuration: 120
+		BuildDuration: 124
 		Description: Anti-tank infantry\n  Strong vs Tanks\n  Weak vs Infantry, Artillery, Moving targets
 	Valued:
 		Cost: 100
@@ -1427,7 +1442,7 @@ engineer:
 		Prerequisites: upgrade.barracks, ~techlevel.medium
 		BuildDuration: 160
 		BuildPaletteOrder: 80
-		Description: Infiltrates and captures enemy structures\n  Attracts nearby worms when deployed\n Can repair Buildings \n Capture husks
+		Description: Infiltrates and captures enemy structures\n \n Capture husks \n Instantly repair ally Building
 	Valued:
 		Cost: 400
 	Health:
@@ -1436,7 +1451,6 @@ engineer:
 		Range: 2c768
 	Mobile:
 		Speed: 31
-		PauseOnCondition: deployed
 	InstantlyRepairs:
 		Types: Building
 	-Passenger:
@@ -1451,28 +1465,6 @@ engineer:
 	Captures@husks:
 		CaptureTypes: husk
 		ValidRelationships: Enemy, Neutral, Ally
-	GrantConditionOnDeploy:
-		DeployedCondition: deployed
-		UndeployedCondition: undeployed
-		Facing: 512
-		SkipMakeAnimation: true
-		AllowedTerrainTypes: Sand, Spice, Dune, SpiceSand
-	WithInfantryBody:
-		RequiresCondition: undeployed
-	WithSpriteBody@DEPLOYED:
-		Sequence: thump
-		RequiresCondition: !undeployed
-	WithIdleOverlay@DEPLOYED:
-		Sequence: thump-sand
-		RequiresCondition: deployed
-	AmbientSound:
-		SoundFiles: THUMPER1.WAV
-		Interval: 60
-		RequiresCondition: deployed
-	AttractsWorms:
-		Intensity: 1000
-		Falloff: 0, 0, 0, 100, 100, 100, 25, 11, 6, 4, 3, 2, 1, 0
-		RequiresCondition: deployed
 	-Armament@chaos_bomb_influence:
 
 grenadier:
@@ -1511,7 +1503,7 @@ mpsardaukar:
 	Buildable:
 		Prerequisites: ~barracks.harkonnen, upgrade.barracks, high_tech_factory, ~techlevel.medium, ~factions.standard
 		BuildDuration: 165
-		Description: Elite assault infantry of Corrino\n  Strong vs Vehicles\n Modest vs Infantry\n  Weak vs Artillery, Sonic Beams
+		Description: Elite assault infantry of Corrino\n  Strong vs Vehicles\n Modest vs Infantry, Tanks \n  Weak vs Artillery, Sonic Beams
 	Valued:
 		Cost: 200
 	Health:
@@ -1660,7 +1652,7 @@ fremen:
 	Mobile:
 		Speed: 43
 	Valued:
-		Cost: 200
+		Cost: 180
 	Health:
 		HP: 7000
 	RevealsShroud:
@@ -1669,7 +1661,6 @@ fremen:
 		ScanRadius: 7
 		InitialStance: HoldFire
 		InitialStanceAI: ReturnFire
-	-Armament@PRIMARY:
 	Armament@SECONDARY:
 		Weapon: Fremen_L
 		Name: secondary
@@ -1769,12 +1760,12 @@ assassin:
 	Inherits: ^Infantry
 	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
 	Valued:
-		Cost: 120
+		Cost: 150
 	Buildable:
 		Queue: Infantry
 		BuildPaletteOrder: 70
 		Prerequisites: ~!factions.standard, ~barracks.harkonnen, upgrade.barracks, high_tech_factory, ~techlevel.high
-		BuildDuration: 140
+		BuildDuration: 150
 		BuildDurationModifier: 60
 		Description: Infantry with long range rifle\n  Attacks only infantry\n  Inaccuracy is high at long range \n No armor
 	Tooltip:
@@ -1978,7 +1969,7 @@ bison_tank:
 		BuildPaletteOrder: 100
 		Description: Heavy double barrel tank licensed from IX \n Strong VS vehicles, Tanks \n Weak VS infantry
 	Health:
-		HP: 30000
+		HP: 31000
 	RenderSprites:
 		PlayerPalette: player_r16
 	Valued:
@@ -2059,7 +2050,7 @@ mp_sandworm:
 	Tooltip:
 		Name: Sandworm
 	Health:
-		HP: 170000
+		HP: 150000
 	HitShape:
 		Type: Rectangle
 			TopLeft: -512, -512
@@ -2194,7 +2185,7 @@ spire:
 		Prerequisites: ~disabled, upgrade.light, ~factions.subfaction_allowed, ~techlevel.medium
 		BuildDuration: 353
 		BuildDurationModifier: 100
-		Description: Heavy missile Scout\n  Excellent vs Light Armor\n Modest vs Tanks\n Weak vs  Moving Targets, Infantry \n Slower speed, more HP, better damage
+		Description: Heavy quad \n  Excellent vs Light Armor\n Modest vs Tanks\n Weak vs  Moving Targets, Infantry \n Slower speed, more HP, better damage
 	Valued:
 		Cost: 500
 	Health:
@@ -2226,7 +2217,7 @@ hunter:
 		Prerequisites: ~light.hunter, ~factions.subfaction_allowed
 		BuildPaletteOrder: 10
 		BuildDuration: 240
-		Description: Trike with turret \n  Stronger vs Troopers, moving targets\n Reduced speed and vision
+		Description: Trike with turret \n  Stronger vs Troopers, moving targets\n limited speed
 	Tooltip:
 		Name: Hunter
 	Valued:
@@ -2242,7 +2233,7 @@ hunter:
 	RevealsShroud:
 		Range: 7c0
 	Mobile:
-		Speed: 93
+		Speed: 100
 	Armament@damage:
 		Weapon: HMG
 		LocalOffset: -200,0,0
@@ -2374,7 +2365,7 @@ flamer:
 		BuildDurationModifier: 100
 		BuildPaletteOrder: 106
 		Prerequisites: ~heavy.smuggler, research_centre, upgrade.heavy
-		Description: Flamer \n Strong VS Infantry, Heavy armor, Buildings \n Weak VS Tanks, Defenses \n Destroy spice
+		Description: Flamer \n Strong VS Infantry, Buildings \n Weak VS Tanks, Defenses \n Destroy spice
 	Health:
 		HP: 25000
 	Valued:

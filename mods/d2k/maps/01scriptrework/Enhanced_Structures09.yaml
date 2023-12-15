@@ -182,7 +182,7 @@ construction_yard:
 	Explodes@03:
 		RequiresCondition: explode03
 	Tooltip:
-		Name: Atreides Conyard
+		Name: Conyard
 		RequiresCondition: !harkonnen && !ordos && !fremen && !corrino && !smuggler && !mercenary
 	Tooltip@harkonnen:
 		Name: Harkonnen Conyard
@@ -436,7 +436,7 @@ refinery:
 	Armor:
 		Type: building
 		RequiresCondition: ArmorUpgrade
-	Armor@weakArmor:
+	Armor@ArmorBeforeCYupdrage:
 		Type: wood
 		RequiresCondition: !ArmorUpgrade
 	RevealsShroud:
@@ -449,6 +449,7 @@ refinery:
 		DeliveringActor: carryall.reinforce
 		Facing: 160
 	CustomSellValue:
+		Value: 300
 	Sellable:
 		RequiresCondition: !build-incomplete && !being-demolished
 		SellSounds: BUILD1.WAV
@@ -612,7 +613,7 @@ light_factory:
 		Condition: ArmorUpgrade
 		Prerequisites: upgrade.conyard
 	Valued:
-		Cost: 800
+		Cost: 700
 	Health:
 		HP: 41000
 	Armor:
@@ -854,7 +855,7 @@ outpost:
 		ChargeInterval: 4200
 		LifeTime: 500
 		Name: Jam communication
-		Description: Reduce enemy vision and Range in the area, for short period of time. Jam long range missiles
+		Description: Reduce enemy Vision and Range in the area, for short period of time. Jam long range missiles
 		Icon: jammer
 		RequiresCondition: jammer
 		Prerequisites: ~techlevel.high, ~upgrade.outpost, ~!factions.standard
@@ -1008,7 +1009,7 @@ starport:
 		Chance: 80
 	ProduceActorPower@contractors:
 		Name: Hire Contractors
-		Description: AT infantry with modest range. Can fire only when deployed \n Strong VS Vehicles, tanks \n Modest VS infantry
+		Description: Anti Tank infantry with modest range. \n Can fire only when deployed \n Strong VS Vehicles, Tanks \n Modest VS infantry
 		Icon: mercenary
 		PauseOnCondition: disabled
 		RequiresCondition: mercenary

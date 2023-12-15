@@ -146,7 +146,7 @@ WorldLoaded = function()
 	mp26=Player.GetPlayer("Multi26")
 	mp27=Player.GetPlayer("Multi27")
 	Players = {mp0, mp1, mp2, mp3, mp4, mp5, mp6, mp7, mp8, mp9, mp10, mp11, mp12, mp13, mp14, mp15, mp16, mp17, mp18, mp19, mp20, mp21, mp22, mp23, mp24, mp25, mp26, mp27}
-	
+
 	FactionsMode  = tonumber(Map.LobbyOption("fation_mode"))
 	if (FactionsMode == 0) then
 		--Media.DisplayMessage("you play with standart d2k mode", "Mentat", HSLColor.DarkRed)
@@ -157,13 +157,13 @@ WorldLoaded = function()
 	if (FactionsMode == 2) then
 		Media.DisplayMessage("Merge Faction mode - chosen subfaction will be merged in to your Major faction","Mentat", HSLColor.DarkRed)
 	end
-	for i, player in pairs(Players)
-		do
-		-- freecarryall
-		if player.HasPrerequisites({"FreeCarry"})
-		then
-			addCarryToPlayer(player)
-		end
+	if Player.GetPlayer("Neutral").HasPrerequisites({"ControlableCarryalls"}) then
+		Trigger.AfterDelay(25, function()
+			Media.DisplayMessage("Controlable carryalls is ON. \n you can control only carryalls you build in high tech factory", "Mentat",  HSLColor.DarkRed)
+			Media.DisplayMessage("Use Alt or Ctrl modifier to select Carryalls. Use RMB to pick up vehicle and Deploy to unload vehicle", "Mentat",  HSLColor.DarkRed)
+		end)
+	end
+	for i, player in pairs(Players) do
 		-- factions  option check
 		if (FactionsMode == 0)
 		then
@@ -232,6 +232,8 @@ WorldLoaded = function()
 	end)
 end
 
+
+-- add free carryall at game start - not used anymore
 function addCarryToPlayer(player)
 
 	local actors = player.GetActorsByTypes({"mcv", "construction_yard", "choosefaction"})
@@ -625,7 +627,7 @@ end
 function SelectStarport(player)
 	local chosenStarport
 	for i, starport in pairs(player.GetActorsByTypes({"starport","merged.starport","merged.starport_smuggler"})) do
-		if not starport.IsDead then	
+		if not starport.IsDead then
 			if starport.IsPrimaryBuilding then
 				return starport
 			else
@@ -822,7 +824,7 @@ function CHOAMDeliverCustomUnits(player, squad)
 			end)
 end
 -------------------------------
--- Multi pass Airstrikes  - 
+-- Multi pass Airstrikes  -
 --warring use only as local function (global function can crash)
 --------------------------------
 CallAirstrike = function(dummy)
@@ -933,7 +935,7 @@ function DropAirReinforcements(dummy)
 	local squad
 	if dummy.Type=="waypoint.reinforce_a" then squad=1
 	elseif dummy.Type=="waypoint.reinforce_o" then squad=2
-	elseif dummy.Type=="waypoint.reinforce_h" then squad=3 
+	elseif dummy.Type=="waypoint.reinforce_h" then squad=3
 	end
 	--Carryall reinforcements
 	local spawnCell = GetSpawnPoint(dummy)
@@ -948,11 +950,11 @@ function DropAirReinforcements(dummy)
 
 	end)
 	Trigger.OnPassengerExited(carryall,
-		function(carry, pass) 
-			if not carry.HasPassengers 
-			then 
+		function(carry, pass)
+			if not carry.HasPassengers
+			then
 				carry.Stop()
-				carry.Move(path[1]) 
+				carry.Move(path[1])
 				carry.Destroy()
 			end
 		end

@@ -19,7 +19,6 @@
 		Type: building
 	Tooltip:
 		Name: Neutral Building
-		GenericVisibility: None
 	FrozenUnderFog:
 	MapEditorData:
 		Categories: Neutral building
@@ -135,7 +134,7 @@ crane:
 	GivesBuildableArea:
 		AreaTypes: building
 	RenderSprites:
-		
+
 		Image: crane.ordos
 		FactionImages:
 			atreides: crane.atreides
@@ -144,8 +143,6 @@ crane:
 			corrino: crane.harkonnen
 			smuggler: crane.ordos
 			mercenary: crane.ordos
-	Tooltip:
-		Name: Crane
 	ProvidesPrerequisite:
 		Prerequisite: bonus.crane
 	TooltipDescription:

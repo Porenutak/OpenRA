@@ -196,7 +196,7 @@ UnitExplodeMed:
 		ImpactActors: false
 	Warhead@explosiondmg: SpreadDamage
 		Damage: 1000
-		Falloff: 100, 10
+		Falloff: 100, 0
 		DamageTypes: TriggerProne, SmallExplosionDeath
 		DamageCalculationType: ClosestTargetablePosition
 		Spread: 1c112
@@ -272,9 +272,9 @@ buildingExplosions05:
 buildingBigExplosion:
 	Inherits: PlasmaExplosion
 	Warhead@1Dam: SpreadDamage
-		Spread: 3c0
+		Spread: 5c0
 		Damage: 5000
-		Falloff: 100, 50
+		Falloff: 100, 10
 		ValidRelationships: Neutral, Enemy, Ally
 	Warhead@flash: FlashEffect
 		FlashType: flash
@@ -293,11 +293,11 @@ huskExplode01:
 		ImpactSoundChance: 70
 
 
-ExplosionWithDamege_large:
+ExplosionRotor:
 	Inherits: UnitExplodeLarge
 	Warhead@dmg: SpreadDamage
 		Damage: 2500
-		Spread: 1c512
+		Spread: 1c256
 		DamageTypes: Prone50Percent, TriggerProne, ExplosionDeath
 
 ExplosionAircraft:
@@ -310,12 +310,13 @@ ExplosionAircraft:
 		ImpactSounds: audio/bigxplosion17.wav
 		ImpactActors: false
 		Delay: 10
-	Warhead@areadmg: TargetDamage
-		Spread: 1c512
+	Warhead@areadmg: SpreadDamage
+		Spread: 2c0
 		Damage: 10000
+		Falloff: 100, 0
 		DamageTypes: Prone50Percent, TriggerProne, SmallExplosionDeath
 		Versus:
-			none: 110
+			none: 100
 			light: 90
 			heavy: 30
 			building: 120

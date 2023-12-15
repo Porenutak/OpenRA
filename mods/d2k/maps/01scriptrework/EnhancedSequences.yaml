@@ -46,6 +46,15 @@ icon:
 		Start: 479
 		Offset: -30,-24
 
+auto-tag:
+	idle:
+		Filename: bits/autotag.shp
+		ZOffset: 100000
+
+manual-tag:
+	idle:
+		Filename: bits/manualtab.shp
+		ZOffset: 100000
 
 crate:
 	idle:

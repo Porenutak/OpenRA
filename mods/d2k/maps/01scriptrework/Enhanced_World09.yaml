@@ -134,55 +134,56 @@ World:
 		SmokeSequences: smokeFromRA01loop
 	StartingUnits@mcv:
 		Class: none
-		ClassName: MCV Only
+		ClassName: MCV + carryall
 		BaseActor: choosefaction
+		SupportActors: carryall
 		Factions: atreides, ordos, harkonnen, corrino, mercenary, smuggler, fremen
 	StartingUnits@lightatreides:
 		Class: light
-		ClassName: Light Support
+		ClassName: MCV + 2x Carryall
 		Factions: atreides, fremen
 		BaseActor: choosefaction
-		SupportActors: light_inf, light_inf, light_inf, trooper, grenadier, trike, quad
+		SupportActors: carryall, carryall
 		InnerSupportRadius: 3
 		OuterSupportRadius: 5
 	StartingUnits@lightharkonnen:
 		Class: light
-		ClassName: Light Support
+		ClassName: MCV + 2x Carryall
 		Factions: harkonnen, corrino
 		BaseActor: choosefaction
-		SupportActors: light_inf, light_inf, light_inf, trooper, trooper, trike, quad
+		SupportActors: carryall, carryall
 		InnerSupportRadius: 3
 		OuterSupportRadius: 5
 	StartingUnits@lightordos:
 		Class: light
-		ClassName: Light Support
+		ClassName: MCV + 2x Carryall
 		Factions: ordos, mercenary, smuggler
 		BaseActor: choosefaction
-		SupportActors: light_inf, light_inf, light_inf, trooper, engineer, raider, quad
+		SupportActors: carryall, carryall
 		InnerSupportRadius: 3
 		OuterSupportRadius: 5
 	StartingUnits@heavyatreides:
 		Class: heavy
-		ClassName: Heavy Support
+		ClassName: MCV + 3x Carryall
 		Factions: atreides, fremen
 		BaseActor: choosefaction
-		SupportActors: light_inf, light_inf, light_inf, trooper, grenadier, trike, combat_tank_a, missile_tank
+		SupportActors: carryall, carryall, carryall
 		InnerSupportRadius: 3
 		OuterSupportRadius: 5
 	StartingUnits@heavyharkonnen:
 		Class: heavy
-		ClassName: Heavy Support
+		ClassName: MCV + 3x Carryall
 		Factions: harkonnen, corrino
 		BaseActor: choosefaction
-		SupportActors: light_inf, light_inf, light_inf, trooper, engineer, quad, combat_tank_h, siege_tank
+		SupportActors: carryall, carryall, carryall
 		InnerSupportRadius: 3
 		OuterSupportRadius: 5
 	StartingUnits@heavyordos:
 		Class: heavy
-		ClassName: Heavy Support
+		ClassName: MCV + 3x Carryall
 		Factions: ordos, mercenary, smuggler
 		BaseActor: choosefaction
-		SupportActors: light_inf, light_inf, light_inf, trooper, engineer, raider, combat_tank_o, missile_tank
+		SupportActors: carryall, carryall, carryall
 		InnerSupportRadius: 3
 		OuterSupportRadius: 5
 	FlashPostProcessEffect:
@@ -202,13 +203,13 @@ Player:
 	LobbyPrerequisiteCheckbox@AUTOCONCRETE:
 		Enabled: True
 	LobbyPrerequisiteCheckbox@FreeCarryCheckBox:
-		ID: FreeCarryCheckBox
-		Label: Free Carryall
-		Description: Give 1 free Carryall to all Players
+		ID: ControlableCarryalls
+		Label: Controlable carryalls
+		Description: Enable manual control of carryalls and unit pick up
 		Enabled: true
 		Visible: true
 		DisplayOrder: 7
-		Prerequisites: FreeCarry
+		Prerequisites: carryall.controllable
 	ExternalCondition@vanilla_factions_Only:
 		Condition: vanilla_factions_Only
 	ExternalCondition@subfactions:

@@ -14,7 +14,7 @@
 		Versus:
 			wall: 10
 			building: 25
-			wood: 50
+			wood: 45
 			light: 35
 			heavy: 13
 			invulnerable: 0
@@ -61,9 +61,8 @@ HMG:
 		Damage: 2160
 		Spread: 700
 		Versus:
-			none: 120
+			none: 110
 			building: 30
-			wood: 50
 			light: 30
 			heavy: 15
 			invulnerable: 0
@@ -75,8 +74,11 @@ HMGo:
 	ReloadDelay: 21
 
 HMG_muzzle:
-	ReloadDelay: 20
+	ReloadDelay: 24
 	Range: 4c440
+
+HMGo_muzzle:
+	ReloadDelay: 21
 
 M_HMG:
 	Inherits: ^MG
@@ -171,10 +173,6 @@ Fremen_L_MP:
 Fremen_S_MP:
 	Inherits: Fremen_S
 
-
-HMGo_muzzle:
-	ReloadDelay: 17
-
 110mm_Gun:
 	Inherits: ^Cannon
 	ReloadDelay: 140
@@ -189,7 +187,7 @@ HMGo_muzzle:
 	Warhead@1Dam: SpreadDamage
 		Damage: 3510
 		Versus:
-			none: 80
+			none: 85
 			wall: 50
 			light: 60
 			building: 60
@@ -278,7 +276,7 @@ HMGo_muzzle:
 
 155mm:
 	Inherits: ^Cannon
-	ReloadDelay: 105
+	ReloadDelay: 102
 	Range: 7c512
 	MinRange: 2c0
 	Projectile: Bullet
@@ -316,7 +314,7 @@ DevBullet:
 		Damage: 7800
 		Spread: 1c0
 		Versus:
-			none: 60
+			none: 55
 			wall: 100
 			building: 80
 			wood: 100
@@ -393,7 +391,7 @@ Rocket:
 		Speed: 288
 	Warhead@1Dam: SpreadDamage
 		Damage: 3240
-		Spread: 960
+		Spread: 1c0
 		Falloff: 100, 10
 		Versus:
 			none: 20
@@ -416,7 +414,7 @@ mtank_pri:
 	Projectile: Missile
 		RangeLimit: 10c204
 	Warhead@1Dam: SpreadDamage
-		Damage: 4900
+		Damage: 5000
 		ValidTargets: Ground, Air
 		DamageTypes: Prone50Percent, SmallExplosionDeath, TriggerProne
 
@@ -454,7 +452,7 @@ clusterMissile:
 		ContrailStartColor: 181616C6
 	Warhead@1Dam: SpreadDamage
 		Damage: 3950
-		Spread: 1c550
+		Spread: 1c450
 		Versus:
 			none: 100
 			wall: 70
@@ -500,8 +498,7 @@ DeviatorMissile:
 	ReloadDelay: 176
 	Range: 6c0
 	Projectile: Missile
-		RangeLimit: 6c512
-		Inaccuracy: 96
+		RangeLimit: 7c0
 	Warhead@1Dam: SpreadDamage
 		Damage: 2000
 		Spread: 512
@@ -527,8 +524,9 @@ DeviatorMissile:
 
 DeviatorGas:
 	Warhead@5OwnerChange: ChangeOwner
-		Range: 2c0
+		Range: 1c850
 		Duration: 160
+		ValidRelationships: Enemy, Neutral
 		InvalidTargets: Infantry, Structure
 	Warhead@3Eff: CreateEffect
 		Explosions: deviator
@@ -547,7 +545,7 @@ Sound:
 		InaccuracyType: PerCellIncrement
 		Duration: 4
 		DamageInterval: 3
-		Width: 980
+		Width: 1000
 		Shape: Flat
 		Falloff: 20, 100,  0, 0
 		Range: 0, 6c0, 7c512
@@ -566,7 +564,7 @@ Sound:
 			building: 100
 			wood: 110
 			light: 120
-			heavy: 50
+			heavy: 60
 			invulnerable: 0
 			cy: 70
 			harvester: 130
@@ -792,27 +790,6 @@ DeathHandClusterDebris:
 	Warhead@4Concrete: DamagesConcrete
 		Damage: 4500
 
-DerbisDeviator:
-	Inherits: Debris2
-	Warhead@3Eff: CreateEffect
-		Explosions: deviator
-		UsePlayerPalette: true
-	Warhead@5OwnerChange: ChangeOwner
-		Range: 1c0
-		Duration: 120
-
-DerbisDeviator_big:
-	Projectile: Bullet
-		Speed: 32, 64
-		Blockable: false
-		LaunchAngle: 20, 60
-		Inaccuracy: 0
-		BounceCount: 0
-	Inherits: DerbisDeviator
-		Warhead@5OwnerChange: ChangeOwner
-		Range: 2c512
-		Duration: 150
-
 Derbis:
 	Warhead@1Dam: SpreadDamage
 		AffectsParent: False
@@ -823,7 +800,7 @@ DerbisSiegetank:
 		Speed: 40, 60
 		Inaccuracy: 3c256
 	Warhead@1Dam: SpreadDamage
-		Damage: 2500
+		Damage: 1000
 		Spread: 1c512
 		DamageTypes: Prone50Percent, TriggerProne, ExplosionDeath
 	Warhead@3Eff: CreateEffect
@@ -968,15 +945,6 @@ SardDeath:
 	Warhead@1Dam: SpreadDamage
 		Damage: 3800
 		Spread: 625
-		Versus:
-			none: 20
-			wall: 75
-			building: 60
-			wood: 65
-			light: 80
-			invulnerable: 0
-			cy: 30
-			harvester: 50
 
 rocket_spike:
 	Inherits: Rocket
