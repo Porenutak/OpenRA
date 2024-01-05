@@ -54,7 +54,6 @@
 		Condition: heavy-damage
 	FloatingSpriteEmitter@smoke_huge_atreides:
 		RequiresCondition: heavy-damage && atreidesVFX
-		Palette: smoke3
 		Image: smoke3
 		Lifetime: 15, 20
 		Speed: 5
@@ -66,7 +65,6 @@
 		Duration: 1224
 	FloatingSpriteEmitter@smoke2_small_atreides:
 		RequiresCondition: heavy-damage && atreidesVFX
-		Palette: smoke3
 		Image: smoke3
 		Lifetime: 15, 20
 		Speed: 3
@@ -88,7 +86,6 @@
 		IsDecoration: True
 	FloatingSpriteEmitter@smoke_huge_harkonnen:
 		RequiresCondition: heavy-damage && harkonnenVFX
-		Palette: smoke3
 		Image: smoke4
 		Lifetime: 20,25
 		Speed: 5
@@ -100,7 +97,6 @@
 		Duration: 1524
 	FloatingSpriteEmitter@smoke2_small_harkonnen:
 		RequiresCondition: heavy-damage && harkonnenVFX
-		Palette: smoke3
 		Image: smoke3
 		Lifetime: 15, 20
 		Speed: 3
@@ -122,7 +118,6 @@
 		IsDecoration: True
 	FloatingSpriteEmitter@smoke_huge_ordos:
 		RequiresCondition: heavy-damage && ordosVFX
-		Palette: smoke3
 		Image: smoke4
 		Lifetime: 20,25
 		Speed: 7
@@ -134,7 +129,6 @@
 		Duration: 1524
 	FloatingSpriteEmitter@smoke2_small_ordos:
 		RequiresCondition: heavy-damage && ordosVFX
-		Palette: smoke3
 		Image: smoke3
 		Lifetime: 15, 20
 		Speed: 3
@@ -245,7 +239,6 @@ construction_yard:
 		RequiresCondition: heavy-damage && atreidesVFX
 		Offset: -1024, -500, 0
 		SpawnFrequency: 5, 20
-		Palette: smoke3
 		Image: smoke3
 		Lifetime: 15, 20
 		Speed: 3
@@ -593,7 +586,6 @@ silo:
 	FloatingSpriteEmitter@smoke2_small_atreides:
 		Offset: 0, -300, 0
 		RequiresCondition: heavy-damage
-		Palette: smoke3
 		Image: smoke3
 		Lifetime: 15, 20
 		Speed: 3
@@ -1120,7 +1112,6 @@ medium_gun_turret:
 	FloatingSpriteEmitter@smoke2_small:
 		Offset: 0, -700, 0
 		RequiresCondition: heavy-damage
-		Palette: smoke3
 		Image: smoke3
 		Lifetime: 15, 20
 		Speed: 3
@@ -1165,7 +1156,6 @@ large_gun_turret:
 	FloatingSpriteEmitter@smoke2_small:
 		Offset: 0, -700, 0
 		RequiresCondition: heavy-damage
-		Palette: smoke3
 		Image: smoke3
 		Lifetime: 15, 20
 		Speed: 3
@@ -1207,7 +1197,6 @@ repair_pad:
 		Offset: 100, -1400, 0
 		Gravity: 40
 		RequiresCondition: heavy-damage
-		Palette: smoke3
 		Image: smoke3
 		Lifetime: 15, 20
 		Speed: 3
@@ -1220,7 +1209,6 @@ repair_pad:
 		Offset: 800,200,0
 		SpawnFrequency: 4,10
 		RequiresCondition: heavy-damage
-		Palette: smoke3
 		Image: smoke3
 		Lifetime: 15, 20
 		Speed: 7
@@ -1461,7 +1449,6 @@ research_centre:
 		Speed: 10
 		SpawnFrequency: 3,6
 		RequiresCondition: heavy-damage
-		Palette: smoke3
 		Image: smoke3
 		Lifetime: 15, 20
 		Gravity: 60
@@ -1472,7 +1459,6 @@ research_centre:
 	FloatingSpriteEmitter@smoke2_small_atreides:
 		Offset: 300, -1500, 0
 		RequiresCondition: heavy-damage
-		Palette: smoke3
 		Image: smoke3
 		Lifetime: 15, 20
 		Speed: 3

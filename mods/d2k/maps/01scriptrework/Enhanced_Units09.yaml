@@ -21,6 +21,9 @@
 		ValidTargets: Creep
 
 ^AutoTargetGroundAssaultMove:
+	GrantConditionOnBotOwner@BOTOWNER:
+		Condition: bot-owned
+		Bots: omnius, vidious, gladius, optimus
 	AutoTargetPriority@Bot_walls:
 		RequiresCondition: ignore-creeps
 		ValidTargets: Wall
@@ -79,7 +82,7 @@
 	WithColoredOverlay@black:
 		Color: 3E202080
 		RequiresCondition: jammed
-	WithDecoration@skullFromRA:
+	WithDecoration@jammerIcon:
 		Image: pips
 		Sequence: pip-jammer
 		Palette: disabled
@@ -394,7 +397,10 @@ trike:
 	Buildable:
 		Prerequisites: ~light.trike
 		BuildDuration: 225
-			Description: Scout \n Strong vs Infantry\n  Weak vs Tanks, Rockets
+	AutoTarget:
+		MinimumScanTimeInterval: 0
+		MaximumScanTimeInterval: 0
+	RenderRangeCircle:
 	Valued:
 		Cost: 300
 	Selectable:
@@ -410,19 +416,18 @@ trike:
 	Armament@damage:
 		FireDelay: 0
 		Weapon: HMG
-		LocalOffset: 180,0,110
 	Armament@chaos_bomb_influence:
 		Weapon: HMG
-		LocalOffset: 180,0,110
+		LocalOffset: 50,0,0
 	Armament@muzzle:
 		FireDelay: 0
 		Weapon: HMG_muzzle
-		LocalOffset: -544,0,0
+		LocalOffset: 50,0,0
 		MuzzleSequence: muzzle
 	Armament@muzzlechaosbomb:
 		FireDelay: 0
 		Weapon: HMG_muzzle
-		LocalOffset: -544,0,0
+		LocalOffset: 50,0,0
 		MuzzleSequence: muzzle
 		RequiresCondition: chaos_bomb
 		TargetRelationships: Enemy, Ally, Neutral
@@ -458,18 +463,21 @@ raider:
 		TurnSpeed: 40
 		Speed: 136
 	WithMuzzleOverlay:
+	AutoTarget:
+		MinimumScanTimeInterval: 0
+		MaximumScanTimeInterval: 0
+	RenderRangeCircle:
 	Armament@damage:
 		Weapon: HMGo
-		LocalOffset: 170,0,0
 	Armament@chaos_bomb_influence:
 		Weapon: HMGo
-		LocalOffset: 170,0,0
+		LocalOffset: 100,0,0
 	Armament@muzzle:
 		Weapon: HMGo_muzzle
-		LocalOffset: 170,0,0
+		LocalOffset: 100,0,0
 	Armament@muzzlechaosbomb:
 		Weapon: HMGo_muzzle
-		LocalOffset: 170,0,0
+		LocalOffset: 100,0,0
 		MuzzleSequence: muzzle
 		RequiresCondition: chaos_bomb
 	SpeedMultiplier@HEAVYDAMAGE:
@@ -1109,7 +1117,6 @@ carryall.reinforce:
 		Condition: heavy-damage
 	FloatingSpriteEmitter@smoke:
 		RequiresCondition: heavy-damage
-		Palette: smoke3
 		Image: smoke3
 		Lifetime: 20, 22
 		Speed: 15
@@ -1474,7 +1481,7 @@ grenadier:
 		Priority: 50
 		RequiresCondition: ignore-creeps
 	Buildable:
-		Prerequisites: ~barracks.atreides, upgrade.barracks, outpost, ~techlevel.medium
+		Prerequisites: ~barracks.atreides, upgrade.barracks, high_tech_factory, ~techlevel.medium
 		BuildDuration: 98
 	Valued:
 		Cost: 80
@@ -2373,7 +2380,7 @@ flamer:
 	Tooltip:
 		Name: Flamer
 	Armor:
-		Type: heavy
+		Type: light
 	Mobile:
 		Speed: 75
 	RevealsShroud:

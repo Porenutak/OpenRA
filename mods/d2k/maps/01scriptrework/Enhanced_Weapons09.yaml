@@ -75,10 +75,11 @@ HMGo:
 
 HMG_muzzle:
 	ReloadDelay: 24
-	Range: 4c440
+	Range: 3c870
 
 HMGo_muzzle:
 	ReloadDelay: 21
+	Range: 3c870
 
 M_HMG:
 	Inherits: ^MG
@@ -326,7 +327,7 @@ DevBullet:
 
 ^Rocket:
 	ReloadDelay: 53
-	Range: 3c852
+	Range: 3c870
 	Report: ROCKET1.WAV
 	Projectile: Bullet
 		Blockable: true
@@ -421,7 +422,7 @@ mtank_pri:
 
 MissleTowerNew:
 	Inherits: mtank_pri
-	Range: 7c112
+	Range: 7c212
 	Projectile: Missile
 		VerticalRateOfTurn: 40
 	-MinRange:
@@ -823,10 +824,9 @@ DerbisMissile:
 
 PlasmaExplosion:
 	Warhead@1Dam: SpreadDamage
-		Damage: 30000
+		Damage: 20000
 		Spread: 6c0
-		Falloff: 100, 20
-		ValidRelationships: Neutral, Enemy
+		Falloff: 100, 0
 		Versus:
 			None: 100
 			Wood: 100
@@ -883,7 +883,6 @@ PlasmaSaboteur:
 		Spread: 3c0
 		Damage: 20000
 		Falloff: 100, 50, 20
-		ValidRelationships: Neutral, Enemy, Ally
 		DamageTypes: Prone50Percent, TriggerProne, ExplosionDeath
 	Warhead@additionalinfantrydmg: SpreadDamage
 		Spread: 6c512
@@ -945,6 +944,15 @@ SardDeath:
 	Warhead@1Dam: SpreadDamage
 		Damage: 3800
 		Spread: 625
+		Versus:
+			none: 20
+			wall: 75
+			building: 60
+			wood: 65
+			light: 80
+			invulnerable: 0
+			cy: 30
+			harvester: 50
 
 rocket_spike:
 	Inherits: Rocket

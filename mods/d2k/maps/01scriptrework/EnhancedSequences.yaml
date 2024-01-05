@@ -1,6 +1,6 @@
 icon:
 	carryall:
-		Filename: DATA.R8
+		Filename: DATA.R16
 		Start: 4290
 		Offset: -30,-24
 	infantry_reinforcement:
@@ -58,22 +58,22 @@ manual-tag:
 
 crate:
 	idle:
-		Filename: DATA.R8
+		Filename: DATA.R16
 		Start: 102
 		ZOffset: -511
 		Offset: -16,-16
 		Facings: 1
 	icon:
-		Filename: DATA.R8
+		Filename: DATA.R16
 		Start: 102
 		Offset: -16,-16
 
 invisible:
 	idle:
-		Filename: DATA.R8
+		Filename: DATA.R16
 		Start: 38
 	icon:
-		Filename: DATA.R8
+		Filename: DATA.R16
 		Start: 102
 		Offset: -16,-16
 
@@ -112,22 +112,22 @@ rotor:
 
 choam_unit_number:
 	1:
-		Filename: DATA.R8
+		Filename: DATA.R16
 		Start: 18
 	2:
-		Filename: DATA.R8
+		Filename: DATA.R16
 		Start: 19
 	3:
-		Filename: DATA.R8
+		Filename: DATA.R16
 		Start: 20
 	4:
-		Filename: DATA.R8
+		Filename: DATA.R16
 		Start: 21
 	5:
-		Filename: DATA.R8
+		Filename: DATA.R16
 		Start: 22
 	6:
-		Filename: DATA.R8
+		Filename: DATA.R16
 		Start: 23
 
 #
@@ -154,7 +154,7 @@ burn_ra1:
 
 smoke_m:
 	1_start:
-		Filename: DATA.R8
+		Filename: DATA.R16
 		Start: 3965
 		Length: 4
 		Offset: 4,-17
@@ -199,7 +199,7 @@ smoke_m:
 		Offset: -15, -30
 		BlendMode: Alpha
 	d2ksmoke:
-		Filename: DATA.R8
+		Filename: DATA.R16
 		Start: 3747
 		Length: 7
 		BlendMode: Multiply
@@ -220,7 +220,7 @@ smoke_big:
 
 fire:
 	1_start:
-		Filename: DATA.R8
+		Filename: DATA.R16
 		Start: 3965
 		Length: 4
 		Offset: 4,-17
@@ -238,7 +238,7 @@ fire_slow:
 	Defaults:
 		Tick: 80
 	1_start:
-		Filename: DATA.R8
+		Filename: DATA.R16
 		Start: 3965
 		Length: 4
 		Offset: 4,-17
@@ -246,7 +246,7 @@ fire_slow:
 		Tick: 120
 		BlendMode: Additive
 	1_loop:
-		Filename: DATA.R8
+		Filename: DATA.R16
 		Length: 6
 		Frames: 3968,3969,3970,3971,3972,3973,3970,3971,3972,3973, 3969
 		Offset: 4,-17
@@ -254,7 +254,7 @@ fire_slow:
 		Tick: 120
 		BlendMode: Additive
 	1:
-		Filename: DATA.R8
+		Filename: DATA.R16
 		Start: 3965
 		Length: 10
 		Offset: 4,-17
@@ -262,21 +262,21 @@ fire_slow:
 		Scale: 1
 		BlendMode: Additive
 	2:
-		Filename: DATA.R8
+		Filename: DATA.R16
 		Start: 3976
 		Length: 11
 		Offset: 0,-3
 		ZOffset: -100
 		BlendMode: Additive
 	3:
-		Filename: DATA.R8
+		Filename: DATA.R16
 		Start: 4138
 		Length: 13
 		Offset: 0,-3
 		ZOffset: -100
 		BlendMode: Additive
 	4:
-		Filename: DATA.R8
+		Filename: DATA.R16
 		Start: 3965
 		Length: 10
 		Offset: 0,-3
@@ -301,7 +301,7 @@ flame_trail:
 		ZOffset: 1023
 		BlendMode: Additive
 	small_napalm_trail:
-		Filename: DATA.R8
+		Filename: DATA.R16
 		Start: 3674
 		Length: 8
 		ZOffset: 1023
@@ -309,7 +309,7 @@ flame_trail:
 
 bazooka_trail3:
 	idle:
-		Filename: DATA.R8
+		Filename: DATA.R16
 		Start: 3797
 		Length: 4
 		Tick: 80
@@ -322,7 +322,7 @@ smoke3:
 
 smoke4:
 	particles:
-		Filename: DATA.R8
+		Filename: DATA.R16
 		ZOffset: 511
 		Start: 3747
 		Length: 7
@@ -359,7 +359,7 @@ bib_damaged:
 
 crater_big:
 	idle:
-		Filename: DATA.R8
+		Filename: DATA.R16
 		Start: 38
 	sand:
 		Filename: EnhacedAssets.R8
@@ -415,7 +415,7 @@ combat_tank_a.husk03:
 
 combat_tank_a.husk04:
 	idle:
-		Filename: DATA.R8
+		Filename: DATA.R16
 		Start: 1731
 		Facings: -32
 		ZOffset: -512
@@ -428,17 +428,17 @@ combat_tank_a.husk04:
 
 combat_tank_h:
 	turret:
-		Filename: DATA.R8
+		Filename: DATA.R16
 		Start: 2115
 		Facings: -32
 	muzzle:
-		Filename: DATA.R8
+		Filename: DATA.R16
 		Start: 4028
 		Tick: 60
 		Facings: -32
 		BlendMode: Additive
 	icon:
-		Filename: DATA.R8
+		Filename: DATA.R16
 		Start: 4282
 		Offset: -30,-24
 
@@ -479,7 +479,7 @@ combat_tank_h.husk03:
 
 combat_tank_h.husk04:
 	idle:
-		Filename: DATA.R8
+		Filename: DATA.R16
 		Start: 2051
 		Facings: -32
 		ZOffset: -512
@@ -525,7 +525,7 @@ combat_tank_o.husk03:
 
 combat_tank_o.husk04:
 	idle:
-		Filename: DATA.R8
+		Filename: DATA.R16
 		Start: 2453
 		Facings: -32
 		ZOffset: -512
@@ -616,7 +616,7 @@ carryall.husk_on_land:
 
 ornithopter:
 	muzzle:
-		Filename: DATA.R8
+		Filename: DATA.R16
 		Start: 4092
 		Tick: 50
 		Facings: -32
@@ -630,7 +630,7 @@ ornithopter:
 
 siege_turret_husk_anim:
 	idle:
-		Filename: DATA.R8
+		Filename: DATA.R16
 		Start: 1891
 		Length: 32
 
@@ -643,7 +643,7 @@ tank_turrethusk_anim.atreides:
 
 tank_turrethusk_anim01.atreides:
 	idle:
-		Filename: DATA.R8
+		Filename: DATA.R16
 		Start: 1859
 		Length: 32
 
@@ -656,13 +656,13 @@ tank_turrethusk_anim.harkonnen:
 
 tank_turrethusk_anim01.harkonnen:
 	idle:
-		Filename: DATA.R8
+		Filename: DATA.R16
 		Start: 2115
 		Length: 32
 
 tank_turrethusk_anim.ordos:
 	idle:
-		Filename: DATA.R8
+		Filename: DATA.R16
 		Start: 2485
 		Length: 32
 
@@ -911,13 +911,13 @@ refinery_invert.atreidis:
 		Offset: -16,-16
 		ZOffset: -700
 	make:
-		Filename: DATA.R8
+		Filename: DATA.R16
 		Start: 4495
 		Length: 11
 		Offset: -48,96
 		ZOffset: 1500
 	crumble-overlay:
-		Filename: DATA.R8
+		Filename: DATA.R16
 		Start: 4505
 		Length: 12
 		Offset: -48,96
@@ -928,7 +928,7 @@ refinery_invert.atreidis:
 		Start: 308
 		Offset: -30,-24
 	smoke:
-		Filename: DATA.R8
+		Filename: DATA.R16
 		Start: 4138
 		Length: 14
 		Offset: 13, 16
@@ -962,23 +962,23 @@ refinery_invert.ordos:
 		Offset: -54,-22
 		ZOffset: 1024
 	bib:
-		Filename: BLOXBASE.R8
+		Filename: BLOXBASE.R16
 		Frames: 611, 612, 613, 631, 632, 633
 		Length: 6
 		Offset: -16,-16
 	bib-Concrete:
-		Filename: BLOXBASE.R8
+		Filename: BLOXBASE.R16
 		Frames: 643, 644, 645, 663, 664, 665
 		Length: 6
 		Offset: -16,-16
 	make:
-		Filename: DATA.R8
+		Filename: DATA.R16
 		Start: 4495
 		Length: 11
 		Offset: -48,96
 		ZOffset: 1500
 	crumble-overlay:
-		Filename: DATA.R8
+		Filename: DATA.R16
 		Start: 4505
 		Length: 12
 		Offset: -48,96
@@ -989,7 +989,7 @@ refinery_invert.ordos:
 		Start: 310
 		Offset: -30,-24
 	smoke:
-		Filename: DATA.R8
+		Filename: DATA.R16
 		Start: 4138
 		Length: 14
 		Offset: 13, 16
@@ -1035,13 +1035,13 @@ refinery_invert.harkonnen:
 		Length: 6
 		Offset: -16,-16
 	make:
-		Filename: DATA.R8
+		Filename: DATA.R16
 		Start: 4495
 		Length: 11
 		Offset: -48,96
 		ZOffset: 1500
 	crumble-overlay:
-		Filename: DATA.R8
+		Filename: DATA.R16
 		Start: 4505
 		Length: 12
 		Offset: -48,96
@@ -1052,7 +1052,7 @@ refinery_invert.harkonnen:
 		Start: 309
 		Offset: -30,-24
 	smoke:
-		Filename: DATA.R8
+		Filename: DATA.R16
 		Start: 4138
 		Length: 14
 		Offset: 13, 16
@@ -1079,23 +1079,23 @@ fremen_sietch:
 		Start: 473
 		Offset: -48,-64
 	make:
-		Filename: DATA.R8
+		Filename: DATA.R16
 		Start: 4592
 		Length: 9
 		Offset: -48, 64
 	crumble-overlay:
-		Filename: DATA.R8
+		Filename: DATA.R16
 		Start: 4601
 		Length: 9
 		Offset: -48, 64
 		Tick: 100
 	bib:
-		Filename: BLOXBASE.R8
+		Filename: BLOXBASE.R16
 		Frames: 631, 632, 633
 		Length: 3
 		Offset: -16,-16
 	bib-Concrete:
-		Filename: BLOXBASE.R8
+		Filename: BLOXBASE.R16
 		Frames: 663, 664, 665
 		Length: 3
 		Offset: -16,-16
@@ -1177,31 +1177,31 @@ explosion:
 		ZOffset: -540
 		Tick: 2000
 	siege_turret_frame01:
-		Filename: DATA.R8
+		Filename: DATA.R16
 		Start: 1892
 		Length: 1
 		BlendMode: None
 		Tick: 2000
 	siege_turret_frame02:
-		Filename: DATA.R8
+		Filename: DATA.R16
 		Start: 1896
 		Length: 1
 		BlendMode: None
 		Tick: 2000
 	siege_turret_frame03:
-		Filename: DATA.R8
+		Filename: DATA.R16
 		Start: 1900
 		Length: 1
 		BlendMode: None
 		Tick: 2000
 	siege_turret_frame04:
-		Filename: DATA.R8
+		Filename: DATA.R16
 		Start: 1907
 		Length: 1
 		BlendMode: None
 		Tick: 2000
 	siege_turret_frame05:
-		Filename: DATA.R8
+		Filename: DATA.R16
 		Start: 1910
 		Length: 1
 		BlendMode: None
@@ -1284,12 +1284,12 @@ explosion:
 		Start: 0
 		Length: 4
 	wormdisapier:
-		Filename: DATA.R8
+		Filename: DATA.R16
 		Start: 3818
 		Length: 20
 		Tick: 80
 	sand:
-		Filename: DATA.R8
+		Filename: DATA.R16
 		Frames: 3879, 3880, 3881
 		Length: 3
 		BlendMode: Multiply
@@ -1302,7 +1302,7 @@ explosion:
 		Offset: -56, -54
 		Tick: 150
 	fire2:
-		Filename: DATA.R8
+		Filename: DATA.R16
 		Start: 3976
 		Length: 11
 		Offset: 0,-3
@@ -1342,35 +1342,35 @@ medium_gun_turret:
 
 airstrike_direction:
 	arrow-t:
-		Filename: MOUSE.R8
+		Filename: MOUSE.R16
 		Start: 112
 		Offset: -25, -53, 0
 	arrow-tr:
-		Filename: MOUSE.R8
+		Filename: MOUSE.R16
 		Start: 120
 		Offset: 6, -47, 0
 	arrow-r:
-		Filename: MOUSE.R8
+		Filename: MOUSE.R16
 		Start: 128
 		Offset: 17, -26, 0
 	arrow-br:
-		Filename: MOUSE.R8
+		Filename: MOUSE.R16
 		Start: 136
 		Offset: 6, -1, 0
 	arrow-b:
-		Filename: MOUSE.R8
+		Filename: MOUSE.R16
 		Start: 148
 		Offset: -25, 7, 0
 	arrow-bl:
-		Filename: MOUSE.R8
+		Filename: MOUSE.R16
 		Start: 156
 		Offset: -52, -3, 0
 	arrow-l:
-		Filename: MOUSE.R8
+		Filename: MOUSE.R16
 		Start: 164
 		Offset: -61, -26, 0
 	arrow-tl:
-		Filename: MOUSE.R8
+		Filename: MOUSE.R16
 		Start: 172
 		Offset: -52, -44, 0
 
@@ -1379,40 +1379,40 @@ airstrike_direction:
 #
 mortar_inf:
 	stand:
-		Filename: DATA.R8
+		Filename: DATA.R16
 		Start: 1402
 		Facings: -8
 		Transpose: true
 	idle1:
-		Filename: DATA.R8
+		Filename: DATA.R16
 		Frames: 1548, 1555, 1562, 1569, 1576, 1583, 1590, 1597
 		Length: 8
 		Tick: 80
 	idle2:
-		Filename: DATA.R8
+		Filename: DATA.R16
 		Frames: 1549, 1556, 1563, 1570, 1577, 1584, 1591, 1598
 		Length: 8
 		Tick: 80
 	run:
-		Filename: DATA.R8
+		Filename: DATA.R16
 		Start: 1410
 		Length: 6
 		Facings: -8
 		Transpose: true
 		Tick: 120
 	standup:
-		Filename: DATA.R8
+		Filename: DATA.R16
 		Start: 1462
 		Facings: -8
 		Transpose: true
 		Tick: 120
 	prone-stand:
-		Filename: DATA.R8
+		Filename: DATA.R16
 		Start: 1470
 		Facings: -8
 		Transpose: true
 	prone-run:
-		Filename: DATA.R8
+		Filename: DATA.R16
 		Start: 1478
 		Length: 3
 		Facings: -8
@@ -1425,52 +1425,52 @@ mortar_inf:
 		Offset: -6,-11
 		Tick: 250
 	deployed:
-		Filename: DATA.R8
+		Filename: DATA.R16
 		Start: 1458
 		Facings: 1
 	turret:
-		Filename: DATA.R8
+		Filename: DATA.R16
 		Start: 1458
 	shoot:
-		Filename: DATA.R8
+		Filename: DATA.R16
 		Start: 1458
 		Length: 5
 	invisible:
-		Filename: DATA.R8
+		Filename: DATA.R16
 		Start: 38
 	thump:
-		Filename: DATA.R8
+		Filename: DATA.R16
 		Start: 1458
 		Length: 5
 		Tick: 150
 	thump-sand:
-		Filename: DATA.R8
+		Filename: DATA.R16
 		Frames: 3882, 3883, 3879, 3880, 3881
 		Length: 5
 		Tick: 150
 		BlendMode: Multiply
 	die1:
-		Filename: DATA.R8
+		Filename: DATA.R16
 		Frames: 1543, 1550, 1557, 1564, 1571, 1578, 1585, 1592, 1599, 1600, 1601, 1602
 		Length: 12
 		Tick: 80
 	die2:
-		Filename: DATA.R8
+		Filename: DATA.R16
 		Frames: 1544, 1551, 1558, 1565, 1572, 1579, 1586, 1593
 		Length: 8
 		Tick: 80
 	die3:
-		Filename: DATA.R8
+		Filename: DATA.R16
 		Frames: 1546, 1552, 1559, 1566, 1573, 1580, 1587, 1594
 		Length: 8
 		Tick: 80
 	die4:
-		Filename: DATA.R8
+		Filename: DATA.R16
 		Frames: 1547, 1553, 1560, 1567, 1574, 1581, 1588, 1595
 		Length: 8
 		Tick: 80
 	die-crushed:
-		Filename: DATA.R8
+		Filename: DATA.R16
 		Frames: 1548, 1554, 1561, 1568, 1575, 1582, 1589, 1596
 		Length: 8
 		Tick: 800
@@ -1532,60 +1532,60 @@ mercenary:
 		Offset: -17, -17
 		Tick: 120
 	muzzle:
-		Filename: DATA.R8
+		Filename: DATA.R16
 		Start: 4028
 		Tick: 60
 		Facings: -32
 		BlendMode: Additive
 	invisible:
-		Filename: DATA.R8
+		Filename: DATA.R16
 		Start: 38
 	prone-stand:
-		Filename: DATA.R8
+		Filename: DATA.R16
 		Start: 310
 		Facings: -8
 		Transpose: true
 	prone-run:
-		Filename: DATA.R8
+		Filename: DATA.R16
 		Start: 310
 		Length: 3
 		Facings: -8
 		Transpose: true
 		Tick: 110
 	standup:
-		Filename: DATA.R8
+		Filename: DATA.R16
 		Start: 302
 		Facings: -8
 		Transpose: true
 		Tick: 120
 	prone-shoot:
-		Filename: DATA.R8
+		Filename: DATA.R16
 		Start: 334
 		Length: 6
 		Facings: -8
 		Transpose: true
 	die1:
-		Filename: DATA.R8
+		Filename: DATA.R16
 		Frames: 382, 389, 396, 403, 410, 417, 424, 431, 438, 443, 448, 453
 		Length: 12
 		Tick: 80
 	die2:
-		Filename: DATA.R8
+		Filename: DATA.R16
 		Frames: 383, 390, 397, 404, 411, 418, 425, 432, 439, 444, 449, 454
 		Length: 12
 		Tick: 80
 	die3:
-		Filename: DATA.R8
+		Filename: DATA.R16
 		Frames: 384, 391, 398, 405, 412, 419, 426, 433, 440, 445, 450, 455
 		Length: 12
 		Tick: 80
 	die4:
-		Filename: DATA.R8
+		Filename: DATA.R16
 		Frames: 385, 392, 399, 406, 413, 420, 427, 434, 441, 446, 451, 456
 		Length: 12
 		Tick: 80
 	die-crushed:
-		Filename: DATA.R8
+		Filename: DATA.R16
 		Frames: 386, 393, 400, 407, 414, 421, 428, 435, 442, 447, 452, 457
 		Length: 12
 		Tick: 800
@@ -1603,7 +1603,7 @@ mercenary:
 
 mp_sandworm:
 	mouth:
-		Filename: DATA.R8
+		Filename: DATA.R16
 		Start: 3802
 		Length: 15
 		Tick: 100
@@ -1633,43 +1633,43 @@ mp_sandworm:
 		Facings: -16
 		ZOffset: 2048
 	lightninga:
-		Filename: DATA.R8
+		Filename: DATA.R16
 		Start: 3844
 		Length: 5
 		Tick: 80
 		BlendMode: Additive
 	lightningb:
-		Filename: DATA.R8
+		Filename: DATA.R16
 		Start: 3849
 		Length: 5
 		Tick: 80
 		BlendMode: Additive
 	lightningc:
-		Filename: DATA.R8
+		Filename: DATA.R16
 		Start: 3854
 		Length: 5
 		Tick: 80
 		BlendMode: Additive
 	lightningd:
-		Filename: DATA.R8
+		Filename: DATA.R16
 		Start: 3859
 		Length: 5
 		Tick: 80
 		BlendMode: Additive
 	lightninge:
-		Filename: DATA.R8
+		Filename: DATA.R16
 		Start: 3864
 		Length: 5
 		Tick: 80
 		BlendMode: Additive
 	lightningf:
-		Filename: DATA.R8
+		Filename: DATA.R16
 		Start: 3869
 		Length: 5
 		Tick: 80
 		BlendMode: Additive
 	make:
-		Filename: DATA.R8
+		Filename: DATA.R16
 		Start: 3844
 		Length: 30
 		Tick: 80
@@ -1697,7 +1697,7 @@ engineer:
 		Tick: 480
 		Offset: -5,-9
 	thump-sand:
-		Filename: DATA.R8
+		Filename: DATA.R16
 		Frames: 3882, 3883, 3879, 3880, 3881
 		Length: 5
 		Tick: 480
@@ -1716,7 +1716,7 @@ spire:
 		Facings: -16
 		Offset: -18,-18
 	icon:
-		Filename: DATA.R8
+		Filename: DATA.R16
 		Start: 4279
 		Offset: -30,-24
 
@@ -1732,13 +1732,13 @@ bison_tank:
 		Start: 252
 		Facings: -32
 		Offset: -32,-32
-		Scale: 0.7
+		Scale: 0.8
 	icon:
 		Filename: EnhancedAssets_2.R8
 		Start: 65
 		Offset: -30,-24
 	muzzle:
-		Filename: DATA.R8
+		Filename: DATA.R16
 		Start: 4028
 		Tick: 60
 		Facings: -32
@@ -1832,7 +1832,7 @@ heavy.mercenary:
 heavy.corrino:
 	Inherits: heavy.harkonnen
 	idle:
-		Filename: DATA.R8
+		Filename: DATA.R16
 		Start: 2926
 		Offset: -48,80
 	idle-top:
@@ -1871,20 +1871,20 @@ starport.mercenary:
 
 palace.corrino:
 	idle:
-		Filename: DATA.R8
+		Filename: DATA.R16
 		Start: 3252
 		Offset: -48,16
 	damaged-idle:
-		Filename: DATA.R8
+		Filename: DATA.R16
 		Start: 3253
 		Offset: -48,16
 	make:
-		Filename: DATA.R8
+		Filename: DATA.R16
 		Start: 4677
 		Length: 11
 		Offset: -48,16
 	crumble-overlay:
-		Filename: DATA.R8
+		Filename: DATA.R16
 		Start: 4688
 		Length: 11
 		Offset: -48,16
@@ -1969,7 +1969,7 @@ assassin:
 		Tick: 80
 		Offset: -16,-16
 	die-crushed:
-		Filename: DATA.R8
+		Filename: DATA.R16
 		Frames: 2698, 2705, 2712, 2719, 2726, 2733, 2740, 2747
 		Tick: 800
 		ZOffset: -511
@@ -2034,7 +2034,7 @@ officer:
 		Tick: 80
 		Offset: 0,-9
 	die-crushed:
-		Filename: DATA.R8
+		Filename: DATA.R16
 		Frames: 386, 393, 400, 407, 414, 421, 428, 435, 442, 447, 452, 457
 		Length: 12
 		Tick: 800
@@ -2060,7 +2060,7 @@ hunter:
 		Start: 0
 		Facings: -32
 	muzzle:
-		Filename: DATA.R8
+		Filename: DATA.R16
 		Start: 4092
 		Tick: 50
 		Facings: -32
@@ -2071,7 +2071,7 @@ hunter:
 
 bombardment_tank:
 	idle:
-		Filename: DATA.R8
+		Filename: DATA.R16
 		Start: 2453
 		Facings: -32
 	turret:
@@ -2079,7 +2079,7 @@ bombardment_tank:
 		Start: 0
 		Facings: -32
 	muzzle:
-		Filename: DATA.R8
+		Filename: DATA.R16
 		Start: 4092
 		Tick: 50
 		Facings: -32
@@ -2091,7 +2091,7 @@ bombardment_tank:
 
 bombardment_tank.husk:
 	idle:
-		Filename: DATA.R8
+		Filename: DATA.R16
 		Start: 2453
 		Facings: -32
 	turret:
@@ -2117,7 +2117,7 @@ bombardment_tank.husk:
 
 combat_tank_cheap:
 	idle:
-		Filename: DATA.R8
+		Filename: DATA.R16
 		Start: 2051
 		Facings: -32
 	turret:
@@ -2126,7 +2126,7 @@ combat_tank_cheap:
 		Facings: -32
 		Offset: 0, -3
 	muzzle:
-		Filename: DATA.R8
+		Filename: DATA.R16
 		Start: 4028
 		Tick: 60
 		Facings: -32
@@ -2137,7 +2137,7 @@ combat_tank_cheap:
 
 combat_tank_cheap.husk:
 	idle:
-		Filename: DATA.R8
+		Filename: DATA.R16
 		Start: 2051
 		Facings: -32
 	turret:
@@ -2215,7 +2215,7 @@ combat_tank_corrino:
 		Facings: -32
 		Offset: -16,-16
 	muzzle:
-		Filename: DATA.R8
+		Filename: DATA.R16
 		Start: 4028
 		Tick: 60
 		Facings: -32
@@ -2227,31 +2227,31 @@ combat_tank_corrino:
 
 palace.corrino:
 	invisible:
-		Filename: DATA.R8
+		Filename: DATA.R16
 		Start: 38
 	turret:
-		Filename: DATA.R8
+		Filename: DATA.R16
 		Frames: 38, 38, 38, 38
 		Facings: 4
 
 outpost.ordos:
 	invisible:
-		Filename: DATA.R8
+		Filename: DATA.R16
 		Start: 38
 
 outpost.fremen:
 	invisible:
-		Filename: DATA.R8
+		Filename: DATA.R16
 		Start: 38
 
 outpost.harkonnen:
 	invisible:
-		Filename: DATA.R8
+		Filename: DATA.R16
 		Start: 38
 
 outpost.atreides:
 	invisible:
-		Filename: DATA.R8
+		Filename: DATA.R16
 		Start: 38
 
 
@@ -2262,13 +2262,13 @@ choosefaction:
 		Start: 745
 		Offset: -47,-32
 	icon:
-		Filename: DATA.R8
+		Filename: DATA.R16
 		Start: 38
 		Offset: -30,-24
 
 subfaction.atreides:
 	idle:
-		Filename: DATA.R8
+		Filename: DATA.R16
 		Start: 38
 	icon:
 		Filename: EnhacedAssets.R8
@@ -2277,7 +2277,7 @@ subfaction.atreides:
 
 subfaction.harkonnen:
 	idle:
-		Filename: DATA.R8
+		Filename: DATA.R16
 		Start: 38
 	icon:
 		Filename: EnhacedAssets.R8
@@ -2286,7 +2286,7 @@ subfaction.harkonnen:
 
 subfaction.ordos:
 	idle:
-		Filename: DATA.R8
+		Filename: DATA.R16
 		Start: 38
 	icon:
 		Filename: EnhacedAssets.R8
@@ -2295,7 +2295,7 @@ subfaction.ordos:
 
 subfaction.corrino:
 	idle:
-		Filename: DATA.R8
+		Filename: DATA.R16
 		Start: 38
 	icon:
 		Filename: EnhacedAssets.R8
@@ -2304,7 +2304,7 @@ subfaction.corrino:
 
 subfaction.smuggler:
 	idle:
-		Filename: DATA.R8
+		Filename: DATA.R16
 		Start: 38
 	icon:
 		Filename: EnhacedAssets.R8
@@ -2313,7 +2313,7 @@ subfaction.smuggler:
 
 subfaction.mercenary:
 	idle:
-		Filename: DATA.R8
+		Filename: DATA.R16
 		Start: 38
 	icon:
 		Filename: EnhacedAssets.R8
@@ -2322,7 +2322,7 @@ subfaction.mercenary:
 
 subfaction.fremen:
 	idle:
-		Filename: DATA.R8
+		Filename: DATA.R16
 		Start: 38
 	icon:
 		Filename: EnhacedAssets.R8
@@ -2331,7 +2331,7 @@ subfaction.fremen:
 
 subfaction.random:
 	idle:
-		Filename: DATA.R8
+		Filename: DATA.R16
 		Start: 38
 	icon:
 		Filename: EnhacedAssets.R8
@@ -2340,7 +2340,7 @@ subfaction.random:
 
 frigate.harkonnen:
 	idle:
-		Filename: DATA.R8
+		Filename: DATA.R16
 		Start: 2517
 		Facings: 1
 		ZOffset: 1024
@@ -2357,7 +2357,7 @@ frigate.husk:
 
 frigate:
 	icon:
-		Filename: DATA.R8
+		Filename: DATA.R16
 		Start: 4290
 		Offset: -30,-24
 
@@ -2404,14 +2404,14 @@ worm_rider:
 		Tick: 135
 		Offset: -5,-9
 	turret:
-		Filename: DATA.R8
+		Filename: DATA.R16
 		Start: 1458
 	shoot:
-		Filename: DATA.R8
+		Filename: DATA.R16
 		Start: 1458
 		Length: 5
 	invisible:
-		Filename: DATA.R8
+		Filename: DATA.R16
 		Start: 38
 
 flamer:
@@ -2464,7 +2464,7 @@ allyrepair:
 
 light_inf:
 	die5:
-		Filename: DATA.R8
+		Filename: DATA.R16
 		Frames: 382, 389, 396, 403, 410, 417, 424, 431, 438, 443, 448, 453
 		Length: 12
 		Tick: 80
@@ -2539,12 +2539,12 @@ crane.atreides:
 		Start: 0
 		Offset: 0, -10
 	make:
-		Filename: DATA.R8
+		Filename: DATA.R16
 		Start: 4373
 		Length: 30
 		Offset: -63,64
 	crumble-overlay:
-		Filename: DATA.R8
+		Filename: DATA.R16
 		Start: 4403
 		Length: 12
 		Offset: -48,64
@@ -2564,7 +2564,7 @@ crane.atreides:
 		Length: 4
 		Offset: -16,-16
 	icon:
-		Filename: DATA.R8
+		Filename: DATA.R16
 		Start: 4310
 		Offset: -30,-24
 
@@ -2574,7 +2574,7 @@ crane.harkonnen:
 		Start: 1
 		Offset: 0, -10
 	make:
-		Filename: DATA.R8
+		Filename: DATA.R16
 		Start: 4373
 		Length: 30
 		Offset: -63,64
@@ -2589,7 +2589,7 @@ crane.harkonnen:
 		Length: 4
 		Offset: -16,-16
 	crumble-overlay:
-		Filename: DATA.R8
+		Filename: DATA.R16
 		Start: 4403
 		Length: 12
 		Offset: -48,64
@@ -2599,7 +2599,7 @@ crane.harkonnen:
 		Start: 4
 		Offset: 0, -10
 	icon:
-		Filename: DATA.R8
+		Filename: DATA.R16
 		Start: 4311
 		Offset: -30,-24
 
@@ -2609,12 +2609,12 @@ crane.ordos:
 		Start: 1
 		Offset: 0 ,-10
 	make:
-		Filename: DATA.R8
+		Filename: DATA.R16
 		Start: 4373
 		Length: 30
 		Offset: -63,64
 	crumble-overlay:
-		Filename: DATA.R8
+		Filename: DATA.R16
 		Start: 4403
 		Length: 12
 		Offset: -48,64
@@ -2634,7 +2634,7 @@ crane.ordos:
 		Start: 2
 		Offset: 0, -10
 	icon:
-		Filename: DATA.R8
+		Filename: DATA.R16
 		Start: 4312
 		Offset: -30,-24
 

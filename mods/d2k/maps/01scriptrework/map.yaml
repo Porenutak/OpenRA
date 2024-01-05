@@ -2445,27 +2445,12 @@ Actors:
 	Actor790: ice_tileset_big17
 		Owner: Neutral
 		Location: 42,41
-	Actor816: ice_tileset_big14
-		Owner: Neutral
-		Location: 42,45
-	Actor818: ice_tileset_small25
-		Owner: Neutral
-		Location: 40,46
-	Actor819: ice_tileset_small25
-		Owner: Neutral
-		Location: 41,46
 	Actor793: ice_tileset_decoration01
 		Owner: Neutral
 		Location: 44,40
 	Actor794: ice_tileset_decoration02
 		Owner: Neutral
 		Location: 49,40
-	Actor795: ice_tileset_transition02
-		Owner: Neutral
-		Location: 38,44
-	Actor797: ice_tileset_transition01
-		Owner: Neutral
-		Location: 38,47
 	Actor718: ice_tileset_big03_3
 		Owner: Neutral
 		Location: 38,42
@@ -2691,12 +2676,6 @@ Actors:
 	Actor892: water_tileset_51
 		Owner: Neutral
 		Location: 28,48
-	Actor862: ice_tileset_small25
-		Owner: Neutral
-		Location: 41,47
-	Actor893: ice_tileset_small25
-		Owner: Neutral
-		Location: 40,47
 	Actor894: ice_tileset_big12
 		Owner: Neutral
 		Location: 41,42
@@ -3026,18 +3005,6 @@ Actors:
 		Owner: Multi0
 		Facing: 384
 		Location: 32,14
-	Actor783: trike
-		Owner: Creeps
-		Facing: 384
-		Location: 44,49
-	Actor784: trike
-		Owner: Creeps
-		Facing: 384
-		Location: 45,49
-	Actor791: trike
-		Owner: Creeps
-		Facing: 384
-		Location: 46,49
 	Actor792: light_inf
 		Owner: Multi0
 		SubCell: 3
@@ -3193,6 +3160,246 @@ Actors:
 		Owner: Multi0
 		Location: 47,28
 		Facing: 816
+	Actor978: light_inf
+		Owner: Neutral
+		SubCell: 3
+		Facing: 384
+		Location: 48,23
+	Actor979: light_inf
+		Owner: Neutral
+		Facing: 384
+		Location: 48,23
+		SubCell: 1
+	Actor980: light_inf
+		Owner: Neutral
+		Facing: 384
+		Location: 48,23
+		SubCell: 2
+	Actor981: light_inf
+		Owner: Neutral
+		Facing: 384
+		Location: 48,23
+		SubCell: 4
+	Actor982: light_inf
+		Owner: Neutral
+		Facing: 384
+		Location: 48,23
+		SubCell: 5
+	Actor998: light_inf
+		Owner: Neutral
+		Facing: 384
+		Location: 47,23
+		SubCell: 3
+	Actor999: light_inf
+		Owner: Neutral
+		Facing: 384
+		Location: 47,23
+		SubCell: 1
+	Actor1000: light_inf
+		Owner: Neutral
+		Facing: 384
+		Location: 47,23
+		SubCell: 2
+	Actor1001: light_inf
+		Owner: Neutral
+		Facing: 384
+		Location: 47,23
+		SubCell: 4
+	Actor1002: light_inf
+		Owner: Neutral
+		Facing: 384
+		Location: 47,23
+		SubCell: 5
+	Actor1003: light_inf
+		Owner: Neutral
+		Facing: 384
+		Location: 46,23
+		SubCell: 3
+	Actor1004: light_inf
+		Owner: Neutral
+		Facing: 384
+		Location: 46,23
+		SubCell: 1
+	Actor1005: light_inf
+		Owner: Neutral
+		Facing: 384
+		Location: 46,23
+		SubCell: 2
+	Actor1006: light_inf
+		Owner: Neutral
+		Facing: 384
+		Location: 46,23
+		SubCell: 4
+	Actor1007: light_inf
+		Owner: Neutral
+		Facing: 384
+		Location: 46,23
+		SubCell: 5
+	Actor1008: light_inf
+		Owner: Neutral
+		Facing: 384
+		Location: 45,23
+		SubCell: 3
+	Actor1009: light_inf
+		Owner: Neutral
+		Facing: 384
+		Location: 45,23
+		SubCell: 1
+	Actor1010: light_inf
+		Owner: Neutral
+		Facing: 384
+		Location: 45,23
+		SubCell: 2
+	Actor1011: light_inf
+		Owner: Neutral
+		Facing: 384
+		Location: 45,23
+		SubCell: 4
+	Actor1012: light_inf
+		Owner: Neutral
+		Facing: 384
+		Location: 45,23
+		SubCell: 5
+	Actor783: light_inf
+		Owner: Creeps
+		SubCell: 3
+		Location: 45,49
+		Facing: 384
+		Stance: Defend
+	Actor784: light_inf
+		Owner: Creeps
+		Location: 45,49
+		SubCell: 1
+		Facing: 384
+		Stance: Defend
+	Actor791: light_inf
+		Owner: Creeps
+		Location: 45,49
+		SubCell: 2
+		Facing: 384
+		Stance: Defend
+	Actor1013: light_inf
+		Owner: Creeps
+		Location: 45,49
+		SubCell: 4
+		Facing: 384
+		Stance: Defend
+	Actor1014: light_inf
+		Owner: Creeps
+		Location: 45,49
+		SubCell: 5
+		Facing: 384
+		Stance: Defend
+	Actor1022: light_inf
+		Owner: Creeps
+		SubCell: 2
+		Stance: Defend
+		Facing: 384
+		Location: 47,49
+	Actor1025: trike
+		Owner: Multi0
+		Facing: 384
+		Location: 41,44
+	Actor1026: trike
+		Owner: Multi0
+		Facing: 384
+		Location: 42,44
+	Actor1027: raider
+		Owner: Multi0
+		Facing: 384
+		Location: 43,44
+	Actor1028: trike
+		Owner: Multi0
+		Facing: 384
+		Location: 45,44
+	Actor1029: raider
+		Owner: Multi0
+		Facing: 384
+		Location: 46,44
+	Actor1030: light_inf
+		Owner: Creeps
+		SubCell: 3
+		Facing: 384
+		Stance: Defend
+		Location: 41,49
+	Actor1031: light_inf
+		Owner: Creeps
+		SubCell: 1
+		Facing: 384
+		Stance: Defend
+		Location: 41,49
+	Actor1032: light_inf
+		Owner: Creeps
+		SubCell: 2
+		Facing: 384
+		Stance: Defend
+		Location: 41,49
+	Actor1033: light_inf
+		Owner: Creeps
+		SubCell: 4
+		Facing: 384
+		Stance: Defend
+		Location: 41,49
+	Actor1034: light_inf
+		Owner: Creeps
+		SubCell: 5
+		Facing: 384
+		Stance: Defend
+		Location: 41,49
+	Actor1019: light_inf
+		Owner: Creeps
+		SubCell: 5
+		Stance: Defend
+		Location: 46,49
+		Facing: 384
+	Actor1018: light_inf
+		Owner: Creeps
+		SubCell: 4
+		Facing: 384
+		Stance: Defend
+		Location: 46,49
+	Actor1017: light_inf
+		Owner: Creeps
+		SubCell: 2
+		Stance: Defend
+		Location: 46,49
+		Facing: 384
+	Actor1021: light_inf
+		Owner: Creeps
+		SubCell: 1
+		Stance: Defend
+		Facing: 384
+		Location: 47,49
+	Actor1020: light_inf
+		Owner: Creeps
+		SubCell: 3
+		Stance: Defend
+		Location: 47,49
+		Facing: 384
+	Actor1024: light_inf
+		Owner: Creeps
+		SubCell: 5
+		Stance: Defend
+		Facing: 384
+		Location: 47,49
+	Actor1023: light_inf
+		Owner: Creeps
+		SubCell: 4
+		Facing: 384
+		Stance: Defend
+		Location: 47,49
+	Actor1015: light_inf
+		Owner: Creeps
+		SubCell: 3
+		Facing: 384
+		Stance: Defend
+		Location: 46,49
+	Actor1016: light_inf
+		Owner: Creeps
+		SubCell: 1
+		Stance: Defend
+		Location: 46,49
+		Facing: 384
 
 Rules: Enhanced_Units09.yaml, Enhanced_Starport09.yaml, Enhanced_Structures09.yaml, Enhanced_World09.yaml, Enhanced_Misc.yaml, Enhanced_AI.yaml, Enhanced_palettes.yaml, NewTiles.yaml, NeutralBuildings.yaml
 

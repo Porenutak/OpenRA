@@ -1,6 +1,6 @@
 spicebloom:
 	SpiceBloom:
-		Pieces: 9
+		Pieces: 9, 9
 
 ^Husk:
 	Health:
@@ -35,7 +35,6 @@ spicebloom:
 		StartIfBelow: 101
 		Delay: 4
 	FloatingSpriteEmitter@SMOKE:
-		Palette: smoke3
 		Image: smoke3
 		Lifetime: 10, 20
 		Speed: 7
