@@ -1110,7 +1110,7 @@ flamethrower:
 		ImpactSounds: audio/flamethrower.wav
 		ImpactSoundChance: 70
 		ImpactActors: false
-		ValidTargets: Ground, Air
+		ValidTargets: Ground
 	Warhead@4Concrete: DamagesConcrete
 		Damage: 50
 	Warhead@spiceburner: DestroyResource
