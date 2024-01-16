@@ -36,8 +36,7 @@
 		Image: fire
 		Sequence: 1
 		IsDecoration: True
-	WithIdleOverlay@Burns2_atreides:
-		RequiresCondition: heavy-damage && atreidesVFX
+	WithDamageOverlay@Burns2_atreides:
 		Image: fire
 		Sequence: 2
 		IsDecoration: True
@@ -261,7 +260,7 @@ construction_yard:
 		SpawnFrequency: 3, 13
 	WithIdleOverlay@Burns1_atreides:
 		Offset: 300, 500, 0
-	WithIdleOverlay@Burns2_atreides:
+	WithDamageOverlay@Burns2_atreides:
 		Offset: 2024, -350, 0
 	WithIdleOverlay@Burns1_harkonnen:
 		Offset: -700, -200,0
@@ -342,7 +341,7 @@ wind_trap:
 	-WithIdleOverlay@Burns2_harkonnen:
 	-FloatingSpriteEmitter@smoke_huge_ordos:
 	-WithIdleOverlay@Burns2_ordos:
-	-WithIdleOverlay@Burns2_atreides:
+	-WithDamageOverlay@Burns2_atreides:
 
 barracks:
 	Inherits: ^Building
@@ -436,7 +435,7 @@ barracks:
 	-FloatingSpriteEmitter@smoke2_small_ordos:
 	-WithIdleOverlay@Burns2_ordos:
 	-FloatingSpriteEmitter@smoke_huge_atreides:
-	-WithIdleOverlay@Burns2_atreides:
+	-WithDamageOverlay@Burns2_atreides:
 	-FloatingSpriteEmitter@smoke_huge_harkonnen:
 
 refinery:
@@ -530,7 +529,7 @@ refinery:
 		SpawnFrequency: 3, 13
 	WithIdleOverlay@Burns1_atreides:
 		Offset: 950, 600,0
-	WithIdleOverlay@Burns2_atreides:
+	WithDamageOverlay@Burns2_atreides:
 		Offset: 700, -800, 0
 		Sequence: 4
 	WithIdleOverlay@Burns1_harkonnen:
@@ -718,7 +717,7 @@ light_factory:
 		SpawnFrequency: 3, 13
 	WithIdleOverlay@Burns1_atreides:
 		Offset: 1024, 300,0
-	WithIdleOverlay@Burns2_atreides:
+	WithDamageOverlay@Burns2_atreides:
 		Offset: 1024, -500, 0
 	WithIdleOverlay@Burns1_harkonnen:
 		Offset: -0,-950,0
@@ -838,7 +837,7 @@ heavy_factory:
 		Offset: -400, -1000,0
 	WithIdleOverlay@Burns1_atreides:
 		Offset: -200, 300, 0
-	WithIdleOverlay@Burns2_atreides:
+	WithDamageOverlay@Burns2_atreides:
 		Offset: 1550, -400, 0
 	WithIdleOverlay@Burns1_harkonnen:
 		Offset: 500, -600,0
@@ -920,7 +919,7 @@ outpost:
 		SpawnFrequency: 3, 13
 	WithIdleOverlay@Burns1_atreides:
 		Offset: -150, 300, 0
-	WithIdleOverlay@Burns2_atreides:
+	WithDamageOverlay@Burns2_atreides:
 		Offset: 1024, -400, 0
 	WithIdleOverlay@Burns1_harkonnen:
 		Offset: 600,-600,0
@@ -1043,7 +1042,7 @@ starport:
 	WithIdleOverlay@Burns2_ordos:
 		Offset: 1800, 780,0
 	-WithIdleOverlay@Burns1_ordos:
-	-WithIdleOverlay@Burns2_atreides:
+	-WithDamageOverlay@Burns2_atreides:
 	-WithIdleOverlay@Burns1_harkonnen:
 
 wall:
@@ -1703,7 +1702,7 @@ palace:
 	ProvidesPrerequisite@buildingname:
 	WithIdleOverlay@Burns1_atreides:
 		Offset: -200, 800, 0
-	WithIdleOverlay@Burns2_atreides:
+	WithDamageOverlay@Burns2_atreides:
 		Offset: 3048, -350, 0
 		Sequence: 4
 	WithIdleOverlay@Burns1_harkonnen:
