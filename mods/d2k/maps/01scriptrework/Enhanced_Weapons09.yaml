@@ -44,6 +44,7 @@ Fremen_S:
 M_LMG:
 	Inherits: ^MG
 	ReloadDelay: 48
+	Range: 3c112
 	ValidTargets: Infantry
 
 M_LMG_H:
@@ -61,7 +62,7 @@ HMG:
 		Damage: 2160
 		Spread: 700
 		Versus:
-			none: 110
+			none: 100
 			building: 30
 			light: 30
 			heavy: 15

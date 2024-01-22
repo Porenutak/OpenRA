@@ -1772,7 +1772,7 @@ assassin:
 		Queue: Infantry
 		BuildPaletteOrder: 70
 		Prerequisites: ~!factions.standard, ~barracks.harkonnen, upgrade.barracks, high_tech_factory, ~techlevel.high
-		BuildDuration: 150
+		BuildDuration: 160
 		BuildDurationModifier: 60
 		Description: Infantry with long range rifle\n  Attacks only infantry\n  Inaccuracy is high at long range \n No armor
 	Tooltip:
