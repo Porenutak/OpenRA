@@ -826,7 +826,7 @@ DerbisMissile:
 PlasmaExplosion:
 	Warhead@1Dam: SpreadDamage
 		Damage: 20000
-		Spread: 6c0
+		Spread: 5c512
 		Falloff: 100, 0
 		Versus:
 			None: 100
@@ -1170,7 +1170,7 @@ chaosbomb4:
 		-Image: BOMBS
 		Shadow: false
 	Warhead@extenalcondition: GrantExternalCondition
-		Range: 6c0
+		Range: 5c0
 
 chaosbomb_from_husk:
 	Warhead@extenalcondition: GrantExternalCondition

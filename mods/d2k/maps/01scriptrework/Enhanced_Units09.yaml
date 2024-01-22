@@ -1865,18 +1865,6 @@ fremen_fedaykin:
 		Prerequisites: ~factions.subfaction_allowed, ~barracks.fremen, research_centre, ~techlevel.medium
 		BuildDuration: 155
 		BuildDurationModifier: 100
-		Description: Fremen Fedaykin \n Strong VS Infantry, Vehicles, Tanks \n Weak VS Buildings, Defenses. \n  Pernamently clocked on Sand
-	Armament@PRIMARY:
-		Weapon: Fremen_S_MP
-	Armament@SECONDARY:
-		Weapon: Fremen_L_MP
-	Armament@chaos_bomb_influence:
-		Weapon: Fremen_S_MP
-		RequiresCondition: chaos_bomb
-	Armament@chaos_bomb_influence2:
-		Weapon: Fremen_L_MP
-		RequiresCondition: chaos_bomb
-
 
 mercenary:
 	Inherits: ^Infantry
