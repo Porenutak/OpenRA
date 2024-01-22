@@ -1282,7 +1282,7 @@ high_tech_factory:
 		Icon: lightStrike
 		Name: Light Air Strike
 		Prerequisites: ~techlevel.superweapons, upgrade.hightech
-		ChargeInterval: 6000
+		ChargeInterval: 7000
 		Description: Ornithopters hit the target with MG guns
 		DisplayBeacon: True
 		SupportPowerPaletteOrder: 15
@@ -1301,7 +1301,7 @@ high_tech_factory:
 		Actor: waypoint.reinforce_o
 		Icon: infantry_reinforcement
 		Prerequisites: ~techlevel.superweapons, upgrade.hightech, ~factions.subfaction_allowed
-		ChargeInterval: 4500
+		ChargeInterval: 5000
 		LifeTime: 2000
 		Name: Infantry Reinforcements
 		Description: Calls in a carryall to deploy elite squad\n at  target location.
@@ -1317,7 +1317,7 @@ high_tech_factory:
 		Actor: waypoint.airtstrike_a
 		Icon: ornistrike
 		Prerequisites: ~techlevel.superweapons, upgrade.hightech
-		ChargeInterval: 7000
+		ChargeInterval: 7200
 		LifeTime: -1
 		Name: Airstrike with multiple pass
 		Description: Ornithopters hit the target multiple times with bombs
@@ -1557,7 +1557,7 @@ palace:
 		RequiresCondition: harkonnen
 		RemoveMissileOnDetonation: True
 		Prerequisites: ~techlevel.superweapons, ~palace.nuke
-		ChargeInterval: 7600
+		ChargeInterval: 7400
 		Name: Death Hand
 		Description: Excellent VS Infantry, light vehicles, Turrets \n Weak vs Tanks, Buildings
 		BeginChargeSpeechNotification: DeathHandMissilePrepping
@@ -1622,7 +1622,7 @@ palace:
 	AirstrikePower@chaosbombMerged:
 		Icon: gascloud
 		Name: Chaos bomb
-		ChargeInterval: 7500
+		ChargeInterval: 7400
 		SquadSize: 1
 		StartFullyCharged: false
 		PauseOnCondition: disabled
@@ -1753,7 +1753,7 @@ palace.harkonnen:
 		LaunchSound: audio/death_hand_launch_1.wav
 		Cursor: nuke
 		Icon: deathhand
-		ChargeInterval: 7600
+		ChargeInterval: 7400
 		MissileWeapon: deathhand
 		MissileDelay: 18
 		Name: Death Hand \n Excellent VS Infantry, light vehicles, Turrets ;n Weak vs Tanks, Buildings
@@ -1900,7 +1900,7 @@ palace.ordos:
 	AirstrikePower@chaosbomb:
 		Icon: gascloud
 		Name: Chaos bomb
-		ChargeInterval: 7500
+		ChargeInterval: 7400
 		SquadSize: 1
 		StartFullyCharged: false
 		Prerequisites: ~techlevel.high
