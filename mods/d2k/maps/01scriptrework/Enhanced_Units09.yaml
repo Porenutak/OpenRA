@@ -2014,8 +2014,16 @@ worm_rider:
 	-ActorLostNotification:
 	Tooltip:
 		Name: Worm rider
+	WithDecoration@ScullIcon:
+		Image: skullicon
+		Sequence: idle
+		ValidRelationships: Enemy, Neutral, Ally
+		Palette: effect
+		Position: BottomRight
+		Margin: 5, 6
 	Mobile:
 		Speed: 43
+		PauseOnCondition: deployed
 	KillsSelf:
 		Delay: 500
 		GrantsCondition: spawnWorm
@@ -2045,7 +2053,7 @@ mp_sandworm:
 	Tooltip:
 		Name: Sandworm
 	Health:
-		HP: 150000
+		HP: 160000
 	HitShape:
 		Type: Rectangle
 			TopLeft: -512, -512

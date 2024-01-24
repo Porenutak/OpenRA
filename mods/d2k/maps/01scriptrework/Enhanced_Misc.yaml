@@ -25,6 +25,11 @@ spicebloom:
 		Weapon: huskExplode01
 		EmptyWeapon: huskExplode01
 		Chance: 70
+	Crushable:
+		CrushClasses: vehicle
+		WarnProbability: 0
+		CrushedByFriendlies: true
+		CrushSound: WORM.WAV
 	WithIdleOverlay@Burns:
 		Image: fire_slow
 		Sequence: 1_loop
