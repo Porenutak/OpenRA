@@ -75,11 +75,11 @@ HMGo:
 	ReloadDelay: 21
 
 HMG_muzzle:
-	ReloadDelay: 24
+	ReloadDelay: 20
 	Range: 3c870
 
 HMGo_muzzle:
-	ReloadDelay: 21
+	ReloadDelay: 17
 	Range: 3c870
 
 M_HMG:

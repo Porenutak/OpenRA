@@ -956,9 +956,9 @@ Actors:
 		Location: 28,33
 	Actor369: assassin
 		Owner: Multi0
-		Facing: 384
 		Location: 29,33
 		SubCell: 3
+		Facing: 384
 	Actor370: assassin
 		Owner: Multi0
 		Facing: 384
@@ -2424,10 +2424,6 @@ Actors:
 	Actor789: ecology_station
 		Owner: Neutral
 		Location: 11,33
-	Actor799: trike
-		Owner: Multi0
-		Facing: 384
-		Location: 36,43
 	Actor805: tree01
 		Owner: Neutral
 		Location: 30,29
@@ -2442,39 +2438,6 @@ Actors:
 		Facing: 384
 		Location: 21,36
 		CenterPosition: 21,36,5120
-	Actor812: water_tileset_01
-		Owner: Neutral
-		Location: 27,46
-	Actor846: water_tileset_01
-		Owner: Neutral
-		Location: 31,46
-	Actor847: water_tileset_01
-		Owner: Neutral
-		Location: 30,46
-	Actor848: water_tileset_02
-		Owner: Neutral
-		Location: 31,45
-	Actor849: water_tileset_02
-		Owner: Neutral
-		Location: 30,45
-	Actor852: water_tileset_02
-		Owner: Neutral
-		Location: 27,45
-	Actor853: water_tileset_03
-		Owner: Neutral
-		Location: 31,47
-	Actor854: water_tileset_03
-		Owner: Neutral
-		Location: 30,47
-	Actor855: water_tileset_03
-		Owner: Neutral
-		Location: 29,47
-	Actor856: water_tileset_03
-		Owner: Neutral
-		Location: 27,47
-	Actor857: water_tileset_03
-		Owner: Neutral
-		Location: 28,47
 	Actor858: water_tileset_07
 		Owner: Neutral
 		Location: 26,39
@@ -2493,81 +2456,24 @@ Actors:
 	Actor865: water_tileset_10
 		Owner: Neutral
 		Location: 26,44
-	Actor866: water_tileset_21
-		Owner: Neutral
-		Location: 29,48
 	Actor867: water_tileset_22
 		Owner: Neutral
 		Location: 27,41
-	Actor871: water_tileset_31
-		Owner: Neutral
-		Location: 34,47
-	Actor872: water_tileset_41
-		Owner: Neutral
-		Location: 35,46
-	Actor873: water_tileset_42
-		Owner: Neutral
-		Location: 34,46
-	Actor874: water_tileset_32
-		Owner: Neutral
-		Location: 34,45
-	Actor875: water_tileset_33
-		Owner: Neutral
-		Location: 33,46
-	Actor876: water_tileset_34
-		Owner: Neutral
-		Location: 36,46
-	Actor877: water_tileset_51
-		Owner: Neutral
-		Location: 30,48
-	Actor879: water_tileset_12
-		Owner: Neutral
-		Location: 26,48
-	Actor880: water_tileset_13
-		Owner: Neutral
-		Location: 32,48
 	Actor881: water_tileset_23
 		Owner: Neutral
 		Location: 26,45
 	Actor882: water_tileset_23
 		Owner: Neutral
 		Location: 26,46
-	Actor883: water_tileset_23
-		Owner: Neutral
-		Location: 26,47
-	Actor885: water_tileset_26
-		Owner: Neutral
-		Location: 28,44
-	Actor884: water_tileset_16
-		Owner: Neutral
-		Location: 27,44
 	Actor886: water_tileset_27
 		Owner: Neutral
 		Location: 27,42
 	Actor887: water_tileset_22
 		Owner: Neutral
 		Location: 27,43
-	Actor889: water_tileset_47
-		Owner: Neutral
-		Location: 31,49
 	Actor869: water_tileset_09_3
 		Owner: Neutral
 		Location: 27,39
-	Actor890: water_tileset_big01
-		Owner: Neutral
-		Location: 31,46
-	Actor870: water_tileset_big07
-		Owner: Neutral
-		Location: 29,43
-	Actor878: water_tileset_big08
-		Owner: Neutral
-		Location: 31,43
-	Actor844: water_tileset_big13
-		Owner: Neutral
-		Location: 28,45
-	Actor798: water_tileset_big10
-		Owner: Neutral
-		Location: 33,43
 	Actor845: water_tileset_big14
 		Owner: Neutral
 		Location: 20,37
@@ -2580,18 +2486,6 @@ Actors:
 	Actor864: water_tileset_18
 		Owner: Neutral
 		Location: 20,36
-	Actor868: water_tileset_09_4
-		Owner: Neutral
-		Location: 33,45
-	Actor888: water_tileset_45
-		Owner: Neutral
-		Location: 36,45
-	Actor891: water_tileset_46
-		Owner: Neutral
-		Location: 31,48
-	Actor892: water_tileset_51
-		Owner: Neutral
-		Location: 28,48
 	Actor899: wind_trap
 		Owner: Multi0
 		Location: 27,25
@@ -3313,6 +3207,70 @@ Actors:
 		Stance: Defend
 		Location: 46,49
 		Facing: 384
+	Actor790: raider
+		Owner: Multi0
+		Facing: 384
+		Location: 36,44
+	Actor793: light_inf
+		Owner: Creeps
+		SubCell: 3
+		Facing: 384
+		Stance: Defend
+		Location: 36,49
+	Actor794: light_inf
+		Owner: Creeps
+		SubCell: 1
+		Stance: Defend
+		Facing: 384
+		Location: 36,49
+	Actor795: light_inf
+		Owner: Creeps
+		SubCell: 2
+		Stance: Defend
+		Facing: 384
+		Location: 36,49
+	Actor797: light_inf
+		Owner: Creeps
+		SubCell: 4
+		Facing: 384
+		Stance: Defend
+		Location: 36,49
+	Actor799: light_inf
+		Owner: Creeps
+		SubCell: 5
+		Facing: 384
+		Stance: Defend
+		Location: 36,49
+	Actor718: light_inf
+		Owner: Creeps
+		SubCell: 3
+		Facing: 384
+		Stance: Defend
+		Location: 31,49
+	Actor719: light_inf
+		Owner: Creeps
+		SubCell: 1
+		Stance: Defend
+		Facing: 384
+		Location: 31,49
+	Actor798: light_inf
+		Owner: Creeps
+		SubCell: 2
+		Stance: Defend
+		Facing: 384
+		Location: 31,49
+	Actor811: light_inf
+		Owner: Creeps
+		SubCell: 4
+		Facing: 384
+		Stance: Defend
+		Location: 31,49
+	Actor812: light_inf
+		Owner: Creeps
+		SubCell: 5
+		Facing: 384
+		Stance: Defend
+		Location: 31,49
 
 Rules: Enhanced_Units09.yaml, Enhanced_Starport09.yaml, Enhanced_Structures09.yaml, Enhanced_World09.yaml, Enhanced_Misc.yaml, Enhanced_AI.yaml, Enhanced_palettes.yaml, NewTiles.yaml, NeutralBuildings.yaml
 
