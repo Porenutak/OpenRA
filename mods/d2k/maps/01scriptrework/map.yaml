@@ -2453,24 +2453,6 @@ Actors:
 	Actor863: water_tileset_05
 		Owner: Neutral
 		Location: 27,40
-	Actor865: water_tileset_10
-		Owner: Neutral
-		Location: 26,44
-	Actor867: water_tileset_22
-		Owner: Neutral
-		Location: 27,41
-	Actor881: water_tileset_23
-		Owner: Neutral
-		Location: 26,45
-	Actor882: water_tileset_23
-		Owner: Neutral
-		Location: 26,46
-	Actor886: water_tileset_27
-		Owner: Neutral
-		Location: 27,42
-	Actor887: water_tileset_22
-		Owner: Neutral
-		Location: 27,43
 	Actor869: water_tileset_09_3
 		Owner: Neutral
 		Location: 27,39
@@ -3241,90 +3223,311 @@ Actors:
 		Facing: 384
 		Stance: Defend
 		Location: 36,49
-	Actor718: deviator
+	Actor798: officer
 		Owner: Multi0
+		SubCell: 3
 		Facing: 384
 		Location: 31,47
-	Actor719: combat_tank_a
-		Owner: Neutral
-		Facing: 384
-		Location: 30,48
-	Actor798: combat_tank_a
-		Owner: Neutral
-		Facing: 384
-		Location: 31,48
-	Actor811: combat_tank_a
-		Owner: Neutral
-		Facing: 384
-		Location: 32,48
-	Actor812: combat_tank_a
-		Owner: Neutral
-		Facing: 384
-		Location: 33,48
-	Actor813: combat_tank_a
-		Owner: Neutral
-		Facing: 384
-		Location: 33,47
-	Actor816: combat_tank_a
-		Owner: Neutral
-		Facing: 384
-		Location: 33,46
-	Actor818: combat_tank_a
+	Actor811: light_inf
 		Owner: Neutral
 		Facing: 384
 		Location: 31,46
-	Actor819: combat_tank_a
+		SubCell: 3
+	Actor812: light_inf
 		Owner: Neutral
 		Facing: 384
-		Location: 30,46
-	Actor822: combat_tank_a
+		SubCell: 3
+		Location: 32,45
+	Actor818: light_inf
 		Owner: Neutral
 		Facing: 384
-		Location: 30,47
-	Actor824: combat_tank_a
+		Location: 33,46
+		SubCell: 1
+	Actor819: light_inf
 		Owner: Neutral
 		Facing: 384
+		SubCell: 3
 		Location: 32,47
-	Actor825: combat_tank_a
+	Actor822: light_inf
 		Owner: Neutral
 		Facing: 384
-		Location: 32,46
-	Actor826: combat_tank_a
+		SubCell: 3
+		Location: 32,49
+	Actor824: light_inf
 		Owner: Neutral
 		Facing: 384
-		Location: 29,47
-	Actor827: combat_tank_a
-		Owner: Neutral
-		Facing: 384
-		Location: 29,48
-	Actor828: combat_tank_a
-		Owner: Neutral
-		Facing: 384
+		SubCell: 1
 		Location: 31,49
-	Actor829: combat_tank_a
+	Actor825: light_inf
 		Owner: Neutral
 		Facing: 384
 		Location: 30,49
-	Actor830: combat_tank_a
+		SubCell: 1
+	Actor830: light_inf
+		Owner: Neutral
+		Facing: 384
+		Location: 30,48
+		SubCell: 3
+	Actor833: light_inf
 		Owner: Neutral
 		Facing: 384
 		Location: 32,49
-	Actor831: combat_tank_a
+		SubCell: 1
+	Actor834: light_inf
 		Owner: Neutral
 		Facing: 384
-		Location: 29,46
-	Actor832: combat_tank_a
+		Location: 33,49
+		SubCell: 3
+	Actor835: light_inf
 		Owner: Neutral
 		Facing: 384
-		Location: 30,45
-	Actor833: combat_tank_a
+		SubCell: 3
+		Location: 31,48
+	Actor836: light_inf
+		Owner: Neutral
+		Facing: 384
+		Location: 31,48
+		SubCell: 1
+	Actor837: light_inf
+		Owner: Neutral
+		Facing: 384
+		SubCell: 3
+		Location: 34,48
+	Actor838: light_inf
+		Owner: Neutral
+		Facing: 384
+		SubCell: 1
+		Location: 32,47
+	Actor839: light_inf
+		Owner: Neutral
+		Facing: 384
+		Location: 32,47
+		SubCell: 2
+	Actor840: light_inf
+		Owner: Neutral
+		Facing: 384
+		Location: 32,48
+		SubCell: 3
+	Actor841: light_inf
+		Owner: Neutral
+		Facing: 384
+		Location: 31,48
+		SubCell: 2
+	Actor842: light_inf
+		Owner: Neutral
+		Facing: 384
+		Location: 30,47
+		SubCell: 3
+	Actor843: light_inf
+		Owner: Neutral
+		Facing: 384
+		Location: 30,46
+		SubCell: 3
+	Actor846: light_inf
+		Owner: Neutral
+		Facing: 384
+		SubCell: 1
+		Location: 32,45
+	Actor847: light_inf
+		Owner: Neutral
+		Facing: 384
+		Location: 33,47
+		SubCell: 1
+	Actor848: light_inf
+		Owner: Neutral
+		Facing: 384
+		SubCell: 3
+		Location: 35,48
+	Actor849: light_inf
+		Owner: Neutral
+		Facing: 384
+		Location: 33,48
+		SubCell: 3
+	Actor852: light_inf
+		Owner: Neutral
+		Facing: 384
+		Location: 32,46
+		SubCell: 3
+	Actor853: light_inf
+		Owner: Neutral
+		Facing: 384
+		Location: 32,46
+		SubCell: 1
+	Actor854: light_inf
+		Owner: Neutral
+		Facing: 384
+		SubCell: 2
+		Location: 33,46
+	Actor855: light_inf
+		Owner: Neutral
+		Facing: 384
+		SubCell: 3
+		Location: 34,47
+	Actor856: light_inf
+		Owner: Neutral
+		Facing: 384
+		Location: 34,47
+		SubCell: 1
+	Actor857: light_inf
+		Owner: Neutral
+		Facing: 384
+		SubCell: 3
+		Location: 34,45
+	Actor862: light_inf
+		Owner: Neutral
+		Facing: 384
+		Location: 33,45
+		SubCell: 3
+	Actor866: light_inf
 		Owner: Neutral
 		Facing: 384
 		Location: 31,45
-	Actor834: combat_tank_a
+		SubCell: 1
+	Actor868: light_inf
 		Owner: Neutral
 		Facing: 384
-		Location: 32,45
+		Location: 31,44
+		SubCell: 3
+	Actor870: light_inf
+		Owner: Neutral
+		Facing: 384
+		Location: 31,45
+		SubCell: 2
+	Actor871: light_inf
+		Owner: Neutral
+		Facing: 384
+		Location: 33,45
+		SubCell: 1
+	Actor872: light_inf
+		Owner: Neutral
+		Facing: 384
+		SubCell: 3
+		Location: 34,46
+	Actor873: light_inf
+		Owner: Neutral
+		Facing: 384
+		SubCell: 1
+		Location: 31,46
+	Actor874: engineer
+		Owner: Neutral
+		SubCell: 3
+		Facing: 384
+		Location: 28,44
+	Actor875: engineer
+		Owner: Neutral
+		Facing: 384
+		Location: 29,46
+		SubCell: 1
+	Actor876: engineer
+		Owner: Neutral
+		Facing: 384
+		Location: 29,47
+		SubCell: 1
+	Actor877: engineer
+		Owner: Neutral
+		Facing: 384
+		Location: 31,48
+		SubCell: 4
+	Actor878: fremen
+		Owner: Neutral
+		Facing: 384
+		SubCell: 3
+		Location: 33,43
+	Actor879: fremen
+		Owner: Neutral
+		Facing: 384
+		SubCell: 3
+		Location: 32,44
+	Actor880: fremen
+		Owner: Neutral
+		Facing: 384
+		Location: 33,44
+		SubCell: 3
+	Actor883: fremen
+		Owner: Neutral
+		Facing: 384
+		Location: 34,44
+		SubCell: 3
+	Actor884: sardaukar
+		Owner: Neutral
+		Facing: 384
+		Location: 30,44
+		SubCell: 3
+	Actor885: sardaukar
+		Owner: Neutral
+		Facing: 384
+		Location: 30,44
+		SubCell: 1
+	Actor888: sardaukar
+		Owner: Neutral
+		Facing: 384
+		Location: 29,44
+		SubCell: 3
+	Actor889: sardaukar
+		Owner: Neutral
+		Facing: 384
+		Location: 28,45
+		SubCell: 3
+	Actor890: sardaukar
+		Owner: Neutral
+		Facing: 384
+		Location: 28,45
+		SubCell: 1
+	Actor891: grenadier
+		Owner: Neutral
+		Facing: 384
+		Location: 27,47
+		SubCell: 3
+	Actor892: grenadier
+		Owner: Neutral
+		Facing: 384
+		SubCell: 3
+		Location: 28,48
+	Actor893: grenadier
+		Owner: Neutral
+		Facing: 384
+		Location: 28,48
+		SubCell: 1
+	Actor894: grenadier
+		Owner: Neutral
+		Facing: 384
+		Location: 28,49
+		SubCell: 3
+	Actor1035: fremen
+		Owner: Neutral
+		Facing: 384
+		SubCell: 3
+		Location: 29,50
+	Actor1036: fremen
+		Owner: Neutral
+		Facing: 384
+		Location: 28,48
+		SubCell: 2
+	Actor1037: fremen
+		Owner: Neutral
+		Facing: 384
+		Location: 27,46
+		SubCell: 3
+	Actor1038: fremen
+		Owner: Neutral
+		Facing: 384
+		Location: 27,46
+		SubCell: 1
+	Actor813: fremen
+		Owner: Neutral
+		Facing: 384
+		Location: 30,45
+		SubCell: 3
+	Actor816: fremen
+		Owner: Neutral
+		Facing: 384
+		Location: 31,44
+		SubCell: 1
+	Actor826: fremen
+		Owner: Neutral
+		Facing: 384
+		Location: 35,46
+		SubCell: 3
 
 Rules: Enhanced_Units09.yaml, Enhanced_Starport09.yaml, Enhanced_Structures09.yaml, Enhanced_World09.yaml, Enhanced_Misc.yaml, Enhanced_AI.yaml, Enhanced_palettes.yaml, NewTiles.yaml, NeutralBuildings.yaml
 

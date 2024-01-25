@@ -43,6 +43,27 @@
 		CloakDelay: 30
 		IsPlayerPalette: true
 
+^ScareEnemy:
+	ExternalCondition@scared:
+		Condition: scared
+		SourceCap: 1
+	WithDecoration@skullIconScared:
+		Image: pips
+		Sequence: pip-skull
+		Palette: temperat
+		Position: TopLeft
+		ValidRelationships: Ally, Enemy, Neutral
+		RequiresCondition: scared
+	RejectsOrders@Scared:
+		RequiresCondition: scared
+		RemoveOrders: true
+	Wanders@scared:
+		WanderMoveRadius: 3
+		RequiresCondition: scared
+		AvoidTerrainTypes: Cliff
+	Armament:
+		PauseOnCondition: scared
+
 ^chaos_bomb_influence:
 	ExternalCondition@Trigger:
 		Condition: chaos_bomb
@@ -52,8 +73,10 @@
 	AttackWander:
 		WanderMoveRadius: 3
 		RequiresCondition: chaos_bomb
+		AvoidTerrainTypes: Cliff, Rough
 	RejectsOrders@chaos_bomb_influence:
 		RequiresCondition: chaos_bomb
+		RemoveOrders: true
 	WithDecoration@skullFromRA:
 		Image: pips
 		Sequence: pip-skull
@@ -195,6 +218,7 @@
 	Inherits@jammer: ^jammedvision
 	Inherits@chaos: ^chaos_bomb_influence
 	Inherits@wormslowing: ^wormslowing
+	Inherits@Scared: ^ScareEnemy
 	GrantRandomCondition:
 		Conditions: inf_cond01, inf_cond02, inf_cond03
 	Crushable:
@@ -250,6 +274,16 @@
 		RequiresCondition: officerAura
 	DamageMultiplier@officerAuraArmorbonus:
 		Modifier: 50
+		RequiresCondition: officerAura
+	FirepowerMultiplier@officerAuraArmorbonus:
+		RequiresCondition: officerAura
+		Modifier: 110
+	WithDecoration@RANK-underOfficerEffect:
+		Image: rank
+		Sequence: rank-veteran-2
+		Palette: effect
+		Position: BottomRight
+		Margin: 5, 6
 		RequiresCondition: officerAura
 	TakeCover:
 		RequiresCondition: !officerAura
@@ -331,6 +365,7 @@ mcv:
 thumper:
 	Buildable:
 		Prerequisites: ~disabled
+	-Armament:
 
 harvester:
 	-Armament@chaos_bomb_influence:
@@ -1470,6 +1505,7 @@ engineer:
 		CaptureTypes: husk
 		ValidRelationships: Enemy, Neutral, Ally
 	-Armament@chaos_bomb_influence:
+	-Armament:
 
 grenadier:
 	AutoTargetPriority@bot:
@@ -1649,6 +1685,7 @@ saboteur:
 		RequiresCondition: kamikadze
 		Offset: -1,0
 	-Armament@chaos_bomb_influence:
+	-Armament:
 
 fremen:
 	Buildable:
@@ -1678,6 +1715,10 @@ fremen:
 		Delay: 125
 		StartIfBelow: 50
 		DamageCooldown: 125
+	ExternalCondition@scared: #avoid scare effect on Fremen
+	-RejectsOrders@Scared:
+	-Wanders@scared:
+	-Armament:
 
 
 mortar_inf:
@@ -1828,6 +1869,7 @@ officer:
 		HP: 7500
 	Mobile:
 		Speed: 41
+		PauseOnCondition: deployed
 	Armament:
 		Weapon: dummy.targeting
 	-Armament@chaos_bomb_influence:
@@ -1835,8 +1877,9 @@ officer:
 		AddToArmyValue: true
 	WithInfantryBody:
 		DefaultAttackSequence: shoot
+		RequiresCondition: !deployed
 	WithRangeCircle:
-		Range: 4c0
+		Range: 4c0512
 		Color: 09FF00C7
 	ProximityExternalCondition:
 		Range: 5c0
@@ -1844,6 +1887,23 @@ officer:
 		ValidRelationships: Ally
 		Condition: officerAura
 	-TakeCover:
+	WithIdleOverlay@sand:
+		Sequence: idle1
+		RequiresCondition: deployed
+	AmbientSound:
+		SoundFiles: audio/ironcur9.aud
+		RequiresCondition: deployed
+		Interval: 1000
+	GrantConditionOnDeployWithCharge:
+		DeployedCondition: deployed
+		CanCancelCondition: true
+		ChargeDuration: 1250
+		ChargeThreshhold: 1250
+		ConditionDuration: 375
+	 FireWarheads@ScareEnemy:
+	 	Weapons: ScareEnemy
+		Interval: 50
+		RequiresCondition: deployed
 
 fremen_fedaykin:
 	Inherits: fremen
@@ -2513,6 +2573,10 @@ sardaukar:
 	Armament@chaos_bomb_influence2:
 		Weapon: M_LMG
 		RequiresCondition: chaos_bomb
+	ExternalCondition@scared: #avoid scare effect on sardaukar
+	-RejectsOrders@Scared:
+	-Wanders@scared:
+	-Armament:
 
 
 

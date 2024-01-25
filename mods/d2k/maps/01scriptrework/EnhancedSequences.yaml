@@ -1327,6 +1327,15 @@ explosion:
 		Start: 1
 		Length: 16
 		Offset: 0,-15
+	aura:
+		Filename: bits/aura.shp
+		Start: 0
+		Length: 19
+		Tick: 100
+		ZOffset: -1024
+		Scale: 1.2
+		Alpha: 0.5
+		BlendMode: Alpha
 
 medium_gun_turret:
 	turret:

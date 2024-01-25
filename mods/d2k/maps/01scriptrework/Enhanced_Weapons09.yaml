@@ -1136,10 +1136,6 @@ chaosbomb1:
 		Condition: chaos_bomb
 		Duration: 550
 		Range: 1c0
-	Warhead@hackToResetQuery: GrantExternalCondition
-		Condition: notmobile
-		Duration: 10
-		Range: 15c0
 
 chaosbomb2:
 	Inherits: chaosbomb1
@@ -1188,6 +1184,17 @@ hideWeapon:
 		Range: 4c0
 		Condition: temporery_clock
 		ValidRelationships: Ally
+
+ScareEnemy:
+	Warhead@condition: GrantExternalCondition
+		Duration: 300
+		Range: 5c0
+		Condition: scared
+		ValidRelationships: Enemy, Neutral
+	Warhead@effect: CreateEffect
+		Explosions: aura
+		ExplosionPalette: player_anim_ts
+		UsePlayerPalette: True
 
 dummy_aim:
 	Range: 7c0

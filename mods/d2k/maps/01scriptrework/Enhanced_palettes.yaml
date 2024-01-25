@@ -19,6 +19,14 @@
 		Name: temperat
 		ShadowIndex: 1
 		Filename: temperat.pal
+	PaletteFromFile@fromTS:
+		Name: ts_anim
+		ShadowIndex: 1
+		Filename: bits/ts_anim.pal
+	PlayerColorPalette@playerfromTS:
+		BasePalette: ts_anim
+		BaseName: player_anim_ts
+		RemapIndex: 160, 161, 162, 163, 164, 165, 166, 167, 168, 169, 170, 171, 172, 173, 174, 175
 	PaletteFromRGBA@disabled:
 		Name: disabled
 		R: 0
