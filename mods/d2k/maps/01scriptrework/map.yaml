@@ -3241,36 +3241,90 @@ Actors:
 		Facing: 384
 		Stance: Defend
 		Location: 36,49
-	Actor718: light_inf
-		Owner: Creeps
-		SubCell: 3
+	Actor718: deviator
+		Owner: Multi0
 		Facing: 384
-		Stance: Defend
-		Location: 31,49
-	Actor719: light_inf
-		Owner: Creeps
-		SubCell: 1
-		Stance: Defend
+		Location: 31,47
+	Actor719: combat_tank_a
+		Owner: Neutral
+		Facing: 384
+		Location: 30,48
+	Actor798: combat_tank_a
+		Owner: Neutral
+		Facing: 384
+		Location: 31,48
+	Actor811: combat_tank_a
+		Owner: Neutral
+		Facing: 384
+		Location: 32,48
+	Actor812: combat_tank_a
+		Owner: Neutral
+		Facing: 384
+		Location: 33,48
+	Actor813: combat_tank_a
+		Owner: Neutral
+		Facing: 384
+		Location: 33,47
+	Actor816: combat_tank_a
+		Owner: Neutral
+		Facing: 384
+		Location: 33,46
+	Actor818: combat_tank_a
+		Owner: Neutral
+		Facing: 384
+		Location: 31,46
+	Actor819: combat_tank_a
+		Owner: Neutral
+		Facing: 384
+		Location: 30,46
+	Actor822: combat_tank_a
+		Owner: Neutral
+		Facing: 384
+		Location: 30,47
+	Actor824: combat_tank_a
+		Owner: Neutral
+		Facing: 384
+		Location: 32,47
+	Actor825: combat_tank_a
+		Owner: Neutral
+		Facing: 384
+		Location: 32,46
+	Actor826: combat_tank_a
+		Owner: Neutral
+		Facing: 384
+		Location: 29,47
+	Actor827: combat_tank_a
+		Owner: Neutral
+		Facing: 384
+		Location: 29,48
+	Actor828: combat_tank_a
+		Owner: Neutral
 		Facing: 384
 		Location: 31,49
-	Actor798: light_inf
-		Owner: Creeps
-		SubCell: 2
-		Stance: Defend
+	Actor829: combat_tank_a
+		Owner: Neutral
 		Facing: 384
-		Location: 31,49
-	Actor811: light_inf
-		Owner: Creeps
-		SubCell: 4
+		Location: 30,49
+	Actor830: combat_tank_a
+		Owner: Neutral
 		Facing: 384
-		Stance: Defend
-		Location: 31,49
-	Actor812: light_inf
-		Owner: Creeps
-		SubCell: 5
+		Location: 32,49
+	Actor831: combat_tank_a
+		Owner: Neutral
 		Facing: 384
-		Stance: Defend
-		Location: 31,49
+		Location: 29,46
+	Actor832: combat_tank_a
+		Owner: Neutral
+		Facing: 384
+		Location: 30,45
+	Actor833: combat_tank_a
+		Owner: Neutral
+		Facing: 384
+		Location: 31,45
+	Actor834: combat_tank_a
+		Owner: Neutral
+		Facing: 384
+		Location: 32,45
 
 Rules: Enhanced_Units09.yaml, Enhanced_Starport09.yaml, Enhanced_Structures09.yaml, Enhanced_World09.yaml, Enhanced_Misc.yaml, Enhanced_AI.yaml, Enhanced_palettes.yaml, NewTiles.yaml, NeutralBuildings.yaml
 

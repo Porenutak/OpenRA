@@ -234,8 +234,6 @@ Fremen_S_MP:
 80mm_H:
 	Inherits: ^Cannon
 	ReloadDelay: 66
-	Warhead@1Dam: SpreadDamage
-		Spread: 836
 
 80mm_O:
 	Range: 4c112
@@ -250,7 +248,7 @@ Fremen_S_MP:
 
 80mm_corrino:
 	Inherits: ^Cannon
-	ReloadDelay: 68
+	ReloadDelay: 64
 	Projectile: Bullet
 		Inaccuracy: 145
 	Warhead@1Dam: SpreadDamage

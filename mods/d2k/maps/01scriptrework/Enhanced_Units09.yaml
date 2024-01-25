@@ -1104,11 +1104,6 @@ carryall.reinforce:
 		Weapons: DeathHandClusterDebris
 		Pieces: 0 , 2
 		Range: 1c0, 5c0
-	SpawnActorOnDeath@rotor:
-		Actor: rotor
-		SkipMakeAnimations: false
-		Offset: 0, 1
-		RequiresCondition: cruising
 	SpawnActorOnDeath@CRUISING:
 		SpawnAfterDefeat: false
 	SpawnActorOnDeath@LANDING:
@@ -1194,9 +1189,7 @@ carryall.reinforce_with_sound:
 		RequiresCondition: cruising
 	SpawnActorOnDeath@LANDING:
 		Actor: carryall.huskVTOL_reinforce
-	SpawnActorOnDeath@rotor2:
-		Actor: rotor
-		Offset: 0, 1
+
 
 carryall.bomber:
 	Inherits: ^Plane
@@ -2445,8 +2438,6 @@ frigate.harkonnen:
 	SpawnActorOnDeath@LANDING:
 		Actor: frigate.huskvtol
 	RejectsOrders:
-	-SpawnActorOnDeath@rotor:
-	-SpawnActorOnDeath@rotor2:
 
 frigate.harkonnen_cargo:
 	Inherits: frigate.harkonnen
