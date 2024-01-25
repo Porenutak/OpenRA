@@ -2442,90 +2442,6 @@ Actors:
 		Facing: 384
 		Location: 21,36
 		CenterPosition: 21,36,5120
-	Actor790: ice_tileset_big17
-		Owner: Neutral
-		Location: 42,41
-	Actor793: ice_tileset_decoration01
-		Owner: Neutral
-		Location: 44,40
-	Actor794: ice_tileset_decoration02
-		Owner: Neutral
-		Location: 49,40
-	Actor718: ice_tileset_big03_3
-		Owner: Neutral
-		Location: 38,42
-	Actor813: ice_tileset_decoration07
-		Owner: Neutral
-		Location: 41,39
-	Actor719: ice_tileset_small08
-		Owner: Neutral
-		Location: 33,37
-	Actor811: ice_tileset_small07
-		Owner: Neutral
-		Location: 35,37
-	Actor822: ice_tileset_small01
-		Owner: Neutral
-		Location: 32,37
-	Actor824: ice_tileset_small02
-		Owner: Neutral
-		Location: 32,38
-	Actor825: ice_tileset_small03
-		Owner: Neutral
-		Location: 33,38
-	Actor826: ice_tileset_small04
-		Owner: Neutral
-		Location: 34,38
-	Actor827: ice_tileset_small05
-		Owner: Neutral
-		Location: 35,38
-	Actor828: ice_tileset_small06
-		Owner: Neutral
-		Location: 36,38
-	Actor829: ice_tileset_small10
-		Owner: Neutral
-		Location: 37,38
-	Actor830: ice_tileset_small11
-		Owner: Neutral
-		Location: 37,37
-	Actor831: ice_tileset_small12
-		Owner: Neutral
-		Location: 36,39
-	Actor832: ice_tileset_small13
-		Owner: Neutral
-		Location: 37,39
-	Actor833: ice_tileset_small14
-		Owner: Neutral
-		Location: 36,40
-	Actor834: ice_tileset_small15
-		Owner: Neutral
-		Location: 35,40
-	Actor835: ice_tileset_small16
-		Owner: Neutral
-		Location: 35,39
-	Actor836: ice_tileset_small17
-		Owner: Neutral
-		Location: 34,39
-	Actor837: ice_tileset_small18
-		Owner: Neutral
-		Location: 33,39
-	Actor838: ice_tileset_small19
-		Owner: Neutral
-		Location: 32,39
-	Actor839: ice_tileset_small20
-		Owner: Neutral
-		Location: 32,40
-	Actor840: ice_tileset_small21
-		Owner: Neutral
-		Location: 33,40
-	Actor841: ice_tileset_small22
-		Owner: Neutral
-		Location: 34,40
-	Actor842: ice_tileset_small23
-		Owner: Neutral
-		Location: 37,40
-	Actor843: ice_tileset_small24
-		Owner: Neutral
-		Location: 38,40
 	Actor812: water_tileset_01
 		Owner: Neutral
 		Location: 27,46
@@ -2676,9 +2592,6 @@ Actors:
 	Actor892: water_tileset_51
 		Owner: Neutral
 		Location: 28,48
-	Actor894: ice_tileset_big12
-		Owner: Neutral
-		Location: 41,42
 	Actor899: wind_trap
 		Owner: Multi0
 		Location: 27,25
@@ -3325,15 +3238,15 @@ Actors:
 	Actor1031: light_inf
 		Owner: Creeps
 		SubCell: 1
-		Facing: 384
 		Stance: Defend
 		Location: 41,49
+		Facing: 384
 	Actor1032: light_inf
 		Owner: Creeps
 		SubCell: 2
-		Facing: 384
 		Stance: Defend
 		Location: 41,49
+		Facing: 384
 	Actor1033: light_inf
 		Owner: Creeps
 		SubCell: 4

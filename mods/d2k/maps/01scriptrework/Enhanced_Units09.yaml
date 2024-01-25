@@ -1201,6 +1201,8 @@ carryall.bomber:
 	RejectsOrders:
 	RenderSprites:
 		Image: carryall
+	Tooltip:
+		Name: Carryall Bomber
 	Health:
 		HP: 14000
 	Aircraft:

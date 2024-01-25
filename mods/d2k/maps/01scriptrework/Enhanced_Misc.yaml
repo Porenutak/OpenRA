@@ -540,7 +540,7 @@ frigate.husk_on_land:
 carryall.huskVTOL:
 	Inherits: ^AircraftHusk
 	Tooltip:
-		Name: Carryall
+		Name: Carryall Husk
 	FallsToEarth:
 	Aircraft:
 		TurnSpeed: 16
@@ -589,6 +589,8 @@ sonic_tank.husk:
 
 flamer.husk:
 	Inherits: ^VehicleHusk
+	Tooltip:
+		Name: Flamer husk
 	ThrowsParticle@debris01:
 		Anim: tankdebris01
 	ThrowsParticle@debris02:
@@ -823,6 +825,8 @@ missile_tank.husk:
 
 bombardment_tank.husk:
 	Inherits: ^VehicleHusk
+	Tooltip:
+		Name: Bombardment tank
 	TransformOnCapture:
 		IntoActor: bombardment_tank
 	ThrowsParticle@turret:
@@ -845,6 +849,8 @@ bombardment_tank.husk:
 
 bison_tank.husk:
 	Inherits: ^combat_tank.husk
+	Tooltip:
+		Name: Bison tank
 	TransformOnCapture:
 		IntoActor: bison_tank
 	RenderSprites:
@@ -854,6 +860,8 @@ bison_tank.husk:
 
 crawler_light.husk:
 	Inherits: ^VehicleHusk
+	Tooltip:
+		Name: Crawler Husk
 	TransformOnCapture:
 		IntoActor: crawler.light
 
