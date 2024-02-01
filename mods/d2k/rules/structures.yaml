@@ -31,38 +31,41 @@
 		Factions: ordos, mercenary, smuggler
 	GrantConditionOnDamageState@heavyDamage:
 		Condition: heavy-damage
-	WithIdleOverlay@Burns1_atreides:
+	WithDamageOverlay@Burns1_atreides:
 		RequiresCondition: heavy-damage && atreidesVFX
 		Image: fire
-		Sequence: 1
-		IsDecoration: True
+		IdleIdleSequence: 1
+		LoopSequence: 1
 	WithDamageOverlay@Burns2_atreides:
 		Image: fire
-		Sequence: 2
-		IsDecoration: True
-	WithIdleOverlay@Burns1_harkonnen:
+		IdleSequence: 2
+		LoopSequence: 2
+		EndSequence: 2
+	WithDamageOverlay@Burns1_harkonnen:
 		RequiresCondition: heavy-damage && harkonnenVFX
 		Image: fire
-		Sequence: 1
-		IsDecoration: True
-	WithIdleOverlay@Burns2_harkonnen:
+		IdleSequence: 1
+		LoopSequence: 1
+		EndSequence: 1
+	WithDamageOverlay@Burns2_harkonnen:
 		RequiresCondition: heavy-damage && harkonnenVFX
 		Image: fire
-		Sequence: 2
-		IsDecoration: True
-	WithIdleOverlay@Burns1_ordos:
+		IdleSequence: 2
+		LoopSequence: 2
+		EndSequence: 2
+	WithDamageOverlay@Burns1_ordos:
 		RequiresCondition: heavy-damage && ordosVFX
 		Image: fire
-		Sequence: 1
-		IsDecoration: True
-	WithIdleOverlay@Burns2_ordos:
+		IdleSequence: 1
+		LoopSequence: 1
+		EndSequence: 1
+	WithDamageOverlay@Burns2_ordos:
 		RequiresCondition: heavy-damage && ordosVFX
 		Image: fire
-		Sequence: 2
-		IsDecoration: True
+		IdleSequence: 2
+		LoopSequence: 2
 	FloatingSpriteEmitter@smoke_huge_atreides:
 		RequiresCondition: heavy-damage && atreidesVFX
-		Palette: smoke3
 		Image: smoke3
 		Lifetime: 15, 20
 		Speed: 5
@@ -74,7 +77,6 @@
 		Duration: 1224
 	FloatingSpriteEmitter@smoke2_small_atreides:
 		RequiresCondition: heavy-damage && atreidesVFX
-		Palette: smoke3
 		Image: smoke3
 		Lifetime: 15, 20
 		Speed: 3
@@ -86,7 +88,6 @@
 		Duration: 1024
 	FloatingSpriteEmitter@smoke_huge_harkonnen:
 		RequiresCondition: heavy-damage && harkonnenVFX
-		Palette: smoke3
 		Image: smoke3
 		Lifetime: 20,25
 		Speed: 5
@@ -98,7 +99,6 @@
 		Duration: 1524
 	FloatingSpriteEmitter@smoke2_small_harkonnen:
 		RequiresCondition: heavy-damage && harkonnenVFX
-		Palette: smoke3
 		Image: smoke3
 		Lifetime: 15, 20
 		Speed: 3
@@ -110,7 +110,6 @@
 		Duration: 1024
 	FloatingSpriteEmitter@smoke_huge_ordos:
 		RequiresCondition: heavy-damage && ordosVFX
-		Palette: smoke3
 		Image: smoke3
 		Lifetime: 20,25
 		Speed: 7
@@ -122,7 +121,6 @@
 		Duration: 1524
 	FloatingSpriteEmitter@smoke2_small_ordos:
 		RequiresCondition: heavy-damage && ordosVFX
-		Palette: smoke3
 		Image: smoke3
 		Lifetime: 15, 20
 		Speed: 3
@@ -241,7 +239,6 @@ construction_yard:
 		RequiresCondition: heavy-damage && atreidesVFX
 		Offset: -1024, -500, 0
 		SpawnFrequency: 5, 20
-		Palette: smoke3
 		Image: smoke3
 		Lifetime: 15, 20
 		Speed: 3
@@ -258,17 +255,17 @@ construction_yard:
 	FloatingSpriteEmitter@smoke2_small_ordos:
 		Offset: -300, -1200, 0
 		SpawnFrequency: 3, 13
-	WithIdleOverlay@Burns1_atreides:
+	WithDamageOverlay@Burns1_atreides:
 		Offset: 300, 500, 0
 	WithDamageOverlay@Burns2_atreides:
 		Offset: 2024, -350, 0
-	WithIdleOverlay@Burns1_harkonnen:
+	WithDamageOverlay@Burns1_harkonnen:
 		Offset: -700, -200,0
-	WithIdleOverlay@Burns2_harkonnen:
+	WithDamageOverlay@Burns2_harkonnen:
 		Offset: 500, 900,0
-	WithIdleOverlay@Burns1_ordos:
+	WithDamageOverlay@Burns1_ordos:
 		Offset: 300, 500, 0
-	WithIdleOverlay@Burns2_ordos:
+	WithDamageOverlay@Burns2_ordos:
 		Offset: 1124, -350, 0
 
 wind_trap:
@@ -332,15 +329,15 @@ wind_trap:
 	FloatingSpriteEmitter@smoke2_small_ordos:
 		Offset: -500, -900, 0
 		SpawnFrequency: 3, 13
-	WithIdleOverlay@Burns1_atreides:
+	WithDamageOverlay@Burns1_atreides:
 		Offset: 1124, 0, 0
-	WithIdleOverlay@Burns1_harkonnen:
+	WithDamageOverlay@Burns1_harkonnen:
 		Offset: 300, -500, 0
-	WithIdleOverlay@Burns1_ordos:
+	WithDamageOverlay@Burns1_ordos:
 		Offset: 500, -700, 0
-	-WithIdleOverlay@Burns2_harkonnen:
+	-WithDamageOverlay@Burns2_harkonnen:
 	-FloatingSpriteEmitter@smoke_huge_ordos:
-	-WithIdleOverlay@Burns2_ordos:
+	-WithDamageOverlay@Burns2_ordos:
 	-WithDamageOverlay@Burns2_atreides:
 
 barracks:
@@ -425,15 +422,15 @@ barracks:
 		Offset: 0,0,0
 	FloatingSpriteEmitter@smoke_huge_ordos:
 		Offset: 300, -800, 0
-	WithIdleOverlay@Burns1_atreides:
+	WithDamageOverlay@Burns1_atreides:
 		Offset: 500, 500, 0
-	WithIdleOverlay@Burns2_harkonnen:
+	WithDamageOverlay@Burns2_harkonnen:
 		Offset: 0,0,0
-	WithIdleOverlay@Burns1_ordos:
+	WithDamageOverlay@Burns1_ordos:
 		Offset: 500, 300, 0
-	-WithIdleOverlay@Burns1_harkonnen:
+	-WithDamageOverlay@Burns1_harkonnen:
 	-FloatingSpriteEmitter@smoke2_small_ordos:
-	-WithIdleOverlay@Burns2_ordos:
+	-WithDamageOverlay@Burns2_ordos:
 	-FloatingSpriteEmitter@smoke_huge_atreides:
 	-WithDamageOverlay@Burns2_atreides:
 	-FloatingSpriteEmitter@smoke_huge_harkonnen:
@@ -527,19 +524,19 @@ refinery:
 	FloatingSpriteEmitter@smoke2_small_ordos:
 		Offset: -250, 250, 0
 		SpawnFrequency: 3, 13
-	WithIdleOverlay@Burns1_atreides:
+	WithDamageOverlay@Burns1_atreides:
 		Offset: 950, 600,0
 	WithDamageOverlay@Burns2_atreides:
 		Offset: 700, -800, 0
 		Sequence: 4
-	WithIdleOverlay@Burns1_harkonnen:
+	WithDamageOverlay@Burns1_harkonnen:
 		Offset: 1200, 1000,0
-	WithIdleOverlay@Burns2_harkonnen:
+	WithDamageOverlay@Burns2_harkonnen:
 		Offset: 0, -1024, 0
 		Sequence: 4
-	WithIdleOverlay@Burns1_ordos:
+	WithDamageOverlay@Burns1_ordos:
 		Offset: 1200, -200, 0
-	WithIdleOverlay@Burns2_ordos:
+	WithDamageOverlay@Burns2_ordos:
 		Offset: 0, -200, 0
 
 silo:
@@ -603,7 +600,6 @@ silo:
 	FloatingSpriteEmitter@smoke2_small_atreides:
 		Offset: 0, -300, 0
 		RequiresCondition: heavy-damage
-		Palette: smoke3
 		Image: smoke3
 		Lifetime: 15, 20
 		Speed: 3
@@ -715,16 +711,16 @@ light_factory:
 	FloatingSpriteEmitter@smoke2_small_ordos:
 		Offset: 300, -200, 0
 		SpawnFrequency: 3, 13
-	WithIdleOverlay@Burns1_atreides:
+	WithDamageOverlay@Burns1_atreides:
 		Offset: 1024, 300,0
 	WithDamageOverlay@Burns2_atreides:
 		Offset: 1024, -500, 0
-	WithIdleOverlay@Burns1_harkonnen:
+	WithDamageOverlay@Burns1_harkonnen:
 		Offset: -0,-950,0
-	WithIdleOverlay@Burns2_harkonnen:
-	WithIdleOverlay@Burns1_ordos:
+	WithDamageOverlay@Burns2_harkonnen:
+	WithDamageOverlay@Burns1_ordos:
 		Offset: -600, -1000, 0
-	WithIdleOverlay@Burns2_ordos:
+	WithDamageOverlay@Burns2_ordos:
 		Offset: 700, 200, 0
 
 heavy_factory:
@@ -835,17 +831,17 @@ heavy_factory:
 		Offset: -700, 100,0
 	FloatingSpriteEmitter@smoke2_small_ordos:
 		Offset: -400, -1000,0
-	WithIdleOverlay@Burns1_atreides:
+	WithDamageOverlay@Burns1_atreides:
 		Offset: -200, 300, 0
 	WithDamageOverlay@Burns2_atreides:
 		Offset: 1550, -400, 0
-	WithIdleOverlay@Burns1_harkonnen:
+	WithDamageOverlay@Burns1_harkonnen:
 		Offset: 500, -600,0
-	WithIdleOverlay@Burns2_harkonnen:
+	WithDamageOverlay@Burns2_harkonnen:
 		Offset: 1800, 50,0
-	WithIdleOverlay@Burns1_ordos:
+	WithDamageOverlay@Burns1_ordos:
 		Offset: 1300, -500,0
-	WithIdleOverlay@Burns2_ordos:
+	WithDamageOverlay@Burns2_ordos:
 		Offset: 100, -600,0
 		Sequence: 4
 
@@ -917,16 +913,16 @@ outpost:
 	FloatingSpriteEmitter@smoke2_small_ordos:
 		Offset: 350, 0, 0
 		SpawnFrequency: 3, 13
-	WithIdleOverlay@Burns1_atreides:
+	WithDamageOverlay@Burns1_atreides:
 		Offset: -150, 300, 0
 	WithDamageOverlay@Burns2_atreides:
 		Offset: 1024, -400, 0
-	WithIdleOverlay@Burns1_harkonnen:
+	WithDamageOverlay@Burns1_harkonnen:
 		Offset: 600,-600,0
-	WithIdleOverlay@Burns1_ordos:
+	WithDamageOverlay@Burns1_ordos:
 		Offset: 350, -600, 0
-	-WithIdleOverlay@Burns2_harkonnen:
-	-WithIdleOverlay@Burns2_ordos:
+	-WithDamageOverlay@Burns2_harkonnen:
+	-WithDamageOverlay@Burns2_ordos:
 
 starport:
 	Inherits: ^Building
@@ -1035,15 +1031,15 @@ starport:
 	FloatingSpriteEmitter@smoke2_small_ordos:
 		Offset: 700,-900,0
 		Speed: 10
-	WithIdleOverlay@Burns1_atreides:
+	WithDamageOverlay@Burns1_atreides:
 		Offset: 1424, -1390, 0
-	WithIdleOverlay@Burns2_harkonnen:
+	WithDamageOverlay@Burns2_harkonnen:
 		Offset: 1800, 780,0
-	WithIdleOverlay@Burns2_ordos:
+	WithDamageOverlay@Burns2_ordos:
 		Offset: 1800, 780,0
-	-WithIdleOverlay@Burns1_ordos:
+	-WithDamageOverlay@Burns1_ordos:
 	-WithDamageOverlay@Burns2_atreides:
-	-WithIdleOverlay@Burns1_harkonnen:
+	-WithDamageOverlay@Burns1_harkonnen:
 
 wall:
 	Inherits@1: ^SpriteActor
@@ -1167,7 +1163,6 @@ medium_gun_turret:
 	FloatingSpriteEmitter@smoke2_small:
 		Offset: 0, -700, 0
 		RequiresCondition: heavy-damage
-		Palette: smoke3
 		Image: smoke3
 		Lifetime: 15, 20
 		Speed: 3
@@ -1230,7 +1225,6 @@ large_gun_turret:
 	FloatingSpriteEmitter@smoke2_small:
 		Offset: 0, -700, 0
 		RequiresCondition: heavy-damage
-		Palette: smoke3
 		Image: smoke3
 		Lifetime: 15, 20
 		Speed: 3
@@ -1309,7 +1303,6 @@ repair_pad:
 		Offset: 100, -1400, 0
 		Gravity: 40
 		RequiresCondition: heavy-damage
-		Palette: smoke3
 		Image: smoke3
 		Lifetime: 15, 20
 		Speed: 3
@@ -1322,7 +1315,6 @@ repair_pad:
 		Offset: 800,200,0
 		SpawnFrequency: 4,10
 		RequiresCondition: heavy-damage
-		Palette: smoke3
 		Image: smoke3
 		Lifetime: 15, 20
 		Speed: 7
@@ -1424,13 +1416,13 @@ high_tech_factory:
 		Prerequisites: upgrade.hightech
 	FloatingSpriteEmitter@smoke_huge_atreides:
 		Offset: 500, -800, 0
-	WithIdleOverlay@Burns1_atreides:
+	WithDamageOverlay@Burns1_atreides:
 		Offset: 1100, 500, 0
-	WithIdleOverlay@Burns1_ordos:
+	WithDamageOverlay@Burns1_ordos:
 		Offset: 0, 450, 0
 	FloatingSpriteEmitter@smoke_huge_harkonnen:
 		Offset: 400,-150,0
-	WithIdleOverlay@Burns1_harkonnen:
+	WithDamageOverlay@Burns1_harkonnen:
 		Offset: -100, 350,0
 	FloatingSpriteEmitter@smoke_huge_ordos:
 		Offset: 500, -200, 0
@@ -1438,9 +1430,9 @@ high_tech_factory:
 	FloatingSpriteEmitter@smoke2_small_ordos:
 		Offset: 0, -800, 0
 		SpawnFrequency: 3, 1
-	-WithIdleOverlay@Burns2_ordos:
+	-WithDamageOverlay@Burns2_ordos:
 	-FloatingSpriteEmitter@smoke2_small_harkonnen:
-	-WithIdleOverlay@Burns2_harkonnen:
+	-WithDamageOverlay@Burns2_harkonnen:
 
 research_centre:
 	Inherits: ^Building
@@ -1501,7 +1493,6 @@ research_centre:
 		Speed: 10
 		SpawnFrequency: 3,6
 		RequiresCondition: heavy-damage
-		Palette: smoke3
 		Image: smoke3
 		Lifetime: 15, 20
 		Gravity: 60
@@ -1512,7 +1503,6 @@ research_centre:
 	FloatingSpriteEmitter@smoke2_small_atreides:
 		Offset: 300, -1500, 0
 		RequiresCondition: heavy-damage
-		Palette: smoke3
 		Image: smoke3
 		Lifetime: 15, 20
 		Speed: 3
@@ -1522,11 +1512,11 @@ research_centre:
 		RandomRate: 4
 		TurnRate: 3
 		Duration: 1024
-	WithIdleOverlay@Burns1_atreides:
+	WithDamageOverlay@Burns1_atreides:
 		Offset: -300, 500, 0
 		RequiresCondition: heavy-damage
 		Image: fire
-		Sequence: 1
+		IdleSequence: 1
 		IsDecoration: True
 
 palace:
@@ -1700,18 +1690,18 @@ palace:
 	SupportPowerChargeBar:
 		RequiresCondition: atreides || harkonnen || ordos
 	ProvidesPrerequisite@buildingname:
-	WithIdleOverlay@Burns1_atreides:
+	WithDamageOverlay@Burns1_atreides:
 		Offset: -200, 800, 0
 	WithDamageOverlay@Burns2_atreides:
 		Offset: 3048, -350, 0
 		Sequence: 4
-	WithIdleOverlay@Burns1_harkonnen:
+	WithDamageOverlay@Burns1_harkonnen:
 		Offset: -300, 512,0
-	WithIdleOverlay@Burns2_harkonnen:
+	WithDamageOverlay@Burns2_harkonnen:
 		Offset: 1700, -100,0
-	WithIdleOverlay@Burns1_ordos:
+	WithDamageOverlay@Burns1_ordos:
 		Offset: -500, 750,0
-	WithIdleOverlay@Burns2_ordos:
+	WithDamageOverlay@Burns2_ordos:
 		Offset: 2450, -200,0
 	FloatingSpriteEmitter@smoke_huge_atreides:
 		Offset: 1000, -600, 0
