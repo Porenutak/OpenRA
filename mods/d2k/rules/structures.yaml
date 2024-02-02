@@ -19,6 +19,105 @@
 		BuildPaletteOrder: 10
 		Description: meta-concrete.description
 
+^DamagedBuildingsVFX:
+	GrantConditionOnFaction@atreidesVFX:
+		Condition: atreidesVFX
+		Factions: atreides, fremen
+	GrantConditionOnFaction@harkonnenVFX:
+		Condition: harkonnenVFX
+		Factions: harkonnen, corrino
+	GrantConditionOnFaction@ordosVFX:
+		Condition: ordosVFX
+		Factions: ordos, mercenary, smuggler
+	GrantConditionOnDamageState@heavyDamage:
+		Condition: heavy-damage
+	WithDamageOverlay@Burns1_atreides:
+		RequiresCondition: atreidesVFX
+		Image: fire1
+		LoopCount: 10
+	WithDamageOverlay@Burns2_atreides:
+		Image: fire2
+		LoopCount: 10
+		RequiresCondition: atreidesVFX
+	WithDamageOverlay@Burns1_harkonnen:
+		Image: fire1
+		RequiresCondition: harkonnenVFX
+	WithDamageOverlay@Burns2_harkonnen:
+		Image: fire2
+		RequiresCondition: harkonnenVFX
+	WithDamageOverlay@Burns1_ordos:
+		Image: fire1
+		RequiresCondition: ordosVFX
+	WithDamageOverlay@Burns2_ordos:
+		Image: fire2
+		RequiresCondition: ordosVFX
+	FloatingSpriteEmitter@smoke_huge_atreides:
+		RequiresCondition: heavy-damage && atreidesVFX
+		Image: smoke3
+		Lifetime: 15, 20
+		Speed: 5
+		Gravity: 60
+		SpawnFrequency: 2, 5
+		RandomFacing: true
+		RandomRate: 4
+		TurnRate: 3
+		Duration: 1224
+	FloatingSpriteEmitter@smoke2_small_atreides:
+		RequiresCondition: heavy-damage && atreidesVFX
+		Image: smoke3
+		Lifetime: 15, 20
+		Speed: 3
+		Gravity: 50
+		SpawnFrequency: 4, 15
+		RandomFacing: true
+		RandomRate: 4
+		TurnRate: 3
+		Duration: 1024
+	FloatingSpriteEmitter@smoke_huge_harkonnen:
+		RequiresCondition: heavy-damage && harkonnenVFX
+		Image: smoke3
+		Lifetime: 20,25
+		Speed: 5
+		Gravity: 60
+		SpawnFrequency: 3, 7
+		RandomFacing: true
+		RandomRate: 4
+		TurnRate: 3
+		Duration: 1524
+	FloatingSpriteEmitter@smoke2_small_harkonnen:
+		RequiresCondition: heavy-damage && harkonnenVFX
+		Image: smoke3
+		Lifetime: 15, 20
+		Speed: 3
+		Gravity: 50
+		SpawnFrequency: 4, 15
+		RandomFacing: true
+		RandomRate: 4
+		TurnRate: 3
+		Duration: 1024
+	FloatingSpriteEmitter@smoke_huge_ordos:
+		RequiresCondition: heavy-damage && ordosVFX
+		Image: smoke3
+		Lifetime: 20,25
+		Speed: 7
+		Gravity: 60
+		SpawnFrequency: 3, 8
+		RandomFacing: true
+		RandomRate: 4
+		TurnRate: 3
+		Duration: 1524
+	FloatingSpriteEmitter@smoke2_small_ordos:
+		RequiresCondition: heavy-damage && ordosVFX
+		Image: smoke3
+		Lifetime: 15, 20
+		Speed: 3
+		Gravity: 50
+		SpawnFrequency: 4, 15
+		RandomFacing: true
+		RandomRate: 4
+		TurnRate: 3
+		Duration: 1024
+
 concretea:
 	Inherits: ^concrete
 	D2kBuilding:
@@ -59,6 +158,7 @@ construction_yard:
 	Inherits: ^Building
 	Inherits@PRIMARY: ^PrimaryBuilding
 	Inherits@UPGRADEABLE: ^Upgradeable
+	Inherits@BuildVFX: ^DamagedBuildingsVFX
 	Buildable:
 		Description: actor-construction-yard.description
 	D2kBuilding:
@@ -116,6 +216,38 @@ construction_yard:
 		Prerequisites: upgrade.conyard
 	RevealOnDeath:
 		Radius: 5c768
+	FloatingSpriteEmitter@smoke3_small_conyard:
+		RequiresCondition: heavy-damage && atreidesVFX
+		Offset: -1024, -500, 0
+		SpawnFrequency: 5, 20
+		Image: smoke3
+		Lifetime: 15, 20
+		Speed: 3
+		Gravity: 50
+		Duration: 800
+	WithDamageOverlay@Burns1_atreides:
+		Offset: 300, 500, 0
+	WithDamageOverlay@Burns2_atreides:
+		Offset: 2024, -350, 0
+	WithDamageOverlay@Burns1_harkonnen:
+		Offset: -700, -200,0
+	WithDamageOverlay@Burns2_harkonnen:
+		Offset: 500, 900,0
+		SpawnFrequency: 3, 13
+	WithDamageOverlay@Burns1_ordos:
+		Offset: 300, 500, 0
+	WithDamageOverlay@Burns2_ordos:
+		Offset: 1124, -350, 0
+	FloatingSpriteEmitter@smoke_huge_harkonnen:
+		Offset: -100,300,0
+	FloatingSpriteEmitter@smoke2_small_harkonnen:
+		Offset: 800,-200,0
+		Speed: 10
+	FloatingSpriteEmitter@smoke_huge_ordos:
+		Offset: 500, -1000, 0
+		Gravity: 70
+	FloatingSpriteEmitter@smoke2_small_ordos:
+		Offset: -300, -1200, 0
 
 wind_trap:
 	Inherits: ^Building

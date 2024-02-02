@@ -376,6 +376,55 @@ fire:
 		ZOffset: 1023
 		BlendMode: Additive
 
+fire1:
+	Defaults:
+		Tick: 120
+		ZOffset: 1023
+	idle:
+		Filename: DATA.R16
+		Start: 3965
+		Length: 4
+		Offset: 4,-17
+		BlendMode: Additive
+	loop:
+		Filename: DATA.R16
+		Length: 6
+		Frames: 3968,3969,3970,3971,3972,3973,3970,3971,3972,3973, 3969
+		Offset: 4,-17
+		BlendMode: Additive
+	end:
+		Filename: DATA.R16
+		Length: 2
+		Frames: 3974, 3975
+		Offset: 4,-17
+		BlendMode: Additive
+
+fire2:
+	Defaults:
+		ZOffset: 1023
+		Tick: 120
+	idle:
+		Filename: DATA.R16
+		Start: 3976
+		Length: 11
+		Offset: 0,-3
+		ZOffset: 1023
+		BlendMode: Additive
+	loop:
+		Filename: DATA.R16
+		Start: 3976
+		Length: 11
+		Offset: 0,-3
+		ZOffset: 1023
+		BlendMode: Additive
+	end:
+		Filename: DATA.R16
+		Start: 3976
+		Length: 11
+		Offset: 0,-3
+		ZOffset: 1023
+		BlendMode: Additive
+
 smoke_m:
 	Defaults:
 		ZOffset: 511
