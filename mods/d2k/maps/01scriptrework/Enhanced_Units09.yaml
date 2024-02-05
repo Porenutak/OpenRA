@@ -889,9 +889,6 @@ deviator:
 	SpawnActorOnDeath@dummygas7:
 		Actor: dummygas07
 		SpawnAfterDefeat: false
-	SpawnActorOnDeath@dummygas8:
-		Actor: dummygas08
-		SpawnAfterDefeat: false
 
 ^combat_tank:
 	GrantRandomCondition:
@@ -1172,14 +1169,12 @@ carryall.controllable:
 		Description:  controllable carryall \n Use Ctrl or Alt to select \n Use RMB to pick up vehicle \n use Deploy to unload vehicle
 	-Interactable:
 	AutoCarryall:
-		AutoCarryCondition: !manual
+		AutoCarryCondition: manual
+		CarryCondition: carring_vehicle
 	GrantConditionOnDeploy:
 		DeployedCondition: manual
 		CanDeployOnRamps: true
 		SkipMakeAnimation: true
-	RevealsShroud:
-		Range: 6c0
-		Type: CenterPosition
 	RevealOnDeath:
 	WithDecoration@AutoCarryall:
 		RequiresCondition: !manual
@@ -1198,6 +1193,10 @@ carryall.controllable:
 		Sequence: idle
 		Palette: player
 		IsPlayerPalette: true
+	RevealsShroud:
+		Range: 1c0
+		Type: CenterPosition
+		RequiresCondition: carring_vehicle
 
 carryall.reinforce_with_sound:
 	Inherits: carryall.reinforce

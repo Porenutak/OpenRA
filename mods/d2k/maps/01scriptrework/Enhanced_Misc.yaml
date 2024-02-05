@@ -420,34 +420,7 @@ ornithopter.husk:
 		Delay: 10
 
 
-rotor:
-	Inherits: ^AircraftHusk
-	-WithFacingSpriteBody:
-	WithIdleOverlay:
-		Image: debris_rotor_anim
-		Sequence: idle
-	FallsToEarth:
-		MaximumSpinSpeed: 2
-		Explosion: debris.rotor
-		Velocity: 0c80
-	Aircraft:
-		TurnSpeed: 16
-		Speed: 144
-		CanSlide: True
-		VTOL: true
 
-rotor.flyingdown:
-	Inherits: ^AircraftHusk
-	-WithFacingSpriteBody:
-	Aircraft:
-		TurnSpeed: 16
-		Speed: 144
-		CanSlide: True
-	RenderSprites:
-		Image: debris_rotor_anim
-		Palette: d2k
-	FallsToEarth:
-		Explosion: ExplosionRotor
 
 carryall.huskVTOL_reinforce:
 	Inherits: carryall.huskVTOL
