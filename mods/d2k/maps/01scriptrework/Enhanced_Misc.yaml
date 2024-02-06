@@ -1254,3 +1254,19 @@ crater_big:
 		StartIfBelow: 101
 		Delay: 4
 	-Tooltip:
+
+sandstorm:
+	Inherits: ^SpriteActor
+	Inherits@adf: ^ExistsInWorld
+	WithSpriteBody:
+	Mobile:
+		Locomotor: worm
+		Speed: 20
+	AlwaysVisible:
+	MapEditorData:
+		Categories: System
+	Interactable:
+	Tooltip:
+		Name: SandStorm
+		ShowOwnerRow: false
+

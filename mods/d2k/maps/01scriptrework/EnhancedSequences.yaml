@@ -2732,3 +2732,11 @@ radar_station_small:
 		Frames: 3, 4, 5, 6
 		Length: 4
 		Offset: -16,-16
+
+sandstorm:
+	idle:
+		FilenamePattern: bits/sandstorm/storm-{0:D4}.png
+			Count: 30
+		ZOffset: 1024
+		Length: 30
+		Alpha: 0.5

@@ -3536,6 +3536,10 @@ Actors:
 		Owner: Multi0
 		Facing: 384
 		Location: 24,8
+	Actor829: sandstorm
+		Owner: Neutral
+		Facing: 384
+		Location: 21,34
 
 Rules: Enhanced_Units09.yaml, Enhanced_Starport09.yaml, Enhanced_Structures09.yaml, Enhanced_World09.yaml, Enhanced_Misc.yaml, Enhanced_AI.yaml, Enhanced_palettes.yaml, NewTiles.yaml, NeutralBuildings.yaml
 
