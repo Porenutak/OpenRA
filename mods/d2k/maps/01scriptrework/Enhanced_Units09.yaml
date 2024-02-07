@@ -2276,7 +2276,7 @@ hunter:
 		Prerequisites: ~light.hunter, ~factions.subfaction_allowed
 		BuildPaletteOrder: 10
 		BuildDuration: 240
-		Description: Trike with turret \n  Stronger vs Troopers, moving targets\n limited speed
+		Description: Trike with turret \n  Stronger vs Troopers, moving targets\n Slower speed
 	Tooltip:
 		Name: Hunter
 	Valued:
