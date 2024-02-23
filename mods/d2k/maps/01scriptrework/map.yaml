@@ -1289,14 +1289,6 @@ Actors:
 	Actor492: wormspawner
 		Owner: Neutral
 		Location: 5,30
-	Actor540: bison_tank
-		Owner: Multi0
-		Facing: 384
-		Location: 22,42
-	Actor541: bison_tank
-		Owner: Multi0
-		Location: 23,42
-		Facing: 384
 	Actor49: combat_tank_a
 		Owner: Multi0
 		Facing: 384
@@ -3536,10 +3528,10 @@ Actors:
 		Owner: Multi0
 		Facing: 384
 		Location: 24,8
-	Actor829: sandstorm
-		Owner: Neutral
+	Actor831: flamer
+		Owner: Multi0
 		Facing: 384
-		Location: 21,34
+		Location: 21,41
 
 Rules: Enhanced_Units09.yaml, Enhanced_Starport09.yaml, Enhanced_Structures09.yaml, Enhanced_World09.yaml, Enhanced_Misc.yaml, Enhanced_AI.yaml, Enhanced_palettes.yaml, NewTiles.yaml, NeutralBuildings.yaml
 

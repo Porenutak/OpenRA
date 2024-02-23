@@ -190,6 +190,17 @@ World:
 		Type: flash
 		Color: E2DD8F4D
 	TerrainLighting:
+	WeatherOverlay:
+		ParticleSize: 1,2
+		FadeInTicks: 500
+		FadeOutTicks: 0
+		InitialParticlePercentage: 100
+		ScatterDirection: -2,2
+		ParticleColors: e8c297, f7d7b2, fae0c3, edcda8, dbb68a, cca576
+		RequiresCondition: active_sand_storm
+	ExternalCondition@weather:
+		Condition: active_sand_storm
+
 
 
 Player:
@@ -202,7 +213,7 @@ Player:
 		FogCheckboxLocked: true
 	LobbyPrerequisiteCheckbox@AUTOCONCRETE:
 		Enabled: True
-	LobbyPrerequisiteCheckbox@FreeCarryCheckBox:
+	LobbyPrerequisiteCheckbox@ControlableCheckBox:
 		ID: ControlableCarryalls
 		Label: Controlable carryalls
 		Description: Enable manual control of carryalls and unit pick up
@@ -210,6 +221,14 @@ Player:
 		Visible: true
 		DisplayOrder: 7
 		Prerequisites: carryall.controllable
+	LobbyPrerequisiteCheckbox@SandStorms:
+		ID: sandstorms_enabled
+		Label: Sand Storms
+		Description: Enbalbe Sand Storms
+		Enabled: true
+		Visible: true
+		DisplayOrder: 8
+		Prerequisites: sandstorms_enabled
 	ExternalCondition@vanilla_factions_Only:
 		Condition: vanilla_factions_Only
 	ExternalCondition@subfactions:

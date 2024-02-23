@@ -160,6 +160,15 @@ waypoint.reinforce_h:
 waypoint.reinforce_o:
 	Inherits: ^Dummy
 
+spawnpoint.sandstorm:
+	Inherits: ^Dummy
+	RenderSpritesEditorOnly:
+		Image: sandstorm
+	RequiresSpecificOwners:
+		ValidOwnerNames: Neutral
+	EditorOnlyTooltip:
+		Name: sandstorm spawnpoint
+
 dummy.sardaukar_production_speed_up:
 	Inherits: ^DummyVehicle
 	Buildable:
@@ -224,26 +233,6 @@ dummy.hide_units:
 		Weapon: hideWeapon
 		EmptyWeapon: hideWeapon
 		RequiresCondition: hideActivator
-
-
-testshrout:
-	Inherits: thumper
-	RenderSprites:
-		Image: thumper
-	-RevealsShroud:
-	Tooltip:
-		Name: jammer test
-	CreatesShroud:
-		Range: 8c0
-		ValidRelationships: Enemy, Neutral
-	ProximityExternalCondition@jammer:
-		Range: 6c0
-		Condition: jammed
-		ValidRelationships: Enemy, Neutral
-	JamsMissiles:
-		Range: 6c0
-		Chance: 90
-		DeflectionRelationships: Enemy, Neutral
 
 dummy_spam_actor:
 	Inherits: ^DummyVehicle
@@ -1259,14 +1248,26 @@ sandstorm:
 	Inherits: ^SpriteActor
 	Inherits@adf: ^ExistsInWorld
 	WithSpriteBody:
-	Mobile:
-		Locomotor: worm
-		Speed: 20
+	Aircraft:
+		Speed: 30
 	AlwaysVisible:
 	MapEditorData:
 		Categories: System
+	Wanders:
+		WanderMoveRadius: 5
 	Interactable:
+	Health:
+		HP: 100
+	Armor:
+		Type: invulnerable
+	HitShape:
 	Tooltip:
 		Name: SandStorm
 		ShowOwnerRow: false
+	AppearsOnRadar:
+	ProximityExternalCondition:
+		Condition: sandstorm_dmg
+		Range: 4c0
+		ValidRelationships: Ally, Enemy, Neutral
+
 

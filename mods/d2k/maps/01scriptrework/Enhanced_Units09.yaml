@@ -212,7 +212,17 @@
 	ExternalCondition@rockAvalanche:
 		Condition: rock_avalanche
 
+^SandStorm:
+	ExternalCondition@sandStorm:
+		Condition: sandstorm_dmg
+	ChangesHealth@sandStorm:
+		RequiresCondition: sandstorm_dmg
+		Step: -300
+		StartIfBelow: 101
+		DamageTypes: BulletDeath
+
 ^Infantry:
+	Inherits@SandStorm: ^SandStorm
 	Inherits@rockAvalanche: ^CliffAvalanche
 	Inherits@temporerycloak: ^temporarycloak
 	Inherits@jammer: ^jammedvision
@@ -287,10 +297,7 @@
 		RequiresCondition: officerAura
 	TakeCover:
 		RequiresCondition: !officerAura
-	-HitShape:
-	HitShape@infantry:
-		Type: Circle
-			Radius: 52
+	HitShape:
 	Demolishable@wormCrush:
 	RevealsShroud@jammed:
 		Range: 3c112
@@ -304,6 +311,7 @@
 	Inherits@temporerycloak: ^temporarycloak
 	Inherits@jammer: ^jammedvision
 	Inherits@wormslowing: ^wormslowing
+	Inherits@^SandStorm: ^SandStorm
 	ExternalCondition:
 		Condition: unitCapturated
 	RevealsShroud:
@@ -336,11 +344,9 @@
 	SpeedMultiplier@HEAVYDAMAGE:
 		Modifier: 75
 	RevealsShroud@jammed:
-		Range: 4c0
+		Range: 3c750
 	SpawnActorOnDeath:
 		SpawnAfterDefeat: false
-	WithDamageOverlay:
-		MinimumDamageState: Critical
 
 mcv:
 	Valued:
@@ -1102,6 +1108,7 @@ combat_tank_corrino:
 
 carryall.reinforce:
 	Inherits: ^Plane
+	Inherits@^SandStorm: ^SandStorm
 	Valued:
 		Cost: 1000
 	UpdatesPlayerStatistics:

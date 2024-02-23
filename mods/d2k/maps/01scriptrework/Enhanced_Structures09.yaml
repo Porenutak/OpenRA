@@ -1,4 +1,5 @@
 ^Building:
+	Inherits@SandStorm: ^SandStorm
 	InstantlyRepairable:
 		Types: Building
 	ProductionTimeMultiplier@craneBonus:

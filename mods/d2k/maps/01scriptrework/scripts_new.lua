@@ -24,7 +24,14 @@ AirSquads = {
 	{"ornithopter_o", "ornithopter_o", "ornithopter_o"}
 }
 DropActor = {"carryall.reinforce_with_sound", "carryall.reinforce_with_sound", "frigate.harkonnen_cargo"}
-
+--sandstorm variables
+SandStormSpawnpoints = {}
+SandStormInterval = {100, 500} -- pick random number between interval in ticks
+SandStormDuration = {200, 300}
+SandStormEnabled = false
+SandStormTimer = 10
+SandStorm_Count = 1
+--subfaction selections for bots
 SubfactionPrerequisitesList = {}
 SubfactionPrerequisitesList["atreides"] = "subfaction.atreides"
 SubfactionPrerequisitesList["fremen"] = "subfaction.fremen"
@@ -145,8 +152,10 @@ WorldLoaded = function()
 	mp25=Player.GetPlayer("Multi25")
 	mp26=Player.GetPlayer("Multi26")
 	mp27=Player.GetPlayer("Multi27")
+	PlayerNeutral=Player.GetPlayer("Neutral")
+	PlayerCreep = Player.GetPlayer("Creeps")
 	Players = {mp0, mp1, mp2, mp3, mp4, mp5, mp6, mp7, mp8, mp9, mp10, mp11, mp12, mp13, mp14, mp15, mp16, mp17, mp18, mp19, mp20, mp21, mp22, mp23, mp24, mp25, mp26, mp27}
-
+	--check faction mode
 	FactionsMode  = tonumber(Map.LobbyOption("fation_mode"))
 	if (FactionsMode == 0) then
 		--Media.DisplayMessage("you play with standart d2k mode", "Mentat", HSLColor.DarkRed)
@@ -157,11 +166,17 @@ WorldLoaded = function()
 	if (FactionsMode == 2) then
 		Media.DisplayMessage("Merge Faction mode - chosen subfaction will be merged in to your Major faction","Mentat", HSLColor.DarkRed)
 	end
-	if Player.GetPlayer("Neutral").HasPrerequisites({"ControlableCarryalls"}) then
+	if PlayerNeutral.HasPrerequisites({"ControlableCarryalls"}) then
 		Trigger.AfterDelay(25, function()
-			Media.DisplayMessage("Controlable carryalls is ON. \n you can control only carryalls you build in high tech factory", "Mentat",  HSLColor.DarkRed)
-			Media.DisplayMessage("Use Alt or Ctrl modifier to select Carryalls. Use RMB to pick up vehicle and Deploy to unload vehicle", "Mentat",  HSLColor.DarkRed)
+			Media.DisplayMessage("Controlable carryalls is ON. \n you can control only carryalls you build in High tech factory", "Mentat",  HSLColor.DarkRed)
+			Media.DisplayMessage("Use Alt or Ctrl modifier to select Carryalls. Use RMB to pick up. Use Deploy to unload", "Mentat",  HSLColor.DarkRed)
 		end)
+	end
+	-- sandstorm INIT
+	if PlayerNeutral.HasPrerequisites({"sandstorms_enabled"}) then
+		SandStormSpawnpoints = PlayerNeutral.GetActorsByType("spawnpoint.sandstorm")
+		SandStormEnabled = true
+		SandStormTimer = Utils.RandomInteger(SandStormInterval[1],SandStormInterval[2])
 	end
 	for i, player in pairs(Players) do
 		-- factions  option check
@@ -295,7 +310,18 @@ Tick = function()
 	--	Media.DisplayMessage("cheking")
 		techtreecheck()
 	end
-
+	-- sandstorm logic
+	if(SandStormEnabled) then
+		if SandStormTimer < 300 then
+			UserInterface.SetMissionText("Warning Sand Storm Approaching: "..Utils.FormatTime(SandStormTimer))
+		end
+		if(SandStormTimer > 0) then
+			SandStormTimer = SandStormTimer - 1
+		else
+			UserInterface.SetMissionText("")
+			SandStormInit()
+		end
+	end
 end
 
 -------------------------
@@ -975,6 +1001,8 @@ function GetSpawnPoint(dummy)
 	end
 end
 
+
+
 -- adds new actors into the list (used only in tick function)
 
 function ActorsAddedToWorld(newlist,register)
@@ -988,4 +1016,38 @@ function ActorsAddedToWorld(newlist,register)
 		end
 	end
 	return new_actor_list
+end
+
+---------------------
+--SandStorms
+------------------
+function SandStormInit()
+	local duration = Utils.RandomInteger(SandStormDuration[1], SandStormDuration[2])
+	SandStormEnabled = false
+	-- use spawnpoints if there are any
+	if SandStormSpawnpoints[1] ~= nil then
+		for i = 0, SandStorm_Count, 1 do
+			local spawnpoint = Utils.Random(SandStormSpawnpoints)
+			Actor.Create("sandstorm", true, {Owner = PlayerCreep, Location = spawnpoint.Location})
+
+		end
+	else
+		local i = 0
+		while i < SandStorm_Count do
+			local randomCell = Map.RandomCell()
+			if Map.TerrainType(randomCell) == "Sand" or Map.TerrainType(randomCell) == "SpiceSand" then
+				i = i + 1
+				Actor.Create("sandstorm", true, {Owner = PlayerCreep, Location = randomCell})
+			end
+		end
+	end
+	-- remove sandsorm actors from the map
+	Trigger.AfterDelay(Utils.RandomInteger(SandStormDuration[1], SandStormDuration[2]), function()
+		local storms = PlayerCreep.GetActorsByType("sandstorm")
+		Utils.Do(storms, function(storm)
+			storm.Kill()
+		end)
+		SandStormEnabled = true
+		SandStormTimer = Utils.RandomInteger(SandStormInterval[1],SandStormInterval[2])
+	end)
 end
