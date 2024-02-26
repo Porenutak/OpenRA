@@ -448,7 +448,7 @@ trike:
 	Health:
 		HP: 9000
 	Armor:
-		Type: light
+		Type: wood
 	RevealsShroud:
 		Range: 7c0
 	Mobile:

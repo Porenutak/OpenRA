@@ -287,11 +287,11 @@ wind_trap:
 		Bounds: 2048, 2048
 	Valued:
 		Cost: 225
+	Health:
+		HP: 35000
 	GrantConditionOnPrerequisite:
 		Condition: ArmorUpgrade
 		Prerequisites: upgrade.conyard
-	Health:
-		HP: 35000
 	Armor:
 		Type: building
 		RequiresCondition: ArmorUpgrade
@@ -339,8 +339,15 @@ barracks:
 		Cost: 400
 	Health:
 		HP: 37000
+	GrantConditionOnPrerequisite:
+		Condition: ArmorUpgrade
+		Prerequisites: upgrade.conyard
 	Armor:
 		Type: building
+		RequiresCondition: ArmorUpgrade
+	Armor@weakArmor:
+		Type: wood
+		RequiresCondition: !ArmorUpgrade
 	RevealsShroud:
 		Range: 3c768
 	GrantConditionOnFaction@fremenExit:
@@ -426,7 +433,7 @@ refinery:
 	Valued:
 		Cost: 1500
 	Health:
-		HP: 43000
+		HP: 41000
 	Armor:
 		Type: building
 		RequiresCondition: ArmorUpgrade
@@ -1064,9 +1071,6 @@ medium_gun_turret:
 	Inherits@chaosbomb: ^chaos_bomb_influence
 	Inherits@jammer: ^jammedvision
 	-AttackWander:
-	GrantConditionOnPrerequisite:
-		Condition: ArmorUpgrade
-		Prerequisites: upgrade.conyard
 	Buildable:
 		Prerequisites: barracks
 		BuildDuration: 300
@@ -1075,12 +1079,6 @@ medium_gun_turret:
 		Cost: 600
 	Health:
 		HP: 30000
-	Armor:
-		Type: wall
-		RequiresCondition: ArmorUpgrade
-	Armor@weakArmor:
-		Type: heavy
-		RequiresCondition: !ArmorUpgrade
 	RevealsShroud:
 		Range: 5c768
 	Turreted:

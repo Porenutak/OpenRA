@@ -14,11 +14,11 @@
 		Versus:
 			wall: 10
 			building: 25
-			wood: 45
+			wood: 50
 			light: 35
 			heavy: 13
 			invulnerable: 0
-			cy: 15
+			cy: 17
 			harvester: 25
 		DamageTypes: Prone50Percent, TriggerProne, BulletDeath
 		DamageCalculationType: ClosestTargetablePosition
@@ -215,7 +215,7 @@ Fremen_S_MP:
 			none: 40
 			wall: 50
 			building: 50
-			wood: 65
+			wood: 70
 			heavy: 80
 			invulnerable: 0
 			cy: 20
@@ -339,12 +339,12 @@ DevBullet:
 		Versus:
 			none: 20
 			wall: 60
-			building: 40
-			wood: 50
+			building: 45
+			wood: 65
 			light: 70
 			heavy: 100
 			invulnerable: 0
-			cy: 20
+			cy: 25
 			harvester: 60
 
 Bazooka:
