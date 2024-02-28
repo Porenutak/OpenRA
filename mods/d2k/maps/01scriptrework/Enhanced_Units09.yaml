@@ -490,7 +490,7 @@ raider:
 		BuildDuration: 250
 		Description: Fast scout \n Strong vs Infantry\n  Weak vs Tanks, Rockets
 	Valued:
-		Cost: 375
+		Cost: 350
 	RevealsShroud:
 		Range: 7c0
 	Tooltip:
@@ -569,7 +569,7 @@ stealth_raider:
 	Buildable:
 		Prerequisites: ~light.ordos, upgrade.light, high_tech_factory, ~techlevel.high
 		BuildPaletteOrder: 30
-		BuildDuration: 260
+		BuildDuration: 275
 		Description: Invisible Raider\n Can be detected by Infantry (1 cell), Turrets(2 cells), Outpost (5 cells)
 	Valued:
 		Cost: 450
@@ -609,7 +609,7 @@ siege_tank:
 		TargetFrozenActors: True
 		FacingTolerance: 0
 	Valued:
-		Cost: 700
+		Cost: 800
 	Health:
 		HP: 13000
 	Armor:
@@ -1640,6 +1640,8 @@ saboteur:
 		Description: Always cloaked. \n Destroy buildings \n SelfKill explosion
 	UpdatesPlayerStatistics:
 		AddToArmyValue: true
+	RevealsShroud:
+		Range: 4c768
 	WithDecoration@ScullIcon:
 		Image: skullicon
 		Sequence: idle
@@ -2022,7 +2024,7 @@ bison_tank:
 	Buildable:
 		Queue: Armor
 		Prerequisites: ~heavy.bison, research_centre,upgrade.heavy, ~techlevel.high, ~factions.subfaction_allowed
-		BuildDuration: 545
+		BuildDuration: 580
 		BuildDurationModifier: 100
 		BuildPaletteOrder: 100
 		Description: Heavy double barrel tank licensed from IX \n Strong VS vehicles, Tanks \n Weak VS infantry
@@ -2297,7 +2299,7 @@ hunter:
 	AttackTurreted:
 	WithSpriteTurret:
 	RevealsShroud:
-		Range: 7c0
+		Range: 5c512
 	Mobile:
 		Speed: 100
 	Armament@damage:
@@ -2365,7 +2367,7 @@ bombardment_tank:
 	Buildable:
 		Queue: Armor
 		Prerequisites: ~heavy.corrino, upgrade.heavy, research_centre, ~factions.subfaction_allowed
-		BuildDuration: 690
+		BuildDuration: 680
 		BuildDurationModifier: 100
 		BuildPaletteOrder: 105
 		Description: Heavy missile barrage affecting large area. \n Strong VS Infantry, Light armor \n Weak VS moving targets, tanks \n Ability: can fire 4 missile before reload \n High inaccuraty
@@ -2378,7 +2380,7 @@ bombardment_tank:
 	Armor:
 		Type: light
 	Mobile:
-		Speed: 40
+		Speed: 47
 		TurnSpeed: 17
 	RevealsShroud:
 		Range: 5c512
@@ -2513,7 +2515,7 @@ frigate.harkonnen_cargo:
 	Aircraft:
 		IdleBehavior: None
 	Health:
-		HP: 13000
+		HP: 12000
 	RejectsOrders:
 	Armament:
 		Weapon: clusterMissile

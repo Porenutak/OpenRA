@@ -966,7 +966,7 @@ rocket_spike:
 40mm_mortar:
 	Inherits: ^Cannon
 	ReloadDelay: 80
-	Range: 6c512
+	Range: 6c312
 	MinRange: 2c0
 	Report: audio/EBoD_MortarFire.wav
 	Projectile: Bullet
