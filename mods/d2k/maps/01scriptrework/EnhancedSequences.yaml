@@ -46,10 +46,6 @@ icon:
 		Start: 479
 		Offset: -30,-24
 
-auto-tag:
-	idle:
-		Filename: bits/autotag.shp
-		ZOffset: 100000
 
 manual-tag:
 	idle:
@@ -2509,6 +2505,12 @@ fremen:
 		Offset: -16,-16
 
 saboteur:
+	active:
+		Filename: DATA.R16
+		Start: 3839
+		Length: 14
+		Tick: 80
+		BlendMode: Additive
 	die6:
 		Filename: EnhacedAssets.R8
 		Start: 775

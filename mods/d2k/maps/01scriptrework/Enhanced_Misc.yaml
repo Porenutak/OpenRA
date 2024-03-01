@@ -1248,14 +1248,18 @@ sandstorm:
 	Inherits: ^SpriteActor
 	Inherits@adf: ^ExistsInWorld
 	WithSpriteBody:
+	RenderSprites:
+		Image: sandstorm
 	Aircraft:
-		Speed: 30
+		Speed: 20
 	AlwaysVisible:
 	MapEditorData:
 		Categories: System
 	Wanders:
 		WanderMoveRadius: 5
 	Interactable:
+	AmbientSound:
+		SoundFiles: audio/wind_loop_medium_1.wav, audio/wind_loop_medium_2.wav
 	Health:
 		HP: 100
 	Armor:
@@ -1267,7 +1271,7 @@ sandstorm:
 	AppearsOnRadar:
 	ProximityExternalCondition:
 		Condition: sandstorm_dmg
-		Range: 4c0
+		Range: 2c0
 		ValidRelationships: Ally, Enemy, Neutral
 
 

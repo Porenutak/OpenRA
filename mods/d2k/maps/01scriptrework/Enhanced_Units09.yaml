@@ -611,7 +611,7 @@ siege_tank:
 	Valued:
 		Cost: 800
 	Health:
-		HP: 13000
+		HP: 12000
 	Armor:
 		Type: light
 	Mobile:
@@ -847,7 +847,7 @@ deviator:
 		Priority: 50
 		RequiresCondition: ignore-creeps
 	Valued:
-		Cost: 1100
+		Cost: 1000
 	Buildable:
 		Prerequisites: ~heavy.ordos, research_centre,upgrade.heavy, ~techlevel.high
 		BuildDuration: 618
@@ -1176,34 +1176,23 @@ carryall.controllable:
 		Description:  controllable carryall \n Use Ctrl or Alt to select \n Use RMB to pick up vehicle \n use Deploy to unload vehicle
 	-Interactable:
 	AutoCarryall:
-		AutoCarryCondition: manual
-		CarryCondition: carring_vehicle
-	GrantConditionOnDeploy:
+		AutoCarryCondition: !manual
+		CarryCondition: loaded
+	GrantConditionOnDeploy@AUTO:
 		DeployedCondition: manual
 		CanDeployOnRamps: true
 		SkipMakeAnimation: true
 	RevealOnDeath:
-	WithDecoration@AutoCarryall:
-		RequiresCondition: !manual
-		Position: BottomLeft
-		Margin: 3, 4
-		Image: auto-tag
-		RequiresSelection: true
-		Sequence: idle
-		Palette: player
-		IsPlayerPalette: true
-	WithDecoration@manual:
-		RequiresCondition: manual
-		Position: BottomLeft
-		Margin: 3, 4
-		Image: manual-tag
-		Sequence: idle
-		Palette: player
-		IsPlayerPalette: true
 	RevealsShroud:
-		Range: 1c0
+		Range: 0c512
+		RequiresCondition: loaded
 		Type: CenterPosition
-		RequiresCondition: carring_vehicle
+	WithTextDecoration@AUTO:
+		UsePlayerColor: true
+		Text: AUTO
+		Position: Top
+		ValidRelationships: Ally
+		RequiresCondition: !manual
 
 carryall.reinforce_with_sound:
 	Inherits: carryall.reinforce
@@ -1649,8 +1638,17 @@ saboteur:
 		Palette: effect
 		Position: BottomRight
 		Margin: 5, 6
+	WithInfantryBody:
+		RequiresCondition: !SuicideAtt
+	WithIdleOverlay:
+		Sequence: active
+		RequiresCondition: SuicideAtt
+	WithIdleOverlay@prone:
+		StartSequence: standup
+		Sequence: prone-stand
+		RequiresCondition: SuicideAtt
 	Health:
-		HP: 6000
+		HP: 5000
 	Mobile:
 		Speed: 43
 		PauseOnCondition: SuicideAtt

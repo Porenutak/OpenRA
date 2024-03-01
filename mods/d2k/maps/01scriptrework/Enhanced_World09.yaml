@@ -40,7 +40,7 @@
 			Sand: 100
 			Rock: 100
 			Transition: 100
-			Concrete: 100
+			Concrete: 110
 			SpiceSand: 100
 			Spice: 100
 			SpiceBlobs: 100
@@ -52,7 +52,7 @@
 			Sand: 100
 			Rock: 100
 			Transition: 100
-			Concrete: 100
+			Concrete: 110
 			SpiceSand: 100
 			Spice: 100
 			SpiceBlobs: 100
@@ -65,7 +65,19 @@
 			Sand: 100
 			Rock: 100
 			Transition: 100
-			Concrete: 100
+			Concrete: 120
+			SpiceSand: 100
+			Spice: 100
+			SpiceBlobs: 100
+			Dune: 50
+	Locomotor@DEVASTATOR:
+		Name: devastator
+		Crushes: crate, infantry, spicebloom, wall
+		TerrainSpeeds:
+			Sand: 100
+			Rock: 100
+			Transition: 100
+			Concrete: 110
 			SpiceSand: 100
 			Spice: 100
 			SpiceBlobs: 100
