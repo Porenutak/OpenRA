@@ -45,6 +45,10 @@ icon:
 		Filename: EnhacedAssets.R8
 		Start: 479
 		Offset: -30,-24
+	thump:
+		Filename: DATA.R16
+		Start: 4275
+		Offset: -30,-24
 
 
 manual-tag:
@@ -93,17 +97,15 @@ skullicon:
 		Filename: bits/ScullIconTD01.shp
 		Length: *
 
-rotor:
+thump:
 	idle:
 		Filename: EnhacedAssets.R8
 		Start: 44
-		Facings: -4
-		Tick: 180
-	make:
+	thump:
 		Filename: EnhacedAssets.R8
 		Start: 44
 		Length: 5
-		Tick: 180
+		Tick: 150
 
 
 choam_unit_number:

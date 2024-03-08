@@ -1194,6 +1194,27 @@ carryall.controllable:
 		ValidRelationships: Ally
 		RequiresCondition: !manual
 
+carryall.reinforce.sound:
+	Inherits: carryall.reinforce
+	Aircraft:
+		MinAirborneAltitude: 400
+		TakeoffSounds: audio/adv_carryall_takeoff_1.wav
+		LandingSounds: audio/adv_carryall_land_1.wav
+		Speed: 140
+	RevealsShroud@landing:
+		Range: 3c0
+		RequiresCondition: !cruising
+		Type: CenterPosition
+	RevealsShroud@onland:
+		Range: 4c0
+		RequiresCondition: !airborne
+		Type: CenterPosition
+	AmbientSound:
+		SoundFiles: audio/carryallSound(2).wav
+		RequiresCondition: cruising
+	SpawnActorOnDeath@LANDING:
+		Actor: carryall.huskVTOL_reinforce
+
 carryall.reinforce_with_sound:
 	Inherits: carryall.reinforce
 	-Carryall:
@@ -1711,10 +1732,12 @@ fremen:
 	Armament@SECONDARY:
 		Weapon: Fremen_L
 		Name: secondary
+		RequiresCondition: chaos_bomb
 	Armament@chaos_bomb_influence:
 		Weapon: Fremen_S
 	Armament@chaos_bomb_influence2:
 		Weapon: Fremen_L
+		RequiresCondition: chaos_bomb
 	ChangesHealth@regen:
 		Step: 0
 		PercentageStep: 4
@@ -1844,8 +1867,8 @@ assassin:
 		TerrainTypes: Rough
 		Condition: hiddenbetweenrocks
 	Cloak:
-		InitialDelay: 120
-		CloakDelay: 120
+		InitialDelay: 60
+		CloakDelay: 60
 		UncloakOn: Move, Damage
 		IsPlayerPalette: true
 		RequiresCondition: !cloak-force-disabled && hiddenbetweenrocks
@@ -1925,7 +1948,7 @@ fremen_fedaykin:
 		Cost: 180
 	Buildable:
 		Queue: Infantry
-		Prerequisites: ~factions.subfaction_allowed, ~barracks.fremen, research_centre, ~techlevel.medium
+		Prerequisites: ~factions.subfaction_allowed, ~barracks.fremen, upgrade.barracks, high_tech_factory, ~techlevel.medium
 		BuildDuration: 155
 		BuildDurationModifier: 100
 
@@ -2280,7 +2303,7 @@ hunter:
 	Inherits@GAINSEXPERIENCE: ^GainsExperience
 	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
 	Buildable:
-		Prerequisites: ~light.hunter, ~factions.subfaction_allowed
+		Prerequisites: ~light.hunter,upgrade.light, ~factions.subfaction_allowed
 		BuildPaletteOrder: 10
 		BuildDuration: 240
 		Description: Trike with turret \n  Stronger vs Troopers, moving targets\n Slower speed
@@ -2590,7 +2613,7 @@ merged.fremen_fedaykin:
 	Inherits: fremen_fedaykin
 	Buildable:
 		BuildDuration: 160
-		Prerequisites: ~techlevel.high, ~factions.merged, barracks, upgrade.barracks, merged.fremen_sietch, ~merged.fremen
+		Prerequisites: ~techlevel.high, ~factions.merged, barracks, upgrade.barracks, high_tech_factory, ~merged.fremen
 	RenderSprites:
 		Image: fremen
 
@@ -2600,7 +2623,7 @@ merged.sardaukar:
 	RenderSprites:
 		Image: sardaukar
 	Buildable:
-		Prerequisites: ~techlevel.high, ~factions.merged, ~merged.corrino, merged.corrino_palace, barracks, upgrade.barracks
+		Prerequisites: ~techlevel.high, ~factions.merged, ~merged.corrino, high_tech_factory, barracks, upgrade.barracks
 
 merged.bombardment_tank:
 	Inherits: bombardment_tank
@@ -2614,7 +2637,7 @@ merged.flamer:
 	RenderSprites:
 		Image: flamer
 	Buildable:
-		Prerequisites: ~techlevel.high, ~factions.merged, ~merged.smuggler, research_centre, heavy_factory, upgrade.heavy, merged.starport_smuggler
+		Prerequisites: ~techlevel.high, ~factions.merged, ~merged.smuggler, research_centre, heavy_factory, upgrade.heavy
 
 merged.hunter:
 	Inherits: hunter
@@ -2638,14 +2661,14 @@ merged.crawler.light:
 		Image: crawler.light
 	Buildable:
 		BuildPaletteOrder: 106
-		Prerequisites: ~merged.mercenary, outpost, ~factions.merged, ~techlevel.high, upgrade.light, light_factory
+		Prerequisites: ~merged.mercenary, ~factions.merged, ~techlevel.high, upgrade.light, light_factory
 
 merged.mortar_inf:
 	Inherits: mortar_inf
 	RenderSprites:
 		Image: mortar_inf
 	Buildable:
-		Prerequisites: ~merged.mercenary, outpost, ~factions.merged, ~techlevel.high, barracks, upgrade.barracks, merged.mercenary_factory
+		Prerequisites: ~merged.mercenary, outpost, ~factions.merged, ~techlevel.high, barracks, upgrade.barracks
 
 merged.bison_tank:
 	Inherits: bison_tank

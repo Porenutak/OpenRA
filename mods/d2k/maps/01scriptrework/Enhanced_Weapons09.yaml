@@ -37,9 +37,6 @@ LMG:
 Fremen_S:
 	Inherits: ^MG
 	ReloadDelay: 48
-	Report: FREMODD1.WAV
-	Warhead@2Eff: CreateEffect
-		Explosions: small_explosion
 
 M_LMG:
 	Inherits: ^MG
@@ -98,7 +95,7 @@ M_HMG:
 			heavy: 50
 			invulnerable: 0
 			cy: 20
-			harvester: 50
+			harvester: 60
 	Warhead@3Concrete: DamagesConcrete
 		Damage: 625
 
@@ -109,17 +106,6 @@ M_HMG_H:
 Fremen_L:
 	Inherits: M_HMG
 	ReloadDelay: 55
-	Report: FREMODD1.WAV
-	-InvalidTargets:
-	Projectile: Bullet
-		Image: RPG
-		Speed: 281
-		TrailImage: bazooka_trail3
-		TrailInterval: 1
-	Warhead@1Dam: SpreadDamage
-		DamageTypes: Prone50Percent, TriggerProne, SmallExplosionDeath
-	Warhead@2Eff: CreateEffect
-		Explosions: small_explosion
 
 Fremen_wormrider:
 	Inherits: Sound
@@ -164,16 +150,6 @@ Fremen_wormrider2:
 		AffectsParent: false
 		ValidRelationships: Neutral, Enemy, Ally
 
-Fremen_L_MP:
-	Inherits: Fremen_L
-	Range: 4c0
-	Warhead@1Dam: SpreadDamage
-		Versus:
-			building: 30
-			wall: 50
-
-Fremen_S_MP:
-	Inherits: Fremen_S
 
 110mm_Gun:
 	Inherits: ^Cannon
@@ -242,7 +218,7 @@ Fremen_S_MP:
 
 80mm_cheap:
 	Inherits: ^Cannon
-	ReloadDelay: 68
+	ReloadDelay: 66
 	Projectile: Bullet
 		Inaccuracy: 135
 
@@ -334,7 +310,7 @@ DevBullet:
 		Inaccuracy: 128
 	Warhead@1Dam: SpreadDamage
 		Damage: 3600
-		Spread: 600
+		Spread: 700
 		Falloff: 100, 0
 		Versus:
 			none: 20
@@ -944,7 +920,7 @@ SardDeath:
 		Damage: 3800
 		Spread: 625
 		Versus:
-			none: 20
+			none: 10
 			wall: 75
 			building: 60
 			wood: 65
@@ -1054,7 +1030,7 @@ SniperRifle:
 	ReloadDelay: 120
 	AfterFireSound: audio/EBoD_infantry_reload_low.wav
 	AfterFireSoundDelay: 50
-	Range: 5c0
+	Range: 4c0
 	ValidTargets: Ground, Infantry
 	InvalidTargets: Vehicle, Tank, Structure, Wall, Husk, Creep
 	Projectile: InstantHit

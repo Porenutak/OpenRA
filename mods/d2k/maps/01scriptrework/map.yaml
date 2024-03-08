@@ -941,9 +941,9 @@ Actors:
 		Location: 17,29
 	Actor366: assassin
 		Owner: Multi0
-		Facing: 384
 		SubCell: 3
 		Location: 21,29
+		Facing: 384
 	Actor367: assassin
 		Owner: Multi0
 		Facing: 384
@@ -1037,11 +1037,6 @@ Actors:
 		SubCell: 3
 		TurretFacing: 0
 		Facing: 285
-	Actor404: engineer
-		Owner: Multi0
-		SubCell: 3
-		Location: 31,23
-		Facing: 384
 	Actor405: bison_tank
 		Owner: Multi0
 		Facing: 384
@@ -1458,24 +1453,12 @@ Actors:
 	Actor115: pass01_destroyable_top
 		Owner: Neutral
 		Location: 33,34
-	Actor597: outpost
-		Owner: Multi0
-		Location: 29,19
 	Actor607: pass01_destroyable_left
 		Owner: Neutral
 		Location: 26,6
 	Actor608: pass01_destroyable_right
 		Owner: Neutral
 		Location: 35,6
-	Actor525: high_tech_factory
-		Owner: Multi0
-		Location: 29,24
-	Actor527: starport
-		Owner: Multi0
-		Location: 6,25
-	Actor528: construction_yard
-		Owner: Multi0
-		Location: 3,25
 	Actor547: worm_rider
 		Owner: Multi0
 		Facing: 384
@@ -1648,160 +1631,6 @@ Actors:
 		Owner: Neutral
 		Facing: 384
 		Location: 18,40
-	Actor545: trooper
-		Owner: Multi0
-		SubCell: 3
-		Facing: 384
-		Location: 44,39
-	Actor546: trooper
-		Owner: Multi0
-		Facing: 384
-		Location: 44,39
-		SubCell: 1
-	Actor549: trooper
-		Owner: Multi0
-		Facing: 384
-		Location: 44,39
-		SubCell: 2
-	Actor550: trooper
-		Owner: Multi0
-		Facing: 384
-		Location: 44,39
-		SubCell: 4
-	Actor551: trooper
-		Owner: Multi0
-		Facing: 384
-		Location: 44,39
-		SubCell: 5
-	Actor552: trooper
-		Owner: Multi0
-		Facing: 384
-		Location: 45,39
-		SubCell: 3
-	Actor553: trooper
-		Owner: Multi0
-		Facing: 384
-		Location: 45,39
-		SubCell: 1
-	Actor590: trooper
-		Owner: Multi0
-		Facing: 384
-		Location: 45,39
-		SubCell: 2
-	Actor594: trooper
-		Owner: Multi0
-		Facing: 384
-		Location: 45,39
-		SubCell: 4
-	Actor650: trooper
-		Owner: Multi0
-		Facing: 384
-		Location: 45,39
-		SubCell: 5
-	Actor651: trooper
-		Owner: Multi0
-		Facing: 384
-		Location: 46,39
-		SubCell: 3
-	Actor652: trooper
-		Owner: Multi0
-		Facing: 384
-		Location: 46,39
-		SubCell: 1
-	Actor653: trooper
-		Owner: Multi0
-		Facing: 384
-		Location: 46,39
-		SubCell: 2
-	Actor654: trooper
-		Owner: Multi0
-		Facing: 384
-		Location: 46,39
-		SubCell: 4
-	Actor655: trooper
-		Owner: Multi0
-		Facing: 384
-		Location: 46,39
-		SubCell: 5
-	Actor656: trooper
-		Owner: Multi0
-		Facing: 384
-		Location: 47,39
-		SubCell: 3
-	Actor657: trooper
-		Owner: Multi0
-		Facing: 384
-		Location: 47,39
-		SubCell: 1
-	Actor658: trooper
-		Owner: Multi0
-		Facing: 384
-		Location: 47,39
-		SubCell: 2
-	Actor659: trooper
-		Owner: Multi0
-		Facing: 384
-		Location: 47,39
-		SubCell: 4
-	Actor660: trooper
-		Owner: Multi0
-		Facing: 384
-		Location: 47,39
-		SubCell: 5
-	Actor661: trooper
-		Owner: Multi0
-		Facing: 384
-		SubCell: 3
-		Location: 48,39
-	Actor662: trooper
-		Owner: Multi0
-		Facing: 384
-		Location: 48,39
-		SubCell: 1
-	Actor663: trooper
-		Owner: Multi0
-		Facing: 384
-		Location: 48,39
-		SubCell: 2
-	Actor664: trooper
-		Owner: Multi0
-		Facing: 384
-		Location: 48,39
-		SubCell: 4
-	Actor665: trooper
-		Owner: Multi0
-		Facing: 384
-		Location: 48,39
-		SubCell: 5
-	Actor666: trooper
-		Owner: Multi0
-		Facing: 384
-		Location: 49,39
-		SubCell: 3
-	Actor667: trooper
-		Owner: Multi0
-		Facing: 384
-		Location: 49,39
-		SubCell: 1
-	Actor668: trooper
-		Owner: Multi0
-		Facing: 384
-		Location: 49,39
-		SubCell: 2
-	Actor669: trooper
-		Owner: Multi0
-		Facing: 384
-		Location: 49,39
-		SubCell: 4
-	Actor670: trooper
-		Owner: Multi0
-		Facing: 384
-		Location: 49,39
-		SubCell: 5
-	Actor493: quad
-		Owner: Creeps
-		Facing: 384
-		Location: 2,16
 	Actor498: combat_tank_a
 		Owner: Multi0
 		Facing: 384
@@ -2085,36 +1914,6 @@ Actors:
 		Owner: Multi0
 		Facing: 384
 		Location: 44,12
-	Actor705: platform_left_02
-		Owner: Neutral
-		Location: 40,34
-	Actor706: platform_left_03
-		Owner: Neutral
-		Location: 40,35
-	Actor707: platform_left_01
-		Owner: Neutral
-		Location: 40,33
-	Actor710: bridge1_end_bottom_left
-		Owner: Neutral
-		Location: 48,35
-	Actor711: bridge01_sand_right
-		Owner: Neutral
-		Location: 49,34
-	Actor712: bridge1_end_top_left
-		Owner: Neutral
-		Location: 48,33
-	Actor713: bridge1_end_right
-		Owner: Neutral
-		Location: 48,34
-	Actor714: platform_sand_bottom_right
-		Owner: Neutral
-		Location: 45,36
-	Actor715: platform_sand_bottom_left
-		Owner: Neutral
-		Location: 42,36
-	Actor716: platform_sand_bottom
-		Owner: Neutral
-		Location: 44,37
 	Actor717: fremen_temple
 		Owner: Neutral
 		Location: 33,41
@@ -2466,56 +2265,6 @@ Actors:
 	Actor900: wind_trap
 		Owner: Multi0
 		Location: 25,25
-	Actor901: light_inf
-		Owner: Multi0
-		Facing: 384
-		SubCell: 3
-		Location: 28,23
-	Actor902: light_inf
-		Owner: Multi0
-		Facing: 384
-		Location: 28,23
-		SubCell: 1
-	Actor903: light_inf
-		Owner: Multi0
-		Facing: 384
-		Location: 28,23
-		SubCell: 2
-	Actor904: light_inf
-		Owner: Multi0
-		Facing: 384
-		Location: 28,23
-		SubCell: 4
-	Actor905: light_inf
-		Owner: Multi0
-		Facing: 384
-		Location: 28,23
-		SubCell: 5
-	Actor906: light_inf
-		Owner: Multi0
-		Facing: 384
-		SubCell: 3
-		Location: 27,23
-	Actor907: light_inf
-		Owner: Multi0
-		Facing: 384
-		Location: 27,23
-		SubCell: 1
-	Actor908: light_inf
-		Owner: Multi0
-		Facing: 384
-		Location: 27,23
-		SubCell: 2
-	Actor909: light_inf
-		Owner: Multi0
-		Facing: 384
-		Location: 27,23
-		SubCell: 4
-	Actor910: light_inf
-		Owner: Multi0
-		Facing: 384
-		Location: 27,23
-		SubCell: 5
 	Actor911: combat_tank_o
 		Owner: Creeps
 		Facing: 384
@@ -2713,29 +2462,6 @@ Actors:
 		Owner: Multi0
 		Facing: 384
 		Location: 36,24
-	Actor959: refinery
-		Owner: Multi0
-		Location: 33,19
-	Actor960: trike
-		Owner: Multi0
-		Facing: 384
-		Location: 34,18
-	Actor961: trike
-		Owner: Multi0
-		Facing: 384
-		Location: 36,19
-	Actor962: trike
-		Owner: Multi0
-		Facing: 384
-		Location: 36,21
-	Actor963: trike
-		Owner: Multi0
-		Facing: 384
-		Location: 34,22
-	Actor964: trike
-		Owner: Multi0
-		Facing: 384
-		Location: 32,20
 	Actor965: devastator
 		Owner: Multi0
 		Facing: 384
@@ -2744,48 +2470,6 @@ Actors:
 		Owner: Multi0
 		Facing: 384
 		Location: 19,31
-	Actor967: heavy_factory
-		Owner: Multi0
-		Location: 25,18
-	Actor968: trike
-		Owner: Multi0
-		Facing: 384
-		Location: 24,21
-	Actor969: trike
-		Owner: Multi0
-		Facing: 384
-		Location: 27,18
-	Actor970: trike
-		Owner: Multi0
-		Facing: 384
-		Location: 25,18
-	Actor971: trike
-		Owner: Multi0
-		Facing: 384
-		Location: 28,21
-	Actor972: trike
-		Owner: Multi0
-		Facing: 384
-		Location: 26,21
-	Actor973: light_factory
-		Owner: Multi0
-		Location: 31,15
-	Actor974: trike
-		Owner: Multi0
-		Facing: 384
-		Location: 32,17
-	Actor975: trike
-		Owner: Multi0
-		Facing: 384
-		Location: 34,16
-	Actor976: trike
-		Owner: Multi0
-		Facing: 384
-		Location: 30,16
-	Actor977: trike
-		Owner: Multi0
-		Facing: 384
-		Location: 32,14
 	Actor792: light_inf
 		Owner: Multi0
 		SubCell: 3
@@ -2876,71 +2560,6 @@ Actors:
 		Facing: 384
 		Location: 46,43
 		SubCell: 2
-	Actor898: sonic_tank
-		Owner: Multi0
-		Location: 43,27
-		Facing: 103
-	Actor983: sonic_tank
-		Owner: Multi0
-		Location: 44,27
-		Facing: 31
-		Health: 3
-	Actor984: sonic_tank
-		Owner: Multi0
-		Location: 45,27
-		Facing: 1023
-	Actor985: sonic_tank
-		Owner: Multi0
-		Location: 46,27
-		Facing: 943
-	Actor986: sonic_tank
-		Owner: Multi0
-		Location: 47,27
-		Facing: 888
-	Actor987: sonic_tank
-		Owner: Multi0
-		Location: 43,28
-		Facing: 174
-	Actor988: sonic_tank
-		Owner: Multi0
-		Location: 43,29
-		Facing: 253
-	Actor989: sonic_tank
-		Owner: Multi0
-		Location: 43,30
-		Facing: 325
-	Actor990: sonic_tank
-		Owner: Multi0
-		Facing: 384
-		Location: 43,31
-	Actor991: sonic_tank
-		Owner: Multi0
-		Location: 45,31
-		Facing: 507
-	Actor992: sonic_tank
-		Owner: Multi0
-		Location: 44,31
-		Facing: 475
-	Actor993: sonic_tank
-		Owner: Multi0
-		Location: 46,31
-		Facing: 578
-	Actor994: sonic_tank
-		Owner: Multi0
-		Location: 47,31
-		Facing: 650
-	Actor995: sonic_tank
-		Owner: Multi0
-		Location: 47,30
-		Facing: 689
-	Actor996: sonic_tank
-		Owner: Multi0
-		Location: 47,29
-		Facing: 777
-	Actor997: sonic_tank
-		Owner: Multi0
-		Location: 47,28
-		Facing: 816
 	Actor978: light_inf
 		Owner: Neutral
 		SubCell: 3
@@ -3547,10 +3166,92 @@ Actors:
 		Facing: 384
 		SubCell: 3
 		Location: 23,29
-	Actor865: sandstorm
-		Owner: Neutral
-		Location: 22,31
+	Actor867: combat_tank_a
+		Owner: Creeps
 		Facing: 384
+		Location: 2,15
+	Actor881: combat_tank_a
+		Owner: Creeps
+		Facing: 384
+		Location: 2,12
+	Actor882: missile_tank
+		Owner: Creeps
+		Facing: 384
+		Location: 49,35
+	Actor719: missile_tank
+		Owner: Creeps
+		Facing: 384
+		Location: 49,32
+	Actor898: fremen_fedaykin
+		Owner: Multi0
+		Facing: 384
+		SubCell: 3
+		Location: 42,37
+	Actor983: fremen_fedaykin
+		Owner: Multi0
+		Facing: 384
+		SubCell: 1
+		Location: 42,37
+	Actor984: fremen_fedaykin
+		Owner: Multi0
+		Facing: 384
+		Location: 42,37
+		SubCell: 2
+	Actor985: fremen_fedaykin
+		Owner: Multi0
+		Facing: 384
+		Location: 42,37
+		SubCell: 4
+	Actor986: fremen_fedaykin
+		Owner: Multi0
+		Facing: 384
+		Location: 42,37
+		SubCell: 5
+	Actor886: mpsardaukar.corrino
+		Owner: Multi0
+		SubCell: 3
+		Facing: 384
+		Location: 42,32
+	Actor887: mpsardaukar.corrino
+		Owner: Multi0
+		Facing: 384
+		Location: 42,32
+		SubCell: 1
+	Actor987: mpsardaukar.corrino
+		Owner: Multi0
+		Facing: 384
+		Location: 42,32
+		SubCell: 2
+	Actor988: mpsardaukar.corrino
+		Owner: Multi0
+		Facing: 384
+		Location: 42,32
+		SubCell: 4
+	Actor989: mpsardaukar.corrino
+		Owner: Multi0
+		Facing: 384
+		Location: 42,32
+		SubCell: 5
+	Actor404: engineer
+		Owner: Multi0
+		SubCell: 3
+		Location: 31,23
+		Facing: 384
+	Actor703: merged.fremen_sietch
+		Owner: Creeps
+		Location: 33,21
+	Actor704: merged.corrino_palace
+		Owner: Creeps
+		Location: 34,17
+	Actor705: merged.starport_smuggler
+		Owner: Creeps
+		Location: 30,16
+	Actor706: merged.mercenary_factory
+		Owner: Creeps
+		Location: 26,15
+	Actor707: outpost
+		Owner: Multi0
+		Location: 2,25
 
 Rules: Enhanced_Units09.yaml, Enhanced_Starport09.yaml, Enhanced_Structures09.yaml, Enhanced_World09.yaml, Enhanced_Misc.yaml, Enhanced_AI.yaml, Enhanced_palettes.yaml, NewTiles.yaml, NeutralBuildings.yaml
 

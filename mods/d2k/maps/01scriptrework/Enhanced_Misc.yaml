@@ -77,6 +77,12 @@ spicebloom:
 	OwnerLostAction:
 		Action: Dispose
 
+dummy.thump_spawmer:
+	Inherits: ^Dummy
+	FreeActorWithDelivery:
+		Actor: thump
+		DeliveringActor: carryall.reinforce.sound
+
 ^DummyVehicle:
 	Inherits@1: ^ExistsInWorld
 	Inherits@2: ^SpriteActor
@@ -1275,3 +1281,40 @@ sandstorm:
 		ValidRelationships: Ally, Enemy, Neutral
 
 
+thump:
+	Inherits@1: ^Infantry
+	QuantizeFacingsFromSequence:
+		Sequence: idle
+	-WithInfantryBody:
+	WithIdleOverlay@idle:
+		Sequence: idle
+		RequiresCondition: !thump
+	WithIdleOverlay@thump:
+		Sequence: thump
+		RequiresCondition: thump
+	Tooltip:
+		Name: Thumper
+	Mobile:
+		Speed: 0
+	Health:
+		HP: 1000
+	Carryable:
+	KillsSelf:
+		Delay: 100
+		GrantsCondition: spawnworm
+		RequiresCondition: thump
+	AmbientSound:
+		SoundFiles: THUMPER1.WAV
+		Interval: 60
+		RequiresCondition: thump
+	GrantConditionOnTerrain:
+		TerrainTypes: Sand, Spicem, Dune, SpiceSand
+		Condition: thump
+	-Armament@chaos_bomb_influence:
+	-Armament:
+	SpawnActorOnDeath:
+		Actor: sandworm
+		OwnerType: InternalName
+		InternalOwner: Creeps
+		SpawnAfterDefeat: false
+		RequiresCondition: spawnworm

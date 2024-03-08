@@ -128,8 +128,8 @@ World:
 		Default: 0
 		Values:
 			0: Main factions only
-			1: Main & Subfactions
-			2: Subfactions in Main Fac.
+			1: With Subfactions
+			2: Subfactions Merged in Main
 		Visible: true
 		DisplayOrder: 2
 	SmudgeLayer@RockSmoke:
@@ -237,7 +237,7 @@ Player:
 		ID: sandstorms_enabled
 		Label: Sand Storms
 		Description: Enbalbe Sand Storms
-		Enabled: true
+		Enabled: false
 		Visible: true
 		DisplayOrder: 8
 		Prerequisites: sandstorms_enabled
