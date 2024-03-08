@@ -353,7 +353,7 @@ Rocket:
 	Inherits: ^Rocket
 	ReloadDelay: 72
 	Range: 8c512
-	MinRange: 0c650
+	MinRange: 0c850
 	Projectile: Missile
 		Inaccuracy: 300
 		InaccuracyType: Maximum

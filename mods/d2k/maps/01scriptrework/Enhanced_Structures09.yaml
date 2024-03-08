@@ -288,7 +288,7 @@ wind_trap:
 	Valued:
 		Cost: 225
 	Health:
-		HP: 35000
+		HP: 34000
 	GrantConditionOnPrerequisite:
 		Condition: ArmorUpgrade
 		Prerequisites: upgrade.conyard
@@ -433,7 +433,7 @@ refinery:
 	Valued:
 		Cost: 1500
 	Health:
-		HP: 41000
+		HP: 40000
 	Armor:
 		Type: building
 		RequiresCondition: ArmorUpgrade
