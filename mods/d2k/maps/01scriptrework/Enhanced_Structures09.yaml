@@ -2062,13 +2062,11 @@ fremen_sietch:
 		SpawnOffset: -704,1024,0
 		ExitCell: -1,3
 	ProduceActorPower@wormrider:
-		EffectImage: Carryall
 		Actors: worm_rider
 		Type: Fremen
 		Name: Worm rider
 		Description: Deploy to ride worm.
 		ChargeInterval: 6700
-		LifeTime: -1
 		Icon: sandworm
 		StartFullyCharged: false
 		Prerequisites: ~techlevel.high

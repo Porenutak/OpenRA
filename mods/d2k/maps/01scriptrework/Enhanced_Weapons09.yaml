@@ -1,6 +1,6 @@
 
 ^MG:
-	ReloadDelay: 36
+	ReloadDelay: 30
 	Range: 3c0
 	Report: MGUN2.WAV
 	Projectile: InstantHit
@@ -36,31 +36,31 @@ LMG:
 
 Fremen_S:
 	Inherits: ^MG
-	ReloadDelay: 48
+	ReloadDelay: 40
 
 M_LMG:
 	Inherits: ^MG
-	ReloadDelay: 48
+	ReloadDelay: 40
 	Range: 3c112
 	ValidTargets: Infantry
 
 M_LMG_H:
 	Inherits: M_LMG
-	ReloadDelay: 48
+	ReloadDelay: 40
 
 HMG:
 	Inherits: ^MG
-	ReloadDelay: 24
+	ReloadDelay: 20
 	Range: 3c850
 	Report: 20MMGUN1.WAV
 	Projectile: InstantHit
 		Inaccuracy: 135
 	Warhead@1Dam: SpreadDamage
 		Damage: 2160
-		Spread: 700
+		Spread: 650
 		Versus:
 			none: 100
-			building: 30
+			building: 25
 			light: 30
 			heavy: 15
 			invulnerable: 0
@@ -69,19 +69,19 @@ HMG:
 
 HMGo:
 	Inherits: HMG
-	ReloadDelay: 21
+	ReloadDelay: 18
 
 HMG_muzzle:
-	ReloadDelay: 20
+	ReloadDelay: 16
 	Range: 3c870
 
 HMGo_muzzle:
-	ReloadDelay: 17
+	ReloadDelay: 14
 	Range: 3c870
 
 M_HMG:
 	Inherits: ^MG
-	ReloadDelay: 48
+	ReloadDelay: 40
 	Range: 4c0
 	Report: 20MMGUN1.WAV
 	InvalidTargets: Infantry
@@ -101,11 +101,11 @@ M_HMG:
 
 M_HMG_H:
 	Inherits: M_HMG
-	ReloadDelay: 55
+	ReloadDelay: 50
 
 Fremen_L:
 	Inherits: M_HMG
-	ReloadDelay: 55
+	ReloadDelay: 50
 
 Fremen_wormrider:
 	Inherits: Sound
@@ -176,7 +176,7 @@ Fremen_wormrider2:
 			harvester: 50
 
 ^Cannon:
-	ReloadDelay: 60
+	ReloadDelay: 50
 	Range: 4c112
 	Report: MEDTANK1.WAV
 	Projectile: Bullet
@@ -205,22 +205,20 @@ Fremen_wormrider2:
 
 80mm_A:
 	Inherits: ^Cannon
-	Range: 5c112
+	Range: 5c0
 
 80mm_H:
 	Inherits: ^Cannon
 	ReloadDelay: 66
 
 80mm_O:
-	Range: 4c112
 	Inherits: ^Cannon
 	ReloadDelay: 54
 
 80mm_cheap:
 	Inherits: ^Cannon
 	ReloadDelay: 66
-	Projectile: Bullet
-		Inaccuracy: 135
+
 
 80mm_corrino:
 	Inherits: ^Cannon
@@ -252,7 +250,7 @@ Fremen_wormrider2:
 
 155mm:
 	Inherits: ^Cannon
-	ReloadDelay: 102
+	ReloadDelay: 96
 	Range: 7c512
 	MinRange: 2c0
 	Projectile: Bullet
@@ -284,7 +282,7 @@ Fremen_wormrider2:
 
 DevBullet:
 	Range: 4c512
-	ReloadDelay: 85
+	ReloadDelay: 75
 		Speed: 281
 	Warhead@1Dam: SpreadDamage
 		Damage: 7800
@@ -301,8 +299,8 @@ DevBullet:
 		DamageTypes: Prone50Percent, TriggerProne, FireDeath
 
 ^Rocket:
-	ReloadDelay: 53
-	Range: 3c870
+	ReloadDelay: 45
+	Range: 3c900
 	Report: ROCKET1.WAV
 	Projectile: Bullet
 		Blockable: true
@@ -337,7 +335,6 @@ Rocket:
 		Inaccuracy: 150
 	Warhead@1Dam: SpreadDamage
 		Damage: 3000
-		Spread: 600
 		Versus:
 			none: 25
 			wall: 60
@@ -351,11 +348,11 @@ Rocket:
 
 ^Missile:
 	Inherits: ^Rocket
-	ReloadDelay: 72
+	ReloadDelay: 60
 	Range: 8c512
 	MinRange: 0c850
 	Projectile: Missile
-		Inaccuracy: 300
+		Inaccuracy: 350
 		InaccuracyType: Maximum
 		HorizontalRateOfTurn: 22
 		RangeLimit: 9c614
@@ -382,7 +379,7 @@ Rocket:
 
 mtank_pri:
 	Inherits: ^Missile
-	ReloadDelay: 145
+	ReloadDelay: 140
 	Burst: 2
 	BurstDelays: 30
 	Range: 8c0
@@ -411,7 +408,7 @@ clusterMissile:
 	Range: 7c512
 	MinRange: 2c221
 	Projectile: Missile
-		Inaccuracy: 160
+		Inaccuracy: 150
 		InaccuracyType: PerCellIncrement
 		Image: MISSILE2
 		Speed: 310
@@ -430,7 +427,7 @@ clusterMissile:
 		Damage: 3950
 		Spread: 1c450
 		Versus:
-			none: 100
+			none: 80
 			wall: 70
 			building: 80
 			wood: 100
@@ -471,7 +468,7 @@ missile_Dummy:
 
 DeviatorMissile:
 	Inherits: ^Missile
-	ReloadDelay: 176
+	ReloadDelay: 160
 	Range: 6c0
 	Projectile: Missile
 		RangeLimit: 7c0
@@ -513,7 +510,7 @@ DeviatorGas:
 
 
 Sound:
-	ReloadDelay: 100
+	ReloadDelay: 90
 	Range: 6c0
 	Report: SONIC1.WAV
 	Projectile: AreaBeam
@@ -662,7 +659,7 @@ DeathHandCluster:
 		Inaccuracy: 1c512
 		BounceCount: 0
 	Warhead@1Dam: SpreadDamage
-		Damage: 8000
+		Damage: 5000
 		Spread: 1c950
 		Versus:
 			none: 120
@@ -679,7 +676,7 @@ DeathHandCluster:
 		ImpactSounds: EXPLSML4.WAV, EXPLSML1.WAV, EXPLSML2.WAV
 
 grenade:
-	ReloadDelay: 65
+	ReloadDelay: 50
 	Range: 4c0
 	Projectile: Bullet
 		Speed: 160
@@ -976,7 +973,7 @@ rocket_spike:
 
 portable_cannon:
 	ReloadDelay: 65
-	Range: 5c512
+	Range: 6c112
 	Report: BAZOOK1.WAV
 	Projectile: InstantHit
 		Blockable: true
@@ -1014,7 +1011,7 @@ pistol:
 		Inaccuracy: 50
 	Warhead@1Dam: SpreadDamage
 		Damage: 1100
-		Spread: 180
+		Spread: 380
 	-Warhead@2Eff:
 	-Warhead@3Concrete:
 
@@ -1030,7 +1027,7 @@ SniperRifle:
 	ReloadDelay: 120
 	AfterFireSound: audio/EBoD_infantry_reload_low.wav
 	AfterFireSoundDelay: 50
-	Range: 4c0
+	Range: 5c0
 	ValidTargets: Ground, Infantry
 	InvalidTargets: Vehicle, Tank, Structure, Wall, Husk, Creep
 	Projectile: InstantHit
