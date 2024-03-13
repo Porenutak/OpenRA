@@ -67,7 +67,6 @@ engineer:
 		Description: actor-engineer.encyclopedia
 		Order: 30
 		Category: Units
-	-RevealOnFire:
 	Voiced:
 		VoiceSet: EngineerVoice
 	-AttackFrontal:
@@ -79,11 +78,11 @@ trooper:
 		Queue: Infantry
 		BuildPaletteOrder: 20
 		Prerequisites: upgrade.barracks, ~techlevel.medium
-		BuildDuration: 85
+		BuildDuration: 118
 		BuildDurationModifier: 100
 		Description: actor-trooper.description
 	Valued:
-		Cost: 90
+		Cost: 100
 	Tooltip:
 		Name: actor-trooper.name
 	UpdatesPlayerStatistics:
@@ -108,7 +107,6 @@ trooper:
 
 thumper:
 	Inherits: ^Infantry
-	-RevealOnFire:
 	Buildable:
 		Queue: Infantry
 		BuildPaletteOrder: 40
@@ -212,7 +210,7 @@ grenadier:
 		Queue: Infantry
 		BuildPaletteOrder: 60
 		Prerequisites: ~barracks.atreides, upgrade.barracks, high_tech_factory, ~techlevel.medium
-		BuildDuration: 94
+		BuildDuration: 98
 		BuildDurationModifier: 100
 		Description: actor-grenadier.description
 	Valued:
@@ -314,7 +312,7 @@ saboteur:
 	UpdatesPlayerStatistics:
 		AddToArmyValue: true
 	Health:
-		HP: 4000
+		HP: 5000
 	Encyclopedia:
 		Description: actor-saboteur.encyclopedia
 		Order: 80
@@ -322,16 +320,15 @@ saboteur:
 	Mobile:
 		Speed: 43
 	Demolition:
-		DetonationDelay: 0
-		Flashes: 0
+		DetonationDelay: 50
+		Flashes: 3
 		EnterBehaviour: Suicide
-	-RevealOnFire:
 	GrantConditionOnDeployWithCharge:
 		DeployedCondition: deployed
 		CanCancelCondition: true
 		ChargeDuration: 1250
 		ChargeThreshhold: 100
-		ConditionDuration: 375
+		ConditionDuration: 500
 	Cloak:
 		RequiresCondition: deployed
 		InitialDelay: 0

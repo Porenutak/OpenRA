@@ -70,7 +70,7 @@ Player:
 	BaseBuilderBotModule@omnius:
 		RequiresCondition: enable-omnius-ai
 		BuildingQueues: Building, Upgrade
-		MinimumExcessPower: 50
+		MinimumExcessPower: 60
 		MaximumExcessPower: 200
 		ExcessPowerIncrement: 50
 		ExcessPowerIncreaseThreshold: 4
@@ -129,7 +129,7 @@ Player:
 	BaseBuilderBotModule@vidious:
 		RequiresCondition: enable-vidious-ai
 		BuildingQueues: Building, Upgrade
-		MinimumExcessPower: 50
+		MinimumExcessPower: 60
 		MaximumExcessPower: 200
 		ExcessPowerIncrement: 50
 		ExcessPowerIncreaseThreshold: 4
@@ -186,7 +186,7 @@ Player:
 	BaseBuilderBotModule@gladius:
 		RequiresCondition: enable-gladius-ai
 		BuildingQueues: Building, Upgrade
-		MinimumExcessPower: 50
+		MinimumExcessPower: 60
 		MaximumExcessPower: 200
 		ExcessPowerIncrement: 50
 		ExcessPowerIncreaseThreshold: 4

@@ -101,6 +101,7 @@ actor-engineer =
       Strong vs Buildings
       Weak vs Everything
       Can repair destroyed cliffs
+      Can restores husks to working condition by capturing them.
    .name = Engineer
    .encyclopedia = Engineers can be used to capture enemy buildings.
 
@@ -293,6 +294,8 @@ actor-outpost =
 
     The Radar Outpost is vulnerable to most types of weapons.
 
+    The Radar Outpost provide vast line of sight and detection radius against cloacked units.
+
 actor-starport =
    .name = Starport
    .description = Dropzone for quick reinforcements, at a price.
@@ -304,23 +307,23 @@ actor-wall =
    .description = Stop units and blocks enemy fire.
    .name = Concrete Wall
    .generic-name = Structure
-   .encyclopedia = Base defense. Concrete walls are the most effective barriers on Dune. Concrete walls will block tank bullets and impede unit movement.
+   .encyclopedia = Base defense. Concrete walls are the most effective barriers on Dune. Concrete walls will block infantry/tank bullets and basic rockets. Impede unit movement.
 
     Walls can only be damaged by explosive weapons, missiles and shells. Like concrete slabs, walls cannot be repaired if damaged.
 
 actor-medium-gun-turret =
    .description = Defensive structure.
-      Strong vs Tanks
-      Weak vs Infantry, Aircraft
+      Modest vs Infantry, Vehicles
+      Weak vs Tanks
    .name = Gun Turret
-   .encyclopedia = The Gun Turret has a medium range gun which is effective against vehicles, especially heavily armored vehicles. The Gun Turret will fire on any enemy unit within range.
+   .encyclopedia = The Gun Turret has a medium range gun which is effective against vehicles, especially light armored vehicles. The Gun Turret will fire on any enemy unit within range.
 
     The Gun Turret is resistant to bullet and explosive weapons, but vulnerable to missiles and high-caliber guns.
 
 actor-large-gun-turret =
    .description = Defensive structure.
-      Strong vs Infantry, Aircraft
-      Weak vs Tanks
+      Strong vs Tanks, Aircraft
+      Weak vs Infantry
 
       Requires power to operate.
    .name = Rocket Turret
@@ -393,6 +396,7 @@ actor-trike =
    .description = Fast scout
       Strong vs Infantry
       Weak vs Tanks
+      Good line of sight
    .name = Trike
    .encyclopedia = Trikes are lightly armored, three-wheeled vehicles equipped with heavy machine guns, effective against infantry and lightly armored vehicles.
 
@@ -449,6 +453,7 @@ actor-raider =
    .description = Improved Scout
       Strong vs Infantry, Light Vehicles
       Weak vs Tanks
+      Good line of sight
    .name = Raider Trike
    .encyclopedia = Raiders are similar to Trikes, but the Ordos have refined their fire power, speed and armor to create a powerful and maneuverable scout. With dual 20mm cannons, Raiders are most effective against infantry and lightly armored vehicles.
 

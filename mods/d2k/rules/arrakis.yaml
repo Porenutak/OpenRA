@@ -148,6 +148,7 @@ sietch:
 	-Sellable:
 	-Capturable:
 	-RepairableBuilding:
+	-Explodes@sabotuerDemolition:
 	Demolishable:
 		-Condition:
 	ProvidesPrerequisite@buildingname:

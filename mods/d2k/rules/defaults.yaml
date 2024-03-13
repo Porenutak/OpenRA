@@ -222,8 +222,14 @@
 		PauseOnCondition: notmobile
 	Selectable:
 		Bounds: 1024, 1024
+	ExternalCondition:
+		Condition: unitCapturated
 	Targetable:
 		TargetTypes: Ground, Vehicle, C4
+		RequiresCondition: !unitCapturated
+	Targetable@CAPTURED:
+		TargetTypes: CapturedUnit, Ground
+		RequiresCondition: unitCapturated
 	Passenger:
 		CargoType: Vehicle
 	AttackMove:
@@ -237,6 +243,12 @@
 	Guardable:
 	WithFacingSpriteBody:
 	Demolishable:
+		Condition: being-demolished
+	Explodes@sabotuerDemolition:
+		RequiresCondition: being-demolished
+		Type: CenterPosition
+		Weapon: PlasmaSaboteur
+		EmptyWeapon: PlasmaSaboteur
 	TemporaryOwnerManager:
 	MustBeDestroyed:
 	Voiced:
@@ -250,7 +262,6 @@
 		Margin: 7, 9
 		Sequence: pickup-indicator
 		RequiresCondition: carryall-reserved
-	RevealOnFire:
 	RevealOnDeath:
 		Duration: 100
 		Radius: 2c512
@@ -281,6 +292,9 @@
 	Inherits: ^Vehicle
 	Mobile:
 		Locomotor: tank
+	GrantConditionOnDamageState@HEAVY:
+		Condition: heavy-damage
+		ValidDamageStates: Critical
 
 ^Husk:
 	Inherits@1: ^SpriteActor
@@ -423,7 +437,6 @@
 			Rough: 80
 	Voiced:
 		VoiceSet: InfantryVoice
-	RevealOnFire:
 	RevealOnDeath:
 		Duration: 100
 	HitShape:
@@ -520,6 +533,11 @@
 	ShakeOnDeath:
 	Demolishable:
 		Condition: being-demolished
+	Explodes@sabotuerDemolition:
+		RequiresCondition: being-demolished
+		Type: CenterPosition
+		Weapon: PlasmaSaboteur
+		EmptyWeapon: PlasmaSaboteur
 	Sellable:
 		RequiresCondition: !build-incomplete && !being-demolished
 		SellSounds: BUILD1.WAV
@@ -575,7 +593,6 @@
 		Range: 2c0, 4c0
 	MustBeDestroyed:
 		RequiredForShortGame: false
-	RevealOnFire:
 	Targetable:
 		TargetTypes: Ground, C4, Structure, Defense
 	MapEditorData:
@@ -749,3 +766,18 @@
 		RequiresForceFire: true
 	MapEditorData:
 		Categories: Destroyed Tiles
+
+^Dummy:
+	MapEditorData:
+		Categories: system
+	AlwaysVisible:
+	Interactable:
+	Immobile:
+		OccupiesSpace: false
+	RenderSpritesEditorOnly:
+		Image: waypoint
+	WithSpriteBody:
+	BodyOrientation:
+		QuantizedFacings: 1
+	OwnerLostAction:
+		Action: Dispose

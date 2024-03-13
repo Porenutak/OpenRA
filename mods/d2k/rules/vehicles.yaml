@@ -50,7 +50,6 @@ mcv:
 		Step: 50
 		Delay: 3
 		StartIfBelow: 50
-	-RevealOnFire:
 
 harvester:
 	Inherits: ^Tank
@@ -59,7 +58,7 @@ harvester:
 		Queue: Armor
 		Prerequisites: refinery
 		BuildPaletteOrder: 10
-		BuildDuration: 625
+		BuildDuration: 600
 		BuildDurationModifier: 100
 		Description: actor-harvester.description
 	Valued:
@@ -109,7 +108,6 @@ harvester:
 		Step: 50
 		Delay: 3
 		StartIfBelow: 50
-	-RevealOnFire:
 	WithStoresResourcesPipsDecoration:
 		Position: BottomLeft
 		Margin: 1, 4
@@ -146,6 +144,9 @@ trike:
 		AddToArmyValue: true
 	Selectable:
 		Class: trike
+	AutoTarget:
+		MinimumScanTimeInterval: 0 # must be set to 0, 0 otherwise autotarget is broke
+		MaximumScanTimeInterval: 0
 	Health:
 		HP: 9000
 	Armor:
@@ -162,10 +163,10 @@ trike:
 	WithMuzzleOverlay:
 	Armament@damage:
 		Weapon: HMG
-		LocalOffset: 50,0,0
+		LocalOffset: 100,0,0
 	Armament@muzzle:
 		Weapon: HMG_muzzle
-		LocalOffset: 50,0,0
+		LocalOffset: 100,0,0
 		MuzzleSequence: muzzle
 	AttackFrontal:
 		FacingTolerance: 0
@@ -183,7 +184,7 @@ quad:
 		Queue: Vehicle
 		Prerequisites: upgrade.light, ~techlevel.medium
 		BuildPaletteOrder: 20
-		BuildDuration: 321
+		BuildDuration: 345
 		BuildDurationModifier: 100
 		Description: actor-quad.description
 	Valued:
@@ -200,7 +201,7 @@ quad:
 		TurnSpeed: 32
 		Speed: 96
 	RevealsShroud:
-		Range: 4c768
+		Range: 6c0
 	Armament:
 		Weapon: Rocket
 		LocalOffset: 128,64,64, 128,-64,64
@@ -226,7 +227,7 @@ siege_tank:
 		Queue: Armor
 		Prerequisites: upgrade.heavy, ~techlevel.medium
 		BuildPaletteOrder: 50
-		BuildDuration: 375
+		BuildDuration: 400
 		BuildDurationModifier: 100
 		Description: actor-siege-tank.description
 	Valued:
@@ -244,10 +245,10 @@ siege_tank:
 		Order: 170
 		Category: Units
 	Mobile:
-		Speed: 43
+		Speed: 40
 		TurnSpeed: 12
 	RevealsShroud:
-		Range: 6c768
+		Range: 5c512
 	Turreted:
 		TurnSpeed: 12
 		Offset: 0,0,-32
@@ -272,6 +273,10 @@ siege_tank:
 		Actor: siege_tank.husk
 		OwnerType: InternalName
 		EffectiveOwnerFromOwner: true
+	ThrowsShrapnel:
+		Weapons: Debris, Debris2, Debris3
+		Pieces: 1, 2
+		Range: 2c0, 4c0
 	AttractsWorms:
 		Intensity: 600
 
@@ -285,7 +290,7 @@ missile_tank:
 		AddToArmyValue: true
 	Buildable:
 		Queue: Armor
-		Prerequisites: ~heavy.missile_tank, upgrade.heavy, research_centre, ~techlevel.high
+		Prerequisites: ~heavy.missile_tank, upgrade.heavy, high_tech_factory, ~techlevel.high
 		BuildPaletteOrder: 60
 		BuildDuration: 512
 		BuildDurationModifier: 100
@@ -293,18 +298,18 @@ missile_tank:
 	Valued:
 		Cost: 900
 	Mobile:
-		Speed: 64
+		Speed: 58
 		TurnSpeed: 20
 	Health:
 		HP: 13000
 	Armor:
-		Type: wood
+		Type: light
 	Encyclopedia:
 		Description: actor-missile-tank.encyclopedia
 		Order: 190
 		Category: Units
 	RevealsShroud:
-		Range: 6c768
+		Range: 6c0
 	Armament:
 		Weapon: mtank_pri
 		LocalOffset: -128,128,171, -128,-128,171
@@ -339,12 +344,12 @@ sonic_tank:
 	Buildable:
 		Queue: Armor
 		BuildPaletteOrder: 100
-		Prerequisites: ~heavy.atreides, research_centre, ~techlevel.high
+		Prerequisites: ~heavy.atreides, research_centre, upgrade.heavy, ~techlevel.high
 		BuildDuration: 562
 		BuildDurationModifier: 100
 		Description: actor-sonic-tank.description
 	Valued:
-		Cost: 1000
+		Cost: 1100
 	Tooltip:
 		Name: actor-sonic-tank.name
 	UpdatesPlayerStatistics:
@@ -360,6 +365,9 @@ sonic_tank:
 		Range: 5c768
 	Armament:
 		Weapon: Sound
+		LocalOffset: 600,0,427
+	Armament@allydamage:
+		Weapon: Sound.Ally
 		LocalOffset: 600,0,427
 	Encyclopedia:
 		Description: actor-sonic-tank.encyclopedia
@@ -381,21 +389,23 @@ devastator:
 	Inherits: ^Tank
 	Inherits@GAINSEXPERIENCE: ^GainsExperience
 	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
+	ExternalCondition:
+		Condition: unitCapturated # block selfdestruct when captured by deviator
 	Buildable:
 		Queue: Armor
 		BuildPaletteOrder: 100
-		Prerequisites: ~heavy.harkonnen, research_centre, ~techlevel.high
+		Prerequisites: ~heavy.harkonnen, research_centre, upgrade.heavy, ~techlevel.high
 		BuildDuration: 625
 		BuildDurationModifier: 100
 		Description: actor-devastator.description
 	Valued:
-		Cost: 1050
+		Cost: 1200
 	Tooltip:
 		Name: actor-devastator.name
 	UpdatesPlayerStatistics:
 		AddToArmyValue: true
 	Health:
-		HP: 50000
+		HP: 55000
 	Armor:
 		Type: heavy
 	Mobile:
@@ -424,10 +434,6 @@ devastator:
 		Weapon: UnitExplodeLarge
 		EmptyWeapon: UnitExplodeLarge
 		RequiresCondition: !overload
-	SpawnActorOnDeath:
-		Actor: devastator.husk
-		OwnerType: InternalName
-		EffectiveOwnerFromOwner: true
 	Explodes@OVERLOAD:
 		Weapon: PlasmaExplosion
 		EmptyWeapon: PlasmaExplosion
@@ -435,6 +441,7 @@ devastator:
 	GrantConditionOnDeploy@REACTOR:
 		DeployedCondition: overload
 		PauseOnCondition: overload
+		RequiresCondition: !unitCapturated
 	WithIdleOverlay@OVERLOAD:
 		Sequence: active
 		RequiresCondition: overload
@@ -442,17 +449,31 @@ devastator:
 		Sequence: active-2
 		RequiresCondition: overload
 	KillsSelf@MELTDOWN:
-		Delay: 240
-		RequiresCondition: overload
+		Delay: 150
+		RequiresCondition: overload && !unitCapturated
 		GrantsCondition: meltdown
 	AttractsWorms:
 		Intensity: 700
 	ChangesHealth:
-		Step: 50
+		Step: 40
 		Delay: 3
 		StartIfBelow: 50
 	Selectable:
 		DecorationBounds: 1408, 1216, 0, 0
+	SpawnActorOnDeath:
+		Actor: devastator.husk
+		RequiresCondition: !meltdown
+		OwnerType: InternalName
+		EffectiveOwnerFromOwner: true
+	ThrowsShrapnel@OnMeltdown:
+		Weapons: Debris2, DebrisExplosive, Debris4, DebrisExplosive2
+		Pieces: 7, 15
+		Range: 3c512, 7c0
+		RequiresCondition: meltdown
+	ThrowsShrapnel@standart:
+		Weapons: Debris, Debris3
+		Pieces: 1, 2
+		RequiresCondition: !meltdown
 
 raider:
 	Inherits: ^Vehicle
@@ -462,7 +483,7 @@ raider:
 		Queue: Vehicle
 		BuildPaletteOrder: 10
 		Prerequisites: ~light.raider
-		BuildDuration: 225
+		BuildDuration: 250
 		BuildDurationModifier: 100
 		Description: actor-raider.description
 	Valued:
@@ -505,15 +526,17 @@ stealth_raider:
 	Buildable:
 		Prerequisites: ~light.ordos, upgrade.light, high_tech_factory, ~techlevel.medium
 		BuildPaletteOrder: 30
-		BuildDuration: 225
+		BuildDuration: 265
 		BuildDurationModifier: 100
 		Description: actor-stealth-raider.description
 	Valued:
-		Cost: 400
+		Cost: 450
 	Tooltip:
 		Name: actor-stealth-raider.name
 	UpdatesPlayerStatistics:
 		AddToArmyValue: true
+	RevealsShroud:
+		Range: 4c768
 	Cloak:
 		InitialDelay: 45
 		CloakDelay: 90
@@ -544,7 +567,7 @@ deviator:
 	Buildable:
 		Queue: Armor
 		BuildPaletteOrder: 50
-		Prerequisites: ~heavy.ordos, research_centre, ~techlevel.high
+		Prerequisites: ~heavy.ordos, research_centre, upgrade.heavy, ~techlevel.high
 		BuildDuration: 562
 		BuildDurationModifier: 100
 		Description: actor-deviator.description
@@ -560,7 +583,7 @@ deviator:
 		Order: 210
 		Category: Units
 	RevealsShroud:
-		Range: 4c768
+		Range: 5c112
 	Armament:
 		Weapon: DeviatorMissile
 		LocalOffset: -299,0,85
@@ -575,6 +598,8 @@ deviator:
 		Actor: deviator.husk
 		OwnerType: InternalName
 		EffectiveOwnerFromOwner: true
+	SpawnActorOnDeath@LeakDuration:
+		Actor: dummy.leak_duration
 	AttractsWorms:
 		Intensity: 600
 
@@ -593,14 +618,14 @@ deviator:
 	UpdatesPlayerStatistics:
 		AddToArmyValue: true
 	Health:
-		HP: 21000
+		HP: 22000
 	Armor:
 		Type: heavy
 	Mobile:
 		Speed: 75
 		TurnSpeed: 20
 	RevealsShroud:
-		Range: 5c768
+		Range: 5c0
 	Turreted:
 		TurnSpeed: 20
 		RealignDelay: 0
@@ -625,7 +650,7 @@ deviator:
 		EffectiveOwnerFromOwner: true
 	ThrowsShrapnel:
 		Weapons: Debris, Debris2, Debris3
-		Pieces: 0, 2
+		Pieces: 1, 2
 		Range: 2c0, 4c0
 
 combat_tank_a:
@@ -657,8 +682,11 @@ combat_tank_h:
 		Weapon: 80mm_H
 	Mobile:
 		Speed: 64
+	SpeedMultiplier@HEAVYDAMAGE:
+		RequiresCondition: heavy-damage
+		Modifier: 85
 	Health:
-		HP: 27000
+		HP: 28500
 	SpawnActorOnDeath:
 		Actor: combat_tank_h.husk
 
@@ -679,6 +707,6 @@ combat_tank_o:
 	Mobile:
 		Speed: 85
 	Health:
-		HP: 18000
+		HP: 19000
 	SpawnActorOnDeath:
 		Actor: combat_tank_o.husk

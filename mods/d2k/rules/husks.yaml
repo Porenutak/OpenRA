@@ -88,6 +88,8 @@ deviator.husk:
 	Inherits: ^VehicleHusk
 	Health:
 		HP: 11000
+	ChangesHealth:
+		Step: -80
 	Tooltip:
 		Name: actor-deviator-husk-name
 	ThrowsParticle@turret:
@@ -105,6 +107,21 @@ deviator.husk:
 		IntoActor: deviator
 	InfiltrateForTransform:
 		IntoActor: deviator
+	ExternalCondition:
+		Condition: leak_duration
+	FireWarheads:
+		Weapons: DeviatorGas
+		StartCooldown: 100
+		Interval: 60
+		RequiresCondition: leak_duration
+
+dummy.leak_duration:
+	Inherits: ^Dummy
+	ProximityExternalCondition:
+		Condition: leak_duration
+		Range: 0c512
+	KillsSelf:
+		Delay: 500
 
 ^combat_tank.husk:
 	Inherits: ^VehicleHusk

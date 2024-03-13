@@ -92,3 +92,51 @@ DebrisMissile:
 	Warhead@1Dam: SpreadDamage
 		Spread: 1c0
 		Damage: 2000
+
+DebrisExplosive:
+	Inherits: Debris2
+	Range: 7c0
+	Projectile: Bullet
+		Image: 120mm
+		TrailImage: small_trail2
+		Speed: 50, 70
+		LaunchAngle: 150, 220
+		Inaccuracy: 2c512
+		BounceCount: 1
+		ContrailLength: 0
+	Warhead@1Dam: SpreadDamage
+		Damage: 4000
+		Spread: 1c562
+		Versus:
+			none: 150
+			wall: 80
+			building: 100
+			wood: 100
+			light: 130
+			heavy: 80
+			invulnerable: 0
+			cy: 80
+			harvester: 100
+		DamageTypes: Prone50Percent, TriggerProne, ExplosionDeath
+		DamageCalculationType: ClosestTargetablePosition
+	Warhead@2Smu: LeaveSmudge
+		SmudgeType: SandCrater, RockCrater
+		InvalidTargets: Vehicle, Structure
+	Warhead@3Eff: CreateEffect
+		Explosions: large_explosion, building, wall_explosion
+		ImpactSounds: EXPLSML4.WAV
+	Warhead@4Concrete: DamagesConcrete
+		Damage: 2000
+
+DebrisExplosive2:
+	Inherits: Debris2
+	Projectile: Bullet
+		Speed: 40, 60
+		Inaccuracy: 3c256
+	Warhead@1Dam: SpreadDamage
+		Damage: 2500
+		Spread: 1c512
+		DamageTypes: Prone50Percent, TriggerProne, ExplosionDeath
+	Warhead@3Eff: CreateEffect
+		Explosions: med_explosion
+		ImpactSounds: EXPLMD2.WAV

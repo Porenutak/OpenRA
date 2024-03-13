@@ -1,9 +1,9 @@
 ^Rocket:
 	ReloadDelay: 40
-	Range: 3c0
+	Range: 3c900
 	Report: ROCKET1.WAV
 	Projectile: Bullet
-		Blockable: false
+		Blockable: true
 		Speed: 281
 		Inaccuracy: 140
 		InaccuracyType: PerCellIncrement
@@ -12,18 +12,18 @@
 		TrailInterval: 1
 	Warhead@1Dam: SpreadDamage
 		Damage: 3000
-		Spread: 700
+		Spread: 850
 		Falloff: 100, 0
 		Versus:
 			none: 15
 			wall: 75
 			building: 40
-			wood: 45
+			wood: 55
 			light: 70
 			heavy: 100
 			invulnerable: 0
 			cy: 20
-			harvester: 50
+			harvester: 60
 		DamageTypes: Prone50Percent, TriggerProne, SmallExplosionDeath
 		DamageCalculationType: ClosestTargetablePosition
 	Warhead@2Smu: LeaveSmudge
@@ -39,14 +39,15 @@
 ^Missile:
 	Inherits: ^Rocket
 	ReloadDelay: 60
-	Range: 5c512
-	MinRange: 0c512
+	Range: 8c512
+	MinRange: 0c850
 	Projectile: Missile
 		Shadow: true
+		Blockable: false
 		InaccuracyType: Maximum
 		Inaccuracy: 250
 		HorizontalRateOfTurn: 22
-		RangeLimit: 7c614
+		RangeLimit: 9c614
 		CruiseAltitude: 1c0
 		MinimumLaunchAngle: 64
 		VerticalRateOfTurn: 40
@@ -57,7 +58,7 @@
 		Damage: 4800
 		Spread: 1c0
 		Versus:
-			none: 15
+			none: 20
 			wall: 75
 			building: 60
 			wood: 65
@@ -68,7 +69,7 @@
 			harvester: 50
 		DamageTypes: Prone50Percent, SmallExplosionDeath
 	Warhead@proneeffect: TargetDamage
-		Damage: 1
+		Damage: 2
 		Spread: 600
 		DamageTypes: TriggerProne
 	Warhead@4Concrete: DamagesConcrete
@@ -82,12 +83,15 @@ Bazooka:
 
 Rocket:
 	Inherits: ^Rocket
-	ReloadDelay: 30
-	Range: 3c512
+	ReloadDelay: 48
+	Burst: 2
+	BurstDelays: 10
+	Range: 4c0
 	Projectile: Bullet
 		Speed: 352
 	Warhead@1Dam: SpreadDamage
 		Damage: 2500
+		Spread: 900
 		Versus:
 			none: 25
 			wall: 100
@@ -105,9 +109,11 @@ Rocket:
 
 TowerMissile:
 	Inherits: ^Missile
-	ReloadDelay: 60
+	ReloadDelay: 145
 	Burst: 2
-	BurstDelays: 60
+	BurstDelays: 30
+	Range: 7c212
+	MinRange: 0c512
 	ValidTargets: Ground, Air
 	Warhead@1Dam: SpreadDamage
 		ValidTargets: Ground, Air
@@ -115,15 +121,15 @@ TowerMissile:
 
 mtank_pri:
 	Inherits: ^Missile
-	ReloadDelay: 115
+	ReloadDelay: 150
 	Burst: 2
-	BurstDelays: 115
-	Range: 6c0
+	BurstDelays: 30
+	Range: 8c0
 	ValidTargets: Ground, Air
 	Projectile: Missile
-		RangeLimit: 7c204
+		RangeLimit: 10c0
 	Warhead@1Dam: SpreadDamage
-		Damage: 6000
+		Damage: 5000
 		ValidTargets: Ground, Air
 	Warhead@4Concrete: DamagesConcrete
 		Damage: 900
@@ -131,18 +137,18 @@ mtank_pri:
 DeviatorMissile:
 	Inherits: ^Missile
 	ReloadDelay: 160
-	Range: 5c0
+	Range: 6c0
 	Report: MISSLE1.WAV
 	Projectile: Missile
-		RangeLimit: 6c0
+		RangeLimit: 8c0
 		Inaccuracy: 96
 		Image: MISSILE
 		TrailImage: deviator_trail
 		TrailPalette: player
 		TrailUsePlayerPalette: true
 	Warhead@1Dam: SpreadDamage
-		Damage: 1000
-		Spread: 480
+		Damage: 2000
+		Spread: 512
 		Versus:
 			none: 100
 			wall: 100
@@ -166,3 +172,6 @@ DeviatorMissile:
 		ValidRelationships: Enemy, Neutral
 	Warhead@4Concrete: DamagesConcrete
 		Damage: 1000
+	Warhead@externalcondition: GrantExternalCondition
+		Condition: unitCapturated
+		Duration: 375

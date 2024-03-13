@@ -98,7 +98,7 @@ construction_yard:
 	ProductionBar:
 		ProductionType: Building
 	Power:
-		Amount: 20
+		Amount: 50
 	RenderSprites:
 		Image: conyard.ordos
 		FactionImages:
@@ -175,13 +175,13 @@ barracks:
 		Prerequisites: wind_trap
 		Queue: Building
 		BuildPaletteOrder: 220
-		BuildDuration: 268
+		BuildDuration: 300
 		BuildDurationModifier: 100
 		Description: actor-barracks.description
 	Selectable:
 		Bounds: 2048, 2048
 	Valued:
-		Cost: 225
+		Cost: 400
 	Tooltip:
 		Name: actor-barracks.name
 	D2kBuilding:
@@ -228,7 +228,7 @@ barracks:
 		Prerequisite: barracks.harkonnen
 		Factions: harkonnen
 	Power:
-		Amount: -30
+		Amount: -50
 	RenderSprites:
 		Image: barracks.ordos
 		FactionImages:
@@ -253,7 +253,7 @@ refinery:
 		BuildDurationModifier: 100
 		Description: actor-refinery.description
 	Selectable:
-		Bounds: 3072, 2048
+		Bounds: 2500, 2048, -256, 0
 	Valued:
 		Cost: 1500
 	Tooltip:
@@ -277,7 +277,7 @@ refinery:
 			TopLeft: -1536, 0
 			BottomRight: 512, 1024
 	Armor:
-		Type: heavy
+		Type: building
 	RevealsShroud:
 		Range: 3c768
 	Refinery:
@@ -289,7 +289,7 @@ refinery:
 	StoresPlayerResources:
 		Capacity: 2000
 	CustomSellValue:
-		Value: 500
+		Value: 300
 	FreeActorWithDelivery:
 		Actor: harvester
 		DeliveryOffset: 2,2
@@ -383,13 +383,13 @@ light_factory:
 		Prerequisites: refinery
 		Queue: Building
 		BuildPaletteOrder: 230
-		BuildDuration: 321
+		BuildDuration: 415
 		BuildDurationModifier: 100
 		Description: actor-light-factory.description
 	Selectable:
 		Bounds: 3072, 2048
 	Valued:
-		Cost: 500
+		Cost: 700
 	Tooltip:
 		Name: actor-light-factory.name
 	D2kBuilding:
@@ -472,9 +472,9 @@ heavy_factory:
 		BuildDurationModifier: 100
 		Description: actor-heavy-factory.description
 	Selectable:
-		Bounds: 3072, 3072
+		Bounds: 2772, 2900, 300, 0
 	Valued:
-		Cost: 1000
+		Cost: 1500
 	Tooltip:
 		Name: actor-heavy-factory.name
 	D2kBuilding:
@@ -563,7 +563,7 @@ outpost:
 		Prerequisites: barracks, ~techlevel.medium
 		Queue: Building
 		BuildPaletteOrder: 320
-		BuildDuration: 312
+		BuildDuration: 380
 		BuildDurationModifier: 100
 		Description: actor-outpost.description
 	Selectable:
@@ -589,7 +589,10 @@ outpost:
 	Armor:
 		Type: building
 	RevealsShroud:
-		Range: 5c768
+		Range: 11c0
+	DetectCloaked:
+		Range: 6c0
+		RequiresCondition: !disabled
 	ProvidesRadar:
 		RequiresCondition: !disabled
 	RenderSprites:
@@ -716,7 +719,7 @@ wall:
 		BuildDurationModifier: 100
 		Description: actor-wall.description
 	Valued:
-		Cost: 20
+		Cost: 100
 	CustomSellValue:
 		Value: 0
 	Tooltip:
@@ -739,8 +742,6 @@ wall:
 		HP: 20000
 	Armor:
 		Type: wall
-	RevealsShroud:
-		Range: 1c768
 	Crushable:
 		CrushClasses: wall
 	BlocksProjectiles:
@@ -780,7 +781,7 @@ medium_gun_turret:
 		Queue: Building
 		Prerequisites: barracks
 		BuildPaletteOrder: 510
-		BuildDuration: 268
+		BuildDuration: 300
 		BuildDurationModifier: 100
 		Description: actor-medium-gun-turret.description
 	Valued:
@@ -801,7 +802,9 @@ medium_gun_turret:
 	Armor:
 		Type: heavy
 	RevealsShroud:
-		Range: 4c768
+		Range: 5c768
+	DetectCloaked:
+		Range: 4c0
 	BodyOrientation:
 		QuantizedFacings: 32
 	WithMuzzleOverlay:
@@ -828,7 +831,7 @@ large_gun_turret:
 		Queue: Building
 		Prerequisites: outpost, upgrade.conyard, ~techlevel.medium
 		BuildPaletteOrder: 610
-		BuildDuration: 312
+		BuildDuration: 360
 		BuildDurationModifier: 100
 		Description: actor-large-gun-turret.description
 	Valued:
@@ -849,7 +852,9 @@ large_gun_turret:
 	Armor:
 		Type: heavy
 	RevealsShroud:
-		Range: 5c768
+		Range: 6c768
+	DetectCloaked:
+		Range: 5c0
 	BodyOrientation:
 		QuantizedFacings: 32
 	Armament:
@@ -860,7 +865,7 @@ large_gun_turret:
 		InitialFacing: 512
 		RealignDelay: -1
 	Power:
-		Amount: -60
+		Amount: -70
 	RevealOnDeath:
 		Radius: 5c768
 	Replacement:
@@ -870,7 +875,7 @@ repair_pad:
 	Inherits: ^Building
 	Buildable:
 		Queue: Building
-		Prerequisites: heavy_factory, upgrade.heavy, ~techlevel.medium
+		Prerequisites: heavy_factory, ~techlevel.medium
 		BuildPaletteOrder: 430
 		BuildDuration: 375
 		BuildDurationModifier: 100
@@ -936,7 +941,7 @@ high_tech_factory:
 		Prerequisites: outpost, ~techlevel.medium
 		Queue: Building
 		BuildPaletteOrder: 420
-		BuildDuration: 468
+		BuildDuration: 580
 		BuildDurationModifier: 100
 		Description: actor-high-tech-factory.description
 	Selectable:
@@ -998,7 +1003,7 @@ high_tech_factory:
 		Icon: ornistrike
 		Name: actor-high-tech-factory.airstrikepower-name
 		Prerequisites: ~techlevel.superweapons, upgrade.hightech
-		ChargeInterval: 7500
+		ChargeInterval: 7000
 		SquadSize: 3
 		SquadOffset: -1536, 1024, 0
 		Description: actor-high-tech-factory.airstrikepower-description
@@ -1024,13 +1029,13 @@ research_centre:
 		Queue: Building
 		Prerequisites: outpost, heavy_factory, upgrade.heavy, ~techlevel.high
 		BuildPaletteOrder: 520
-		BuildDuration: 312
+		BuildDuration: 650
 		BuildDurationModifier: 100
 		Description: actor-research-centre.description
 	Selectable:
 		Bounds: 3072, 3072
 	Valued:
-		Cost: 1000
+		Cost: 1500
 	Tooltip:
 		Name: actor-research-centre.name
 	D2kBuilding:
@@ -1100,7 +1105,7 @@ palace:
 		Category: Buildings
 		Order: 150
 	Health:
-		HP: 40000
+		HP: 45000
 	HitShape:
 		Type: Rectangle
 			TopLeft: -1536, -512
@@ -1168,12 +1173,12 @@ palace:
 		MissileImage: deathhand
 		MissileDelay: 18
 		SpawnOffset: 32,816,0
-		DetonationAltitude: 3c0
-		RemoveMissileOnDetonation: False
+		DetonationAltitude: 6c0
+		RemoveMissileOnDetonation: True
 		DisplayBeacon: True
 		DisplayRadarPing: True
 		CameraRange: 10c0
-		CameraRemoveDelay: 60
+		CameraRemoveDelay: 75
 		ArrowSequence: arrow
 		CircleSequence: circles
 		FlightVelocity: 384
@@ -1188,7 +1193,7 @@ palace:
 		PauseOnCondition: disabled
 		RequiresCondition: atreides
 		Prerequisites: ~techlevel.superweapons, ~palace.fremen
-		Actors: fremen, fremen
+		Actors: fremen, fremen, fremen, fremen, fremen
 		Type: Fremen
 		ChargeInterval: 2250
 		EndChargeTextNotification: notification-fremen-ready

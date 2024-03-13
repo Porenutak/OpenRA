@@ -1,6 +1,6 @@
 Sound:
 	ReloadDelay: 90
-	Range: 5c0
+	Range: 6c0
 	Report: SONIC1.WAV
 	Projectile: AreaBeam
 		Speed: 0c128
@@ -8,19 +8,19 @@ Sound:
 		InaccuracyType: PerCellIncrement
 		Duration: 4 # Has a length of 0c512
 		DamageInterval: 3 # Travels 0c384 between impacts, will hit a target roughly three times
-		Width: 0c756 # in original d2k width is 2c0, but damage is 100% only at the center and fades out linearly towards the edges
+		Width: 0c920 # in original d2k width is 2c0, but damage is 100% only at the center and fades out linearly towards the edges
 		Shape: Cylindrical
-		Falloff: 0, 0, 100, 0
-		Range: 0, 0c450, 4c0, 8c0
-		BeyondTargetRange: 1c0
-		MinDistance: 5c0
+		Falloff: 20, 100,  0, 0
+		Range: 0, 6c0, 7c512
+		BeyondTargetRange: 0c0
+		MinDistance: 6c512
 		Color: 00FFFFC8
 	Warhead@1Dam: SpreadDamage
 		Range: 0, 32
-		Falloff: 100, 100
-		Damage: 960
+		Falloff: 100, 0
+		Damage: 1200
 		AffectsParent: false
-		ValidRelationships: Neutral, Enemy, Ally
+		ValidRelationships: Neutral, Enemy
 		Versus:
 			none: 200
 			wall: 50
@@ -30,10 +30,20 @@ Sound:
 			heavy: 60
 			invulnerable: 0
 			cy: 20
-			harvester: 50
+			harvester: 70
 		DamageTypes: Prone50Percent, TriggerProne, SoundDeath
 	Warhead@3Concrete: DamagesConcrete
 		Damage: 1720
+
+Sound.Ally:
+	Inherits: Sound
+	Projectile: AreaBeam
+		Shape: Flat
+		Color: 00FFFF00
+		Falloff: 10, 100,  0, 0
+		Range: 0, 6c0, 7c512
+	Warhead@1Dam: SpreadDamage
+		ValidRelationships: Ally
 
 WormJaw:
 	ReloadDelay: 10
@@ -53,18 +63,18 @@ OrniBomb:
 		Acceleration: 0, 0, 0
 		Shadow: true
 	Warhead@1Dam: SpreadDamage
-		Damage: 7500 #400 in original, reduce when bombers can do multiple passes
+		Damage: 9000 #reduce when bombers can do multiple passes
 		Spread: 2c0
 		Falloff: 100, 0
 		Versus:
 			none: 90
-			wall: 50
-			building: 75
-			wood: 60
-			light: 60
-			heavy: 60
+			wall: 100
+			building: 80
+			wood: 100
+			light: 110
+			heavy: 120
 			invulnerable: 0
-			cy: 25
+			cy: 30
 			harvester: 60
 		DamageTypes: Prone50Percent, TriggerProne, SmallExplosionDeath
 		DamageCalculationType: ClosestTargetablePosition
@@ -96,9 +106,9 @@ Demolish:
 DeathHand:
 	Warhead@Cluster: FireCluster
 		Weapon: DeathHandCluster
-		RandomClusterCount: 14
-		Dimensions: 3,3
-		Footprint: xxx xXx xxx
+		RandomClusterCount: 36
+		Dimensions: 6,6
+		Footprint: xXxXxX xxXXxx xXXXXx xxXXxx xXxxXx XxXxXx
 	Warhead@2Eff: CreateEffect
 		Explosions: nuke
 		ImpactSounds: EXPLLG2.WAV
@@ -119,14 +129,14 @@ DeathHandCluster:
 		Inaccuracy: 1c512
 		BounceCount: 0
 	Warhead@1Dam: SpreadDamage
-		Damage: 4500
-		Spread: 2c0
+		Damage: 7500
+		Spread: 1c950
 		Versus:
-			none: 90
-			wall: 50
-			building: 100
-			wood: 60
-			light: 60
+			none: 120
+			wall: 100
+			building: 50
+			wood: 80
+			light: 100
 			heavy: 60
 			invulnerable: 0
 			cy: 25
@@ -138,7 +148,7 @@ DeathHandCluster:
 		InvalidTargets: Vehicle, Structure
 	Warhead@3Eff: CreateEffect
 		Explosions: large_explosion
-		ImpactSounds: EXPLSML4.WAV
+		ImpactSounds: EXPLSML4.WAV, EXPLSML1.WAV, EXPLSML2.WAV
 	Warhead@4Concrete: DamagesConcrete
 		Damage: 4500
 
@@ -178,12 +188,44 @@ UnitExplodeMed:
 		Explosions: building
 		ImpactSounds: EXPLSML2.WAV
 		ImpactActors: false
+	Warhead@explosiondmg: SpreadDamage
+		Damage: 1000
+		Falloff: 100, 10
+		DamageTypes: TriggerProne, SmallExplosionDeath
+		DamageCalculationType: ClosestTargetablePosition
+		Spread: 1c0
+			none: 100
+			wall: 20
+			building: 20
+			wood: 70
+			light: 50
+			heavy: 20
+			concrete: 100
+			invulnerable: 0
+			cy: 20
+			harvester: 30
 
 UnitExplodeLarge:
 	Warhead@1Eff: CreateEffect
 		Explosions: large_explosion
 		ImpactSounds: EXPLLG2.WAV
 		ImpactActors: false
+	Warhead@explosiondmg: SpreadDamage
+		Damage: 1500
+		Falloff: 100, 10
+		DamageTypes: TriggerProne, SmallExplosionDeath
+		DamageCalculationType: ClosestTargetablePosition
+		Spread: 1c112
+			none: 100
+			wall: 20
+			building: 20
+			wood: 70
+			light: 50
+			heavy: 20
+			concrete: 100
+			invulnerable: 0
+			cy: 20
+			harvester: 30
 
 BuildingExplode:
 	Warhead@1Eff: CreateEffect
@@ -205,6 +247,25 @@ CliffExplode:
 		Condition: rock_avalanche
 		Range: 1c950
 
+ExplosionAircraft:
+	Warhead@sound: CreateEffect
+		Explosions: building
+		ImpactSounds: EXPLLG3.WAV
+		Inaccuracy: 1c0
+	Warhead@areadmg: TargetDamage
+		Spread: 1c312
+		Damage: 10000
+		DamageTypes: Prone50Percent, TriggerProne, SmallExplosionDeath
+		Versus:
+			none: 110
+			light: 90
+			heavy: 50
+			building: 120
+			harvester: 70
+			wall: 80
+			invulnerable: 0
+			cy: 30
+
 grenade:
 	ReloadDelay: 50
 	Range: 4c0
@@ -222,7 +283,7 @@ grenade:
 		Falloff: 100, 0
 		Versus:
 			none: 135
-			wood: 70
+			wood: 50
 			light: 30
 			heavy: 20
 			invulnerable: 0
@@ -247,7 +308,7 @@ grenade:
 GrenDeath:
 	Warhead@1Dam: SpreadDamage
 		Damage: 1500
-		Spread: 1c0
+		Spread: 1c512
 		Falloff: 100, 0
 		Versus:
 			none: 125
@@ -271,7 +332,7 @@ GrenDeath:
 SardDeath:
 	Warhead@1Dam: SpreadDamage
 		Damage: 3000
-		Spread: 512
+		Spread: 1c0
 		Falloff: 100, 0
 		Versus:
 			none: 15
@@ -349,7 +410,7 @@ BloomExplosion:
 PlasmaExplosion:
 	Warhead@1Dam: SpreadDamage
 		Damage: 20000
-		Spread: 3c0
+		Spread: 6c0
 		Falloff: 100, 0
 		Versus:
 			None: 100
@@ -357,6 +418,7 @@ PlasmaExplosion:
 			Light: 100
 			Heavy: 100
 			Concrete: 60
+			invulnerable: 0
 		DamageTypes: Prone50Percent, TriggerProne, ExplosionDeath
 		DamageCalculationType: ClosestTargetablePosition
 	Warhead@2Smu: LeaveSmudge
@@ -365,3 +427,70 @@ PlasmaExplosion:
 		Explosions: devastator
 	Warhead@4Concrete: DamagesConcrete
 		Damage: 20000
+	Warhead@5Shake: ShakeScreen
+		Duration: 15
+		Intensity: 10
+		Multiplier: 2,2
+
+PlasmaSaboteur:
+	Inherits: PlasmaExplosion
+	Warhead@1Dam: SpreadDamage
+		Damage: 20000
+		Falloff: 100, 0
+		Versus:
+			None: 100
+			Wood: 100
+			Light: 50
+			Heavy: 30
+			Concrete: 60
+		ValidRelationships: Neutral, Enemy, Ally
+		DamageTypes: Prone50Percent, TriggerProne, ExplosionDeath
+	Warhead@Sound: CreateEffect
+		ImpactSounds: EXPLMD1.WAV
+	Warhead@6ResorceKill: DestroyResource
+		Size: 6
+
+DeviatorGas:
+	Warhead@5OwnerChange: ChangeOwner
+		Range: 1c850
+		Duration: 140
+		InvalidTargets: Infantry, Structure
+		ValidRelationships: Enemy, Neutral
+	Warhead@3Eff: CreateEffect
+		Explosions: deviator
+		ExplosionPalette: player
+		UsePlayerPalette: true
+
+ExplosiveDebris:
+	Inherits: Debris2
+	Range: 7c0
+	Projectile: Bullet
+		Image: 120mm
+		TrailImage: small_trail2
+		Speed: 50, 70
+		LaunchAngle: 150, 220
+		Inaccuracy: 2c256
+		BounceCount: 1
+		ContrailLength: 0
+	Warhead@1Dam: SpreadDamage
+		Damage: 5000
+		Spread: 1c112
+		Versus:
+			none: 100
+			wall: 75
+			building: 50
+			light: 100
+			heavy: 50
+			invulnerable: 0
+			cy: 30
+			harvester: 60
+		DamageTypes: Prone50Percent, TriggerProne, ExplosionDeath
+		DamageCalculationType: HitShape
+	Warhead@2Smu: LeaveSmudge
+		SmudgeType: SandCrater, RockCrater
+		InvalidTargets: Vehicle, Structure
+	Warhead@3Eff: CreateEffect
+		Explosions: large_explosion, building, wall_explosion
+		ImpactSounds: EXPLSML4.WAV
+	Warhead@4Concrete: DamagesConcrete
+		Damage: 4500

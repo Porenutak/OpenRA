@@ -1,26 +1,27 @@
 carryall.reinforce:
 	Inherits: ^Plane
 	Valued:
-		Cost: 1100
+		Cost: 1000
 	UpdatesPlayerStatistics:
 		AddToAssetsValue: false
 	Tooltip:
 		Name: actor-carryall-reinforce.name
 	Health:
-		HP: 48000
+		HP: 20000
 	Armor:
 		Type: light
 	Aircraft:
 		CruiseAltitude: 2160
 		CruisingCondition: cruising
-		Speed: 144
+		Speed: 177
 		TurnSpeed: 16
 		LandableTerrainTypes: Sand, Rock, Transition, Spice, SpiceSand, Dune, Concrete
 		Repulsable: False
 		AirborneCondition: airborne
 		CanSlide: True
 		VTOL: true
-		IdleTurnSpeed: 4
+		IdleTurnSpeed: 5
+		IdleSpeed: 115
 	Targetable@GROUND:
 		TargetTypes: Ground, Vehicle
 		RequiresCondition: !airborne
@@ -40,13 +41,31 @@ carryall.reinforce:
 	RenderSprites:
 		Image: carryall
 	ChangesHealth:
-		Step: 50
+		Step: 40
 		Delay: 3
 		StartIfBelow: 50
 	Buildable:
 		BuildDuration: 750
 		BuildDurationModifier: 100
 		Description: actor-carryall-reinforce.description
+	ThrowsShrapnel@derbis:
+		Weapons: Debris, Debris2, Debris3
+		Pieces: 1, 3
+		Range: 1c0, 2c0
+	GrantConditionOnDamageState@HEAVY:
+		Condition: heavy-damage
+	FloatingSpriteEmitter@smoke:
+		RequiresCondition: heavy-damage
+		Image: smoke3
+		Lifetime: 20, 22
+		Speed: 15
+		Gravity: 10
+		SpawnFrequency: 2, 5
+		RandomFacing: true
+		RandomRate: 4
+		Offset: 300,383,0
+		TurnRate: 3
+		Duration: 500
 
 carryall:
 	Inherits: carryall.reinforce
@@ -136,9 +155,25 @@ ornithopter.husk:
 		Name: actor-ornithopter-husk-name
 	Aircraft:
 		TurnSpeed: 20
-		Speed: 224
+		Speed: 190
+	FallsToEarth:
+		MaximumSpinSpeed: 1
+		Explosion: ExplosionAircraft
+		Velocity: 0c35
 	RenderSprites:
 		Image: ornithopter
+	Contrail@1:
+		Offset: -300,-383,0
+		StartColor: 000000
+		StartWidth: 0c128
+		StartColorUsePlayerColor: false
+	Contrail@2:
+		Offset: -598,383,0
+		StartColor: 000000
+		StartWidth: 0c80
+		StartColorUsePlayerColor: false
+	SpawnActorOnDeath:
+		Actor: dummy.ShrapnelThrower
 
 carryall.husk:
 	Inherits: ^AircraftHusk
@@ -146,11 +181,26 @@ carryall.husk:
 		Name: actor-carryall-husk-name
 	Aircraft:
 		TurnSpeed: 16
-		Speed: 144
+		Speed: 150
 		CanSlide: True
 		VTOL: true
+	FallsToEarth:
+		MaximumSpinSpeed: 3
+		Moves: true
+		Explosion: ExplosionAircraft
 	RenderSprites:
 		Image: carryall
+	Contrail@1:
+		Offset: -300,-383,0
+		StartColor: 000000
+		StartColorUsePlayerColor: false
+	Contrail@2:
+		Offset: -598,383,0
+		StartColor: 000000
+		StartColorUsePlayerColor: false
+	SpawnActorOnDeath:
+		Actor: dummy.ShrapnelThrower # For what ever reason ThrowsShrapnel doenst work here
+		OwnerType: InternalName
 
 carryall.huskVTOL:
 	Inherits: ^AircraftHusk
@@ -159,9 +209,13 @@ carryall.huskVTOL:
 	FallsToEarth:
 		Moves: False
 		Velocity: 0c128
+		Explosion: ExplosionAircraft
 	Aircraft:
 		TurnSpeed: 16
 		CanSlide: True
 		VTOL: true
 	RenderSprites:
 		Image: carryall
+	SpawnActorOnDeath@debris:
+		Actor: dummy.ShrapnelThrower
+		OwnerType: InternalName
