@@ -3252,6 +3252,9 @@ Actors:
 	Actor707: outpost
 		Owner: Multi0
 		Location: 2,25
+	Actor708: spice_sifter
+		Owner: Neutral
+		Location: 39,33
 
 Rules: Enhanced_Units09.yaml, Enhanced_Starport09.yaml, Enhanced_Structures09.yaml, Enhanced_World09.yaml, Enhanced_Misc.yaml, Enhanced_AI.yaml, Enhanced_palettes.yaml, NewTiles.yaml, NeutralBuildings.yaml
 

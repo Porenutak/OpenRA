@@ -164,8 +164,8 @@ spice_sifter:
 	TooltipDescription:
 		Description: Absorbs Spice obtained by the wind flow. Provides Passive income
 	CashTrickler:
-		Interval: 325
-		Amount: 250
+		Interval: 350
+		Amount: 200
 		PauseOnCondition: lowpower || disabled
 	CashTricklerBar:
 	WithIdleOverlay:
@@ -182,14 +182,6 @@ spice_sifter:
 		Weapons: HarvesterSpiceExplosion
 		Pieces: 1, 5
 		Range: 5c0, 10c0
-
-spice_sifter_no_bibs:
-	Inherits: spice_sifter
-	RenderSprites:
-		Image: spice_sifter
-	-WithBuildingBib:
-	EditorOnlyTooltip:
-		Name: Spice sifter (no bibs)
 
 radar_station:
 	Inherits: ^NeutralBuildingCapturable

@@ -2670,6 +2670,16 @@ spice_sifter:
 		Frames: 22, 23, 24, 25
 		Length: 4
 		Offset: -16,-16
+	bib-SpiceSand:
+		Filename: EnhacedAssets.R8
+		Frames: 492, 493, 494, 495, 496, 497
+		Length: 6
+		Offset: -16,-16
+	bib-Sand:
+		Filename: EnhacedAssets.R8
+		Frames: 492, 493, 494, 495, 496, 497
+		Length: 6
+		Offset: -16,-16
 	idle-overlay:
 		Filename: EnhacedAssets.R8
 		Start: 482
