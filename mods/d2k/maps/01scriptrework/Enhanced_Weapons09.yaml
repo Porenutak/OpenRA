@@ -308,7 +308,7 @@ DevBullet:
 		Inaccuracy: 128
 	Warhead@1Dam: SpreadDamage
 		Damage: 3600
-		Spread: 700
+		Spread: 650
 		Falloff: 100, 0
 		Versus:
 			none: 20

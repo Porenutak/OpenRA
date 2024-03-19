@@ -390,7 +390,7 @@ harvester:
 	Health:
 		HP: 45000
 	Mobile:
-		Speed: 38
+		Speed: 40
 	RevealsShroud:
 		Range: 3c768
 	Explodes:
