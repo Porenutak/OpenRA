@@ -98,4 +98,4 @@ SaboteurVoice:
 	Voices:
 		Choke: audio/choke_dying_2, audio/choke_dying_6
 		Burn: audio/burn_dying_1, audio/burn_dying_2, audio/burn_dying_6
-	DisablePrefixes: Die, Choke, Burn
+	DisablePrefixes: Die, Choke, Burn, Select, Action, Die

@@ -2232,6 +2232,75 @@ combat_tank_corrino:
 		Start: 169
 		Offset: -30,-24
 
+combat_tank_corrino.husk:
+	idle:
+		Filename: EnhancedAssets_2.R8
+		Start: 66
+		Facings: -32
+		Offset: -24, -24
+	turret:
+		Filename: EnhancedAssets_2.R8
+		Start: 137
+		Facings: -32
+		Offset: -16,-16
+
+combat_tank_corrino.husk02:
+	Inherits: combat_tank_cheap.husk
+	tankdebris01:
+		Filename: EnhacedAssets.R8
+		Start: 380
+		ZOffset: -512
+	tankdebris02:
+		Filename: EnhacedAssets.R8
+		Start: 381
+		ZOffset: -512
+	tankdebris03:
+		Filename: EnhacedAssets.R8
+		Start: 382
+		ZOffset: -512
+	tankdebris04:
+		Filename: EnhacedAssets.R8
+		Start: 383
+		ZOffset: -512
+
+combat_tank_corrino.husk03:
+	Inherits: combat_tank_cheap.husk
+	tankdebris01:
+		Filename: EnhacedAssets.R8
+		Start: 380
+		ZOffset: -512
+	tankdebris02:
+		Filename: EnhacedAssets.R8
+		Start: 381
+		ZOffset: -512
+	tankdebris03:
+		Filename: EnhacedAssets.R8
+		Start: 382
+		ZOffset: -512
+	tankdebris04:
+		Filename: EnhacedAssets.R8
+		Start: 383
+		ZOffset: -512
+
+combat_tank_corrino.husk04:
+	Inherits: combat_tank_cheap.husk
+	tankdebris01:
+		Filename: EnhacedAssets.R8
+		Start: 380
+		ZOffset: -512
+	tankdebris02:
+		Filename: EnhacedAssets.R8
+		Start: 381
+		ZOffset: -512
+	tankdebris03:
+		Filename: EnhacedAssets.R8
+		Start: 382
+		ZOffset: -512
+	tankdebris04:
+		Filename: EnhacedAssets.R8
+		Start: 383
+		ZOffset: -512
+
 palace.corrino:
 	invisible:
 		Filename: DATA.R16

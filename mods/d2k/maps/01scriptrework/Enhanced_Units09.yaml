@@ -1104,6 +1104,18 @@ combat_tank_corrino:
 		Weapon: 80mm_corrino
 	Armament@chaos_bomb_influence:
 		Weapon: 80mm_corrino
+	SpawnActorOnDeath:
+		Actor: combat_tank_corrino.husk
+		RequiresCondition: Husk01 && !worm_attack
+	SpawnActorOnDeath@husk02:
+		Actor: combat_tank_corrino.husk02
+		RequiresCondition: Husk02 && !worm_attack
+	SpawnActorOnDeath@husk03:
+		Actor: combat_tank_corrino.husk03
+		RequiresCondition: Husk03 && !worm_attack
+	SpawnActorOnDeath@husk04:
+		Actor: combat_tank_corrino.husk04
+		RequiresCondition: Husk04 && !worm_attack
 
 
 carryall.reinforce:

@@ -4,7 +4,7 @@ spicebloom:
 
 ^Husk:
 	Health:
-		HP: 12000
+		HP: 13000
 
 ^VehicleHusk:
 	Inherits: ^Husk
@@ -12,7 +12,7 @@ spicebloom:
 	Capturable:
 		Types: husk
 	TransformOnCapture:
-		ForceHealthPercentage: 25
+		ForceHealthPercentage: 15
 	Husk:
 		AllowedTerrain: Sand, Rock, Transition, Concrete, Spice, SpiceSand, SpiceBlobs, Dune
 	Targetable:
@@ -464,7 +464,6 @@ frigate.huskvtol:
 
 carryall.husk_on_land:
 	Inherits: ^VehicleHusk
-	-TransformOnCapture:
 	Health:
 		HP: 10000
 	WithIdleOverlay@Burns:
@@ -584,6 +583,8 @@ combat_tank_cheap.husk:
 	Inherits: ^combat_tank.husk
 	TransformOnCapture:
 		IntoActor: combat_tank_cheap
+	Health:
+		HP: 10000
 
 combat_tank_cheap.husk02:
 	Inherits: ^combat_tank.husk
@@ -624,6 +625,54 @@ combat_tank_cheap.husk04:
 		MaxThrowAngle: 150
 	ThrowsParticle@debris04:
 		Anim: tankdebris04
+
+combat_tank_corrino.husk:
+	Inherits: ^combat_tank.husk
+	TransformOnCapture:
+		IntoActor: combat_tank_corrino
+
+combat_tank_corrino.husk02:
+	Inherits: ^combat_tank.husk
+	Health:
+		HP: 10000
+	TransformOnCapture:
+		IntoActor: combat_tank_corrino
+	ThrowsParticle@debris01:
+		Anim: tankdebris01
+		MaxThrowRange: 2c512
+		MinThrowRange: 1c0
+	ThrowsParticle@debris02:
+		Anim: tankdebris02
+		MinThrowAngle: 80
+		MaxThrowAngle: 200
+
+combat_tank_corrino.husk03:
+	Inherits: ^combat_tank.husk
+	TransformOnCapture:
+		IntoActor: combat_tank_corrino
+	ThrowsParticle@turret:
+	ThrowsParticle@debris02:
+		Anim: tankdebris02
+		MinThrowAngle: 80
+		MaxThrowAngle: 200
+	ThrowsParticle@debris03:
+		Anim: tankdebris03
+		MinThrowAngle: 30
+		MaxThrowAngle: 150
+	ThrowsParticle@debris04:
+		Anim: tankdebris04
+
+combat_tank_corrino.husk04:
+	Inherits: ^combat_tank.husk
+	TransformOnCapture:
+		IntoActor: combat_tank_corrino
+	ThrowsParticle@debris03:
+		Anim: tankdebris03
+		MinThrowAngle: 30
+		MaxThrowAngle: 150
+	ThrowsParticle@debris04:
+		Anim: tankdebris04
+
 
 combat_tank_a.husk:
 	-ThrowsParticle@turret:
@@ -768,6 +817,8 @@ devastator.husk:
 		Name: Devastator (Destroyed)
 	TransformOnCapture:
 		IntoActor: devastator
+	Health:
+		HP: 14000
 
 missile_tank.husk:
 	Inherits: ^VehicleHusk
@@ -814,6 +865,8 @@ bombardment_tank.husk:
 		MaxThrowAngle: 150
 	ThrowsParticle@debris04:
 		Anim: tankdebris04
+	Health:
+		HP: 14000
 
 bison_tank.husk:
 	Inherits: ^combat_tank.husk
@@ -825,6 +878,8 @@ bison_tank.husk:
 		PlayerPalette: player_r16
 	WithIdleOverlay@Burns:
 		Palette: d2k
+	Health:
+		HP: 14000
 
 crawler_light.husk:
 	Inherits: ^VehicleHusk
@@ -846,6 +901,8 @@ deviator.husk:
 		Name: Deviator (Destroyed)
 	TransformOnCapture:
 		IntoActor: deviator
+	Health:
+		HP: 14000
 	WithIdleOverlay@Burns:
 		Image: smoke_m
 		-StartSequence:

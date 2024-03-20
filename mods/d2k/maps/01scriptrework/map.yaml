@@ -204,8 +204,8 @@ Actors:
 		Location: 21,17
 	Actor65: combat_tank_h
 		Owner: Multi0
-		Facing: 384
 		Location: 22,17
+		Facing: 384
 	Actor66: combat_tank_h
 		Owner: Multi0
 		Facing: 384
@@ -234,21 +234,6 @@ Actors:
 		Owner: Multi0
 		Facing: 384
 		Location: 23,15
-	Actor74: light_inf
-		Owner: Multi0
-		Facing: 384
-		SubCell: 3
-		Location: 23,13
-	Actor75: light_inf
-		Owner: Multi0
-		Facing: 384
-		SubCell: 3
-		Location: 20,13
-	Actor76: light_inf
-		Owner: Multi0
-		Facing: 384
-		SubCell: 3
-		Location: 18,13
 	Actor80: light_inf
 		Owner: Multi0
 		Facing: 384
@@ -3255,6 +3240,55 @@ Actors:
 	Actor708: spice_sifter
 		Owner: Neutral
 		Location: 39,33
+	Actor709: combat_tank_corrino
+		Owner: Multi0
+		Facing: 384
+		Location: 18,13
+	Actor710: combat_tank_corrino
+		Owner: Multi0
+		Facing: 384
+		Location: 19,13
+	Actor711: combat_tank_corrino
+		Owner: Multi0
+		Facing: 384
+		Location: 20,13
+	Actor712: combat_tank_corrino
+		Owner: Multi0
+		Facing: 384
+		Location: 21,13
+	Actor713: combat_tank_corrino
+		Owner: Multi0
+		Facing: 384
+		Location: 22,13
+	Actor715: combat_tank_corrino
+		Owner: Multi0
+		Facing: 384
+		Location: 23,13
+	Actor714: engineer
+		Owner: Multi0
+		Facing: 384
+		SubCell: 3
+		Location: 24,13
+	Actor716: engineer
+		Owner: Multi0
+		Facing: 384
+		Location: 23,12
+		SubCell: 3
+	Actor718: engineer
+		Owner: Multi0
+		Facing: 384
+		SubCell: 3
+		Location: 25,15
+	Actor865: engineer
+		Owner: Multi0
+		Facing: 384
+		SubCell: 3
+		Location: 25,17
+	Actor901: engineer
+		Owner: Multi0
+		Facing: 384
+		Location: 25,18
+		SubCell: 3
 
 Rules: Enhanced_Units09.yaml, Enhanced_Starport09.yaml, Enhanced_Structures09.yaml, Enhanced_World09.yaml, Enhanced_Misc.yaml, Enhanced_AI.yaml, Enhanced_palettes.yaml, NewTiles.yaml, NeutralBuildings.yaml
 
