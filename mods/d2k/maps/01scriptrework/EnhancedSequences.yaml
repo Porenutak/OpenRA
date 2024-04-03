@@ -2490,6 +2490,13 @@ worm_rider:
 		Filename: DATA.R16
 		Start: 38
 
+quad.heavy:
+	idle:
+		Filename: bits/RocketQuad.shp
+		Facings: -32
+	icon:
+		Filename: bits/RocketQuadIcon.shp
+
 flamer:
 	idle:
 		Filename: EnhancedAssets_2.R8

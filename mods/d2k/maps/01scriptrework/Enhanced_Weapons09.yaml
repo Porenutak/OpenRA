@@ -304,11 +304,11 @@ DevBullet:
 	Report: ROCKET1.WAV
 	Projectile: Bullet
 		Blockable: true
-		Speed: 340
+		Speed: 330
 		Inaccuracy: 128
 	Warhead@1Dam: SpreadDamage
 		Damage: 3600
-		Spread: 650
+		Spread: 670
 		Falloff: 100, 0
 		Versus:
 			none: 20
@@ -345,6 +345,13 @@ Rocket:
 			invulnerable: 0
 			cy: 20
 			harvester: 60
+
+Rocket_heavy:
+	Inherits: Rocket
+	ReloadDelay: 57
+	Burst: 3
+	BurstDelays: 7
+	Range: 4c0
 
 ^Missile:
 	Inherits: ^Rocket

@@ -3004,11 +3004,6 @@ Actors:
 		Facing: 384
 		SubCell: 1
 		Location: 31,46
-	Actor874: engineer
-		Owner: Neutral
-		SubCell: 3
-		Facing: 384
-		Location: 28,44
 	Actor875: engineer
 		Owner: Neutral
 		Facing: 384
@@ -3054,61 +3049,11 @@ Actors:
 		Facing: 384
 		Location: 30,44
 		SubCell: 1
-	Actor888: sardaukar
-		Owner: Neutral
-		Facing: 384
-		Location: 29,44
-		SubCell: 3
-	Actor889: sardaukar
-		Owner: Neutral
-		Facing: 384
-		Location: 28,45
-		SubCell: 3
-	Actor890: sardaukar
-		Owner: Neutral
-		Facing: 384
-		Location: 28,45
-		SubCell: 1
-	Actor891: grenadier
-		Owner: Neutral
-		Facing: 384
-		Location: 27,47
-		SubCell: 3
-	Actor892: grenadier
-		Owner: Neutral
-		Facing: 384
-		SubCell: 3
-		Location: 28,48
-	Actor893: grenadier
-		Owner: Neutral
-		Facing: 384
-		Location: 28,48
-		SubCell: 1
-	Actor894: grenadier
-		Owner: Neutral
-		Facing: 384
-		Location: 28,49
-		SubCell: 3
 	Actor1035: fremen
 		Owner: Neutral
 		Facing: 384
 		SubCell: 3
 		Location: 29,50
-	Actor1036: fremen
-		Owner: Neutral
-		Facing: 384
-		Location: 28,48
-		SubCell: 2
-	Actor1037: fremen
-		Owner: Neutral
-		Facing: 384
-		Location: 27,46
-		SubCell: 3
-	Actor1038: fremen
-		Owner: Neutral
-		Facing: 384
-		Location: 27,46
-		SubCell: 1
 	Actor813: fremen
 		Owner: Neutral
 		Facing: 384
@@ -3289,6 +3234,70 @@ Actors:
 		Facing: 384
 		Location: 25,18
 		SubCell: 3
+	Actor902: quad.heavy
+		Owner: Multi0
+		Facing: 384
+		Location: 24,19
+	Actor903: quad.heavy
+		Owner: Multi0
+		Facing: 384
+		Location: 24,17
+	Actor904: quad.heavy
+		Owner: Multi0
+		Facing: 384
+		Location: 24,15
+	Actor905: quad.heavy
+		Owner: Multi0
+		Facing: 384
+		Location: 24,13
+	Actor908: quad.heavy
+		Owner: Multi0
+		Location: 22,46
+		Facing: 769
+	Actor889: quad
+		Owner: Multi0
+		Location: 27,46
+		Facing: 268
+	Actor874: quad
+		Owner: Multi0
+		Facing: 268
+		Location: 27,45
+	Actor888: quad
+		Owner: Multi0
+		Facing: 268
+		Location: 27,44
+	Actor890: quad.heavy
+		Owner: Multi0
+		Facing: 769
+		Location: 22,45
+	Actor891: quad.heavy
+		Owner: Multi0
+		Facing: 769
+		Location: 22,44
+	Actor892: quad
+		Owner: Multi0
+		Facing: 384
+		Location: 23,20
+	Actor893: quad
+		Owner: Multi0
+		Facing: 384
+		Location: 22,12
+	Actor894: quad
+		Owner: Multi0
+		Facing: 384
+		Location: 22,16
+	Actor906: quad
+		Owner: Multi0
+		Facing: 384
+		Location: 22,14
+	Actor907: quad
+		Owner: Multi0
+		Facing: 384
+		Location: 19,40
+	Actor909: refinery
+		Owner: Multi0
+		Location: 30,25
+		FreeActor: False
 
 Rules: Enhanced_Units09.yaml, Enhanced_Starport09.yaml, Enhanced_Structures09.yaml, Enhanced_World09.yaml, Enhanced_Misc.yaml, Enhanced_AI.yaml, Enhanced_palettes.yaml, NewTiles.yaml, NeutralBuildings.yaml
 

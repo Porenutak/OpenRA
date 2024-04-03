@@ -454,7 +454,7 @@ trike:
 	Mobile:
 		Locomotor: light_vehicle
 		TurnSpeed: 40
-		Speed: 118 # just be 118 and higher otherwise attack move is broken
+		Speed: 120 # just be 118 and higher otherwise attack move is broken
 	Armament@damage:
 		FireDelay: 0
 		Weapon: HMG
@@ -564,6 +564,34 @@ quad:
 	RevealsShroud@jammed:
 		Range: 5c0
 
+quad.heavy:
+	Inherits: quad
+	Buildable:
+		Prerequisites: upgrade.light, ~light.heavy_quad, ~techlevel.medium
+		BuildPaletteOrder: 25
+		BuildDuration: 360
+		Description: Heavy Missile Scout\n  Excellent vs Light Armor\n Modest vs Tanks\n Weak vs  Moving Targets, Infantry
+	Valued:
+		Cost: 500
+	Health:
+		HP: 12000
+	Armor:
+		Type: light
+	Tooltip:
+		Name: Heavy quad
+	Mobile:
+		Locomotor: light_vehicle
+		TurnSpeed: 40
+		Speed: 91
+	RevealsShroud:
+		Range: 6c0
+	Armament:
+		Weapon: Rocket_heavy
+		LocalOffset: 128,64,64, 128,-64,64, 128,0,0
+	Armament@chaos_bomb_influence:
+		Weapon: Rocket_heavy
+		LocalOffset: 128,64,64, 128,-64,64
+
 stealth_raider:
 	Inherits: raider
 	Buildable:
@@ -575,7 +603,7 @@ stealth_raider:
 		Cost: 450
 	Mobile:
 		TurnSpeed: 32
-		Speed: 120
+		Speed: 124
 	RevealsShroud:
 		Range: 6c0
 	UpdatesPlayerStatistics:
@@ -2315,7 +2343,7 @@ hunter:
 	Inherits@GAINSEXPERIENCE: ^GainsExperience
 	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
 	Buildable:
-		Prerequisites: ~light.hunter,upgrade.light, ~factions.subfaction_allowed
+		Prerequisites: light_factory, ~light.hunter, upgrade.light, ~!factions.standard
 		BuildPaletteOrder: 10
 		BuildDuration: 240
 		Description: Trike with turret \n  Stronger vs Troopers, moving targets\n Slower speed
@@ -2334,7 +2362,7 @@ hunter:
 	RevealsShroud:
 		Range: 5c512
 	Mobile:
-		Speed: 100
+		Speed: 113
 	Armament@damage:
 		Weapon: HMG
 		LocalOffset: -200,0,0
@@ -2651,13 +2679,6 @@ merged.flamer:
 	Buildable:
 		Prerequisites: ~techlevel.high, ~factions.merged, ~merged.smuggler, research_centre, heavy_factory, upgrade.heavy
 
-merged.hunter:
-	Inherits: hunter
-	RenderSprites:
-		Image: hunter
-	Buildable:
-		Prerequisites: ~factions.merged, ~light.hunter, upgrade.light, ~merged.smuggler
-		BuildPaletteOrder: 50
 
 merged.hunter_fremen:
 	Inherits: hunter

@@ -632,7 +632,7 @@ light_factory:
 		Range: 0c512, 3c0
 	ProvidesPrerequisite@hunter:
 		Prerequisite: light.hunter
-		Factions: smuggler, fremen
+		Factions: fremen
 	ProvidesPrerequisite@harkonnen:
 		Prerequisite: light.harkonnen
 		Factions: harkonnen
@@ -641,13 +641,16 @@ light_factory:
 		Factions: atreides
 	ProvidesPrerequisite@quad:
 		Prerequisite: light.quad
-		Factions: atreides, fremen, harkonnen, corrino, ordos, mercenary, smuggler
+		Factions: atreides, harkonnen, ordos, fremen, corrino, mercenary
 	ProvidesPrerequisite@trike:
 		Prerequisite: light.trike
 		Factions: atreides, harkonnen, corrino, mercenary, smuggler, fremen
 	ProvidesPrerequisite@raider:
 		Prerequisite: light.raider
 		Factions: ordos
+	ProvidesPrerequisite@heavyQuad:
+		Prerequisite: light.heavy_quad
+		Factions: smuggler
 	ProvidesPrerequisite@crawler:
 		Prerequisite: light.crawler
 		Factions: mercenary
@@ -660,7 +663,7 @@ light_factory:
 		RequiresCondition: smugglertech
 	ProvidesPrerequisite@smuglglertech:
 		RequiresCondition: enable_hunter
-		Prerequisite: light.hunter
+		Prerequisite: light.heavy_quad
 	FloatingSpriteEmitter@smoke2_small_atreides:
 		Offset: -400, -500, 0
 	FloatingSpriteEmitter@smoke_huge_atreides:
@@ -831,7 +834,7 @@ outpost:
 	Power:
 		Amount: -125
 	DetectCloaked:
-		Range: 6c0
+		Range: 7c0
 		RequiresCondition: !disabled
 	ProvidesPrerequisite@mercenary:
 		Prerequisite: outpost.mercenary
@@ -840,11 +843,10 @@ outpost:
 	ProvidesPrerequisite@jammerforsmugglers:
 		Prerequisite: outpost.smuggler
 		Factions: smuggler
-		RequiresPrerequisites: factions.subfaction_allowed
 	ProvidesPrerequisite@fremen:
 		Prerequisite: outpost.fremen
 		Factions: fremen
-	GrantConditionOnFaction@smugglerjammerSubfactionmode:
+	GrantConditionOnFaction@jammer:
 		Condition: jammer
 		Factions: smuggler
 	GrantConditionOnFaction@fremen:
@@ -1275,7 +1277,7 @@ high_tech_factory:
 		Factions: harkonnen
 	GrantConditionOnFaction@basicReinforcements:
 		Condition: basic_reinforcements
-		Factions: smuggler, mercenary
+		Factions: mercenary
 	GrantConditionOnFaction@invicateWorm:
 		Condition: invocate_worm
 		Factions: fremen
@@ -1377,7 +1379,7 @@ high_tech_factory:
 	ProvidesPrerequisite@enableupgradeSubfaction:
 		Prerequisite: hightech.enableupgrade
 		RequiresPrerequisites: ~factions.subfaction_allowed
-		Factions: mercenary, smuggler, fremen, corrino
+		Factions: mercenary, fremen, corrino
 	FloatingSpriteEmitter@smoke_huge_atreides:
 		Offset: 500, -800, 0
 	WithIdleOverlay@Burns1_atreides:
@@ -2121,10 +2123,10 @@ upgrade.outpost:
 		Name: Outpost upgrade
 	Buildable:
 		BuildPaletteOrder: 80
-		Prerequisites: ~outpost.smuggler, ~!choosefaction,~factions.subfaction_allowed, ~techlevel.superweapons
+		Prerequisites: ~outpost.smuggler, high_tech_factory, ~!choosefaction,~!factions.standart, ~techlevel.superweapons
 		Queue: Upgrade
 		BuildLimit: 1
-		BuildDuration: 1500
+		BuildDuration: 1200
 		BuildDurationModifier: 100
 		Description: Unlocks Jam ability
 	Valued:
@@ -2138,7 +2140,7 @@ merged_upgrade.outpost:
 	RenderSprites:
 		Image: outpost.ordos
 	Buildable:
-		Prerequisites: ~outpost, ~!choosefaction,~merged.smuggler,~factions.merged, ~techlevel.superweapons
+		Prerequisites: ~outpost, high_tech_factory, ~!choosefaction,~merged.smuggler,~factions.merged, ~techlevel.superweapons
 	ProvidesPrerequisite@enablejammer:
 		Prerequisite: upgrade.outpost
 
