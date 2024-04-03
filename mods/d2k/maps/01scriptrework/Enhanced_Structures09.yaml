@@ -1,5 +1,6 @@
 ^Building:
 	Inherits@SandStorm: ^SandStorm
+	Inherits@jammer: ^jammedvission_buildings
 	InstantlyRepairable:
 		Types: Building
 	ProductionTimeMultiplier@craneBonus:
@@ -40,6 +41,18 @@
 	WithBuildingRepairDecoration:
 		Palette: player
 		IsPlayerPalette: True
+
+^jammedvission_buildings:
+	ExternalCondition@jammed:
+		Condition: jammed
+	RevealsShroud:
+		RevealGeneratedShroud: false
+	RevealsShroud@jammed:
+		Range: 2c0
+		RevealGeneratedShroud: true
+	WithColoredOverlay@black:
+		Color: 3E202080
+		RequiresCondition: jammed
 
 ^DamagedBuildingsVFX:
 	GrantConditionOnFaction@atreidesVFX:
@@ -153,7 +166,7 @@
 construction_yard:
 	Inherits@damageVFX: ^DamagedBuildingsVFX
 	Health:
-		HP: 40000
+		HP: 38000
 	Armor:
 		Type: cy
 	RevealsShroud:
@@ -426,7 +439,7 @@ refinery:
 		Actors: refinery_inverted
 		Facings: 384, 896
 	Buildable:
-		BuildDuration: 687
+		BuildDuration: 660
 	GrantConditionOnPrerequisite:
 		Condition: ArmorUpgrade
 		Prerequisites: upgrade.conyard
@@ -608,7 +621,7 @@ light_factory:
 	Inherits@damageVFX: ^DamagedBuildingsVFX
 	Buildable:
 		Prerequisites: refinery
-		BuildDuration: 400
+		BuildDuration: 390
 	GrantConditionOnPrerequisite:
 		Condition: ArmorUpgrade
 		Prerequisites: upgrade.conyard
@@ -811,20 +824,16 @@ heavy_factory:
 outpost:
 	Inherits@damageVFX: ^DamagedBuildingsVFX
 	Buildable:
-		BuildDuration: 420
+		BuildDuration: 312
 	Valued:
-		Cost: 1000
+		Cost: 750
 	Health:
-		HP: 43000
+		HP: 37000
 	GrantConditionOnPrerequisite:
 		Condition: ArmorUpgrade
 		Prerequisites: upgrade.conyard
 	Armor:
 		Type: building
-		RequiresCondition: ArmorUpgrade
-	Armor@weakArmor:
-		Type: wood
-		RequiresCondition: !ArmorUpgrade
 	RevealsShroud:
 		Range: 11c0
 		RequiresCondition: !disabled
@@ -1066,8 +1075,7 @@ wall:
 		HP: 20000
 	Armor:
 		Type: wall
-	RevealsShroud:
-		Range: 1c768
+	-RevealsShroud:
 
 medium_gun_turret:
 	Inherits@chaosbomb: ^chaos_bomb_influence
@@ -1078,7 +1086,7 @@ medium_gun_turret:
 		BuildDuration: 300
 		Description: Defensive structure.\n  Modest vs everthing\n weak vs Tanks\n detects cloaked units in 2 cell range
 	Valued:
-		Cost: 600
+		Cost: 550
 	Health:
 		HP: 30000
 	RevealsShroud:
@@ -1132,7 +1140,7 @@ large_gun_turret:
 		BuildDuration: 380
 		Description: Defensive structure.\n  Strong vs Tanks, Aircraft\n  Weak vs infantry\n\n  Requires power to operate.
 	Valued:
-		Cost: 800
+		Cost: 750
 	Health:
 		HP: 32000
 	Armor:
@@ -1243,7 +1251,7 @@ repair_pad.bot:
 high_tech_factory:
 	Inherits@damageVFX: ^DamagedBuildingsVFX
 	Buildable:
-		BuildDuration: 610
+		BuildDuration: 570
 	Valued:
 		Cost: 1150
 	Health:
@@ -1257,7 +1265,7 @@ high_tech_factory:
 	RevealsShroud:
 		Range: 4c768
 	Power:
-		Amount: -100
+		Amount: -75
 	ProvidesPrerequisite@ordosprerequisite:
 		Prerequisite: hightech.ordos
 		Factions: ordos
@@ -1405,7 +1413,7 @@ research_centre:
 	Inherits@IDISABLE: ^DisableOnLowPower
 	Buildable:
 		BuildDuration: 650
-		Prerequisites: outpost, heavy_factory, ~techlevel.high
+		Prerequisites: outpost, heavy_factory, upgrade.heavy, ~techlevel.high
 	Valued:
 		Cost: 1600
 	Health:
@@ -1419,7 +1427,7 @@ research_centre:
 	RevealsShroud:
 		Range: 4c768
 	Power:
-		Amount: -75
+		Amount: -175
 	RenderSprites:
 		Image: research.ordos
 		FactionImages:
@@ -2068,7 +2076,7 @@ fremen_sietch:
 		Type: Fremen
 		Name: Worm rider
 		Description: Deploy to ride worm.
-		ChargeInterval: 6700
+		ChargeInterval: 4500
 		Icon: sandworm
 		StartFullyCharged: false
 		Prerequisites: ~techlevel.high
@@ -2080,7 +2088,7 @@ fremen_sietch:
 
 upgrade.conyard:
 	Buildable:
-		BuildDuration: 1400
+		BuildDuration: 1200
 		Prerequisites: construction_yard, outpost, ~!choosefaction
 		Description: UPGRADE BUILDINGS ARMOR!!! \n Unlock Rocket Turret
 	Valued:
@@ -2089,7 +2097,7 @@ upgrade.conyard:
 upgrade.barracks:
 	Buildable:
 		Prerequisites: barracks, ~!choosefaction
-		BuildDuration: 900
+		BuildDuration: 800
 	Valued:
 		Cost: 400
 	RenderSprites:
@@ -2104,16 +2112,16 @@ upgrade.barracks:
 upgrade.light:
 	Buildable:
 		Prerequisites: ~light_factory, ~!choosefaction
-		BuildDuration: 1000
+		BuildDuration: 900
 	Valued:
 		Cost: 600
 
 upgrade.heavy:
 	Buildable:
 		Prerequisites: heavy_factory, ~!choosefaction
-		BuildDuration: 1200
+		BuildDuration: 900
 	Valued:
-		Cost: 1000
+		Cost: 800
 
 upgrade.outpost:
 	AlwaysVisible:
@@ -2123,10 +2131,10 @@ upgrade.outpost:
 		Name: Outpost upgrade
 	Buildable:
 		BuildPaletteOrder: 80
-		Prerequisites: ~outpost.smuggler, high_tech_factory, ~!choosefaction,~!factions.standart, ~techlevel.superweapons
+		Prerequisites: ~outpost.smuggler, high_tech_factory, ~!choosefaction, ~!factions.standard, ~techlevel.superweapons
 		Queue: Upgrade
 		BuildLimit: 1
-		BuildDuration: 1200
+		BuildDuration: 1000
 		BuildDurationModifier: 100
 		Description: Unlocks Jam ability
 	Valued:
@@ -2155,7 +2163,7 @@ upgrade.outpost_fremen:
 		Prerequisites: ~!choosefaction, ~outpost.fremen, ~!factions.standard, ~techlevel.superweapons
 		Queue: Upgrade
 		BuildLimit: 1
-		BuildDuration: 1500
+		BuildDuration: 1000
 		BuildDurationModifier: 100
 		Description: Unlocks Hide ability
 	Valued:
@@ -2175,7 +2183,7 @@ upgrade.research:
 		Prerequisites: ~!choosefaction, ~research_centre.smuggler, ~!factions.standard, ~techlevel.high
 		Queue: Upgrade
 		BuildLimit: 1
-		BuildDuration: 937
+		BuildDuration: 1000
 		BuildDurationModifier: 100
 		Description: Unlocks Saboteur
 	Valued:
@@ -2195,7 +2203,7 @@ upgrade.starport:
 		Prerequisites: ~!choosefaction, ~starport.mercenary, ~factions.subfaction_allowed, ~techlevel.high
 		Queue: Upgrade
 		BuildLimit: 1
-		BuildDuration: 937
+		BuildDuration: 1000
 		BuildDurationModifier: 100
 		Description: Unlocks Contractors
 	Valued:
@@ -2216,7 +2224,7 @@ merged_upgrade.starport:
 upgrade.hightech:
 	Buildable:
 		Prerequisites: ~!choosefaction, ~hightech.enableupgrade, ~techlevel.superweapons
-		BuildDuration: 1500
+		BuildDuration: 1000
 		Description: Unlocks Hight tech Support powers
 	Valued:
 		Cost: 1200

@@ -14,7 +14,7 @@
 		Versus:
 			wall: 10
 			building: 25
-			wood: 50
+			wood: 45
 			light: 35
 			heavy: 13
 			invulnerable: 0
@@ -41,7 +41,7 @@ Fremen_S:
 M_LMG:
 	Inherits: ^MG
 	ReloadDelay: 40
-	Range: 3c112
+	Range: 3c0
 	ValidTargets: Infantry
 
 M_LMG_H:
@@ -177,7 +177,7 @@ Fremen_wormrider2:
 
 ^Cannon:
 	ReloadDelay: 50
-	Range: 4c112
+	Range: 4c312
 	Report: MEDTANK1.WAV
 	Projectile: Bullet
 		Speed: 562
@@ -205,7 +205,7 @@ Fremen_wormrider2:
 
 80mm_A:
 	Inherits: ^Cannon
-	Range: 5c0
+	Range: 5c112
 
 80mm_H:
 	Inherits: ^Cannon
@@ -218,6 +218,7 @@ Fremen_wormrider2:
 80mm_cheap:
 	Inherits: ^Cannon
 	ReloadDelay: 66
+	Range: 4c112
 
 
 80mm_corrino:
@@ -232,7 +233,7 @@ Fremen_wormrider2:
 	Inherits: ^Cannon
 	Burst: 2
 	Report: TURRET1.WAV
-	ReloadDelay: 60
+	ReloadDelay: 58
 	BurstDelays: 6
 	Range: 5c112
 	Warhead@1Dam: SpreadDamage
@@ -288,7 +289,7 @@ DevBullet:
 		Damage: 7800
 		Spread: 1c0
 		Versus:
-			none: 55
+			none: 60
 			wall: 100
 			building: 80
 			wood: 100
@@ -412,10 +413,10 @@ clusterMissile:
 	Burst: 1
 	BurstDelays: 20
 	ReloadDelay: 20
-	Range: 7c512
+	Range: 7c112
 	MinRange: 2c221
 	Projectile: Missile
-		Inaccuracy: 150
+		Inaccuracy: 140
 		InaccuracyType: PerCellIncrement
 		Image: MISSILE2
 		Speed: 310
@@ -1058,7 +1059,7 @@ flamethrower:
 	FollowingBurstTargetOffset: 50,-50,0
 	StartBurstReport: FLAMER1.WAV
 	Projectile: Bullet
-		Inaccuracy: 250
+		Inaccuracy: 200
 		Speed: 180
 		InaccuracyType: PerCellIncrement
 		TrailImage: flame_trail
@@ -1075,7 +1076,7 @@ flamethrower:
 			building: 80
 			wood: 100
 			light: 60
-			heavy: 25
+			heavy: 30
 			invulnerable: 0
 			cy: 25
 			harvester: 50

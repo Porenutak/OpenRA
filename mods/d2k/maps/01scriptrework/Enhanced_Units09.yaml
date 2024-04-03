@@ -603,7 +603,7 @@ stealth_raider:
 		Cost: 450
 	Mobile:
 		TurnSpeed: 32
-		Speed: 124
+		Speed: 125
 	RevealsShroud:
 		Range: 6c0
 	UpdatesPlayerStatistics:
@@ -637,7 +637,7 @@ siege_tank:
 		TargetFrozenActors: True
 		FacingTolerance: 0
 	Valued:
-		Cost: 800
+		Cost: 750
 	Health:
 		HP: 12000
 	Armor:
@@ -707,7 +707,7 @@ missile_tank:
 		Speed: 57
 		TurnSpeed: 20
 	Health:
-		HP: 14000
+		HP: 13500
 	Armor:
 		Type: light
 	RevealsShroud:
@@ -755,7 +755,7 @@ sonic_tank:
 	Buildable:
 		Queue: Armor
 		Prerequisites: ~heavy.atreides,upgrade.heavy, research_centre, ~techlevel.high
-		BuildDuration: 630
+		BuildDuration: 615
 		Description: Fires sonic shocks\n  Excellent vs Infantry, Vehicles, Buildings\n Modest vs vehicles \n  Weak vs Tanks\n Friendly Fire
 	Valued:
 		Cost: 1100
@@ -796,14 +796,14 @@ devastator:
 		RequiresCondition: lowhp && bot-owned && !unitCapturated
 	Buildable:
 		Prerequisites: ~heavy.harkonnen, research_centre, upgrade.heavy, ~techlevel.high
-		BuildDuration: 700
+		BuildDuration: 660
 		Description: Super Heavy Tank\n  Decent damage vs everthing\n weak vs Infantry \n SelfDestruction damage 7 square cells
 	ExternalCondition:
 		Condition: unitCapturated
 	Valued:
 		Cost: 1200
 	Health:
-		HP: 60000
+		HP: 65000
 	Armor:
 		Type: heavy
 	Mobile:
@@ -878,7 +878,7 @@ deviator:
 		Cost: 1000
 	Buildable:
 		Prerequisites: ~heavy.ordos, research_centre,upgrade.heavy, ~techlevel.high
-		BuildDuration: 618
+		BuildDuration: 590
 		Description: Fires a Gas which changes\nthe allegiance of enemy vehicles\n Gas leaks from Deviator husk dead\n weak vs everythink
 	Mobile:
 		TurnSpeed: 12
@@ -1005,7 +1005,7 @@ combat_tank_h:
 	Inherits: ^combat_tank
 	Buildable:
 		Prerequisites: ~heavy.harkonnen_combat
-		Description: Harkonnen Combat tank \n More Healt, low Speed \n Better damage Spread \n less affected by Dune terrain
+		Description: Harkonnen Combat tank \n More Healt, low Speed \n Less speed penalty when on low HP
 	Armament:
 		Weapon: 80mm_H
 	Armament@chaos_bomb_influence:
@@ -1016,6 +1016,8 @@ combat_tank_h:
 		Speed: 62
 		TurnSpeed: 18
 		Locomotor: tank_harkonnen
+	SpeedMultiplier@HEAVYDAMAGE:
+		Modifier: 85
 	Health:
 		HP: 29000
 	SpawnActorOnDeath:
@@ -1082,14 +1084,13 @@ combat_tank_cheap:
 	Buildable:
 		BuildDuration: 400
 		Prerequisites: ~factions.subfaction_allowed, ~heavy.cheap_tank
-		Description: Standard tank licensed by various manufacturers \n Modest speed, Low HP \n Cheap, less building time
+		Description: Standard tank licensed by various manufacturers \n Modest speed, Low HP, Low rate of fire \n Cheap, faster building speed
 	Valued:
 		Cost: 600
 	Tooltip:
 		Name: Generic Combat Tank
 	Mobile:
-		Speed: 70
-		TurnSpeed: 19
+		Speed: 69
 		Locomotor: tank
 	Health:
 		HP: 20000
@@ -1119,14 +1120,13 @@ combat_tank_corrino:
 	Inherits: combat_tank_h
 	Buildable:
 		Prerequisites: ~heavy.corrino_combat, ~factions.subfaction_allowed
-		Description: Corrino Combat tank \n  Better HP, low Speed \n Better area damage \n Less affected by Dune terrain
+		Description: Corrino Combat tank \n  Better HP, low Speed \n Better area damage
 	Tooltip:
 		Name: Corrino Combat Tank
 	Health:
 		HP: 25000
 	Mobile:
 		Speed: 64
-		TurnSpeed: 19
 		Locomotor: tank_harkonnen
 	Armament:
 		Weapon: 80mm_corrino
@@ -1881,7 +1881,7 @@ assassin:
 		Prerequisites: ~!factions.standard, ~barracks.harkonnen, upgrade.barracks, high_tech_factory, ~techlevel.high
 		BuildDuration: 160
 		BuildDurationModifier: 60
-		Description: Infantry with long range rifle\n  Attacks only infantry\n  Inaccuracy is high at long range \n No armor
+		Description: Infantry with long range rifle\n  Attacks only infantry\n  Inaccuracy is high at long range \n Can hide on Rough terrain
 	Tooltip:
 		Name: Assassin
 	Health:
@@ -2085,7 +2085,7 @@ bison_tank:
 	Buildable:
 		Queue: Armor
 		Prerequisites: ~heavy.bison, research_centre,upgrade.heavy, ~techlevel.high, ~factions.subfaction_allowed
-		BuildDuration: 580
+		BuildDuration: 560
 		BuildDurationModifier: 100
 		BuildPaletteOrder: 100
 		Description: Heavy double barrel tank licensed from IX \n Strong VS vehicles, Tanks \n Weak VS infantry
@@ -2094,7 +2094,7 @@ bison_tank:
 	RenderSprites:
 		PlayerPalette: player_r16
 	Valued:
-		Cost: 1000
+		Cost: 950
 	Tooltip:
 		Name: Bison tank
 	Armor:
@@ -2168,6 +2168,13 @@ worm_rider:
 		Actor: mp_sandworm
 		RequiresCondition: spawnWorm
 		SkipMakeAnimations: false
+	Cloak:
+		InitialDelay: 70
+		CloakDelay: 25
+		CloakSound: STEALTH1.WAV
+		UncloakOn: Attack, Unload, Damage, Heal
+		PauseOnCondition: deployed
+
 
 mp_sandworm:
 	Inherits@world: ^ExistsInWorld
@@ -2179,13 +2186,13 @@ mp_sandworm:
 	Tooltip:
 		Name: Sandworm
 	Health:
-		HP: 160000
+		HP: 70000
 	HitShape:
 		Type: Rectangle
 			TopLeft: -512, -512
 			BottomRight: 512, 1024
 	Armor:
-		Type: heavy
+		Type: wall
 	RenderSprites:
 		Palette: terrain
 	Mobile:
@@ -2207,7 +2214,7 @@ mp_sandworm:
 		Delay: 500
 		Interval: 500
 	KillsSelf:
-		Delay: 2000
+		Delay: 1700
 		GrantsCondition: dispose
 	Explodes@1:
 		Weapon: worm_disapier
@@ -2390,9 +2397,10 @@ crawler.light:
 	Armor:
 		Type: light
 	Mobile:
-		Speed: 92
+		Speed: 100
 		Locomotor: tank
 		PauseOnCondition: notmobile
+		TurnSpeed: 35
 	SpeedMultiplier:
 		Modifier: 95
 		RequiresCondition: full
@@ -2428,12 +2436,12 @@ bombardment_tank:
 	Buildable:
 		Queue: Armor
 		Prerequisites: ~heavy.corrino, upgrade.heavy, research_centre, ~factions.subfaction_allowed
-		BuildDuration: 680
+		BuildDuration: 650
 		BuildDurationModifier: 100
 		BuildPaletteOrder: 105
 		Description: Heavy missile barrage affecting large area. \n Strong VS Infantry, Light armor \n Weak VS moving targets, tanks \n Ability: can fire 4 missile before reload \n High inaccuraty
 	Health:
-		HP: 22000
+		HP: 21000
 	Valued:
 		Cost: 1200
 	Tooltip:
@@ -2460,6 +2468,7 @@ bombardment_tank:
 	ReloadAmmoPool:
 		Count: 1
 		Delay: 80
+		ResetOnFire: true
 	Armament:
 		Weapon: clusterMissile
 		LocalOffset: -200,128,171, -200,-128,171, -200,70,250, -200,-70,300
@@ -2490,7 +2499,7 @@ flamer:
 		RequiresCondition: bot-owned
 	Buildable:
 		Queue: Armor
-		BuildDuration: 580
+		BuildDuration: 550
 		BuildDurationModifier: 100
 		BuildPaletteOrder: 106
 		Prerequisites: ~heavy.smuggler, research_centre, upgrade.heavy
@@ -2506,7 +2515,7 @@ flamer:
 	Mobile:
 		Speed: 75
 	RevealsShroud:
-		Range: 4c750
+		Range: 5c0
 	AttackFrontal:
 		FacingTolerance: 0
 	AutoTarget:
