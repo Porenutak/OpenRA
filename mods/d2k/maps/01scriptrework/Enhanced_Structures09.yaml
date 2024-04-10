@@ -1632,7 +1632,7 @@ palace:
 		PauseOnCondition: disabled
 		Prerequisites: ~techlevel.high, ~palace.saboteur
 		Description: Carryall with bomb that force units to kill each other.
-		UnitType: carryall.bomber
+		UnitType: ornithopter.bomber
 		DisplayBeacon: True
 		CameraActor: camera
 		CameraRemoveDelay: 75
@@ -1909,7 +1909,7 @@ palace.ordos:
 		StartFullyCharged: false
 		Prerequisites: ~techlevel.high
 		Description: Carryall will drop bomb that force units to kill each other.
-		UnitType: carryall.bomber
+		UnitType: ornithopter.bomber
 		DisplayBeacon: True
 		CameraActor: camera
 		CameraRemoveDelay: 75

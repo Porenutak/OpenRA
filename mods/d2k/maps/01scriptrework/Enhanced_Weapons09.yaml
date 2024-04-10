@@ -1,7 +1,7 @@
 
 ^MG:
 	ReloadDelay: 30
-	Range: 3c0
+	Range: 3c112
 	Report: MGUN2.WAV
 	Projectile: InstantHit
 		Inaccuracy: 128
@@ -12,6 +12,7 @@
 		Spread: 600
 		Falloff: 100, 0
 		Versus:
+			none: 110
 			wall: 10
 			building: 25
 			wood: 45
@@ -19,7 +20,7 @@
 			heavy: 13
 			invulnerable: 0
 			cy: 17
-			harvester: 25
+			harvester: 20
 		DamageTypes: Prone50Percent, TriggerProne, BulletDeath
 		DamageCalculationType: ClosestTargetablePosition
 	Warhead@2Eff: CreateEffect
@@ -51,7 +52,7 @@ M_LMG_H:
 HMG:
 	Inherits: ^MG
 	ReloadDelay: 20
-	Range: 3c850
+	Range: 3c800
 	Report: 20MMGUN1.WAV
 	Projectile: InstantHit
 		Inaccuracy: 135
@@ -300,12 +301,12 @@ DevBullet:
 		DamageTypes: Prone50Percent, TriggerProne, FireDeath
 
 ^Rocket:
-	ReloadDelay: 45
+	ReloadDelay: 44
 	Range: 3c900
 	Report: ROCKET1.WAV
 	Projectile: Bullet
 		Blockable: true
-		Speed: 330
+		Speed: 300
 		Inaccuracy: 128
 	Warhead@1Dam: SpreadDamage
 		Damage: 3600
@@ -378,8 +379,8 @@ Rocket_heavy:
 			none: 20
 			wall: 75
 			building: 60
-			wood: 65
-			light: 85
+			wood: 70
+			light: 90
 			heavy: 100
 			invulnerable: 0
 			cy: 30
@@ -1082,9 +1083,6 @@ flamethrower:
 			harvester: 50
 		DamageTypes: TriggerProne, FireDeath
 		DamageCalculationType: ClosestTargetablePosition
-	Warhead@2Smu: LeaveSmudge
-		SmudgeType: SandCrater, RockCrater
-		InvalidTargets: Vehicle, Structure
 	Warhead@3Eff: CreateEffect
 		Explosions: fire2
 		ImpactSounds: audio/flamethrower.wav

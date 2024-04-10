@@ -374,12 +374,13 @@ carryall.husk:
 		StartColor: 000000
 		StartColorUsePlayerColor: false
 
-carryall.bomberhusk:
+ornithopter.bomberhusk:
 	Inherits: ornithopter.husk
 	RenderSprites:
-		Image: Carryall
+		Image: ornithopter
 	FallsToEarth:
 		Velocity: 0c40
+		MaximumSpinSpeed: 1
 	SpawnActorOnDeath:
 		Actor: dummyShrapnelThrower
 	SpawnActorOnDeath@chasbom:
