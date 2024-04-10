@@ -359,3 +359,91 @@ fremen_tent01:
 		Type: Rectangle
 			TopLeft: -512, -512
 			BottomRight: 512, 512
+
+miniing_rig:
+	Inherits: ^NeutralBuildingCapturable
+	Tooltip:
+		Name: Miniing rig
+	TooltipDescription:
+		Description: Provides passive income
+	Health:
+		HP: 15000
+	CashTrickler:
+		Amount: 25
+		RequiresCondition: enabled
+	GrantConditionOnCombatantOwner:
+		Condition: enabled
+	WithIdleOverlay:
+		RequiresCondition: enabled
+	Explodes:
+		Type: Footprint
+		Weapon: BuildingExplode
+		EmptyWeapon: BuildingExplode
+	ThrowsShrapnel@spice:
+		Weapons: HarvesterSpiceExplosion
+		Pieces: 1, 3
+		Range: 1c0, 3c0
+	HitShape:
+		UseTargetableCellsOffsets: true
+		Type: Rectangle
+			TopLeft: -512, -1024
+			BottomRight: 512, 512
+	-D2kBuilding:
+	Building:
+		Dimensions: 1,1
+		Footprint: x
+	GrantConditionOnDamageState@HEAVY:
+		Condition: heavy-damage
+	FloatingSpriteEmitter@SMOKE:
+		RequiresCondition: heavy-damage
+		Image: smoke3
+		Lifetime: 15, 20
+		Speed: 3
+		Gravity: 50
+		SpawnFrequency: 5, 15
+		RandomFacing: true
+		RandomRate: 4
+		Offset: 0, 0, 600
+		TurnRate: 3
+		Duration: 500
+	SpawnActorOnDeath:
+		Actor: miniing_rig.husk
+		OwnerType: InternalName
+
+
+
+miniing_rig.husk:
+	Inherits: ^NeutralBuildingCapturable
+	HitShape:
+		UseTargetableCellsOffsets: true
+		Type: Rectangle
+			TopLeft: -512, -1024
+			BottomRight: 1024, 512
+	-D2kBuilding:
+	Armor:
+		Type: invulnerable
+	Tooltip:
+		Name: Miniing rig (Destroyed)
+	TooltipDescription:
+		Description: Can be repaired by engineer
+	HitShape:
+		UseTargetableCellsOffsets: true
+		Type: Rectangle
+			TopLeft: -512, -1024
+			BottomRight: 512, 512
+	Building:
+		Dimensions: 1,1
+		Footprint: x
+	TransformOnCapture:
+		IntoActor: miniing_rig
+	FloatingSpriteEmitter@SMOKE:
+		Image: smoke3
+		Lifetime: 15, 20
+		Speed: 3
+		Gravity: 50
+		SpawnFrequency: 5, 10
+		RandomFacing: true
+		RandomRate: 4
+		Offset: 0, 0, 200
+		TurnRate: 3
+		Duration: 500

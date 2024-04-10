@@ -6,7 +6,6 @@ icon:
 	infantry_reinforcement:
 		Filename: bits/AirReinforcementsIcons.shp
 		Start: 2
-		Lenght: 1
 	officer:
 		Filename: EnhacedAssets.R8
 		Start: 458
@@ -2772,6 +2771,24 @@ ecology_station:
 		Filename: EnhacedAssets.R8
 		Start: 487
 		Offset: -26,-24
+
+miniing_rig:
+	idle:
+		Filename: bits/MINIING_RIG.R16
+		Start: 0
+		Offset: -16,-32
+		Remap: 54F94B
+	idle-overlay:
+		Filename: bits/MINIING_RIG_ANIMATION.R16
+		Length: 52
+		Offset: -16, 16
+
+miniing_rig.husk:
+	idle:
+		Filename: bits/MINIING_RIG_HUSK.R16
+		Start: 0
+		Remap: 54F94B
+		Offset: -15,-32
 
 building01:
 	idle:

@@ -829,9 +829,6 @@ outpost:
 		Cost: 750
 	Health:
 		HP: 37000
-	GrantConditionOnPrerequisite:
-		Condition: ArmorUpgrade
-		Prerequisites: upgrade.conyard
 	Armor:
 		Type: building
 	RevealsShroud:
