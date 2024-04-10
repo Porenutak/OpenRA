@@ -209,21 +209,21 @@ Fremen_wormrider2:
 
 80mm_H:
 	Inherits: ^Cannon
-	ReloadDelay: 66
+	ReloadDelay: 56
 
 80mm_O:
 	Inherits: ^Cannon
-	ReloadDelay: 54
+	ReloadDelay: 45
 
 80mm_cheap:
 	Inherits: ^Cannon
-	ReloadDelay: 66
+	ReloadDelay: 58
 	Range: 4c112
 
 
 80mm_corrino:
 	Inherits: ^Cannon
-	ReloadDelay: 64
+	ReloadDelay: 54
 	Projectile: Bullet
 		Inaccuracy: 145
 	Warhead@1Dam: SpreadDamage
@@ -667,7 +667,7 @@ DeathHandCluster:
 		Inaccuracy: 1c512
 		BounceCount: 0
 	Warhead@1Dam: SpreadDamage
-		Damage: 5000
+		Damage: 8000
 		Spread: 1c950
 		Versus:
 			none: 120
