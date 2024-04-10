@@ -447,6 +447,8 @@ refinery:
 		Cost: 1500
 	Health:
 		HP: 40000
+	Selectable:
+		Bounds: 2500, 2048, -256, 0
 	Armor:
 		Type: building
 		RequiresCondition: ArmorUpgrade
@@ -547,7 +549,7 @@ refinery_inverted:
 		Sequence: idle-front
 		RequiresCondition: !build-incomplete
 	Selectable:
-		Bounds: 3072, 2048, 0, 1024
+		Bounds: 2500, 2048, 256, 0
 	WithIdleOverlay@top:
 		Sequence: idle-top
 		RequiresCondition: !build-incomplete
@@ -555,21 +557,21 @@ refinery_inverted:
 	DockHost:
 		Type: Unload
 		DockAngle: 128
-		DockOffset: 0,1c0,0
+		DockOffset: -1c0,-512,0
 	Tooltip:
 		Name: Spice Refinery Inverted
 	D2kBuilding:
 		Footprint: === =xx xx=
 		Dimensions: 3,3
-		LocalCenterOffset: 0,-512,0
+		LocalCenterOffset: 0, 512,0
 	HitShape:
 		Type: Rectangle
-			TopLeft: -512, 0
-			BottomRight: 1536, 1024
+			TopLeft: -512, -1024
+			BottomRight: 1536, 0
 	HitShape@BOTTOM:
 		Type: Rectangle
-			TopLeft: -1536, 1024
-			BottomRight: 512, 2048
+			TopLeft: -1536, 0
+			BottomRight: 512, 1048
 	ProvidesPrerequisite:
 		Prerequisite: refinery
 	FreeActorWithDelivery:

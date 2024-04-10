@@ -873,27 +873,27 @@ refinery_invert.atreidis:
 	idle:
 		Filename: EnhacedAssets.R8
 		Start: 304
-		Offset: -48,-32
-		ZOffset: -600
+		Offset: -58,-64
+		ZOffset: -1024
 	idle-front:
 		Filename: EnhacedAssets.R8
 		Start: 305
-		Offset: -48,-32
+		Offset: -48,-62
 		ZOffset: 600
 	idle-top:
 		Filename: EnhacedAssets.R8
 		Start: 306
-		Offset: -48,-32
+		Offset: -48,-62
 		ZOffset: 1024
 	damaged-idle:
 		Filename: EnhacedAssets.R8
 		Start: 304
-		Offset: -48,-32
-		ZOffset: -600
+		Offset: -48,-62
+		ZOffset: -1024
 	damaged-idle-top:
 		Filename: EnhacedAssets.R8
 		Start: 307
-		Offset: -48,-32
+		Offset: -48,-62
 		ZOffset: 1024
 	bib:
 		Filename: EnhacedAssets.R8
@@ -936,27 +936,27 @@ refinery_invert.ordos:
 	idle:
 		Filename: EnhacedAssets.R8
 		Start: 311
-		Offset: -54,-26
-		ZOffset: -600
+		Offset: -54,-54
+		ZOffset: -1024
 	idle-front:
 		Filename: EnhacedAssets.R8
 		Start: 312
-		Offset: -54,-26
+		Offset: -54,-54
 		ZOffset: 1000
 	idle-top:
 		Filename: EnhacedAssets.R8
 		Start: 313
-		Offset: -54,-22
+		Offset: -54,-54
 		ZOffset: 1024
 	damaged-idle:
 		Filename: EnhacedAssets.R8
 		Start: 311
-		Offset: -48,-22
-		ZOffset: -600
+		Offset: -48,-54
+		ZOffset: -1024
 	damaged-idle-top:
 		Filename: EnhacedAssets.R8
 		Start: 314
-		Offset: -54,-22
+		Offset: -54,-54
 		ZOffset: 1024
 	bib:
 		Filename: BLOXBASE.R16
@@ -998,27 +998,27 @@ refinery_invert.harkonnen:
 	idle:
 		Filename: EnhacedAssets.R8
 		Start: 315
-		Offset: -54,-26
+		Offset: -54,-58
 		ZOffset: -600
 	idle-front:
 		Filename: EnhacedAssets.R8
 		Start: 316
-		Offset: -54,-26
+		Offset: -54,-58
 		ZOffset: 1000
 	idle-top:
 		Filename: EnhacedAssets.R8
 		Start: 317
-		Offset: -54,-22
+		Offset: -54,-58
 		ZOffset: 1024
 	damaged-idle:
 		Filename: EnhacedAssets.R8
 		Start: 315
-		Offset: -48,-22
+		Offset: -48,-58
 		ZOffset: -600
 	damaged-idle-top:
 		Filename: EnhacedAssets.R8
 		Start: 318
-		Offset: -54,-22
+		Offset: -54,-58
 		ZOffset: 1024
 	bib:
 		Filename: EnhacedAssets.R8
