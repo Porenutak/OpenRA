@@ -1,7 +1,7 @@
 
 ^MG:
-	ReloadDelay: 30
-	Range: 3c112
+	ReloadDelay: 33
+	Range: 3c0
 	Report: MGUN2.WAV
 	Projectile: InstantHit
 		Inaccuracy: 128
@@ -12,7 +12,7 @@
 		Spread: 600
 		Falloff: 100, 0
 		Versus:
-			none: 110
+			none: 100
 			wall: 10
 			building: 25
 			wood: 45
@@ -37,21 +37,21 @@ LMG:
 
 Fremen_S:
 	Inherits: ^MG
-	ReloadDelay: 40
+	ReloadDelay: 44
 
 M_LMG:
 	Inherits: ^MG
-	ReloadDelay: 40
-	Range: 3c0
+	ReloadDelay: 44
+	Range: 3c112
 	ValidTargets: Infantry
 
 M_LMG_H:
 	Inherits: M_LMG
-	ReloadDelay: 40
+	ReloadDelay: 44
 
 HMG:
 	Inherits: ^MG
-	ReloadDelay: 20
+	ReloadDelay: 22
 	Range: 3c800
 	Report: 20MMGUN1.WAV
 	Projectile: InstantHit
@@ -63,26 +63,26 @@ HMG:
 			none: 100
 			building: 25
 			light: 30
-			heavy: 15
+			wood: 40
 			invulnerable: 0
 	Warhead@3Concrete: DamagesConcrete
 		Damage: 1800
 
 HMGo:
 	Inherits: HMG
-	ReloadDelay: 18
+	ReloadDelay: 21
 
 HMG_muzzle:
-	ReloadDelay: 16
+	ReloadDelay: 19
 	Range: 3c870
 
 HMGo_muzzle:
-	ReloadDelay: 14
+	ReloadDelay: 17
 	Range: 3c870
 
 M_HMG:
 	Inherits: ^MG
-	ReloadDelay: 40
+	ReloadDelay: 44
 	Range: 4c0
 	Report: 20MMGUN1.WAV
 	InvalidTargets: Infantry
@@ -114,7 +114,7 @@ Fremen_wormrider:
 	Range: 5c0
 	Report: FREMODD1.WAV
 	Projectile: AreaBeam
-		Width: 300
+		Width: 350
 		Duration: 2
 		DamageInterval: 1
 		Speed: 0c350, 0c500
@@ -141,7 +141,7 @@ Fremen_wormrider2:
 	Range: 5c0
 	Report: FREMODD1.WAV
 	Projectile: AreaBeam
-		Width: 300
+		Width: 350
 		Speed: 0c350, 0c500
 		Shape: Cylindrical
 		ZOffset: 2300
@@ -154,7 +154,7 @@ Fremen_wormrider2:
 
 110mm_Gun:
 	Inherits: ^Cannon
-	ReloadDelay: 140
+	ReloadDelay: 130
 	Burst: 5
 	BurstDelays: 15
 	Range: 6c0
@@ -177,7 +177,7 @@ Fremen_wormrider2:
 			harvester: 50
 
 ^Cannon:
-	ReloadDelay: 50
+	ReloadDelay: 55
 	Range: 4c312
 	Report: MEDTANK1.WAV
 	Projectile: Bullet
@@ -192,7 +192,7 @@ Fremen_wormrider2:
 			none: 40
 			wall: 50
 			building: 50
-			wood: 70
+			wood: 80
 			heavy: 80
 			invulnerable: 0
 			cy: 20
@@ -210,21 +210,21 @@ Fremen_wormrider2:
 
 80mm_H:
 	Inherits: ^Cannon
-	ReloadDelay: 56
+	ReloadDelay: 60
 
 80mm_O:
 	Inherits: ^Cannon
-	ReloadDelay: 45
+	ReloadDelay: 49
 
 80mm_cheap:
 	Inherits: ^Cannon
-	ReloadDelay: 58
+	ReloadDelay: 60
 	Range: 4c112
 
 
 80mm_corrino:
 	Inherits: ^Cannon
-	ReloadDelay: 54
+	ReloadDelay: 59
 	Projectile: Bullet
 		Inaccuracy: 145
 	Warhead@1Dam: SpreadDamage
@@ -234,7 +234,7 @@ Fremen_wormrider2:
 	Inherits: ^Cannon
 	Burst: 2
 	Report: TURRET1.WAV
-	ReloadDelay: 58
+	ReloadDelay: 55
 	BurstDelays: 6
 	Range: 5c112
 	Warhead@1Dam: SpreadDamage
@@ -252,7 +252,7 @@ Fremen_wormrider2:
 
 155mm:
 	Inherits: ^Cannon
-	ReloadDelay: 96
+	ReloadDelay: 93
 	Range: 7c512
 	MinRange: 2c0
 	Projectile: Bullet
@@ -261,7 +261,7 @@ Fremen_wormrider2:
 		LaunchAngle: 85
 		ContrailLength: 10
 	Warhead@1Dam: SpreadDamage
-		Damage: 4800
+		Damage: 5200
 		Spread: 1c880
 		Falloff: 100, 0
 		Versus:
@@ -284,7 +284,7 @@ Fremen_wormrider2:
 
 DevBullet:
 	Range: 4c512
-	ReloadDelay: 75
+	ReloadDelay: 77
 		Speed: 281
 	Warhead@1Dam: SpreadDamage
 		Damage: 7800
@@ -301,7 +301,7 @@ DevBullet:
 		DamageTypes: Prone50Percent, TriggerProne, FireDeath
 
 ^Rocket:
-	ReloadDelay: 44
+	ReloadDelay: 48
 	Range: 3c900
 	Report: ROCKET1.WAV
 	Projectile: Bullet
@@ -310,7 +310,7 @@ DevBullet:
 		Inaccuracy: 128
 	Warhead@1Dam: SpreadDamage
 		Damage: 3600
-		Spread: 670
+		Spread: 700
 		Falloff: 100, 0
 		Versus:
 			none: 20
@@ -328,7 +328,7 @@ Bazooka:
 
 Rocket:
 	Inherits: ^Rocket
-	ReloadDelay: 50
+	ReloadDelay: 45
 	Burst: 2
 	BurstDelays: 10
 	Range: 4c0
@@ -350,7 +350,7 @@ Rocket:
 
 Rocket_heavy:
 	Inherits: Rocket
-	ReloadDelay: 57
+	ReloadDelay: 55
 	Burst: 3
 	BurstDelays: 7
 	Range: 4c0
@@ -388,7 +388,7 @@ Rocket_heavy:
 
 mtank_pri:
 	Inherits: ^Missile
-	ReloadDelay: 140
+	ReloadDelay: 132
 	Burst: 2
 	BurstDelays: 30
 	Range: 8c0
@@ -414,7 +414,7 @@ clusterMissile:
 	Burst: 1
 	BurstDelays: 20
 	ReloadDelay: 20
-	Range: 7c112
+	Range: 7c0
 	MinRange: 2c221
 	Projectile: Missile
 		Inaccuracy: 140
@@ -642,9 +642,9 @@ Ornithopter_MG:
 DeathHand:
 	Warhead@Cluster: FireCluster
 		Weapon: DeathHandCluster
-		RandomClusterCount: 36
-		Dimensions: 6,6
-		Footprint: xXxXxX xxXXxx xXXXXx xxXXxx xXxxXx XxXxXx
+		RandomClusterCount: 42
+		Dimensions: 6,7
+		Footprint: xXxXxX xxXXxx xXXXXx xXXXXx xXXXXx XxXxXx xXxXxX
 	Warhead@2Eff: CreateEffect
 		Explosions: nuke
 		ImpactSounds: audio/bigexplosion01.wav
@@ -685,7 +685,7 @@ DeathHandCluster:
 		ImpactSounds: EXPLSML4.WAV, EXPLSML1.WAV, EXPLSML2.WAV
 
 grenade:
-	ReloadDelay: 50
+	ReloadDelay: 60
 	Range: 4c0
 	Projectile: Bullet
 		Speed: 160
@@ -919,7 +919,7 @@ HarvesterSpiceExplosion:
 GrenDeath:
 	Warhead@1Dam: SpreadDamage
 		Damage: 1600
-		Spread: 1c112
+		Spread: 1c412
 
 SardDeath:
 	Warhead@1Dam: SpreadDamage
@@ -947,7 +947,7 @@ rocket_spike:
 
 40mm_mortar:
 	Inherits: ^Cannon
-	ReloadDelay: 80
+	ReloadDelay: 74
 	Range: 6c312
 	MinRange: 2c0
 	Report: audio/EBoD_MortarFire.wav
@@ -981,7 +981,7 @@ rocket_spike:
 		ImpactSounds: audio/EBoD_MortarExplosion.wav
 
 portable_cannon:
-	ReloadDelay: 65
+	ReloadDelay: 60
 	Range: 6c112
 	Report: BAZOOK1.WAV
 	Projectile: InstantHit
@@ -1015,12 +1015,12 @@ pistol:
 	Inherits: ^MG
 	Report: audio/hk_engineer_pistol_1.wav
 	Range: 2c512
-	ReloadDelay: 60
+	ReloadDelay: 50
 	Projectile: InstantHit
 		Inaccuracy: 50
 	Warhead@1Dam: SpreadDamage
-		Damage: 1100
-		Spread: 380
+		Damage: 3100
+		Spread: 500
 	-Warhead@2Eff:
 	-Warhead@3Concrete:
 
@@ -1143,7 +1143,7 @@ chaosbomb4:
 		-Image: BOMBS
 		Shadow: false
 	Warhead@extenalcondition: GrantExternalCondition
-		Range: 5c0
+		Range: 5c850
 
 chaosbomb_from_husk:
 	Warhead@extenalcondition: GrantExternalCondition

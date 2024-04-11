@@ -1874,12 +1874,12 @@ assassin:
 	Inherits: ^Infantry
 	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
 	Valued:
-		Cost: 150
+		Cost: 140
 	Buildable:
 		Queue: Infantry
 		BuildPaletteOrder: 70
 		Prerequisites: ~!factions.standard, ~barracks.harkonnen, upgrade.barracks, high_tech_factory, ~techlevel.high
-		BuildDuration: 160
+		BuildDuration: 150
 		BuildDurationModifier: 60
 		Description: Infantry with long range rifle\n  Attacks only infantry\n  Inaccuracy is high at long range \n Can hide on Rough terrain
 	Tooltip:
@@ -1969,8 +1969,8 @@ officer:
 		ChargeDuration: 1250
 		ChargeThreshhold: 1250
 		ConditionDuration: 375
-	 FireWarheads@ScareEnemy:
-	 	Weapons: ScareEnemy
+	FireWarheads@ScareEnemy:
+		Weapons: ScareEnemy
 		Interval: 50
 		RequiresCondition: deployed
 
