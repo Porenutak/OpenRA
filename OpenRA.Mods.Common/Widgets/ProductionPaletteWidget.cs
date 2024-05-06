@@ -50,6 +50,8 @@ namespace OpenRA.Mods.Common.Widgets
 		public readonly int2 IconSpriteOffset = int2.Zero;
 
 		public readonly float2 QueuedOffset = new(4, 2);
+
+		public readonly float2 BulkOffset = new(4, 2);
 		public readonly TextAlign QueuedTextAlign = TextAlign.Left;
 
 		public readonly string ClickSound = ChromeMetrics.Get<string>("ClickSound");
@@ -602,6 +604,20 @@ namespace OpenRA.Mods.Common.Widgets
 						overlayFont.DrawTextWithContrast(total.ToString(NumberFormatInfo.CurrentInfo),
 							icon.Pos + pos,
 							TextColor, Color.Black, 1);
+					}
+				}
+
+				if (CurrentQueue is BulkProductionQueue bulkProductionQueue)
+				{
+					var readyActors = bulkProductionQueue.GetActorsReadyForDelivery();
+					if (readyActors.Any(a => a.Name == icon.Name))
+					{
+						overlayFont.DrawTextWithContrast(readyActors.Count(a => a.Name == icon.Name).ToString(NumberFormatInfo.CurrentInfo),
+						icon.Pos + BulkOffset, TextColor, Color.Black, 1);
+					}
+					else
+					{
+						overlayFont.DrawTextWithContrast("0", icon.Pos + BulkOffset, TextColor, Color.Black, 1);
 					}
 				}
 			}

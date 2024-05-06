@@ -18,7 +18,7 @@ using OpenRA.Primitives;
 using OpenRA.Traits;
 using System.Xml.Schema;
 
-namespace OpenRA.Mods.D2k.Traits
+namespace OpenRA.Mods.Common.Traits
 {
 	[Desc("Attach this to the player actor (not a building!) to define a new shared build queue.",
 		"Will only work together with the Production: trait on the actor that actually does the production.",
@@ -42,7 +42,8 @@ namespace OpenRA.Mods.D2k.Traits
 		readonly BulkProductionQueueInfo info;
 
 		int totalOrderValue = 0;
-		protected readonly List<KeyValuePair<ActorInfo, TypeDictionary>> ActorsReadyForDelivery = new();
+		protected readonly List<ActorInfo> ActorsReadyForDelivery = new();
+		protected readonly List<TypeDictionary> ActorsInits = new();
 
 		public BulkProductionQueue(ActorInitializer init, BulkProductionQueueInfo info)
 			: base(init, info)
@@ -81,7 +82,7 @@ namespace OpenRA.Mods.D2k.Traits
 
 		public override IEnumerable<ActorInfo> BuildableItems()
 		{
-			return Enabled ? base.BuildableItems() : NoItems;
+			return Enabled && ActorsReadyForDelivery.Count != info.MaxCapacity ? base.AllItems() : NoItems;
 		}
 
 		public override TraitPair<Production> MostLikelyProducer()
@@ -95,6 +96,11 @@ namespace OpenRA.Mods.D2k.Traits
 				.FirstOrDefault();
 
 			return productionActor;
+		}
+
+		public List<ActorInfo> GetActorsReadyForDelivery()
+		{
+			return ActorsReadyForDelivery;
 		}
 
 		protected override bool BuildUnit(ActorInfo unit)
@@ -128,7 +134,8 @@ namespace OpenRA.Mods.D2k.Traits
 				var item = Queue.First(i => i.Done && i.Item == unit.Name);
 				if (ActorsReadyForDelivery.Count < info.MaxCapacity)
 				{
-					ActorsReadyForDelivery.Add(new KeyValuePair<ActorInfo, TypeDictionary>(unit, inits));
+					ActorsReadyForDelivery.Add(unit);
+					ActorsInits.Add(inits);
 					Console.WriteLine("pocet:" + ActorsReadyForDelivery.Count);
 					totalOrderValue += item.TotalCost;
 					EndProduction(item);
@@ -137,7 +144,7 @@ namespace OpenRA.Mods.D2k.Traits
 				if (ActorsReadyForDelivery.Count == info.MaxCapacity)
 				{
 					Console.WriteLine("starting delivery");
-					if (p.Trait.DeliverOrder(p.Actor, ActorsReadyForDelivery, type, totalOrderValue))
+					if (p.Trait.DeliverOrder(p.Actor, ActorsReadyForDelivery, type, ActorsInits, totalOrderValue))
 					{
 						EndProduction(item);
 						totalOrderValue = 0;

@@ -13,7 +13,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using OpenRA.Activities;
+using OpenRA.Mods.Common;
 using OpenRA.Mods.Common.Activities;
+using OpenRA.Mods.Common.Traits;
 using OpenRA.Primitives;
 using OpenRA.Traits;
 
@@ -58,7 +60,7 @@ namespace OpenRA.Mods.Common.Traits
 		public ProductionStarport(ActorInitializer init, ProductionStarportInfo info)
 			: base(init, info) { }
 
-		public bool DeliverOrder(Actor self, List<KeyValuePair<ActorInfo, TypeDictionary>> produced, string productionType, int refundableValue)
+		public bool DeliverOrder(Actor self, List<ActorInfo> orderedActors, string productionType, List<TypeDictionary> inits, int refundableValue)
 		{
 			Console.WriteLine("total cost is: " + refundableValue);
 			if (IsTraitDisabled || IsTraitPaused)
@@ -131,15 +133,14 @@ namespace OpenRA.Mods.Common.Traits
 
 					self.World.AddFrameEndTask(ww =>
 					{
-						foreach (var producee in produced)
+						for (var i = 0; i < orderedActors.Count; i++)
 						{
-							DoProduction(self, producee.Key, exit, productionType, producee.Value);
+							DoProduction(self, orderedActors[i], exit, productionType, inits[i]);
 						}
-						produced.Clear();
+
+						orderedActors.Clear();
+						inits.Clear();
 					});
-
-
-
 					Game.Sound.PlayNotification(self.World.Map.Rules, self.Owner, "Speech", info.ReadyAudio, self.Owner.Faction.InternalName);
 					TextNotificationsManager.AddTransientLine(self.Owner, info.ReadyTextNotification);
 				}));
@@ -151,7 +152,5 @@ namespace OpenRA.Mods.Common.Traits
 
 			return true;
 		}
-
-
 	}
 }
