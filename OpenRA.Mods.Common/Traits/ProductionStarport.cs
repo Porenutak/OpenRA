@@ -57,8 +57,17 @@ namespace OpenRA.Mods.Common.Traits
 
 	sealed class ProductionStarport : Production
 	{
+		RallyPoint rp;
+		int WaitTickbeforeSpawn = 0;
 		public ProductionStarport(ActorInitializer init, ProductionStarportInfo info)
 			: base(init, info) { }
+
+		protected override void Created(Actor self)
+		{
+			base.Created(self);
+
+			rp = self.TraitOrDefault<RallyPoint>();
+		}
 
 		public bool DeliverOrder(Actor self, List<ActorInfo> orderedActors, string productionType, List<TypeDictionary> inits, int refundableValue)
 		{
@@ -109,45 +118,80 @@ namespace OpenRA.Mods.Common.Traits
 					return;
 				}
 
-				var actor = w.CreateActor(info.ActorType, new TypeDictionary
+				// aircrafts are delivered by themselfs
+				var destinations = rp != null && rp.Path.Count > 0 ? rp.Path : new List<CPos> { self.Location };
+				destinations.Insert(1, self.Location);
+				foreach (var orderedAircraft in orderedActors.Where(actor => actor.HasTraitInfo<AircraftInfo>()))
+				{
+					var aircraft = w.CreateActor(orderedAircraft.Name, new TypeDictionary
+					{
+						new CenterPositionInit(w.Map.CenterOfCell(startPos) + new WVec(WDist.Zero, WDist.Zero, aircraftInfo.CruiseAltitude)),
+						new OwnerInit(owner),
+						new FacingInit(spawnFacing)
+					});
+					var move = aircraft.TraitOrDefault<IMove>();
+					if (move != null)
+					{
+						aircraft.QueueActivity(new Wait(WaitTickbeforeSpawn));
+						WaitTickbeforeSpawn += 10;
+						foreach (var cell in destinations)
+						{
+							aircraft.QueueActivity(move.MoveTo(cell, 2, evaluateNearestMovableCell: true));
+						}
+					}
+				}
+
+				WaitTickbeforeSpawn = 0;
+				var exitCell = self.Location + exit.ExitCell;
+				var transport = w.CreateActor(info.ActorType, new TypeDictionary
 				{
 					new CenterPositionInit(w.Map.CenterOfCell(startPos) + new WVec(WDist.Zero, WDist.Zero, aircraftInfo.CruiseAltitude)),
 					new OwnerInit(owner),
 					new FacingInit(spawnFacing)
 				});
-
-				var exitCell = self.Location + exit.ExitCell;
-				actor.QueueActivity(new Land(actor, Target.FromActor(self), WDist.Zero, info.LandOffset, info.Facing, clearCells: new CPos[1] { exitCell }));
+				transport.QueueActivity(new Land(transport, Target.FromActor(self), WDist.Zero, info.LandOffset, info.Facing, clearCells: new CPos[1] { exitCell }));
 				if (info.WaitTickBeforeProduce > 0)
-					actor.QueueActivity(new Wait(info.WaitTickBeforeProduce));
-				actor.QueueActivity(new CallFunc(() =>
+					transport.QueueActivity(new Wait(info.WaitTickBeforeProduce));
+
+				transport.QueueActivity(new CallFunc(() =>
 				{
 					if (!self.IsInWorld || self.IsDead)
 					{
+						// TODO fix refund cash
 						owner.PlayerActor.Trait<PlayerResources>().GiveCash(refundableValue);
+						orderedActors.Clear();
 						return;
 					}
 
 					foreach (var cargo in self.TraitsImplementing<INotifyDelivery>())
 						cargo.Delivered(self);
 
-					self.World.AddFrameEndTask(ww =>
+					for (var i = 0; i < orderedActors.Count; i++)
 					{
-						for (var i = 0; i < orderedActors.Count; i++)
+						transport.QueueActivity(new Wait(WaitTickbeforeSpawn));
+						transport.QueueActivity(new CallFunc(() =>
 						{
-							DoProduction(self, orderedActors[i], exit, productionType, inits[i]);
-						}
+							var finalexit = SelectExit(self, orderedActors[i], productionType);
+							if (orderedActors[i].HasTraitInfo<MobileInfo>())
+							{
+								DoProduction(self, orderedActors[i], finalexit?.Info, productionType, inits[i]);
+								WaitTickbeforeSpawn += 10;
+							}
+						}));
+					}
 
-						orderedActors.Clear();
-						inits.Clear();
-					});
 					Game.Sound.PlayNotification(self.World.Map.Rules, self.Owner, "Speech", info.ReadyAudio, self.Owner.Faction.InternalName);
 					TextNotificationsManager.AddTransientLine(self.Owner, info.ReadyTextNotification);
 				}));
+				transport.QueueActivity(new CallFunc(() =>
+				{
+					orderedActors.Clear();
+					inits.Clear();
+				}));
 				if (info.WaitTickAfterProduce > 0)
-					actor.QueueActivity(new Wait(info.WaitTickAfterProduce));
-				actor.QueueActivity(new FlyOffMap(actor, Target.FromCell(w, endPos)));
-				actor.QueueActivity(new RemoveSelf());
+					transport.QueueActivity(new Wait(info.WaitTickAfterProduce));
+				transport.QueueActivity(new FlyOffMap(transport, Target.FromCell(w, endPos)));
+				transport.QueueActivity(new RemoveSelf());
 			});
 
 			return true;

@@ -66,7 +66,8 @@ Player:
 	BulkProductionQueue@Starport:
 		Type: Starport
 		DisplayOrder: 4
-		BuildDurationModifier: 10
+		PayUpFront: true
+		BuildPDurationModifier: 10
 		BlockedAudio: NoRoom
 		BlockedTextNotification: notification-no-room-for-new-units
 		QueuedAudio: OrderPlaced
