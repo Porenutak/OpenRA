@@ -67,7 +67,6 @@ Player:
 		Type: Starport
 		DisplayOrder: 4
 		PayUpFront: true
-		BuildPDurationModifier: 10
 		BlockedAudio: NoRoom
 		BlockedTextNotification: notification-no-room-for-new-units
 		QueuedAudio: OrderPlaced

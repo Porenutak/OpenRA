@@ -144,7 +144,7 @@ namespace OpenRA.Mods.Common.Traits
 				if (ActorsReadyForDelivery.Count == info.MaxCapacity)
 				{
 					Console.WriteLine("starting delivery");
-					if (p.Trait.DeliverOrder(p.Actor, ActorsReadyForDelivery, type, ActorsInits, totalOrderValue))
+					if (p.Trait.DeliverOrder(p.Actor, ActorsReadyForDelivery, type, inits, totalOrderValue))
 					{
 						EndProduction(item);
 						totalOrderValue = 0;

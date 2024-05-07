@@ -69,7 +69,7 @@ namespace OpenRA.Mods.Common.Traits
 			rp = self.TraitOrDefault<RallyPoint>();
 		}
 
-		public bool DeliverOrder(Actor self, List<ActorInfo> orderedActors, string productionType, List<TypeDictionary> inits, int refundableValue)
+		public bool DeliverOrder(Actor self, List<ActorInfo> orderedActors, string productionType, TypeDictionary inits, int refundableValue)
 		{
 			Console.WriteLine("total cost is: " + refundableValue);
 			if (IsTraitDisabled || IsTraitPaused)
@@ -155,6 +155,7 @@ namespace OpenRA.Mods.Common.Traits
 
 				transport.QueueActivity(new CallFunc(() =>
 				{
+					Console.WriteLine("2.strating deploying");
 					if (!self.IsInWorld || self.IsDead)
 					{
 						// TODO fix refund cash
@@ -166,18 +167,14 @@ namespace OpenRA.Mods.Common.Traits
 					foreach (var cargo in self.TraitsImplementing<INotifyDelivery>())
 						cargo.Delivered(self);
 
-					for (var i = 0; i < orderedActors.Count; i++)
+					foreach (var cargo in orderedActors.Where(actor => actor.HasTraitInfo<MobileInfo>()))
 					{
-						transport.QueueActivity(new Wait(WaitTickbeforeSpawn));
-						transport.QueueActivity(new CallFunc(() =>
+						var finalexit = SelectExit(self, cargo, productionType);
+						if (cargo.HasTraitInfo<MobileInfo>())
 						{
-							var finalexit = SelectExit(self, orderedActors[i], productionType);
-							if (orderedActors[i].HasTraitInfo<MobileInfo>())
-							{
-								DoProduction(self, orderedActors[i], finalexit?.Info, productionType, inits[i]);
-								WaitTickbeforeSpawn += 10;
-							}
-						}));
+							self.World.AddFrameEndTask(ww => DoProduction(self, cargo, finalexit?.Info, productionType, inits));
+							WaitTickbeforeSpawn += 10;
+						}
 					}
 
 					Game.Sound.PlayNotification(self.World.Map.Rules, self.Owner, "Speech", info.ReadyAudio, self.Owner.Faction.InternalName);
@@ -185,8 +182,10 @@ namespace OpenRA.Mods.Common.Traits
 				}));
 				transport.QueueActivity(new CallFunc(() =>
 				{
+					Game.Sound.PlayNotification(self.World.Map.Rules, self.Owner, "Speech", info.ReadyAudio, self.Owner.Faction.InternalName);
+					TextNotificationsManager.AddTransientLine(self.Owner, info.ReadyTextNotification);
+					Console.WriteLine("removing ordered actors");
 					orderedActors.Clear();
-					inits.Clear();
 				}));
 				if (info.WaitTickAfterProduce > 0)
 					transport.QueueActivity(new Wait(info.WaitTickAfterProduce));
