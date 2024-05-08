@@ -21,12 +21,10 @@ using System.Xml.Schema;
 namespace OpenRA.Mods.Common.Traits
 {
 	[Desc("Attach this to the player actor (not a building!) to define a new shared build queue.",
-		"Will only work together with the Production: trait on the actor that actually does the production.",
+		"Will only work together with the StartProductionProduction: trait on the actor that actually does the production.",
 		"You will also want to add PrimaryBuildings: to let the user choose where new units should exit.")]
 	public class BulkProductionQueueInfo : ProductionQueueInfo, Requires<TechTreeInfo>, Requires<PlayerResourcesInfo>
 	{
-		[Desc("If you build more actors of the same type,", "the same queue will get its build time lowered for every actor produced there.")]
-		public readonly bool SpeedUp = false;
 
 		[Desc("Maximum deliver capacity")]
 		public readonly int MaxCapacity = 3;

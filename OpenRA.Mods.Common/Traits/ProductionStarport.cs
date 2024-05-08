@@ -21,7 +21,7 @@ using OpenRA.Traits;
 
 namespace OpenRA.Mods.Common.Traits
 {
-	[Desc("Deliver the unit in production via skylift.")]
+	[Desc("Deliver multiple units via skylift. Works with BuildProductionQueue")]
 	public class ProductionStarportInfo : ProductionInfo
 	{
 		[NotificationReference("Speech")]
@@ -119,8 +119,9 @@ namespace OpenRA.Mods.Common.Traits
 				}
 
 				// aircrafts are delivered by themselfs
+				var exitCell = self.Location + exit.ExitCell;
 				var destinations = rp != null && rp.Path.Count > 0 ? rp.Path : new List<CPos> { self.Location };
-				destinations.Insert(1, self.Location);
+
 				foreach (var orderedAircraft in orderedActors.Where(actor => actor.HasTraitInfo<AircraftInfo>()))
 				{
 					var aircraft = w.CreateActor(orderedAircraft.Name, new TypeDictionary
@@ -134,6 +135,8 @@ namespace OpenRA.Mods.Common.Traits
 					{
 						aircraft.QueueActivity(new Wait(WaitTickbeforeSpawn));
 						WaitTickbeforeSpawn += 10;
+						// first move must be to Producer location
+						aircraft.QueueActivity(move.MoveTo(exitCell, 2, evaluateNearestMovableCell: true));
 						foreach (var cell in destinations)
 						{
 							aircraft.QueueActivity(move.MoveTo(cell, 2, evaluateNearestMovableCell: true));
@@ -142,7 +145,6 @@ namespace OpenRA.Mods.Common.Traits
 				}
 
 				WaitTickbeforeSpawn = 0;
-				var exitCell = self.Location + exit.ExitCell;
 				var transport = w.CreateActor(info.ActorType, new TypeDictionary
 				{
 					new CenterPositionInit(w.Map.CenterOfCell(startPos) + new WVec(WDist.Zero, WDist.Zero, aircraftInfo.CruiseAltitude)),
