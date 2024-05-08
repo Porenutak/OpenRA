@@ -67,9 +67,9 @@ Player:
 		Type: Starport
 		DisplayOrder: 4
 		PayUpFront: true
+		StartDeliveryAudio: OrderPlaced
 		BlockedAudio: NoRoom
 		BlockedTextNotification: notification-no-room-for-new-units
-		QueuedAudio: OrderPlaced
 		OnHoldAudio: OnHold
 		CancelledAudio: Cancelled
 	ClassicProductionQueue@Aircraft:

@@ -69,17 +69,17 @@ namespace OpenRA.Mods.Common.Traits
 			rp = self.TraitOrDefault<RallyPoint>();
 		}
 
-		public bool DeliverOrder(Actor self, List<ActorInfo> orderedActors, string productionType, TypeDictionary inits, int refundableValue)
+		public bool DeliverOrder(Actor self, List<ActorInfo> orderedActors, string productionType, TypeDictionary inits, List<int> refundableValues)
 		{
-			Console.WriteLine("total cost is: " + refundableValue);
 			if (IsTraitDisabled || IsTraitPaused)
 				return false;
-
 			var info = (ProductionStarportInfo)Info;
 			var owner = self.Owner;
 			var map = owner.World.Map;
 			var aircraftInfo = self.World.Map.Rules.Actors[info.ActorType].TraitInfo<AircraftInfo>();
-
+			var queues = owner.World.ActorsWithTrait<BulkProductionQueue>().
+				Where(x => x.Actor.Owner == owner
+				&& x.Trait.GetActorsReadyForDelivery().Equals(orderedActors));
 			CPos startPos;
 			CPos endPos;
 			WAngle spawnFacing;
@@ -114,7 +114,7 @@ namespace OpenRA.Mods.Common.Traits
 			{
 				if (!self.IsInWorld || self.IsDead)
 				{
-					owner.PlayerActor.Trait<PlayerResources>().GiveCash(refundableValue);
+					owner.PlayerActor.Trait<PlayerResources>().GiveCash(refundableValues.Sum());
 					return;
 				}
 
@@ -135,7 +135,7 @@ namespace OpenRA.Mods.Common.Traits
 					{
 						aircraft.QueueActivity(new Wait(WaitTickbeforeSpawn));
 						WaitTickbeforeSpawn += 10;
-						// first move must be to Producer location
+						// first move must be to the Producer location
 						aircraft.QueueActivity(move.MoveTo(exitCell, 2, evaluateNearestMovableCell: true));
 						foreach (var cell in destinations)
 						{
@@ -144,6 +144,15 @@ namespace OpenRA.Mods.Common.Traits
 					}
 				}
 
+				orderedActors.RemoveAll(actor => actor.HasTraitInfo<AircraftInfo>());
+				for (var i = orderedActors.Count - 1; i >= 0; i--)
+				{
+					if (orderedActors[i].HasTraitInfo<AircraftInfo>())
+					{
+						orderedActors.RemoveAt(i);
+						refundableValues.RemoveAt(i);
+					}
+				}
 				WaitTickbeforeSpawn = 0;
 				var transport = w.CreateActor(info.ActorType, new TypeDictionary
 				{
@@ -161,7 +170,7 @@ namespace OpenRA.Mods.Common.Traits
 					if (!self.IsInWorld || self.IsDead)
 					{
 						// TODO fix refund cash
-						owner.PlayerActor.Trait<PlayerResources>().GiveCash(refundableValue);
+						owner.PlayerActor.Trait<PlayerResources>().GiveCash(refundableValues.Sum());
 						orderedActors.Clear();
 						return;
 					}
@@ -184,10 +193,10 @@ namespace OpenRA.Mods.Common.Traits
 				}));
 				transport.QueueActivity(new CallFunc(() =>
 				{
-					Game.Sound.PlayNotification(self.World.Map.Rules, self.Owner, "Speech", info.ReadyAudio, self.Owner.Faction.InternalName);
-					TextNotificationsManager.AddTransientLine(self.Owner, info.ReadyTextNotification);
-					Console.WriteLine("removing ordered actors");
-					orderedActors.Clear();
+					foreach (var queue in queues)
+					{
+						queue.Trait.DeliverFinished();
+					}
 				}));
 				if (info.WaitTickAfterProduce > 0)
 					transport.QueueActivity(new Wait(info.WaitTickAfterProduce));

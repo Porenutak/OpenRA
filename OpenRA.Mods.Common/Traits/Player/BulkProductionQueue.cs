@@ -27,7 +27,13 @@ namespace OpenRA.Mods.Common.Traits
 	{
 
 		[Desc("Maximum deliver capacity")]
-		public readonly int MaxCapacity = 3;
+		public readonly int MaxCapacity = 6;
+
+		[Desc("Notification played when deliver started")]
+		public readonly string StartDeliveryAudio = null;
+
+		[Desc("Notification displayed when deliver started")]
+		public readonly string StartDeliveryNotification = null;
 
 		public override object Create(ActorInitializer init) { return new BulkProductionQueue(init, this); }
 	}
@@ -39,10 +45,11 @@ namespace OpenRA.Mods.Common.Traits
 		readonly Actor self;
 		readonly BulkProductionQueueInfo info;
 
-		int totalOrderValue = 0;
+		readonly List<int> actorsTotalCost = new();
 		protected readonly List<ActorInfo> ActorsReadyForDelivery = new();
 		protected readonly List<TypeDictionary> ActorsInits = new();
 
+		protected bool deliveryProcessStarted = false;
 		public BulkProductionQueue(ActorInitializer init, BulkProductionQueueInfo info)
 			: base(init, info)
 		{
@@ -80,7 +87,7 @@ namespace OpenRA.Mods.Common.Traits
 
 		public override IEnumerable<ActorInfo> BuildableItems()
 		{
-			return Enabled && ActorsReadyForDelivery.Count != info.MaxCapacity ? base.AllItems() : NoItems;
+			return Enabled && ActorsReadyForDelivery.Count != info.MaxCapacity && !deliveryProcessStarted ? base.AllItems() : NoItems;
 		}
 
 		public override TraitPair<Production> MostLikelyProducer()
@@ -96,7 +103,7 @@ namespace OpenRA.Mods.Common.Traits
 			return productionActor;
 		}
 
-		public List<ActorInfo> GetActorsReadyForDelivery()
+		public List<ActorInfo> GetPurchasedActors()
 		{
 			return ActorsReadyForDelivery;
 		}
@@ -130,36 +137,166 @@ namespace OpenRA.Mods.Common.Traits
 				};
 
 				var item = Queue.First(i => i.Done && i.Item == unit.Name);
-				if (ActorsReadyForDelivery.Count < info.MaxCapacity)
+				if (ActorsReadyForDelivery.Count <= info.MaxCapacity)
 				{
 					ActorsReadyForDelivery.Add(unit);
 					ActorsInits.Add(inits);
-					Console.WriteLine("pocet:" + ActorsReadyForDelivery.Count);
-					totalOrderValue += item.TotalCost;
+					Console.WriteLine("Couter:" + ActorsReadyForDelivery.Count);
+					actorsTotalCost.Add(item.TotalCost);
 					EndProduction(item);
 				}
 
-				if (ActorsReadyForDelivery.Count == info.MaxCapacity)
-				{
-					Console.WriteLine("starting delivery");
-					if (p.Trait.DeliverOrder(p.Actor, ActorsReadyForDelivery, type, inits, totalOrderValue))
-					{
-						EndProduction(item);
-						totalOrderValue = 0;
-						//ActorsReadyForDelivery.Clear();
-						return true;
-					}
-				}
-				else
-				{
-					return false;
-				}
+				return false;
 			}
 
 			if (!anyProducers)
 				CancelProduction(unit.Name, 1);
 
 			return false;
+		}
+
+		public override void ResolveOrder(Actor self, Order order)
+		{
+			if (!Enabled)
+				return;
+
+			var rules = self.World.Map.Rules;
+			switch (order.OrderString)
+			{
+				case "StartProduction":
+					var unit = rules.Actors[order.TargetString];
+					var bi = unit.TraitInfo<BuildableInfo>();
+
+					// Not built by this queue
+					if (!bi.Queue.Contains(Info.Type))
+						return;
+
+					// You can't build that
+					if (BuildableItems().All(b => b.Name != order.TargetString))
+						return;
+
+					// Check if the player is trying to build more units that they are allowed
+					var fromLimit = int.MaxValue;
+					if (!developerMode.AllTech)
+					{
+						if (Info.QueueLimit > 0)
+							fromLimit = Info.QueueLimit - Queue.Count;
+
+						if (Info.ItemLimit > 0)
+							fromLimit = Math.Min(fromLimit, Info.ItemLimit - Queue.Count(i => i.Item == order.TargetString));
+
+						if (bi.BuildLimit > 0)
+						{
+							var inQueue = Queue.Count(pi => pi.Item == order.TargetString);
+							var owned = self.Owner.World.ActorsHavingTrait<Buildable>().Count(a => a.Info.Name == order.TargetString && a.Owner == self.Owner);
+							fromLimit = Math.Min(fromLimit, bi.BuildLimit - (inQueue + owned));
+						}
+
+						if (fromLimit <= 0)
+							return;
+					}
+
+					var cost = GetProductionCost(unit);
+					var time = GetBuildTime(unit, bi);
+					var amountToBuild = Math.Min(fromLimit, order.ExtraData);
+					for (var n = 0; n < amountToBuild; n++)
+					{
+						if (Info.PayUpFront && cost > playerResources.GetCashAndResources())
+							return;
+						var hasPlayedSound = false;
+						BeginProduction(new ProductionItem(this, order.TargetString, cost, playerPower, () => self.World.AddFrameEndTask(_ =>
+						{
+							// Make sure the item hasn't been invalidated between the ProductionItem ticking and this FrameEndTask running
+							if (!Queue.Any(i => i.Done && i.Item == unit.Name))
+								return;
+
+							var isBuilding = unit.HasTraitInfo<BuildingInfo>();
+							if (isBuilding && !hasPlayedSound)
+							{
+								//hasPlayedSound = Game.Sound.PlayNotification(rules, self.Owner, "Speech", Info.ReadyAudio, self.Owner.Faction.InternalName);
+								//TextNotificationsManager.AddTransientLine(self.Owner, Info.ReadyTextNotification);
+							}
+							else if (!isBuilding)
+							{
+								if (BuildUnit(unit))
+								{
+									//Game.Sound.PlayNotification(rules, self.Owner, "Speech", Info.ReadyAudio, self.Owner.Faction.InternalName);
+									//TextNotificationsManager.AddTransientLine(self.Owner, Info.ReadyTextNotification);
+								}
+								else if (!hasPlayedSound && time > 0)
+								{
+									//hasPlayedSound = Game.Sound.PlayNotification(rules, self.Owner, "Speech", Info.BlockedAudio, self.Owner.Faction.InternalName);
+									//TextNotificationsManager.AddTransientLine(self.Owner, Info.BlockedTextNotification);
+								}
+							}
+						})), !order.Queued);
+					}
+
+					break;
+				case "PauseProduction":
+					PauseProduction(order.TargetString, order.ExtraData != 0);
+					break;
+				case "CancelProduction":
+					CancelProduction(order.TargetString, order.ExtraData);
+					break;
+				case "ReturnOrder":
+					Console.WriteLine("returning actor:" + order.TargetString);
+					ReturnOrder(order.TargetString, order.ExtraData);
+					break;
+				case "PurchaseOrder":
+					if (!deliveryProcessStarted)
+						StartDeliveryProcess();
+					break;
+			}
+		}
+
+		public void DeliverFinished()
+		{
+			if (deliveryProcessStarted)
+			{
+				actorsTotalCost.Clear();
+				ActorsReadyForDelivery.Clear();
+				deliveryProcessStarted = false;
+				Console.WriteLine("delivery finished");
+			}
+		}
+
+		public bool HasDeliveryStarted()
+		{
+			return deliveryProcessStarted;
+		}
+		public List<ActorInfo> GetActorsReadyForDelivery()
+		{
+			return ActorsReadyForDelivery;
+		}
+		protected void StartDeliveryProcess()
+		{
+			Console.WriteLine("Starting delivery process");
+			ClearQueue();
+			deliveryProcessStarted = true;
+			var producers = self.World.ActorsWithTrait<ProductionStarport>()
+				.Where(x => x.Actor.Owner == self.Owner
+					&& !x.Trait.IsTraitDisabled
+					&& !x.Trait.IsTraitPaused
+					&& x.Trait.Info.Produces.Contains(Info.Type))
+					.OrderByDescending(x => x.Actor.Trait<PrimaryBuilding>().IsPrimary)
+					.ThenByDescending(x => x.Actor.ActorID);
+			var p = producers.First();
+			p.Trait.DeliverOrder(p.Actor, ActorsReadyForDelivery, Info.Type, ActorsInits.FirstOrDefault(), actorsTotalCost);
+			var rules = self.World.Map.Rules;
+			Game.Sound.PlayNotification(rules, self.Owner, "Speech", info.StartDeliveryAudio, self.Owner.Faction.InternalName);
+			TextNotificationsManager.AddTransientLine(self.Owner, info.StartDeliveryNotification);
+		}
+		protected void ReturnOrder(string itemName, uint numberToCancel)
+		{
+			for (var i = 0; i < numberToCancel; i++)
+			{
+				var actor = ActorsReadyForDelivery.LastOrDefault(actor => actor.Name == itemName);
+				if (actor == null)
+					break;
+				playerResources.GiveResources(actor.TraitInfo<ValuedInfo>().Cost);
+				ActorsReadyForDelivery.Remove(actor);
+			}
 		}
 	}
 }

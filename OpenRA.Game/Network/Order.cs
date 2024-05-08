@@ -298,6 +298,11 @@ namespace OpenRA
 			return new Order("PurchaseOrder", subject, false) { TargetString = item };
 		}
 
+		public static Order ReturnOrder(Actor subject, string item, int count)
+		{
+			return new Order("ReturnOrder", subject, false) { ExtraData = (uint)count, TargetString = item };
+		}
+
 		// For scripting special powers
 		public Order()
 			: this(null, null, Target.Invalid, null, false, null, CPos.Zero, 0) { }

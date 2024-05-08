@@ -366,44 +366,70 @@ namespace OpenRA.Mods.Common.Widgets
 
 		bool HandleRightClick(ProductionItem item, ProductionIcon icon, int handleCount)
 		{
-			if (item == null)
+			if (item == null && CurrentQueue is not BulkProductionQueue)
 				return false;
 
-			Game.Sound.PlayNotification(World.Map.Rules, World.LocalPlayer, "Sounds", ClickSound, null);
-
-			if (CurrentQueue.Info.DisallowPaused || item.Paused || item.Done || item.TotalCost == item.RemainingCost || !item.Started)
+			if (item != null)
 			{
-				// Instantly cancel items that haven't started, have finished, or if the queue doesn't support pausing
-				Game.Sound.PlayNotification(World.Map.Rules, World.LocalPlayer, "Speech", CurrentQueue.Info.CancelledAudio, World.LocalPlayer.Faction.InternalName);
-				TextNotificationsManager.AddTransientLine(World.LocalPlayer, CurrentQueue.Info.CancelledTextNotification);
+				Game.Sound.PlayNotification(World.Map.Rules, World.LocalPlayer, "Sounds", ClickSound, null);
 
-				World.IssueOrder(Order.CancelProduction(CurrentQueue.Actor, icon.Name, handleCount));
+				if (CurrentQueue.Info.DisallowPaused || item.Paused || item.Done || item.TotalCost == item.RemainingCost || !item.Started)
+				{
+					// Instantly cancel items that haven't started, have finished, or if the queue doesn't support pausing
+					Game.Sound.PlayNotification(World.Map.Rules, World.LocalPlayer, "Speech", CurrentQueue.Info.CancelledAudio, World.LocalPlayer.Faction.InternalName);
+					TextNotificationsManager.AddTransientLine(World.LocalPlayer, CurrentQueue.Info.CancelledTextNotification);
+
+					World.IssueOrder(Order.CancelProduction(CurrentQueue.Actor, icon.Name, handleCount));
+				}
+				else
+				{
+					// Pause an existing item
+					Game.Sound.PlayNotification(World.Map.Rules, World.LocalPlayer, "Speech", CurrentQueue.Info.OnHoldAudio, World.LocalPlayer.Faction.InternalName);
+					TextNotificationsManager.AddTransientLine(World.LocalPlayer, CurrentQueue.Info.OnHoldTextNotification);
+
+					World.IssueOrder(Order.PauseProduction(CurrentQueue.Actor, icon.Name, true));
+				}
+
+				return true;
 			}
-			else
+
+			if (CurrentQueue is BulkProductionQueue bulkProductionQueue && !bulkProductionQueue.HasDeliveryStarted())
 			{
-				// Pause an existing item
-				Game.Sound.PlayNotification(World.Map.Rules, World.LocalPlayer, "Speech", CurrentQueue.Info.OnHoldAudio, World.LocalPlayer.Faction.InternalName);
-				TextNotificationsManager.AddTransientLine(World.LocalPlayer, CurrentQueue.Info.OnHoldTextNotification);
-
-				World.IssueOrder(Order.PauseProduction(CurrentQueue.Actor, icon.Name, true));
+				Game.Sound.PlayNotification(World.Map.Rules, World.LocalPlayer, "Sounds", ClickSound, null);
+				var readyActors = bulkProductionQueue.GetPurchasedActors();
+				if (readyActors.Any(a => a.Name == icon.Name))
+				{
+					World.IssueOrder(Order.ReturnOrder(CurrentQueue.Actor, icon.Name, handleCount));
+					return true;
+				}
+				else
+					return false;
 			}
 
-			return true;
+			return false;
 		}
 
 		bool HandleMiddleClick(ProductionItem item, ProductionIcon icon, int handleCount)
 		{
-			if (item == null)
-				return false;
+			// TEMPORARY HACK until Purchase button is complete.
+			if (item != null)
+			{
+				// Directly cancel, skipping "on-hold"
+				Game.Sound.PlayNotification(World.Map.Rules, World.LocalPlayer, "Sounds", ClickSound, null);
+				Game.Sound.PlayNotification(World.Map.Rules, World.LocalPlayer, "Speech", CurrentQueue.Info.CancelledAudio, World.LocalPlayer.Faction.InternalName);
+				TextNotificationsManager.AddTransientLine(World.LocalPlayer, CurrentQueue.Info.CancelledTextNotification);
 
-			// Directly cancel, skipping "on-hold"
-			Game.Sound.PlayNotification(World.Map.Rules, World.LocalPlayer, "Sounds", ClickSound, null);
-			Game.Sound.PlayNotification(World.Map.Rules, World.LocalPlayer, "Speech", CurrentQueue.Info.CancelledAudio, World.LocalPlayer.Faction.InternalName);
-			TextNotificationsManager.AddTransientLine(World.LocalPlayer, CurrentQueue.Info.CancelledTextNotification);
+				World.IssueOrder(Order.CancelProduction(CurrentQueue.Actor, icon.Name, handleCount));
+				return true;
+			}
 
-			World.IssueOrder(Order.CancelProduction(CurrentQueue.Actor, icon.Name, handleCount));
+			if (CurrentQueue is BulkProductionQueue bulkQueue && bulkQueue.GetPurchasedActors().Count > 0)
+			{
+				World.IssueOrder(Order.PurchaseOrder(CurrentQueue.Actor, icon.Name));
+				return true;
+			}
 
-			return true;
+			return false;
 		}
 
 		bool HandleEvent(ProductionIcon icon, MouseButton btn, Modifiers modifiers)
@@ -609,7 +635,7 @@ namespace OpenRA.Mods.Common.Widgets
 
 				if (CurrentQueue is BulkProductionQueue bulkProductionQueue)
 				{
-					var readyActors = bulkProductionQueue.GetActorsReadyForDelivery();
+					var readyActors = bulkProductionQueue.GetPurchasedActors();
 					if (readyActors.Any(a => a.Name == icon.Name))
 					{
 						overlayFont.DrawTextWithContrast(readyActors.Count(a => a.Name == icon.Name).ToString(NumberFormatInfo.CurrentInfo),
