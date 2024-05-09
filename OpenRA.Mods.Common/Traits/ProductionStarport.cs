@@ -126,6 +126,8 @@ namespace OpenRA.Mods.Common.Traits
 					}
 				}
 
+
+
 				orderedActors.RemoveAll(actor => actor.HasTraitInfo<AircraftInfo>());
 				waitTickbeforeSpawn = 0;
 				var transport = w.CreateActor(info.ActorType, new TypeDictionary
@@ -134,13 +136,22 @@ namespace OpenRA.Mods.Common.Traits
 					new OwnerInit(owner),
 					new FacingInit(spawnFacing)
 				});
-				transport.QueueActivity(new Land(transport, Target.FromActor(self), WDist.Zero, info.LandOffset, info.Facing, clearCells: new CPos[1] { exitCell }));
-				if (info.WaitTickBeforeProduce > 0)
-					transport.QueueActivity(new Wait(info.WaitTickBeforeProduce));
 
+
+				var cargo = transport.TraitOrDefault<Cargo>();
+				foreach ( var orderedActor in orderedActors)
+				{
+					var passnager = w.CreateActor(false, orderedActor.Name, inits);
+					cargo.Load(transport, passnager);
+				}
+
+
+
+				transport.QueueActivity(new Land(transport, Target.FromActor(self), WDist.FromCells(10), info.LandOffset));
+				transport.QueueActivity(new UnloadCargo(transport, WDist.FromCells(10)));
+/*
 				transport.QueueActivity(new CallFunc(() =>
 				{
-					Console.WriteLine("2.strating deploying");
 					if (!self.IsInWorld || self.IsDead)
 					{
 						// TODO fix refund cash
@@ -165,6 +176,7 @@ namespace OpenRA.Mods.Common.Traits
 					Game.Sound.PlayNotification(self.World.Map.Rules, self.Owner, "Speech", info.ReadyAudio, self.Owner.Faction.InternalName);
 					TextNotificationsManager.AddTransientLine(self.Owner, info.ReadyTextNotification);
 				}));
+				*/
 				transport.QueueActivity(new CallFunc(() =>
 				{
 

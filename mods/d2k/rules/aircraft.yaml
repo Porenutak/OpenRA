@@ -77,19 +77,21 @@ carryall:
 
 frigate:
 	Inherits: ^Plane
+	Inherits: ^SelectableCombatUnit
+	-Interactable:
 	ParaDrop:
 		DropRange: 1c0
-	Interactable:
 	Tooltip:
 		Name: actor-frigate-name
 	Aircraft:
 		IdleBehavior: LeaveMap
 		Speed: 189
-		TurnSpeed: 4
+		TurnSpeed: 16
 		Repulsable: False
 		MaximumPitch: 20
 		CruiseAltitude: 2048
 		VTOL: true
+		TakeOffOnCreation: false
 		CanHover: true
 	-AppearsOnRadar:
 	Cargo:
