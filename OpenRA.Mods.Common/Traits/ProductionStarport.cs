@@ -37,8 +37,6 @@ namespace OpenRA.Mods.Common.Traits
 		[Desc("Cargo aircraft used for delivery. Must have the `" + nameof(Aircraft) + "` trait.")]
 		public readonly string ActorType = null;
 
-		[Desc("The cargo aircraft will spawn at the player baseline (map edge closest to the player spawn)")]
-		public readonly bool BaselineSpawn = false;
 
 		[Desc("Direction the aircraft should face to land.")]
 		public readonly WAngle Facing = new(256);
@@ -58,7 +56,8 @@ namespace OpenRA.Mods.Common.Traits
 	sealed class ProductionStarport : Production
 	{
 		RallyPoint rp;
-		int WaitTickbeforeSpawn = 0;
+
+		BulkProductionQueue queue;
 		public ProductionStarport(ActorInitializer init, ProductionStarportInfo info)
 			: base(init, info) { }
 
@@ -69,41 +68,22 @@ namespace OpenRA.Mods.Common.Traits
 			rp = self.TraitOrDefault<RallyPoint>();
 		}
 
-		public bool DeliverOrder(Actor self, List<ActorInfo> orderedActors, string productionType, TypeDictionary inits, List<int> refundableValues)
+		public bool DeliverOrder(Actor self, List<ActorInfo> orderedActors, string productionType, TypeDictionary inits)
 		{
 			if (IsTraitDisabled || IsTraitPaused)
 				return false;
 			var info = (ProductionStarportInfo)Info;
 			var owner = self.Owner;
 			var map = owner.World.Map;
+			var waitTickbeforeSpawn = 10;
 			var aircraftInfo = self.World.Map.Rules.Actors[info.ActorType].TraitInfo<AircraftInfo>();
-			var queues = owner.World.ActorsWithTrait<BulkProductionQueue>().
-				Where(x => x.Actor.Owner == owner
-				&& x.Trait.GetActorsReadyForDelivery().Equals(orderedActors));
+			queue = owner.World.ActorsWithTrait<BulkProductionQueue>().First(x => x.Actor.Owner == owner
+				&& x.Trait.GetActorsReadyForDelivery().Equals(orderedActors)).Trait;
 			CPos startPos;
-			CPos endPos;
 			WAngle spawnFacing;
 
-			if (info.BaselineSpawn)
-			{
-				var bounds = map.Bounds;
-				var center = new MPos(bounds.Left + bounds.Width / 2, bounds.Top + bounds.Height / 2).ToCPos(map);
-				var spawnVec = owner.HomeLocation - center;
-				startPos = owner.HomeLocation + spawnVec * Exts.ISqrt((bounds.Height * bounds.Height + bounds.Width * bounds.Width) / (4 * spawnVec.LengthSquared));
-				endPos = startPos;
-				var spawnDirection = new WVec((self.Location - startPos).X, (self.Location - startPos).Y, 0);
-				spawnFacing = spawnDirection.Yaw;
-			}
-			else
-			{
-				// Start a fixed distance away: the width of the map.
-				// This makes the production timing independent of spawnpoint
-				var loc = self.Location.ToMPos(map);
-				startPos = new MPos(loc.U + map.Bounds.Width, loc.V).ToCPos(map);
-				endPos = new MPos(map.Bounds.Left, loc.V).ToCPos(map);
-				spawnFacing = info.Facing;
-			}
-
+			startPos = self.World.Map.ChooseClosestEdgeCell(self.Location);
+			spawnFacing = self.World.Map.FacingBetween(startPos, self.Location, WAngle.Zero);
 			// Assume a single exit point for simplicity
 			var exit = self.Info.TraitInfos<ExitInfo>().First();
 
@@ -114,27 +94,29 @@ namespace OpenRA.Mods.Common.Traits
 			{
 				if (!self.IsInWorld || self.IsDead)
 				{
-					owner.PlayerActor.Trait<PlayerResources>().GiveCash(refundableValues.Sum());
+					RefundDelivery(orderedActors);
+					queue.DeliverFinished();
 					return;
 				}
 
 				// aircrafts are delivered by themselfs
 				var exitCell = self.Location + exit.ExitCell;
-				var destinations = rp != null && rp.Path.Count > 0 ? rp.Path : new List<CPos> { self.Location };
+				var destinations = rp != null && rp.Path.Count > 0 ? rp.Path : new List<CPos> { exitCell };
 
 				foreach (var orderedAircraft in orderedActors.Where(actor => actor.HasTraitInfo<AircraftInfo>()))
 				{
+					var altitude = orderedAircraft.TraitInfo<AircraftInfo>().CruiseAltitude;
 					var aircraft = w.CreateActor(orderedAircraft.Name, new TypeDictionary
 					{
-						new CenterPositionInit(w.Map.CenterOfCell(startPos) + new WVec(WDist.Zero, WDist.Zero, aircraftInfo.CruiseAltitude)),
+						new CenterPositionInit(w.Map.CenterOfCell(startPos) + new WVec(WDist.Zero, WDist.Zero, altitude)),
 						new OwnerInit(owner),
 						new FacingInit(spawnFacing)
 					});
 					var move = aircraft.TraitOrDefault<IMove>();
 					if (move != null)
 					{
-						aircraft.QueueActivity(new Wait(WaitTickbeforeSpawn));
-						WaitTickbeforeSpawn += 10;
+						aircraft.QueueActivity(new Wait(waitTickbeforeSpawn));
+						waitTickbeforeSpawn += 10;
 						// first move must be to the Producer location
 						aircraft.QueueActivity(move.MoveTo(exitCell, 2, evaluateNearestMovableCell: true));
 						foreach (var cell in destinations)
@@ -145,15 +127,7 @@ namespace OpenRA.Mods.Common.Traits
 				}
 
 				orderedActors.RemoveAll(actor => actor.HasTraitInfo<AircraftInfo>());
-				for (var i = orderedActors.Count - 1; i >= 0; i--)
-				{
-					if (orderedActors[i].HasTraitInfo<AircraftInfo>())
-					{
-						orderedActors.RemoveAt(i);
-						refundableValues.RemoveAt(i);
-					}
-				}
-				WaitTickbeforeSpawn = 0;
+				waitTickbeforeSpawn = 0;
 				var transport = w.CreateActor(info.ActorType, new TypeDictionary
 				{
 					new CenterPositionInit(w.Map.CenterOfCell(startPos) + new WVec(WDist.Zero, WDist.Zero, aircraftInfo.CruiseAltitude)),
@@ -170,8 +144,8 @@ namespace OpenRA.Mods.Common.Traits
 					if (!self.IsInWorld || self.IsDead)
 					{
 						// TODO fix refund cash
-						owner.PlayerActor.Trait<PlayerResources>().GiveCash(refundableValues.Sum());
-						orderedActors.Clear();
+						RefundDelivery(orderedActors);
+						queue.DeliverFinished();
 						return;
 					}
 
@@ -184,7 +158,7 @@ namespace OpenRA.Mods.Common.Traits
 						if (cargo.HasTraitInfo<MobileInfo>())
 						{
 							self.World.AddFrameEndTask(ww => DoProduction(self, cargo, finalexit?.Info, productionType, inits));
-							WaitTickbeforeSpawn += 10;
+							waitTickbeforeSpawn += 10;
 						}
 					}
 
@@ -193,18 +167,24 @@ namespace OpenRA.Mods.Common.Traits
 				}));
 				transport.QueueActivity(new CallFunc(() =>
 				{
-					foreach (var queue in queues)
-					{
-						queue.Trait.DeliverFinished();
-					}
+
+					queue.DeliverFinished();
 				}));
 				if (info.WaitTickAfterProduce > 0)
 					transport.QueueActivity(new Wait(info.WaitTickAfterProduce));
-				transport.QueueActivity(new FlyOffMap(transport, Target.FromCell(w, endPos)));
+				transport.QueueActivity(new FlyOffMap(transport, Target.FromCell(w, startPos)));
 				transport.QueueActivity(new RemoveSelf());
 			});
 
 			return true;
+		}
+
+		public void RefundDelivery(List<ActorInfo> orderedActors)
+		{
+			foreach (var actor in orderedActors)
+			{
+				queue.ReturnOrder(actor.Name);
+			}
 		}
 	}
 }

@@ -282,19 +282,19 @@ namespace OpenRA.Mods.Common.Traits
 					.OrderByDescending(x => x.Actor.Trait<PrimaryBuilding>().IsPrimary)
 					.ThenByDescending(x => x.Actor.ActorID);
 			var p = producers.First();
-			p.Trait.DeliverOrder(p.Actor, ActorsReadyForDelivery, Info.Type, ActorsInits.FirstOrDefault(), actorsTotalCost);
+			p.Trait.DeliverOrder(p.Actor, ActorsReadyForDelivery, Info.Type, ActorsInits.FirstOrDefault());
 			var rules = self.World.Map.Rules;
 			Game.Sound.PlayNotification(rules, self.Owner, "Speech", info.StartDeliveryAudio, self.Owner.Faction.InternalName);
 			TextNotificationsManager.AddTransientLine(self.Owner, info.StartDeliveryNotification);
 		}
-		protected void ReturnOrder(string itemName, uint numberToCancel)
+		public void ReturnOrder(string itemName, uint numberToCancel = 1)
 		{
 			for (var i = 0; i < numberToCancel; i++)
 			{
 				var actor = ActorsReadyForDelivery.LastOrDefault(actor => actor.Name == itemName);
 				if (actor == null)
 					break;
-				playerResources.GiveResources(actor.TraitInfo<ValuedInfo>().Cost);
+				playerResources.GiveCash(actor.TraitInfo<ValuedInfo>().Cost);
 				ActorsReadyForDelivery.Remove(actor);
 			}
 		}

@@ -91,7 +91,6 @@ frigate:
 		CruiseAltitude: 2048
 		VTOL: true
 		CanHover: true
-		CanSlide: true
 	-AppearsOnRadar:
 	Cargo:
 		MaxWeight: 20
