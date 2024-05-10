@@ -77,10 +77,9 @@ carryall:
 
 frigate:
 	Inherits: ^Plane
-	Inherits: ^SelectableCombatUnit
-	-Interactable:
 	ParaDrop:
 		DropRange: 1c0
+	Interactable:
 	Tooltip:
 		Name: actor-frigate-name
 	Aircraft:

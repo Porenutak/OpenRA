@@ -16,7 +16,6 @@ using OpenRA.Mods.Common;
 using OpenRA.Mods.Common.Traits;
 using OpenRA.Primitives;
 using OpenRA.Traits;
-using System.Xml.Schema;
 
 namespace OpenRA.Mods.Common.Traits
 {
@@ -288,6 +287,7 @@ namespace OpenRA.Mods.Common.Traits
 			Game.Sound.PlayNotification(rules, self.Owner, "Speech", info.StartDeliveryAudio, self.Owner.Faction.InternalName);
 			TextNotificationsManager.AddTransientLine(self.Owner, info.StartDeliveryNotification);
 		}
+
 		public void ReturnOrder(string itemName = null, uint numberToCancel = 1)
 		{
 			// TODO Correct refund in Resource and Cash
