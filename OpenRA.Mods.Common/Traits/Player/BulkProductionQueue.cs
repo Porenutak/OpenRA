@@ -254,6 +254,7 @@ namespace OpenRA.Mods.Common.Traits
 		{
 			if (deliveryProcessStarted)
 			{
+				ReturnOrder();
 				actorsTotalCost.Clear();
 				ActorsReadyForDelivery.Clear();
 				deliveryProcessStarted = false;
@@ -287,8 +288,18 @@ namespace OpenRA.Mods.Common.Traits
 			Game.Sound.PlayNotification(rules, self.Owner, "Speech", info.StartDeliveryAudio, self.Owner.Faction.InternalName);
 			TextNotificationsManager.AddTransientLine(self.Owner, info.StartDeliveryNotification);
 		}
-		public void ReturnOrder(string itemName, uint numberToCancel = 1)
+		public void ReturnOrder(string itemName = null, uint numberToCancel = 1)
 		{
+			// TODO Correct refund in Resource and Cash
+			if (itemName == null)
+			{
+				foreach (var actor in ActorsReadyForDelivery)
+				{
+					playerResources.GiveCash(actor.TraitInfo<ValuedInfo>().Cost);
+				}
+
+				ActorsReadyForDelivery.Clear();
+			}
 			for (var i = 0; i < numberToCancel; i++)
 			{
 				var actor = ActorsReadyForDelivery.LastOrDefault(actor => actor.Name == itemName);

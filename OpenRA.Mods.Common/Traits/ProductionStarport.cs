@@ -53,11 +53,17 @@ namespace OpenRA.Mods.Common.Traits
 		public override object Create(ActorInitializer init) { return new ProductionStarport(init, this); }
 	}
 
-	sealed class ProductionStarport : Production
+	sealed class ProductionStarport : Production, ITick
 	{
 		RallyPoint rp;
 
+		bool startDeployment = false;
 		BulkProductionQueue queue;
+		Actor transport;
+		List<ActorInfo> orderedActors;
+
+		string productionType;
+		TypeDictionary inits;
 		public ProductionStarport(ActorInitializer init, ProductionStarportInfo info)
 			: base(init, info) { }
 
@@ -73,7 +79,10 @@ namespace OpenRA.Mods.Common.Traits
 			if (IsTraitDisabled || IsTraitPaused)
 				return false;
 			var info = (ProductionStarportInfo)Info;
+			this.inits = inits;
+			this.orderedActors = orderedActors;
 			var owner = self.Owner;
+			this.productionType = productionType;
 			var map = owner.World.Map;
 			var waitTickbeforeSpawn = 10;
 			var aircraftInfo = self.World.Map.Rules.Actors[info.ActorType].TraitInfo<AircraftInfo>();
@@ -94,8 +103,7 @@ namespace OpenRA.Mods.Common.Traits
 			{
 				if (!self.IsInWorld || self.IsDead)
 				{
-					RefundDelivery(orderedActors);
-					queue.DeliverFinished();
+					CancelDelivery();
 					return;
 				}
 
@@ -130,58 +138,26 @@ namespace OpenRA.Mods.Common.Traits
 
 				orderedActors.RemoveAll(actor => actor.HasTraitInfo<AircraftInfo>());
 				waitTickbeforeSpawn = 0;
-				var transport = w.CreateActor(info.ActorType, new TypeDictionary
+				transport = w.CreateActor(info.ActorType, new TypeDictionary
 				{
 					new CenterPositionInit(w.Map.CenterOfCell(startPos) + new WVec(WDist.Zero, WDist.Zero, aircraftInfo.CruiseAltitude)),
 					new OwnerInit(owner),
 					new FacingInit(spawnFacing)
 				});
 
-
-				var cargo = transport.TraitOrDefault<Cargo>();
-				foreach ( var orderedActor in orderedActors)
-				{
-					var passnager = w.CreateActor(false, orderedActor.Name, inits);
-					cargo.Load(transport, passnager);
-				}
-
-
-
 				transport.QueueActivity(new Land(transport, Target.FromActor(self), WDist.FromCells(10), info.LandOffset));
-				transport.QueueActivity(new UnloadCargo(transport, WDist.FromCells(10)));
-/*
-				transport.QueueActivity(new CallFunc(() =>
+				transport.QueueActivity((new CallFunc(() =>
 				{
 					if (!self.IsInWorld || self.IsDead)
 					{
-						// TODO fix refund cash
-						RefundDelivery(orderedActors);
-						queue.DeliverFinished();
+						CancelDelivery();
 						return;
 					}
 
 					foreach (var cargo in self.TraitsImplementing<INotifyDelivery>())
 						cargo.Delivered(self);
-
-					foreach (var cargo in orderedActors.Where(actor => actor.HasTraitInfo<MobileInfo>()))
-					{
-						var finalexit = SelectExit(self, cargo, productionType);
-						if (cargo.HasTraitInfo<MobileInfo>())
-						{
-							self.World.AddFrameEndTask(ww => DoProduction(self, cargo, finalexit?.Info, productionType, inits));
-							waitTickbeforeSpawn += 10;
-						}
-					}
-
-					Game.Sound.PlayNotification(self.World.Map.Rules, self.Owner, "Speech", info.ReadyAudio, self.Owner.Faction.InternalName);
-					TextNotificationsManager.AddTransientLine(self.Owner, info.ReadyTextNotification);
-				}));
-				*/
-				transport.QueueActivity(new CallFunc(() =>
-				{
-
-					queue.DeliverFinished();
-				}));
+					startDeployment = true;
+				})));
 				if (info.WaitTickAfterProduce > 0)
 					transport.QueueActivity(new Wait(info.WaitTickAfterProduce));
 				transport.QueueActivity(new FlyOffMap(transport, Target.FromCell(w, startPos)));
@@ -191,11 +167,42 @@ namespace OpenRA.Mods.Common.Traits
 			return true;
 		}
 
-		public void RefundDelivery(List<ActorInfo> orderedActors)
+		public void CancelDelivery()
 		{
-			foreach (var actor in orderedActors)
+			queue.DeliverFinished();
+		}
+
+		public void Tick(Actor self)
+		{
+			if (!startDeployment)
+				return;
+			if (transport.IsDead || !self.IsInWorld || self.IsDead)
 			{
-				queue.ReturnOrder(actor.Name);
+				CancelDelivery();
+				return;
+			}
+			if (orderedActors == null || orderedActors.Count == 0)
+			{
+				startDeployment = false;
+				queue.DeliverFinished();
+				return;
+			}
+			transport.QueueChildActivity(new Wait(1));
+			var actor = orderedActors.Last();
+			var exit = SelectExit(self, actor, productionType);
+			if (exit == null)
+			{
+				var exits = self.Info.TraitInfos<ExitInfo>().First();
+				var cell = self.Location + exits.ExitCell;
+				self.NotifyBlocker(cell);
+			}
+			else
+			{
+				self.World.AddFrameEndTask(ww =>
+				{
+					DoProduction(self, actor, exit?.Info, productionType, inits);
+					orderedActors.Remove(actor);
+				});
 			}
 		}
 	}
