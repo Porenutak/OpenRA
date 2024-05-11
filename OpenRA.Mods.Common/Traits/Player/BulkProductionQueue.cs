@@ -9,12 +9,9 @@
  */
 #endregion
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System;
-using OpenRA.Mods.Common;
-using OpenRA.Mods.Common.Traits;
-using OpenRA.Primitives;
 using OpenRA.Traits;
 
 namespace OpenRA.Mods.Common.Traits
@@ -24,29 +21,36 @@ namespace OpenRA.Mods.Common.Traits
 		"You will also want to add PrimaryBuildings: to let the user choose where new units should exit.")]
 	public class BulkProductionQueueInfo : ProductionQueueInfo, Requires<TechTreeInfo>, Requires<PlayerResourcesInfo>
 	{
-
 		[Desc("Maximum deliver capacity")]
 		public readonly int MaxCapacity = 6;
+
+		[Desc("delivery delay in ticks")]
+		public readonly int DeliveryDelay = 300;
 
 		[Desc("Notification played when deliver started")]
 		public readonly string StartDeliveryAudio = null;
 
+		[Desc("Refund Actors that wasn't deliver")]
+		public readonly bool RefundUndeliveredActors = true;
+
 		[Desc("Notification displayed when deliver started")]
 		public readonly string StartDeliveryNotification = null;
+		[Desc("Notification played while frigate is on the way. Starting with fist. Last is when delivery actor is spawned on the map.")]
+		public readonly string[] DeliveryProgressNotifications = null;
 
 		public override object Create(ActorInitializer init) { return new BulkProductionQueue(init, this); }
 	}
 
 	public class BulkProductionQueue : ProductionQueue
 	{
-		static readonly ActorInfo[] NoItems = { };
+		static readonly ActorInfo[] NoItems = Array.Empty<ActorInfo>();
 
 		readonly Actor self;
 		readonly BulkProductionQueueInfo info;
 
-		readonly List<int> actorsTotalCost = new();
+		// Used in refunds. Key is paid Resources, Value paid Cash
+		readonly List<KeyValuePair<int, int>> actorsCost = new();
 		protected readonly List<ActorInfo> ActorsReadyForDelivery = new();
-		protected readonly List<TypeDictionary> ActorsInits = new();
 
 		protected bool deliveryProcessStarted = false;
 		public BulkProductionQueue(ActorInitializer init, BulkProductionQueueInfo info)
@@ -128,24 +132,15 @@ namespace OpenRA.Mods.Common.Traits
 				anyProducers = true;
 				if (p.Trait.IsTraitPaused)
 					continue;
-
-				var inits = new TypeDictionary
-				{
-					new OwnerInit(self.Owner),
-					new FactionInit(BuildableInfo.GetInitialFaction(unit, p.Trait.Faction))
-				};
-
 				var item = Queue.First(i => i.Done && i.Item == unit.Name);
 				if (ActorsReadyForDelivery.Count <= info.MaxCapacity)
 				{
 					ActorsReadyForDelivery.Add(unit);
-					ActorsInits.Add(inits);
 					Console.WriteLine("Couter:" + ActorsReadyForDelivery.Count);
-					actorsTotalCost.Add(item.TotalCost);
+					actorsCost.Add(new KeyValuePair<int, int>(item.ResourcesPaid, item.TotalCost - item.ResourcesPaid));
 					EndProduction(item);
+					return true;
 				}
-
-				return false;
 			}
 
 			if (!anyProducers)
@@ -202,32 +197,12 @@ namespace OpenRA.Mods.Common.Traits
 					{
 						if (Info.PayUpFront && cost > playerResources.GetCashAndResources())
 							return;
-						var hasPlayedSound = false;
-						BeginProduction(new ProductionItem(this, order.TargetString, cost, playerPower, () => self.World.AddFrameEndTask(_ =>
+						BeginProduction(new ProductionItem(this, order.TargetString, cost, PlayerPower, () => self.World.AddFrameEndTask(_ =>
 						{
 							// Make sure the item hasn't been invalidated between the ProductionItem ticking and this FrameEndTask running
 							if (!Queue.Any(i => i.Done && i.Item == unit.Name))
 								return;
-
-							var isBuilding = unit.HasTraitInfo<BuildingInfo>();
-							if (isBuilding && !hasPlayedSound)
-							{
-								//hasPlayedSound = Game.Sound.PlayNotification(rules, self.Owner, "Speech", Info.ReadyAudio, self.Owner.Faction.InternalName);
-								//TextNotificationsManager.AddTransientLine(self.Owner, Info.ReadyTextNotification);
-							}
-							else if (!isBuilding)
-							{
-								if (BuildUnit(unit))
-								{
-									//Game.Sound.PlayNotification(rules, self.Owner, "Speech", Info.ReadyAudio, self.Owner.Faction.InternalName);
-									//TextNotificationsManager.AddTransientLine(self.Owner, Info.ReadyTextNotification);
-								}
-								else if (!hasPlayedSound && time > 0)
-								{
-									//hasPlayedSound = Game.Sound.PlayNotification(rules, self.Owner, "Speech", Info.BlockedAudio, self.Owner.Faction.InternalName);
-									//TextNotificationsManager.AddTransientLine(self.Owner, Info.BlockedTextNotification);
-								}
-							}
+							BuildUnit(unit);
 						})), !order.Queued);
 					}
 
@@ -253,8 +228,9 @@ namespace OpenRA.Mods.Common.Traits
 		{
 			if (deliveryProcessStarted)
 			{
-				ReturnOrder();
-				actorsTotalCost.Clear();
+				if (info.RefundUndeliveredActors)
+					ReturnOrder();
+				actorsCost.Clear();
 				ActorsReadyForDelivery.Clear();
 				deliveryProcessStarted = false;
 				Console.WriteLine("delivery finished");
@@ -265,10 +241,12 @@ namespace OpenRA.Mods.Common.Traits
 		{
 			return deliveryProcessStarted;
 		}
+
 		public List<ActorInfo> GetActorsReadyForDelivery()
 		{
 			return ActorsReadyForDelivery;
 		}
+
 		protected void StartDeliveryProcess()
 		{
 			Console.WriteLine("Starting delivery process");
@@ -282,7 +260,7 @@ namespace OpenRA.Mods.Common.Traits
 					.OrderByDescending(x => x.Actor.Trait<PrimaryBuilding>().IsPrimary)
 					.ThenByDescending(x => x.Actor.ActorID);
 			var p = producers.First();
-			p.Trait.DeliverOrder(p.Actor, ActorsReadyForDelivery, Info.Type, ActorsInits.FirstOrDefault());
+			p.Trait.DeliverOrder(p.Actor, ActorsReadyForDelivery, Info.Type);
 			var rules = self.World.Map.Rules;
 			Game.Sound.PlayNotification(rules, self.Owner, "Speech", info.StartDeliveryAudio, self.Owner.Faction.InternalName);
 			TextNotificationsManager.AddTransientLine(self.Owner, info.StartDeliveryNotification);
@@ -290,23 +268,30 @@ namespace OpenRA.Mods.Common.Traits
 
 		public void ReturnOrder(string itemName = null, uint numberToCancel = 1)
 		{
-			// TODO Correct refund in Resource and Cash
+			// Refund everything
 			if (itemName == null)
 			{
-				foreach (var actor in ActorsReadyForDelivery)
+				for (var i = ActorsReadyForDelivery.Count - 1; i >= 0; i--)
 				{
-					playerResources.GiveCash(actor.TraitInfo<ValuedInfo>().Cost);
+					playerResources.GiveResources(actorsCost[i].Key);
+					playerResources.GiveCash(actorsCost[i].Value);
 				}
 
 				ActorsReadyForDelivery.Clear();
+				actorsCost.Clear();
 			}
+
+			// Refund specific item
 			for (var i = 0; i < numberToCancel; i++)
 			{
 				var actor = ActorsReadyForDelivery.LastOrDefault(actor => actor.Name == itemName);
 				if (actor == null)
 					break;
-				playerResources.GiveCash(actor.TraitInfo<ValuedInfo>().Cost);
-				ActorsReadyForDelivery.Remove(actor);
+				var index = ActorsReadyForDelivery.IndexOf(actor);
+				playerResources.GiveResources(actorsCost[index].Key);
+				playerResources.GiveCash(actorsCost[index].Value);
+				ActorsReadyForDelivery.RemoveAt(index);
+				actorsCost.RemoveAt(index);
 			}
 		}
 	}

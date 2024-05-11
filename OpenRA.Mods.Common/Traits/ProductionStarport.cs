@@ -9,13 +9,9 @@
  */
 #endregion
 
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using OpenRA.Activities;
-using OpenRA.Mods.Common;
 using OpenRA.Mods.Common.Activities;
-using OpenRA.Mods.Common.Traits;
 using OpenRA.Primitives;
 using OpenRA.Traits;
 
@@ -37,7 +33,6 @@ namespace OpenRA.Mods.Common.Traits
 		[Desc("Cargo aircraft used for delivery. Must have the `" + nameof(Aircraft) + "` trait.")]
 		public readonly string ActorType = null;
 
-
 		[Desc("Direction the aircraft should face to land.")]
 		public readonly WAngle Facing = new(256);
 
@@ -47,7 +42,7 @@ namespace OpenRA.Mods.Common.Traits
 		public override object Create(ActorInitializer init) { return new ProductionStarport(init, this); }
 	}
 
-	sealed class ProductionStarport : Production, Itick
+	sealed class ProductionStarport : Production
 	{
 		RallyPoint rp;
 		BulkProductionQueue queue;
@@ -63,7 +58,7 @@ namespace OpenRA.Mods.Common.Traits
 			rp = self.TraitOrDefault<RallyPoint>();
 		}
 
-		public bool DeliverOrder(Actor producer, List<ActorInfo> orderedActors, string productionType, TypeDictionary inits)
+		public bool DeliverOrder(Actor producer, List<ActorInfo> orderedActors, string productionType)
 		{
 			if (IsTraitDisabled || IsTraitPaused)
 				return false;
@@ -132,7 +127,7 @@ namespace OpenRA.Mods.Common.Traits
 					new FacingInit(spawnFacing)
 				});
 
-				transport.QueueActivity(new DeliverBulkOrder(transport, producer, orderedActors, productionType, inits, queue));
+				transport.QueueActivity(new DeliverBulkOrder(transport, producer, orderedActors, productionType, queue));
 			});
 
 			return true;
@@ -147,10 +142,5 @@ namespace OpenRA.Mods.Common.Traits
 		{
 			return SelectExit(self, producee, productionType);
 		}
-	}
-
-	internal interface Itick
-	{
-
 	}
 }

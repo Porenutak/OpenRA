@@ -24,18 +24,16 @@ namespace OpenRA.Mods.Common.Activities
 		readonly Actor transport;
 		readonly List<ActorInfo> orderedActors;
 		readonly string productionType;
-		readonly TypeDictionary inits;
 		readonly BulkProductionQueue queue;
 		readonly Cargo cargo;
 		int delayBetweenUnloads = 0;
 
-		public DeliverBulkOrder(Actor transport, Actor producer, List<ActorInfo> orderedActors, string productionType, TypeDictionary inits, BulkProductionQueue queue)
+		public DeliverBulkOrder(Actor transport, Actor producer, List<ActorInfo> orderedActors, string productionType, BulkProductionQueue queue)
 		{
 			this.producer = producer;
 			this.transport = transport;
 			this.orderedActors = orderedActors;
 			this.productionType = productionType;
-			this.inits = inits;
 			this.queue = queue;
 			cargo = transport.Trait<Cargo>();
 		}
@@ -74,7 +72,7 @@ namespace OpenRA.Mods.Common.Activities
 				if (newProducer.Length != 0)
 				{
 					Cancel(self);
-					Queue(new DeliverBulkOrder(transport, newProducer[0].Actor, orderedActors, productionType, inits, queue));
+					Queue(new DeliverBulkOrder(transport, newProducer[0].Actor, orderedActors, productionType, queue));
 					return true;
 				}
 				else
@@ -110,6 +108,11 @@ namespace OpenRA.Mods.Common.Activities
 				delayBetweenUnloads = cargo.Info.DelayBetweenUnloads;
 				producer.World.AddFrameEndTask(ww =>
 				{
+					var inits = new TypeDictionary
+					{
+						new OwnerInit(self.Owner),
+						new FactionInit(BuildableInfo.GetInitialFaction(actor, producer.Trait<ProductionStarport>().Faction))
+					};
 					producer.Trait<ProductionStarport>().DoProduction(producer, actor, exit?.Info, productionType, inits);
 					orderedActors.Remove(actor);
 				});

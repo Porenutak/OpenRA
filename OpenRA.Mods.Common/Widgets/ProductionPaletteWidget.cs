@@ -395,11 +395,11 @@ namespace OpenRA.Mods.Common.Widgets
 
 			if (CurrentQueue is BulkProductionQueue bulkProductionQueue && !bulkProductionQueue.HasDeliveryStarted())
 			{
-				Game.Sound.PlayNotification(World.Map.Rules, World.LocalPlayer, "Sounds", ClickSound, null);
 				var readyActors = bulkProductionQueue.GetPurchasedActors();
 				if (readyActors.Any(a => a.Name == icon.Name))
 				{
 					World.IssueOrder(Order.ReturnOrder(CurrentQueue.Actor, icon.Name, handleCount));
+					Game.Sound.PlayNotification(World.Map.Rules, World.LocalPlayer, "Sounds", ClickSound, null);
 					return true;
 				}
 				else
@@ -423,7 +423,7 @@ namespace OpenRA.Mods.Common.Widgets
 				return true;
 			}
 
-			if (CurrentQueue is BulkProductionQueue bulkQueue && bulkQueue.GetPurchasedActors().Count > 0)
+			if (CurrentQueue is BulkProductionQueue bulkQueue && bulkQueue.GetPurchasedActors().Count > 0 && !bulkQueue.HasDeliveryStarted())
 			{
 				World.IssueOrder(Order.PurchaseOrder(CurrentQueue.Actor, icon.Name));
 				return true;
@@ -597,10 +597,11 @@ namespace OpenRA.Mods.Common.Widgets
 					var waiting = !CurrentQueue.IsProducing(first) && !first.Done;
 					if (first.Done)
 					{
-						if (ReadyTextStyle == ReadyTextStyleOptions.Solid || orderManager.LocalFrameNumber * worldRenderer.World.Timestep / 360 % 2 == 0)
-							overlayFont.DrawTextWithContrast(ReadyText, icon.Pos + readyOffset, TextColor, Color.Black, 1);
-						else if (ReadyTextStyle == ReadyTextStyleOptions.AlternatingColor)
-							overlayFont.DrawTextWithContrast(ReadyText, icon.Pos + readyOffset, ReadyTextAltColor, Color.Black, 1);
+						if (CurrentQueue is not BulkProductionQueue)
+							if (ReadyTextStyle == ReadyTextStyleOptions.Solid || orderManager.LocalFrameNumber * worldRenderer.World.Timestep / 360 % 2 == 0)
+								overlayFont.DrawTextWithContrast(ReadyText, icon.Pos + readyOffset, TextColor, Color.Black, 1);
+							else if (ReadyTextStyle == ReadyTextStyleOptions.AlternatingColor)
+								overlayFont.DrawTextWithContrast(ReadyText, icon.Pos + readyOffset, ReadyTextAltColor, Color.Black, 1);
 					}
 					else if (first.Paused)
 						overlayFont.DrawTextWithContrast(HoldText,

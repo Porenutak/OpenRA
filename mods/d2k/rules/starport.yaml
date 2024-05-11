@@ -31,7 +31,7 @@ trike.starport:
 	Buildable:
 		Prerequisites: starport
 		Queue: Starport
-		BuildDuration: 10
+		BuildDuration: 0
 	Valued:
 		Cost: 315
 	-MapEditorData:

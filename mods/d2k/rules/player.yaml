@@ -66,8 +66,10 @@ Player:
 	BulkProductionQueue@Starport:
 		Type: Starport
 		DisplayOrder: 4
+		QueueLimit: 6
 		PayUpFront: true
 		StartDeliveryAudio: OrderPlaced
+		DeliveryProgressNotifications: 5MIN, 4MIN, 3MIN, 2MIN, 1MIN
 		BlockedAudio: NoRoom
 		BlockedTextNotification: notification-no-room-for-new-units
 		OnHoldAudio: OnHold
