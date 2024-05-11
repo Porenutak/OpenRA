@@ -41,12 +41,6 @@ namespace OpenRA.Mods.Common.Traits
 		[Desc("Direction the aircraft should face to land.")]
 		public readonly WAngle Facing = new(256);
 
-		[Desc("Tick that aircraft should wait before producing.")]
-		public readonly int WaitTickBeforeProduce = 0;
-
-		[Desc("Tick that aircraft should wait after producing.")]
-		public readonly int WaitTickAfterProduce = 0;
-
 		[Desc("Offset the aircraft used for landing.")]
 		public readonly WVec LandOffset = WVec.Zero;
 
@@ -69,40 +63,40 @@ namespace OpenRA.Mods.Common.Traits
 			rp = self.TraitOrDefault<RallyPoint>();
 		}
 
-		public bool DeliverOrder(Actor producent, List<ActorInfo> orderedActors, string productionType, TypeDictionary inits)
+		public bool DeliverOrder(Actor producer, List<ActorInfo> orderedActors, string productionType, TypeDictionary inits)
 		{
 			if (IsTraitDisabled || IsTraitPaused)
 				return false;
 			var info = (ProductionStarportInfo)Info;
-			var owner = producent.Owner;
+			var owner = producer.Owner;
 			var map = owner.World.Map;
 			var waitTickbeforeSpawn = 10;
-			var aircraftInfo = producent.World.Map.Rules.Actors[info.ActorType].TraitInfo<AircraftInfo>();
+			var aircraftInfo = producer.World.Map.Rules.Actors[info.ActorType].TraitInfo<AircraftInfo>();
 			queue = owner.World.ActorsWithTrait<BulkProductionQueue>().First(x => x.Actor.Owner == owner
 				&& x.Trait.GetActorsReadyForDelivery().Equals(orderedActors)).Trait;
 			CPos startPos;
 			WAngle spawnFacing;
 
-			startPos = producent.World.Map.ChooseClosestEdgeCell(producent.Location);
-			spawnFacing = producent.World.Map.FacingBetween(startPos, producent.Location, WAngle.Zero);
+			startPos = producer.World.Map.ChooseClosestEdgeCell(producer.Location);
+			spawnFacing = producer.World.Map.FacingBetween(startPos, producer.Location, WAngle.Zero);
 
 			// Assume a single exit point for simplicity
-			var exits = producent.Info.TraitInfos<ExitInfo>();
-			var exit = producent.Info.TraitInfos<ExitInfo>().First();
+			var exits = producer.Info.TraitInfos<ExitInfo>();
+			var exit = producer.Info.TraitInfos<ExitInfo>().First();
 
-			foreach (var tower in producent.TraitsImplementing<INotifyDelivery>())
-				tower.IncomingDelivery(producent);
+			foreach (var tower in producer.TraitsImplementing<INotifyDelivery>())
+				tower.IncomingDelivery(producer);
 
 			owner.World.AddFrameEndTask(w =>
 			{
-				if (!producent.IsInWorld || producent.IsDead)
+				if (!producer.IsInWorld || producer.IsDead)
 				{
 					CancelDelivery();
 					return;
 				}
 
 				// aircrafts are delivered by themselfs
-				var exitCell = producent.Location + exit.ExitCell;
+				var exitCell = producer.Location + exit.ExitCell;
 				var destinations = rp != null && rp.Path.Count > 0 ? rp.Path : new List<CPos> { exitCell };
 
 				foreach (var orderedAircraft in orderedActors.Where(actor => actor.HasTraitInfo<AircraftInfo>()))
@@ -138,19 +132,7 @@ namespace OpenRA.Mods.Common.Traits
 					new FacingInit(spawnFacing)
 				});
 
-				transport.QueueActivity(new Land(transport, Target.FromActor(producent), WDist.FromCells(10), info.LandOffset));
-				transport.QueueActivity(new DeliverBulkOrder(producent, transport, orderedActors, productionType, inits, queue));
-				if (info.WaitTickAfterProduce > 0)
-					transport.QueueActivity(new Wait(info.WaitTickAfterProduce));
-				transport.QueueActivity(new CallFunc(() =>
-				{
-					if (producent.IsDead || !producent.IsInWorld)
-						return;
-					foreach (var cargo in producent.TraitsImplementing<INotifyDelivery>())
-						cargo.Delivered(producent);
-				}));
-				transport.QueueActivity(new FlyOffMap(transport, Target.FromCell(w, startPos)));
-				transport.QueueActivity(new RemoveSelf());
+				transport.QueueActivity(new DeliverBulkOrder(transport, producer, orderedActors, productionType, inits, queue));
 			});
 
 			return true;

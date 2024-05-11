@@ -14,6 +14,7 @@ using System.Linq;
 using OpenRA.Activities;
 using OpenRA.Mods.Common.Traits;
 using OpenRA.Primitives;
+using OpenRA.Traits;
 
 namespace OpenRA.Mods.Common.Activities
 {
@@ -25,8 +26,10 @@ namespace OpenRA.Mods.Common.Activities
 		readonly string productionType;
 		readonly TypeDictionary inits;
 		readonly BulkProductionQueue queue;
+		readonly Cargo cargo;
+		int delayBetweenUnloads = 0;
 
-		public DeliverBulkOrder(Actor producer, Actor transport, List<ActorInfo> orderedActors, string productionType, TypeDictionary inits, BulkProductionQueue queue)
+		public DeliverBulkOrder(Actor transport, Actor producer, List<ActorInfo> orderedActors, string productionType, TypeDictionary inits, BulkProductionQueue queue)
 		{
 			this.producer = producer;
 			this.transport = transport;
@@ -34,24 +37,59 @@ namespace OpenRA.Mods.Common.Activities
 			this.productionType = productionType;
 			this.inits = inits;
 			this.queue = queue;
+			cargo = transport.Trait<Cargo>();
+		}
+
+		protected override void OnFirstRun(Actor self)
+		{
+			var landingOffset = producer.Info.TraitInfo<ProductionStarportInfo>().LandOffset;
+			QueueChild(new Land(transport, Target.FromActor(producer), WDist.FromCells(0), landingOffset));
+			QueueChild(new Wait(cargo.Info.BeforeUnloadDelay));
+		}
+
+		protected override void OnLastRun(Actor self)
+		{
+			if (!producer.IsDead || producer.IsInWorld)
+			{
+				foreach (var cargo in producer.TraitsImplementing<INotifyDelivery>())
+					cargo.Delivered(producer);
+			}
+
+			Queue(new Wait(cargo.Info.AfterUnloadDelay));
+			Queue(new FlyOffMap(self, Target.FromCell(self.World, self.World.Map.ChooseClosestEdgeCell(self.Location))));
+			Queue(new RemoveSelf());
+		}
+
+		protected override void OnActorDispose(Actor self)
+		{
+			queue.DeliverFinished();
 		}
 
 		public override bool Tick(Actor self)
 		{
-			if (transport.IsDead || !producer.IsInWorld || producer.IsDead)
+			if (!producer.IsInWorld || producer.IsDead)
 			{
-				// Inform parent queue that deliver is finished
-				queue.DeliverFinished();
-				return true;
+				// Try to find another ProductionStarport
+				var newProducer = self.World.ActorsWithTrait<ProductionStarport>().Where(a => a.Actor.Owner == self.Owner).ToArray();
+				if (newProducer.Length != 0)
+				{
+					Cancel(self);
+					Queue(new DeliverBulkOrder(transport, newProducer[0].Actor, orderedActors, productionType, inits, queue));
+					return true;
+				}
+				else
+				{
+					queue.DeliverFinished();
+					return true;
+				}
 			}
 
 			if (orderedActors == null || orderedActors.Count == 0)
 			{
-				producer.Trait<ProductionStarport>().CancelDelivery();
+				queue.DeliverFinished();
 				return true;
 			}
 
-			transport.QueueChildActivity(new Wait(1));
 			var actor = orderedActors.Last();
 			var exit = producer.Trait<ProductionStarport>().PublicExit(producer, actor, productionType);
 			if (exit == null)
@@ -63,6 +101,13 @@ namespace OpenRA.Mods.Common.Activities
 			}
 			else
 			{
+				if (delayBetweenUnloads > 0)
+				{
+					delayBetweenUnloads--;
+					return false;
+				}
+
+				delayBetweenUnloads = cargo.Info.DelayBetweenUnloads;
 				producer.World.AddFrameEndTask(ww =>
 				{
 					producer.Trait<ProductionStarport>().DoProduction(producer, actor, exit?.Info, productionType, inits);

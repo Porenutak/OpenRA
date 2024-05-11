@@ -77,9 +77,14 @@ carryall:
 
 frigate:
 	Inherits: ^Plane
+	Inherits@sdfa: ^SelectableCombatUnit
 	ParaDrop:
 		DropRange: 1c0
-	Interactable:
+	-Interactable:
+	Health:
+		HP: 48000
+	Armor:
+		Type: light
 	Tooltip:
 		Name: actor-frigate-name
 	Aircraft:
@@ -95,6 +100,7 @@ frigate:
 	-AppearsOnRadar:
 	Cargo:
 		MaxWeight: 20
+		DelayBetweenUnloads: 15
 	RejectsOrders:
 
 ornithopter:
