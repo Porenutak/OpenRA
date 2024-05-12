@@ -12,6 +12,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using OpenRA.Primitives;
 using OpenRA.Traits;
 
 namespace OpenRA.Mods.Common.Traits
@@ -35,6 +36,7 @@ namespace OpenRA.Mods.Common.Traits
 
 		[Desc("Notification displayed when deliver started")]
 		public readonly string StartDeliveryNotification = null;
+
 		[Desc("Notification played while frigate is on the way. Starting with fist. Last is when delivery actor is spawned on the map.")]
 		public readonly string[] DeliveryProgressNotifications = null;
 
@@ -51,13 +53,17 @@ namespace OpenRA.Mods.Common.Traits
 		// Used in refunds. Key is paid Resources, Value paid Cash
 		readonly List<KeyValuePair<int, int>> actorsCost = new();
 		protected readonly List<ActorInfo> ActorsReadyForDelivery = new();
+		int deliveryDelay = 0;
+		protected int notificationInterval = 0;
 
 		protected bool deliveryProcessStarted = false;
+		List<string> notifications = new();
 		public BulkProductionQueue(ActorInitializer init, BulkProductionQueueInfo info)
 			: base(init, info)
 		{
 			self = init.Self;
 			this.info = info;
+			notificationInterval = info.DeliveryDelay / info.DeliveryProgressNotifications.Length;
 		}
 
 		protected override void Tick(Actor self)
@@ -78,7 +84,25 @@ namespace OpenRA.Mods.Common.Traits
 			}
 
 			if (!Enabled)
+			{
+				if (HasDeliveryStarted() && deliveryDelay > 0)
+					DeliverFinished();
 				ClearQueue();
+			}
+			else
+			{
+				if (HasDeliveryStarted() && deliveryDelay > 0)
+				{
+					deliveryDelay--;
+					NotificationsSystem();
+				}
+				else if (HasDeliveryStarted() && deliveryDelay == 0)
+				{
+					NotificationsSystem();
+					DeliveryHasArrived();
+					deliveryDelay--;
+				}
+			}
 
 			TickInner(self, !isActive);
 		}
@@ -119,7 +143,7 @@ namespace OpenRA.Mods.Common.Traits
 			// Some units may request a specific production type, which is ignored if the AllTech cheat is enabled
 			var type = developerMode.AllTech ? Info.Type : (bi.BuildAtProductionType ?? Info.Type);
 
-			var producers = self.World.ActorsWithTrait<ProductionStarport>()
+			var producers = self.World.ActorsWithTrait<Production>()
 				.Where(x => x.Actor.Owner == self.Owner
 					&& !x.Trait.IsTraitDisabled
 					&& x.Trait.Info.Produces.Contains(type))
@@ -252,6 +276,14 @@ namespace OpenRA.Mods.Common.Traits
 			Console.WriteLine("Starting delivery process");
 			ClearQueue();
 			deliveryProcessStarted = true;
+			deliveryDelay = info.DeliveryDelay;
+			var rules = self.World.Map.Rules;
+			Game.Sound.PlayNotification(rules, self.Owner, "Speech", info.StartDeliveryAudio, self.Owner.Faction.InternalName);
+			TextNotificationsManager.AddTransientLine(self.Owner, info.StartDeliveryNotification);
+		}
+
+		protected void DeliveryHasArrived()
+		{
 			var producers = self.World.ActorsWithTrait<ProductionStarport>()
 				.Where(x => x.Actor.Owner == self.Owner
 					&& !x.Trait.IsTraitDisabled
@@ -259,11 +291,28 @@ namespace OpenRA.Mods.Common.Traits
 					&& x.Trait.Info.Produces.Contains(Info.Type))
 					.OrderByDescending(x => x.Actor.Trait<PrimaryBuilding>().IsPrimary)
 					.ThenByDescending(x => x.Actor.ActorID);
-			var p = producers.First();
-			p.Trait.DeliverOrder(p.Actor, ActorsReadyForDelivery, Info.Type);
-			var rules = self.World.Map.Rules;
-			Game.Sound.PlayNotification(rules, self.Owner, "Speech", info.StartDeliveryAudio, self.Owner.Faction.InternalName);
-			TextNotificationsManager.AddTransientLine(self.Owner, info.StartDeliveryNotification);
+			var p = producers.FirstOrDefault();
+			if (p.Trait != null)
+				p.Trait.DeliverOrder(p.Actor, ActorsReadyForDelivery, Info.Type);
+			else
+			{
+				// If no ProductionStarport is preset use regular production
+				var regularProducer = MostLikelyProducer();
+				foreach (var actor in ActorsReadyForDelivery)
+				{
+					var inits = new TypeDictionary
+					{
+						new OwnerInit(self.Owner),
+						new FactionInit(BuildableInfo.GetInitialFaction(actor, regularProducer.Trait.Faction))
+					};
+					var cost = actorsCost[ActorsReadyForDelivery.IndexOf(actor)].Key + actorsCost[ActorsReadyForDelivery.IndexOf(actor)].Value;
+					regularProducer.Trait.Produce(regularProducer.Actor, actor, Info.Type, inits, cost);
+				}
+
+				ActorsReadyForDelivery.Clear();
+				actorsCost.Clear();
+				DeliverFinished();
+			}
 		}
 
 		public void ReturnOrder(string itemName = null, uint numberToCancel = 1)
@@ -293,6 +342,22 @@ namespace OpenRA.Mods.Common.Traits
 				ActorsReadyForDelivery.RemoveAt(index);
 				actorsCost.RemoveAt(index);
 			}
+		}
+
+		protected void NotificationsSystem()
+		{
+			if (info.DeliveryProgressNotifications == null)
+				return;
+			if (notificationInterval == 0)
+			{
+				if (notifications.Count == 0)
+					notifications = info.DeliveryProgressNotifications.ToList();
+				notificationInterval = info.DeliveryDelay / info.DeliveryProgressNotifications.Length;
+				Game.Sound.PlayNotification(self.World.Map.Rules, self.Owner, "Speech", notifications.FirstOrDefault(), self.Owner.Faction.InternalName);
+				notifications.RemoveAt(0);
+			}
+
+			notificationInterval--;
 		}
 	}
 }

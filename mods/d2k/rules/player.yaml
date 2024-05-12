@@ -69,7 +69,7 @@ Player:
 		QueueLimit: 6
 		PayUpFront: true
 		StartDeliveryAudio: OrderPlaced
-		DeliveryProgressNotifications: 5MIN, 4MIN, 3MIN, 2MIN, 1MIN
+		DeliveryProgressNotifications: TMinusFive, TMinusFour, TMinusThree, TMinusTwo, TMinusOne
 		BlockedAudio: NoRoom
 		BlockedTextNotification: notification-no-room-for-new-units
 		OnHoldAudio: OnHold
