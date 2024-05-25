@@ -1,0 +1,1263 @@
+^new_tile_undestroyable:
+	Inherits@1: ^ExistsInWorld
+	Inherits@2: ^SpriteActor
+	FrozenUnderFog:
+	WithSpriteBody:
+	Building:
+		TerrainTypes: Rock, Concrete, Cliff, Sand, Rock, Transition, Spice, SpiceSand, Dune
+	RenderSprites:
+		Palette: terrain
+	Health:
+		HP: 20000
+	Armor:
+		Type: invulnerable
+	HitShape:
+		UseTargetableCellsOffsets: false
+		Type: Rectangle
+			TopLeft: -512, -512
+			BottomRight: 512, 512
+	MapEditorData:
+		Categories: Tiles
+	QuantizeFacingsFromSequence:
+	Interactable:
+	Tooltip:
+		Name: passage
+		ShowOwnerRow: false
+
+^new_tile_destroyable:
+	Inherits: ^new_tile_undestroyable
+	Targetable:
+		TargetTypes: Ground, Cliff
+		RequiresForceFire: true
+	Armor:
+		Type: wall
+	Health:
+		HP: 20000
+	Tooltip:
+		Name: passage (Destroable)
+	OwnerLostAction:
+		Action: ChangeOwner
+		Owner: Neutral
+	HitShape:
+		UseTargetableCellsOffsets: true
+	Explodes:
+		Type: CenterPosition
+		Weapon: cliffExplode01
+		EmptyWeapon: cliffExplode01
+	ThrowsShrapnel@1:
+		Weapons: derbisRock01, derbisRock02, derbisRock03
+		Pieces: 0, 2
+		Range: 1c0, 4c0
+	ThrowsShrapnel@2:
+		Weapons: derbisRock01, derbisRock02, derbisRock03
+		Pieces: 1, 4
+		Range: 0c512, 2c0
+	MapEditorData:
+		Categories: Tiles-Destroable
+
+^new_tile_destroyed:
+	Inherits: ^new_tile_undestroyable
+	CaptureManager:
+	Building:
+	OwnerLostAction:
+		Action: ChangeOwner
+		Owner: Neutral
+	Tooltip:
+		Name: passage (repairable)
+	CaptureManager:
+	CapturableProgressBar:
+	CapturableProgressBlink:
+		Interval: 30
+	Capturable:
+		Types: cliff
+	HitShape:
+		UseTargetableCellsOffsets: true
+		Type: Rectangle
+			TopLeft: -1048, -1048
+			BottomRight: 1024, 1054
+	Targetable:
+		TargetTypes: Ground, Cliff
+		RequiresForceFire: true
+	MapEditorData:
+		Categories: Tiles-Repairable
+
+
+rockpass01_left:
+	Inherits: ^new_tile_undestroyable
+	Building:
+		Dimensions: 3,3
+		Footprint: xx= === xx=
+
+
+rockpass01_right:
+	Inherits: ^new_tile_undestroyable
+	Building:
+		Dimensions: 3,3
+		Footprint: =XX === =xx
+
+
+rockpass01_top:
+	Inherits: ^new_tile_undestroyable
+	Building:
+		Dimensions: 3,3
+		Footprint: x=x x=x ===
+
+
+sandpass01_bottom:
+	Inherits: ^new_tile_undestroyable
+	Building:
+		Dimensions: 1,2
+		Footprint: = =
+
+
+sandpass01_top:
+	Inherits: ^new_tile_undestroyable
+	Building:
+		Dimensions: 1,2
+		Footprint: _ _
+
+
+sandpass01_left:
+	Inherits: ^new_tile_undestroyable
+	Building:
+		Dimensions: 2,1
+		Footprint: __
+
+
+sandpass01_right:
+	Inherits: ^new_tile_undestroyable
+	Building:
+		Dimensions: 2,1
+		Footprint: __
+
+rockslip01_right:
+	Inherits: ^new_tile_undestroyable
+	Building:
+		Dimensions: 2,2
+		Footprint: XX __
+
+rockslip01_right_alter:
+	Inherits: ^new_tile_undestroyable
+	Building:
+		Dimensions: 2,2
+		Footprint: XX __
+
+rockslip01_top:
+	Inherits: ^new_tile_undestroyable
+	Building:
+		Dimensions: 2,2
+		Footprint: X_ X_
+
+rockslip01_left:
+	Inherits: ^new_tile_undestroyable
+	Building:
+		Dimensions: 2,2
+		Footprint: XX __
+
+rockslip02_top_right:
+	Inherits: ^new_tile_undestroyable
+	Building:
+		Dimensions: 3,2
+		Footprint: XX_ __X
+
+rockslip02_top_left:
+	Inherits: ^new_tile_undestroyable
+	Building:
+		Dimensions: 3,2
+		Footprint: ___ XX_
+
+pass01_destroyable_bottom:
+	Inherits: ^new_tile_destroyable
+	RenderSprites:
+		Image: rockpass01_bottom
+	Building:
+		Dimensions: 3,3
+		Footprint: === X=X X=X
+	HitShape:
+		Type: Rectangle
+			TopLeft: -512, -512
+			BottomRight: 512, 900
+	SpawnActorOnDeath:
+		Actor: pass01_destroyed_bottom
+		OwnerType: InternalName
+
+pass01_destroyed_bottom:
+	Inherits: ^new_tile_destroyed
+	RenderSprites:
+		Image: rockpass01_destroyed_bottom
+	Building:
+		Dimensions: 3,3
+		Footprint: === xxx xxx
+	TransformOnCapture:
+		IntoActor: pass01_destroyable_bottom
+
+pass01_destroyable_left:
+	Inherits: ^new_tile_destroyable
+	RenderSprites:
+		Image: rockpass01_left
+	HitShape:
+		Type: Rectangle
+			TopLeft: -700, -512
+			BottomRight: 712, 512
+	Building:
+		Dimensions: 3,3
+		Footprint: xx= === xx=
+	SpawnActorOnDeath:
+		Actor: pass01_destroyed_left
+		OwnerType: InternalName
+
+
+pass01_destroyed_left:
+	Inherits: ^new_tile_destroyed
+	RenderSprites:
+		Image: rockpass01_destroyed_left
+	Building:
+		Dimensions: 3,3
+		Footprint: xxx xxx xxx
+	TransformOnCapture:
+		IntoActor: pass01_destroyable_left
+
+pass01_destroyable_right:
+	Inherits: ^new_tile_destroyable
+	RenderSprites:
+		Image: rockpass01_right
+	HitShape:
+		Type: Rectangle
+			TopLeft: -700, -512
+			BottomRight: 700, 512
+	Building:
+		Dimensions: 3,3
+		Footprint: =xx === =xx
+	SpawnActorOnDeath:
+		Actor: pass01_destroyed_right
+		OwnerType: InternalName
+
+pass01_destroyed_right:
+	Inherits: ^new_tile_destroyed
+	RenderSprites:
+		Image: rockpass01_destroyed_right
+	Building:
+		Dimensions: 3,3
+		Footprint: xxx xxx xxx
+	TransformOnCapture:
+		IntoActor: pass01_destroyable_right
+
+pass01_destroyable_top:
+	Inherits: ^new_tile_destroyable
+	RenderSprites:
+		Image: rockpass01_top
+	HitShape:
+		Type: Rectangle
+			TopLeft: -512, -900
+			BottomRight: 512, 512
+	Building:
+		Dimensions: 3,3
+		Footprint: X=X X=X ===
+	SpawnActorOnDeath:
+		Actor: pass01_destroyed_top
+		OwnerType: InternalName
+
+pass01_destroyed_top:
+	Inherits: ^new_tile_destroyed
+	RenderSprites:
+		Image: rockpass01_destroyed_top
+	Building:
+		Dimensions: 3,3
+		Footprint: XxX xxx xxx
+	TransformOnCapture:
+		IntoActor: pass01_destroyable_top
+
+merge_title01:
+	Inherits: ^new_tile_undestroyable
+	Building:
+		Dimensions: 2,2
+		Footprint: XX XX
+merge_title02:
+	Inherits: ^new_tile_undestroyable
+	Building:
+		Dimensions: 2,2
+		Footprint: XX XX
+merge_title03:
+	Inherits: ^new_tile_undestroyable
+	Building:
+		Dimensions: 2,2
+		Footprint: XX XX
+merge_title04:
+	Inherits: ^new_tile_undestroyable
+	Building:
+		Dimensions: 2,2
+		Footprint: XX XX
+
+transition_tile_01:
+	Inherits: ^new_tile_undestroyable
+	Building:
+		Dimensions: 3,2
+		Footprint: XXX XXX
+
+transition_tile_02:
+	Inherits: ^new_tile_undestroyable
+	Building:
+		Dimensions: 3,2
+		Footprint: XXX XXX
+
+transition_tile_03:
+	Inherits: ^new_tile_undestroyable
+	Building:
+		Dimensions: 3,2
+		Footprint: XXX XXX
+
+transition_tile_04:
+	Inherits: ^new_tile_undestroyable
+	Building:
+		Dimensions: 3,2
+		Footprint: XXX XXX
+
+transition_tile_05:
+	Inherits: ^new_tile_undestroyable
+	Building:
+		Dimensions: 3,2
+		Footprint: XXX XXX
+
+transition_tile_06:
+	Inherits: ^new_tile_undestroyable
+	Building:
+		Dimensions: 3,2
+		Footprint: XXX XXX
+
+bridge1_end_top_left:
+	Inherits: ^new_tile_undestroyable
+	Building:
+		Dimensions: 2,1
+		Footprint: X_
+
+bridge1_end_bottom_left:
+	Inherits: ^new_tile_undestroyable
+	Building:
+		Dimensions: 2,1
+		Footprint: X_
+
+bridge1_end_top:
+	Inherits: ^new_tile_undestroyable
+	Building:
+		Dimensions: 1,1
+		Footprint: _
+
+bridge1_end_bottom:
+	Inherits: ^new_tile_undestroyable
+	Building:
+		Dimensions: 1,1
+		Footprint: _
+
+bridge1_end_left:
+	Inherits: ^new_tile_undestroyable
+	Building:
+		Dimensions: 1,1
+		Footprint: _
+
+bridge1_end_right:
+	Inherits: ^new_tile_undestroyable
+	Building:
+		Dimensions: 1,1
+		Footprint: _
+
+platform_sand_bottom:
+	Inherits: ^new_tile_undestroyable
+	Building:
+		Dimensions: 1,1
+		Footprint: _
+
+platform_sand_bottom_left:
+	Inherits: ^new_tile_undestroyable
+	Building:
+		Dimensions: 2,2
+		Footprint: X_ X_
+
+platform_sand_bottom_right:
+	Inherits: ^new_tile_undestroyable
+	Building:
+		Dimensions: 2,2
+		Footprint: _X _X
+
+platform_rock_right_bottom:
+	Inherits: ^new_tile_undestroyable
+	Building:
+		Dimensions: 1,1
+		Footprint: _
+
+platform_rock_righ_top:
+	Inherits: ^new_tile_undestroyable
+	Building:
+		Dimensions: 1,1
+		Footprint: _
+
+bridge01_sand_right:
+	Inherits: ^new_tile_undestroyable
+	Building:
+		Dimensions: 1,1
+		Footprint: _
+
+sand_end01:
+	Inherits: ^new_tile_undestroyable
+	Building:
+		Dimensions: 2,2
+		Footprint: __ __
+
+signle_cell1:
+	Inherits: ^new_tile_undestroyable
+	Building:
+		Dimensions: 1,1
+		Footprint: _
+
+signle_cell2:
+	Inherits: ^new_tile_undestroyable
+	Building:
+		Dimensions: 2,1
+		Footprint: __
+
+signle_cell3:
+	Inherits: ^new_tile_undestroyable
+	Building:
+		Dimensions: 1,2
+		Footprint: _ _
+
+signle_cell4:
+	Inherits: ^new_tile_undestroyable
+	Building:
+		Dimensions: 2,1
+		Footprint: __
+
+platform_left_01:
+	Inherits: ^new_tile_undestroyable
+	Building:
+		Dimensions: 1,1
+		Footprint: _
+
+platform_left_02:
+	Inherits: ^new_tile_undestroyable
+	Building:
+		Dimensions: 1,1
+		Footprint: _
+
+platform_left_03:
+	Inherits: ^new_tile_undestroyable
+	Building:
+		Dimensions: 1,1
+		Footprint: _
+
+platform_right_01:
+	Inherits: ^new_tile_undestroyable
+	Building:
+		Dimensions: 1,1
+		Footprint: _
+
+platform_right_02:
+	Inherits: ^new_tile_undestroyable
+	Building:
+		Dimensions: 1,1
+		Footprint: _
+
+platform_right_03:
+	Inherits: ^new_tile_undestroyable
+	Building:
+		Dimensions: 1,1
+		Footprint: _
+
+custom_rock03_h_barracks:
+	Inherits: ^new_tile_undestroyable
+	RenderSprites:
+		Palette: terrain
+	Building:
+		Dimensions: 2,3
+		Footprint: XX XX XX
+	MapEditorData:
+		Categories: Decorations
+
+custom_rock04_a_barracks:
+	Inherits: ^new_tile_undestroyable
+	RenderSprites:
+		Palette: terrain
+	Building:
+		Dimensions: 2,2
+		Footprint: XX XX
+	MapEditorData:
+		Categories: Decorations
+
+custom_rock05_o_barracks:
+	Inherits: ^new_tile_undestroyable
+	RenderSprites:
+		Palette: terrain
+	Building:
+		Dimensions: 2,3
+		Footprint: X_ XX XX
+	MapEditorData:
+		Categories: Decorations
+
+bridge_tile01:
+	Inherits: ^new_tile_undestroyable
+	Building:
+		Dimensions: 1,1
+		Footprint: _
+
+tree01:
+	Inherits: ^new_tile_undestroyable
+	Building:
+		Dimensions: 1,1
+		Footprint: x
+	Tooltip:
+		Name: Palm
+	MapEditorData:
+		Categories: Decorations
+	RenderSprites:
+		Palette: tree01
+
+
+rock_decoration01:
+	Inherits: ^new_tile_undestroyable
+	Building:
+		Dimensions: 1,1
+		Footprint: _
+
+^Ice_tileset:
+	Inherits@1: ^ExistsInWorld
+	Inherits@2: ^SpriteActor
+	FrozenUnderFog:
+	WithSpriteBody:
+	Building:
+		Footprint: _
+		Dimensions: 1,1
+	RenderSprites:
+		Palette: terrain
+	MapEditorData:
+		Categories: Ice Tileset
+	Interactable:
+	AppearsOnRadar:
+	RadarColorFromTerrain:
+		Terrain: Ice
+	AppearsOnMapPreview:
+		Terrain: Ice
+	Tooltip:
+		Name: Ice
+		ShowOwnerRow: false
+	RequiresSpecificOwners:
+		ValidOwnerNames: Neutral
+
+ice_tileset_small01:
+	Inherits: ^Ice_tileset
+
+ice_tileset_small02:
+	Inherits: ^Ice_tileset
+
+ice_tileset_small03:
+	Inherits: ^Ice_tileset
+
+ice_tileset_small04:
+	Inherits: ^Ice_tileset
+
+ice_tileset_small05:
+	Inherits: ^Ice_tileset
+
+ice_tileset_small06:
+	Inherits: ^Ice_tileset
+
+ice_tileset_small07:
+	Inherits: ^Ice_tileset
+
+ice_tileset_small08:
+	Inherits: ^Ice_tileset
+
+ice_tileset_small09:
+	Inherits: ^Ice_tileset
+
+ice_tileset_small10:
+	Inherits: ^Ice_tileset
+
+ice_tileset_small11:
+	Inherits: ^Ice_tileset
+
+ice_tileset_small12:
+	Inherits: ^Ice_tileset
+
+ice_tileset_small13:
+	Inherits: ^Ice_tileset
+
+ice_tileset_small14:
+	Inherits: ^Ice_tileset
+
+ice_tileset_small15:
+	Inherits: ^Ice_tileset
+
+ice_tileset_small16:
+	Inherits: ^Ice_tileset
+
+ice_tileset_small17:
+	Inherits: ^Ice_tileset
+
+ice_tileset_small18:
+	Inherits: ^Ice_tileset
+
+ice_tileset_small19:
+	Inherits: ^Ice_tileset
+
+ice_tileset_small20:
+	Inherits: ^Ice_tileset
+
+ice_tileset_small21:
+	Inherits: ^Ice_tileset
+
+ice_tileset_small22:
+	Inherits: ^Ice_tileset
+
+ice_tileset_small23:
+	Inherits: ^Ice_tileset
+
+ice_tileset_small24:
+	Inherits: ^Ice_tileset
+
+ice_tileset_small25:
+	Inherits: ^Ice_tileset
+
+ice_tileset_big01:
+	Inherits: ^Ice_tileset
+	Building:
+		Footprint: xx _x
+		Dimensions: 2,2
+
+ice_tileset_big02:
+	Inherits: ^Ice_tileset
+	Building:
+		Footprint: _x __
+		Dimensions: 2,2
+
+ice_tileset_big03:
+	Inherits: ^Ice_tileset
+	Building:
+		Footprint: xx_ xxx
+		Dimensions: 3,2
+
+ice_tileset_big03_1:
+	Inherits: ^Ice_tileset
+	Building:
+		Footprint: _xx __x
+		Dimensions: 3,2
+
+ice_tileset_big03_2:
+	Inherits: ^Ice_tileset
+	Building:
+		Footprint: xxx xx_
+		Dimensions: 3,2
+
+ice_tileset_big03_3:
+	Inherits: ^Ice_tileset
+	Building:
+		Footprint: _xx xx_
+		Dimensions: 3,2
+
+ice_tileset_big04:
+	Inherits: ^Ice_tileset
+	Building:
+		Footprint: xx xx
+		Dimensions: 2,2
+
+ice_tileset_big05:
+	Inherits: ^Ice_tileset
+	Building:
+		Footprint: _x _x
+		Dimensions: 2,2
+
+ice_tileset_big06:
+	Inherits: ^Ice_tileset
+	Building:
+		Footprint: xx x_
+		Dimensions: 2,2
+
+ice_tileset_big07:
+	Inherits: ^Ice_tileset
+	Building:
+		Footprint: _x xx
+		Dimensions: 2,2
+
+ice_tileset_big08:
+	Inherits: ^Ice_tileset
+	Building:
+		Footprint: xx x_
+		Dimensions: 2,2
+
+ice_tileset_big09:
+	Inherits: ^Ice_tileset
+	Building:
+		Footprint: __ xx _x
+		Dimensions: 2,3
+
+ice_tileset_big10:
+	Inherits: ^Ice_tileset
+	Building:
+		Footprint: xx xx x_
+		Dimensions: 2,3
+
+ice_tileset_big11:
+	Inherits: ^Ice_tileset
+	Building:
+		Footprint: xx xx
+		Dimensions: 2,2
+
+ice_tileset_big12:
+	Inherits: ^Ice_tileset
+	Building:
+		Footprint: __ __
+		Dimensions: 2,2
+
+ice_tileset_big13:
+	Inherits: ^Ice_tileset
+	Building:
+		Footprint: __ __
+		Dimensions: 2,2
+
+ice_tileset_big14:
+	Inherits: ^Ice_tileset
+	Building:
+		Footprint: __ __
+		Dimensions: 2,2
+
+ice_tileset_big15:
+	Inherits: ^Ice_tileset
+	Building:
+		Footprint: xx xx
+		Dimensions: 2,2
+
+ice_tileset_big16:
+	Inherits: ^Ice_tileset
+	Building:
+		Footprint: xx xx
+		Dimensions: 2,2
+
+ice_tileset_big17:
+	Inherits: ^Ice_tileset
+	Building:
+		Footprint: xx __
+		Dimensions: 2,2
+
+ice_tileset_big18:
+	Inherits: ^Ice_tileset
+	Building:
+		Footprint: xx __
+		Dimensions: 2,2
+
+ice_tileset_big19:
+	Inherits: ^Ice_tileset
+	Building:
+		Footprint: xx x_
+		Dimensions: 2,2
+
+ice_tileset_big20:
+	Inherits: ^Ice_tileset
+	Building:
+		Footprint: _xx _xx
+		Dimensions: 3,2
+
+ice_tileset_big21:
+	Inherits: ^Ice_tileset
+	Building:
+		Footprint: xx __
+		Dimensions: 2,2
+
+ice_tileset_big22:
+	Inherits: ^Ice_tileset
+	Building:
+		Footprint: xx __
+		Dimensions: 2,2
+
+ice_tileset_big23:
+	Inherits: ^Ice_tileset
+	Building:
+		Footprint: __ xx
+		Dimensions: 2,2
+
+ice_tileset_big24:
+	Inherits: ^Ice_tileset
+	Building:
+		Footprint: x_ x_
+		Dimensions: 2,2
+
+ice_tileset_big25:
+	Inherits: ^Ice_tileset
+	Building:
+		Footprint: xx __
+		Dimensions: 2,2
+
+ice_tileset_big26:
+	Inherits: ^Ice_tileset
+	Building:
+		Footprint: x_
+		Dimensions: 2,1
+
+ice_tileset_big27:
+	Inherits: ^Ice_tileset
+	Building:
+		Footprint: xx
+		Dimensions: 2,1
+
+ice_tileset_big28:
+	Inherits: ^Ice_tileset
+	Building:
+		Footprint: x _
+		Dimensions: 1,2
+
+ice_tileset_big29:
+	Inherits: ^Ice_tileset
+	Building:
+		Footprint: x x
+		Dimensions: 1,2
+
+ice_tileset_big_smooth01:
+	Inherits: ^Ice_tileset
+	Building:
+		Footprint: __ __
+		Dimensions: 2,2
+
+ice_tileset_big_smooth02:
+	Inherits: ^Ice_tileset
+	Building:
+		Footprint: __ __
+		Dimensions: 2,2
+
+ice_tileset_big_smooth03:
+	Inherits: ^Ice_tileset
+	Building:
+		Footprint: __ __
+		Dimensions: 2,2
+
+ice_tileset_big_smooth04:
+	Inherits: ^Ice_tileset
+	Building:
+		Footprint: __ __
+		Dimensions: 2,2
+
+ice_tileset_big_smooth05:
+	Inherits: ^Ice_tileset
+	Building:
+		Footprint: __ __
+		Dimensions: 2,2
+
+ice_tileset_big_smooth06:
+	Inherits: ^Ice_tileset
+	Building:
+		Footprint: __ __
+		Dimensions: 2,2
+
+ice_tileset_big_smooth07:
+	Inherits: ^Ice_tileset
+	Building:
+		Footprint: __ __
+		Dimensions: 2,2
+
+ice_tileset_big_smooth08:
+	Inherits: ^Ice_tileset
+	Building:
+		Footprint: __ __
+		Dimensions: 2,2
+
+ice_tileset_transition01:
+	Inherits: ^Ice_tileset
+	Building:
+		Footprint: xx xx
+		Dimensions: 2,2
+
+ice_tileset_transition02:
+	Inherits: ^Ice_tileset
+	Building:
+		Footprint: xx xx
+		Dimensions: 2,2
+
+ice_tileset_transition03:
+	Inherits: ^Ice_tileset
+	Building:
+		Footprint: _x xx
+		Dimensions: 2,2
+
+ice_tileset_transition04:
+	Inherits: ^Ice_tileset
+	Building:
+		Footprint: xx xx
+		Dimensions: 2,2
+
+ice_tileset_transition05:
+	Inherits: ^Ice_tileset
+	Building:
+		Footprint: xx __
+		Dimensions: 2,2
+
+ice_tileset_transition06:
+	Inherits: ^Ice_tileset
+	Building:
+		Footprint: xx xx
+		Dimensions: 2,2
+
+ice_tileset_decoration01:
+	Inherits: ^Ice_tileset
+	Building:
+		Footprint: _
+		Dimensions: 1,1
+
+ice_tileset_decoration02:
+	Inherits: ^Ice_tileset
+	Building:
+		Footprint: _
+		Dimensions: 1,1
+
+ice_tileset_decoration03:
+	Inherits: ^Ice_tileset
+	Building:
+		Footprint: _ _
+		Dimensions: 1,2
+
+ice_tileset_decoration04:
+	Inherits: ^Ice_tileset
+	Building:
+		Footprint: x_x x_x x_x
+		Dimensions: 3,3
+
+ice_tileset_decoration05:
+	Inherits: ^Ice_tileset
+	Building:
+		Footprint: __x xx_
+		Dimensions: 3,2
+
+ice_tileset_decoration06:
+	Inherits: ^Ice_tileset
+	Building:
+		Footprint: xx xx
+		Dimensions: 2,2
+
+ice_tileset_decoration07:
+	Inherits: ^Ice_tileset
+	Building:
+		Footprint: xx xx
+		Dimensions: 2,2
+
+ice_tileset_decoration08:
+	Inherits: ^Ice_tileset
+	Building:
+		Footprint: xx xx
+		Dimensions: 2,2
+
+ice_tileset_decoration09:
+	Inherits: ^Ice_tileset
+	Building:
+		Footprint: xx
+		Dimensions: 2,1
+
+ice_tileset_decoration10:
+	Inherits: ^Ice_tileset
+	Building:
+		Footprint: __
+		Dimensions: 2,1
+
+ice_tileset_decoration11:
+	Inherits: ^Ice_tileset
+	Building:
+		Footprint: xx xx
+		Dimensions: 2,2
+
+ice_tileset_decoration12:
+	Inherits: ^Ice_tileset
+	Building:
+		Footprint: xx xx
+		Dimensions: 2,2
+
+
+ice_tileset_decoration13:
+	Inherits: ^Ice_tileset
+	Building:
+		Footprint: xx _x
+		Dimensions: 2,2
+
+ice_tileset_decoration14:
+	Inherits: ^Ice_tileset
+	Building:
+		Footprint: _ _
+		Dimensions: 1,2
+
+
+ice_tileset_decoration15:
+	Inherits: ^Ice_tileset
+	Building:
+		Footprint: __ xx
+		Dimensions: 2,2
+
+
+ice_tileset_decoration16:
+	Inherits: ^Ice_tileset
+	Building:
+		Footprint: xx xx
+		Dimensions: 2,2
+
+
+^Water_tileset:
+	Inherits@1: ^ExistsInWorld
+	Inherits@2: ^SpriteActor
+	FrozenUnderFog:
+	WithSpriteBody:
+	Building:
+		Footprint: _
+		Dimensions: 1,1
+	RenderSprites:
+		Palette: water_palette
+	MapEditorData:
+		Categories: Water Tileset
+	Interactable:
+	AppearsOnRadar:
+	RadarColorFromTerrain:
+		Terrain: Ice
+	AppearsOnMapPreview:
+		Terrain: Ice
+	Tooltip:
+		Name: Spring
+		ShowOwnerRow: false
+	RequiresSpecificOwners:
+		ValidOwnerNames: Neutral
+
+
+
+
+water_tileset_01:
+	Inherits: ^Water_tileset
+	Building:
+		Footprint: x
+water_tileset_02:
+	Inherits: ^Water_tileset
+	Building:
+		Footprint: x
+water_tileset_03:
+	Inherits: ^Water_tileset
+	Building:
+		Footprint: x
+water_tileset_04:
+	Inherits: ^Water_tileset
+water_tileset_05:
+	Inherits: ^Water_tileset
+water_tileset_06:
+	Inherits: ^Water_tileset
+water_tileset_07:
+	Inherits: ^Water_tileset
+water_tileset_08:
+	Inherits: ^Water_tileset
+water_tileset_09:
+	Inherits: ^Water_tileset
+water_tileset_09_1:
+	Inherits: ^Water_tileset
+water_tileset_09_2:
+	Inherits: ^Water_tileset
+water_tileset_09_3:
+	Inherits: ^Water_tileset
+water_tileset_09_4:
+	Inherits: ^Water_tileset
+water_tileset_09_5:
+	Inherits: ^Water_tileset
+water_tileset_10:
+	Inherits: ^Water_tileset
+	Building:
+		Footprint: x
+water_tileset_11:
+	Inherits: ^Water_tileset
+	Building:
+		Footprint: x
+water_tileset_12:
+	Inherits: ^Water_tileset
+	Building:
+		Footprint: x
+water_tileset_13:
+	Inherits: ^Water_tileset
+	Building:
+		Footprint: x
+water_tileset_14:
+	Inherits: ^Water_tileset
+	Building:
+		Footprint: x
+water_tileset_15:
+	Inherits: ^Water_tileset
+	Building:
+		Footprint: x
+water_tileset_16:
+	Inherits: ^Water_tileset
+	Building:
+		Footprint: x
+water_tileset_17:
+	Inherits: ^Water_tileset
+water_tileset_18:
+	Inherits: ^Water_tileset
+water_tileset_19:
+	Inherits: ^Water_tileset
+water_tileset_20:
+	Inherits: ^Water_tileset
+water_tileset_21:
+	Inherits: ^Water_tileset
+	Building:
+		Footprint: x
+water_tileset_22:
+	Inherits: ^Water_tileset
+water_tileset_23:
+	Inherits: ^Water_tileset
+	Building:
+		Footprint: x
+water_tileset_24:
+	Inherits: ^Water_tileset
+	Building:
+		Footprint: x
+water_tileset_25:
+	Inherits: ^Water_tileset
+	Building:
+		Footprint: x
+water_tileset_26:
+	Inherits: ^Water_tileset
+	Building:
+		Footprint: x
+water_tileset_27:
+	Inherits: ^Water_tileset
+water_tileset_28:
+	Inherits: ^Water_tileset
+water_tileset_29:
+	Inherits: ^Water_tileset
+	Building:
+		Footprint: _ _
+		Dimensions: 1,2
+water_tileset_30:
+	Inherits: ^Water_tileset
+	Building:
+		Footprint: _ _
+		Dimensions: 1,2
+water_tileset_31:
+	Inherits: ^Water_tileset
+	Building:
+		Footprint: __
+		Dimensions: 2,1
+water_tileset_32:
+	Inherits: ^Water_tileset
+	Building:
+		Footprint: __
+		Dimensions: 2,1
+water_tileset_33:
+	Inherits: ^Water_tileset
+water_tileset_34:
+	Inherits: ^Water_tileset
+water_tileset_35:
+	Inherits: ^Water_tileset
+water_tileset_36:
+	Inherits: ^Water_tileset
+water_tileset_37:
+	Inherits: ^Water_tileset
+water_tileset_38:
+	Inherits: ^Water_tileset
+water_tileset_39:
+	Inherits: ^Water_tileset
+water_tileset_40:
+	Inherits: ^Water_tileset
+water_tileset_41:
+	Inherits: ^Water_tileset
+water_tileset_42:
+	Inherits: ^Water_tileset
+water_tileset_43:
+	Inherits: ^Water_tileset
+water_tileset_44:
+	Inherits: ^Water_tileset
+water_tileset_45:
+	Inherits: ^Water_tileset
+water_tileset_46:
+	Inherits: ^Water_tileset
+water_tileset_47:
+	Inherits: ^Water_tileset
+water_tileset_48:
+	Inherits: ^Water_tileset
+water_tileset_49:
+	Inherits: ^Water_tileset
+water_tileset_50:
+	Inherits: ^Water_tileset
+water_tileset_51:
+	Inherits: ^Water_tileset
+water_tileset_52:
+	Inherits: ^Water_tileset
+water_tileset_53:
+	Inherits: ^Water_tileset
+	Building:
+		Footprint: __
+		Dimensions: 2,1
+water_tileset_54:
+	Inherits: ^Water_tileset
+	Building:
+		Footprint: __
+		Dimensions: 2,1
+
+water_tileset_big01:
+	Inherits: ^Water_tileset
+	Building:
+		Footprint: xx x_
+		Dimensions: 2,2
+water_tileset_big02:
+	Inherits: ^Water_tileset
+	Building:
+		Footprint: xx xx
+		Dimensions: 2,2
+water_tileset_big03:
+	Inherits: ^Water_tileset
+	Building:
+		Footprint: xx _x
+		Dimensions: 2,2
+water_tileset_big04:
+	Inherits: ^Water_tileset
+	Building:
+		Footprint: _x xx
+		Dimensions: 2,2
+water_tileset_big05:
+	Inherits: ^Water_tileset
+	Building:
+		Footprint: xx _x
+		Dimensions: 2,2
+water_tileset_big06:
+	Inherits: ^Water_tileset
+	Building:
+		Footprint: xx x_
+		Dimensions: 2,2
+water_tileset_big07:
+	Inherits: ^Water_tileset
+	Building:
+		Footprint: _x xx
+		Dimensions: 2,2
+water_tileset_big08:
+	Inherits: ^Water_tileset
+	Building:
+		Footprint: x_ xx
+		Dimensions: 2,2
+water_tileset_big09:
+	Inherits: ^Water_tileset
+	Building:
+		Footprint: xx xx
+		Dimensions: 2,2
+water_tileset_big10:
+	Inherits: ^Water_tileset
+	Building:
+		Footprint: xx xx
+		Dimensions: 2,2
+water_tileset_big11:
+	Inherits: ^Water_tileset
+	Building:
+		Footprint: xx xx
+		Dimensions: 2,2
+water_tileset_big12:
+	Inherits: ^Water_tileset
+	Building:
+		Footprint: xx xx
+		Dimensions: 2,2
+water_tileset_big13:
+	Inherits: ^Water_tileset
+	Building:
+		Footprint: xx xx
+		Dimensions: 2,2
+water_tileset_big14:
+	Inherits: ^Water_tileset
+	Building:
+		Footprint: __ __
+		Dimensions: 2,2
+water_tileset_big15:
+	Inherits: ^Water_tileset
+	Building:
+		Footprint: xx xx
+		Dimensions: 2,2

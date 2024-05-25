@@ -1,0 +1,143 @@
+MapFormat: 12
+
+RequiresMod: d2k
+
+Title: test map
+
+Author: Your name here
+
+Tileset: ARRAKIS
+
+MapSize: 130,130
+
+Bounds: 1,1,128,128
+
+Visibility: Lobby
+
+Categories: Conquest
+
+Players:
+	PlayerReference@Neutral:
+		Name: Neutral
+		OwnsWorld: True
+		NonCombatant: True
+		Faction: Random
+	PlayerReference@Creeps:
+		Name: Creeps
+		NonCombatant: True
+		Faction: Random
+		Enemies: Multi0
+	PlayerReference@Multi0:
+		Name: Multi0
+		Playable: True
+		Faction: Random
+		Enemies: Creeps
+
+Actors:
+	Actor0: mpspawn
+		Owner: Neutral
+		Location: 49,69
+	Actor1: wind_trap
+		Owner: Multi0
+		Location: 52,64
+	Actor2: wind_trap
+		Owner: Multi0
+		Location: 55,64
+	Actor3: wind_trap
+		Owner: Multi0
+		Location: 58,64
+	Actor4: wind_trap
+		Owner: Multi0
+		Location: 61,64
+	Actor5: wind_trap
+		Owner: Multi0
+		Location: 64,64
+	Actor6: barracks
+		Owner: Multi0
+		Location: 61,67
+	Actor7: barracks
+		Owner: Multi0
+		Location: 58,67
+	Actor8: barracks
+		Owner: Multi0
+		Location: 55,67
+	Actor9: barracks
+		Owner: Multi0
+		Location: 52,67
+	Actor10: refinery
+		Owner: Multi0
+		Location: 66,75
+	Actor11: heavy_factory
+		Owner: Multi0
+		Location: 63,72
+	Actor12: outpost
+		Owner: Multi0
+		Location: 64,70
+	Actor13: starport
+		Owner: Multi0
+		Location: 60,76
+	Actor14: light_inf
+		Owner: Multi0
+		SubCell: 3
+		Facing: 384
+		Location: 66,86
+	Actor15: light_inf
+		Owner: Multi0
+		Facing: 384
+		Location: 66,86
+		SubCell: 1
+	Actor16: light_inf
+		Owner: Multi0
+		Facing: 384
+		SubCell: 3
+		Location: 63,86
+	Actor17: light_inf
+		Owner: Multi0
+		Facing: 384
+		Location: 63,86
+		SubCell: 1
+	Actor18: light_inf
+		Owner: Multi0
+		Facing: 384
+		SubCell: 3
+		Location: 64,86
+	Actor19: light_inf
+		Owner: Multi0
+		Facing: 384
+		SubCell: 3
+		Location: 68,87
+	Actor20: engineer
+		Owner: Multi0
+		SubCell: 3
+		Facing: 384
+		Location: 67,83
+	Actor21: engineer
+		Owner: Multi0
+		Facing: 384
+		SubCell: 3
+		Location: 65,84
+	Actor22: engineer
+		Owner: Multi0
+		Facing: 384
+		SubCell: 3
+		Location: 60,84
+	Actor23: engineer
+		Owner: Multi0
+		Facing: 384
+		SubCell: 3
+		Location: 59,86
+	Actor24: engineer
+		Owner: Multi0
+		Facing: 384
+		SubCell: 3
+		Location: 60,87
+
+Rules: Enhanced_Units09.yaml, Enhanced_Starport09.yaml, Enhanced_Structures09.yaml, Enhanced_World09.yaml, Enhanced_Misc.yaml, Enhanced_AI.yaml, Enhanced_palettes.yaml, NewTiles.yaml, NeutralBuildings.yaml
+
+Sequences: EnhancedSequences.yaml, Sequences_newTiles.yaml
+
+Weapons: Enhanced_Weapons09.yaml, Enhanced_WeaponsFX.yaml
+
+Voices: Enhanced_voices.yaml
+
+Notifications: Enhanced_notifications.yaml

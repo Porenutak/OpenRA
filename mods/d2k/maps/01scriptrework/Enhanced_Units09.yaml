@@ -1,0 +1,2720 @@
+^AutoTargetGround:
+	AutoTarget:
+		AttackAnythingCondition: stance-attackanything
+	AutoTargetPriority@DEFAULT:
+		ValidTargets: Infantry, Vehicle, Water, Defense, Tank
+	AutoTargetPriority@ATTACKANYTHING:
+		ValidTargets: Infantry, Vehicle, Water, Structure, Defense, Tank
+	AutoTargetPriority@CREEPS:
+		ValidTargets: Creep
+
+^AutoTargetAll:
+	AutoTarget:
+		AttackAnythingCondition: stance-attackanything
+	AutoTargetPriority@DEFAULT:
+		RequiresCondition: !stance-attackanything
+		ValidTargets: Infantry, Vehicle, Tank, Water, Air, Defense
+	AutoTargetPriority@ATTACKANYTHING:
+		RequiresCondition: stance-attackanything
+		ValidTargets: Infantry, Vehicle, Tank, Water, Air, Structure, Defense
+	AutoTargetPriority@CREEPS:
+		ValidTargets: Creep
+
+^AutoTargetGroundAssaultMove:
+	GrantConditionOnBotOwner@BOTOWNER:
+		Condition: bot-owned
+		Bots: omnius, vidious, gladius, optimus
+	AutoTargetPriority@Bot_walls:
+		RequiresCondition: ignore-creeps
+		ValidTargets: Wall
+
+^AutoTargetAllAssaultMove:
+	AutoTargetPriority@Bot_walls:
+		RequiresCondition: ignore-creeps
+		ValidTargets: Wall
+
+^temporarycloak:
+	ExternalCondition@temporeryclock:
+		Condition: temporery_clock
+	Cloak@temporeryclock:
+		RequiresCondition: temporery_clock
+		UncloakOn: Attack, Unload, Infiltrate, Demolish, Dock, Damage, Heal
+		InitialDelay: 10
+		CloakDelay: 30
+		IsPlayerPalette: true
+
+^ScareEnemy:
+	ExternalCondition@scared:
+		Condition: scared
+		SourceCap: 1
+	WithDecoration@skullIconScared:
+		Image: pips
+		Sequence: pip-skull
+		Palette: temperat
+		Position: TopLeft
+		ValidRelationships: Ally, Enemy, Neutral
+		RequiresCondition: scared
+	RejectsOrders@Scared:
+		RequiresCondition: scared
+		RemoveOrders: true
+	Wanders@scared:
+		WanderMoveRadius: 3
+		RequiresCondition: scared
+		AvoidTerrainTypes: Cliff
+	Armament:
+		PauseOnCondition: scared
+
+^chaos_bomb_influence:
+	ExternalCondition@Trigger:
+		Condition: chaos_bomb
+	Armament@chaos_bomb_influence:
+		TargetRelationships: Enemy, Ally, Neutral
+		RequiresCondition: chaos_bomb
+	AttackWander:
+		WanderMoveRadius: 3
+		RequiresCondition: chaos_bomb
+		AvoidTerrainTypes: Cliff, Rough
+	RejectsOrders@chaos_bomb_influence:
+		RequiresCondition: chaos_bomb
+		RemoveOrders: true
+	WithDecoration@skullFromRA:
+		Image: pips
+		Sequence: pip-skull
+		Palette: temperat
+		Position: TopLeft
+		ValidRelationships: Ally, Enemy, Neutral
+		RequiresCondition: chaos_bomb
+
+^jammedvision:
+	ExternalCondition@jammed:
+		Condition: jammed
+	ReloadDelayMultiplier@jammer:
+		Modifier: 120
+		RequiresCondition: jammed
+	InaccuracyMultiplier@jammer:
+		Modifier: 170
+		RequiresCondition: jammed
+	RangeMultiplier@jammer:
+		Modifier: 60
+		RequiresCondition: jammed
+	RevealsShroud:
+		RevealGeneratedShroud: false
+	RevealsShroud@jammed:
+		Range: 3c512
+		RevealGeneratedShroud: true
+	WithColoredOverlay@black:
+		Color: 3E202080
+		RequiresCondition: jammed
+	WithDecoration@jammerIcon:
+		Image: pips
+		Sequence: pip-jammer
+		Palette: disabled
+		Position: TopLeft
+		ValidRelationships: Ally, Enemy, Neutral
+		RequiresCondition: jammed
+
+^BotLogicEngineer:
+	ExternalCondition@giveControl:
+		Condition: reject_control
+	ScriptTags:
+	RejectsOrders:
+		RequiresCondition: reject_control
+
+^BotLogicRepairing:
+	ExternalCondition@giveControl:
+		Condition: reject_control
+	ExternalCondition@startrepair:
+		Condition: start_repair
+	ScriptTags:
+	RejectsOrders:
+		RequiresCondition: reject_control
+	RejectsOrders@rejectOnRepairPad:
+		RequiresCondition: repairing
+	GrantConditionOnDamageState@fullyrepaird:
+		Condition: full_hp
+		ValidDamageStates: Undamaged
+	GrantCondition:
+		RequiresCondition: start_repair && !full_hp
+		Condition: repairing
+	ChangesHealth@BotRepairing:
+		Step: 800
+		Delay: 10
+		StartIfBelow: 105
+		RequiresCondition: start_repair
+
+^botDeployLogic:
+	GrantConditionOnBotOwner@Imstupidbotthatcandeploy:
+		Condition: Imbot
+		Bots: omnius, vidious, gladius
+	GrantConditionOnAttack@deploing:
+		Condition: dummyfire
+		RevokeDelay: 400
+		ArmamentNames: secondary
+		RequiresCondition: Imbot
+	GrantConditionOnAttack@beforedeploy:
+		Condition: beforedeploy
+		RevokeDelay: 40
+		ArmamentNames: primary
+		RequiresCondition: Imbot
+	GrantCondition@deploythrowattack:
+		Condition: deployed
+		RequiresCondition: dummyfire
+	Armament@botAiming:
+		Weapon: dummy_aim
+		FireDelay: 40
+		Name: secondary
+		PauseOnCondition: deployed
+		RequiresCondition: Imbot
+	Armament@botAiming2:
+		Weapon: dummy_aim2
+		FireDelay: 0
+		Name: primary
+		PauseOnCondition: deployed
+		RequiresCondition: Imbot
+	WithIdleOverlay@botdeployanim:
+		Sequence: deploying
+		RequiresCondition: beforedeploy && !deployed
+		PauseOnCondition: dummyfire
+	AmbientSound@botdeploysound:
+		SoundFiles: audio/EBoD_MortarDeploy.wav
+		Interval: 100
+		Delay: 2
+		RequiresCondition: beforedeploy && !deployed
+	RejectsOrders@noundeploy:
+		Reject: AttackMove, AssaultMove
+		RequiresCondition: !Imbot && deployed
+
+^GainsExperience:
+	ChangesHealth@ELITE:
+		Step: 0
+		PercentageStep: 4
+		Delay: 125
+		StartIfBelow: 100
+		DamageCooldown: 125
+		RequiresCondition: rank-veteran >= 3
+
+^wormslowing:
+	ExternalCondition@wormIsnear:
+		Condition: worm_attack
+	ExternalCondition@stop:
+		Condition: stop
+	SpeedMultiplier@wormeated:
+		Modifier: 0
+		RequiresCondition: stop
+	SpeedMultiplier@worm_eating:
+		Modifier: 20
+		RequiresCondition: worm_attack
+
+^CliffAvalanche:
+	KillsSelf@rockAvalanche:
+		RequiresCondition: rock_avalanche
+		DamageTypes: SmallExplosionDeath
+	ExternalCondition@rockAvalanche:
+		Condition: rock_avalanche
+
+^SandStorm:
+	ExternalCondition@sandStorm:
+		Condition: sandstorm_dmg
+	ChangesHealth@sandStorm:
+		RequiresCondition: sandstorm_dmg
+		Step: -300
+		StartIfBelow: 101
+		DamageTypes: BulletDeath
+
+^Infantry:
+	Inherits@SandStorm: ^SandStorm
+	Inherits@temporerycloak: ^temporarycloak
+	Inherits@jammer: ^jammedvision
+	Inherits@chaos: ^chaos_bomb_influence
+	Inherits@wormslowing: ^wormslowing
+	Inherits@Scared: ^ScareEnemy
+	GrantRandomCondition:
+		Conditions: inf_cond01, inf_cond02, inf_cond03
+	Crushable:
+		CrushSound: CRUSH1.WAV
+		RequiresCondition: inf_cond01
+	Crushable@2:
+		CrushSound: audio/crush_guy_2.wav
+		RequiresCondition: inf_cond02
+	Crushable@3:
+		CrushSound: audio/crush_guy_4.wav
+		RequiresCondition: inf_cond03
+	Crushable@worm:
+		CrushClasses: worm_dinner
+		WarnProbability: 0
+		CrushedByFriendlies: true
+		CrushSound: audio/EBoD_normal_dying_3.wav
+		RequiresCondition: inf_cond01
+	Crushable@worm2:
+		CrushClasses: worm_dinner
+		WarnProbability: 0
+		CrushedByFriendlies: true
+		CrushSound: CRUSH1.WAV
+		RequiresCondition: inf_cond02
+	Crushable@worm3:
+		CrushClasses: worm_dinner
+		WarnProbability: 0
+		CrushedByFriendlies: true
+		CrushSound: audio/EBoD_normal_dying_3.wav
+		RequiresCondition: inf_cond03
+	TurnOnIdle:
+	WithInfantryBody:
+		MinIdleDelay: 50
+		MaxIdleDelay: 160
+	WithDeathAnimation:
+		DeathTypes:
+			ExplosionDeath: 1
+			SoundDeath: 2
+			SmallExplosionDeath: 3
+			BulletDeath: 4
+			FireDeath: 6, 3
+	DeathSounds@choke:
+		Voice: Choke
+		DeathTypes: ChokeDeath
+		VolumeMultiplier: 0.8
+	DeathSounds@burn:
+		Voice: Burn
+		DeathTypes: FireDeath
+		VolumeMultiplier: 0.8
+	ExternalCondition@bonuses:
+		Condition: officerAura
+	SpeedMultiplier@officerAuraspeedBonus:
+		Modifier: 110
+		RequiresCondition: officerAura
+	DamageMultiplier@officerAuraArmorbonus:
+		Modifier: 50
+		RequiresCondition: officerAura
+	FirepowerMultiplier@officerAuraArmorbonus:
+		RequiresCondition: officerAura
+		Modifier: 110
+	WithDecoration@RANK-underOfficerEffect:
+		Image: rank
+		Sequence: rank-veteran-2
+		Palette: effect
+		Position: BottomRight
+		Margin: 5, 6
+		RequiresCondition: officerAura
+	TakeCover:
+		RequiresCondition: !officerAura
+	HitShape:
+	Demolishable@wormCrush:
+	RevealsShroud@jammed:
+		Range: 3c112
+
+
+
+^Vehicle:
+	Inherits@BotRepairLogic: ^BotLogicRepairing
+	Inherits@chaosbomb: ^chaos_bomb_influence
+	Inherits@temporerycloak: ^temporarycloak
+	Inherits@jammer: ^jammedvision
+	Inherits@wormslowing: ^wormslowing
+	Inherits@^SandStorm: ^SandStorm
+	ExternalCondition:
+		Condition: unitCapturated
+	RevealsShroud:
+		RequiresCondition: !unitCapturated
+		RevealGeneratedShroud: false
+	RevealsShroud@whileCaptured:
+		Range: 3c512
+		RequiresCondition: unitCapturated
+	SpeedMultiplier@HEAVYDAMAGE:
+		RequiresCondition: heavy-damage
+		Modifier: 75
+	Crushable:
+		CrushClasses: vehicle
+		WarnProbability: 0
+		CrushedByFriendlies: true
+		CrushSound: WORM.WAV
+	Targetable:
+		TargetTypes: Ground, Vehicle, C4
+		RequiresCondition: !unitCapturated
+	Targetable@CAPTURED:
+		TargetTypes: CapturedUnit, Ground
+		RequiresCondition: unitCapturated
+	-WithDecoration@jammerIcon:
+	WithDecoration@jammerIconVehicle:
+		Image: poweroff
+		Sequence: offline
+		Position: Center
+		ValidRelationships: Ally, Enemy, Neutral
+		RequiresCondition: jammed
+
+
+^Tank:
+	Targetable:
+		TargetTypes: Ground, C4, Tank
+	GrantConditionOnDamageState@HEAVY:
+		ValidDamageStates: Critical
+	SpeedMultiplier@HEAVYDAMAGE:
+		Modifier: 75
+	RevealsShroud@jammed:
+		Range: 3c750
+	SpawnActorOnDeath:
+		SpawnAfterDefeat: false
+
+mcv:
+	Valued:
+		Cost: 2000
+	Buildable:
+		Prerequisites: repair_pad, ~techlevel.medium
+		Queue: Armor
+		BuildPaletteOrder: 110
+		BuildDuration: 750
+	Health:
+		HP: 45000
+	Armor:
+		Type: light
+	Mobile:
+		Speed: 31
+	RevealsShroud:
+		Range: 2c768
+	SpawnActorOnDeath:
+		RequiresCondition: !worm_attack
+	-Armament@chaos_bomb_influence:
+
+thumper:
+	Buildable:
+		Prerequisites: ~disabled
+	-Armament:
+
+harvester:
+	-Armament@chaos_bomb_influence:
+	Buildable:
+		Queue: Armor
+		Prerequisites: refinery
+		BuildDuration: 600
+		Description: Collects Spice for processing\n  Explode after death
+	Valued:
+		Cost: 1200
+	WithDockingAnimation:
+	Harvester:
+		HarvestFacings: 8
+		Resources: Spice
+		EmptyCondition: harvesterEmpty
+	Health:
+		HP: 45000
+	Mobile:
+		Speed: 40
+	RevealsShroud:
+		Range: 3c768
+	Explodes:
+		Weapon: UnitExplodeLarge
+		EmptyWeapon: UnitExplodeLarge
+	SpawnActorOnDeath:
+		Actor: harvester.Husk
+		OwnerType: InternalName
+		RequiresCondition: !worm_attack && harvesterEmpty
+		EffectiveOwnerFromOwner: true
+		SpawnAfterDefeat: false
+	ThrowsShrapnel@ShrapnelNotEmpty:
+		Weapons: Debris, Debris2, Debris3, Debris4
+		Pieces: 3, 5
+		Range: 1c0, 6c0
+		RequiresCondition: !harvesterEmpty
+	ThrowsShrapnel@DeathHandClusterDebris:
+		Weapons: DeathHandClusterDebris
+		Pieces: 1, 3
+		Range: 1c0, 5c0
+		RequiresCondition: !harvesterEmpty
+	ThrowsShrapnel@ShrapnelEmpty:
+		Weapons: Debris, Debris2
+		Pieces: 0, 2
+		Range: 1c0, 6c0
+		RequiresCondition: harvesterEmpty
+	ThrowsShrapnel@throwSpice:
+		Weapons: HarvesterSpiceExplosion
+		Pieces: 1, 4
+		Range: 1c0, 5c0
+		RequiresCondition: !harvesterEmpty
+	ThrowsShrapnel@wheel:
+		Weapons: debris_harvester_wheel01, debris_harvester_wheel02
+		Pieces: 0, 2
+		Range: 3c0, 5c0
+
+
+trike:
+	AutoTargetPriority@bot:
+		ValidTargets: Infantry, Structure
+		InvalidTargets: Tank
+		Priority: 50
+		RequiresCondition: ignore-creeps
+	Buildable:
+		Prerequisites: ~light.trike
+		BuildDuration: 225
+	AutoTarget:
+		MinimumScanTimeInterval: 0
+		MaximumScanTimeInterval: 0
+	Valued:
+		Cost: 300
+	Selectable:
+		Class: trike
+	Health:
+		HP: 9000
+	Armor:
+		Type: wood
+	RevealsShroud:
+		Range: 7c0
+	Mobile:
+		Locomotor: light_vehicle
+		TurnSpeed: 40
+		Speed: 120 # just be 118 and higher otherwise attack move is broken
+	Armament@damage:
+		FireDelay: 0
+		Weapon: HMG
+		LocalOffset: 100,0,0
+	Armament@chaos_bomb_influence:
+		Weapon: HMG
+		LocalOffset: 100,0,0
+	Armament@muzzle:
+		FireDelay: 0
+		Weapon: HMG_muzzle
+		LocalOffset: 100,0,0
+		MuzzleSequence: muzzle
+	Armament@muzzlechaosbomb:
+		FireDelay: 0
+		Weapon: HMG_muzzle
+		LocalOffset: 100,0,0
+		MuzzleSequence: muzzle
+		RequiresCondition: chaos_bomb
+		TargetRelationships: Enemy, Ally, Neutral
+	SpeedMultiplier@HEAVYDAMAGE:
+		RequiresCondition: heavy-damage
+		Modifier: 75
+
+
+raider:
+	AutoTargetPriority@bot:
+		ValidTargets: Infantry, Structure
+		InvalidTargets: Tank
+		Priority: 50
+		RequiresCondition: ignore-creeps
+	Buildable:
+		Prerequisites: ~light.raider
+		BuildDuration: 260
+		Description: Fast scout \n Strong vs Infantry\n  Weak vs Tanks, Rockets
+	Valued:
+		Cost: 350
+	RevealsShroud:
+		Range: 7c0
+	Tooltip:
+		Name: Raider Trike
+	UpdatesPlayerStatistics:
+		AddToArmyValue: true
+	Health:
+		HP: 10000
+	Armor:
+		Type: wood
+	Mobile:
+		Locomotor: light_vehicle
+		TurnSpeed: 40
+		Speed: 136
+	WithMuzzleOverlay:
+	AutoTarget:
+		MinimumScanTimeInterval: 0
+		MaximumScanTimeInterval: 0
+	Armament@damage:
+		Weapon: HMGo
+	Armament@chaos_bomb_influence:
+		Weapon: HMGo
+		LocalOffset: 100,0,0
+	Armament@muzzle:
+		Weapon: HMGo_muzzle
+		LocalOffset: 100,0,0
+	Armament@muzzlechaosbomb:
+		Weapon: HMGo_muzzle
+		LocalOffset: 100,0,0
+		MuzzleSequence: muzzle
+		RequiresCondition: chaos_bomb
+	SpeedMultiplier@HEAVYDAMAGE:
+		RequiresCondition: heavy-damage
+		Modifier: 75
+
+quad:
+	AutoTargetPriority@bot:
+		ValidTargets: Vehicle, Structure, Tank
+		InvalidTargets: Infantry
+		Priority: 50
+		RequiresCondition: ignore-creeps
+	Buildable:
+		Prerequisites: upgrade.light, ~light.quad, ~techlevel.medium
+		BuildDurationModifier: 100
+		Description: Missile Scout\n  Excellent vs Light Armor\n Modest vs Tanks\n Weak vs  Moving Targets, Infantry
+	Valued:
+		Cost: 450
+	Health:
+		HP: 11000
+	Armor:
+		Type: light
+	Mobile:
+		Locomotor: light_vehicle
+		TurnSpeed: 40
+		Speed: 95
+	RevealsShroud:
+		Range: 6c0
+	Armament:
+		Weapon: Rocket
+		LocalOffset: 128,64,64, 128,-64,64
+	Armament@chaos_bomb_influence:
+		Weapon: Rocket
+		LocalOffset: 128,64,64, 128,-64,64
+	Explodes:
+		Weapon: UnitExplodeSmall
+		EmptyWeapon: UnitExplodeSmall
+	SpeedMultiplier@HEAVYDAMAGE:
+		RequiresCondition: heavy-damage
+		Modifier: 75
+	RevealsShroud@jammed:
+		Range: 5c0
+
+quad.heavy:
+	Inherits: quad
+	Buildable:
+		Prerequisites: upgrade.light, ~light.heavy_quad, ~techlevel.medium
+		BuildPaletteOrder: 25
+		BuildDuration: 360
+		Description: Heavy Missile Scout\n  Excellent vs Light Armor\n Modest vs Tanks\n Weak vs  Moving Targets, Infantry
+	Valued:
+		Cost: 500
+	Armor:
+		Type: light
+	Tooltip:
+		Name: Heavy quad
+	Mobile:
+		Locomotor: light_vehicle
+		TurnSpeed: 40
+		Speed: 91
+	RevealsShroud:
+		Range: 6c0
+	Armament:
+		Weapon: Rocket_heavy
+		LocalOffset: 128,64,64, 128,-64,64, 128,0,0
+	Armament@chaos_bomb_influence:
+		Weapon: Rocket_heavy
+		LocalOffset: 128,64,64, 128,-64,64
+
+stealth_raider:
+	Inherits: raider
+	Buildable:
+		Prerequisites: ~light.ordos, upgrade.light, high_tech_factory, ~techlevel.high
+		BuildPaletteOrder: 30
+		BuildDuration: 275
+		Description: Invisible Raider\n Can be detected by Infantry (1 cell), Turrets(2 cells), Outpost (5 cells)
+	Valued:
+		Cost: 400
+	Mobile:
+		TurnSpeed: 32
+		Speed: 125
+	RevealsShroud:
+		Range: 6c0
+	UpdatesPlayerStatistics:
+		AddToArmyValue: true
+	Cloak:
+		InitialDelay: 45
+		CloakDelay: 90
+		UncloakOn: Attack, Unload, Infiltrate, Demolish, Dock, Damage, Heal
+		IsPlayerPalette: true
+		PauseOnCondition: cloak-force-disabled
+
+siege_tank:
+	Buildable:
+		Queue: Armor
+		Prerequisites: upgrade.heavy, ~techlevel.medium
+		BuildDuration: 400
+		BuildDurationModifier: 100
+		Description: Siege Artillery\n  High range, high Inaccuracy\n Strong vs Infantry, Buildings\n  Weak vs Tanks
+	AutoTargetPriority@bot:
+		ValidTargets: Infantry, Defense
+		InvalidTargets: Tanks
+		Priority: 50
+		RequiresCondition: ignore-creeps
+	AutoTargetPriority@bot2:
+		ValidTargets: Vehicle
+		InvalidTargets: Tanks
+		Priority: 10
+		RequiresCondition: bot-owned
+	AttackFrontal:
+		ForceFireIgnoresActors: True
+		TargetFrozenActors: True
+		FacingTolerance: 0
+	Valued:
+		Cost: 750
+	Health:
+		HP: 12000
+	Armor:
+		Type: light
+	Mobile:
+		Speed: 38
+		TurnSpeed: 12
+	RevealsShroud:
+		Range: 5c512
+	Turreted:
+		TurnSpeed: 12
+		Offset: 0,0,-32
+	-RevealOnFire:
+	Armament:
+		Weapon: 155mm
+		Recoil: 150
+		RecoilRecovery: 19
+		LocalOffset: 512,0,320
+		MuzzleSequence: muzzle
+	Armament@chaos_bomb_influence:
+		Weapon: 155mm
+		Recoil: 150
+		RecoilRecovery: 19
+		LocalOffset: 512,0,320
+		MuzzleSequence: muzzle
+	Explodes:
+		Weapon: UnitExplodeMed
+		EmptyWeapon: UnitExplodeMed
+	SpawnActorOnDeath:
+		Actor: siege_tank.husk
+		OwnerType: InternalName
+		EffectiveOwnerFromOwner: true
+		RequiresCondition: !worm_attack
+	ThrowsShrapnel:
+		Weapons: DerbisSiegetank, Debris3
+		Pieces: 1, 2
+		Range: 2c0, 4c0
+	ThrowsShrapnel@turret:
+		Weapons: derbisSiegetank.turret
+		Pieces: 1, 1
+		Range: 0c512, 2c0
+
+missile_tank:
+	AutoTargetPriority@bot:
+		ValidTargets: Tank, Defense, Air
+		InvalidTargets: Infantry
+		Priority: 50
+		RequiresCondition: ignore-creeps
+	AutoTargetPriority@bot2:
+		ValidTargets: Structure, Vehicle
+		InvalidTargets: Infantry
+		Priority: 20
+		RequiresCondition: ignore-creeps
+	AttackFrontal:
+		ForceFireIgnoresActors: false
+		TargetFrozenActors: true
+		FacingTolerance: 0
+	GrantRandomCondition:
+		Conditions: shrapnel_01, shrapnel_02, shrapnel_03
+	Buildable:
+		BuildDuration: 512
+		Prerequisites: ~heavy.missile_tank, heavy_factory,upgrade.heavy, high_tech_factory, ~techlevel.high
+		Description: Rocket Artillery\n Excellent vs moving targets, Tanks\n Strong vs Vehicles, Aircraft\n  Weak vs Infantry
+	Valued:
+		Cost: 900
+	Mobile:
+		Speed: 57
+		TurnSpeed: 20
+	Health:
+		HP: 13000
+	Armor:
+		Type: light
+	RevealsShroud:
+		Range: 5c512
+	Armament:
+		Weapon: mtank_pri
+		LocalOffset: -128,128,171, -128,-128,171
+	Armament@chaos_bomb_influence:
+		Weapon: mtank_pri
+		LocalOffset: -128,128,171, -128,-128,171
+	-RevealOnFire:
+	ThrowsShrapnel@01:
+		Weapons: Debris, Debris4, Debris3
+		Pieces: 0,1
+		Range: 1c0, 3c0
+		RequiresCondition: shrapnel_01  && !worm_attack
+	ThrowsShrapnel@02:
+		Weapons: Debris3, Debris
+		Pieces: 1,2
+		Range: 2c0, 3c0
+		RequiresCondition: shrapnel_02  && !worm_attack
+	ThrowsShrapnel@02_02:
+		Weapons: DerbisMissile
+		Pieces: 0,2
+		Range: 3c0, 5c0
+		RequiresCondition: shrapnel_02 && !worm_attack
+	ThrowsShrapnel@03:
+		Weapons: DerbisMissile, Debris, Debris4, Debris3
+		Pieces: 1,3
+		Range: 4c0, 6c0
+		RequiresCondition: shrapnel_03 && !worm_attack
+	SpawnActorOnDeath:
+		RequiresCondition: !worm_attack
+
+sonic_tank:
+	AutoTargetPriority@bot:
+		ValidTargets: Vehicle, Defense, Structure, Infantry
+		InvalidTargets: Tank
+		Priority: 50
+		RequiresCondition: ignore-creeps
+	AttackFrontal:
+		TargetFrozenActors: True
+		ForceFireIgnoresActors: True
+		FacingTolerance: 0
+	Buildable:
+		Queue: Armor
+		Prerequisites: ~heavy.atreides,upgrade.heavy, research_centre, ~techlevel.high
+		BuildDuration: 635
+		Description: Fires sonic shocks\n  Excellent vs Infantry, Vehicles, Buildings\n Modest vs vehicles \n  Weak vs Tanks\n Friendly Fire
+	Valued:
+		Cost: 1100
+	UpdatesPlayerStatistics:
+		AddToArmyValue: true
+	Health:
+		HP: 30000
+	Armor:
+		Type: light
+	Mobile:
+		TurnSpeed: 15
+		Speed: 28
+	RevealsShroud:
+		Range: 5c768
+	Armament:
+		Weapon: Sound
+		LocalOffset: 600,0,427
+	Armament@allydamage:
+		Weapon: Sound.Ally
+		LocalOffset: 600,0,427
+	Armament@chaos_bomb_influence:
+		Weapon: Sound
+		LocalOffset: 600,0,427
+	Armament@chaos_bomb_influenceAlly:
+		Weapon: Sound.Ally
+		LocalOffset: 600,0,427
+		RequiresCondition: chaos_bomb
+	-RevealOnFire:
+	SpawnActorOnDeath:
+		RequiresCondition: !worm_attack
+
+devastator:
+	GrantConditionOnDamageState@forbot:
+		Condition: lowhp
+		ValidDamageStates: Critical
+	GrantCondition@botselfdestruct:
+		Condition: overload
+		RequiresCondition: lowhp && bot-owned && !unitCapturated
+	Buildable:
+		Prerequisites: ~heavy.harkonnen, research_centre, upgrade.heavy, ~techlevel.high
+		BuildDuration: 690
+		Description: Super Heavy Tank\n  Decent damage vs everthing\n weak vs Infantry \n SelfDestruction damage 7 square cells
+	ExternalCondition:
+		Condition: unitCapturated
+	Valued:
+		Cost: 1200
+	Health:
+		HP: 65000
+	Armor:
+		Type: heavy
+	Mobile:
+		TurnSpeed: 12
+		Speed: 28
+		Locomotor: devastator
+		RequiresCondition: !overload
+		PauseOnCondition: notmobile
+	RevealsShroud:
+		Range: 4c768
+	Armament:
+		Weapon: DevBullet
+		LocalOffset: 640,0,32
+		MuzzleSequence: muzzle
+	Armament@chaos_bomb_influence:
+		Weapon: DevBullet
+		LocalOffset: 640,0,32
+		MuzzleSequence: muzzle
+	Explodes@OVERLOAD:
+		Weapon: PlasmaExplosion
+		EmptyWeapon: PlasmaExplosion
+		RequiresCondition: meltdown
+	GrantConditionOnDeploy@REACTOR:
+		DeployedCondition: overload
+		PauseOnCondition: overload
+		RequiresCondition: !unitCapturated
+	WithIdleOverlay@OVERLOAD:
+		Sequence: active
+		RequiresCondition: overload
+	WithIdleOverlay@OVERLOAD2:
+		Sequence: active-2
+		RequiresCondition: overload
+	KillsSelf@MELTDOWN:
+		Delay: 150
+		RequiresCondition: overload
+		GrantsCondition: meltdown
+	AttractsWorms:
+		Intensity: 700
+	ChangesHealth:
+		Step: 40
+		Delay: 3
+		StartIfBelow: 50
+	-RevealOnFire:
+	Selectable:
+		DecorationBounds: 1408, 1216, 0, 0
+	AmbientSound@onMeltDown:
+		SoundFiles: audio/DevastatorMeltdown01.wav
+		RequiresCondition: overload
+	ThrowsShrapnel@TrowOnMeldown:
+		Weapons: Debris2, DeathHandClusterDebris, Debris4, DerbisSiegetank
+		Pieces: 7, 15
+		Range: 3c512, 7c0
+		RequiresCondition: meltdown
+	ThrowsShrapnel@standart:
+		Weapons: Debris, Debris3, DerbisSiegetank
+		Pieces: 1, 2
+		RequiresCondition: !meltdown
+	SpawnActorOnDeath:
+		RequiresCondition: !meltdown && !worm_attack
+	SpawnActorOnDeath@crater:
+		Actor: crater_big
+		RequiresCondition: meltdown
+		Offset: -1,0
+
+deviator:
+	AutoTargetPriority@bot:
+		ValidTargets: Tank, Vehicle
+		InvalidTargets: Infantry, Structure, Defense
+		Priority: 50
+		RequiresCondition: ignore-creeps
+	Valued:
+		Cost: 1000
+	Buildable:
+		Prerequisites: ~heavy.ordos, research_centre,upgrade.heavy, ~techlevel.high
+		BuildDuration: 618
+		Description: Fires a Gas which changes\nthe allegiance of enemy vehicles\n Gas leaks from Deviator husk dead\n weak vs everythink
+	Mobile:
+		TurnSpeed: 12
+		Speed: 49
+	Health:
+		HP: 11000
+	Armor:
+		Type: light
+	RevealsShroud:
+		Range: 5c112
+	-RevealOnFire:
+	Armament:
+		Weapon: DeviatorMissile
+		LocalOffset: -299,0,85
+	Armament@chaos_bomb_influence:
+		Weapon: DeviatorMissile
+		LocalOffset: -299,0,85
+	ThrowsShrapnel:
+		Weapons: Debris4, Debris
+		Pieces: 0,2
+		Range: 0c512, 4c512
+	SpawnActorOnDeath:
+		RequiresCondition: !worm_attack
+	SpawnActorOnDeath@dummygas1:
+		Actor: dummygas01
+		Offset: 0, 0
+	SpawnActorOnDeath@dummygas2:
+		Actor: dummygas02
+		Offset: 0, 0
+	SpawnActorOnDeath@dummygas3:
+		Actor: dummygas03
+		SpawnAfterDefeat: false
+	SpawnActorOnDeath@dummygas4:
+		Actor: dummygas04
+		SpawnAfterDefeat: false
+	SpawnActorOnDeath@dummygas5:
+		Actor: dummygas05
+		SpawnAfterDefeat: false
+	SpawnActorOnDeath@dummygas6:
+		Actor: dummygas06
+		SpawnAfterDefeat: false
+	SpawnActorOnDeath@dummygas7:
+		Actor: dummygas07
+		SpawnAfterDefeat: false
+
+^combat_tank:
+	GrantRandomCondition:
+		Conditions: Husk01, Husk02, Husk03, Husk04
+	AutoTargetPriority@bot:
+		InvalidTargets: Infantry
+		ValidTargets: Vehicle, Defense, Structure, Tank
+		Priority: 40
+		RequiresCondition: ignore-creeps
+	Buildable:
+		Queue: Armor
+		BuildDuration: 432
+		Description: Main Battle Tank\n  Strong  vs Vehicles\n  Weak vs Infantry, Missiles \n Can crush Infantry
+	Valued:
+		Cost: 700
+	UpdatesPlayerStatistics:
+		AddToArmyValue: true
+	Health:
+		HP: 22000
+	Armor:
+		Type: heavy
+	Mobile:
+		Speed: 72
+		TurnSpeed: 20
+	RevealsShroud:
+		Range: 5c0
+	Turreted:
+		TurnSpeed: 20
+		RealignDelay: 0
+	Armament:
+		Weapon: 80mm_A
+		Recoil: 128
+		RecoilRecovery: 32
+		LocalOffset: 256,0,0
+		MuzzleSequence: muzzle
+	ThrowsShrapnel:
+		Weapons: Debris, Debris3, debris_vehicle02, debris_vehicle01
+		Pieces: 0, 2
+		Range: 2c0, 4c0
+	-RevealOnFire:
+
+combat_tank_a:
+	Inherits: ^combat_tank
+	Buildable:
+		Prerequisites: ~heavy.atreides_combat
+		Description: Atreides Combat Tank \n Modest speed/HP \n Longer Range
+	Mobile:
+		TurnSpeed: 20
+	Tooltip:
+		Name: Atreides Combat Tank
+	Armament:
+		Weapon: 80mm_A
+	Armament@chaos_bomb_influence:
+		Weapon: 80mm_A
+	SpawnActorOnDeath:
+		Actor: combat_tank_a.husk
+		RequiresCondition: Husk01 && !worm_attack
+	SpawnActorOnDeath@husk02:
+		Actor: combat_tank_a.husk02
+		RequiresCondition: Husk02 && !worm_attack
+	SpawnActorOnDeath@husk03:
+		Actor: combat_tank_a.husk03
+		RequiresCondition: Husk03 && !worm_attack
+	SpawnActorOnDeath@husk04:
+		Actor: combat_tank_a.husk04
+		RequiresCondition: Husk04 && !worm_attack
+	ThrowsShrapnel@turret:
+		Weapons: debris_turret.atreides
+		Pieces: 1,1
+		Range: 0c250, 2c512
+		RequiresCondition: Husk01
+	ThrowsShrapnel@turret01:
+		Weapons: debris_turret01.atreides
+		Pieces: 1,1
+		Range: 1c0, 2c512
+		RequiresCondition: Husk02
+
+
+combat_tank_h:
+	Inherits: ^combat_tank
+	Buildable:
+		Prerequisites: ~heavy.harkonnen_combat
+		Description: Harkonnen Combat tank \n More Healt, low Speed \n Less speed penalty when on low HP
+	Armament:
+		Weapon: 80mm_H
+	Armament@chaos_bomb_influence:
+		Weapon: 80mm_H
+	Tooltip:
+		Name: Harkonnen Combat Tank
+	Mobile:
+		Speed: 62
+		TurnSpeed: 18
+		Locomotor: tank_harkonnen
+	SpeedMultiplier@HEAVYDAMAGE:
+		Modifier: 85
+	Health:
+		HP: 29000
+	SpawnActorOnDeath:
+		Actor: combat_tank_h.husk
+		RequiresCondition: Husk01 && !worm_attack
+	SpawnActorOnDeath@husk02:
+		Actor: combat_tank_h.husk02
+		RequiresCondition: Husk02 && !worm_attack
+	SpawnActorOnDeath@husk03:
+		Actor: combat_tank_h.husk03
+		RequiresCondition: Husk03 && !worm_attack
+	SpawnActorOnDeath@husk04:
+		Actor: combat_tank_h.husk04
+		RequiresCondition: Husk04 && !worm_attack
+	ThrowsShrapnel@turret:
+		Weapons: debris_turret.harkonnen
+		Pieces: 1,1
+		Range: 0c250, 2c512
+		RequiresCondition: Husk01
+	ThrowsShrapnel@turret01:
+		Weapons: debris_turret01.harkonnen
+		Pieces: 1,1
+		Range: 1c0, 2c512
+		RequiresCondition: Husk02
+
+combat_tank_o:
+	Inherits: ^combat_tank
+	Buildable:
+		Prerequisites: ~heavy.ordos_combat
+		Description: Ordos tank \n Fast speed, low HP \n Combat Bonus: Rate of fire
+	Turreted:
+		TurnSpeed: 24
+	Armament:
+		Weapon: 80mm_O
+	Armament@chaos_bomb_influence:
+		Weapon: 80mm_O
+	Tooltip:
+		Name: Ordos Combat Tank
+	Mobile:
+		Speed: 82
+		TurnSpeed: 22
+	Health:
+		HP: 19000
+	SpawnActorOnDeath:
+		Actor: combat_tank_o.husk
+		RequiresCondition: Husk01 && !worm_attack
+	SpawnActorOnDeath@husk02:
+		Actor: combat_tank_o.husk02
+		RequiresCondition: Husk02 && !worm_attack
+	SpawnActorOnDeath@husk03:
+		Actor: combat_tank_o.husk03
+		RequiresCondition: Husk03 && !worm_attack
+	SpawnActorOnDeath@husk04:
+		Actor: combat_tank_o.husk04
+		RequiresCondition: Husk04 && !worm_attack
+	ThrowsShrapnel@turret:
+		Weapons: debris_turret.ordos
+		Pieces: 1,1
+		Range: 1c0, 2c512
+		RequiresCondition: Husk01 || Husk02
+
+combat_tank_cheap:
+	Inherits: ^combat_tank
+	Buildable:
+		BuildDuration: 400
+		Prerequisites: ~factions.subfaction_allowed, ~heavy.cheap_tank
+		Description: Standard tank licensed by various manufacturers \n Modest speed, Low HP, Low rate of fire \n Cheap, faster building speed
+	Valued:
+		Cost: 600
+	Tooltip:
+		Name: Generic Combat Tank
+	Mobile:
+		Speed: 69
+		Locomotor: tank
+	Health:
+		HP: 20000
+	Armament:
+		Weapon: 80mm_cheap
+	Armament@chaos_bomb_influence:
+		Weapon: 80mm_cheap
+	SpawnActorOnDeath:
+		Actor: combat_tank_cheap.husk
+		RequiresCondition: Husk01 && !worm_attack
+	SpawnActorOnDeath@husk02:
+		Actor: combat_tank_cheap.husk02
+		RequiresCondition: Husk02 && !worm_attack
+	SpawnActorOnDeath@husk03:
+		Actor: combat_tank_cheap.husk03
+		RequiresCondition: Husk03 && !worm_attack
+	SpawnActorOnDeath@husk04:
+		Actor: combat_tank_cheap.husk04
+		RequiresCondition: Husk04 && !worm_attack
+	ThrowsShrapnel@turret:
+		Weapons: debris_turret.harkonnen
+		Pieces: 1,1
+		Range: 0c250, 2c512
+		RequiresCondition: Husk01
+
+combat_tank_corrino:
+	Inherits: combat_tank_h
+	Buildable:
+		Prerequisites: ~heavy.corrino_combat, ~factions.subfaction_allowed
+		Description: Corrino Combat tank \n  Better HP, low Speed \n Better area damage
+	Tooltip:
+		Name: Corrino Combat Tank
+	Health:
+		HP: 25000
+	Mobile:
+		Speed: 64
+		Locomotor: tank_harkonnen
+	Armament:
+		Weapon: 80mm_corrino
+	Armament@chaos_bomb_influence:
+		Weapon: 80mm_corrino
+	SpawnActorOnDeath:
+		Actor: combat_tank_corrino.husk
+		RequiresCondition: Husk01 && !worm_attack
+	SpawnActorOnDeath@husk02:
+		Actor: combat_tank_corrino.husk02
+		RequiresCondition: Husk02 && !worm_attack
+	SpawnActorOnDeath@husk03:
+		Actor: combat_tank_corrino.husk03
+		RequiresCondition: Husk03 && !worm_attack
+	SpawnActorOnDeath@husk04:
+		Actor: combat_tank_corrino.husk04
+		RequiresCondition: Husk04 && !worm_attack
+
+
+carryall.reinforce:
+	Inherits: ^Plane
+	Inherits@^SandStorm: ^SandStorm
+	Valued:
+		Cost: 1000
+	UpdatesPlayerStatistics:
+		AddToAssetsValue: false
+	Tooltip:
+		Name: Carryall
+	Health:
+		HP: 13000
+	Armor:
+		Type: light
+	Cloak:
+	Aircraft:
+		CruiseAltitude: 2160
+		CruisingCondition: cruising
+		Speed: 170
+		TurnSpeed: 16
+		LandableTerrainTypes: Sand, Rock, Transition, Spice, SpiceSand, Dune, Concrete
+		Repulsable: False
+		AirborneCondition: airborne
+		CanSlide: True
+		VTOL: true
+		IdleTurnSpeed: 5
+		IdleSpeed: 115
+	ThrowsShrapnel@derbis:
+		Weapons: Debris, Debris2, debris_vehicle01, debris_vehicle02
+		Pieces: 1, 3
+		Range: 1c0, 6c0
+	ThrowsShrapnel@derbisExplosions:
+		Weapons: DeathHandClusterDebris
+		Pieces: 1 , 3
+		Range: 1c0, 5c0
+	ThrowsShrapnel@derbisExplosions2:
+		Weapons: DeathHandClusterDebris
+		Pieces: 0 , 2
+		Range: 1c0, 5c0
+	SpawnActorOnDeath@CRUISING:
+		SpawnAfterDefeat: false
+	SpawnActorOnDeath@LANDING:
+		SpawnAfterDefeat: false
+	HiddenUnderFog:
+		AlwaysVisibleRelationships: Ally
+	GrantConditionOnDamageState@HEAVY:
+		Condition: heavy-damage
+	FloatingSpriteEmitter@smoke:
+		RequiresCondition: heavy-damage
+		Image: smoke3
+		Lifetime: 20, 22
+		Speed: 15
+		Gravity: 10
+		SpawnFrequency: 2, 7
+		RandomFacing: true
+		RandomRate: 4
+		Offset: 300,383,0
+		TurnRate: 3
+		Duration: 500
+
+carryall:
+	Buildable:
+		Prerequisites: ~!carryall.controllable
+	-Cloak:
+
+carryall.controllable:
+	Inherits: carryall
+	Inherits@selectableEco: ^SelectableSupportUnit
+	Buildable:
+		Prerequisites: ~carryall.controllable
+		Description:  controllable carryall \n Use Ctrl or Alt to select \n Use RMB to pick up vehicle \n use Deploy to unload vehicle
+	-Interactable:
+	AutoCarryall:
+		AutoCarryCondition: !manual
+		CarryCondition: loaded
+	GrantConditionOnDeploy@AUTO:
+		DeployedCondition: manual
+		CanDeployOnRamps: true
+		SkipMakeAnimation: true
+	RevealOnDeath:
+	RevealsShroud:
+		Range: 0c512
+		RequiresCondition: loaded
+		Type: CenterPosition
+	WithTextDecoration@AUTO:
+		UsePlayerColor: true
+		Text: AUTO
+		Position: Top
+		ValidRelationships: Ally
+		RequiresCondition: !manual
+
+carryall.reinforce.sound:
+	Inherits: carryall.reinforce
+	-Cloak:
+	Aircraft:
+		MinAirborneAltitude: 400
+		TakeoffSounds: audio/adv_carryall_takeoff_1.wav
+		LandingSounds: audio/adv_carryall_land_1.wav
+		Speed: 140
+	RevealsShroud@landing:
+		Range: 3c0
+		RequiresCondition: !cruising
+		Type: CenterPosition
+	RevealsShroud@onland:
+		Range: 4c0
+		RequiresCondition: !airborne
+		Type: CenterPosition
+	AmbientSound:
+		SoundFiles: audio/carryallSound(2).wav
+		RequiresCondition: cruising
+	SpawnActorOnDeath@LANDING:
+		Actor: carryall.huskVTOL_reinforce
+
+carryall.reinforce_with_sound:
+	Inherits: carryall.reinforce
+	-Carryall:
+	-Cloak:
+	Cargo:
+		Types: Infantry, Vehicle
+		PassengerFacing: 512
+		BeforeUnloadDelay: 50
+	Aircraft:
+		MinAirborneAltitude: 400
+		TakeoffSounds: audio/adv_carryall_takeoff_1.wav
+		LandingSounds: audio/adv_carryall_land_1.wav
+		Speed: 140
+	RevealsShroud@landing:
+		Range: 3c0
+		RequiresCondition: !cruising
+		Type: CenterPosition
+	RevealsShroud@onland:
+		Range: 4c0
+		RequiresCondition: !airborne
+		Type: CenterPosition
+	AmbientSound:
+		SoundFiles: audio/carryallSound(2).wav
+		RequiresCondition: cruising
+	SpawnActorOnDeath@LANDING:
+		Actor: carryall.huskVTOL_reinforce
+
+
+ornithopter:
+	Inherits: ^Plane
+	Health:
+		HP: 7000
+	Aircraft:
+		MinAirborneAltitude: 500
+		AirborneCondition: airborne
+	Targetable@AIRBORNE:
+		TargetTypes: Air
+		RequiresCondition: airborne
+	AmbientSound:
+		SoundFiles: audio/ornithopterMotor01.wav
+	ThrowsShrapnel@derbis:
+		Weapons: Debris, Debris2, debris_vehicle01
+		Pieces: 1, 3
+		Range: 0c512, 2c0
+	RevealOnFire:
+		Duration: 90
+		Radius: 5c112
+	HitShape:
+		Type: Circle
+			Radius: 32
+
+ornithopter.bomber:
+	Inherits: ornithopter
+	RenderSprites:
+		Image: ornithopter
+	Tooltip:
+		Name: Ornithopter Bomber
+	Health:
+		HP: 14000
+	Aircraft:
+		MinAirborneAltitude: 500
+		AirborneCondition: airborne
+		CruiseAltitude: 2500
+		Speed: 170
+	Targetable@AIRBORNE:
+		TargetTypes: Air
+		RequiresCondition: airborne
+	AmmoPool:
+		Ammo: 1
+	ThrowsShrapnel@derbis:
+		Weapons: Debris, Debris2, debris_vehicle01
+		Pieces: 1, 3
+		Range: 0c512, 2c0
+	HitShape:
+		Type: Circle
+			Radius: 32
+	AttackBomber:
+		FacingTolerance: 8
+	Armament:
+		Weapon: chaosbomb1
+	Armament@2:
+		Weapon: chaosbomb2
+		FireDelay: 5
+	Armament@3:
+		Weapon: chaosbomb3
+		FireDelay: 11
+	Armament@4:
+		Weapon: chaosbomb4
+		FireDelay: 17
+	SpawnActorOnDeath:
+		Actor: ornithopter.bomberhusk
+
+ornithopter_a:
+	Inherits: ornithopter
+	RenderSprites:
+		Image: ornithopter
+	-AttackBomber:
+	Aircraft:
+		AltitudeVelocity: 2c0
+	AttackAircraft:
+		AttackType: Strafe
+		StrafeRunLength: 4c0
+		OpportunityFire: false
+		ForceFireIgnoresActors: true
+		Voice: Attack
+		FacingTolerance: 512
+		PersistentTargeting: false
+		AbortOnResupply: true
+	Armament:
+		Weapon: OrniBomb_multipass
+		PauseOnCondition: !ammo
+	Health:
+		HP: 8000
+	Armor:
+		Type: light
+	Aircraft:
+		Speed: 224
+		TurnSpeed: 10
+		Repulsable: False
+		CruiseAltitude: 1920
+	AmmoPool:
+		Ammo: 15
+		AmmoCondition: ammo
+	Valued:
+		Cost: 500
+
+
+ornithopter_o:
+	Inherits: ornithopter
+	RenderSprites:
+		Image: ornithopter
+	-AttackBomber:
+	Aircraft:
+		AltitudeVelocity: 2c0
+	AttackAircraft:
+		AttackType: Strafe
+		StrafeRunLength: 4c0
+		OpportunityFire: false
+		ForceFireIgnoresActors: true
+		Voice: Attack
+		FacingTolerance: 512
+		PersistentTargeting: false
+		AbortOnResupply: true
+	Armament:
+		Weapon: Ornithopter_MG
+		MuzzleSequence: muzzle
+		LocalOffset: -120,0,0
+		PauseOnCondition: !ammo
+	Health:
+		HP: 8000
+	Armor:
+		Type: light
+	Aircraft:
+		Speed: 224
+		TurnSpeed: 10
+		Repulsable: False
+		CruiseAltitude: 1920
+	AmmoPool:
+		Ammo: 16
+		AmmoCondition: ammo
+	Valued:
+		Cost: 500
+
+
+light_inf:
+	ExternalCondition@chaos_bomb:
+		Condition: chaos_bomb
+	AutoTargetPriority@bot:
+		ValidTargets: Infantry, Structure
+		InvalidTargets: Tank
+		Priority: 50
+		RequiresCondition: ignore-creeps
+	AutoTargetPriority@bot2:
+		ValidTargets: Vehicle
+		Priority: 20
+		RequiresCondition: bot-owned
+	Buildable:
+		Queue: Infantry
+		BuildDuration: 62
+	Valued:
+		Cost: 50
+	Health:
+		HP: 6000
+	Mobile:
+		Speed: 43
+	Armament:
+		Weapon: LMG
+	Armament@chaos_bomb_influence:
+		Weapon: LMG
+	WithInfantryBody:
+		-DefaultAttackSequence:
+		AttackSequences:
+			primary: shoot
+	Armament@chaossounds:
+		Weapon: chaosambiencesounds
+		TargetRelationships: Enemy, Ally, Neutral
+		Name: secondary
+		RequiresCondition: chaos_bomb
+
+light_inf.vet4:
+	Inherits: light_inf
+	RenderSprites:
+		Image: light_inf
+	ProducibleWithLevel:
+		Prerequisites: techlevel.medium
+		InitialLevels: 4
+	WithProductionIconOverlay:
+		Types: veteran
+	UpdatesPlayerStatistics:
+		OverrideActor: light_inf
+	-Buildable:
+
+light_inf.vet3:
+	Inherits: light_inf
+	RenderSprites:
+		Image: light_inf
+	ProducibleWithLevel:
+		Prerequisites: techlevel.medium
+		InitialLevels: 3
+	WithProductionIconOverlay:
+		Types: veteran
+	UpdatesPlayerStatistics:
+		OverrideActor: light_inf
+	-Buildable:
+
+trooper.vet2:
+	Inherits: trooper
+	RenderSprites:
+		Image: trooper
+	ProducibleWithLevel:
+		Prerequisites: techlevel.medium
+		InitialLevels: 2
+	WithProductionIconOverlay:
+		Types: veteran
+	UpdatesPlayerStatistics:
+		OverrideActor: trooper
+	-Buildable:
+
+trooper:
+	AutoTargetPriority@bot:
+		InvalidTargets: Infantry
+		ValidTargets: Vehicle, Defense, Structure, Tank
+		Priority: 50
+		RequiresCondition: ignore-creeps
+	Buildable:
+		Prerequisites: upgrade.barracks, ~techlevel.medium
+		BuildDuration: 124
+		Description: Anti-tank infantry\n  Strong vs Tanks\n  Weak vs Infantry, Artillery, Moving targets
+	Valued:
+		Cost: 100
+	Health:
+		HP: 7000
+	RevealsShroud:
+		Range: 4c768
+	Mobile:
+		Speed: 31
+	Armament:
+		Weapon: Bazooka
+		LocalOffset: 128,0,256
+	Armament@chaos_bomb_influence:
+		Weapon: Bazooka
+		LocalOffset: 128,0,256
+	TakeCover:
+		ProneOffset: 324,0,-204
+	WithInfantryBody:
+		-DefaultAttackSequence:
+		AttackSequences:
+			primary: shoot
+	Armament@chaossounds:
+		Weapon: chaosambiencesounds
+		TargetRelationships: Enemy, Ally, Neutral
+		Name: secondary
+		RequiresCondition: chaos_bomb
+
+engineer:
+	Inherits@botLogic: ^BotLogicEngineer
+	Buildable:
+		Prerequisites: upgrade.barracks, ~techlevel.medium
+		BuildDuration: 160
+		BuildPaletteOrder: 80
+		Description: Infiltrates and captures enemy structures\n \n Capture husks \n Instantly repair ally Building
+	Valued:
+		Cost: 400
+	Health:
+		HP: 5000
+	RevealsShroud:
+		Range: 2c768
+	Mobile:
+		Speed: 31
+	InstantlyRepairs:
+		Types: Building
+	-Passenger:
+	CaptureManager:
+	Captures:
+		CaptureTypes: building
+	Captures@cliff:
+		CaptureTypes: cliff
+		ConsumedByCapture: false
+		CaptureDelay: 150
+		ValidRelationships: Enemy, Neutral, Ally
+	Captures@husks:
+		CaptureTypes: husk
+	Infiltrates:
+		ValidRelationships: Ally
+	-Armament@chaos_bomb_influence:
+	-Armament:
+
+grenadier:
+	AutoTargetPriority@bot:
+		ValidTargets: Infantry, Structure
+		InvalidTargets: Tank
+		Priority: 50
+		RequiresCondition: ignore-creeps
+	Buildable:
+		Prerequisites: ~barracks.atreides, upgrade.barracks, outpost, ~techlevel.medium
+		BuildDuration: 98
+	Valued:
+		Cost: 80
+	Health:
+		HP: 6000
+	Mobile:
+		Speed: 43
+	Armament:
+		Weapon: grenade
+		LocalOffset: 192,0,224
+		FireDelay: 3
+	Armament@chaos_bomb_influence:
+		Weapon: grenade
+		LocalOffset: 192,0,224
+		FireDelay: 3
+	TakeCover:
+		ProneOffset: 96,100,-64
+	WithInfantryBody:
+		DefaultAttackSequence: throw
+	Explodes:
+		Weapon: GrenDeath
+		EmptyWeapon: GrenDeath
+
+
+mpsardaukar:
+	Buildable:
+		Prerequisites: ~barracks.harkonnen, upgrade.barracks, high_tech_factory, ~techlevel.medium, ~factions.standard
+		BuildDuration: 165
+		Description: Elite assault infantry of Corrino\n  Strong vs Vehicles\n Modest vs Infantry, Tanks \n  Weak vs Artillery, Sonic Beams
+	Valued:
+		Cost: 200
+	Health:
+		HP: 10000
+	Mobile:
+		Speed: 31
+	Armament@PRIMARY:
+		Weapon: M_LMG_H
+	Armament@SECONDARY:
+		Weapon: M_HMG_H
+	Armament@chaos_bomb_influence:
+		Weapon: M_LMG_H
+	Armament@chaos_bomb_influence2:
+		Weapon: M_HMG_H
+		RequiresCondition: chaos_bomb
+	GrantConditionOnPrerequisite@supportpoweractivator:
+		Condition: stimpack
+		Prerequisites: productionSpeedup.sardaukar
+	TakeCover:
+		RequiresCondition: !officerAura || !stimpack
+	SpeedMultiplier@corrinosupportposer:
+		Modifier: 135
+		RequiresCondition: stimpack
+
+mpsardaukar.corrino:
+	Inherits: mpsardaukar
+	Buildable:
+		Prerequisites: ~barracks.corrino, upgrade.barracks, high_tech_factory, ~techlevel.medium, ~factions.subfaction_allowed
+	ProductionTimeMultiplier:
+		Multiplier: 40
+		Queue: Infantry
+		Prerequisites: productionSpeedup.sardaukar
+	ProductionCostMultiplier:
+		Multiplier: 50
+		Prerequisites: productionSpeedup.sardaukar
+	ProducibleWithLevel:
+		InitialLevels: 1
+		Prerequisites: productionSpeedup.sardaukar
+	WithProductionIconOverlay:
+		Types: veteran
+		Prerequisites: productionSpeedup.sardaukar
+
+
+mpsardaukar.level4:
+	Inherits: mpsardaukar
+	RenderSprites:
+		Image: sardaukar
+	ProducibleWithLevel:
+		InitialLevels: 4
+	WithProductionIconOverlay:
+		Types: veteran
+	UpdatesPlayerStatistics:
+		OverrideActor: mpsardaukar
+	Buildable:
+		Prerequisites: ~disabled
+
+mpsardaukar.level3:
+	Inherits: mpsardaukar
+	RenderSprites:
+		Image: sardaukar
+	ProducibleWithLevel:
+		InitialLevels: 3
+	WithProductionIconOverlay:
+		Types: veteran
+	UpdatesPlayerStatistics:
+		OverrideActor: mpsardaukar
+	Buildable:
+		Prerequisites: ~disabled
+
+mpsardaukar.level2:
+	Inherits: mpsardaukar
+	RenderSprites:
+		Image: sardaukar
+	ProducibleWithLevel:
+		InitialLevels: 2
+	WithProductionIconOverlay:
+		Types: veteran
+	UpdatesPlayerStatistics:
+		OverrideActor: mpsardaukar
+	Buildable:
+		Prerequisites: ~disabled
+
+saboteur:
+	-Passenger:
+	ScriptTags:
+	Buildable:
+		Prerequisites: ~disabled
+		Description: Always cloaked. \n Destroy buildings \n SelfKill explosion
+	UpdatesPlayerStatistics:
+		AddToArmyValue: true
+	RevealsShroud:
+		Range: 4c768
+	WithDecoration@ScullIcon:
+		Image: skullicon
+		Sequence: idle
+		ValidRelationships: Enemy, Neutral, Ally
+		Palette: effect
+		Position: BottomRight
+		Margin: 5, 6
+	WithInfantryBody:
+		RequiresCondition: !SuicideAtt
+	WithIdleOverlay:
+		Sequence: active
+		RequiresCondition: SuicideAtt
+	WithIdleOverlay@prone:
+		StartSequence: standup
+		Sequence: prone-stand
+		RequiresCondition: SuicideAtt
+	Health:
+		HP: 5000
+	Mobile:
+		Speed: 43
+		PauseOnCondition: SuicideAtt
+	Demolition:
+		DetonationDelay: 50
+		Flashes: 3
+		EnterBehaviour: Suicide
+	Cloak:
+		InitialDelay: 100
+		CloakDelay: 100
+		CloakSound: STEALTH1.WAV
+		UncloakOn: Attack, Unload, Infiltrate, Demolish, Damage, Heal
+		IsPlayerPalette: true
+		PauseOnCondition: cloak-force-disabled
+		RequiresCondition: !SuicideAtt
+	Explodes@Selfkill:
+		Weapon: PlasmaSaboteur
+		EmptyWeapon: PlasmaSaboteur
+		RequiresCondition: kamikadze
+	GrantConditionOnDeploy:
+		DeployedCondition: SuicideAtt
+		PauseOnCondition: SuicideAtt
+	-GrantConditionOnDeployWithCharge:
+	KillsSelf@SuicideKillCount:
+		Delay: 50
+		RequiresCondition: SuicideAtt
+		GrantsCondition: kamikadze
+	GrantConditionOnDamageState@UNCLOAK:
+		Condition: cloak-force-disabled
+		ValidDamageStates: Critical
+	Voiced:
+		VoiceSet: SaboteurVoice
+	AmbientSound@onSuicide:
+		SoundFiles: audio/explodeSaboteurEmperor02.wav
+		RequiresCondition: SuicideAtt
+	TakeCover:
+		RequiresCondition: SuicideAtt
+	SpawnActorOnDeath@crater:
+		Actor: crater_big
+		RequiresCondition: kamikadze
+		Offset: -1,0
+	-Armament@chaos_bomb_influence:
+	-Armament:
+
+fremen:
+	Buildable:
+		Prerequisites: ~disabled
+	Mobile:
+		Speed: 43
+	Valued:
+		Cost: 180
+	Health:
+		HP: 7000
+	RevealsShroud:
+		Range: 4c768
+	AutoTarget:
+		ScanRadius: 7
+		InitialStance: HoldFire
+		InitialStanceAI: ReturnFire
+	Armament@chaos_bomb_influence:
+		Weapon: Fremen_S
+	Armament@chaos_bomb_influence2:
+		Weapon: Fremen_L
+		RequiresCondition: chaos_bomb
+	ChangesHealth@regen:
+		Step: 0
+		PercentageStep: 4
+		Delay: 125
+		StartIfBelow: 50
+		DamageCooldown: 125
+	ExternalCondition@scared: #avoid scare effect on Fremen
+	-RejectsOrders@Scared:
+	-Wanders@scared:
+	-Armament:
+
+
+mortar_inf:
+	Inherits: ^Infantry
+	Inherits@botlogic: ^botDeployLogic
+	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
+	AutoTargetPriority@bot:
+		ValidTargets: Infantry, Structure
+		InvalidTargets: Tank
+		Priority: 50
+		RequiresCondition: ignore-creeps
+	Selectable:
+		Priority: 10
+		PriorityModifiers: Ctrl, Alt
+	RevealsShroud:
+		Range: 5c856
+	Buildable:
+		Queue: Infantry
+		BuildPaletteOrder: 60
+		Prerequisites: ~barracks.mercenary, upgrade.barracks, ~techlevel.medium, outpost, ~factions.subfaction_allowed
+		BuildDuration: 130
+		BuildDurationModifier: 100
+		Description: Mortar infantry, \n Strong VS infantry, Buildings\n Weak VS Tanks, Trikes \n Must be deployed to fire
+	Valued:
+		Cost: 130
+	Tooltip:
+		Name: Mortar Infantry
+	WithRangeCircle:
+		RequiresCondition: deployed
+		Range: 6c512
+	UpdatesPlayerStatistics:
+		AddToArmyValue: true
+	Health:
+		HP: 6500
+	Mobile:
+		Speed: 35
+		PauseOnCondition: deployed
+		RequireForceMoveCondition: !undeployed
+	GrantConditionOnDeploy:
+		DeployedCondition: deployed
+		UndeployedCondition: undeployed
+		Facing: 768
+		UndeployOnMove: false
+		DeploySounds: audio/EBoD_MortarDeploy.wav
+		UndeploySounds: audio/EBoD_MortarUndeploy.wav
+		SkipMakeAnimation: false
+	WithMakeAnimation:
+		Sequence: deploying
+	WithInfantryBody:
+		RequiresCondition: undeployed && !beforedeploy && !dummyfire
+	WithSpriteBody@DEPLOYED:
+		Sequence: invisible
+		RequiresCondition: !undeployed
+	Turreted:
+		Turret: turret
+	WithSpriteTurret@idle:
+		RequiresCondition: deployed && !AnimateTurret
+	WithSpriteTurret@animated:
+		RequiresCondition: deployed && AnimateTurret
+		Sequence: thump
+	WithIdleOverlay@sand:
+		Sequence: thump-sand
+		RequiresCondition: deployed && AnimateTurret
+	GrantConditionOnAttack:
+		Condition: AnimateTurret
+		RevokeDelay: 14
+	Armament:
+		Weapon: 40mm_mortar
+		RequiresCondition: deployed
+		LocalOffset: 0,100,200
+	Armament@chaos_bomb_influence:
+		Weapon: 40mm_mortar
+		RequiresCondition: deployed && chaos_bomb
+		LocalOffset: 0,100,200
+	GrantCondition:
+		Condition: editorhack
+	WithInfantryBody@Editor:
+		RequiresCondition: !editorhack
+	AttackFrontal:
+		FacingTolerance: 512
+		OutsideRangeRequiresForceFire: true
+
+assassin:
+	Inherits: ^Infantry
+	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
+	Valued:
+		Cost: 140
+	Buildable:
+		Queue: Infantry
+		BuildPaletteOrder: 70
+		Prerequisites: ~!factions.standard, ~barracks.harkonnen, upgrade.barracks, high_tech_factory, ~techlevel.high
+		BuildDuration: 150
+		BuildDurationModifier: 60
+		Description: Infantry with long range rifle\n  Attacks only infantry\n  Inaccuracy is high at long range \n Can hide on Rough terrain
+	Tooltip:
+		Name: Assassin
+	Health:
+		HP: 5000
+	Mobile:
+		Speed: 38
+		Voice: Move
+	RevealsShroud:
+		Range: 5c0
+	Armament:
+		Weapon: SniperRifle
+		FireDelay: 1
+	Armament@chaos_bomb_influence:
+		Weapon: SniperRifle
+		FireDelay: 1
+	AttackFrontal:
+		FacingTolerance: 0
+	WithInfantryBody:
+		DefaultAttackSequence: shoot
+		MinIdleDelay: 90
+		MaxIdleDelay: 200
+	GrantConditionOnTerrain:
+		TerrainTypes: Rough
+		Condition: hiddenbetweenrocks
+	Cloak:
+		InitialDelay: 60
+		CloakDelay: 60
+		UncloakOn: Move, Damage
+		IsPlayerPalette: true
+		RequiresCondition: !cloak-force-disabled && hiddenbetweenrocks
+	GrantConditionOnDamageState@UNCLOAK:
+		Condition: cloak-force-disabled
+		ValidDamageStates: Critical
+	-MustBeDestroyed:
+	Voiced:
+		VoiceSet: AssassinVoice
+
+
+officer:
+	Inherits: ^Infantry
+	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
+	Buildable:
+		Queue: Infantry
+		BuildPaletteOrder: 100
+		Prerequisites: ~disabled, ~factions.subfaction_allowed
+		Description: Speed and armor bonus to nearby infantry units. \n Disable prone effect on infantry \n Aura range 5 cells
+	Tooltip:
+		Name: Officer
+	RevealsShroud:
+		Range: 5c112
+	Valued:
+		Cost: 200
+	Health:
+		HP: 7500
+	Mobile:
+		Speed: 41
+		PauseOnCondition: deployed
+	Armament:
+		Weapon: dummy.targeting
+	-Armament@chaos_bomb_influence:
+	UpdatesPlayerStatistics:
+		AddToArmyValue: true
+	WithInfantryBody:
+		DefaultAttackSequence: shoot
+		RequiresCondition: !deployed
+	WithRangeCircle:
+		Range: 4c0512
+		Color: 09FF00C7
+	ProximityExternalCondition:
+		Range: 5c0
+		AffectsParent: true
+		ValidRelationships: Ally
+		Condition: officerAura
+	-TakeCover:
+	WithIdleOverlay@sand:
+		Sequence: idle1
+		RequiresCondition: deployed
+	AmbientSound:
+		SoundFiles: audio/ironcur9.aud
+		RequiresCondition: deployed
+		Interval: 1000
+	GrantConditionOnDeployWithCharge:
+		DeployedCondition: deployed
+		CanCancelCondition: true
+		ChargeDuration: 1250
+		ChargeThreshhold: 1250
+		ConditionDuration: 375
+	FireWarheads@ScareEnemy:
+		Weapons: ScareEnemy
+		Interval: 50
+		RequiresCondition: deployed
+
+fremen_fedaykin:
+	Inherits: fremen
+	RenderSprites:
+		Image: fremen
+	Tooltip:
+		Name: Fremen Fedaykin
+	AutoTarget:
+		ScanRadius: 7
+		InitialStance: Defend
+		InitialStanceAI: Defend
+	Valued:
+		Cost: 180
+	Buildable:
+		Queue: Infantry
+		Prerequisites: ~factions.subfaction_allowed, ~barracks.fremen, upgrade.barracks, high_tech_factory, ~techlevel.medium
+		BuildDuration: 155
+		BuildDurationModifier: 100
+
+mercenary:
+	Inherits: ^Infantry
+	Inherits: ^botDeployLogic
+	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
+	AutoTargetPriority@bot:
+		InvalidTargets: Infantry
+		ValidTargets: Vehicle, Defense, Structure, Tank
+		Priority: 40
+		RequiresCondition: ignore-creeps
+	Selectable:
+		Priority: 10
+		PriorityModifiers: Alt
+	Buildable:
+		Prerequisites: ~disabled, barracks
+		BuildDuration: 220
+		BuildDurationModifier: 100
+		Description: Elite Mercenary Strong VS Vehicles, Tanks \n can shoot only when deployed
+	Valued:
+		Cost: 250
+	Tooltip:
+		Name: Mercenary
+	Mobile:
+		Speed: 34
+		ImmovableCondition: !undeployed
+		RequireForceMoveCondition: !undeployed
+	-TakeCover:
+	RevealsShroud:
+		Range: 5c0
+	Health:
+		HP: 8000
+	Armor:
+		Type: none
+	Armament:
+		Weapon: portable_cannon
+		PauseOnCondition: !deployed
+		LocalOffset: 0,100,0
+		MuzzleSequence: muzzle
+	-Armament@chaos_bomb_influence:
+	WithMuzzleOverlay:
+	GrantConditionOnDeploy:
+		UndeployOnPickup: true
+		UndeployOnMove: true
+		DeployedCondition: deployed
+		UndeployedCondition: undeployed
+		Facing: 768
+		DeploySounds: audio/EBoD_MortarDeploy.wav
+		UndeploySounds: audio/EBoD_MortarUndeploy.wav
+		SkipMakeAnimation: false
+	WithInfantryBody:
+		RequiresCondition: undeployed && !beforedeploy && !dummyfire
+	WithFacingSpriteBody:
+		Sequence: invisible
+		RequiresCondition: !undeployed
+	Turreted:
+		TurnSpeed: 200
+		InitialFacing: 1023
+		RealignDelay: -1
+		RequiresCondition: deployed
+	WithSpriteTurret@idle:
+		RequiresCondition: deployed && !AnimateTurret
+	WithSpriteTurret@animated:
+		RequiresCondition: deployed && AnimateTurret
+		Sequence: turret-shoot
+	GrantConditionOnAttack:
+		Condition: AnimateTurret
+		RevokeDelay: 14
+	WithMakeAnimation@DEPLOYING:
+		Sequence: deploying
+	GrantCondition:
+		Condition: editorhack
+	WithRangeCircle:
+		RequiresCondition: deployed
+		Range: 5c256
+	WithInfantryBody@Editor:
+		RequiresCondition: !editorhack
+	-AttackFrontal:
+	AttackTurreted:
+		OutsideRangeRequiresForceFire: True
+
+
+
+bison_tank:
+	Inherits@GAINSEXPERIENCE: ^GainsExperience
+	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
+	Inherits: ^Vehicle
+	AutoTargetPriority@bot:
+		InvalidTargets: Infantry
+		ValidTargets: Vehicle, Defense, Structure, Tank
+		Priority: 40
+		RequiresCondition: ignore-creeps
+	Buildable:
+		Queue: Armor
+		Prerequisites: ~heavy.bison, research_centre,upgrade.heavy, ~techlevel.high, ~factions.subfaction_allowed
+		BuildDuration: 560
+		BuildDurationModifier: 100
+		BuildPaletteOrder: 100
+		Description: Heavy double barrel tank licensed from IX \n Strong VS vehicles, Tanks \n Weak VS infantry
+	Health:
+		HP: 31000
+	RenderSprites:
+		PlayerPalette: player_r16
+	Valued:
+		Cost: 950
+	Tooltip:
+		Name: Bison tank
+	Armor:
+		Type: heavy
+	Mobile:
+		Speed: 52
+		TurnSpeed: 20
+		Locomotor: tank
+		PauseOnCondition: notmobile
+	RevealsShroud:
+		Range: 5c0
+	Armament:
+		Weapon: 80mm_double
+		Recoil: 128
+		RecoilRecovery: 32
+		LocalOffset: 300,60,0, 300,-40,0
+		MuzzleSequence: muzzle
+	Turreted:
+		TurnSpeed: 20
+		RealignDelay: 0
+	AttackTurreted:
+	Explodes:
+		Weapon: UnitExplodeMed
+		EmptyWeapon: UnitExplodeMed
+	WithMuzzleOverlay:
+	WithSpriteTurret:
+	Armament@chaos_bomb_influence:
+		Weapon: 80mm_double
+	SpawnActorOnDeath:
+		Actor: bison_tank.Husk
+		RequiresCondition: !worm_attack
+
+worm_rider:
+	Inherits: thumper
+	AttackFrontal@deploytargeting:
+		FacingTolerance: 0
+	GrantConditionOnBotOwner@bots:
+		Condition: deployed
+		Bots: omnius, vidious, gladius
+	GrantConditionOnTerrain@forBotonly:
+		TerrainTypes: Sand, Spice, Dune, SpiceSand
+		Condition: desert_terain
+	-ActorLostNotification:
+	Tooltip:
+		Name: Worm rider
+	WithDecoration@ScullIcon:
+		Image: skullicon
+		Sequence: idle
+		ValidRelationships: Enemy, Neutral, Ally
+		Palette: effect
+		Position: BottomRight
+		Margin: 5, 6
+	Mobile:
+		Speed: 43
+		PauseOnCondition: deployed
+	KillsSelf:
+		Delay: 500
+		GrantsCondition: spawnWorm
+		RequiresCondition: deployed && desert_terain
+	GrantConditionOnDeploy:
+		DeployedCondition: deployed
+		UndeployedCondition: undeployed
+		PauseOnCondition: deployed
+		UndeployOnMove: false
+	AmbientSound:
+		SoundFiles: THUMPER1.WAV
+		Delay: 10
+		Interval: 20
+		RequiresCondition: deployed && desert_terain
+	SpawnActorOnDeath@worm:
+		Actor: mp_sandworm
+		RequiresCondition: spawnWorm
+		SkipMakeAnimations: false
+	Cloak:
+		InitialDelay: 70
+		CloakDelay: 25
+		CloakSound: STEALTH1.WAV
+		UncloakOn: Attack, Unload, Damage, Heal
+		PauseOnCondition: deployed
+
+
+mp_sandworm:
+	Inherits@world: ^ExistsInWorld
+	Inherits@selectable: ^SelectableCombatUnit
+	Inherits@1: ^SpriteActor
+	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
+	Selectable:
+		Bounds: 1024, 1024, 0, 0
+	Tooltip:
+		Name: Sandworm
+	Health:
+		HP: 70000
+	HitShape:
+		Type: Rectangle
+			TopLeft: -512, -512
+			BottomRight: 512, 1024
+	Armor:
+		Type: wall
+	RenderSprites:
+		Palette: terrain
+	Mobile:
+		Speed: 55
+		TurnSpeed: 20
+		Locomotor: worm_mp
+		PauseOnCondition: makeAnimation
+	Targetable:
+		TargetTypes: Ground, Vehicle
+	WithFacingSpriteBody:
+	WithIdleOverlay@makeanimfromdummy:
+		RequiresCondition: makeAnimation
+		Sequence: make
+		Image: mp_sandworm
+	WithMakeAnimation:
+		Condition: makeAnimation
+	AmbientSound:
+		SoundFiles: WRMSIGN1.WAV
+		Delay: 500
+		Interval: 500
+	KillsSelf:
+		Delay: 1700
+		GrantsCondition: dispose
+	Explodes@1:
+		Weapon: worm_disapier
+		EmptyWeapon: worm_disapier
+		RequiresCondition: dispose
+	Explodes@2:
+		Weapon: worm_explode
+		EmptyWeapon: worm_explode
+		RequiresCondition: !dispose
+	AmbientSound@worm_roar:
+		SoundFiles: audio/worm_roar_1_tc.wav, audio/worm_roar_2_tc.wav, audio/worm_roar_5_tc.wav, audio/worm_roar_6_tc.wav,
+		Interval: 20, 100
+		RequiresCondition: !makeAnimation
+	AmbientSound@invoking:
+		SoundFiles: audio/worm_sign_elec_1.wav
+		RequiresCondition: makeAnimation
+	HiddenUnderFog:
+	AppearsOnRadar:
+		UseLocation: true
+	Demolition:
+		DetonationDelay: 0
+		Flashes: 0
+		DamageTypes: Vehicle, Infantry
+		EnterBehaviour: Exit
+		Cursor: attack
+	ExternalCondition:
+		Condition: worm_eating_anim
+	WithIdleOverlay@mouth:
+		Sequence: mouth
+		RequiresCondition: worm_eating_anim
+	Wanders:
+		WanderMoveRadius: 5
+		AvoidTerrainTypes: Rock, Rough, Concrete
+	IgnoresCloak:
+	AnnounceOnSeen:
+		Notification: WormSign
+		PingRadar: True
+	RevealsShroud:
+		Range: 8c0
+	LeavesTrails:
+		Image: sandtrail
+		Sequences: traila, trailb, trailc
+		Palette: effect
+		Type: CenterPosition
+		TerrainTypes: Sand, Dune, SpiceSand, Spice
+		MovingInterval: 3
+		Offsets: -1024,0,0
+	RevealOnFire:
+		Duration: 50
+		Radius: 2c512
+	ProximityExternalCondition:
+		Range: 1c412
+		Condition: worm_attack
+		ValidRelationships: Ally, Neutral, Enemy
+	ProximityExternalCondition@stop:
+		Range: 1c0
+		Condition: stop
+		ValidRelationships: Neutral, Enemy, Ally
+	SpawnActorOnDeath@rideEnds:
+		Actor: fremen_fedaykin
+		RequiresCondition: dispose
+		SkipMakeAnimations: false
+	Armament@1:
+		Name: primary
+		Weapon: Fremen_wormrider
+		Recoil: 128
+		RecoilRecovery: 32
+	Armament@2:
+		Name: secondary
+		Weapon: Fremen_wormrider2
+		Recoil: 128
+		RecoilRecovery: 32
+		Turret: secondary
+	Turreted@1:
+		TurnSpeed: 25
+		Turret: primary
+		Offset: -600,0,200
+	Turreted@2:
+		TurnSpeed: 25
+		Turret: secondary
+		Offset: -50,-150,350
+	AttackTurreted:
+		Turrets: primary, secondary
+	AutoTarget:
+	AttackMove:
+	WithSpriteTurret@1:
+		Turret: primary
+		RequiresCondition: !makeAnimation
+	WithSpriteTurret@2:
+		Turret: secondary
+		RequiresCondition: !makeAnimation
+	GrantConditionOnCombatantOwner@nonAi:
+		Condition: human_player
+	RejectsOrders:
+		Reject: AttackMove, AssaultMove
+		RequiresCondition: human_player
+
+
+
+
+spire:
+	Inherits: quad
+	Buildable:
+		Prerequisites: ~disabled, upgrade.light, ~factions.subfaction_allowed, ~techlevel.medium
+		BuildDuration: 353
+		BuildDurationModifier: 100
+		Description: Heavy quad \n  Excellent vs Light Armor\n Modest vs Tanks\n Weak vs  Moving Targets, Infantry \n Slower speed, more HP, better damage
+	Valued:
+		Cost: 500
+	Health:
+		HP: 12000
+	Tooltip:
+		Name: Spire
+	Armor:
+		Type: light
+	Mobile:
+		Locomotor: light_vehicle
+		TurnSpeed: 40
+		Speed: 90
+	Armament:
+		Weapon: rocket_spike
+		LocalOffset: 128,64,64
+	Armament@secondrocket:
+		Weapon: rocket_spike
+		LocalOffset: 128,-64,64
+	Armament@chaos_bomb_influence:
+		Weapon: Rocket
+		LocalOffset: 128,64,64, 128,-64,64
+
+
+hunter:
+	Inherits: trike
+	Inherits@GAINSEXPERIENCE: ^GainsExperience
+	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
+	Buildable:
+		Prerequisites: light_factory, ~light.hunter, upgrade.light, ~!factions.standard
+		BuildPaletteOrder: 10
+		BuildDuration: 240
+		Description: Trike with turret \n  Stronger vs Troopers, moving targets\n Slower speed
+	Tooltip:
+		Name: Hunter
+	Valued:
+		Cost: 350
+	Turreted:
+		TurnSpeed: 25
+		Offset: -200,0,30
+		RealignDelay: 0
+	-AttackFrontal:
+	WithMuzzleOverlay:
+	AttackTurreted:
+	WithSpriteTurret:
+	RevealsShroud:
+		Range: 5c512
+	Mobile:
+		Speed: 113
+	Armament@damage:
+		Weapon: HMG
+		LocalOffset: -200,0,0
+		MuzzleSequence: muzzle
+	Armament@muzzle:
+		Weapon: HMG_muzzle
+		LocalOffset: -200,0,0
+		MuzzleSequence: muzzle
+
+crawler.light:
+	Inherits: ^Vehicle
+	Buildable:
+		Queue: Vehicle
+		Prerequisites: ~light.crawler, ~factions.subfaction_allowed, upgrade.light, outpost
+		BuildDuration: 405
+		BuildDurationModifier: 100
+		BuildPaletteOrder: 60
+		Description: Light transporter \n Can transport 5 infantry units. \n Can hide while idle \n Can crush infantry
+	Health:
+		HP: 11000
+	Valued:
+		Cost: 400
+	Tooltip:
+		Name: Crawler
+	Armor:
+		Type: heavy
+	Mobile:
+		Speed: 100
+		Locomotor: tank
+		PauseOnCondition: notmobile
+		TurnSpeed: 35
+	SpeedMultiplier:
+		Modifier: 95
+		RequiresCondition: full
+	RevealsShroud:
+		Range: 5c512
+	Cargo:
+		Types: Infantry
+		MaxWeight: 5
+		LoadingCondition: notmobile
+		LoadedCondition: full
+	Explodes:
+		Weapon: UnitExplodeSmall
+		EmptyWeapon: UnitExplodeSmall
+	WithCargoPipsDecoration:
+		Position: BottomLeft
+		Margin: 4, 3
+		RequiresSelection: true
+	Cloak:
+		InitialDelay: 85
+		CloakDelay: 85
+		UncloakOn: Attack, Unload, Infiltrate, Demolish, Move, Damage, Heal
+		IsPlayerPalette: true
+		PauseOnCondition: cloak-force-disabled
+	GrantConditionOnDamageState@UNCLOAK:
+		Condition: cloak-force-disabled
+		ValidDamageStates: Critical
+	-Armament@chaos_bomb_influence:
+
+bombardment_tank:
+	Inherits: ^Vehicle
+	Inherits@GAINSEXPERIENCE: ^GainsExperience
+	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
+	Buildable:
+		Queue: Armor
+		Prerequisites: ~heavy.corrino, upgrade.heavy, research_centre, ~factions.subfaction_allowed
+		BuildDuration: 670
+		BuildDurationModifier: 100
+		BuildPaletteOrder: 105
+		Description: Heavy missile barrage affecting large area. \n Strong VS Infantry, Light armor \n Weak VS moving targets, tanks \n Ability: can fire 4 missile before reload \n High inaccuraty
+	Health:
+		HP: 21000
+	Valued:
+		Cost: 1200
+	Tooltip:
+		Name: Bombardment tank
+	Armor:
+		Type: light
+	Mobile:
+		Speed: 42
+		TurnSpeed: 17
+	RevealsShroud:
+		Range: 5c512
+	Turreted:
+		TurnSpeed: 15
+		Offset: -200,0,170
+	AttackTurreted:
+	WithMuzzleOverlay:
+	WithSpriteTurret:
+	Explodes:
+		Weapon: UnitExplodeMed
+		EmptyWeapon: UnitExplodeMed
+	AmmoPool:
+		Ammo: 4
+		AmmoCondition: ammo
+	ReloadAmmoPool:
+		Count: 1
+		Delay: 75
+		ResetOnFire: true
+	Armament:
+		Weapon: clusterMissile
+		LocalOffset: -200,128,171, -200,-128,171, -200,70,250, -200,-70,300
+		PauseOnCondition: ammo == 0
+	Armament@chaos_bomb_influence:
+		Weapon: clusterMissile
+	WithAmmoPipsDecoration:
+		PipCount: 4
+	SpawnActorOnDeath:
+		Actor: bombardment_tank.husk
+		SpawnAfterDefeat: false
+		RequiresCondition: !worm_attack
+	-RevealOnFire:
+
+flamer:
+	Inherits: ^Tank
+	Inherits@GAINSEXPERIENCE: ^GainsExperience
+	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
+	AutoTargetPriority@bot:
+		ValidTargets: Infantry, Structure
+		InvalidTargets: Tanks
+		Priority: 25
+		RequiresCondition: ignore-creeps
+	AutoTargetPriority@bot2:
+		ValidTargets: Vehicle
+		InvalidTargets: Tanks
+		Priority: 10
+		RequiresCondition: bot-owned
+	Buildable:
+		Queue: Armor
+		BuildDuration: 600
+		BuildDurationModifier: 100
+		BuildPaletteOrder: 106
+		Prerequisites: ~heavy.smuggler, research_centre, upgrade.heavy
+		Description: Flamer \n Strong VS Infantry, Buildings \n Weak VS Tanks, Defenses \n Destroy spice
+	Health:
+		HP: 25000
+	Valued:
+		Cost: 1000
+	Tooltip:
+		Name: Flamer
+	Armor:
+		Type: light
+	Mobile:
+		Speed: 75
+	RevealsShroud:
+		Range: 5c0
+	AttackFrontal:
+		FacingTolerance: 0
+	AutoTarget:
+		ScanRadius: 6
+	Explodes:
+		Weapon: UnitExplodeMed
+		EmptyWeapon: UnitExplodeMed
+		DeathTypes: BulletDeath
+	Explodes@big:
+		Weapon: flamer_explosion_big
+		EmptyWeapon: flamer_explosion_big
+		DeathTypes: ExplosionDeath, SoundDeath, FireDeath, SmallExplosionDeath
+	Explodes@small1:
+		Offset: 500,400,0
+		Chance: 50
+		Weapon: flamer_explosion_small
+		EmptyWeapon: flamer_explosion_small
+		DeathTypes: ExplosionDeath, SoundDeath, FireDeath, SmallExplosionDeath
+	Explodes@small2:
+		Offset: -800,-300,0
+		Chance: 50
+		Weapon: flamer_explosion_small02
+		EmptyWeapon: flamer_explosion_small02
+		DeathTypes: ExplosionDeath, SoundDeath, FireDeath, SmallExplosionDeath
+	Explodes@small3:
+		Offset: 200,900,0
+		Chance: 50
+		Weapon: flamer_explosion_small03
+		EmptyWeapon: flamer_explosion_small03
+		DeathTypes: ExplosionDeath, SoundDeath, FireDeath
+	Armament:
+		Weapon: flamethrower
+		LocalOffset: 100,0, 200
+	Armament@chaos_bomb_influence:
+		Weapon: flamethrower
+	SpawnActorOnDeath:
+		Actor: flamer.husk
+		DeathType: BulletDeath
+		RequiresCondition: !worm_attack
+
+frigate.harkonnen:
+	Inherits: carryall.reinforce_with_sound
+	RenderSprites:
+		Image: frigate.harkonnen
+	Health:
+		HP: 14000
+	Aircraft:
+		IdleBehavior: LeaveMapAtClosestEdge
+		Speed: 170
+		TakeoffSounds: audio/EITSTakeOff.wav
+		LandingSounds: audio/EITSLand.wav
+	SpawnActorOnDeath@CRUISING:
+		Actor: frigate.husk
+		RequiresCondition: cruising
+	AmbientSound:
+		SoundFiles: audio/frigate_new2.wav
+		RequiresCondition: cruising
+	SpawnActorOnDeath@LANDING:
+		Actor: frigate.huskvtol
+	RejectsOrders:
+
+frigate.harkonnen_cargo:
+	Inherits: frigate.harkonnen
+	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
+	RenderSprites:
+		Image: frigate.harkonnen
+	Aircraft:
+		IdleBehavior: None
+	Health:
+		HP: 12000
+	RejectsOrders:
+	Armament:
+		Weapon: clusterMissile
+		LocalOffset: -100,0,0, -100,100,0, -100,200,0
+		PauseOnCondition: ammo == 0
+		RequiresCondition: landing_area
+	ExternalCondition@activateWeapon:
+		Condition: landing_area
+	AmmoPool:
+		Ammo: 12
+		AmmoCondition: ammo
+	AutoTarget:
+		InitialStance: AttackAnything
+	Cargo:
+		Types: Infantry, Vehicle
+		PassengerFacing: 512
+		BeforeUnloadDelay: 50
+	Turreted:
+	AttackTurreted:
+
+
+frigate_choam:
+	Inherits: carryall.reinforce
+	ParaDrop:
+	RenderSprites:
+		Image: frigate
+	AmbientSound:
+		SoundFiles: audio/frigate_new2.wav
+		RequiresCondition: cruising
+	-Cloak:
+	Cargo:
+		MaxWeight: 20
+	RejectsOrders:
+	ProximityExternalCondition:
+		Condition: frigate_proximity_influence
+		Range: 6c0
+	Aircraft:
+		IdleBehavior: LeaveMapAtClosestEdge
+		Speed: 170
+		TurnSpeed: 4
+		Repulsable: False
+		MaximumPitch: 20
+		CruiseAltitude: 2048
+		VTOL: true
+		CanHover: true
+		CanSlide: true
+		TakeoffSounds: audio/EITSTakeOff.wav
+		LandingSounds: audio/frigate_land.wav
+	SpawnActorOnDeath@CRUISING:
+		Actor: frigate.husk
+	SpawnActorOnDeath@LANDING:
+		Actor: frigate.huskvtol
+
+thumper:
+	Buildable:
+		Prerequisites: ~disabled
+	-Armament@chaos_bomb_influence:
+
+sardaukar:
+	Buildable:
+		Prerequisites: ~disabled
+	Armament@chaos_bomb_influence:
+		Weapon: M_HMG
+	Armament@chaos_bomb_influence2:
+		Weapon: M_LMG
+		RequiresCondition: chaos_bomb
+	ExternalCondition@scared: #avoid scare effect on sardaukar
+	-RejectsOrders@Scared:
+	-Wanders@scared:
+	-Armament:
+
+
+
+merged.fremen_fedaykin:
+	Inherits: fremen_fedaykin
+	Buildable:
+		BuildDuration: 160
+		Prerequisites: ~techlevel.high, ~factions.merged, barracks, upgrade.barracks, high_tech_factory, ~merged.fremen
+	RenderSprites:
+		Image: fremen
+
+
+merged.sardaukar:
+	Inherits: mpsardaukar.corrino
+	RenderSprites:
+		Image: sardaukar
+	Buildable:
+		Prerequisites: ~techlevel.high, ~factions.merged, ~merged.corrino, high_tech_factory, barracks, upgrade.barracks
+
+merged.bombardment_tank:
+	Inherits: bombardment_tank
+	RenderSprites:
+		Image: bombardment_tank
+	Buildable:
+		Prerequisites: ~techlevel.high,~factions.merged, ~merged.corrino, heavy_factory, upgrade.heavy, research_centre
+
+merged.flamer:
+	Inherits: flamer
+	RenderSprites:
+		Image: flamer
+	Buildable:
+		Prerequisites: ~techlevel.high, ~factions.merged, ~merged.smuggler, research_centre, heavy_factory, upgrade.heavy
+
+
+merged.hunter_fremen:
+	Inherits: hunter
+	RenderSprites:
+		Image: hunter
+	Buildable:
+		Prerequisites: ~factions.merged, upgrade.light, ~merged.fremen
+		BuildPaletteOrder: 50
+
+merged.crawler.light:
+	Inherits: crawler.light
+	RenderSprites:
+		Image: crawler.light
+	Buildable:
+		BuildPaletteOrder: 106
+		Prerequisites: ~merged.mercenary, ~factions.merged, ~techlevel.high, upgrade.light, light_factory
+
+merged.mortar_inf:
+	Inherits: mortar_inf
+	RenderSprites:
+		Image: mortar_inf
+	Buildable:
+		Prerequisites: ~merged.mercenary, outpost, ~factions.merged, ~techlevel.high, barracks, upgrade.barracks
+
+merged.bison_tank:
+	Inherits: bison_tank
+	RenderSprites:
+		Image: bison_tank
+	Buildable:
+		Prerequisites: merged.mercenary_factory, ~merged.mercenary, ~factions.merged, ~techlevel.high, research_centre
