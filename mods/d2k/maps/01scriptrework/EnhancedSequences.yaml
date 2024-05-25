@@ -45,8 +45,8 @@ icon:
 		Start: 479
 		Offset: -30,-24
 	thump:
-		Filename: DATA.R16
-		Start: 4275
+		Filename: EnhacedAssets.R8
+		Start: 498
 		Offset: -30,-24
 
 
@@ -100,11 +100,19 @@ thump:
 	idle:
 		Filename: EnhacedAssets.R8
 		Start: 44
+		Offset: -8,-8
 	thump:
 		Filename: EnhacedAssets.R8
 		Start: 44
 		Length: 5
-		Tick: 150
+		Offset: -8,-8
+		Tick: 250
+	die-crushed:
+		Filename: DATA.R8
+		Frames: 386, 393, 400, 407, 414, 421, 428, 435, 442, 447, 452, 457
+		Length: 12
+		Tick: 800
+		ZOffset: -511
 
 
 choam_unit_number:

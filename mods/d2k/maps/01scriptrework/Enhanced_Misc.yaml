@@ -4,7 +4,7 @@ spicebloom:
 
 ^Husk:
 	Health:
-		HP: 13000
+		HP: 14000
 
 ^VehicleHusk:
 	Inherits: ^Husk
@@ -35,6 +35,9 @@ spicebloom:
 		Sequence: 1_loop
 		StartSequence: 1_start
 		IsDecoration: True
+	InfiltrateForTransform:
+		Types: Husk
+		ForceHealthPercentage: 15
 	ChangesHealth:
 		Step: -30
 		StartIfBelow: 101
@@ -335,11 +338,15 @@ mcv.husk:
 		HP: 11000
 	TransformOnCapture:
 		IntoActor: mcv
+	InfiltrateForTransform:
+		IntoActor: mcv
 
 harvester.husk:
 	Health:
 		HP: 9000
 	TransformOnCapture:
+		IntoActor: harvester
+	InfiltrateForTransform:
 		IntoActor: harvester
 
 carryall.husk:
@@ -465,6 +472,8 @@ frigate.huskvtol:
 
 carryall.husk_on_land:
 	Inherits: ^VehicleHusk
+	-TransformOnCapture:
+	-InfiltrateForTransform:
 	Health:
 		HP: 10000
 	WithIdleOverlay@Burns:
@@ -530,6 +539,8 @@ siege_tank.husk:
 	-ThrowsParticle@turret:
 	TransformOnCapture:
 		IntoActor: siege_tank
+	InfiltrateForTransform:
+		IntoActor: siege_tank
 	WithIdleOverlay@Burns:
 		Image: fire
 		StartSequence: 2
@@ -542,6 +553,8 @@ sonic_tank.husk:
 		Image: fire_slow
 		Sequence: 1
 		IsDecoration: True
+	InfiltrateForTransform:
+		IntoActor: sonic_tank
 	ThrowsParticle@turret:
 		Anim: turret
 		MaxThrowRange: 1c224
@@ -569,6 +582,8 @@ flamer.husk:
 		Anim: tankdebris04
 	TransformOnCapture:
 		IntoActor: flamer
+	InfiltrateForTransform:
+		IntoActor: flamer
 
 ^combat_tank.husk:
 	Inherits: ^VehicleHusk
@@ -584,12 +599,14 @@ combat_tank_cheap.husk:
 	Inherits: ^combat_tank.husk
 	TransformOnCapture:
 		IntoActor: combat_tank_cheap
-	Health:
-		HP: 10000
+	InfiltrateForTransform:
+		IntoActor: combat_tank_cheap
 
 combat_tank_cheap.husk02:
 	Inherits: ^combat_tank.husk
 	TransformOnCapture:
+		IntoActor: combat_tank_cheap
+	InfiltrateForTransform:
 		IntoActor: combat_tank_cheap
 	ThrowsParticle@debris01:
 		Anim: tankdebris01
@@ -603,6 +620,8 @@ combat_tank_cheap.husk02:
 combat_tank_cheap.husk03:
 	Inherits: ^combat_tank.husk
 	TransformOnCapture:
+		IntoActor: combat_tank_cheap
+	InfiltrateForTransform:
 		IntoActor: combat_tank_cheap
 	ThrowsParticle@turret:
 	ThrowsParticle@debris02:
@@ -620,6 +639,8 @@ combat_tank_cheap.husk04:
 	Inherits: ^combat_tank.husk
 	TransformOnCapture:
 		IntoActor: combat_tank_cheap
+	InfiltrateForTransform:
+		IntoActor: combat_tank_cheap
 	ThrowsParticle@debris03:
 		Anim: tankdebris03
 		MinThrowAngle: 30
@@ -631,12 +652,16 @@ combat_tank_corrino.husk:
 	Inherits: ^combat_tank.husk
 	TransformOnCapture:
 		IntoActor: combat_tank_corrino
+	InfiltrateForTransform:
+		IntoActor: combat_tank_corrino
 
 combat_tank_corrino.husk02:
 	Inherits: ^combat_tank.husk
 	Health:
 		HP: 10000
 	TransformOnCapture:
+		IntoActor: combat_tank_corrino
+	InfiltrateForTransform:
 		IntoActor: combat_tank_corrino
 	ThrowsParticle@debris01:
 		Anim: tankdebris01
@@ -650,6 +675,8 @@ combat_tank_corrino.husk02:
 combat_tank_corrino.husk03:
 	Inherits: ^combat_tank.husk
 	TransformOnCapture:
+		IntoActor: combat_tank_corrino
+	InfiltrateForTransform:
 		IntoActor: combat_tank_corrino
 	ThrowsParticle@turret:
 	ThrowsParticle@debris02:
@@ -667,6 +694,8 @@ combat_tank_corrino.husk04:
 	Inherits: ^combat_tank.husk
 	TransformOnCapture:
 		IntoActor: combat_tank_corrino
+	InfiltrateForTransform:
+		IntoActor: combat_tank_corrino
 	ThrowsParticle@debris03:
 		Anim: tankdebris03
 		MinThrowAngle: 30
@@ -676,11 +705,15 @@ combat_tank_corrino.husk04:
 
 
 combat_tank_a.husk:
+	InfiltrateForTransform:
+		IntoActor: combat_tank_a
 	-ThrowsParticle@turret:
 
 combat_tank_a.husk02:
 	Inherits: ^combat_tank.husk
 	TransformOnCapture:
+		IntoActor: combat_tank_a
+	InfiltrateForTransform:
 		IntoActor: combat_tank_a
 	Health:
 		HP: 10000
@@ -690,6 +723,8 @@ combat_tank_a.husk02:
 combat_tank_a.husk03:
 	Inherits: ^combat_tank.husk
 	TransformOnCapture:
+		IntoActor: combat_tank_a
+	InfiltrateForTransform:
 		IntoActor: combat_tank_a
 	Health:
 		HP: 13000
@@ -706,6 +741,8 @@ combat_tank_a.husk04:
 	Inherits: ^combat_tank.husk
 	TransformOnCapture:
 		IntoActor: combat_tank_a
+	InfiltrateForTransform:
+		IntoActor: combat_tank_a
 	Health:
 		HP: 9000
 	-WithIdleOverlay@Burns:
@@ -719,11 +756,17 @@ combat_tank_a.husk04:
 		TurnSpeed: 100
 
 combat_tank_h.husk:
+	InfiltrateForTransform:
+		IntoActor: combat_tank_h
 	-ThrowsParticle@turret:
 
 combat_tank_h.husk02:
 	Inherits: ^combat_tank.husk
+	Health:
+		HP: 13000
 	TransformOnCapture:
+		IntoActor: combat_tank_h
+	InfiltrateForTransform:
 		IntoActor: combat_tank_h
 	WithIdleOverlay@Burns:
 		Image: fire_slow
@@ -738,6 +781,8 @@ combat_tank_h.husk03:
 		HP: 11000
 	-WithIdleOverlay@Burns:
 	TransformOnCapture:
+		IntoActor: combat_tank_h
+	InfiltrateForTransform:
 		IntoActor: combat_tank_h
 	ThrowsParticle@turret:
 		Anim: turret
@@ -754,6 +799,8 @@ combat_tank_h.husk04:
 		HP: 9000
 	TransformOnCapture:
 		IntoActor: combat_tank_h
+	InfiltrateForTransform:
+		IntoActor: combat_tank_h
 	WithIdleOverlay@Burns:
 		Image: fire_slow
 		Sequence: 2
@@ -767,11 +814,15 @@ combat_tank_h.husk04:
 		TurnSpeed: 20
 
 combat_tank_o.husk:
+	InfiltrateForTransform:
+		IntoActor: combat_tank_o
 	-ThrowsParticle@turret:
 
 combat_tank_o.husk02:
 	Inherits: ^combat_tank.husk
 	TransformOnCapture:
+		IntoActor: combat_tank_o
+	InfiltrateForTransform:
 		IntoActor: combat_tank_o
 	WithIdleOverlay@Burns:
 		Image: fire_slow
@@ -785,6 +836,8 @@ combat_tank_o.husk03:
 	Health:
 		HP: 9000
 	TransformOnCapture:
+		IntoActor: combat_tank_o
+	InfiltrateForTransform:
 		IntoActor: combat_tank_o
 	-WithIdleOverlay@Burns:
 	ThrowsParticle@turret:
@@ -802,6 +855,8 @@ combat_tank_o.husk04:
 		HP: 12000
 	TransformOnCapture:
 		IntoActor: combat_tank_o
+	InfiltrateForTransform:
+		IntoActor: combat_tank_o
 	-WithIdleOverlay@Burns:
 	ThrowsParticle@turret:
 		Anim: turret
@@ -818,12 +873,14 @@ devastator.husk:
 		Name: Devastator (Destroyed)
 	TransformOnCapture:
 		IntoActor: devastator
-	Health:
-		HP: 14000
+	InfiltrateForTransform:
+		IntoActor: devastator
 
 missile_tank.husk:
 	Inherits: ^VehicleHusk
 	TransformOnCapture:
+		IntoActor: missile_tank
+	InfiltrateForTransform:
 		IntoActor: missile_tank
 	ThrowsParticle@turret:
 		Anim: turret
@@ -846,8 +903,10 @@ missile_tank.husk:
 bombardment_tank.husk:
 	Inherits: ^VehicleHusk
 	Tooltip:
-		Name: Bombardment tank
+		Name: Bombardment tank Husk
 	TransformOnCapture:
+		IntoActor: bombardment_tank
+	InfiltrateForTransform:
 		IntoActor: bombardment_tank
 	ThrowsParticle@turret:
 		Anim: turret
@@ -872,8 +931,10 @@ bombardment_tank.husk:
 bison_tank.husk:
 	Inherits: ^combat_tank.husk
 	Tooltip:
-		Name: Bison tank
+		Name: Bison tank Husk
 	TransformOnCapture:
+		IntoActor: bison_tank
+	InfiltrateForTransform:
 		IntoActor: bison_tank
 	RenderSprites:
 		PlayerPalette: player_r16
@@ -887,6 +948,8 @@ crawler_light.husk:
 	Tooltip:
 		Name: Crawler Husk
 	TransformOnCapture:
+		IntoActor: crawler.light
+	InfiltrateForTransform:
 		IntoActor: crawler.light
 
 
@@ -902,8 +965,8 @@ deviator.husk:
 		Name: Deviator (Destroyed)
 	TransformOnCapture:
 		IntoActor: deviator
-	Health:
-		HP: 14000
+	InfiltrateForTransform:
+		IntoActor: deviator
 	WithIdleOverlay@Burns:
 		Image: smoke_m
 		-StartSequence:
@@ -933,7 +996,7 @@ deviator.husk:
 dummygas01:
 	Inherits: ^dummygas
 	KillsSelf:
-		Delay: 115
+		Delay: 100
 
 dummygas02:
 	Inherits: ^dummygas
@@ -1350,6 +1413,7 @@ thump:
 	WithIdleOverlay@thump:
 		Sequence: thump
 		RequiresCondition: thump
+	-WithDeathAnimation:
 	Tooltip:
 		Name: Thumper
 	Mobile:

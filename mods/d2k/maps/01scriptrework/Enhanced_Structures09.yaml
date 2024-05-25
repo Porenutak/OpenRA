@@ -38,6 +38,8 @@
 	AmbientSound@saboteurCharge:
 		SoundFiles: audio/explodeSaboteurEmperor02.wav
 		RequiresCondition: being-demolished
+	CaptureNotification:
+		LoseNotification: BuildingLost
 	WithBuildingRepairDecoration:
 		Palette: player
 		IsPlayerPalette: True
@@ -48,7 +50,7 @@
 	RevealsShroud:
 		RevealGeneratedShroud: false
 	RevealsShroud@jammed:
-		Range: 2c0
+		Range: 3c0
 		RevealGeneratedShroud: true
 	WithColoredOverlay@black:
 		Color: 3E202080
@@ -243,6 +245,9 @@ construction_yard:
 	ProvidesPrerequisite@corrino:
 		Prerequisite: conyard.corrino
 		Factions: corrino
+	ProvidesPrerequisite@researchcenter:
+		Prerequisite: research_center.allowed
+		Factions: atreides, harkonnen, corrino, ordos, smuggler, mercenary
 	FloatingSpriteEmitter@smoke_huge_atreides:
 		Offset: 600, -500, 0
 		Gravity: 70
@@ -282,13 +287,24 @@ construction_yard:
 	WithIdleOverlay@Burns2_ordos:
 		Offset: 1124, -350, 0
 
+^concrete:
+	RequiresBuildableArea:
+		AreaTypes: building
+		Adjacent: 7
+
 concretea:
 	Buildable:
 		Prerequisites: ~!global-auto-concrete, !choosefaction
+		Queue: Upgrade
+		BuildPaletteOrder: 1
+		Description: Provides a strong foundation that prevents\ndamage from the terrain. \n Speed up vehicle movement by 20%
 
 concreteb:
 	Buildable:
 		Prerequisites: upgrade.conyard, ~!global-auto-concrete, !choosefaction
+		Queue: Upgrade
+		BuildPaletteOrder: 2
+		Description: Provides a strong foundation that prevents\ndamage from the terrain. \n Speed up vehicle movement by 20%|
 
 wind_trap:
 	Inherits@damageVFX: ^DamagedBuildingsVFX
@@ -305,12 +321,15 @@ wind_trap:
 	GrantConditionOnPrerequisite:
 		Condition: ArmorUpgrade
 		Prerequisites: upgrade.conyard
+	GrantConditionOnPrerequisite@concreteON:
+		Condition: concrete_on
+		Prerequisites: global-auto-concrete
 	Armor:
 		Type: building
-		RequiresCondition: ArmorUpgrade
+		RequiresCondition: ArmorUpgrade || !concrete_on
 	Armor@weakArmor:
 		Type: wood
-		RequiresCondition: !ArmorUpgrade
+		RequiresCondition: !ArmorUpgrade && concrete_on
 	Power:
 		Amount: 200
 	RevealOnDeath:
@@ -355,12 +374,15 @@ barracks:
 	GrantConditionOnPrerequisite:
 		Condition: ArmorUpgrade
 		Prerequisites: upgrade.conyard
+	GrantConditionOnPrerequisite@concreteON:
+		Condition: concrete_on
+		Prerequisites: global-auto-concrete
 	Armor:
 		Type: building
-		RequiresCondition: ArmorUpgrade
+		RequiresCondition: ArmorUpgrade || !concrete_on
 	Armor@weakArmor:
 		Type: wood
-		RequiresCondition: !ArmorUpgrade
+		RequiresCondition: !ArmorUpgrade && concrete_on
 	RevealsShroud:
 		Range: 3c768
 	GrantConditionOnFaction@fremenExit:
@@ -447,14 +469,15 @@ refinery:
 		Cost: 1500
 	Health:
 		HP: 40000
-	Selectable:
-		Bounds: 2500, 2048, -256, 0
+	GrantConditionOnPrerequisite@concreteON:
+		Condition: concrete_on
+		Prerequisites: global-auto-concrete
 	Armor:
 		Type: building
-		RequiresCondition: ArmorUpgrade
-	Armor@ArmorBeforeCYupdrage:
+		RequiresCondition: ArmorUpgrade || !concrete_on
+	Armor@weakArmor:
 		Type: wood
-		RequiresCondition: !ArmorUpgrade
+		RequiresCondition: !ArmorUpgrade && concrete_on
 	RevealsShroud:
 		Range: 3c768
 	StoresResources:
@@ -631,12 +654,15 @@ light_factory:
 		Cost: 700
 	Health:
 		HP: 41000
+	GrantConditionOnPrerequisite@concreteON:
+		Condition: concrete_on
+		Prerequisites: global-auto-concrete
 	Armor:
 		Type: building
-		RequiresCondition: ArmorUpgrade
+		RequiresCondition: ArmorUpgrade || !concrete_on
 	Armor@weakArmor:
 		Type: wood
-		RequiresCondition: !ArmorUpgrade
+		RequiresCondition: !ArmorUpgrade && concrete_on
 	RevealsShroud:
 		Range: 5c768
 	Power:
@@ -865,7 +891,7 @@ outpost:
 		ChargeInterval: 4200
 		LifeTime: 500
 		Name: Jam communication
-		Description: Reduce enemy Vision and Range in the area, for short period of time. Jam long range missiles
+		Description: Reduce enemy vision and Range in the area, for short period of time. Jam long range missiles
 		Icon: jammer
 		RequiresCondition: jammer
 		Prerequisites: ~techlevel.high, ~upgrade.outpost, ~!factions.standard
@@ -1250,7 +1276,7 @@ repair_pad.bot:
 high_tech_factory:
 	Inherits@damageVFX: ^DamagedBuildingsVFX
 	Buildable:
-		BuildDuration: 570
+		BuildDuration: 610
 	Valued:
 		Cost: 1150
 	Health:
@@ -1282,8 +1308,8 @@ high_tech_factory:
 	GrantConditionOnFaction@Corrinodropship:
 		Condition: harkonnen
 		Factions: harkonnen
-	GrantConditionOnFaction@basicReinforcements:
-		Condition: basic_reinforcements
+	GrantConditionOnFaction@mercenarySupportPowers:
+		Condition: mercenary
 		Factions: mercenary
 	GrantConditionOnFaction@invicateWorm:
 		Condition: invocate_worm
@@ -1300,7 +1326,7 @@ high_tech_factory:
 		EndChargeTextNotification: Airstrike ready.
 		SelectTargetTextNotification: Select target.
 		OrderName: LightAirstrikePowerInfoOrder
-		RequiresCondition: ordos
+		RequiresCondition: mercenary
 		EffectImage: carryall.husk_on_land
 		EffectSequence:
 		Actor: waypoint.airtstrike_o
@@ -1311,7 +1337,7 @@ high_tech_factory:
 		EffectSequence:
 		Actor: waypoint.reinforce_o
 		Icon: infantry_reinforcement
-		Prerequisites: ~techlevel.superweapons, upgrade.hightech, ~factions.subfaction_allowed
+		Prerequisites: ~disabled, ~techlevel.superweapons, upgrade.hightech, ~factions.subfaction_allowed
 		ChargeInterval: 5000
 		LifeTime: 2000
 		Name: Infantry Reinforcements
@@ -1321,7 +1347,6 @@ high_tech_factory:
 		DisplayBeacon: True
 		OrderName: ordos_reinforcements
 		DisplayRadarPing: true
-		RequiresCondition: basic_reinforcements
 	SpawnActorPower@EnhancedAirAtreides:
 		EffectImage: carryall.husk_on_land
 		EffectSequence:
@@ -1358,7 +1383,7 @@ high_tech_factory:
 		Name: Recruit Saboteur
 		Description: Sneaky infantry, pernamently cloak\n Can be detected by Outpost: 6 cell, Turrets: 3 cells, infantry: 2 cells\n  Special Ability: Destroy buildings \n selfkill ability: mass blast damage everthing in 6 cell Radius
 		Icon: saboteur
-		Prerequisites: ~techlevel.superweapons, upgrade.hightech, ~factions.standard
+		Prerequisites: ~techlevel.superweapons, upgrade.hightech
 		Actors: saboteur
 		Type: Infantry
 		ChargeInterval: 2250
@@ -1367,18 +1392,18 @@ high_tech_factory:
 		OrderName: ProduceActorPower.Saboteursubfaction
 		SupportPowerPaletteOrder: 30
 		RequiresCondition: ordos
-	SpawnActorPower@wormrider:
+	SpawnActorPower@thump:
 		EffectImage: Carryall
 		Actor: dummy.thump_spawmer
-		Name: Invocate worm
-		Description: Deliver thump, that will invocate Worm (worm cannot be controlled)
+		Name: Drop thumper
+		Description: Drop thumper on the sand and start invoking sandworm
 		ChargeInterval: 5000
 		LifeTime: -1
 		Icon: thump
 		StartFullyCharged: false
 		Prerequisites: ~techlevel.superweapons, upgrade.hightech, ~factions.subfaction_allowed
 		SupportPowerPaletteOrder: 90
-		OrderName: SpawnActorPowerInfoOrder.invoke
+		OrderName: SpawnActorPowerInfoOrder.thumper
 		RequiresCondition: invocate_worm
 	ProvidesPrerequisite@enableupgradeStandard_enhancedAir:
 		Prerequisite: hightech.enableupgrade
@@ -1412,7 +1437,7 @@ research_centre:
 	Inherits@IDISABLE: ^DisableOnLowPower
 	Buildable:
 		BuildDuration: 650
-		Prerequisites: outpost, heavy_factory, upgrade.heavy, ~techlevel.high
+		Prerequisites: outpost, heavy_factory, ~techlevel.high, ~research_center.allowed
 	Valued:
 		Cost: 1600
 	Health:
@@ -1446,10 +1471,14 @@ research_centre:
 		ChargeInterval: 2250
 		ReadyAudio: Reinforce
 		BlockedAudio: NoRoom
-		OrderName: ProduceActorPower.Saboteursubfaction
+		OrderName: ProduceActorPower.Saboteursmuggler
 		SupportPowerPaletteOrder: 30
+		RequiresCondition: smuggler
 	ProvidesPrerequisite@saboteur:
 		Prerequisite: research_centre.smuggler
+		Factions: smuggler
+	GrantConditionOnFaction@smuggler:
+		Condition: smuggler
 		Factions: smuggler
 	GrantConditionOnPrerequisite@smugglertech:
 		Condition: smugglertech
@@ -1576,7 +1605,7 @@ palace:
 		RequiresCondition: harkonnen
 		RemoveMissileOnDetonation: True
 		Prerequisites: ~techlevel.superweapons, ~palace.nuke
-		ChargeInterval: 7000
+		ChargeInterval: 7500
 		Name: Death Hand
 		Description: Excellent VS Infantry, light vehicles, Turrets \n Weak vs Tanks, Buildings
 		BeginChargeSpeechNotification: DeathHandMissilePrepping
@@ -2031,7 +2060,7 @@ fremen_sietch:
 		BuildPaletteOrder: 630
 		BuildDuration: 937
 		BuildDurationModifier: 100
-		Prerequisites: research_centre, ~techlevel.high, ~conyard.fremen, ~factions.subfaction_allowed
+		Prerequisites: outpost, high_tech_factory, ~techlevel.high, ~conyard.fremen, ~factions.subfaction_allowed
 	SpawnActorsOnSell:
 		ActorTypes: nsfremen
 	Valued:
@@ -2075,7 +2104,7 @@ fremen_sietch:
 		Type: Fremen
 		Name: Worm rider
 		Description: Deploy to ride worm.
-		ChargeInterval: 4500
+		ChargeInterval: 4300
 		Icon: sandworm
 		StartFullyCharged: false
 		Prerequisites: ~techlevel.high
@@ -2096,7 +2125,7 @@ upgrade.conyard:
 upgrade.barracks:
 	Buildable:
 		Prerequisites: barracks, ~!choosefaction
-		BuildDuration: 800
+		BuildDuration: 600
 	Valued:
 		Cost: 400
 	RenderSprites:
@@ -2111,14 +2140,14 @@ upgrade.barracks:
 upgrade.light:
 	Buildable:
 		Prerequisites: ~light_factory, ~!choosefaction
-		BuildDuration: 900
+		BuildDuration: 800
 	Valued:
 		Cost: 600
 
 upgrade.heavy:
 	Buildable:
 		Prerequisites: heavy_factory, ~!choosefaction
-		BuildDuration: 900
+		BuildDuration: 1000
 	Valued:
 		Cost: 800
 
@@ -2141,15 +2170,6 @@ upgrade.outpost:
 	RenderSprites:
 		Image: outpost.ordos
 	ProvidesPrerequisite@upgradename:
-
-merged_upgrade.outpost:
-	Inherits: upgrade.outpost
-	RenderSprites:
-		Image: outpost.ordos
-	Buildable:
-		Prerequisites: ~outpost, high_tech_factory, ~!choosefaction,~merged.smuggler,~factions.merged, ~techlevel.superweapons
-	ProvidesPrerequisite@enablejammer:
-		Prerequisite: upgrade.outpost
 
 upgrade.outpost_fremen:
 	AlwaysVisible:

@@ -334,6 +334,13 @@
 	Targetable@CAPTURED:
 		TargetTypes: CapturedUnit, Ground
 		RequiresCondition: unitCapturated
+	-WithDecoration@jammerIcon:
+	WithDecoration@jammerIconVehicle:
+		Image: poweroff
+		Sequence: offline
+		Position: Center
+		ValidRelationships: Ally, Enemy, Neutral
+		RequiresCondition: jammed
 
 
 ^Tank:
@@ -440,7 +447,6 @@ trike:
 	AutoTarget:
 		MinimumScanTimeInterval: 0
 		MaximumScanTimeInterval: 0
-	RenderRangeCircle:
 	Valued:
 		Cost: 300
 	Selectable:
@@ -487,7 +493,7 @@ raider:
 		RequiresCondition: ignore-creeps
 	Buildable:
 		Prerequisites: ~light.raider
-		BuildDuration: 250
+		BuildDuration: 260
 		Description: Fast scout \n Strong vs Infantry\n  Weak vs Tanks, Rockets
 	Valued:
 		Cost: 350
@@ -500,7 +506,7 @@ raider:
 	Health:
 		HP: 10000
 	Armor:
-		Type: light
+		Type: wood
 	Mobile:
 		Locomotor: light_vehicle
 		TurnSpeed: 40
@@ -509,7 +515,6 @@ raider:
 	AutoTarget:
 		MinimumScanTimeInterval: 0
 		MaximumScanTimeInterval: 0
-	RenderRangeCircle:
 	Armament@damage:
 		Weapon: HMGo
 	Armament@chaos_bomb_influence:
@@ -573,8 +578,6 @@ quad.heavy:
 		Description: Heavy Missile Scout\n  Excellent vs Light Armor\n Modest vs Tanks\n Weak vs  Moving Targets, Infantry
 	Valued:
 		Cost: 500
-	Health:
-		HP: 12000
 	Armor:
 		Type: light
 	Tooltip:
@@ -600,7 +603,7 @@ stealth_raider:
 		BuildDuration: 275
 		Description: Invisible Raider\n Can be detected by Infantry (1 cell), Turrets(2 cells), Outpost (5 cells)
 	Valued:
-		Cost: 450
+		Cost: 400
 	Mobile:
 		TurnSpeed: 32
 		Speed: 125
@@ -707,7 +710,7 @@ missile_tank:
 		Speed: 57
 		TurnSpeed: 20
 	Health:
-		HP: 13500
+		HP: 13000
 	Armor:
 		Type: light
 	RevealsShroud:
@@ -755,7 +758,7 @@ sonic_tank:
 	Buildable:
 		Queue: Armor
 		Prerequisites: ~heavy.atreides,upgrade.heavy, research_centre, ~techlevel.high
-		BuildDuration: 615
+		BuildDuration: 635
 		Description: Fires sonic shocks\n  Excellent vs Infantry, Vehicles, Buildings\n Modest vs vehicles \n  Weak vs Tanks\n Friendly Fire
 	Valued:
 		Cost: 1100
@@ -796,7 +799,7 @@ devastator:
 		RequiresCondition: lowhp && bot-owned && !unitCapturated
 	Buildable:
 		Prerequisites: ~heavy.harkonnen, research_centre, upgrade.heavy, ~techlevel.high
-		BuildDuration: 660
+		BuildDuration: 690
 		Description: Super Heavy Tank\n  Decent damage vs everthing\n weak vs Infantry \n SelfDestruction damage 7 square cells
 	ExternalCondition:
 		Condition: unitCapturated
@@ -878,7 +881,7 @@ deviator:
 		Cost: 1000
 	Buildable:
 		Prerequisites: ~heavy.ordos, research_centre,upgrade.heavy, ~techlevel.high
-		BuildDuration: 590
+		BuildDuration: 618
 		Description: Fires a Gas which changes\nthe allegiance of enemy vehicles\n Gas leaks from Deviator husk dead\n weak vs everythink
 	Mobile:
 		TurnSpeed: 12
@@ -1017,7 +1020,7 @@ combat_tank_h:
 		TurnSpeed: 18
 		Locomotor: tank_harkonnen
 	SpeedMultiplier@HEAVYDAMAGE:
-		Modifier: 90
+		Modifier: 85
 	Health:
 		HP: 29000
 	SpawnActorOnDeath:
@@ -1261,6 +1264,7 @@ carryall.reinforce.sound:
 carryall.reinforce_with_sound:
 	Inherits: carryall.reinforce
 	-Carryall:
+	-Cloak:
 	Cargo:
 		Types: Infantry, Vehicle
 		PassengerFacing: 512
@@ -1559,7 +1563,8 @@ engineer:
 		ValidRelationships: Enemy, Neutral, Ally
 	Captures@husks:
 		CaptureTypes: husk
-		ValidRelationships: Enemy, Neutral, Ally
+	Infiltrates:
+		ValidRelationships: Ally
 	-Armament@chaos_bomb_influence:
 	-Armament:
 
@@ -1570,7 +1575,7 @@ grenadier:
 		Priority: 50
 		RequiresCondition: ignore-creeps
 	Buildable:
-		Prerequisites: ~barracks.atreides, upgrade.barracks, high_tech_factory, ~techlevel.medium
+		Prerequisites: ~barracks.atreides, upgrade.barracks, outpost, ~techlevel.medium
 		BuildDuration: 98
 	Valued:
 		Cost: 80
@@ -1769,10 +1774,6 @@ fremen:
 		ScanRadius: 7
 		InitialStance: HoldFire
 		InitialStanceAI: ReturnFire
-	Armament@SECONDARY:
-		Weapon: Fremen_L
-		Name: secondary
-		RequiresCondition: chaos_bomb
 	Armament@chaos_bomb_influence:
 		Weapon: Fremen_S
 	Armament@chaos_bomb_influence2:
@@ -1893,10 +1894,10 @@ assassin:
 		Range: 5c0
 	Armament:
 		Weapon: SniperRifle
-		FireDelay: 2
+		FireDelay: 1
 	Armament@chaos_bomb_influence:
 		Weapon: SniperRifle
-		FireDelay: 2
+		FireDelay: 1
 	AttackFrontal:
 		FacingTolerance: 0
 	WithInfantryBody:
@@ -2100,7 +2101,7 @@ bison_tank:
 	Armor:
 		Type: heavy
 	Mobile:
-		Speed: 58
+		Speed: 52
 		TurnSpeed: 20
 		Locomotor: tank
 		PauseOnCondition: notmobile
@@ -2389,13 +2390,13 @@ crawler.light:
 		BuildPaletteOrder: 60
 		Description: Light transporter \n Can transport 5 infantry units. \n Can hide while idle \n Can crush infantry
 	Health:
-		HP: 14000
+		HP: 11000
 	Valued:
 		Cost: 400
 	Tooltip:
 		Name: Crawler
 	Armor:
-		Type: light
+		Type: heavy
 	Mobile:
 		Speed: 100
 		Locomotor: tank
@@ -2436,7 +2437,7 @@ bombardment_tank:
 	Buildable:
 		Queue: Armor
 		Prerequisites: ~heavy.corrino, upgrade.heavy, research_centre, ~factions.subfaction_allowed
-		BuildDuration: 650
+		BuildDuration: 670
 		BuildDurationModifier: 100
 		BuildPaletteOrder: 105
 		Description: Heavy missile barrage affecting large area. \n Strong VS Infantry, Light armor \n Weak VS moving targets, tanks \n Ability: can fire 4 missile before reload \n High inaccuraty
@@ -2449,7 +2450,7 @@ bombardment_tank:
 	Armor:
 		Type: light
 	Mobile:
-		Speed: 47
+		Speed: 42
 		TurnSpeed: 17
 	RevealsShroud:
 		Range: 5c512
@@ -2467,7 +2468,7 @@ bombardment_tank:
 		AmmoCondition: ammo
 	ReloadAmmoPool:
 		Count: 1
-		Delay: 80
+		Delay: 75
 		ResetOnFire: true
 	Armament:
 		Weapon: clusterMissile
@@ -2499,7 +2500,7 @@ flamer:
 		RequiresCondition: bot-owned
 	Buildable:
 		Queue: Armor
-		BuildDuration: 550
+		BuildDuration: 600
 		BuildDurationModifier: 100
 		BuildPaletteOrder: 106
 		Prerequisites: ~heavy.smuggler, research_centre, upgrade.heavy
@@ -2615,6 +2616,7 @@ frigate_choam:
 	AmbientSound:
 		SoundFiles: audio/frigate_new2.wav
 		RequiresCondition: cruising
+	-Cloak:
 	Cargo:
 		MaxWeight: 20
 	RejectsOrders:
