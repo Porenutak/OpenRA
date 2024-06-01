@@ -1236,6 +1236,12 @@ carryall.controllable:
 		Position: Top
 		ValidRelationships: Ally
 		RequiresCondition: !manual
+	WithTextDecoration@MANUAL:
+		UsePlayerColor: true
+		Text: MANUAL
+		Position: Top
+		ValidRelationships: Ally
+		RequiresCondition: manual
 
 carryall.reinforce.sound:
 	Inherits: carryall.reinforce
