@@ -203,6 +203,9 @@ namespace OpenRA.Mods.Common.Traits
 				if (IsTraitDisabled)
 					yield break;
 
+				if (IsEmpty())
+					yield return new DeployOrderTargeter("Unload", 1,
+					() => CanUnload() ? Info.UnloadCursor : Info.UnloadBlockedCursor);
 				yield return new DeployOrderTargeter("Unload", 10,
 					() => CanUnload() ? Info.UnloadCursor : Info.UnloadBlockedCursor);
 			}
