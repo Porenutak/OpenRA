@@ -467,6 +467,8 @@ refinery:
 		Prerequisites: upgrade.conyard
 	Valued:
 		Cost: 1500
+	Selectable:
+		Bounds: 2500, 2048, -256, 0
 	Health:
 		HP: 40000
 	GrantConditionOnPrerequisite@concreteON:
@@ -756,6 +758,8 @@ heavy_factory:
 		Range: 4c768
 	Power:
 		Amount: -150
+	Selectable:
+		Bounds: 2772, 2900, 300, 0
 	ProvidesPrerequisite@missile_tank:
 		Prerequisite: heavy.missile_tank
 		Factions: atreides, fremen, harkonnen, corrino, mercenary

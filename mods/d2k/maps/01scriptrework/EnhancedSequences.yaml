@@ -818,6 +818,7 @@ refinery_ruins:
 		ZOffset: -1500
 
 
+
 refinery_invert.atreidis:
 	idle:
 		Filename: EnhacedAssets.R8
@@ -860,13 +861,13 @@ refinery_invert.atreidis:
 		Filename: DATA.R16
 		Start: 4495
 		Length: 11
-		Offset: -48,96
+		Offset: -48,64
 		ZOffset: 1500
 	crumble-overlay:
 		Filename: DATA.R16
 		Start: 4505
 		Length: 12
-		Offset: -48,96
+		Offset: -48,64
 		Tick: 100
 		ZOffset: 1500
 	icon:
@@ -921,13 +922,13 @@ refinery_invert.ordos:
 		Filename: DATA.R16
 		Start: 4495
 		Length: 11
-		Offset: -48,96
+		Offset: -48,64
 		ZOffset: 1500
 	crumble-overlay:
 		Filename: DATA.R16
 		Start: 4505
 		Length: 12
-		Offset: -48,96
+		Offset: -48,64
 		Tick: 100
 		ZOffset: 1500
 	icon:
@@ -941,7 +942,6 @@ refinery_invert.ordos:
 		Offset: 13, 16
 		Tick: 100
 		BlendMode: Additive
-
 
 refinery_invert.harkonnen:
 	idle:
@@ -984,13 +984,13 @@ refinery_invert.harkonnen:
 		Filename: DATA.R16
 		Start: 4495
 		Length: 11
-		Offset: -48,96
+		Offset: -48,64
 		ZOffset: 1500
 	crumble-overlay:
 		Filename: DATA.R16
 		Start: 4505
 		Length: 12
-		Offset: -48,96
+		Offset: -48,64
 		Tick: 100
 		ZOffset: 1500
 	icon:
@@ -1004,6 +1004,8 @@ refinery_invert.harkonnen:
 		Offset: 13, 16
 		Tick: 100
 		BlendMode: Additive
+
+
 
 
 #
