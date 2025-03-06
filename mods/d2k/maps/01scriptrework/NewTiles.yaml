@@ -40,15 +40,15 @@
 		Owner: Neutral
 	HitShape:
 		UseTargetableCellsOffsets: true
-	Explodes:
+	FireWarheadsOnDeath:
 		Type: CenterPosition
 		Weapon: cliffExplode01
 		EmptyWeapon: cliffExplode01
-	ThrowsShrapnel@1:
+	FireProjectilesOnDeath@1:
 		Weapons: derbisRock01, derbisRock02, derbisRock03
 		Pieces: 0, 2
 		Range: 1c0, 4c0
-	ThrowsShrapnel@2:
+	FireProjectilesOnDeath@2:
 		Weapons: derbisRock01, derbisRock02, derbisRock03
 		Pieces: 1, 4
 		Range: 0c512, 2c0

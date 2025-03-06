@@ -42,6 +42,7 @@
 		InitialDelay: 10
 		CloakDelay: 30
 		IsPlayerPalette: true
+		CloakStyle: Alpha
 
 ^ScareEnemy:
 	ExternalCondition@scared:
@@ -398,7 +399,7 @@ harvester:
 		Speed: 40
 	RevealsShroud:
 		Range: 3c768
-	Explodes:
+	FireWarheadsOnDeath:
 		Weapon: UnitExplodeLarge
 		EmptyWeapon: UnitExplodeLarge
 	SpawnActorOnDeath:
@@ -407,30 +408,33 @@ harvester:
 		RequiresCondition: !worm_attack && harvesterEmpty
 		EffectiveOwnerFromOwner: true
 		SpawnAfterDefeat: false
-	ThrowsShrapnel@ShrapnelNotEmpty:
+	FireProjectilesOnDeath@ShrapnelNotEmpty:
 		Weapons: Debris, Debris2, Debris3, Debris4
 		Pieces: 3, 5
 		Range: 1c0, 6c0
 		RequiresCondition: !harvesterEmpty
-	ThrowsShrapnel@DeathHandClusterDebris:
+	FireProjectilesOnDeath@DeathHandClusterDebris:
 		Weapons: DeathHandClusterDebris
 		Pieces: 1, 3
 		Range: 1c0, 5c0
 		RequiresCondition: !harvesterEmpty
-	ThrowsShrapnel@ShrapnelEmpty:
+	FireProjectilesOnDeath@ShrapnelEmpty:
 		Weapons: Debris, Debris2
 		Pieces: 0, 2
 		Range: 1c0, 6c0
 		RequiresCondition: harvesterEmpty
-	ThrowsShrapnel@throwSpice:
+	FireProjectilesOnDeath@throwSpice:
 		Weapons: HarvesterSpiceExplosion
 		Pieces: 1, 4
 		Range: 1c0, 5c0
 		RequiresCondition: !harvesterEmpty
-	ThrowsShrapnel@wheel:
+	FireProjectilesOnDeath@wheel:
 		Weapons: debris_harvester_wheel01, debris_harvester_wheel02
 		Pieces: 0, 2
 		Range: 3c0, 5c0
+	StoresResources:
+		Resources: Spice
+	DockClientManager:
 
 
 trike:
@@ -558,7 +562,7 @@ quad:
 	Armament@chaos_bomb_influence:
 		Weapon: Rocket
 		LocalOffset: 128,64,64, 128,-64,64
-	Explodes:
+	FireWarheadsOnDeath:
 		Weapon: UnitExplodeSmall
 		EmptyWeapon: UnitExplodeSmall
 	SpeedMultiplier@HEAVYDAMAGE:
@@ -616,6 +620,7 @@ stealth_raider:
 		IsPlayerPalette: true
 		PauseOnCondition: cloak-force-disabled
 
+
 siege_tank:
 	Buildable:
 		Queue: Armor
@@ -664,7 +669,7 @@ siege_tank:
 		RecoilRecovery: 19
 		LocalOffset: 512,0,320
 		MuzzleSequence: muzzle
-	Explodes:
+	FireWarheadsOnDeath:
 		Weapon: UnitExplodeMed
 		EmptyWeapon: UnitExplodeMed
 	SpawnActorOnDeath:
@@ -672,11 +677,11 @@ siege_tank:
 		OwnerType: InternalName
 		EffectiveOwnerFromOwner: true
 		RequiresCondition: !worm_attack
-	ThrowsShrapnel:
+	FireProjectilesOnDeath:
 		Weapons: DerbisSiegetank, Debris3
 		Pieces: 1, 2
 		Range: 2c0, 4c0
-	ThrowsShrapnel@turret:
+	FireProjectilesOnDeath@turret:
 		Weapons: derbisSiegetank.turret
 		Pieces: 1, 1
 		Range: 0c512, 2c0
@@ -720,22 +725,22 @@ missile_tank:
 		Weapon: mtank_pri
 		LocalOffset: -128,128,171, -128,-128,171
 	-RevealOnFire:
-	ThrowsShrapnel@01:
+	FireProjectilesOnDeath@01:
 		Weapons: Debris, Debris4, Debris3
 		Pieces: 0,1
 		Range: 1c0, 3c0
 		RequiresCondition: shrapnel_01  && !worm_attack
-	ThrowsShrapnel@02:
+	FireProjectilesOnDeath@02:
 		Weapons: Debris3, Debris
 		Pieces: 1,2
 		Range: 2c0, 3c0
 		RequiresCondition: shrapnel_02  && !worm_attack
-	ThrowsShrapnel@02_02:
+	FireProjectilesOnDeath@02_02:
 		Weapons: DerbisMissile
 		Pieces: 0,2
 		Range: 3c0, 5c0
 		RequiresCondition: shrapnel_02 && !worm_attack
-	ThrowsShrapnel@03:
+	FireProjectilesOnDeath@03:
 		Weapons: DerbisMissile, Debris, Debris4, Debris3
 		Pieces: 1,3
 		Range: 4c0, 6c0
@@ -823,7 +828,7 @@ devastator:
 		Weapon: DevBullet
 		LocalOffset: 640,0,32
 		MuzzleSequence: muzzle
-	Explodes@OVERLOAD:
+	FireWarheadsOnDeath@OVERLOAD:
 		Weapon: PlasmaExplosion
 		EmptyWeapon: PlasmaExplosion
 		RequiresCondition: meltdown
@@ -853,12 +858,12 @@ devastator:
 	AmbientSound@onMeltDown:
 		SoundFiles: audio/DevastatorMeltdown01.wav
 		RequiresCondition: overload
-	ThrowsShrapnel@TrowOnMeldown:
+	FireProjectilesOnDeath@TrowOnMeldown:
 		Weapons: Debris2, DeathHandClusterDebris, Debris4, DerbisSiegetank
 		Pieces: 7, 15
 		Range: 3c512, 7c0
 		RequiresCondition: meltdown
-	ThrowsShrapnel@standart:
+	FireProjectilesOnDeath@standart:
 		Weapons: Debris, Debris3, DerbisSiegetank
 		Pieces: 1, 2
 		RequiresCondition: !meltdown
@@ -897,7 +902,7 @@ deviator:
 	Armament@chaos_bomb_influence:
 		Weapon: DeviatorMissile
 		LocalOffset: -299,0,85
-	ThrowsShrapnel:
+	FireProjectilesOnDeath:
 		Weapons: Debris4, Debris
 		Pieces: 0,2
 		Range: 0c512, 4c512
@@ -959,7 +964,7 @@ deviator:
 		RecoilRecovery: 32
 		LocalOffset: 256,0,0
 		MuzzleSequence: muzzle
-	ThrowsShrapnel:
+	FireProjectilesOnDeath:
 		Weapons: Debris, Debris3, debris_vehicle02, debris_vehicle01
 		Pieces: 0, 2
 		Range: 2c0, 4c0
@@ -990,12 +995,12 @@ combat_tank_a:
 	SpawnActorOnDeath@husk04:
 		Actor: combat_tank_a.husk04
 		RequiresCondition: Husk04 && !worm_attack
-	ThrowsShrapnel@turret:
+	FireProjectilesOnDeath@turret:
 		Weapons: debris_turret.atreides
 		Pieces: 1,1
 		Range: 0c250, 2c512
 		RequiresCondition: Husk01
-	ThrowsShrapnel@turret01:
+	FireProjectilesOnDeath@turret01:
 		Weapons: debris_turret01.atreides
 		Pieces: 1,1
 		Range: 1c0, 2c512
@@ -1033,12 +1038,12 @@ combat_tank_h:
 	SpawnActorOnDeath@husk04:
 		Actor: combat_tank_h.husk04
 		RequiresCondition: Husk04 && !worm_attack
-	ThrowsShrapnel@turret:
+	FireProjectilesOnDeath@turret:
 		Weapons: debris_turret.harkonnen
 		Pieces: 1,1
 		Range: 0c250, 2c512
 		RequiresCondition: Husk01
-	ThrowsShrapnel@turret01:
+	FireProjectilesOnDeath@turret01:
 		Weapons: debris_turret01.harkonnen
 		Pieces: 1,1
 		Range: 1c0, 2c512
@@ -1074,7 +1079,7 @@ combat_tank_o:
 	SpawnActorOnDeath@husk04:
 		Actor: combat_tank_o.husk04
 		RequiresCondition: Husk04 && !worm_attack
-	ThrowsShrapnel@turret:
+	FireProjectilesOnDeath@turret:
 		Weapons: debris_turret.ordos
 		Pieces: 1,1
 		Range: 1c0, 2c512
@@ -1111,7 +1116,7 @@ combat_tank_cheap:
 	SpawnActorOnDeath@husk04:
 		Actor: combat_tank_cheap.husk04
 		RequiresCondition: Husk04 && !worm_attack
-	ThrowsShrapnel@turret:
+	FireProjectilesOnDeath@turret:
 		Weapons: debris_turret.harkonnen
 		Pieces: 1,1
 		Range: 0c250, 2c512
@@ -1157,7 +1162,7 @@ carryall.reinforce:
 	Tooltip:
 		Name: Carryall
 	Health:
-		HP: 13000
+		HP: 15000
 	Armor:
 		Type: light
 	Cloak:
@@ -1173,15 +1178,15 @@ carryall.reinforce:
 		VTOL: true
 		IdleTurnSpeed: 5
 		IdleSpeed: 115
-	ThrowsShrapnel@derbis:
+	FireProjectilesOnDeath@derbis:
 		Weapons: Debris, Debris2, debris_vehicle01, debris_vehicle02
 		Pieces: 1, 3
 		Range: 1c0, 6c0
-	ThrowsShrapnel@derbisExplosions:
+	FireProjectilesOnDeath@derbisExplosions:
 		Weapons: DeathHandClusterDebris
 		Pieces: 1 , 3
 		Range: 1c0, 5c0
-	ThrowsShrapnel@derbisExplosions2:
+	FireProjectilesOnDeath@derbisExplosions2:
 		Weapons: DeathHandClusterDebris
 		Pieces: 0 , 2
 		Range: 1c0, 5c0
@@ -1216,8 +1221,10 @@ carryall.controllable:
 	Inherits@selectableEco: ^SelectableSupportUnit
 	Buildable:
 		Prerequisites: ~carryall.controllable
-		Description:  controllable carryall \n Use Ctrl or Alt to select \n Use RMB to pick up vehicle \n use Deploy to unload vehicle
+		Description: controllable carryall \n Use Ctrl or Alt to select \n Use RMB to pick up vehicle \n use Deploy to unload vehicle
 	-Interactable:
+	Selectable:
+		Priority: 5
 	AutoCarryall:
 		AutoCarryCondition: !manual
 		CarryCondition: loaded
@@ -1305,7 +1312,7 @@ ornithopter:
 		RequiresCondition: airborne
 	AmbientSound:
 		SoundFiles: audio/ornithopterMotor01.wav
-	ThrowsShrapnel@derbis:
+	FireProjectilesOnDeath@derbis:
 		Weapons: Debris, Debris2, debris_vehicle01
 		Pieces: 1, 3
 		Range: 0c512, 2c0
@@ -1334,7 +1341,7 @@ ornithopter.bomber:
 		RequiresCondition: airborne
 	AmmoPool:
 		Ammo: 1
-	ThrowsShrapnel@derbis:
+	FireProjectilesOnDeath@derbis:
 		Weapons: Debris, Debris2, debris_vehicle01
 		Pieces: 1, 3
 		Range: 0c512, 2c0
@@ -1599,7 +1606,7 @@ grenadier:
 		ProneOffset: 96,100,-64
 	WithInfantryBody:
 		DefaultAttackSequence: throw
-	Explodes:
+	FireWarheadsOnDeath:
 		Weapon: GrenDeath
 		EmptyWeapon: GrenDeath
 
@@ -1734,14 +1741,14 @@ saboteur:
 		IsPlayerPalette: true
 		PauseOnCondition: cloak-force-disabled
 		RequiresCondition: !SuicideAtt
-	Explodes@Selfkill:
+	FireWarheadsOnDeath@Selfkill:
 		Weapon: PlasmaSaboteur
 		EmptyWeapon: PlasmaSaboteur
 		RequiresCondition: kamikadze
 	GrantConditionOnDeploy:
 		DeployedCondition: SuicideAtt
 		PauseOnCondition: SuicideAtt
-	-GrantConditionOnDeployWithCharge:
+	-GrantChargedConditionOnToggle:
 	KillsSelf@SuicideKillCount:
 		Delay: 50
 		RequiresCondition: SuicideAtt
@@ -1968,8 +1975,8 @@ officer:
 		SoundFiles: audio/ironcur9.aud
 		RequiresCondition: deployed
 		Interval: 1000
-	GrantConditionOnDeployWithCharge:
-		DeployedCondition: deployed
+	GrantChargedConditionOnToggle:
+		ActivatedCondition: deployed
 		CanCancelCondition: true
 		ChargeDuration: 1250
 		ChargeThreshhold: 1250
@@ -2121,7 +2128,7 @@ bison_tank:
 		TurnSpeed: 20
 		RealignDelay: 0
 	AttackTurreted:
-	Explodes:
+	FireWarheadsOnDeath:
 		Weapon: UnitExplodeMed
 		EmptyWeapon: UnitExplodeMed
 	WithMuzzleOverlay:
@@ -2221,11 +2228,11 @@ mp_sandworm:
 	KillsSelf:
 		Delay: 1700
 		GrantsCondition: dispose
-	Explodes@1:
+	FireWarheadsOnDeath@1:
 		Weapon: worm_disapier
 		EmptyWeapon: worm_disapier
 		RequiresCondition: dispose
-	Explodes@2:
+	FireWarheadsOnDeath@2:
 		Weapon: worm_explode
 		EmptyWeapon: worm_explode
 		RequiresCondition: !dispose
@@ -2416,7 +2423,7 @@ crawler.light:
 		MaxWeight: 5
 		LoadingCondition: notmobile
 		LoadedCondition: full
-	Explodes:
+	FireWarheadsOnDeath:
 		Weapon: UnitExplodeSmall
 		EmptyWeapon: UnitExplodeSmall
 	WithCargoPipsDecoration:
@@ -2464,7 +2471,7 @@ bombardment_tank:
 	AttackTurreted:
 	WithMuzzleOverlay:
 	WithSpriteTurret:
-	Explodes:
+	FireWarheadsOnDeath:
 		Weapon: UnitExplodeMed
 		EmptyWeapon: UnitExplodeMed
 	AmmoPool:
@@ -2525,27 +2532,27 @@ flamer:
 		FacingTolerance: 0
 	AutoTarget:
 		ScanRadius: 6
-	Explodes:
+	FireWarheadsOnDeath:
 		Weapon: UnitExplodeMed
 		EmptyWeapon: UnitExplodeMed
 		DeathTypes: BulletDeath
-	Explodes@big:
+	FireWarheadsOnDeath@big:
 		Weapon: flamer_explosion_big
 		EmptyWeapon: flamer_explosion_big
 		DeathTypes: ExplosionDeath, SoundDeath, FireDeath, SmallExplosionDeath
-	Explodes@small1:
+	FireWarheadsOnDeath@small1:
 		Offset: 500,400,0
 		Chance: 50
 		Weapon: flamer_explosion_small
 		EmptyWeapon: flamer_explosion_small
 		DeathTypes: ExplosionDeath, SoundDeath, FireDeath, SmallExplosionDeath
-	Explodes@small2:
+	FireWarheadsOnDeath@small2:
 		Offset: -800,-300,0
 		Chance: 50
 		Weapon: flamer_explosion_small02
 		EmptyWeapon: flamer_explosion_small02
 		DeathTypes: ExplosionDeath, SoundDeath, FireDeath, SmallExplosionDeath
-	Explodes@small3:
+	FireWarheadsOnDeath@small3:
 		Offset: 200,900,0
 		Chance: 50
 		Weapon: flamer_explosion_small03

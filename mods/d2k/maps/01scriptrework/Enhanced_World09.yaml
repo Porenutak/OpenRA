@@ -123,7 +123,7 @@ World:
 		DisplayOrder: 30
 	ScriptLobbyDropdown@factionoptions:
 		ID: fation_mode
-		Label:  Playable Factions
+		Label: Playable Factions
 		Description: 1. Just vanilla D2k.  2. SUB+Main: Choose between Main faction or one of its sub-factions.  3. Merged: Subfaction tech tree is merged into your tech tree.
 		Default: 0
 		Values:
@@ -228,7 +228,7 @@ Player:
 	LobbyPrerequisiteCheckbox@ControlableCheckBox:
 		ID: ControlableCarryalls
 		Label: Controlable carryalls
-		Description: Enable manual control of carryalls and unit pick up
+		Description: When enabled you can controll carryalls.
 		Enabled: true
 		Visible: true
 		DisplayOrder: 7

@@ -1,7 +1,3 @@
-spicebloom:
-	SpiceBloom:
-		Pieces: 9, 9
-
 ^Husk:
 	Health:
 		HP: 14000
@@ -18,7 +14,7 @@ spicebloom:
 	Targetable:
 		TargetTypes: Ground, Vehicle
 		RequiresForceFire: true
-	Explodes:
+	FireWarheadsOnDeath:
 		Weapon: huskExplode01
 		EmptyWeapon: huskExplode01
 		Chance: 70
@@ -113,8 +109,8 @@ dummy.thump_spawmer:
 
 dummy.kill_self:
 	Inherits: dummyShrapnelThrower_carryall
-	-ThrowsShrapnel@derbisshort:
-	-ThrowsShrapnel@derbislong:
+	-FireProjectilesOnDeath@derbisshort:
+	-FireProjectilesOnDeath@derbislong:
 
 
 ^LivingDummy:
@@ -238,7 +234,7 @@ dummy.hide_units:
 	KillsSelf:
 		Delay: 1
 		GrantsCondition: hideActivator
-	Explodes:
+	FireWarheadsOnDeath:
 		Weapon: hideWeapon
 		EmptyWeapon: hideWeapon
 		RequiresCondition: hideActivator
@@ -288,11 +284,11 @@ dummyShrapnelThrower_carryall:
 			Radius: 16
 	Health:
 		HP: 1
-	ThrowsShrapnel@derbisshort:
+	FireProjectilesOnDeath@derbisshort:
 		Weapons: Debris, Debris2, debris_vehicle01
 		Pieces: 1, 3
 		Range: 1c0, 3c0
-	ThrowsShrapnel@derbislong:
+	FireProjectilesOnDeath@derbislong:
 		Weapons: Debris, Debris2, Debris3, Debris4, DeathHandClusterDebris
 		Pieces: 2, 4
 		Range: 4c0, 7c0
@@ -306,7 +302,7 @@ dummyShrapnelThrower:
 			Radius: 16
 	Health:
 		HP: 1
-	ThrowsShrapnel@derbis:
+	FireProjectilesOnDeath@derbis:
 		Weapons: Debris, Debris2, debris_vehicle01, debris_vehicle02, DeathHandClusterDebris
 		Pieces: 3, 7
 		Range: 1c0, 6c0
@@ -315,7 +311,7 @@ dummycrazybombleaks:
 	Inherits: ^Dummy
 	KillsSelf:
 		Delay: 5
-	Explodes:
+	FireWarheadsOnDeath:
 		Weapon: chaosbomb_from_husk
 		EmptyWeapon: chaosbomb_from_husk
 	HitShape:
@@ -492,7 +488,7 @@ carryall.husk_on_land:
 		Image: carryall.husk_on_land
 	Tooltip:
 		Name: Carryall husk
-	ThrowsShrapnel:
+	FireProjectilesOnDeath:
 		Weapons: Debris3, Debris4
 		Pieces: 1, 4
 		Range: 1c0, 3c0
@@ -980,7 +976,7 @@ deviator.husk:
 	Inherits: ^Dummy
 	ExternalCondition@huskCheck:
 		Condition: devation_husk_still_alive
-	Explodes:
+	FireWarheadsOnDeath:
 		Weapon: DeviatorGas
 		EmptyWeapon: DeviatorGas
 		RequiresCondition: devation_husk_still_alive

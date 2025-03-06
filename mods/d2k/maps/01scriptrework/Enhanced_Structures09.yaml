@@ -8,26 +8,26 @@
 		Multiplier: 95
 	GrantRandomCondition@randomFX:
 		Conditions: explode02, explode03
-	Explodes@02:
+	FireWarheadsOnDeath@02:
 		Type: CenterPosition
 		Weapon: buildingExplosions02
 		EmptyWeapon: buildingExplosions02
 		Chance: 50
 		Offset: 1,0,1
 		RequiresCondition: explode02 && !being-demolished
-	Explodes@03:
+	FireWarheadsOnDeath@03:
 		Type: CenterPosition
 		Weapon: buildingExplosions03
 		EmptyWeapon: buildingExplosions03
 		Chance: 50
 		Offset: 1,2,1
 		RequiresCondition: (explode02 || explode03) && !being-demolished
-	Explodes@sabotuerdemolition:
+	FireWarheadsOnDeath@sabotuerdemolition:
 		RequiresCondition: being-demolished
 		Type: CenterPosition
 		Weapon: buildingBigExplosion
 		EmptyWeapon: buildingBigExplosion
-	ThrowsShrapnel:
+	FireProjectilesOnDeath:
 		Weapons: derbisRock01, derbisRock02, derbisRock03, Debris4
 		Pieces: 2, 5
 		Range: 1c512, 4c0
@@ -175,21 +175,21 @@ construction_yard:
 		Range: 5c768
 	Power:
 		Amount: 50
-	ThrowsShrapnel:
+	FireProjectilesOnDeath:
 		Weapons: Debris, Debris2
 		Pieces: 1, 3
 		Range: 1c0, 2c0
-	ThrowsShrapnel@longer:
+	FireProjectilesOnDeath@longer:
 		Weapons: Debris, Debris2, Debris3, Debris4
 		Pieces: 5, 7
 		Range: 3c0, 6c0
-	ThrowsShrapnel@longest:
+	FireProjectilesOnDeath@longest:
 		Weapons: Debris4, DerbisSiegetank
 		Pieces: 0, 3
 		Range: 6c0, 10c0
-	Explodes@02:
+	FireWarheadsOnDeath@02:
 		RequiresCondition: explode02
-	Explodes@03:
+	FireWarheadsOnDeath@03:
 		RequiresCondition: explode03
 	Tooltip:
 		Name: Conyard
@@ -413,7 +413,7 @@ barracks:
 		Amount: -50
 	GrantConditionOnProduction@ClusterdebrisExplosion:
 		Condition: producing
-	ThrowsShrapnel@explosiveDerbis:
+	FireProjectilesOnDeath@explosiveDerbis:
 		Weapons: DeathHandClusterDebris
 		Pieces: 0, 1
 		Range: 1c0, 2c0
@@ -482,7 +482,7 @@ refinery:
 		RequiresCondition: !ArmorUpgrade && concrete_on
 	RevealsShroud:
 		Range: 3c768
-	StoresResources:
+	StoresPlayerResources:
 		Capacity: 2000
 	FreeActorWithDelivery:
 		Actor: harvester
@@ -496,13 +496,13 @@ refinery:
 		SellSounds: BUILD1.WAV
 	Power:
 		Amount: -75
-	Explodes@big04:
+	FireWarheadsOnDeath@big04:
 		Type: CenterPosition
 		Weapon: buildingExplosions04_big
 		EmptyWeapon: buildingExplosions04_big
 		Chance: 100
 		Offset: 2,2,1
-	ThrowsShrapnel:
+	FireProjectilesOnDeath:
 		Weapons: Debris, Debris2, Debris3, Debris4, HarvesterSpiceExplosion
 		Pieces: 7, 15
 		Range: 2c0, 10c0
@@ -601,6 +601,9 @@ refinery_inverted:
 		Prerequisite: refinery
 	FreeActorWithDelivery:
 		DeliveryOffset: 0,0
+	DockHost:
+		Type: Unload
+		DockOffset: -1024,-1536,0
 
 silo:
 	Buildable:
@@ -613,11 +616,11 @@ silo:
 		Type: building
 	RevealsShroud:
 		Range: 2c768
-	StoresResources:
+	StoresPlayerResources:
 		Capacity: 2000
 	Power:
 		Amount: -10
-	ThrowsShrapnel:
+	FireProjectilesOnDeath:
 		Weapons: Debris, Debris2, Debris3, Debris4
 		Pieces: 3, 5
 		Range: 2c0, 5c0
@@ -669,7 +672,7 @@ light_factory:
 		Range: 5c768
 	Power:
 		Amount: -100
-	ThrowsShrapnel:
+	FireProjectilesOnDeath:
 		Weapons: Debris2, derbisRock01, Debris4
 		Pieces: 5, 7
 		Range: 0c512, 3c0
@@ -812,15 +815,15 @@ heavy_factory:
 		Condition: subfaction_mode
 	GrantConditionOnProduction@debrisExplosion:
 		Condition: producing
-	ThrowsShrapnel:
+	FireProjectilesOnDeath:
 		Weapons: Debris, Debris2, Debris3, Debris4
 		Pieces: 10, 20
 		Range: 1c0, 5c0
-	ThrowsShrapnel@explosiveDerbis:
+	FireProjectilesOnDeath@explosiveDerbis:
 		Weapons: DeathHandClusterDebris
 		Pieces: 0, 1
 		Range: 1c0, 3c0
-	ThrowsShrapnel@explosiveDerbiswhenproducing:
+	FireProjectilesOnDeath@explosiveDerbiswhenproducing:
 		Weapons: DeathHandClusterDebris
 		Pieces: 1, 2
 		Range: 1c0, 5c0
@@ -905,6 +908,7 @@ outpost:
 		DisplayRadarPing: true
 		OrderName: SpawnActorPowerInfoOrder.jammer
 		SupportPowerPaletteOrder: 100
+		BlockedCursor: move-blocked
 	SpawnActorPower@hideunits:
 		EffectImage: carryall.husk_on_land
 		EffectSequence:
@@ -919,6 +923,7 @@ outpost:
 		RequiresCondition: fremen
 		OrderName: SpawnActorPowerInfoOrder.hideunits
 		SupportPowerPaletteOrder: 110
+		BlockedCursor: move-blocked
 	GrantConditionOnPrerequisite@frementech:
 		Condition: frementech
 		Prerequisites: merged.fremen
@@ -1006,7 +1011,7 @@ starport:
 		RequiresCondition: !smuggler && !mercenary
 	Power:
 		Amount: -150
-	-Explodes@02:
+	-FireWarheadsOnDeath@02:
 	ExternalCondition@lights:
 		Condition: frigate_proximity_influence
 	WithIdleOverlay@LIGHTS:
@@ -1042,7 +1047,7 @@ starport:
 	GrantConditionOnFaction@smuggler:
 		Condition: smuggler
 		Factions: smuggler
-	Explodes@03:
+	FireWarheadsOnDeath@03:
 		Type: CenterPosition
 		Weapon: buildingExplosions05
 		EmptyWeapon: buildingExplosions05
@@ -1223,8 +1228,8 @@ repair_pad:
 		CancelActivity: true
 	Power:
 		Amount: -50
-	-Explodes@02:
-	Explodes@03:
+	-FireWarheadsOnDeath@02:
+	FireWarheadsOnDeath@03:
 		Type: CenterPosition
 		Weapon: buildingExplosions05
 		EmptyWeapon: buildingExplosions05
@@ -1336,6 +1341,7 @@ high_tech_factory:
 		Actor: waypoint.airtstrike_o
 		LifeTime: -1
 		DisplayRadarPing: true
+		BlockedCursor: move-blocked
 	SpawnActorPower@BasicReinforce:
 		EffectImage: carryall.husk_on_land
 		EffectSequence:
@@ -1351,6 +1357,7 @@ high_tech_factory:
 		DisplayBeacon: True
 		OrderName: ordos_reinforcements
 		DisplayRadarPing: true
+		BlockedCursor: move-blocked
 	SpawnActorPower@EnhancedAirAtreides:
 		EffectImage: carryall.husk_on_land
 		EffectSequence:
@@ -1367,6 +1374,7 @@ high_tech_factory:
 		DisplayRadarPing: true
 		OrderName: Airstrike_atreidis.multipass
 		RequiresCondition: atreides
+		BlockedCursor: move-blocked
 	SpawnActorPower@enhancedAirHarkonnen:
 		EffectImage: frigate.harkonnen
 		EffectSequence:
@@ -1383,6 +1391,7 @@ high_tech_factory:
 		DisplayBeacon: True
 		OrderName: harkonnen_reinforcements
 		RequiresCondition: harkonnen || corrino
+		BlockedCursor: move-blocked
 	ProduceActorPower@saboteur:
 		Name: Recruit Saboteur
 		Description: Sneaky infantry, pernamently cloak\n Can be detected by Outpost: 6 cell, Turrets: 3 cells, infantry: 2 cells\n  Special Ability: Destroy buildings \n selfkill ability: mass blast damage everthing in 6 cell Radius
@@ -1409,6 +1418,7 @@ high_tech_factory:
 		SupportPowerPaletteOrder: 90
 		OrderName: SpawnActorPowerInfoOrder.thumper
 		RequiresCondition: invocate_worm
+		BlockedCursor: move-blocked
 	ProvidesPrerequisite@enableupgradeStandard_enhancedAir:
 		Prerequisite: hightech.enableupgrade
 		Factions: atreides, ordos, harkonnen, corrino
@@ -2042,6 +2052,7 @@ palace.corrino:
 		DisplayBeacon: True
 		DisplayRadarPing: true
 		OrderName: corrino_reinforcements
+		BlockedCursor: move-blocked
 	Production@Saudarkar:
 		Produces: Saudarkar
 	Armament:
@@ -2259,9 +2270,9 @@ upgrade.hightech:
 
 sietch:
 	-GrantRandomCondition@randomFX:
-	-Explodes@02:
-	-Explodes@03:
-	-Explodes@sabotuerdemolition:
+	-FireWarheadsOnDeath@02:
+	-FireWarheadsOnDeath@03:
+	-FireWarheadsOnDeath@sabotuerdemolition:
 	-Demolishable:
 	Demolishable@testfix:
 		Condition: being-demolished
@@ -2309,6 +2320,7 @@ merged.corrino_palace:
 		DisplayBeacon: True
 		OrderName: corrino.true_sayer
 		DisplayRadarPing: true
+		BlockedCursor: move-blocked
 
 merged.starport:
 	Inherits: starport
