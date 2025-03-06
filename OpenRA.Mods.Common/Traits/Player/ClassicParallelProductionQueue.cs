@@ -192,6 +192,12 @@ namespace OpenRA.Mods.Common.Traits
 			base.BeginProduction(item, false);
 		}
 
+		protected override void PauseProduction(string itemName, bool paused)
+		{
+			foreach (var item in Queue.Where(a => a.Item == itemName))
+				item.Pause(paused);
+		}
+
 		public override int GetBuildTime(ActorInfo unit, BuildableInfo bi)
 		{
 			if (developerMode.FastBuild)
@@ -219,7 +225,9 @@ namespace OpenRA.Mods.Common.Traits
 				.GroupBy(i => i.Item)
 				.ToList()
 				.Count;
-			return item.RemainingTimeActual * parallelBuilds * info.ParallelPenaltyBuildTimeMultipliers[Math.Min(parallelBuilds - 1, info.ParallelPenaltyBuildTimeMultipliers.Length - 1)] / 100;
+			return item.RemainingTimeActual *
+				parallelBuilds *
+				info.ParallelPenaltyBuildTimeMultipliers[Math.Min(parallelBuilds - 1, info.ParallelPenaltyBuildTimeMultipliers.Length - 1)] / 100;
 		}
 	}
 }

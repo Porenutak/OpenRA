@@ -16,7 +16,6 @@ using OpenRA.Primitives;
 
 namespace OpenRA.Graphics
 {
-	[Serializable]
 	public class SheetOverflowException : Exception
 	{
 		public SheetOverflowException(string message)
@@ -130,8 +129,13 @@ namespace OpenRA.Graphics
 				var next = NextChannel(CurrentChannel);
 				if (next == null)
 				{
-					Current.ReleaseBuffer();
+					var previous = Current;
 					Current = allocateSheet();
+
+					// Reuse the backing buffer between sheets where possible.
+					// This avoids allocating additional buffers which the GC must clean up.
+					previous.ReleaseBufferAndTryTransferTo(Current);
+
 					sheets.Add(Current);
 					CurrentChannel = Type == SheetType.Indexed ? TextureChannel.Red : TextureChannel.RGBA;
 				}
@@ -142,7 +146,9 @@ namespace OpenRA.Graphics
 				p = int2.Zero;
 			}
 
-			var rect = new Sprite(Current, new Rectangle(p.X + margin, p.Y + margin, imageSize.Width, imageSize.Height), zRamp, spriteOffset, CurrentChannel, BlendMode.Alpha, scale);
+			var rect = new Sprite(
+				Current, new Rectangle(p.X + margin, p.Y + margin, imageSize.Width, imageSize.Height),
+				zRamp, spriteOffset, CurrentChannel, BlendMode.Alpha, scale);
 			p += new int2(imageSize.Width + margin, 0);
 
 			return rect;

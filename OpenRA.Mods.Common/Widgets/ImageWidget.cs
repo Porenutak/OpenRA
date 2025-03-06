@@ -11,6 +11,7 @@
 
 using System;
 using OpenRA.Graphics;
+using OpenRA.Primitives;
 using OpenRA.Widgets;
 
 namespace OpenRA.Mods.Common.Widgets
@@ -27,7 +28,7 @@ namespace OpenRA.Mods.Common.Widgets
 		public Func<string> GetImageCollection;
 		public Func<Sprite> GetSprite;
 
-		[TranslationReference]
+		[FluentReference]
 		public string TooltipText;
 
 		readonly Lazy<TooltipContainerWidget> tooltipContainer;
@@ -40,7 +41,7 @@ namespace OpenRA.Mods.Common.Widgets
 		{
 			GetImageName = () => ImageName;
 			GetImageCollection = () => ImageCollection;
-			var tooltipCache = new CachedTransform<string, string>(s => !string.IsNullOrEmpty(s) ? TranslationProvider.GetString(s) : "");
+			var tooltipCache = new CachedTransform<string, string>(s => !string.IsNullOrEmpty(s) ? FluentProvider.GetMessage(s) : "");
 			GetTooltipText = () => tooltipCache.Update(TooltipText);
 			tooltipContainer = Exts.Lazy(() =>
 				Ui.Root.Get<TooltipContainerWidget>(TooltipContainer));
@@ -66,7 +67,7 @@ namespace OpenRA.Mods.Common.Widgets
 			GetSprite = () => getImageCache.Update((GetImageCollection(), GetImageName()));
 		}
 
-		public override Widget Clone() { return new ImageWidget(this); }
+		public override ImageWidget Clone() { return new ImageWidget(this); }
 
 		public override void Draw()
 		{

@@ -13,6 +13,7 @@ using System.Collections.Generic;
 using System.Linq;
 using OpenRA.Activities;
 using OpenRA.Mods.Common.Traits;
+using OpenRA.Primitives;
 using OpenRA.Traits;
 
 namespace OpenRA.Mods.Common.Activities
@@ -23,13 +24,48 @@ namespace OpenRA.Mods.Common.Activities
 		Actor dockHostActor;
 		IDockHost dockHost;
 		readonly INotifyDockClientMoving[] notifyDockClientMoving;
+		readonly Color? dockLineColor;
+		readonly MoveCooldownHelper moveCooldownHelper;
+		readonly bool forceEnter;
+		readonly bool ignoreOccupancy;
 
-		public MoveToDock(Actor self, Actor dockHostActor = null, IDockHost dockHost = null)
+		bool dockingCancelled;
+
+		public MoveToDock(Actor self, Actor dockHostActor = null, IDockHost dockHost = null,
+			bool forceEnter = false, bool ignoreOccupancy = false, Color? dockLineColor = null)
 		{
 			dockClient = self.Trait<DockClientManager>();
 			this.dockHostActor = dockHostActor;
 			this.dockHost = dockHost;
+			this.forceEnter = forceEnter;
+			this.ignoreOccupancy = ignoreOccupancy;
+			this.dockLineColor = dockLineColor;
 			notifyDockClientMoving = self.TraitsImplementing<INotifyDockClientMoving>().ToArray();
+			moveCooldownHelper = new MoveCooldownHelper(self.World, self.Trait<IMove>() as Mobile) { RetryIfDestinationBlocked = true };
+		}
+
+		protected override void OnFirstRun(Actor self)
+		{
+			if (dockClient.IsTraitDisabled)
+				return;
+
+			// We were ordered to dock to an actor but host was unspecified.
+			if (dockHostActor != null && dockHost == null)
+			{
+				if (dockHostActor.IsDead || !dockHostActor.IsInWorld)
+				{
+					dockingCancelled = true;
+					return;
+				}
+
+				var link = dockClient.AvailableDockHosts(dockHostActor, default, forceEnter, ignoreOccupancy)
+					.ClosestDock(self, dockClient);
+
+				if (link.HasValue)
+					dockHost = link.Value.Trait;
+				else
+					dockingCancelled = true;
+			}
 		}
 
 		public override bool Tick(Actor self)
@@ -37,7 +73,7 @@ namespace OpenRA.Mods.Common.Activities
 			if (IsCanceling)
 				return true;
 
-			if (dockClient.IsTraitDisabled)
+			if (dockingCancelled || dockClient.IsTraitDisabled)
 			{
 				Cancel(self, true);
 				return true;
@@ -60,9 +96,13 @@ namespace OpenRA.Mods.Common.Activities
 				}
 			}
 
+			var result = moveCooldownHelper.Tick(false);
+			if (result != null)
+				return result.Value;
+
 			if (dockClient.ReserveHost(dockHostActor, dockHost))
 			{
-				if (dockHost.QueueMoveActivity(this, dockHostActor, self, dockClient))
+				if (dockHost.QueueMoveActivity(this, dockHostActor, self, dockClient, moveCooldownHelper))
 				{
 					foreach (var ndcm in notifyDockClientMoving)
 						ndcm.MovingToDock(self, dockHostActor, dockHost);
@@ -75,7 +115,7 @@ namespace OpenRA.Mods.Common.Activities
 			}
 			else
 			{
-				// The dock explicitely chosen by the user is currently occupied. Wait and check again.
+				// The dock explicitly chosen by the user is currently occupied. Wait and check again.
 				QueueChild(new Wait(dockClient.Info.SearchForDockDelay));
 				return false;
 			}
@@ -92,12 +132,15 @@ namespace OpenRA.Mods.Common.Activities
 
 		public override IEnumerable<TargetLineNode> TargetLineNodes(Actor self)
 		{
+			if (!dockLineColor.HasValue)
+				yield break;
+
 			if (dockHostActor != null)
-				yield return new TargetLineNode(Target.FromActor(dockHostActor), dockClient.DockLineColor);
+				yield return new TargetLineNode(Target.FromActor(dockHostActor), dockLineColor.Value);
 			else
 			{
 				if (dockClient.ReservedHostActor != null)
-					yield return new TargetLineNode(Target.FromActor(dockClient.ReservedHostActor), dockClient.DockLineColor);
+					yield return new TargetLineNode(Target.FromActor(dockClient.ReservedHostActor), dockLineColor.Value);
 			}
 		}
 	}

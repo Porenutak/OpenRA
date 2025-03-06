@@ -45,7 +45,7 @@ namespace OpenRA.Mods.Common.Traits
 		[Desc("Speech notification to play when the player does not have any funds.")]
 		public readonly string InsufficientFundsNotification = null;
 
-		[TranslationReference(optional: true)]
+		[FluentReference(optional: true)]
 		[Desc("Text notification to display when the player does not have any funds.")]
 		public readonly string InsufficientFundsTextNotification = null;
 
@@ -66,7 +66,8 @@ namespace OpenRA.Mods.Common.Traits
 			var startingCash = SelectableCash.ToDictionary(c => c.ToStringInvariant(), c => "$" + c.ToString(NumberFormatInfo.CurrentInfo));
 
 			if (startingCash.Count > 0)
-				yield return new LobbyOption(map, "startingcash", DefaultCashDropdownLabel, DefaultCashDropdownDescription, DefaultCashDropdownVisible, DefaultCashDropdownDisplayOrder,
+				yield return new LobbyOption(map, "startingcash",
+					DefaultCashDropdownLabel, DefaultCashDropdownDescription, DefaultCashDropdownVisible, DefaultCashDropdownDisplayOrder,
 					startingCash, DefaultCash.ToStringInvariant(), DefaultCashDropdownLocked);
 		}
 

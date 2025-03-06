@@ -87,8 +87,6 @@ namespace OpenRA
 			if (!modData.Manifest.Contains<MapGrid>())
 				return;
 
-			var mapGrid = modData.Manifest.Get<MapGrid>();
-
 			// Enumerate map directories
 			foreach (var kv in modData.Manifest.MapFolders)
 			{
@@ -120,27 +118,29 @@ namespace OpenRA
 				}
 
 				mapLocations.Add(package, classification);
-				mapDirectoryTrackers.Add(new MapDirectoryTracker(mapGrid, package, classification));
+				mapDirectoryTrackers.Add(new MapDirectoryTracker(package, classification));
 			}
 
 			// PERF: Load the mod YAML once outside the loop, and reuse it when resolving each maps custom YAML.
 			var modDataRules = modData.GetRulesYaml();
+			var gridType = modData.Manifest.Get<MapGrid>().Type;
 			foreach (var kv in MapLocations)
 			{
 				foreach (var map in kv.Key.Contents)
-					LoadMapInternal(map, kv.Key, kv.Value, mapGrid, null, modDataRules);
+					LoadMapInternal(map, kv.Key, kv.Value, null, gridType, modDataRules);
 			}
 
 			// We only want to track maps in runtime, not at loadtime
 			LastModifiedMap = null;
 		}
 
-		public void LoadMap(string map, IReadOnlyPackage package, MapClassification classification, MapGrid mapGrid, string oldMap)
+		public void LoadMap(string map, IReadOnlyPackage package, MapClassification classification, string oldMap)
 		{
-			LoadMapInternal(map, package, classification, mapGrid, oldMap, null);
+			LoadMapInternal(map, package, classification, oldMap);
 		}
 
-		void LoadMapInternal(string map, IReadOnlyPackage package, MapClassification classification, MapGrid mapGrid, string oldMap, IEnumerable<List<MiniYamlNode>> modDataRules)
+		void LoadMapInternal(string map, IReadOnlyPackage package, MapClassification classification, string oldMap,
+			MapGridType? gridType = null, IEnumerable<List<MiniYamlNode>> modDataRules = null)
 		{
 			IReadOnlyPackage mapPackage = null;
 			try
@@ -151,10 +151,8 @@ namespace OpenRA
 					if (mapPackage != null)
 					{
 						var uid = Map.ComputeUID(mapPackage);
-						previews[uid].UpdateFromMap(mapPackage, package, classification, modData.Manifest.MapCompatibility, mapGrid.Type, modDataRules);
-
-						// Freeing the package to save memory if there is a lot of Maps
-						previews[uid].DisposePackage();
+						previews[uid].UpdateFromMapWithoutOwningPackage(mapPackage, package, classification, gridType, modDataRules);
+						mapPackage.Dispose();
 
 						if (oldMap != uid)
 						{
@@ -226,7 +224,8 @@ namespace OpenRA
 						yield return mapPackage;
 		}
 
-		public void QueryRemoteMapDetails(string repositoryUrl, IEnumerable<string> uids, Action<MapPreview> mapDetailsReceived = null, Action<MapPreview> mapQueryFailed = null)
+		public void QueryRemoteMapDetails(string repositoryUrl, IEnumerable<string> uids,
+			Action<MapPreview> mapDetailsReceived = null, Action<MapPreview> mapQueryFailed = null)
 		{
 			var queryUids = uids.Distinct()
 				.Where(uid => uid != null)
@@ -255,7 +254,7 @@ namespace OpenRA
 
 						var yaml = MiniYaml.FromStream(result, url, stringPool: stringPool);
 						foreach (var kv in yaml)
-							previews[kv.Key].UpdateRemoteSearch(MapStatus.DownloadAvailable, kv.Value, modData.Manifest.MapCompatibility, mapDetailsReceived);
+							previews[kv.Key].UpdateRemoteSearch(MapStatus.DownloadAvailable, kv.Value, mapDetailsReceived);
 
 						foreach (var uid in batchUids)
 						{
@@ -410,10 +409,16 @@ namespace OpenRA
 		{
 			UpdateMaps();
 			var map = string.IsNullOrEmpty(initialUid) ? null : previews[initialUid];
-			if (map == null || map.Status != MapStatus.Available || !map.Visibility.HasFlag(MapVisibility.Lobby) || (map.Class != MapClassification.System && map.Class != MapClassification.User))
+			if (map == null ||
+				map.Status != MapStatus.Available ||
+				!map.Visibility.HasFlag(MapVisibility.Lobby) ||
+				(map.Class != MapClassification.System && map.Class != MapClassification.User))
 			{
 				var selected = previews.Values.Where(IsSuitableInitialMap).RandomOrDefault(random) ??
-					previews.Values.FirstOrDefault(m => m.Status == MapStatus.Available && m.Visibility.HasFlag(MapVisibility.Lobby) && (m.Class == MapClassification.System || m.Class == MapClassification.User));
+					previews.Values.FirstOrDefault(m =>
+					m.Status == MapStatus.Available &&
+					m.Visibility.HasFlag(MapVisibility.Lobby) &&
+					(m.Class == MapClassification.System || m.Class == MapClassification.User));
 				return selected == null ? string.Empty : selected.Uid;
 			}
 

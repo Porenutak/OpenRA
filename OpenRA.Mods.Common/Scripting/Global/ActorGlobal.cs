@@ -13,7 +13,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Runtime.Serialization;
+using System.Runtime.CompilerServices;
 using Eluant;
 using OpenRA.Mods.Common.Traits;
 using OpenRA.Primitives;
@@ -36,7 +36,7 @@ namespace OpenRA.Mods.Common.Scripting
 				throw new LuaException($"Unknown initializer type '{initInstance[0]}'");
 
 			// Construct the ActorInit.
-			var init = (ActorInit)FormatterServices.GetUninitializedObject(initType);
+			var init = (ActorInit)RuntimeHelpers.GetUninitializedObject(initType);
 			if (initInstance.Length > 1)
 				initType.GetField(nameof(ActorInit.InstanceName)).SetValue(init, initInstance[1]);
 
@@ -94,7 +94,7 @@ namespace OpenRA.Mods.Common.Scripting
 		}
 
 		[Desc("Create a new actor. initTable specifies a list of key-value pairs that defines the initial parameters for the actor's traits.")]
-		public Actor Create(string type, bool addToWorld, LuaTable initTable)
+		public Actor Create(string type, bool addToWorld, [ScriptEmmyTypeOverride("initTable")] LuaTable initTable)
 		{
 			var initDict = new TypeDictionary();
 
@@ -176,6 +176,7 @@ namespace OpenRA.Mods.Common.Scripting
 			return pi != null ? pi.GetCruiseAltitude().Length : 0;
 		}
 
+		[Desc("Returns the cost of the requested unit given by the Valued trait.")]
 		public int Cost(string type)
 		{
 			if (!Context.World.Map.Rules.Actors.TryGetValue(type, out var ai))

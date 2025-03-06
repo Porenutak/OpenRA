@@ -11,25 +11,27 @@
 
 using System;
 using System.Linq;
+using OpenRA.Primitives;
 using OpenRA.Widgets;
 
 namespace OpenRA.Mods.Common.Widgets.Logic
 {
 	public class SpawnSelectorTooltipLogic : ChromeLogic
 	{
-		[TranslationReference]
+		[FluentReference]
 		const string DisabledSpawn = "label-disabled-spawn";
 
-		[TranslationReference]
+		[FluentReference]
 		const string AvailableSpawn = "label-available-spawn";
 
-		[TranslationReference("team")]
+		[FluentReference("team")]
 		const string TeamNumber = "label-team-name";
 
 		readonly CachedTransform<int, string> teamMessage;
 
 		[ObjectCreator.UseCtor]
-		public SpawnSelectorTooltipLogic(Widget widget, ModData modData, TooltipContainerWidget tooltipContainer, MapPreviewWidget preview, bool showUnoccupiedSpawnpoints)
+		public SpawnSelectorTooltipLogic(Widget widget, ModData modData,
+			TooltipContainerWidget tooltipContainer, MapPreviewWidget preview, bool showUnoccupiedSpawnpoints)
 		{
 			var showTooltip = true;
 			widget.IsVisible = () => preview.TooltipSpawnIndex != -1 && showTooltip;
@@ -47,9 +49,9 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 			var labelText = "";
 			string playerFaction = null;
 			var playerTeam = -1;
-			teamMessage = new CachedTransform<int, string>(t => TranslationProvider.GetString(TeamNumber, Translation.Arguments("team", t)));
-			var disabledSpawn = TranslationProvider.GetString(DisabledSpawn);
-			var availableSpawn = TranslationProvider.GetString(AvailableSpawn);
+			teamMessage = new CachedTransform<int, string>(t => FluentProvider.GetMessage(TeamNumber, "team", t));
+			var disabledSpawn = FluentProvider.GetMessage(DisabledSpawn);
+			var availableSpawn = FluentProvider.GetMessage(AvailableSpawn);
 
 			tooltipContainer.BeforeRender = () =>
 			{

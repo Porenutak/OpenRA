@@ -42,10 +42,10 @@ jobs:
       - name: Clone Repository
         uses: actions/checkout@v4
 
-      - name: Install .NET 6.0
+      - name: Install .NET 8.0
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: '6.0.x'
+          dotnet-version: '8.0.x'
 
       - name: Prepare Environment
         run: echo "GIT_TAG=${GITHUB_REF#refs/tags/}" >> ${GITHUB_ENV}
@@ -53,7 +53,7 @@ jobs:
       - name: Package AppImages
         run: |
           mkdir -p build/linux
-          sudo apt install libfuse2
+          sudo apt-get install -y desktop-file-utils
           ./packaging/linux/buildpackage.sh "${GIT_TAG}" "${PWD}/build/linux"
 
       - name: Upload Packages
@@ -67,15 +67,15 @@ jobs:
 
   macos:
     name: macOS Disk Image
-    runs-on: macos-11
+    runs-on: macos-13
     steps:
       - name: Clone Repository
         uses: actions/checkout@v4
 
-      - name: Install .NET 6.0
+      - name: Install .NET 8.0
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: '6.0.x'
+          dotnet-version: '8.0.x'
 
       - name: Prepare Environment
         run: echo "GIT_TAG=${GITHUB_REF#refs/tags/}" >> ${GITHUB_ENV}
@@ -107,10 +107,10 @@ jobs:
       - name: Clone Repository
         uses: actions/checkout@v4
 
-      - name: Install .NET 6.0
+      - name: Install .NET 8.0
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: '6.0.x'
+          dotnet-version: '8.0.x'
 
       - name: Prepare Environment
         run: |

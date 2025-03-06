@@ -65,7 +65,7 @@ namespace OpenRA.Mods.Common.Traits
 			this.info = info;
 		}
 
-		bool INotifyOrderIssued.OrderIssued(World world, Target target)
+		bool INotifyOrderIssued.OrderIssued(World world, string orderString, Target target)
 		{
 			switch (target.Type)
 			{
@@ -95,7 +95,8 @@ namespace OpenRA.Mods.Common.Traits
 
 				case TargetType.Terrain:
 				{
-					world.AddFrameEndTask(w => w.Add(new SpriteAnnotation(target.CenterPosition, world, info.TerrainFlashImage, info.TerrainFlashSequence, info.TerrainFlashPalette)));
+					world.AddFrameEndTask(w => w.Add(new SpriteAnnotation(
+						target.CenterPosition, world, info.TerrainFlashImage, info.TerrainFlashSequence, info.TerrainFlashPalette)));
 					return true;
 				}
 

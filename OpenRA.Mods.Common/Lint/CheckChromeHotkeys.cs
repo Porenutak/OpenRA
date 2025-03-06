@@ -48,7 +48,7 @@ namespace OpenRA.Mods.Common.Lint
 
 			foreach (var w in modData.ObjectCreator.GetTypesImplementing<Widget>())
 			{
-				foreach (var m in w.GetMethods().Where(m => Utility.HasAttribute<CustomLintableHotkeyNames>(m)))
+				foreach (var m in w.GetMethods().Where(Utility.HasAttribute<CustomLintableHotkeyNames>))
 				{
 					var p = m.GetParameters();
 					if (p.Length == 3 && p[0].ParameterType == typeof(MiniYamlNode) && p[1].ParameterType == typeof(Action<string>)
@@ -64,8 +64,15 @@ namespace OpenRA.Mods.Common.Lint
 			}
 		}
 
-		static void CheckInner(ModData modData, string[] namedKeys, (string Widget, string Field)[] checkWidgetFields, Dictionary<string, List<string>> customLintMethods,
-			IEnumerable<MiniYamlNode> nodes, string filename, MiniYamlNode parent, Action<string> emitError)
+		static void CheckInner(
+			ModData modData,
+			string[] namedKeys,
+			(string Widget, string Field)[] checkWidgetFields,
+			Dictionary<string, List<string>> customLintMethods,
+			IEnumerable<MiniYamlNode> nodes,
+			string filename,
+			MiniYamlNode parent,
+			Action<string> emitError)
 		{
 			foreach (var node in nodes)
 			{

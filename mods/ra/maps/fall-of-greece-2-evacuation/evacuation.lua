@@ -178,8 +178,8 @@ VillageSetup = function()
 end
 
 SetCivilianEvacuatedText = function()
-	local attributes = { ["evacuated"] = CiviliansEvacuated, ["threshold"] = CiviliansEvacuatedThreshold }
-	local civiliansEvacuated = UserInterface.Translate("civilians-evacuated", attributes)
+	local civiliansEvacuated = UserInterface.GetFluentMessage("civilians-evacuated",
+		{ ["evacuated"] = CiviliansEvacuated, ["threshold"] = CiviliansEvacuatedThreshold })
 	UserInterface.SetMissionText(civiliansEvacuated, TextColor)
 end
 
@@ -215,7 +215,7 @@ EvacuateCivilians = function()
 
 	Trigger.OnAllKilled(enemyBase, function()
 		Media.PlaySoundNotification(Allies, "AlertBleep")
-		Media.DisplayMessage(UserInterface.Translate("chinook-assist-evacuation"), UserInterface.Translate("chinook-pilot"))
+		Media.DisplayMessage(UserInterface.GetFluentMessage("chinook-assist-evacuation"), UserInterface.GetFluentMessage("chinook-pilot"))
 		Reinforcements.Reinforce(Allies, { "tran" }, { ChinookEntry.Location, ChinookLZ.Location })
 	end)
 end
@@ -242,11 +242,11 @@ WorldLoaded = function()
 	InitObjectives(Allies)
 
 	if Difficulty == "easy" then
-		RescueCivilians = AddPrimaryObjective(Allies, "rescue-civlians-island-shelter-easy")
+		RescueCivilians = AddPrimaryObjective(Allies, "rescue-civilians-island-shelter-easy")
 	elseif Difficulty == "normal" then
-		RescueCivilians = AddPrimaryObjective(Allies, "rescue-civlians-island-shelter-normal")
+		RescueCivilians = AddPrimaryObjective(Allies, "rescue-civilians-island-shelter-normal")
 	else
-		RescueCivilians = AddPrimaryObjective(Allies, "rescue-civlians-island-shelter-hard")
+		RescueCivilians = AddPrimaryObjective(Allies, "rescue-civilians-island-shelter-hard")
 	end
 
 	ClearWaterway = AddSecondaryObjective(Allies, "clear-enemy-submarines")

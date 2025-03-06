@@ -115,8 +115,8 @@ namespace OpenRA.Mods.Common.Traits
 				{ "attackanything", "Attack Anything" },
 			};
 
-			yield return new EditorActorDropdown("Stance", EditorStanceDisplayOrder, labels,
-				actor =>
+			yield return new EditorActorDropdown("Stance", EditorStanceDisplayOrder, _ => labels,
+				(actor, _) =>
 				{
 					var init = actor.GetInitOrDefault<StanceInit>(this);
 					var stance = init?.Value ?? InitialStance;
@@ -303,7 +303,9 @@ namespace OpenRA.Mods.Common.Traits
 					if (attackStances != PlayerRelationship.None)
 					{
 						var range = Info.ScanRadius > 0 ? WDist.FromCells(Info.ScanRadius) : ab.GetMaximumRange();
-						return ChooseTarget(self, ab, attackStances, range, allowMove, allowTurn);
+						var target = ChooseTarget(self, ab, attackStances, range, allowMove, allowTurn);
+						if (target.Type != TargetType.Invalid)
+							return target;
 					}
 				}
 			}

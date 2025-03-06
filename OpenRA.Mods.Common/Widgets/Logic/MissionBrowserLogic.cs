@@ -27,23 +27,26 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 		enum PlayingVideo { None, Info, Briefing, GameStart }
 		enum PanelType { MissionInfo, Options }
 
-		[TranslationReference]
+		[FluentReference]
 		const string NoVideoTitle = "dialog-no-video.title";
 
-		[TranslationReference]
+		[FluentReference]
 		const string NoVideoPrompt = "dialog-no-video.prompt";
 
-		[TranslationReference]
+		[FluentReference]
 		const string NoVideoCancel = "dialog-no-video.cancel";
 
-		[TranslationReference]
+		[FluentReference]
 		const string CantPlayTitle = "dialog-cant-play-video.title";
 
-		[TranslationReference]
+		[FluentReference]
 		const string CantPlayPrompt = "dialog-cant-play-video.prompt";
 
-		[TranslationReference]
+		[FluentReference]
 		const string CantPlayCancel = "dialog-cant-play-video.cancel";
+
+		[FluentReference]
+		const string NotAvailable = "label-not-available";
 
 		readonly ModData modData;
 		readonly Action onStart;
@@ -65,6 +68,18 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 		readonly ScrollItemWidget headerTemplate;
 		readonly ScrollItemWidget template;
 
+		readonly Widget miniOptions;
+		readonly DropDownButtonWidget difficultyButton;
+		readonly DropDownButtonWidget gameSpeedButton;
+		readonly string unsetDifficulty;
+		readonly string defaultTooltop;
+
+		// For remembering options
+		// TODO: this should be persistent across game sessions
+		string selectedDifficulty;
+		string selectedGameSpeed;
+
+		bool minifiedOptions = true;
 		MapPreview selectedMap;
 		PlayingVideo playingVideo;
 		readonly Dictionary<string, string> missionOptions = new();
@@ -122,6 +137,16 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 			stopInfoVideoButton.IsVisible = () => playingVideo == PlayingVideo.Info;
 			stopInfoVideoButton.OnClick = () => StopVideo(videoPlayer);
 
+			miniOptions = widget.GetOrNull("MISSION_MINIFIED_OPTIONS");
+			if (miniOptions != null)
+			{
+				miniOptions.IsVisible = () => minifiedOptions;
+				difficultyButton = miniOptions.GetOrNull<DropDownButtonWidget>("DIFFICULTY");
+				gameSpeedButton = miniOptions.GetOrNull<DropDownButtonWidget>("GAMESPEED");
+				unsetDifficulty = FluentProvider.GetMessage(difficultyButton.Text);
+				defaultTooltop = FluentProvider.GetMessage(difficultyButton.TooltipText);
+			}
+
 			var allPreviews = new List<MapPreview>();
 			missionList.RemoveChildren();
 
@@ -141,7 +166,7 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 						.Select(p => new
 						{
 							Preview = p,
-							Index = missionMapPaths.IndexOf(Path.GetFileName(p.PackageName))
+							Index = missionMapPaths.IndexOf(Path.GetFileName(p.Path))
 						})
 						.Where(x => x.Index != -1)
 						.OrderBy(x => x.Index)
@@ -196,22 +221,19 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 			widget.Get<ButtonWidget>("BACK_BUTTON").OnClick = () =>
 			{
 				StopVideo(videoPlayer);
-				Game.Disconnect();
 				Ui.CloseWindow();
 				onExit();
 			};
 
 			var tabContainer = widget.Get("MISSION_TABS");
-			tabContainer.IsVisible = () => true;
+			tabContainer.IsVisible = () => !minifiedOptions;
 
 			var optionsTab = tabContainer.Get<ButtonWidget>("OPTIONS_TAB");
 			optionsTab.IsHighlighted = () => panel == PanelType.Options;
-			optionsTab.IsDisabled = () => false;
 			optionsTab.OnClick = () => panel = PanelType.Options;
 
 			var missionTab = tabContainer.Get<ButtonWidget>("MISSIONINFO_TAB");
 			missionTab.IsHighlighted = () => panel == PanelType.MissionInfo;
-			missionTab.IsDisabled = () => false;
 			missionTab.OnClick = () => panel = PanelType.MissionInfo;
 		}
 
@@ -266,8 +288,6 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 			var infoVideo = "";
 			var infoVideoVisible = false;
 
-			panel = PanelType.MissionInfo;
-
 			new Thread(() =>
 			{
 				var missionData = preview.WorldActorInfo.TraitInfoOrDefault<MissionDataInfo>();
@@ -288,6 +308,7 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 							description.GetText = () => briefing;
 							description.Bounds.Height = height;
 							descriptionPanel.Layout.AdjustChildren();
+							panel = PanelType.MissionInfo;
 						}
 					});
 				}
@@ -318,6 +339,44 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 					.Where(o => o.IsVisible)
 					.OrderBy(o => o.DisplayOrder).ToArray();
 
+			minifiedOptions = allOptions.All(o => o.Id == "difficulty" || o.Id == "gamespeed");
+			if (minifiedOptions)
+				BuildMinifiedOptions(allOptions);
+			else
+				BuildOptions(allOptions);
+		}
+
+		void SetMapDifficulty(LobbyOption option)
+		{
+			selectedDifficulty ??= option.DefaultValue;
+			if (option.Values.ContainsKey(selectedDifficulty))
+				missionOptions[option.Id] = selectedDifficulty;
+			else
+				missionOptions[option.Id] = option.DefaultValue;
+		}
+
+		void SetMapSpeed(LobbyOption option)
+		{
+			selectedGameSpeed ??= option.DefaultValue;
+			if (option.Values.ContainsKey(selectedGameSpeed))
+				missionOptions[option.Id] = selectedGameSpeed;
+			else
+				missionOptions[option.Id] = option.DefaultValue;
+		}
+
+		void OnOptionSelected(string optionId, string value)
+		{
+			// Only remember when the user manually changes the value
+			if (optionId == "difficulty")
+				selectedDifficulty = value;
+			else if (optionId == "gamespeed")
+				selectedGameSpeed = value;
+
+			missionOptions[optionId] = value;
+		}
+
+		void BuildOptions(LobbyOption[] allOptions)
+		{
 			Widget row = null;
 			var checkboxColumns = new Queue<CheckboxWidget>();
 			var dropdownColumns = new Queue<DropDownButtonWidget>();
@@ -363,7 +422,12 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 
 			foreach (var option in allOptions.Where(o => o is not LobbyBooleanOption))
 			{
-				missionOptions[option.Id] = option.DefaultValue;
+				if (option.Id == "difficulty")
+					SetMapDifficulty(option);
+				else if (option.Id == "gamespeed")
+					SetMapSpeed(option);
+				else
+					missionOptions[option.Id] = option.DefaultValue;
 
 				if (dropdownColumns.Count == 0)
 				{
@@ -377,41 +441,86 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 					optionsContainer.AddChild(row);
 				}
 
-				var dropdown = dropdownColumns.Dequeue();
+				var val = dropdownColumns.Dequeue();
+				SetupDropdown(val, option);
 
-				dropdown.GetText = () => option.Values[missionOptions[option.Id]];
-				if (option.Description != null)
-				{
-					var (text, desc) = LobbyUtils.SplitOnFirstToken(option.Description);
-					dropdown.GetTooltipText = () => text;
-					dropdown.GetTooltipDesc = () => desc;
-				}
-
-				dropdown.IsVisible = () => true;
-				dropdown.IsDisabled = () => option.IsLocked;
-
-				dropdown.OnMouseDown = _ =>
-				{
-					ScrollItemWidget SetupItem(KeyValuePair<string, string> c, ScrollItemWidget template)
-					{
-						bool IsSelected() => missionOptions[option.Id] == c.Key;
-						void OnClick() => missionOptions[option.Id] = c.Key;
-
-						var item = ScrollItemWidget.Setup(template, IsSelected, OnClick);
-						item.Get<LabelWidget>("LABEL").GetText = () => c.Value;
-						return item;
-					}
-
-					dropdown.ShowDropDown("LABEL_DROPDOWN_TEMPLATE", option.Values.Count * 30, option.Values, SetupItem);
-				};
-
-				var label = row.GetOrNull<LabelWidget>(dropdown.Id + "_DESC");
+				var label = row.GetOrNull<LabelWidget>(val.Id + "_DESC");
 				if (label != null)
 				{
 					label.GetText = () => option.Name + ":";
 					label.IsVisible = () => true;
 				}
 			}
+		}
+
+		void BuildMinifiedOptions(LobbyOption[] allOptions)
+		{
+			if (difficultyButton != null)
+			{
+				var mapDifficulty = allOptions.FirstOrDefault(sld => sld.Id == "difficulty");
+				if (mapDifficulty != null)
+				{
+					SetMapDifficulty(mapDifficulty);
+					SetupDropdown(difficultyButton, mapDifficulty);
+				}
+				else
+				{
+					difficultyButton.IsDisabled = () => true;
+					difficultyButton.GetText = () => unsetDifficulty;
+					difficultyButton.GetTooltipText = () => defaultTooltop;
+				}
+			}
+
+			if (gameSpeedButton != null)
+			{
+				var gameSpeed = allOptions.FirstOrDefault(sld => sld.Id == "gamespeed");
+				if (gameSpeed != null)
+				{
+					SetMapSpeed(gameSpeed);
+					SetupDropdown(gameSpeedButton, gameSpeed);
+				}
+				else
+				{
+					gameSpeedButton.IsDisabled = () => true;
+					gameSpeedButton.GetText = () => FluentProvider.GetMessage(NotAvailable);
+				}
+			}
+		}
+
+		void SetupDropdown(DropDownButtonWidget dropdown, LobbyOption option)
+		{
+			dropdown.GetText = () =>
+			{
+				if (option.Values.TryGetValue(missionOptions[option.Id], out var value))
+					return value;
+
+				return FluentProvider.GetMessage(NotAvailable);
+			};
+
+			if (option.Description != null)
+			{
+				var (text, desc) = LobbyUtils.SplitOnFirstToken(option.Description);
+				dropdown.GetTooltipText = () => text;
+				dropdown.GetTooltipDesc = () => desc;
+			}
+
+			dropdown.IsVisible = () => true;
+			dropdown.IsDisabled = () => option.IsLocked;
+
+			dropdown.OnMouseDown = _ =>
+			{
+				ScrollItemWidget SetupItem(KeyValuePair<string, string> c, ScrollItemWidget template)
+				{
+					bool IsSelected() => missionOptions[option.Id] == c.Key;
+					void OnClick() => OnOptionSelected(option.Id, c.Key);
+
+					var item = ScrollItemWidget.Setup(template, IsSelected, OnClick);
+					item.Get<LabelWidget>("LABEL").GetText = () => c.Value;
+					return item;
+				}
+
+				dropdown.ShowDropDown("LABEL_DROPDOWN_TEMPLATE", option.Values.Count * 30, option.Values, SetupItem);
+			};
 		}
 
 		float cachedSoundVolume;

@@ -10,6 +10,7 @@
 #endregion
 
 using System.Collections.Generic;
+using System.Linq;
 using OpenRA.Graphics;
 using OpenRA.Traits;
 
@@ -21,13 +22,13 @@ namespace OpenRA.Mods.Common.Commands
 
 	public class HelpCommand : IChatCommand, IWorldLoaded
 	{
-		[TranslationReference]
+		[FluentReference]
 		const string AvailableCommands = "notification-available-commands";
 
-		[TranslationReference]
+		[FluentReference]
 		const string NoDescription = "description-no-description";
 
-		[TranslationReference]
+		[FluentReference]
 		const string HelpDescription = "description-help-description";
 
 		readonly Dictionary<string, string> helpDescriptions;
@@ -51,12 +52,12 @@ namespace OpenRA.Mods.Common.Commands
 
 		public void InvokeCommand(string name, string arg)
 		{
-			TextNotificationsManager.Debug(TranslationProvider.GetString(AvailableCommands));
+			TextNotificationsManager.Debug(FluentProvider.GetMessage(AvailableCommands));
 
-			foreach (var key in console.Commands.Keys)
+			foreach (var key in console.Commands.Keys.Order())
 			{
 				if (!helpDescriptions.TryGetValue(key, out var description))
-					description = TranslationProvider.GetString(NoDescription);
+					description = FluentProvider.GetMessage(NoDescription);
 
 				TextNotificationsManager.Debug($"{key}: {description}");
 			}
@@ -64,7 +65,7 @@ namespace OpenRA.Mods.Common.Commands
 
 		public void RegisterHelp(string name, string description)
 		{
-			helpDescriptions[name] = TranslationProvider.GetString(description);
+			helpDescriptions[name] = FluentProvider.GetMessage(description);
 		}
 	}
 }

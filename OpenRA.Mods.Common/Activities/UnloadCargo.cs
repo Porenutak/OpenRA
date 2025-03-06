@@ -53,10 +53,9 @@ namespace OpenRA.Mods.Common.Activities
 		{
 			var pos = passenger.Trait<IPositionable>();
 
-			return cargo.CurrentAdjacentCells
+			return cargo.CurrentAdjacentCells()
 				.Shuffle(self.World.SharedRandom)
-				.Select(c => (c, pos.GetAvailableSubCell(c)))
-				.Cast<(CPos, SubCell SubCell)?>()
+				.Select(c => ((CPos Cell, SubCell SubCell)?)(c, pos.GetAvailableSubCell(c)))
 				.FirstOrDefault(s => s.Value.SubCell != SubCell.Invalid);
 		}
 
@@ -65,7 +64,7 @@ namespace OpenRA.Mods.Common.Activities
 			var pos = passenger.Trait<IPositionable>();
 
 			// Find the cells that are blocked by transient actors
-			return cargo.CurrentAdjacentCells
+			return cargo.CurrentAdjacentCells()
 				.Where(c => pos.CanEnterCell(c, null, BlockedByActor.All) != pos.CanEnterCell(c, null, BlockedByActor.None));
 		}
 

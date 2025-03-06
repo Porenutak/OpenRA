@@ -159,7 +159,8 @@ namespace OpenRA.Mods.Common.Traits
 			base.Tick(self);
 		}
 
-		public override Activity GetAttackActivity(Actor self, AttackSource source, in Target newTarget, bool allowMove, bool forceAttack, Color? targetLineColor = null)
+		public override Activity GetAttackActivity(
+			Actor self, AttackSource source, in Target newTarget, bool allowMove, bool forceAttack, Color? targetLineColor = null)
 		{
 			// HACK: Manually set force attacking if we persisted an opportunity target that required force attacking
 			if (opportunityTargetIsPersistentTarget && opportunityForceAttack && newTarget == OpportunityTarget)
@@ -237,6 +238,7 @@ namespace OpenRA.Mods.Common.Traits
 			readonly Rearmable rearmable;
 			readonly AttackSource source;
 			readonly bool isAircraft;
+			readonly MoveCooldownHelper moveCooldownHelper;
 
 			Target target;
 			Target lastVisibleTarget;
@@ -245,7 +247,6 @@ namespace OpenRA.Mods.Common.Traits
 			WDist lastVisibleMinimumRange;
 			BitSet<TargetableType> lastVisibleTargetTypes;
 			Player lastVisibleOwner;
-			bool wasMovingWithinRange;
 			bool hasTicked;
 			bool returnToBase = false;
 
@@ -255,12 +256,14 @@ namespace OpenRA.Mods.Common.Traits
 				move = allowMove ? self.TraitOrDefault<IMove>() : null;
 				revealsShroud = self.TraitsImplementing<RevealsShroud>().ToArray();
 				rearmable = self.TraitOrDefault<Rearmable>();
+				moveCooldownHelper = new MoveCooldownHelper(self.World, move as Mobile) { RetryIfDestinationBlocked = true };
 
 				this.target = target;
 				this.forceAttack = forceAttack;
 				this.targetLineColor = targetLineColor;
 				this.source = source;
 				isAircraft = self.Info.HasTraitInfo<AircraftInfo>();
+				ChildHasPriority = false;
 
 				// The target may become hidden between the initial order request and the first tick (e.g. if queued)
 				// Moving to any position (even if quite stale) is still better than immediately giving up
@@ -286,6 +289,12 @@ namespace OpenRA.Mods.Common.Traits
 
 			public override bool Tick(Actor self)
 			{
+				if (!IsCanceling && !HasArmamentsFor(target))
+					Cancel(self, true);
+
+				if (!TickChild(self))
+					return false;
+
 				returnToBase = false;
 
 				if (IsCanceling)
@@ -348,10 +357,9 @@ namespace OpenRA.Mods.Common.Traits
 						maxRange = sightRange;
 				}
 
-				// If we are ticking again after previously sequencing a MoveWithRange then that move must have completed
-				// Either we are in range and can see the target, or we've lost track of it and should give up
-				if (wasMovingWithinRange && targetIsHiddenActor)
-					return true;
+				var result = moveCooldownHelper.Tick(targetIsHiddenActor);
+				if (result != null)
+					return result.Value;
 
 				// Target is hidden or dead, and we don't have a fallback position to move towards
 				if (useLastVisibleTarget && !lastVisibleTarget.IsValidFor(self))
@@ -406,7 +414,7 @@ namespace OpenRA.Mods.Common.Traits
 				if (move == null || maxRange == WDist.Zero || maxRange < minRange)
 					return true;
 
-				wasMovingWithinRange = true;
+				moveCooldownHelper.NotifyMoveQueued();
 				QueueChild(move.MoveWithinRange(target, minRange, maxRange, checkTarget.CenterPosition));
 				return false;
 			}
@@ -438,6 +446,11 @@ namespace OpenRA.Mods.Common.Traits
 					if (!returnToBase || !attack.Info.AbortOnResupply)
 						yield return new TargetLineNode(useLastVisibleTarget ? lastVisibleTarget : target, targetLineColor.Value);
 				}
+			}
+
+			bool HasArmamentsFor(Target target)
+			{
+				return !attack.IsTraitDisabled && attack.ChooseArmamentsForTarget(target, forceAttack).Any();
 			}
 		}
 	}

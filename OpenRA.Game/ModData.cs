@@ -12,7 +12,6 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.IO;
 using System.Linq;
 using OpenRA.FileSystem;
 using OpenRA.Graphics;
@@ -35,6 +34,8 @@ namespace OpenRA
 		public readonly ISpriteSequenceLoader SpriteSequenceLoader;
 		public readonly IVideoLoader[] VideoLoaders;
 		public readonly HotkeyManager Hotkeys;
+		public readonly IFileSystemLoader FileSystemLoader;
+
 		public ILoadScreen LoadScreen { get; }
 		public CursorProvider CursorProvider { get; private set; }
 		public FS ModFiles;
@@ -54,10 +55,16 @@ namespace OpenRA
 			Manifest = new Manifest(mod.Id, mod.Package);
 			ObjectCreator = new ObjectCreator(Manifest, mods);
 			PackageLoaders = ObjectCreator.GetLoaders<IPackageLoader>(Manifest.PackageFormats, "package");
-
 			ModFiles = new FS(mod.Id, mods, PackageLoaders);
-			ModFiles.LoadFromManifest(Manifest);
+
+			FileSystemLoader = ObjectCreator.GetLoader<IFileSystemLoader>(Manifest.FileSystem.Value, "filesystem");
+			FieldLoader.Load(FileSystemLoader, Manifest.FileSystem);
+			FileSystemLoader.Mount(ModFiles, ObjectCreator);
+			ModFiles.TrimExcess();
+
 			Manifest.LoadCustomData(ObjectCreator);
+
+			FluentProvider.Initialize(this, DefaultFileSystem);
 
 			if (useLoadScreen)
 			{
@@ -124,7 +131,7 @@ namespace OpenRA
 			// horribly when you use ModData in unexpected ways.
 			ChromeMetrics.Initialize(this);
 			ChromeProvider.Initialize(this);
-			TranslationProvider.Initialize(this, fileSystem);
+			FluentProvider.Initialize(this, fileSystem);
 
 			Game.Sound.Initialize(SoundLoaders, fileSystem);
 
@@ -133,16 +140,9 @@ namespace OpenRA
 
 		public IEnumerable<string> Languages { get; }
 
-		public Map PrepareMap(string uid)
+		public void PrepareMap(Map map)
 		{
 			LoadScreen?.Display();
-
-			if (MapCache[uid].Status != MapStatus.Available)
-				throw new InvalidDataException($"Invalid map uid: {uid}");
-
-			Map map;
-			using (new Support.PerfTimer("Map"))
-				map = new Map(this, MapCache[uid].Package);
 
 			// Reinitialize all our assets
 			InitializeLoaders(map);
@@ -152,8 +152,6 @@ namespace OpenRA
 			using (new Support.PerfTimer("Map.Music"))
 				foreach (var entry in map.Rules.Music)
 					entry.Value.Load(map);
-
-			return map;
 		}
 
 		public List<MiniYamlNode>[] GetRulesYaml()
@@ -189,5 +187,10 @@ namespace OpenRA
 
 		/// <summary>Called when the engine expects to connect to a server/replay or load the shellmap.</summary>
 		void StartGame(Arguments args);
+	}
+
+	public interface IFileSystemLoader
+	{
+		void Mount(FS fileSystem, ObjectCreator objectCreator);
 	}
 }

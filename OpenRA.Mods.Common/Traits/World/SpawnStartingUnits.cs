@@ -19,16 +19,17 @@ using OpenRA.Traits;
 namespace OpenRA.Mods.Common.Traits
 {
 	[TraitLocation(SystemActors.World)]
-	[Desc("Spawn base actor at the spawnpoint and support units in an annulus around the base actor. Both are defined at MPStartUnits. Attach this to the world actor.")]
-	public class SpawnStartingUnitsInfo : TraitInfo, Requires<StartingUnitsInfo>, NotBefore<LocomotorInfo>, ILobbyOptions
+	[Desc("Spawn base actor at the spawnpoint and support units in an annulus around the base actor. " +
+		"Both are defined at MPStartUnits. Attach this to the world actor.")]
+	public class SpawnStartingUnitsInfo : TraitInfo, Requires<StartingUnitsInfo>, NotBefore<PathFinderInfo>, ILobbyOptions
 	{
 		public readonly string StartingUnitsClass = "none";
 
-		[TranslationReference]
+		[FluentReference]
 		[Desc("Descriptive label for the starting units option in the lobby.")]
 		public readonly string DropdownLabel = "dropdown-starting-units.label";
 
-		[TranslationReference]
+		[FluentReference]
 		[Desc("Tooltip description for the starting units option in the lobby.")]
 		public readonly string DropdownDescription = "dropdown-starting-units.description";
 
@@ -47,7 +48,7 @@ namespace OpenRA.Mods.Common.Traits
 
 			// Duplicate classes are defined for different race variants
 			foreach (var t in map.WorldActorInfo.TraitInfos<StartingUnitsInfo>())
-				startingUnits[t.Class] = map.GetLocalisedString(t.ClassName);
+				startingUnits[t.Class] = map.GetMessage(t.ClassName);
 
 			if (startingUnits.Count > 0)
 				yield return new LobbyOption(map, "startingunits", DropdownLabel, DropdownDescription, DropdownVisible, DropdownDisplayOrder,
@@ -85,28 +86,65 @@ namespace OpenRA.Mods.Common.Traits
 			if (unitGroup == null)
 				throw new InvalidOperationException($"No starting units defined for faction {p.Faction.InternalName} with class {spawnClass}");
 
+			CPos[] homeLocations;
 			if (unitGroup.BaseActor != null)
 			{
 				var facing = unitGroup.BaseActorFacing ?? new WAngle(w.SharedRandom.Next(1024));
-				w.CreateActor(unitGroup.BaseActor.ToLowerInvariant(), new TypeDictionary
+				var baseActor = w.CreateActor(unitGroup.BaseActor.ToLowerInvariant(), new TypeDictionary
 				{
 					new LocationInit(p.HomeLocation + unitGroup.BaseActorOffset),
 					new OwnerInit(p),
 					new SkipMakeAnimsInit(),
 					new FacingInit(facing),
+					new SpawnedByMapInit(),
 				});
+				var baseActorIsMovable =
+					baseActor.OccupiesSpace is Mobile mobile && !mobile.IsTraitDisabled && !mobile.IsTraitPaused && !mobile.IsImmovable;
+				if (baseActorIsMovable)
+				{
+					// If the base is movable, we want support actors to be able to path to its location.
+					homeLocations = new[] { baseActor.Location };
+				}
+				else
+				{
+					// For an immovable base, we want support actors to be able to path adjacent to it.
+					// They won't to able to path to its location, because it is immovable and blocks them.
+					var occupiedCells = baseActor.OccupiesSpace.OccupiedCells().Select(p => p.Cell).ToArray();
+					homeLocations = Util.ExpandFootprint(occupiedCells, true).Except(occupiedCells).ToArray();
+				}
+			}
+			else
+			{
+				// If there is no base actor, we want support actors to be able to path to the home location.
+				homeLocations = new[] { p.HomeLocation };
 			}
 
 			if (unitGroup.SupportActors.Length == 0)
 				return;
 
-			var supportSpawnCells = w.Map.FindTilesInAnnulus(p.HomeLocation, unitGroup.InnerSupportRadius + 1, unitGroup.OuterSupportRadius);
+			var supportSpawnCells = w.Map
+				.FindTilesInAnnulus(p.HomeLocation, unitGroup.InnerSupportRadius + 1, unitGroup.OuterSupportRadius)
+				.ToList();
 
+			var pathFinder = w.WorldActor.TraitOrDefault<IPathFinder>();
+			var locomotorsByName = w.WorldActor.TraitsImplementing<Locomotor>().ToDictionary(l => l.Info.Name);
 			foreach (var s in unitGroup.SupportActors)
 			{
 				var actorRules = w.Map.Rules.Actors[s.ToLowerInvariant()];
 				var ip = actorRules.TraitInfo<IPositionableInfo>();
-				var validCell = supportSpawnCells.Shuffle(w.SharedRandom).FirstOrDefault(c => ip.CanEnterCell(w, null, c));
+				var validCells = supportSpawnCells.Where(c => ip.CanEnterCell(w, null, c));
+
+				if (pathFinder != null)
+				{
+					var locomotorName = actorRules.TraitInfoOrDefault<MobileInfo>()?.Locomotor;
+					var locomotor = locomotorName != null ? locomotorsByName[locomotorName] : null;
+
+					if (locomotor != null)
+						validCells = validCells
+							.Where(c => homeLocations.Any(h => pathFinder.PathMightExistForLocomotorBlockedByImmovable(locomotor, c, h)));
+				}
+
+				var validCell = validCells.RandomOrDefault(w.SharedRandom);
 
 				if (validCell == CPos.Zero)
 				{
@@ -123,6 +161,7 @@ namespace OpenRA.Mods.Common.Traits
 					new LocationInit(validCell),
 					new SubCellInit(subCell),
 					new FacingInit(facing),
+					new SpawnedByMapInit(),
 				});
 			}
 		}

@@ -23,29 +23,30 @@ namespace OpenRA.Mods.Common.Commands
 
 	public class DebugVisualizationCommands : IChatCommand, IWorldLoaded
 	{
-		[TranslationReference]
+		[FluentReference]
 		const string CombatGeometryDescription = "description-combat-geometry";
 
-		[TranslationReference]
+		[FluentReference]
 		const string RenderGeometryDescription = "description-render-geometry";
 
-		[TranslationReference]
+		[FluentReference]
 		const string ScreenMapOverlayDescription = "description-screen-map-overlay";
 
-		[TranslationReference]
+		[FluentReference]
 		const string DepthBufferDescription = "description-depth-buffer";
 
-		[TranslationReference]
+		[FluentReference]
 		const string ActorTagsOverlayDescripition = "description-actor-tags-overlay";
 
-		readonly IDictionary<string, (string Description, Action<DebugVisualizations, DeveloperMode> Handler)> commandHandlers = new Dictionary<string, (string Description, Action<DebugVisualizations, DeveloperMode> Handler)>
-		{
-			{ "combat-geometry", (CombatGeometryDescription, CombatGeometry) },
-			{ "render-geometry", (RenderGeometryDescription, RenderGeometry) },
-			{ "screen-map", (ScreenMapOverlayDescription, ScreenMap) },
-			{ "depth-buffer", (DepthBufferDescription, DepthBuffer) },
-			{ "actor-tags", (ActorTagsOverlayDescripition, ActorTags) },
-		};
+		readonly IDictionary<string, (string Description, Action<DebugVisualizations, DeveloperMode> Handler)> commandHandlers =
+			new Dictionary<string, (string Description, Action<DebugVisualizations, DeveloperMode> Handler)>
+			{
+				{ "combat-geometry", (CombatGeometryDescription, CombatGeometry) },
+				{ "render-geometry", (RenderGeometryDescription, RenderGeometry) },
+				{ "screen-map", (ScreenMapOverlayDescription, ScreenMap) },
+				{ "depth-buffer", (DepthBufferDescription, DepthBuffer) },
+				{ "actor-tags", (ActorTagsOverlayDescripition, ActorTags) },
+			};
 
 		DebugVisualizations debugVis;
 		DeveloperMode devMode;

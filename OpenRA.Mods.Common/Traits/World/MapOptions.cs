@@ -11,6 +11,7 @@
 
 using System.Collections.Generic;
 using System.Linq;
+using OpenRA.Graphics;
 using OpenRA.Traits;
 
 namespace OpenRA.Mods.Common.Traits
@@ -19,11 +20,11 @@ namespace OpenRA.Mods.Common.Traits
 	[Desc("Controls the game speed, tech level, and short game lobby options.")]
 	public class MapOptionsInfo : TraitInfo, ILobbyOptions, IRulesetLoaded
 	{
-		[TranslationReference]
+		[FluentReference]
 		[Desc("Descriptive label for the short game checkbox in the lobby.")]
 		public readonly string ShortGameCheckboxLabel = "checkbox-short-game.label";
 
-		[TranslationReference]
+		[FluentReference]
 		[Desc("Tooltip description for the short game checkbox in the lobby.")]
 		public readonly string ShortGameCheckboxDescription = "checkbox-short-game.description";
 
@@ -39,11 +40,11 @@ namespace OpenRA.Mods.Common.Traits
 		[Desc("Display order for the short game checkbox in the lobby.")]
 		public readonly int ShortGameCheckboxDisplayOrder = 0;
 
-		[TranslationReference]
+		[FluentReference]
 		[Desc("Descriptive label for the tech level option in the lobby.")]
 		public readonly string TechLevelDropdownLabel = "dropdown-tech-level.label";
 
-		[TranslationReference]
+		[FluentReference]
 		[Desc("Tooltip description for the tech level option in the lobby.")]
 		public readonly string TechLevelDropdownDescription = "dropdown-tech-level.description";
 
@@ -59,11 +60,11 @@ namespace OpenRA.Mods.Common.Traits
 		[Desc("Display order for the tech level option in the lobby.")]
 		public readonly int TechLevelDropdownDisplayOrder = 0;
 
-		[TranslationReference]
+		[FluentReference]
 		[Desc("Tooltip description for the game speed option in the lobby.")]
 		public readonly string GameSpeedDropdownLabel = "dropdown-game-speed.label";
 
-		[TranslationReference]
+		[FluentReference]
 		[Desc("Description of the game speed option in the lobby.")]
 		public readonly string GameSpeedDropdownDescription = "dropdown-game-speed.description";
 
@@ -79,20 +80,25 @@ namespace OpenRA.Mods.Common.Traits
 		[Desc("Display order for the game speed option in the lobby.")]
 		public readonly int GameSpeedDropdownDisplayOrder = 0;
 
+		[Desc("If defined, overrides the viewport height for all players to this many world units.")]
+		public readonly WDist? ViewportHeight = null;
+
 		IEnumerable<LobbyOption> ILobbyOptions.LobbyOptions(MapPreview map)
 		{
-			yield return new LobbyBooleanOption(map, "shortgame", ShortGameCheckboxLabel, ShortGameCheckboxDescription,
+			yield return new LobbyBooleanOption(map, "shortgame",
+				ShortGameCheckboxLabel, ShortGameCheckboxDescription,
 				ShortGameCheckboxVisible, ShortGameCheckboxDisplayOrder, ShortGameCheckboxEnabled, ShortGameCheckboxLocked);
 
 			var techLevels = map.PlayerActorInfo.TraitInfos<ProvidesTechPrerequisiteInfo>()
-				.ToDictionary(t => t.Id, t => map.GetLocalisedString(t.Name));
+				.ToDictionary(t => t.Id, t => map.GetMessage(t.Name));
 
 			if (techLevels.Count > 0)
-				yield return new LobbyOption(map, "techlevel", TechLevelDropdownLabel, TechLevelDropdownDescription, TechLevelDropdownVisible, TechLevelDropdownDisplayOrder,
+				yield return new LobbyOption(map, "techlevel",
+					TechLevelDropdownLabel, TechLevelDropdownDescription, TechLevelDropdownVisible, TechLevelDropdownDisplayOrder,
 					techLevels, TechLevel, TechLevelDropdownLocked);
 
 			var gameSpeeds = Game.ModData.Manifest.Get<GameSpeeds>();
-			var speeds = gameSpeeds.Speeds.ToDictionary(s => s.Key, s => TranslationProvider.GetString(s.Value.Name));
+			var speeds = gameSpeeds.Speeds.ToDictionary(s => s.Key, s => FluentProvider.GetMessage(s.Value.Name));
 
 			// NOTE: This is just exposing the UI, the backend logic for this option is hardcoded in World.
 			yield return new LobbyOption(map, "gamespeed",
@@ -111,7 +117,7 @@ namespace OpenRA.Mods.Common.Traits
 		public override object Create(ActorInitializer init) { return new MapOptions(this); }
 	}
 
-	public class MapOptions : INotifyCreated
+	public class MapOptions : INotifyCreated, IWorldLoaded
 	{
 		readonly MapOptionsInfo info;
 
@@ -130,6 +136,16 @@ namespace OpenRA.Mods.Common.Traits
 
 			TechLevel = self.World.LobbyInfo.GlobalSettings
 				.OptionOrDefault("techlevel", info.TechLevel);
+		}
+
+		void IWorldLoaded.WorldLoaded(World w, WorldRenderer wr)
+		{
+			if (info.ViewportHeight.HasValue)
+			{
+				// WPos to world pixels
+				var height = info.ViewportHeight.Value.Length * w.Map.Grid.TileSize.Height / w.Map.Grid.TileScale;
+				wr.Viewport.OverrideDefaultHeight(height);
+			}
 		}
 	}
 }

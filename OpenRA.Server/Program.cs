@@ -27,6 +27,13 @@ namespace OpenRA.Server
 			{
 				Run(args);
 			}
+			catch
+			{
+				// Flush logs before rethrowing, i.e. allowing the exception to go unhandled.
+				// try-finally won't work - an unhandled exception kills our process without running the finally block!
+				Log.Dispose();
+				throw;
+			}
 			finally
 			{
 				Log.Dispose();
@@ -85,9 +92,6 @@ namespace OpenRA.Server
 				var modData = Game.ModData = new ModData(mods[modID], mods);
 				modData.MapCache.LoadPreviewImages = false; // PERF: Server doesn't need previews, save memory by not loading them.
 				modData.MapCache.LoadMaps();
-
-				// HACK: Related to the above one, initialize the translations so we can load maps with their (translated) lobby options.
-				TranslationProvider.Initialize(modData, modData.DefaultFileSystem);
 
 				var endpoints = new List<IPEndPoint> { new(IPAddress.IPv6Any, settings.ListenPort), new(IPAddress.Any, settings.ListenPort) };
 				var server = new Server(endpoints, settings, modData, ServerType.Dedicated);

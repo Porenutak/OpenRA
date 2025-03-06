@@ -22,6 +22,12 @@ E1:
 		ScanRadius: 4
 	Armament:
 		Weapon: M16
+	Encyclopedia:
+		Description: actor-e1.encyclopedia
+		Order: 0
+		Scale: 3
+		Category: Infantry
+		PreviewOwner: NodUnits
 	AttackFrontal:
 		Voice: Attack
 		FacingTolerance: 0
@@ -57,6 +63,11 @@ E2:
 		Weapon: Grenade
 		LocalOffset: 0,0,427
 		FireDelay: 15
+	Encyclopedia:
+		Description: actor-e2.encyclopedia
+		Scale: 3
+		Category: Infantry
+		PreviewOwner: NodUnits
 	AttackFrontal:
 		Voice: Attack
 		FacingTolerance: 0
@@ -66,7 +77,7 @@ E2:
 		ProneOffset: 300,0,-227
 	WithInfantryBody:
 		DefaultAttackSequence: throw
-	Explodes:
+	FireWarheadsOnDeath:
 		Weapon: GrenadierExplode
 		EmptyWeapon: GrenadierExplode
 		Chance: 50
@@ -97,6 +108,12 @@ E3:
 		Weapon: Rockets
 		LocalOffset: 256,43,341
 		FireDelay: 5
+	Encyclopedia:
+		Description: actor-e3.encyclopedia
+		Order: 20
+		Scale: 3
+		Category: Infantry
+		PreviewOwner: NodUnits
 	AttackFrontal:
 		Voice: Attack
 		FacingTolerance: 0
@@ -134,6 +151,12 @@ E4:
 		LocalOffset: 341,0,256
 		FireDelay: 3
 		MuzzleSequence: muzzle
+	Encyclopedia:
+		Description: actor-e4.encyclopedia
+		Order: 30
+		Scale: 3
+		Category: Infantry
+		PreviewOwner: NodUnits
 	AttackFrontal:
 		Voice: Attack
 		FacingTolerance: 0
@@ -173,6 +196,12 @@ E5:
 		LocalOffset: 341,0,256
 		FireDelay: 3
 		MuzzleSequence: muzzle
+	Encyclopedia:
+		Description: actor-e5.encyclopedia
+		Order: 40
+		Scale: 3
+		Category: Infantry
+		PreviewOwner: NodUnits
 	AttackFrontal:
 		Voice: Attack
 		FacingTolerance: 0
@@ -203,6 +232,12 @@ E6:
 		Speed: 46
 	Health:
 		HP: 3000
+	Encyclopedia:
+		Description: actor-e6.encyclopedia
+		Order: 50
+		Scale: 3
+		Category: Infantry
+		PreviewOwner: NodUnits
 	Passenger:
 		CustomPipType: yellow
 	InstantlyRepairs:
@@ -252,6 +287,12 @@ RMBO:
 		Voice: Demolish
 	Armament:
 		Weapon: Sniper
+	Encyclopedia:
+		Description: actor-rmbo.encyclopedia
+		Order: 60
+		Scale: 3
+		Category: Infantry
+		PreviewOwner: GDI
 	WithInfantryBody:
 		DefaultAttackSequence: shoot
 		IdleSequences: idle1,idle2,idle3
@@ -270,12 +311,19 @@ PVICE:
 		Queue: Infantry.GDI, Infantry.Nod
 		BuildPaletteOrder: 50
 		Prerequisites: ~disabled
-		Description: actor-pvice-description
+		Description: actor-pvice.description
 	Tooltip:
 	UpdatesPlayerStatistics:
 		AddToArmyValue: true
 	ActorLostNotification:
 		TextNotification: notification-unit-lost
+	Encyclopedia:
+		Description: actor-pvice.encyclopedia
+		Order: 70
+		Scale: 3
+		Category: Civilian
+		HideBuildable: true
+		PreviewOwner: NodUnits
 
 STEG:
 	Inherits: ^DINO

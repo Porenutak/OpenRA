@@ -65,7 +65,7 @@ SendHarkonnen = function(path)
 end
 
 Hunt = function(house)
-	Trigger.OnAllKilledOrCaptured(Base[house.Name], function()
+	Trigger.OnAllKilledOrCaptured(Base[house.InternalName], function()
 		Utils.Do(house.GetGroundAttackers(), IdleHunt)
 	end)
 end
@@ -90,7 +90,7 @@ Tick = function()
 	end
 
 	if Harkonnen.HasNoRequiredUnits() and not Ordos.IsObjectiveCompleted(KillHarkonnen) then
-		Media.DisplayMessage(UserInterface.Translate("harkonnen-annihilated"), Mentat)
+		Media.DisplayMessage(UserInterface.GetFluentMessage("harkonnen-annihilated"), Mentat)
 		Ordos.MarkCompletedObjective(KillHarkonnen)
 	end
 
@@ -111,8 +111,6 @@ WorldLoaded = function()
 	DefendOutpost = AddPrimaryObjective(Smuggler, "outpost-not-captured-destroyed")
 	CaptureOutpost = AddPrimaryObjective(Ordos, "capture-smuggler-outpost")
 	KillHarkonnen = AddSecondaryObjective(Ordos, "destroy-harkonnen")
-
-	SOutpost.GrantCondition("modified")
 
 	Camera.Position = OConyard.CenterPosition
 	HarkonnenAttackLocation = OConyard.Location
@@ -138,6 +136,7 @@ WorldLoaded = function()
 			Ordos.MarkCompletedObjective(CaptureOutpost)
 			Smuggler.MarkFailedObjective(DefendOutpost)
 		end)
+		SOutpost.GrantCondition("modified")
 	end)
 	Trigger.OnDamaged(SOutpost, function(_, attacker)
 		if SOutpost.Owner ~= Smuggler or attacker.IsDead or attacker.Owner ~= Ordos then
@@ -146,7 +145,7 @@ WorldLoaded = function()
 
 		if AttackNotifier <= 0 then
 			AttackNotifier = DateTime.Seconds(10)
-			Media.DisplayMessage(UserInterface.Translate("do-not-destroy-outpost"), Mentat)
+			Media.DisplayMessage(UserInterface.GetFluentMessage("do-not-destroy-outpost"), Mentat)
 		end
 	end)
 
@@ -156,6 +155,6 @@ WorldLoaded = function()
 	end)
 
 	Trigger.AfterDelay(HarkonnenAttackDelay[Difficulty], function()
-		Media.DisplayMessage(UserInterface.Translate("warning-large-force-approaching"), Mentat)
+		Media.DisplayMessage(UserInterface.GetFluentMessage("warning-large-force-approaching"), Mentat)
 	end)
 end

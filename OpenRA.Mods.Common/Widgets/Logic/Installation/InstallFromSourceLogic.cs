@@ -15,67 +15,68 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using OpenRA.Mods.Common.Installer;
+using OpenRA.Primitives;
 using OpenRA.Widgets;
 
 namespace OpenRA.Mods.Common.Widgets.Logic
 {
 	public class InstallFromSourceLogic : ChromeLogic
 	{
-		[TranslationReference]
+		[FluentReference]
 		const string DetectingSources = "label-detecting-sources";
 
-		[TranslationReference]
+		[FluentReference]
 		const string CheckingSources = "label-checking-sources";
 
-		[TranslationReference("title")]
+		[FluentReference("title")]
 		const string SearchingSourceFor = "label-searching-source-for";
 
-		[TranslationReference]
+		[FluentReference]
 		const string ContentPackageInstallation = "label-content-package-installation";
 
-		[TranslationReference]
+		[FluentReference]
 		const string GameSources = "label-game-sources";
 
-		[TranslationReference]
+		[FluentReference]
 		const string DigitalInstalls = "label-digital-installs";
 
-		[TranslationReference]
+		[FluentReference]
 		const string GameContentNotFound = "label-game-content-not-found";
 
-		[TranslationReference]
+		[FluentReference]
 		const string AlternativeContentSources = "label-alternative-content-sources";
 
-		[TranslationReference]
+		[FluentReference]
 		const string InstallingContent = "label-installing-content";
 
-		[TranslationReference("filename")]
+		[FluentReference("filename")]
 		public const string CopyingFilename = "label-copying-filename";
 
-		[TranslationReference("filename", "progress")]
+		[FluentReference("filename", "progress")]
 		public const string CopyingFilenameProgress = "label-copying-filename-progress";
 
-		[TranslationReference]
+		[FluentReference]
 		const string InstallationFailed = "label-installation-failed";
 
-		[TranslationReference]
+		[FluentReference]
 		const string CheckInstallLog = "label-check-install-log";
 
-		[TranslationReference("filename")]
-		public const string Extracing = "label-extracting-filename";
+		[FluentReference("filename")]
+		public const string Extracting = "label-extracting-filename";
 
-		[TranslationReference("filename", "progress")]
+		[FluentReference("filename", "progress")]
 		public const string ExtractingProgress = "label-extracting-filename-progress";
 
-		[TranslationReference]
+		[FluentReference]
 		public const string Continue = "button-continue";
 
-		[TranslationReference]
+		[FluentReference]
 		const string Cancel = "button-cancel";
 
-		[TranslationReference]
+		[FluentReference]
 		const string Retry = "button-retry";
 
-		[TranslationReference]
+		[FluentReference]
 		const string Back = "button-back";
 
 		// Hide percentage indicators for files smaller than 25 MB
@@ -115,7 +116,8 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 		Mode visible = Mode.Progress;
 
 		[ObjectCreator.UseCtor]
-		public InstallFromSourceLogic(Widget widget, ModData modData, ModContent content, Dictionary<string, ModContent.ModSource> sources)
+		public InstallFromSourceLogic(
+			Widget widget, ModData modData, ModContent content, Dictionary<string, ModContent.ModSource> sources)
 		{
 			this.modData = modData;
 			this.content = content;
@@ -159,17 +161,17 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 
 		void DetectContentSources()
 		{
-			var message = TranslationProvider.GetString(DetectingSources);
-			ShowProgressbar(TranslationProvider.GetString(CheckingSources), () => message);
+			var message = FluentProvider.GetMessage(DetectingSources);
+			ShowProgressbar(FluentProvider.GetMessage(CheckingSources), () => message);
 			ShowBackRetry(DetectContentSources);
 
 			new Task(() =>
 			{
 				foreach (var kv in sources)
 				{
-					message = TranslationProvider.GetString(SearchingSourceFor, Translation.Arguments("title", kv.Value.Title));
+					message = FluentProvider.GetMessage(SearchingSourceFor, "title", kv.Value.Title);
 
-					var sourceResolver = kv.Value.ObjectCreator.CreateObject<ISourceResolver>($"{kv.Value.Type.Value}SourceResolver");
+					var sourceResolver = modData.ObjectCreator.CreateObject<ISourceResolver>($"{kv.Value.Type.Value}SourceResolver");
 
 					var path = sourceResolver.FindSourcePath(kv.Value);
 					if (path != null)
@@ -187,7 +189,7 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 						{
 							Game.RunAfterTick(() =>
 							{
-								ShowList(kv.Value, TranslationProvider.GetString(ContentPackageInstallation));
+								ShowList(kv.Value, FluentProvider.GetMessage(ContentPackageInstallation));
 								ShowContinueCancel(() => InstallFromSource(path, kv.Value));
 							});
 
@@ -206,7 +208,7 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 
 				foreach (var source in missingSources)
 				{
-					var sourceResolver = source.ObjectCreator.CreateObject<ISourceResolver>($"{source.Type.Value}SourceResolver");
+					var sourceResolver = modData.ObjectCreator.CreateObject<ISourceResolver>($"{source.Type.Value}SourceResolver");
 
 					var availability = sourceResolver.GetAvailability();
 
@@ -219,14 +221,14 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 				var options = new Dictionary<string, IEnumerable<string>>();
 
 				if (gameSources.Count != 0)
-					options.Add(TranslationProvider.GetString(GameSources), gameSources);
+					options.Add(FluentProvider.GetMessage(GameSources), gameSources);
 
 				if (digitalInstalls.Count != 0)
-					options.Add(TranslationProvider.GetString(DigitalInstalls), digitalInstalls);
+					options.Add(FluentProvider.GetMessage(DigitalInstalls), digitalInstalls);
 
 				Game.RunAfterTick(() =>
 				{
-					ShowList(TranslationProvider.GetString(GameContentNotFound), TranslationProvider.GetString(AlternativeContentSources), options);
+					ShowList(FluentProvider.GetMessage(GameContentNotFound), FluentProvider.GetMessage(AlternativeContentSources), options);
 					ShowBackRetry(DetectContentSources);
 				});
 			}).Start();
@@ -235,7 +237,7 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 		void InstallFromSource(string path, ModContent.ModSource modSource)
 		{
 			var message = "";
-			ShowProgressbar(TranslationProvider.GetString(InstallingContent), () => message);
+			ShowProgressbar(FluentProvider.GetMessage(InstallingContent), () => message);
 			ShowDisabledCancel();
 
 			new Task(() =>
@@ -252,7 +254,11 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 
 						foreach (var sourceActionNode in sourceActionListYaml.Value.Nodes)
 						{
-							var sourceAction = modSource.ObjectCreator.CreateObject<ISourceAction>($"{sourceActionNode.Key}SourceAction");
+							var key = sourceActionNode.Key;
+							var split = key.IndexOf('@');
+							if (split != -1)
+								key = key[..split];
+							var sourceAction = modData.ObjectCreator.CreateObject<ISourceAction>($"{key}SourceAction");
 							sourceAction.RunActionOnSource(sourceActionNode.Value, path, modData, extracted, m => message = m);
 						}
 					}
@@ -261,7 +267,8 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 					if (beforeInstall != null)
 						RunSourceActions(beforeInstall);
 
-					foreach (var packageInstallationNode in modSource.Install.Where(x => x.Key == "ContentPackage"))
+					foreach (var packageInstallationNode in modSource.Install.Where(
+						x => x.Key == "ContentPackage" || x.Key.StartsWith("ContentPackage@", StringComparison.Ordinal)))
 					{
 						var packageName = packageInstallationNode.Value.NodeWithKeyOrDefault("Name")?.Value.Value;
 						if (!string.IsNullOrEmpty(packageName) && selectedPackages.TryGetValue(packageName, out var required) && required)
@@ -286,7 +293,7 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 
 					Game.RunAfterTick(() =>
 					{
-						ShowMessage(TranslationProvider.GetString(InstallationFailed), TranslationProvider.GetString(CheckInstallLog));
+						ShowMessage(FluentProvider.GetMessage(InstallationFailed), FluentProvider.GetMessage(CheckInstallLog));
 						ShowBackRetry(() => InstallFromSource(path, modSource));
 					});
 				}
@@ -331,9 +338,10 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 			listPanel.RemoveChildren();
 			foreach (var package in availablePackages)
 			{
-				var containerWidget = (ContainerWidget)checkboxListTemplate.Clone();
+				var containerWidget = checkboxListTemplate.Clone();
 				var checkboxWidget = containerWidget.Get<CheckboxWidget>("PACKAGE_CHECKBOX");
-				checkboxWidget.GetText = () => package.Title;
+				var title = FluentProvider.GetMessage(package.Title);
+				checkboxWidget.GetText = () => title;
 				checkboxWidget.IsDisabled = () => package.Required;
 				checkboxWidget.IsChecked = () => selectedPackages[package.Identifier];
 				checkboxWidget.OnClick = () => selectedPackages[package.Identifier] = !selectedPackages[package.Identifier];
@@ -377,7 +385,7 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 				foreach (var i in kv.Value)
 				{
 					var item = i;
-					var labelWidget = (LabelWidget)labelListTemplate.Clone();
+					var labelWidget = labelListTemplate.Clone();
 					labelWidget.GetText = () => item;
 					listPanel.AddChild(labelWidget);
 				}
@@ -392,12 +400,12 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 		void ShowContinueCancel(Action continueAction)
 		{
 			primaryButton.OnClick = continueAction;
-			var primaryButtonText = TranslationProvider.GetString(Continue);
+			var primaryButtonText = FluentProvider.GetMessage(Continue);
 			primaryButton.GetText = () => primaryButtonText;
 			primaryButton.Visible = true;
 
 			secondaryButton.OnClick = Ui.CloseWindow;
-			var secondaryButtonText = TranslationProvider.GetString(Cancel);
+			var secondaryButtonText = FluentProvider.GetMessage(Cancel);
 			secondaryButton.GetText = () => secondaryButtonText;
 			secondaryButton.Visible = true;
 			secondaryButton.Disabled = false;
@@ -407,12 +415,12 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 		void ShowBackRetry(Action retryAction)
 		{
 			primaryButton.OnClick = retryAction;
-			var primaryButtonText = TranslationProvider.GetString(Retry);
+			var primaryButtonText = FluentProvider.GetMessage(Retry);
 			primaryButton.GetText = () => primaryButtonText;
 			primaryButton.Visible = true;
 
 			secondaryButton.OnClick = Ui.CloseWindow;
-			var secondaryButtonText = TranslationProvider.GetString(Back);
+			var secondaryButtonText = FluentProvider.GetMessage(Back);
 			secondaryButton.GetText = () => secondaryButtonText;
 			secondaryButton.Visible = true;
 			secondaryButton.Disabled = false;

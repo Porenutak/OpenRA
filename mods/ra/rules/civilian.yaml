@@ -376,8 +376,8 @@ V19.Husk:
 	-Demolishable:
 	-HitShape:
 	-Health:
-	-Explodes:
-	-Explodes@CIVPANIC:
+	-FireWarheadsOnDeath:
+	-FireWarheadsOnDeath@CIVPANIC:
 	Interactable:
 
 BARL:
@@ -385,7 +385,7 @@ BARL:
 	-Selectable:
 	Health:
 		HP: 1000
-	Explodes:
+	FireWarheadsOnDeath:
 		Weapon: BarrelExplode
 	Tooltip:
 		Name: actor-barl-name
@@ -407,7 +407,7 @@ BRL3:
 	-Selectable:
 	Health:
 		HP: 1000
-	Explodes:
+	FireWarheadsOnDeath:
 		Weapon: BarrelExplode
 	Tooltip:
 		Name: actor-brl3-name
@@ -551,7 +551,7 @@ OILB:
 	TooltipDescription@other:
 		Description: actor-oilb.capturable-desc
 		ValidRelationships: Neutral, Enemy
-	Explodes:
+	FireWarheadsOnDeath:
 		Weapon: BarrelExplode
 	GpsDot:
 		String: Oil
@@ -572,6 +572,14 @@ BR1:
 	FreeActor:
 		Actor: bridgehut
 		SpawnOffset: 2,0
+		RequiresCondition: !desert-bridge
+	FreeActor@DESERT:
+		Actor: bridgehut
+		SpawnOffset: 2,-1
+		RequiresCondition: desert-bridge
+	GrantConditionOnTileSet@DESERT:
+		Condition: desert-bridge
+		TileSets: DESERT
 
 BR2:
 	Inherits: ^Bridge
@@ -583,6 +591,14 @@ BR2:
 	FreeActor:
 		Actor: bridgehut
 		SpawnOffset: 1,1
+		RequiresCondition: !desert-bridge
+	FreeActor@DESERT:
+		Actor: bridgehut
+		SpawnOffset: 0,1
+		RequiresCondition: desert-bridge
+	GrantConditionOnTileSet@DESERT:
+		Condition: desert-bridge
+		TileSets: DESERT
 
 BR3:
 	Inherits: ^Bridge

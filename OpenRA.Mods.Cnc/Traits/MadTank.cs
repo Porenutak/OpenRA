@@ -21,7 +21,7 @@ using OpenRA.Traits;
 
 namespace OpenRA.Mods.Cnc.Traits
 {
-	sealed class MadTankInfo : TraitInfo, IRulesetLoaded, Requires<ExplodesInfo>, Requires<WithFacingSpriteBodyInfo>
+	sealed class MadTankInfo : TraitInfo, IRulesetLoaded, Requires<FireWarheadsOnDeathInfo>, Requires<WithFacingSpriteBodyInfo>
 	{
 		[SequenceReference]
 		public readonly string ThumpSequence = "piston";
@@ -102,7 +102,9 @@ namespace OpenRA.Mods.Cnc.Traits
 		{
 			get
 			{
-				yield return new TargetTypeOrderTargeter(new BitSet<TargetableType>("DetonateAttack"), "DetonateAttack", 5, info.AttackCursor, true, false) { ForceAttack = false };
+				yield return
+					new TargetTypeOrderTargeter(new BitSet<TargetableType>("DetonateAttack"), "DetonateAttack", 5, info.AttackCursor, true, false)
+					{ ForceAttack = false };
 
 				if (!initiated)
 					yield return new DeployOrderTargeter("Detonate", 5, () => info.DeployCursor);

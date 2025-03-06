@@ -9,7 +9,6 @@
  */
 #endregion
 
-using System.Collections.Generic;
 using Eluant;
 using OpenRA.Mods.Common.Widgets;
 using OpenRA.Primitives;
@@ -34,27 +33,33 @@ namespace OpenRA.Mods.Common.Scripting.Global
 			luaLabel.GetColor = () => c;
 		}
 
-		public string Translate(string text, LuaTable table = null)
+		[Desc("Formats a language string for a given string key defined in the language files (*.ftl). " +
+			"Args can be passed to be substituted into the resulting message.")]
+		public string GetFluentMessage(string key, [ScriptEmmyTypeOverride("{ string: any }")] LuaTable args = null)
 		{
-			if (table != null)
+			if (args != null)
 			{
-				var argumentDictionary = new Dictionary<string, object>();
-				foreach (var kv in table)
+				var argumentDictionary = new object[args.Count * 2];
+				var i = 0;
+				foreach (var kv in args)
 				{
 					using (kv.Key)
 					using (kv.Value)
 					{
 						if (!kv.Key.TryGetClrValue<string>(out var variable) || !kv.Value.TryGetClrValue<object>(out var value))
-							throw new LuaException($"Translation arguments requires a table of [\"string\"]=value pairs. Received {kv.Key.WrappedClrType().Name},{kv.Value.WrappedClrType().Name}");
+							throw new LuaException(
+								"String arguments requires a table of [\"string\"]=value pairs. " +
+								$"Received {kv.Key.WrappedClrType().Name},{kv.Value.WrappedClrType().Name}");
 
-						argumentDictionary.Add(variable, value);
+						argumentDictionary[i++] = variable;
+						argumentDictionary[i++] = value;
 					}
 				}
 
-				return TranslationProvider.GetString(text, argumentDictionary);
+				return FluentProvider.GetMessage(key, argumentDictionary);
 			}
 
-			return TranslationProvider.GetString(text);
+			return FluentProvider.GetMessage(key);
 		}
 	}
 }

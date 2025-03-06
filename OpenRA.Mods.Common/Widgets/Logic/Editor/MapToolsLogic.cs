@@ -11,24 +11,29 @@
 
 using System.Collections.Generic;
 using OpenRA.Graphics;
+using OpenRA.Mods.Common.Traits;
 using OpenRA.Widgets;
 
 namespace OpenRA.Mods.Common.Widgets.Logic
 {
 	public class MapToolsLogic : ChromeLogic
 	{
-		[TranslationReference]
+		[FluentReference]
 		const string MarkerTiles = "label-tool-marker-tiles";
+		[FluentReference]
+		const string MapGenerator = "label-tool-map-generator";
 
 		enum MapTool
 		{
-			MarkerTiles
+			MarkerTiles,
+			MapGenerator
 		}
 
 		readonly DropDownButtonWidget toolsDropdown;
 		readonly Dictionary<MapTool, string> toolNames = new()
 		{
-			{ MapTool.MarkerTiles, MarkerTiles }
+			{ MapTool.MarkerTiles, MarkerTiles },
+			{ MapTool.MapGenerator, MapGenerator }
 		};
 
 		readonly Dictionary<MapTool, Widget> toolPanels = new();
@@ -40,12 +45,19 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 		{
 			toolsDropdown = widget.Get<DropDownButtonWidget>("TOOLS_DROPDOWN");
 
-			var markerToolPanel = widget.Get<ScrollPanelWidget>("MARKER_TOOL_PANEL");
+			var markerToolPanel = widget.Get("MARKER_TOOL_PANEL");
 			toolPanels.Add(MapTool.MarkerTiles, markerToolPanel);
+			if (world.Map.Rules.Actors[SystemActors.EditorWorld].HasTraitInfo<IMapGeneratorInfo>())
+			{
+				var mapGeneratorToolPanel = widget.GetOrNull("MAP_GENERATOR_TOOL_PANEL");
+				if (mapGeneratorToolPanel != null)
+					toolPanels.Add(MapTool.MapGenerator, mapGeneratorToolPanel);
+			}
 
 			toolsDropdown.OnMouseDown = _ => ShowToolsDropDown(toolsDropdown);
-			toolsDropdown.GetText = () => TranslationProvider.GetString(toolNames[selectedTool]);
-			toolsDropdown.Disabled = true; // TODO: Enable if new tools are added
+			toolsDropdown.GetText = () => FluentProvider.GetMessage(toolNames[selectedTool]);
+			if (toolPanels.Count <= 1)
+				toolsDropdown.Disabled = true;
 		}
 
 		void ShowToolsDropDown(DropDownButtonWidget dropdown)
@@ -56,12 +68,12 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 					() => selectedTool == tool,
 					() => SelectTool(tool));
 
-				item.Get<LabelWidget>("LABEL").GetText = () => TranslationProvider.GetString(toolNames[tool]);
+				item.Get<LabelWidget>("LABEL").GetText = () => FluentProvider.GetMessage(toolNames[tool]);
 
 				return item;
 			}
 
-			var options = new[] { MapTool.MarkerTiles };
+			var options = new[] { MapTool.MarkerTiles, MapTool.MapGenerator };
 			dropdown.ShowDropDown("LABEL_DROPDOWN_TEMPLATE", 150, options, SetupItem);
 		}
 

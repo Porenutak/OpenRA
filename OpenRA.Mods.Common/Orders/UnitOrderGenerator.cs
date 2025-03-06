@@ -99,7 +99,10 @@ namespace OpenRA.Mods.Common.Orders
 		public virtual bool InputOverridesSelection(World world, int2 xy, MouseInput mi)
 		{
 			var actor = world.ScreenMap.ActorsAtMouse(xy)
-				.Where(a => !a.Actor.IsDead && a.Actor.Info.HasTraitInfo<ISelectableInfo>() && (a.Actor.Owner.IsAlliedWith(world.RenderPlayer) || !world.FogObscures(a.Actor)))
+				.Where(a =>
+					!a.Actor.IsDead &&
+					a.Actor.Info.HasTraitInfo<ISelectableInfo>() &&
+					(a.Actor.Owner.IsAlliedWith(world.RenderPlayer) || !world.FogObscures(a.Actor)))
 				.WithHighestSelectionPriority(xy, mi.Modifiers);
 
 			if (actor == null)
@@ -156,15 +159,8 @@ namespace OpenRA.Mods.Common.Orders
 			if (mi.Modifiers.HasModifier(Modifiers.Alt))
 				modifiers |= TargetModifiers.ForceMove;
 
-			// The Select(x => x) is required to work around an issue on mono 5.0
-			// where calling OrderBy* on SelectManySingleSelectorIterator can in some
-			// circumstances (which we were unable to identify) replace entries in the
-			// enumeration with duplicates of other entries.
-			// Other action that replace the SelectManySingleSelectorIterator with a
-			// different enumerator type (e.g. .Where(true) or .ToList()) also work.
 			var orders = self.TraitsImplementing<IIssueOrder>()
 				.SelectMany(trait => trait.Orders.Select(x => new { Trait = trait, Order = x }))
-				.Select(x => x)
 				.OrderByDescending(x => x.Order.OrderPriority)
 				.ToList();
 

@@ -42,7 +42,8 @@ namespace OpenRA.Mods.Common.Traits
 		public override object Create(ActorInitializer init) { return new ProximityExternalCondition(init.Self, this); }
 	}
 
-	public class ProximityExternalCondition : ConditionalTrait<ProximityExternalConditionInfo>, ITick, INotifyAddedToWorld, INotifyRemovedFromWorld, INotifyOtherProduction, INotifyProximityOwnerChanged
+	public class ProximityExternalCondition : ConditionalTrait<ProximityExternalConditionInfo>,
+		ITick, INotifyAddedToWorld, INotifyRemovedFromWorld, INotifyOtherProduction, INotifyProximityOwnerChanged
 	{
 		readonly Actor self;
 
@@ -169,7 +170,7 @@ namespace OpenRA.Mods.Common.Traits
 			if (IsTraitDisabled)
 				return;
 
-			// Work around for actors changin owner within the region.
+			// Work around for actors changing owner within the region.
 			if ((actor.CenterPosition - self.CenterPosition).HorizontalLengthSquared <= Info.Range.LengthSquared)
 			{
 				var hasRelationship = Info.ValidRelationships.HasRelationship(self.Owner.RelationshipWith(actor.Owner));

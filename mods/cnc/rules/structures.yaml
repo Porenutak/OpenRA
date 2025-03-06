@@ -11,6 +11,12 @@ FACT:
 		Footprint: xxx xxx ===
 		Dimensions: 3,3
 		LocalCenterOffset: 0,-512,0
+	Encyclopedia:
+		Description: actor-fact.encyclopedia
+		Category: Buildings
+		Order: 0
+		Scale: 2
+		PreviewOwner: GDI
 	Health:
 		HP: 210000
 	Armor:
@@ -18,7 +24,7 @@ FACT:
 	RevealsShroud:
 		Range: 10c0
 	Production:
-		Produces: Building.GDI, Building.Nod, Defence.GDI, Defence.Nod
+		Produces: Building.GDI, Building.Nod, Support.GDI, Support.Nod
 	Transforms:
 		RequiresCondition: factundeploy
 		PauseOnCondition: being-demolished || build-incomplete
@@ -72,11 +78,11 @@ FACT:
 		QueuedAudio: Building
 		OnHoldAudio: OnHold
 		CancelledAudio: Cancelled
-	ProductionQueue@GDIDefense:
-		Type: Defence.GDI
+	ProductionQueue@GDISupport:
+		Type: Support.GDI
 		DisplayOrder: 1
 		Factions: gdi
-		Group: Defence
+		Group: Support
 		LowPowerModifier: 150
 		ReadyAudio: ConstructionComplete
 		ReadyTextNotification: notification-construction-complete
@@ -87,11 +93,11 @@ FACT:
 		QueuedAudio: Building
 		OnHoldAudio: OnHold
 		CancelledAudio: Cancelled
-	ProductionQueue@NodDefense:
-		Type: Defence.Nod
+	ProductionQueue@NodSupport:
+		Type: Support.Nod
 		DisplayOrder: 1
 		Factions: nod
-		Group: Defence
+		Group: Support
 		LowPowerModifier: 150
 		ReadyAudio: ConstructionComplete
 		ReadyTextNotification: notification-construction-complete
@@ -107,11 +113,11 @@ FACT:
 		ProductionType: Building.GDI
 	ProductionBar@BuildingNod:
 		ProductionType: Building.Nod
-	ProductionBar@DefenceGDI:
-		ProductionType: Defence.GDI
+	ProductionBar@SupportGDI:
+		ProductionType: Support.GDI
 		Color: 8A8A8A
-	ProductionBar@DefenceNod:
-		ProductionType: Defence.Nod
+	ProductionBar@SupportNod:
+		ProductionType: Support.Nod
 		Color: 8A8A8A
 	BaseProvider:
 		Range: 14c0
@@ -135,6 +141,7 @@ FACT.GDI:
 		ForceFaction: gdi
 	Tooltip:
 		Name: actor-fact-gdi-name
+	-Encyclopedia:
 
 FACT.NOD:
 	Inherits: FACT
@@ -147,6 +154,7 @@ FACT.NOD:
 		ForceFaction: nod
 	Tooltip:
 		Name: actor-fact-nod-name
+	-Encyclopedia:
 
 NUKE:
 	Inherits: ^BaseBuilding
@@ -170,6 +178,12 @@ NUKE:
 		Footprint: xX xx ==
 		Dimensions: 2,3
 		LocalCenterOffset: 0,-512,0
+	Encyclopedia:
+		Description: actor-nuke.encyclopedia
+		Category: Buildings
+		Order: 40
+		Scale: 2
+		PreviewOwner: GDI
 	Health:
 		HP: 55000
 	RevealsShroud:
@@ -201,6 +215,12 @@ NUK2:
 		Footprint: xX xx ==
 		Dimensions: 2,3
 		LocalCenterOffset: 0,-512,0
+	Encyclopedia:
+		Description: actor-nuk2.encyclopedia
+		Category: Buildings
+		Order: 190
+		Scale: 2
+		PreviewOwner: GDI
 	Health:
 		HP: 70000
 	RevealsShroud:
@@ -234,6 +254,12 @@ PROC:
 		Footprint: _x_ xxx +++ ===
 		Dimensions: 3,4
 		LocalCenterOffset: 0,-512,0
+	Encyclopedia:
+		Description: actor-proc.encyclopedia
+		Category: Buildings
+		Order: 80
+		Scale: 2
+		PreviewOwner: GDI
 	Health:
 		HP: 100000
 	RevealsShroud:
@@ -276,11 +302,17 @@ SILO:
 	Buildable:
 		BuildPaletteOrder: 35
 		Prerequisites: proc
-		Queue: Defence.GDI, Defence.Nod
+		Queue: Support.GDI, Support.Nod
 		Description: actor-silo.description
 	Building:
 		Footprint: xx
 		Dimensions: 2,1
+	Encyclopedia:
+		Description: actor-silo.encyclopedia
+		Category: Buildings
+		Order: 90
+		Scale: 2
+		PreviewOwner: GDI
 	-GivesBuildableArea:
 	Health:
 		HP: 50000
@@ -326,6 +358,12 @@ PYLE:
 		Footprint: xx ++ ==
 		Dimensions: 2,3
 		LocalCenterOffset: 0,-512,0
+	Encyclopedia:
+		Description: actor-pyle.encyclopedia
+		Category: Buildings
+		Order: 50
+		Scale: 2
+		PreviewOwner: GDI
 	Health:
 		HP: 60000
 	RevealsShroud:
@@ -387,6 +425,12 @@ HAND:
 		Footprint: xx xx ==
 		Dimensions: 2,3
 		LocalCenterOffset: 0,-512,0
+	Encyclopedia:
+		Description: actor-hand.encyclopedia
+		Category: Buildings
+		Order: 60
+		Scale: 2
+		PreviewOwner: Nod
 	Health:
 		HP: 60000
 	RevealsShroud:
@@ -451,6 +495,12 @@ AFLD:
 		Footprint: XXX+ xxx+ ====
 		Dimensions: 4,3
 		LocalCenterOffset: 0,-512,0
+	Encyclopedia:
+		Description: actor-afld.encyclopedia
+		Category: Buildings
+		Order: 110
+		Scale: 1.5
+		PreviewOwner: Nod
 	Health:
 		HP: 110000
 	RevealsShroud:
@@ -516,6 +566,12 @@ WEAP:
 	Selectable:
 		Bounds: 3072, 2048
 		DecorationBounds: 3072, 2730, 0, -682
+	Encyclopedia:
+		Description: actor-weap.encyclopedia
+		Category: Buildings
+		Order: 100
+		Scale: 2
+		PreviewOwner: GDI
 	Health:
 		HP: 110000
 	RevealsShroud:
@@ -577,6 +633,12 @@ HPAD:
 	Building:
 		Footprint: xx xx
 		Dimensions: 2,2
+	Encyclopedia:
+		Description: actor-hpad.encyclopedia
+		Category: Buildings
+		Order: 120
+		Scale: 2
+		PreviewOwner: GDI
 	Health:
 		HP: 60000
 	RevealsShroud:
@@ -663,6 +725,12 @@ HQ:
 		DecorationBounds: 2048, 2261, 0, -170
 	WithSpriteBody:
 		PauseOnCondition: lowpower
+	Encyclopedia:
+		Description: actor-hq.encyclopedia
+		Category: Buildings
+		Order: 130
+		Scale: 2
+		PreviewOwner: GDI
 	Health:
 		HP: 80000
 	RevealsShroud:
@@ -725,6 +793,12 @@ FIX:
 	Building:
 		Footprint: _+_ +++ _+_
 		Dimensions: 3,3
+	Encyclopedia:
+		Description: actor-fix.encyclopedia
+		Category: Buildings
+		Order: 180
+		Scale: 2
+		PreviewOwner: GDI
 	Selectable:
 		Bounds: 2730, 1450, 0, 128
 		DecorationBounds: 3072, 2048
@@ -773,6 +847,12 @@ EYE:
 		Footprint: X_ xx ==
 		Dimensions: 2,3
 		LocalCenterOffset: 0,-512,0
+	Encyclopedia:
+		Description: actor-eye.encyclopedia
+		Category: Buildings
+		Order: 200
+		Scale: 2
+		PreviewOwner: GDI
 	Selectable:
 		Bounds: 2048, 1706, 0, 384
 		DecorationBounds: 2048, 2261, 0, -170
@@ -839,6 +919,12 @@ TMPL:
 	Selectable:
 		Bounds: 3072, 2048
 		DecorationBounds: 3072, 2901, 0, -512
+	Encyclopedia:
+		Description: actor-tmpl.encyclopedia
+		Category: Buildings
+		Order: 210
+		Scale: 2
+		PreviewOwner: Nod
 	Health:
 		HP: 210000
 	RevealsShroud:
@@ -890,7 +976,7 @@ TMPL:
 	ProvidesPrerequisite@buildingname:
 
 GUN:
-	Inherits: ^Defense
+	Inherits: ^Support
 	Inherits@AUTOTARGET: ^AutoTargetGround
 	Selectable:
 		Bounds: 1024, 1024
@@ -901,10 +987,16 @@ GUN:
 	Buildable:
 		BuildPaletteOrder: 45
 		Prerequisites: barracks
-		Queue: Defence.GDI, Defence.Nod
+		Queue: Support.GDI, Support.Nod
 		BuildDuration: 960
 		Description: actor-gun.description
 	Building:
+	Encyclopedia:
+		Description: actor-gun.encyclopedia
+		Category: Buildings
+		Order: 160
+		Scale: 2
+		PreviewOwner: Nod
 	Health:
 		HP: 41000
 	Armor:
@@ -939,7 +1031,7 @@ GUN:
 	ClassicFacingBodyOrientation:
 
 SAM:
-	Inherits: ^Defense
+	Inherits: ^Support
 	Inherits@IDISABLE: ^DisabledOverlay
 	Inherits@AUTOTARGET: ^AutoTargetAir
 	Inherits@shape: ^2x1Shape
@@ -956,12 +1048,18 @@ SAM:
 	Buildable:
 		BuildPaletteOrder: 50
 		Prerequisites: hand
-		Queue: Defence.Nod
+		Queue: Support.Nod
 		BuildDuration: 1130
 		Description: actor-sam.description
 	Building:
 		Footprint: xx
 		Dimensions: 2,1
+	Encyclopedia:
+		Description: actor-sam.encyclopedia
+		Category: Buildings
+		Order: 161
+		Scale: 2
+		PreviewOwner: Nod
 	Health:
 		HP: 40000
 	Armor:
@@ -992,7 +1090,7 @@ SAM:
 		SequenceAlpha: 0.65
 
 OBLI:
-	Inherits: ^Defense
+	Inherits: ^Support
 	Inherits@IDISABLE: ^DisabledOverlay
 	Inherits@AUTOTARGET: ^AutoTargetGround
 	Valued:
@@ -1002,12 +1100,18 @@ OBLI:
 	Buildable:
 		BuildPaletteOrder: 60
 		Prerequisites: tmpl, ~techlevel.high
-		Queue: Defence.Nod
+		Queue: Support.Nod
 		BuildDuration: 2080
 		Description: actor-obli.description
 	Selectable:
 		Bounds: 1024, 1024
 		DecorationBounds: 938, 1877, 0, -426
+	Encyclopedia:
+		Description: actor-obli.encyclopedia
+		Category: Buildings
+		Order: 220
+		Scale: 2
+		PreviewOwner: Nod
 	Health:
 		HP: 75000
 	Armor:
@@ -1038,7 +1142,7 @@ OBLI:
 		Amount: -90
 
 GTWR:
-	Inherits: ^Defense
+	Inherits: ^Support
 	Inherits@AUTOTARGET: ^AutoTargetGround
 	Selectable:
 		Bounds: 1024, 1024
@@ -1049,10 +1153,16 @@ GTWR:
 	Buildable:
 		BuildPaletteOrder: 40
 		Prerequisites: barracks
-		Queue: Defence.GDI, Defence.Nod
+		Queue: Support.GDI, Support.Nod
 		BuildDuration: 960
 		Description: actor-gtwr.description
 	Building:
+	Encyclopedia:
+		Description: actor-gtwr.encyclopedia
+		Category: Buildings
+		Order: 150
+		Scale: 2
+		PreviewOwner: GDI
 	Health:
 		HP: 40000
 	Armor:
@@ -1078,7 +1188,7 @@ GTWR:
 		Amount: -10
 
 ATWR:
-	Inherits: ^Defense
+	Inherits: ^Support
 	Inherits@IDISABLE: ^DisabledOverlay
 	Inherits@AUTOTARGET: ^AutoTargetAll
 	Valued:
@@ -1088,12 +1198,18 @@ ATWR:
 	Buildable:
 		BuildPaletteOrder: 60
 		Prerequisites: anyhq, ~techlevel.medium
-		Queue: Defence.GDI
+		Queue: Support.GDI
 		BuildDuration: 1920
 		Description: actor-atwr.description
 	Selectable:
 		Bounds: 1024, 1024
 		DecorationBounds: 938, 2048, 0, -512
+	Encyclopedia:
+		Description: actor-atwr.encyclopedia
+		Category: Buildings
+		Order: 170
+		Scale: 2
+		PreviewOwner: GDI
 	Health:
 		HP: 55000
 	Armor:
@@ -1138,8 +1254,14 @@ SBAG:
 	Buildable:
 		BuildPaletteOrder: 20
 		Prerequisites: fact
-		Queue: Defence.GDI
+		Queue: Support.GDI
 		Description: actor-sbag.description
+	Encyclopedia:
+		Description: actor-sbag.encyclopedia
+		Category: Buildings
+		Order: 10
+		Scale: 2
+		PreviewOwner: GDI
 	Armor:
 		Type: Light
 	LineBuild:
@@ -1160,8 +1282,14 @@ CYCL:
 	Buildable:
 		BuildPaletteOrder: 20
 		Prerequisites: fact
-		Queue: Defence.Nod
+		Queue: Support.Nod
 		Description: actor-cycl.description
+	Encyclopedia:
+		Description: actor-cycl.encyclopedia
+		Category: Buildings
+		Order: 20
+		Scale: 2
+		PreviewOwner: GDI
 	Armor:
 		Type: Light
 	LineBuild:
@@ -1182,9 +1310,15 @@ BRIK:
 	Buildable:
 		BuildPaletteOrder: 30
 		Prerequisites: vehicleproduction
-		Queue: Defence.GDI, Defence.Nod
+		Queue: Support.GDI, Support.Nod
 		BuildDuration: 230
 		Description: actor-brik.description
+	Encyclopedia:
+		Description: actor-brik.encyclopedia
+		Category: Buildings
+		Order: 30
+		Scale: 2
+		PreviewOwner: GDI
 	Health:
 		HP: 20000
 	Armor:

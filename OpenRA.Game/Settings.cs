@@ -14,7 +14,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using OpenRA.Primitives;
-using OpenRA.Traits;
 
 namespace OpenRA
 {
@@ -120,7 +119,7 @@ namespace OpenRA
 		[Desc("Can players vote to kick other players?")]
 		public bool EnableVoteKick = true;
 
-		[Desc("After how much time in miliseconds should the vote kick fail after idling?")]
+		[Desc("After how much time in milliseconds should the vote kick fail after idling?")]
 		public int VoteKickTimer = 30000;
 
 		[Desc("If a vote kick was unsuccessful for how long should the player who started the vote not be able to start new votes?")]
@@ -250,7 +249,14 @@ namespace OpenRA
 		public Color Color = Color.FromArgb(200, 32, 32);
 		public string LastServer = "localhost:1234";
 		public Color[] CustomColors = Array.Empty<Color>();
-		public string Language = "en";
+	}
+
+	public class SinglePlayerGameSettings
+	{
+		[Desc("Sets the Auto-save frequency, in seconds")]
+		public int AutoSaveInterval = 0;
+		[Desc("Sets the AutoSave number of max files to bes saved on the file-system")]
+		public int AutoSaveMaxFileCount = 10;
 	}
 
 	public class GameSettings
@@ -310,8 +316,8 @@ namespace OpenRA
 		public readonly GraphicSettings Graphics = new();
 		public readonly ServerSettings Server = new();
 		public readonly DebugSettings Debug = new();
+		public readonly SinglePlayerGameSettings SinglePlayerSettings = new();
 		internal Dictionary<string, Hotkey> Keys = new();
-
 		public readonly Dictionary<string, object> Sections;
 
 		// A direct clone of the file loaded from disk.
@@ -330,6 +336,7 @@ namespace OpenRA
 				{ "Graphics", Graphics },
 				{ "Server", Server },
 				{ "Debug", Debug },
+				{ "SinglePlayerSettings", SinglePlayerSettings },
 			};
 
 			// Override fieldloader to ignore invalid entries
@@ -446,11 +453,10 @@ namespace OpenRA
 		public static string SanitizedPlayerName(string dirty)
 		{
 			var forbiddenNames = new string[] { "Open", "Closed" };
-			var botNames = OpenRA.Game.ModData.DefaultRules.Actors[SystemActors.Player].TraitInfos<IBotInfo>().Select(t => t.Name);
 
 			var clean = SanitizedName(dirty);
 
-			if (string.IsNullOrWhiteSpace(clean) || forbiddenNames.Contains(clean) || botNames.Contains(clean))
+			if (string.IsNullOrWhiteSpace(clean) || forbiddenNames.Contains(clean))
 				clean = new PlayerSettings().Name;
 
 			// avoid UI glitches

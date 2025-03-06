@@ -30,7 +30,7 @@ namespace OpenRA.Mods.Common.Traits
 		[Desc("Speech notification to play.")]
 		public readonly string Notification = null;
 
-		[TranslationReference(optional: true)]
+		[FluentReference(optional: true)]
 		[Desc("Text notification to display.")]
 		public readonly string TextNotification = null;
 
@@ -61,7 +61,7 @@ namespace OpenRA.Mods.Common.Traits
 		{
 			this.self = self;
 			this.info = info;
-			health = Exts.Lazy(() => self.TraitOrDefault<IHealth>());
+			health = Exts.Lazy(self.TraitOrDefault<IHealth>);
 		}
 
 		public void ResolveOrder(Actor self, Order order)

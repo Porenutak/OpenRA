@@ -18,7 +18,7 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 {
 	public class WorldTooltipLogic : ChromeLogic
 	{
-		[TranslationReference]
+		[FluentReference]
 		const string UnrevealedTerrain = "label-unrevealed-terrain";
 
 		[ObjectCreator.UseCtor]
@@ -44,7 +44,7 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 			var extraHeightOnDouble = extras.Bounds.Y;
 			var extraHeightOnSingle = extraHeightOnDouble - (doubleHeight - singleHeight);
 
-			var unrevealedTerrain = TranslationProvider.GetString(UnrevealedTerrain);
+			var unrevealedTerrain = FluentProvider.GetMessage(UnrevealedTerrain);
 
 			tooltipContainer.BeforeRender = () =>
 			{
@@ -112,7 +112,7 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 				if (showOwner)
 				{
 					flagFaction = o.Faction.InternalName;
-					ownerName = o.PlayerName;
+					ownerName = o.ResolvedPlayerName;
 					widget.Bounds.Height = doubleHeight;
 					widget.Bounds.Width = Math.Max(widget.Bounds.Width,
 						owner.Bounds.X + ownerFont.Measure(ownerName).X + label.Bounds.X);

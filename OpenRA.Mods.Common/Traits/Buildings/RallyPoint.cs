@@ -49,7 +49,7 @@ namespace OpenRA.Mods.Common.Traits
 		[Desc("Speech notification to play when setting a new rallypoint.")]
 		public readonly string Notification = null;
 
-		[TranslationReference(optional: true)]
+		[FluentReference(optional: true)]
 		[Desc("Text notification to display when setting a new rallypoint.")]
 		public readonly string TextNotification = null;
 
@@ -183,7 +183,7 @@ namespace OpenRA.Mods.Common.Traits
 					if (modifiers.HasModifier(TargetModifiers.ForceAttack) && !string.IsNullOrEmpty(info.ForceSetType))
 					{
 						var closest = self.World.Selection.Actors
-							.Where(a => a.TraitOrDefault<RallyPoint>()?.Info.ForceSetType == info.ForceSetType)
+							.Where(a => !a.IsDead && a.IsInWorld && a.TraitOrDefault<RallyPoint>()?.Info.ForceSetType == info.ForceSetType)
 							.ClosestToIgnoringPath(target.CenterPosition);
 
 						ForceSet = closest == self;

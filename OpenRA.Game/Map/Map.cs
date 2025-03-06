@@ -169,16 +169,16 @@ namespace OpenRA
 			new("Visibility"),
 			new("Categories"),
 			new("LockPreview", required: false, ignoreIfValue: "False"),
-			new("Players", "PlayerDefinitions"),
-			new("Actors", "ActorDefinitions"),
-			new("Rules", "RuleDefinitions", required: false),
-			new("Translations", "TranslationDefinitions", required: false),
-			new("Sequences", "SequenceDefinitions", required: false),
-			new("ModelSequences", "ModelSequenceDefinitions", required: false),
-			new("Weapons", "WeaponDefinitions", required: false),
-			new("Voices", "VoiceDefinitions", required: false),
-			new("Music", "MusicDefinitions", required: false),
-			new("Notifications", "NotificationDefinitions", required: false),
+			new("Players", nameof(PlayerDefinitions)),
+			new("Actors", nameof(ActorDefinitions)),
+			new("Rules", nameof(RuleDefinitions), required: false),
+			new("FluentMessages", nameof(FluentMessageDefinitions), required: false),
+			new("Sequences", nameof(SequenceDefinitions), required: false),
+			new("ModelSequences", nameof(ModelSequenceDefinitions), required: false),
+			new("Weapons", nameof(WeaponDefinitions), required: false),
+			new("Voices", nameof(VoiceDefinitions), required: false),
+			new("Music", nameof(MusicDefinitions), required: false),
+			new("Notifications", nameof(NotificationDefinitions), required: false),
 		};
 
 		// Format versions
@@ -203,7 +203,7 @@ namespace OpenRA
 
 		// Custom map yaml. Public for access by the map importers and lint checks
 		public MiniYaml RuleDefinitions;
-		public MiniYaml TranslationDefinitions;
+		public MiniYaml FluentMessageDefinitions;
 		public MiniYaml SequenceDefinitions;
 		public MiniYaml ModelSequenceDefinitions;
 		public MiniYaml WeaponDefinitions;
@@ -1146,6 +1146,11 @@ namespace OpenRA
 
 		public byte GetTerrainIndex(CPos cell)
 		{
+			return GetTerrainIndex(cell.ToMPos(this));
+		}
+
+		public byte GetTerrainIndex(MPos uv)
+		{
 			// Lazily initialize a cache for terrain indexes.
 			if (cachedTerrainIndexes == null)
 			{
@@ -1153,7 +1158,6 @@ namespace OpenRA
 				cachedTerrainIndexes.Clear(InvalidCachedTerrainIndex);
 			}
 
-			var uv = cell.ToMPos(this);
 			var terrainIndex = cachedTerrainIndexes[uv];
 
 			// PERF: Cache terrain indexes per cell on demand.
@@ -1168,7 +1172,12 @@ namespace OpenRA
 
 		public TerrainTypeInfo GetTerrainInfo(CPos cell)
 		{
-			return Rules.TerrainInfo.TerrainTypes[GetTerrainIndex(cell)];
+			return GetTerrainInfo(cell.ToMPos(this));
+		}
+
+		public TerrainTypeInfo GetTerrainInfo(MPos uv)
+		{
+			return Rules.TerrainInfo.TerrainTypes[GetTerrainIndex(uv)];
 		}
 
 		public CPos Clamp(CPos cell)
@@ -1427,11 +1436,11 @@ namespace OpenRA
 			return modData.DefaultFileSystem.Exists(filename);
 		}
 
-		public bool IsExternalModFile(string filename)
+		public bool IsExternalFile(string filename)
 		{
 			// Explicit package paths never refer to a map
 			if (filename.Contains('|'))
-				return modData.DefaultFileSystem.IsExternalModFile(filename);
+				return modData.DefaultFileSystem.IsExternalFile(filename);
 
 			return false;
 		}

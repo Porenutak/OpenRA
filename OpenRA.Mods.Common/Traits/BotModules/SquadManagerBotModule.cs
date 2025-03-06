@@ -125,7 +125,8 @@ namespace OpenRA.Mods.Common.Traits
 		readonly HashSet<Actor> activeUnits = new();
 
 		public List<Squad> Squads = new();
-		readonly ActorIndex.NamesAndTrait<Building> constructionYardBuildings;
+		readonly Stack<Squad> squadsPendingUpdate = new();
+		readonly ActorIndex.NamesAndTrait<BuildingInfo> constructionYardBuildings;
 
 		IBot bot;
 		IBotPositionsUpdated[] notifyPositionsUpdated;
@@ -145,7 +146,7 @@ namespace OpenRA.Mods.Common.Traits
 			Player = self.Owner;
 
 			unitCannotBeOrdered = a => a == null || a.Owner != Player || a.IsDead || !a.IsInWorld;
-			constructionYardBuildings = new ActorIndex.NamesAndTrait<Building>(World, info.ConstructionYardTypes);
+			constructionYardBuildings = new ActorIndex.NamesAndTrait<BuildingInfo>(World, info.ConstructionYardTypes);
 		}
 
 		// Use for proactive targeting.
@@ -347,7 +348,16 @@ namespace OpenRA.Mods.Common.Traits
 			{
 				attackForceTicks = Info.AttackForceInterval;
 				foreach (var s in Squads)
-					s.Update();
+					squadsPendingUpdate.Push(s);
+			}
+
+			// PERF: Spread out squad updates across multiple ticks.
+			var updateCount = Exts.IntegerDivisionRoundingAwayFromZero(squadsPendingUpdate.Count, attackForceTicks);
+			for (var i = 0; i < updateCount; i++)
+			{
+				var squadPendingUpdate = squadsPendingUpdate.Pop();
+				if (squadPendingUpdate.IsValid)
+					squadPendingUpdate.Update();
 			}
 
 			if (--assignRolesTicks <= 0)
@@ -466,6 +476,7 @@ namespace OpenRA.Mods.Common.Traits
 		{
 			var protectSq = GetSquadOfType(SquadType.Protection);
 			protectSq ??= RegisterNewSquad(bot, SquadType.Protection, (attacker, WVec.Zero));
+			protectSq.Units.RemoveWhere(unitCannotBeOrdered);
 
 			if (protectSq.IsValid && !protectSq.IsTargetValid(protectSq.CenterUnit()))
 				protectSq.SetActorToTarget((attacker, WVec.Zero));
@@ -542,14 +553,14 @@ namespace OpenRA.Mods.Common.Traits
 			{
 				unitsHangingAroundTheBase.Clear();
 				unitsHangingAroundTheBase.AddRange(FieldLoader.GetValue<uint[]>("UnitsHangingAroundTheBase", unitsHangingAroundTheBaseNode.Value)
-					.Select(a => self.World.GetActorById(a)).Where(a => a != null));
+					.Select(self.World.GetActorById).Where(a => a != null));
 			}
 
 			if (nodes.TryGetValue("ActiveUnits", out var activeUnitsNode))
 			{
 				activeUnits.Clear();
 				activeUnits.UnionWith(FieldLoader.GetValue<uint[]>("ActiveUnits", activeUnitsNode.Value)
-					.Select(a => self.World.GetActorById(a)).Where(a => a != null));
+					.Select(self.World.GetActorById).Where(a => a != null));
 			}
 
 			if (nodes.TryGetValue("RushTicks", out var rushTicksNode))

@@ -23,26 +23,26 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 	[ChromeLogicArgsHotkeys("CombinedViewKey", "WorldViewKey")]
 	public class ObserverShroudSelectorLogic : ChromeLogic
 	{
-		[TranslationReference]
+		[FluentReference]
 		const string CameraOptionAllPlayers = "options-shroud-selector.all-players";
 
-		[TranslationReference]
+		[FluentReference]
 		const string CameraOptionDisableShroud = "options-shroud-selector.disable-shroud";
 
-		[TranslationReference]
+		[FluentReference]
 		const string CameraOptionOther = "options-shroud-selector.other";
 
-		[TranslationReference]
+		[FluentReference]
 		const string Players = "label-players";
 
-		[TranslationReference("team")]
+		[FluentReference("team")]
 		const string TeamNumber = "label-team-name";
 
-		[TranslationReference]
+		[FluentReference]
 		const string NoTeam = "label-no-team";
 
 		readonly CameraOption combined, disableShroud;
-		readonly IOrderedEnumerable<IGrouping<int, CameraOption>> teams;
+		readonly IGrouping<int, CameraOption>[] teams;
 		readonly bool limitViews;
 
 		readonly HotkeyReference combinedViewKey = new();
@@ -65,7 +65,7 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 			public CameraOption(ObserverShroudSelectorLogic logic, Player p)
 			{
 				Player = p;
-				Label = p.PlayerName;
+				Label = p.ResolvedPlayerName;
 				Color = p.Color;
 				Faction = p.Faction.InternalName;
 				IsSelected = () => p.World.RenderPlayer == p;
@@ -104,25 +104,25 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 
 			var groups = new Dictionary<string, IEnumerable<CameraOption>>();
 
-			combined = new CameraOption(this, world, TranslationProvider.GetString(CameraOptionAllPlayers), world.Players.First(p => p.InternalName == "Everyone"));
-			disableShroud = new CameraOption(this, world, TranslationProvider.GetString(CameraOptionDisableShroud), null);
+			combined = new CameraOption(this, world, FluentProvider.GetMessage(CameraOptionAllPlayers), world.Players.First(p => p.InternalName == "Everyone"));
+			disableShroud = new CameraOption(this, world, FluentProvider.GetMessage(CameraOptionDisableShroud), null);
 			if (!limitViews)
-				groups.Add(TranslationProvider.GetString(CameraOptionOther), new List<CameraOption>() { combined, disableShroud });
+				groups.Add(FluentProvider.GetMessage(CameraOptionOther), new List<CameraOption>() { combined, disableShroud });
 
 			teams = world.Players.Where(p => !p.NonCombatant && p.Playable)
 				.Select(p => new CameraOption(this, p))
 				.GroupBy(p => (world.LobbyInfo.ClientWithIndex(p.Player.ClientIndex) ?? new Session.Client()).Team)
-				.OrderBy(g => g.Key);
+				.OrderBy(g => g.Key)
+				.ToArray();
 
-			var teamsList = teams.ToList();
-			var noTeams = teamsList.Count == 1;
+			var noTeams = teams.Length == 1;
 			var totalPlayers = 0;
-			foreach (var t in teamsList)
+			foreach (var t in teams)
 			{
 				totalPlayers += t.Count();
-				var label = noTeams ? TranslationProvider.GetString(Players) : t.Key > 0
-					? TranslationProvider.GetString(TeamNumber, Translation.Arguments("team", t.Key))
-					: TranslationProvider.GetString(NoTeam);
+				var label = noTeams ? FluentProvider.GetMessage(Players) : t.Key > 0
+					? FluentProvider.GetMessage(TeamNumber, "team", t.Key)
+					: FluentProvider.GetMessage(NoTeam);
 
 				groups.Add(label, t);
 			}
@@ -210,8 +210,8 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 				if (e.Key >= Keycode.NUMBER_0 && e.Key <= Keycode.NUMBER_9)
 				{
 					var key = (int)e.Key - (int)Keycode.NUMBER_0;
-					var team = teams.Where(t => t.Key == key).SelectMany(s => s).ToList();
-					if (team.Count == 0)
+					var team = teams.SingleOrDefault(t => t.Key == key)?.ToList();
+					if (team == null || team.Count == 0)
 						return false;
 
 					if (e.Modifiers == Modifiers.Shift)

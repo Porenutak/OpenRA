@@ -44,37 +44,37 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 			}
 		}
 
-		[TranslationReference]
+		[FluentReference]
 		const string SaveMapFailedTitle = "dialog-save-map-failed.title";
 
-		[TranslationReference]
+		[FluentReference]
 		const string SaveMapFailedPrompt = "dialog-save-map-failed.prompt";
 
-		[TranslationReference]
+		[FluentReference]
 		const string SaveMapFailedConfirm = "dialog-save-map-failed.confirm";
 
-		[TranslationReference]
+		[FluentReference]
 		const string Unpacked = "label-unpacked-map";
 
-		[TranslationReference]
+		[FluentReference]
 		const string OverwriteMapFailedTitle = "dialog-overwrite-map-failed.title";
 
-		[TranslationReference]
+		[FluentReference]
 		const string OverwriteMapFailedPrompt = "dialog-overwrite-map-failed.prompt";
 
-		[TranslationReference]
+		[FluentReference]
 		const string OverwriteMapFailedConfirm = "dialog-overwrite-map-failed.confirm";
 
-		[TranslationReference]
+		[FluentReference]
 		const string OverwriteMapOutsideEditTitle = "dialog-overwrite-map-outside-edit.title";
 
-		[TranslationReference]
+		[FluentReference]
 		const string OverwriteMapOutsideEditPrompt = "dialog-overwrite-map-outside-edit.prompt";
 
-		[TranslationReference]
+		[FluentReference]
 		const string SaveMapMapOutsideConfirm = "dialog-overwrite-map-outside-edit.confirm";
 
-		[TranslationReference]
+		[FluentReference]
 		const string SaveCurrentMap = "notification-save-current-map";
 
 		[ObjectCreator.UseCtor]
@@ -91,14 +91,14 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 			var visOptionTemplate = visibilityPanel.Get<CheckboxWidget>("VISIBILITY_TEMPLATE");
 			visibilityPanel.RemoveChildren();
 
-			foreach (MapVisibility visibilityOption in Enum.GetValues(typeof(MapVisibility)))
+			foreach (var visibilityOption in Enum.GetValues<MapVisibility>())
 			{
 				// To prevent users from breaking the game only show the 'Shellmap' option when it is already set.
 				if (visibilityOption == MapVisibility.Shellmap && !map.Visibility.HasFlag(visibilityOption))
 					continue;
 
-				var checkbox = (CheckboxWidget)visOptionTemplate.Clone();
-				checkbox.GetText = () => visibilityOption.ToString();
+				var checkbox = visOptionTemplate.Clone();
+				checkbox.GetText = visibilityOption.ToString;
 				checkbox.IsChecked = () => map.Visibility.HasFlag(visibilityOption);
 				checkbox.OnClick = () => map.Visibility ^= visibilityOption;
 				visibilityPanel.AddChild(checkbox);
@@ -145,7 +145,7 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 					}
 				}
 
-				if (map.Package != null)
+				if (!string.IsNullOrEmpty(map.Package?.Name))
 				{
 					selectedDirectory = writableDirectories.FirstOrDefault(k => k.Folder.Contains(map.Package.Name));
 					selectedDirectory ??= writableDirectories.FirstOrDefault(k => Directory.GetDirectories(k.Folder.Name).Any(f => f.Contains(map.Package.Name)));
@@ -171,7 +171,7 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 			var fileTypes = new Dictionary<MapFileType, MapFileTypeInfo>()
 			{
 				{ MapFileType.OraMap, new MapFileTypeInfo { Extension = ".oramap", UiLabel = ".oramap" } },
-				{ MapFileType.Unpacked, new MapFileTypeInfo { Extension = "", UiLabel = $"({TranslationProvider.GetString(Unpacked)})" } }
+				{ MapFileType.Unpacked, new MapFileTypeInfo { Extension = "", UiLabel = $"({FluentProvider.GetMessage(Unpacked)})" } }
 			};
 
 			var typeDropdown = widget.Get<DropDownButtonWidget>("TYPE_DROPDOWN");
@@ -247,7 +247,7 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 			if (map.Package?.Name != combinedPath)
 			{
 				// When creating a new map or when file paths don't match
-				if (modData.MapCache.Any(m => m.Status == MapStatus.Available && m.PackageName == combinedPath))
+				if (modData.MapCache.Any(m => m.Status == MapStatus.Available && m.Path == combinedPath))
 				{
 					ConfirmationDialogs.ButtonPrompt(modData,
 						title: OverwriteMapFailedTitle,
@@ -311,8 +311,7 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 
 			try
 			{
-				if (package == null)
-					throw new ArgumentNullException(nameof(package));
+				ArgumentNullException.ThrowIfNull(package);
 
 				map.Save(package);
 

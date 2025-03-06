@@ -12,7 +12,7 @@
 ;  GNU General Public License for more details.
 ;
 ;  You should have received a copy of the GNU General Public License
-;  along with OpenRA.  If not, see <http://www.gnu.org/licenses/>.
+;  along with OpenRA.  If not, see <https://www.gnu.org/licenses/>.
 
 !include "MUI2.nsh"
 !include "FileFunc.nsh"
@@ -122,10 +122,13 @@ Section "Game" GAME
 	RMDir /r "$INSTDIR\mods"
 	SetOutPath "$INSTDIR\mods"
 	File /r "${SRCDIR}\mods\common"
+	File /r "${SRCDIR}\mods\common-content"
 	File /r "${SRCDIR}\mods\cnc"
+	File /r "${SRCDIR}\mods\cnc-content"
 	File /r "${SRCDIR}\mods\d2k"
+	File /r "${SRCDIR}\mods\d2k-content"
 	File /r "${SRCDIR}\mods\ra"
-	File /r "${SRCDIR}\mods\modcontent"
+	File /r "${SRCDIR}\mods\ra-content"
 
 	SetOutPath "$INSTDIR"
 	File "${SRCDIR}\*.exe"
@@ -193,7 +196,7 @@ Section "-Uninstaller"
 	WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\OpenRA${SUFFIX}" "InstallLocation" "$INSTDIR"
 	WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\OpenRA${SUFFIX}" "DisplayIcon" "$INSTDIR\ra.ico"
 	WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\OpenRA${SUFFIX}" "Publisher" "OpenRA developers"
-	WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\OpenRA${SUFFIX}" "URLInfoAbout" "http://openra.net"
+	WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\OpenRA${SUFFIX}" "URLInfoAbout" "https://openra.net"
 	WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\OpenRA${SUFFIX}" "DisplayVersion" "${TAG}"
 	WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\OpenRA${SUFFIX}" "NoModify" "1"
 	WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\OpenRA${SUFFIX}" "NoRepair" "1"

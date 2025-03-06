@@ -49,7 +49,7 @@ namespace OpenRA.Mods.Common.Traits
 		public readonly BitSet<TargetableType> AwayFromEnemyTargetTypes = default;
 
 		[Desc("Minefield location check distance to AwayFromAlliedTargettype and AwayFromEnemyTargettype.",
-			"In addition, if any emeny actor within this range and minefield location is not cancelled,",
+			"In addition, if any enemy actor within this range and minefield location is not cancelled,",
 			"minelayer will try lay mines at the 3/4 path to minefield location")]
 		public readonly int AwayFromCellDistance = 9;
 
@@ -140,7 +140,7 @@ namespace OpenRA.Mods.Common.Traits
 						if (minelayers.Length == 0)
 							return;
 
-						var enemies = world.Actors.Where(a => IsPreferredEnemyUnit(a)).ToArray();
+						var enemies = world.Actors.Where(IsPreferredEnemyUnit).ToArray();
 						if (enemies.Length == 0)
 							return;
 
@@ -148,7 +148,8 @@ namespace OpenRA.Mods.Common.Traits
 
 						foreach (var minelayer in minelayers)
 						{
-							var cells = pathFinder.FindPathToTargetCell(minelayer.Actor, new[] { minelayer.Actor.Location }, enemy.Location, BlockedByActor.Immovable, laneBias: false);
+							var cells = pathFinder.FindPathToTargetCell(
+								minelayer.Actor, new[] { minelayer.Actor.Location }, enemy.Location, BlockedByActor.Immovable, laneBias: false);
 							if (cells != null && cells.Count != 0)
 							{
 								AIUtils.BotDebug($"{player}: try find a location to lay mine.");
@@ -192,7 +193,8 @@ namespace OpenRA.Mods.Common.Traits
 
 				foreach (var minelayer in minelayers)
 				{
-					var cells = pathFinder.FindPathToTargetCell(minelayer.Actor, new[] { minelayer.Actor.Location }, minelayingPosition, BlockedByActor.Immovable, laneBias: false);
+					var cells = pathFinder.FindPathToTargetCell(
+						minelayer.Actor, new[] { minelayer.Actor.Location }, minelayingPosition, BlockedByActor.Immovable, laneBias: false);
 					if (cells != null && cells.Count != 0)
 					{
 						orderedActors.Add(minelayer.Actor);
@@ -225,8 +227,21 @@ namespace OpenRA.Mods.Common.Traits
 					}
 
 					var vec = new CVec(Info.MineFieldRadius, Info.MineFieldRadius);
-					bot.QueueOrder(new Order("PlaceMinefield", null, Target.FromCell(world, minelayingPosition + vec), false, groupedActors: orderedActors.ToArray()) { ExtraLocation = minelayingPosition - vec });
-					bot.QueueOrder(new Order("Move", null, Target.FromCell(world, orderedActors[0].Location), true, groupedActors: orderedActors.ToArray()));
+					bot.QueueOrder(
+						new Order(
+							"PlaceMinefield",
+							null,
+							Target.FromCell(world, minelayingPosition + vec),
+							false,
+							groupedActors: orderedActors.ToArray())
+						{ ExtraLocation = minelayingPosition - vec });
+					bot.QueueOrder(
+						new Order(
+							"Move",
+							null,
+							Target.FromCell(world, orderedActors[0].Location),
+							true,
+							groupedActors: orderedActors.ToArray()));
 				}
 				else
 				{

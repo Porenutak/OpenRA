@@ -19,6 +19,9 @@ namespace OpenRA
 {
 	public class GameInformation
 	{
+		[FluentReference("name", "number")]
+		const string EnumeratedBotName = "enumerated-bot-name";
+
 		public string Mod;
 		public string Version;
 
@@ -97,11 +100,9 @@ namespace OpenRA
 		/// <summary>Adds the player information at start-up.</summary>
 		public void AddPlayer(OpenRA.Player runtimePlayer, Session lobbyInfo)
 		{
-			if (runtimePlayer == null)
-				throw new ArgumentNullException(nameof(runtimePlayer));
+			ArgumentNullException.ThrowIfNull(runtimePlayer);
 
-			if (lobbyInfo == null)
-				throw new ArgumentNullException(nameof(lobbyInfo));
+			ArgumentNullException.ThrowIfNull(lobbyInfo);
 
 			// We don't care about spectators and map players
 			if (runtimePlayer.NonCombatant || !runtimePlayer.Playable)
@@ -118,6 +119,7 @@ namespace OpenRA
 				Name = runtimePlayer.PlayerName,
 				IsHuman = !runtimePlayer.IsBot,
 				IsBot = runtimePlayer.IsBot,
+				BotType = runtimePlayer.BotType,
 				FactionName = runtimePlayer.Faction.Name,
 				FactionId = runtimePlayer.Faction.InternalName,
 				DisplayFactionName = runtimePlayer.DisplayFaction.Name,
@@ -143,6 +145,19 @@ namespace OpenRA
 			return player;
 		}
 
+		public string ResolvedPlayerName(Player player)
+		{
+			if (player.IsBot)
+			{
+				var number = Players.Where(p => p.BotType == player.BotType).ToList().IndexOf(player) + 1;
+				return FluentProvider.GetMessage(EnumeratedBotName,
+						"name", FluentProvider.GetMessage(player.Name),
+						"number", number);
+			}
+
+			return player.Name;
+		}
+
 		public class Player
 		{
 			#region Start-up information
@@ -153,6 +168,7 @@ namespace OpenRA
 			public string Name;
 			public bool IsHuman;
 			public bool IsBot;
+			public string BotType;
 
 			/// <summary>The faction's display name.</summary>
 			public string FactionName;

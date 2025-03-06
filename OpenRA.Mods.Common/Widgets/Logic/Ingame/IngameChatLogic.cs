@@ -15,6 +15,7 @@ using OpenRA.Mods.Common.Commands;
 using OpenRA.Mods.Common.Lint;
 using OpenRA.Mods.Common.Traits;
 using OpenRA.Network;
+using OpenRA.Primitives;
 using OpenRA.Widgets;
 
 namespace OpenRA.Mods.Common.Widgets.Logic
@@ -22,16 +23,16 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 	[ChromeLogicArgsHotkeys("OpenTeamChat", "OpenGeneralChat")]
 	public class IngameChatLogic : ChromeLogic, INotificationHandler<TextNotification>
 	{
-		[TranslationReference]
+		[FluentReference]
 		const string TeamChat = "button-team-chat";
 
-		[TranslationReference]
+		[FluentReference]
 		const string GeneralChat = "button-general-chat";
 
-		[TranslationReference("seconds")]
+		[FluentReference("seconds")]
 		const string ChatAvailability = "label-chat-availability";
 
-		[TranslationReference]
+		[FluentReference]
 		const string ChatDisabled = "label-chat-disabled";
 
 		readonly Ruleset modRules;
@@ -69,10 +70,10 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 			var disableTeamChat = alwaysDisabled || (world.LocalPlayer != null && !players.Any(p => p.IsAlliedWith(world.LocalPlayer)));
 			var teamChat = !disableTeamChat;
 
-			var teamMessage = TranslationProvider.GetString(TeamChat);
-			var allMessage = TranslationProvider.GetString(GeneralChat);
+			var teamMessage = FluentProvider.GetMessage(TeamChat);
+			var allMessage = FluentProvider.GetMessage(GeneralChat);
 
-			chatDisabled = TranslationProvider.GetString(ChatDisabled);
+			chatDisabled = FluentProvider.GetMessage(ChatDisabled);
 
 			// Only execute this once, the first time this widget is loaded
 			if (TextNotificationsManager.MutedPlayers.Count == 0)
@@ -80,7 +81,7 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 					TextNotificationsManager.MutedPlayers.Add(c.Index, false);
 
 			tabCompletion.Commands = chatTraits.OfType<ChatCommands>().ToArray().SelectMany(x => x.Commands.Keys);
-			tabCompletion.Names = orderManager.LobbyInfo.Clients.Select(c => c.Name).Distinct().ToList();
+			tabCompletion.Names = orderManager.LobbyInfo.Clients.Where(c => !c.IsBot).Select(c => c.Name).Distinct().ToList();
 
 			if (logicArgs.TryGetValue("Templates", out var templateIds))
 			{
@@ -193,7 +194,7 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 				return true;
 			};
 
-			chatAvailableIn = new CachedTransform<int, string>(x => TranslationProvider.GetString(ChatAvailability, Translation.Arguments("seconds", x)));
+			chatAvailableIn = new CachedTransform<int, string>(x => FluentProvider.GetMessage(ChatAvailability, "seconds", x));
 
 			if (!isMenuChat)
 			{
@@ -208,7 +209,9 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 				var chatClose = chatChrome.Get<ButtonWidget>("CHAT_CLOSE");
 				chatClose.OnClick += CloseChat;
 
-				chatPanel.OnKeyPress = e =>
+				var openChatKeyListener = chatPanel.Get<LogicKeyListenerWidget>("OPEN_CHAT_KEY_LISTENER");
+
+				openChatKeyListener.AddHandler(e =>
 				{
 					if (e.Event == KeyInputEvent.Up)
 						return false;
@@ -222,7 +225,7 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 					}
 
 					return false;
-				};
+				});
 			}
 
 			chatScrollPanel = chatChrome.Get<ScrollPanelWidget>("CHAT_SCROLLPANEL");

@@ -39,8 +39,6 @@ namespace OpenRA.Mods.Common.Widgets
 			markerLayerOverlay = world.WorldActor.Trait<MarkerLayerOverlay>();
 
 			Template = id;
-			worldRenderer = wr;
-			world = wr.World;
 			action = new PaintMarkerTileEditorAction(Template, markerLayerOverlay);
 		}
 
@@ -60,11 +58,9 @@ namespace OpenRA.Mods.Common.Widgets
 				return false;
 			}
 
-			var cell = worldRenderer.Viewport.ViewToWorld(mi.Location);
-
 			if (mi.Button == MouseButton.Left && mi.Event != MouseInputEvent.Up)
 			{
-				action.Add(cell);
+				action.Add(worldRenderer.Viewport.ViewToWorld(mi.Location));
 				painting = true;
 			}
 			else if (painting && mi.Button == MouseButton.Left && mi.Event == MouseInputEvent.Up)
@@ -78,6 +74,10 @@ namespace OpenRA.Mods.Common.Widgets
 
 			return true;
 		}
+
+		void IEditorBrush.TickRender(WorldRenderer wr, Actor self) { }
+		IEnumerable<IRenderable> IEditorBrush.RenderAboveShroud(Actor self, WorldRenderer wr) { yield break; }
+		IEnumerable<IRenderable> IEditorBrush.RenderAnnotations(Actor self, WorldRenderer wr) { yield break; }
 
 		public void Tick() { }
 
@@ -96,12 +96,12 @@ namespace OpenRA.Mods.Common.Widgets
 		}
 	}
 
-	class PaintMarkerTileEditorAction : IEditorAction
+	sealed class PaintMarkerTileEditorAction : IEditorAction
 	{
-		[TranslationReference("amount", "type")]
+		[FluentReference("amount", "type")]
 		const string AddedMarkerTiles = "notification-added-marker-tiles";
 
-		[TranslationReference("amount")]
+		[FluentReference("amount")]
 		const string RemovedMarkerTiles = "notification-removed-marker-tiles";
 
 		public string Text { get; private set; }
@@ -150,15 +150,15 @@ namespace OpenRA.Mods.Common.Widgets
 			}
 
 			if (type != null)
-				Text = TranslationProvider.GetString(AddedMarkerTiles, Translation.Arguments("amount", paintTiles.Count, "type", type));
+				Text = FluentProvider.GetMessage(AddedMarkerTiles, "amount", paintTiles.Count, "type", type);
 			else
-				Text = TranslationProvider.GetString(RemovedMarkerTiles, Translation.Arguments("amount", paintTiles.Count));
+				Text = FluentProvider.GetMessage(RemovedMarkerTiles, "amount", paintTiles.Count);
 		}
 	}
 
-	class ClearSelectedMarkerTilesEditorAction : IEditorAction
+	sealed class ClearSelectedMarkerTilesEditorAction : IEditorAction
 	{
-		[TranslationReference("amount", "type")]
+		[FluentReference("amount", "type")]
 		const string ClearedSelectedMarkerTiles = "notification-cleared-selected-marker-tiles";
 
 		public string Text { get; }
@@ -176,7 +176,7 @@ namespace OpenRA.Mods.Common.Widgets
 
 			tiles = new HashSet<CPos>(markerLayerOverlay.Tiles[tile]);
 
-			Text = TranslationProvider.GetString(ClearedSelectedMarkerTiles, Translation.Arguments("amount", tiles.Count, "type", tile));
+			Text = FluentProvider.GetMessage(ClearedSelectedMarkerTiles, "amount", tiles.Count, "type", tile);
 		}
 
 		public void Execute()
@@ -195,9 +195,9 @@ namespace OpenRA.Mods.Common.Widgets
 		}
 	}
 
-	class ClearAllMarkerTilesEditorAction : IEditorAction
+	sealed class ClearAllMarkerTilesEditorAction : IEditorAction
 	{
-		[TranslationReference("amount")]
+		[FluentReference("amount")]
 		const string ClearedAllMarkerTiles = "notification-cleared-all-marker-tiles";
 
 		public string Text { get; }
@@ -211,9 +211,9 @@ namespace OpenRA.Mods.Common.Widgets
 			this.markerLayerOverlay = markerLayerOverlay;
 			tiles = new Dictionary<int, HashSet<CPos>>(markerLayerOverlay.Tiles);
 
-			var allTilesCount = tiles.Values.Select(x => x.Count).Sum();
+			var allTilesCount = tiles.Values.Sum(x => x.Count);
 
-			Text = TranslationProvider.GetString(ClearedAllMarkerTiles, Translation.Arguments("amount", allTilesCount));
+			Text = FluentProvider.GetMessage(ClearedAllMarkerTiles, "amount", allTilesCount);
 		}
 
 		public void Execute()

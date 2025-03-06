@@ -37,7 +37,9 @@ namespace OpenRA.Mods.Common.Lint
 				return expr != null ? expr.Variables : Enumerable.Empty<string>();
 			}
 
-			if (type.IsGenericType && type.GetGenericTypeDefinition() == typeof(Dictionary<,>))
+			if (type.IsGenericType &&
+				(type.GetGenericTypeDefinition() == typeof(Dictionary<,>) ||
+				type.GetGenericTypeDefinition() == typeof(IReadOnlyDictionary<,>)))
 			{
 				// Use an intermediate list to cover the unlikely case where both keys and values are lintable.
 				var dictionaryValues = new List<string>();
@@ -60,10 +62,15 @@ namespace OpenRA.Mods.Common.Lint
 				"Dictionary<string, T> (LintDictionaryReference.Keys)",
 				"Dictionary<T, string> (LintDictionaryReference.Values)",
 				"Dictionary<T, IEnumerable<string>> (LintDictionaryReference.Values)",
+				"IReadOnlyDictionary<string, T> (LintDictionaryReference.Keys)",
+				"IReadOnlyDictionary<T, string> (LintDictionaryReference.Values)",
+				"IReadOnlyDictionary<T, IEnumerable<string>> (LintDictionaryReference.Values)",
 				"BooleanExpression", "IntegerExpression"
 			};
 
-			throw new InvalidOperationException($"Bad type for reference on `{ruleInfo.GetType().Name}.{fieldInfo.Name}`. Supported types: {supportedTypes.JoinWith(", ")}.");
+			throw new InvalidOperationException(
+				$"Bad type for reference on `{ruleInfo.GetType().Name}.{fieldInfo.Name}`. " +
+				$"Supported types: {supportedTypes.JoinWith(", ")}.");
 		}
 
 		public static IEnumerable<string> GetPropertyValues(object ruleInfo, PropertyInfo propertyInfo,
@@ -108,7 +115,9 @@ namespace OpenRA.Mods.Common.Lint
 				"BooleanExpression", "IntegerExpression"
 			};
 
-			throw new InvalidOperationException($"Bad type for reference on `{ruleInfo.GetType().Name}.{propertyInfo.Name}`. Supported types: {supportedTypes.JoinWith(", ")}.");
+			throw new InvalidOperationException(
+				$"Bad type for reference on `{ruleInfo.GetType().Name}.{propertyInfo.Name}`." +
+				$"Supported types: {supportedTypes.JoinWith(", ")}.");
 		}
 	}
 }

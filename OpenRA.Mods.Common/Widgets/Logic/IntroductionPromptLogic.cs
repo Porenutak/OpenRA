@@ -12,6 +12,7 @@
 using System;
 using OpenRA.Graphics;
 using OpenRA.Mods.Common.Traits;
+using OpenRA.Primitives;
 using OpenRA.Widgets;
 
 namespace OpenRA.Mods.Common.Widgets.Logic
@@ -21,10 +22,10 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 		// Increment the version number when adding new stats
 		const int IntroductionVersion = 1;
 
-		[TranslationReference]
+		[FluentReference]
 		const string Classic = "options-control-scheme.classic";
 
-		[TranslationReference]
+		[FluentReference]
 		const string Modern = "options-control-scheme.modern";
 
 		readonly string classic;
@@ -42,13 +43,17 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 			var ds = Game.Settings.Graphics;
 			var gs = Game.Settings.Game;
 
-			classic = TranslationProvider.GetString(Classic);
-			modern = TranslationProvider.GetString(Modern);
+			classic = FluentProvider.GetMessage(Classic);
+			modern = FluentProvider.GetMessage(Modern);
 
 			var escPressed = false;
 			var nameTextfield = widget.Get<TextFieldWidget>("PLAYERNAME");
 			nameTextfield.IsDisabled = () => worldRenderer.World.Type != WorldType.Shellmap;
 			nameTextfield.Text = Settings.SanitizedPlayerName(ps.Name);
+
+			var itchIntegration = modData.Manifest.Get<ItchIntegration>();
+			itchIntegration.GetPlayerName(name => nameTextfield.Text = Settings.SanitizedPlayerName(name));
+
 			nameTextfield.OnLoseFocus = () =>
 			{
 				if (escPressed)

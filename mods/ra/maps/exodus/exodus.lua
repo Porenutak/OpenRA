@@ -90,7 +90,7 @@ ReinforcementsTicks2 = DateTime.Minutes(10)
 Reinforcements2 =
 {
 	"mgg", "2tnk", "2tnk", "2tnk", "2tnk", "truk", "truk", "truk",
-	"truk",	"truk", "truk", "1tnk", "1tnk", "jeep", "jeep"
+	"truk", "truk", "truk", "1tnk", "1tnk", "jeep", "jeep"
 }
 
 SovietUnits1 =
@@ -230,8 +230,8 @@ ManageSovietAircraft = function()
 end
 
 SetEvacuateMissionText = function()
-	local attributes = { ["evacuated"] = UnitsEvacuated, ["threshold"] = UnitsEvacuatedThreshold[Difficulty] }
-	local unitsEvacuated = UserInterface.Translate("units-evacuated", attributes)
+	local unitsEvacuated = UserInterface.GetFluentMessage("units-evacuated",
+		{ ["evacuated"] = UnitsEvacuated, ["threshold"] = UnitsEvacuatedThreshold[Difficulty] })
 	UserInterface.SetMissionText(unitsEvacuated, TextColor)
 end
 
@@ -309,7 +309,7 @@ WorldLoaded = function()
 	SetEvacuateMissionText()
 	Utils.Do(Humans, function(player)
 		if player then
-			EvacuateUnits = AddPrimaryObjective(player, UserInterface.Translate("evacuate-units", { ["threshold"] = UnitsEvacuatedThreshold[Difficulty] }))
+			EvacuateUnits = AddPrimaryObjective(player, UserInterface.GetFluentMessage("evacuate-units", { ["threshold"] = UnitsEvacuatedThreshold[Difficulty] }))
 			DestroyAirbases = AddSecondaryObjective(player, "destroy-nearby-soviet-airbases")
 			EvacuateMgg = AddSecondaryObjective(player, "evacuate-at-least-one-gap-generator")
 		end
@@ -333,7 +333,7 @@ WorldLoaded = function()
 
 	if not Allies2 then
 		Allies1.Cash = 10000
-		Media.DisplayMessage(UserInterface.Translate("transferring-funds"), UserInterface.Translate("co-commander-missing"))
+		Media.DisplayMessage(UserInterface.GetFluentMessage("transferring-funds"), UserInterface.GetFluentMessage("co-commander-missing"))
 	end
 
 	SpawnAlliedUnit(MobileConstructionVehicle)

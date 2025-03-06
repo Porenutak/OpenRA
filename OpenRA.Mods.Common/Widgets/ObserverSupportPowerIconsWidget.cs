@@ -153,7 +153,7 @@ namespace OpenRA.Mods.Common.Widgets
 			return WidgetUtils.FormatTime(item.RemainingTicks, timestep);
 		}
 
-		public override Widget Clone()
+		public override ObserverSupportPowerIconsWidget Clone()
 		{
 			return new ObserverSupportPowerIconsWidget(this);
 		}
@@ -175,7 +175,10 @@ namespace OpenRA.Mods.Common.Widgets
 				return;
 			}
 
-			if (TooltipIcon != null && lastIconIdx < supportPowerIconsBounds.Count && supportPowerIconsIcons[lastIconIdx].Power == TooltipIcon.Power && supportPowerIconsBounds[lastIconIdx].Contains(Viewport.LastMousePos))
+			if (TooltipIcon != null &&
+				lastIconIdx < supportPowerIconsBounds.Count &&
+				supportPowerIconsIcons[lastIconIdx].Power == TooltipIcon.Power &&
+				supportPowerIconsBounds[lastIconIdx].Contains(Viewport.LastMousePos))
 				return;
 
 			for (var i = 0; i < supportPowerIconsBounds.Count; i++)

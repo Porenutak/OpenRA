@@ -99,16 +99,24 @@ namespace OpenRA.Mods.Common.Activities
 				QueueChild(Mobile.MoveTo(check => CalculatePathToTarget(self, check)));
 			}
 
-			// The last queued childactivity is guaranteed to be the inner move, so if the childactivity
-			// queue is empty it means we have reached our destination.
-			return TickChild(self);
+			// The last queued child activity is guaranteed to be the inner move,
+			// so if the child activity queue is empty it means the move completed.
+			if (!TickChild(self))
+				return false;
+
+			if (Mobile.MoveResult == MoveResult.CompleteDestinationReached)
+				return true;
+
+			// The move completed but we didn't reach the destination, so Cancel.
+			Cancel(self, true);
+			return true;
 		}
 
 		protected readonly List<CPos> SearchCells = new();
 
 		protected int searchCellsTick = -1;
 
-		protected virtual List<CPos> CalculatePathToTarget(Actor self, BlockedByActor check)
+		protected virtual (bool AlreadyAtDestination, List<CPos> Path) CalculatePathToTarget(Actor self, BlockedByActor check)
 		{
 			// PERF: Assume that candidate cells don't change within a tick to avoid repeated queries
 			// when Move enumerates different BlockedByActor values.
@@ -117,14 +125,21 @@ namespace OpenRA.Mods.Common.Activities
 				SearchCells.Clear();
 				searchCellsTick = self.World.WorldTick;
 				foreach (var cell in Util.AdjacentCells(self.World, Target))
+				{
 					if (Mobile.CanStayInCell(cell) && Mobile.CanEnterCell(cell))
+					{
+						if (cell == self.Location)
+							return (true, PathFinder.NoPath);
+
 						SearchCells.Add(cell);
+					}
+				}
 			}
 
 			if (SearchCells.Count == 0)
-				return PathFinder.NoPath;
+				return (false, PathFinder.NoPath);
 
-			return Mobile.PathFinder.FindPathToTargetCells(self, self.Location, SearchCells, check);
+			return (false, Mobile.PathFinder.FindPathToTargetCells(self, self.Location, SearchCells, check));
 		}
 
 		public override IEnumerable<Target> GetTargets(Actor self)

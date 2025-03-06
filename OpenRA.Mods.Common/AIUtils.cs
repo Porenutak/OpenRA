@@ -34,11 +34,12 @@ namespace OpenRA.Mods.Common
 							.Any(availableCells => availableCells > 0);
 		}
 
-		public static IEnumerable<ProductionQueue> FindQueues(Player player, string category)
+		public static ILookup<string, ProductionQueue> FindQueuesByCategory(Player player)
 		{
 			return player.World.ActorsWithTrait<ProductionQueue>()
-				.Where(a => a.Actor.Owner == player && a.Trait.Info.Type == category && a.Trait.Enabled)
-				.Select(a => a.Trait);
+				.Where(a => a.Actor.Owner == player && a.Trait.Enabled)
+				.Select(a => a.Trait)
+				.ToLookup(pq => pq.Info.Type);
 		}
 
 		public static int CountActorsWithNameAndTrait<T>(string actorName, Player owner)
@@ -46,7 +47,8 @@ namespace OpenRA.Mods.Common
 			return owner.World.ActorsHavingTrait<T>().Count(a => a.Owner == owner && a.Info.Name == actorName);
 		}
 
-		public static int CountActorByCommonName<T>(ActorIndex.OwnerAndNamesAndTrait<T> actorIndex)
+		public static int CountActorByCommonName<TTraitInfo>(
+			ActorIndex.OwnerAndNamesAndTrait<TTraitInfo> actorIndex) where TTraitInfo : ITraitInfoInterface
 		{
 			return actorIndex.Actors.Count(a => !a.IsDead);
 		}

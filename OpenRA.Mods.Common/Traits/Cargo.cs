@@ -14,7 +14,6 @@ using System.Collections.Generic;
 using System.Linq;
 using OpenRA.Mods.Common.Activities;
 using OpenRA.Mods.Common.Orders;
-using OpenRA.Mods.Common.Widgets;
 using OpenRA.Primitives;
 using OpenRA.Traits;
 
@@ -107,10 +106,6 @@ namespace OpenRA.Mods.Common.Traits
 		bool takeOffAfterLoad;
 		bool initialised;
 
-		readonly CachedTransform<CPos, CPos[]> currentAdjacentCells;
-
-		public CPos[] CurrentAdjacentCells => currentAdjacentCells.Update(self.Location);
-
 		public IEnumerable<Actor> Passengers => cargo;
 		public int PassengerCount => cargo.Count;
 
@@ -123,15 +118,12 @@ namespace OpenRA.Mods.Common.Traits
 			self = init.Self;
 			checkTerrainType = info.UnloadTerrainTypes.Count > 0;
 
-			currentAdjacentCells = new CachedTransform<CPos, CPos[]>(loc =>
-				Util.AdjacentCells(self.World, Target.FromActor(self)).Where(c => loc != c).ToArray());
-
 			var runtimeCargoInit = init.GetOrDefault<RuntimeCargoInit>(info);
 			var cargoInit = init.GetOrDefault<CargoInit>(info);
 			if (runtimeCargoInit != null)
 			{
 				cargo = runtimeCargoInit.Value.ToList();
-				totalWeight = cargo.Sum(c => GetWeight(c));
+				totalWeight = cargo.Sum(GetWeight);
 			}
 			else if (cargoInit != null)
 			{
@@ -143,7 +135,7 @@ namespace OpenRA.Mods.Common.Traits
 					cargo.Add(unit);
 				}
 
-				totalWeight = cargo.Sum(c => GetWeight(c));
+				totalWeight = cargo.Sum(GetWeight);
 			}
 			else
 			{
@@ -155,7 +147,7 @@ namespace OpenRA.Mods.Common.Traits
 					cargo.Add(unit);
 				}
 
-				totalWeight = cargo.Sum(c => GetWeight(c));
+				totalWeight = cargo.Sum(GetWeight);
 			}
 
 			facing = Exts.Lazy(self.TraitOrDefault<IFacing>);
@@ -237,6 +229,11 @@ namespace OpenRA.Mods.Common.Traits
 			}
 		}
 
+		public IEnumerable<CPos> CurrentAdjacentCells()
+		{
+			return Util.AdjacentCells(self.World, Target.FromActor(self)).Where(c => self.Location != c);
+		}
+
 		public bool CanUnload(BlockedByActor check = BlockedByActor.None)
 		{
 			if (IsTraitDisabled)
@@ -252,7 +249,7 @@ namespace OpenRA.Mods.Common.Traits
 			}
 
 			return !IsEmpty() && (aircraft == null || aircraft.CanLand(self.Location, blockedByMobile: false))
-				&& CurrentAdjacentCells != null && CurrentAdjacentCells.Any(c => Passengers.Any(p => !p.IsDead && p.Trait<IPositionable>().CanEnterCell(c, null, check)));
+				&& CurrentAdjacentCells().Any(c => Passengers.Any(p => !p.IsDead && p.Trait<IPositionable>().CanEnterCell(c, null, check)));
 		}
 
 		public bool CanLoad(Actor a)
@@ -337,11 +334,11 @@ namespace OpenRA.Mods.Common.Traits
 		public bool HasSpace(int weight) { return totalWeight + reservedWeight + weight <= Info.MaxWeight; }
 		public bool IsEmpty() { return cargo.Count == 0; }
 
-		public Actor Peek() { return cargo.Last(); }
+		public Actor Peek() { return cargo[^1]; }
 
 		public Actor Unload(Actor self, Actor passenger = null)
 		{
-			passenger ??= cargo.Last();
+			passenger ??= cargo[^1];
 			if (!cargo.Remove(passenger))
 				throw new ArgumentException("Attempted to unload an actor that is not a passenger.");
 
@@ -414,7 +411,9 @@ namespace OpenRA.Mods.Common.Traits
 		void INotifyKilled.Killed(Actor self, AttackInfo e)
 		{
 			// IsAtGroundLevel contains Map.Contains(self.Location) check.
-			if (Info.EjectOnDeath && self.IsAtGroundLevel() && (!checkTerrainType || Info.UnloadTerrainTypes.Contains(self.World.Map.GetTerrainInfo(self.Location).Type)))
+			if (Info.EjectOnDeath &&
+				self.IsAtGroundLevel() &&
+				(!checkTerrainType || Info.UnloadTerrainTypes.Contains(self.World.Map.GetTerrainInfo(self.Location).Type)))
 			{
 				while (!IsEmpty())
 				{

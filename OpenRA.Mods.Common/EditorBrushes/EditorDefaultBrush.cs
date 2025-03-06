@@ -10,7 +10,11 @@
 #endregion
 
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using OpenRA.Graphics;
+using OpenRA.Mods.Common.EditorBrushes;
+using OpenRA.Mods.Common.Graphics;
 using OpenRA.Mods.Common.Traits;
 using OpenRA.Widgets;
 
@@ -20,6 +24,10 @@ namespace OpenRA.Mods.Common.Widgets
 	{
 		bool HandleMouseInput(MouseInput mi);
 		void Tick();
+
+		void TickRender(WorldRenderer wr, Actor self);
+		IEnumerable<IRenderable> RenderAboveShroud(Actor self, WorldRenderer wr);
+		IEnumerable<IRenderable> RenderAnnotations(Actor self, WorldRenderer wr);
 	}
 
 	public class EditorSelection
@@ -43,7 +51,7 @@ namespace OpenRA.Mods.Common.Widgets
 		readonly EditorActorLayer editorLayer;
 		readonly EditorActionManager editorActionManager;
 		readonly IResourceLayer resourceLayer;
-		readonly EditorCursorLayer cursorLayer;
+		readonly EditorActorLayer actorLayer;
 
 		public CellRegion CurrentDragBounds => selectionBounds ?? Selection.Area;
 
@@ -66,7 +74,7 @@ namespace OpenRA.Mods.Common.Widgets
 			editorLayer = world.WorldActor.Trait<EditorActorLayer>();
 			editorActionManager = world.WorldActor.Trait<EditorActionManager>();
 			resourceLayer = world.WorldActor.TraitOrDefault<IResourceLayer>();
-			cursorLayer = world.WorldActor.Trait<EditorCursorLayer>();
+			actorLayer = world.WorldActor.Trait<EditorActorLayer>();
 		}
 
 		long CalculateActorSelectionPriority(EditorActorPreview actor)
@@ -79,6 +87,12 @@ namespace OpenRA.Mods.Common.Widgets
 
 			// Sort by pixel distance then in world z position.
 			return ((long)pixelDistance << 32) + worldZPosition;
+		}
+
+		public void DeleteSelection(MapBlitFilters filters)
+		{
+			if (Selection.Area != null)
+				editorActionManager.Add(new DeleteAreaAction(world.Map, filters, Selection.Area, resourceLayer, actorLayer));
 		}
 
 		public void ClearSelection(bool updateSelectedTab = false)
@@ -120,7 +134,7 @@ namespace OpenRA.Mods.Common.Widgets
 			worldPixel = worldRenderer.Viewport.ViewToWorldPx(mi.Location);
 			var cell = worldRenderer.Viewport.ViewToWorld(mi.Location);
 
-			var underCursor = editorLayer.PreviewsAt(worldPixel).MinByOrDefault(CalculateActorSelectionPriority);
+			var underCursor = editorLayer.PreviewsAtWorldPixel(worldPixel).MinByOrDefault(CalculateActorSelectionPriority);
 			var resourceUnderCursor = resourceLayer?.GetResource(cell).Type;
 
 			if (underCursor != null)
@@ -139,7 +153,7 @@ namespace OpenRA.Mods.Common.Widgets
 					var cellViewPx = worldRenderer.Viewport.WorldToViewPx(worldRenderer.ScreenPosition(world.Map.CenterOfCell(cell)));
 					var pixelOffset = cellViewPx - mi.Location;
 					var cellOffset = underCursor.Location - cell;
-					moveAction = new MoveActorAction(underCursor, cursorLayer, worldRenderer, pixelOffset, cellOffset);
+					moveAction = new MoveActorAction(underCursor, actorLayer, worldRenderer, pixelOffset, cellOffset);
 					draggingActor = true;
 					return false;
 				}
@@ -255,6 +269,17 @@ namespace OpenRA.Mods.Common.Widgets
 			return true;
 		}
 
+		void IEditorBrush.TickRender(WorldRenderer wr, Actor self) { }
+		IEnumerable<IRenderable> IEditorBrush.RenderAboveShroud(Actor self, WorldRenderer wr) { yield break; }
+		IEnumerable<IRenderable> IEditorBrush.RenderAnnotations(Actor self, WorldRenderer wr)
+		{
+			if (CurrentDragBounds != null)
+			{
+				yield return new EditorSelectionAnnotationRenderable(CurrentDragBounds, editorWidget.SelectionAltColor, editorWidget.SelectionAltOffset, null);
+				yield return new EditorSelectionAnnotationRenderable(CurrentDragBounds, editorWidget.SelectionMainColor, int2.Zero, null);
+			}
+		}
+
 		public void Tick() { }
 
 		public void Dispose() { }
@@ -262,13 +287,13 @@ namespace OpenRA.Mods.Common.Widgets
 
 	sealed class ChangeSelectionAction : IEditorAction
 	{
-		[TranslationReference("x", "y", "width", "height")]
+		[FluentReference("x", "y", "width", "height")]
 		const string SelectedArea = "notification-selected-area";
 
-		[TranslationReference("id")]
+		[FluentReference("id")]
 		const string SelectedActor = "notification-selected-actor";
 
-		[TranslationReference]
+		[FluentReference]
 		const string ClearedSelection = "notification-cleared-selection";
 
 		public string Text { get; }
@@ -291,15 +316,15 @@ namespace OpenRA.Mods.Common.Widgets
 			};
 
 			if (selection.Area != null)
-				Text = TranslationProvider.GetString(SelectedArea, Translation.Arguments(
-						"x", selection.Area.TopLeft.X,
-						"y", selection.Area.TopLeft.Y,
-						"width", selection.Area.BottomRight.X - selection.Area.TopLeft.X,
-						"height", selection.Area.BottomRight.Y - selection.Area.TopLeft.Y));
+				Text = FluentProvider.GetMessage(SelectedArea,
+					"x", selection.Area.TopLeft.X,
+					"y", selection.Area.TopLeft.Y,
+					"width", selection.Area.BottomRight.X - selection.Area.TopLeft.X,
+					"height", selection.Area.BottomRight.Y - selection.Area.TopLeft.Y);
 			else if (selection.Actor != null)
-				Text = TranslationProvider.GetString(SelectedActor, Translation.Arguments("id", selection.Actor.ID));
+				Text = FluentProvider.GetMessage(SelectedActor, "id", selection.Actor.ID);
 			else
-				Text = TranslationProvider.GetString(ClearedSelection);
+				Text = FluentProvider.GetMessage(ClearedSelection);
 		}
 
 		public void Execute()
@@ -318,9 +343,117 @@ namespace OpenRA.Mods.Common.Widgets
 		}
 	}
 
+	sealed class DeleteAreaAction : IEditorAction
+	{
+		[FluentReference("x", "y", "width", "height")]
+		const string RemovedArea = "notification-removed-area";
+
+		public string Text { get; }
+
+		readonly EditorBlitSource editorBlitSource;
+		readonly MapBlitFilters blitFilters;
+		readonly IResourceLayer resourceLayer;
+		readonly EditorActorLayer editorActorLayer;
+		readonly CellRegion area;
+		readonly Map map;
+
+		public DeleteAreaAction(Map map, MapBlitFilters blitFilters, CellRegion area, IResourceLayer resourceLayer, EditorActorLayer editorActorLayer)
+		{
+			this.map = map;
+			this.blitFilters = blitFilters;
+			this.resourceLayer = resourceLayer;
+			this.editorActorLayer = editorActorLayer;
+			this.area = area;
+
+			editorBlitSource = EditorBlit.CopyRegionContents(map, editorActorLayer, resourceLayer, area, blitFilters);
+
+			Text = FluentProvider.GetMessage(RemovedArea,
+				"x", area.TopLeft.X,
+				"y", area.TopLeft.Y,
+				"width", area.BottomRight.X - area.TopLeft.X,
+				"height", area.BottomRight.Y - area.TopLeft.Y);
+		}
+
+		public void Execute()
+		{
+			Do();
+		}
+
+		public void Do()
+		{
+			if (blitFilters.HasFlag(MapBlitFilters.Actors))
+			{
+				// Clear any existing actors in the paste cells.
+				foreach (var regionActor in editorActorLayer.PreviewsInCellRegion(area.CellCoords).ToList())
+					editorActorLayer.Remove(regionActor);
+			}
+
+			foreach (var tileKeyValuePair in editorBlitSource.Tiles)
+			{
+				var position = tileKeyValuePair.Key;
+				if (!map.Tiles.Contains(position))
+					continue;
+
+				// Clear any existing resources.
+				if (resourceLayer != null && blitFilters.HasFlag(MapBlitFilters.Resources))
+					resourceLayer.ClearResources(position);
+
+				if (blitFilters.HasFlag(MapBlitFilters.Terrain))
+				{
+					map.Tiles[position] = map.Rules.TerrainInfo.DefaultTerrainTile;
+					map.Height[position] = 0;
+				}
+			}
+		}
+
+		public void Undo()
+		{
+			foreach (var tileKeyValuePair in editorBlitSource.Tiles)
+			{
+				var position = tileKeyValuePair.Key;
+				if (!map.Tiles.Contains(position))
+					continue;
+
+				var tile = tileKeyValuePair.Value;
+				var resourceLayerContents = tile.ResourceLayerContents;
+
+				if (blitFilters.HasFlag(MapBlitFilters.Terrain))
+				{
+					map.Tiles[position] = tile.TerrainTile;
+					map.Height[position] = tile.Height;
+				}
+
+				if (blitFilters.HasFlag(MapBlitFilters.Resources) &&
+					resourceLayerContents.HasValue &&
+					!string.IsNullOrWhiteSpace(resourceLayerContents.Value.Type))
+					resourceLayer.AddResource(resourceLayerContents.Value.Type, position, resourceLayerContents.Value.Density);
+			}
+
+			if (blitFilters.HasFlag(MapBlitFilters.Actors))
+			{
+				// Create copies of the original actors, update their locations, and place.
+				foreach (var actorKeyValuePair in editorBlitSource.Actors)
+				{
+					var copy = actorKeyValuePair.Value.Export();
+					var locationInit = copy.GetOrDefault<LocationInit>();
+					if (locationInit != null)
+					{
+						if (!map.Tiles.Contains(locationInit.Value))
+							continue;
+
+						copy.RemoveAll<LocationInit>();
+						copy.Add(new LocationInit(locationInit.Value));
+					}
+
+					editorActorLayer.Add(copy);
+				}
+			}
+		}
+	}
+
 	sealed class RemoveSelectedActorAction : IEditorAction
 	{
-		[TranslationReference("name", "id")]
+		[FluentReference("name", "id")]
 		const string RemovedActor = "notification-removed-actor";
 
 		public string Text { get; }
@@ -343,8 +476,7 @@ namespace OpenRA.Mods.Common.Widgets
 				Actor = defaultBrush.Selection.Actor
 			};
 
-			Text = TranslationProvider.GetString(RemovedActor,
-				Translation.Arguments("name", actor.Info.Name, "id", actor.ID));
+			Text = FluentProvider.GetMessage(RemovedActor, "name", actor.Info.Name, "id", actor.ID);
 		}
 
 		public void Execute()
@@ -367,7 +499,7 @@ namespace OpenRA.Mods.Common.Widgets
 
 	sealed class RemoveActorAction : IEditorAction
 	{
-		[TranslationReference("name", "id")]
+		[FluentReference("name", "id")]
 		const string RemovedActor = "notification-removed-actor";
 
 		public string Text { get; }
@@ -380,8 +512,7 @@ namespace OpenRA.Mods.Common.Widgets
 			this.editorActorLayer = editorActorLayer;
 			this.actor = actor;
 
-			Text = TranslationProvider.GetString(RemovedActor,
-				Translation.Arguments("name", actor.Info.Name, "id", actor.ID));
+			Text = FluentProvider.GetMessage(RemovedActor, "name", actor.Info.Name, "id", actor.ID);
 		}
 
 		public void Execute()
@@ -402,13 +533,13 @@ namespace OpenRA.Mods.Common.Widgets
 
 	sealed class MoveActorAction : IEditorAction
 	{
-		[TranslationReference("id", "x1", "y1", "x2", "y2")]
+		[FluentReference("id", "x1", "y1", "x2", "y2")]
 		const string MovedActor = "notification-moved-actor";
 
 		public string Text { get; private set; }
 
 		readonly EditorActorPreview actor;
-		readonly EditorCursorLayer layer;
+		readonly EditorActorLayer layer;
 		readonly WorldRenderer worldRenderer;
 		readonly int2 pixelOffset;
 		readonly CVec cellOffset;
@@ -418,7 +549,7 @@ namespace OpenRA.Mods.Common.Widgets
 
 		public MoveActorAction(
 			EditorActorPreview actor,
-			EditorCursorLayer layer,
+			EditorActorLayer layer,
 			WorldRenderer worldRenderer,
 			int2 pixelOffset,
 			CVec cellOffset)
@@ -449,13 +580,13 @@ namespace OpenRA.Mods.Common.Widgets
 			to = worldRenderer.Viewport.ViewToWorld(pixelTo + pixelOffset) + cellOffset;
 			layer.MoveActor(actor, to);
 
-			Text = TranslationProvider.GetString(MovedActor, Translation.Arguments("id", actor.ID, "x1", from.X, "y1", from.Y, "x2", to.X, "y2", to.Y));
+			Text = FluentProvider.GetMessage(MovedActor, "id", actor.ID, "x1", from.X, "y1", from.Y, "x2", to.X, "y2", to.Y);
 		}
 	}
 
 	sealed class RemoveResourceAction : IEditorAction
 	{
-		[TranslationReference("type")]
+		[FluentReference("type")]
 		const string RemovedResource = "notification-removed-resource";
 
 		public string Text { get; }
@@ -470,7 +601,7 @@ namespace OpenRA.Mods.Common.Widgets
 			this.resourceLayer = resourceLayer;
 			this.cell = cell;
 
-			Text = TranslationProvider.GetString(RemovedResource, Translation.Arguments("type", resourceType));
+			Text = FluentProvider.GetMessage(RemovedResource, "type", resourceType);
 		}
 
 		public void Execute()

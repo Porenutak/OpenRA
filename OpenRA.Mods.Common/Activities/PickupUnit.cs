@@ -33,6 +33,7 @@ namespace OpenRA.Mods.Common.Activities
 
 		enum PickupState { Intercept, LockCarryable, Pickup }
 		PickupState state = PickupState.Intercept;
+		bool reserveFailed;
 
 		public PickupUnit(Actor self, Actor cargo, int delay, Color? targetLineColor)
 		{
@@ -52,7 +53,10 @@ namespace OpenRA.Mods.Common.Activities
 		{
 			// The cargo might have become invalid while we were moving towards it.
 			if (cargo.IsDead || carryable.IsTraitDisabled || carryall.IsTraitDisabled || !cargo.AppearsFriendlyTo(self))
+			{
+				reserveFailed = true;
 				return;
+			}
 
 			if (carryall.ReserveCarryable(self, cargo))
 			{
@@ -61,11 +65,13 @@ namespace OpenRA.Mods.Common.Activities
 				QueueChild(new Fly(self, Target.FromActor(cargo)));
 				QueueChild(new FlyIdle(self, idleTurn: false));
 			}
+			else
+				reserveFailed = true;
 		}
 
 		public override bool Tick(Actor self)
 		{
-			if (IsCanceling)
+			if (IsCanceling || reserveFailed)
 				return true;
 
 			if (cargo.IsDead || carryable.IsTraitDisabled || carryall.IsTraitDisabled || !cargo.AppearsFriendlyTo(self) || cargo != carryall.Carryable)
@@ -118,7 +124,7 @@ namespace OpenRA.Mods.Common.Activities
 			if (!IsInterruptible)
 				return;
 
-			// This nulls caryall storage, so to avoid deleting units make sure it is not called while carrying one.
+			// This nulls carryall storage, so to avoid deleting units make sure it is not called while carrying one.
 			if (carryall.State == Carryall.CarryallState.Reserved)
 				carryall.UnreserveCarryable(self);
 

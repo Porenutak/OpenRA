@@ -21,11 +21,11 @@ namespace OpenRA.Mods.Common.Traits
 	[TraitLocation(SystemActors.World)]
 	public class CrateSpawnerInfo : TraitInfo, ILobbyOptions
 	{
-		[TranslationReference]
+		[FluentReference]
 		[Desc("Descriptive label for the crates checkbox in the lobby.")]
 		public readonly string CheckboxLabel = "checkbox-crates.label";
 
-		[TranslationReference]
+		[FluentReference]
 		[Desc("Tooltip description for the crates checkbox in the lobby.")]
 		public readonly string CheckboxDescription = "checkbox-crates.description";
 
@@ -81,7 +81,8 @@ namespace OpenRA.Mods.Common.Traits
 
 		IEnumerable<LobbyOption> ILobbyOptions.LobbyOptions(MapPreview map)
 		{
-			yield return new LobbyBooleanOption(map, "crates", CheckboxLabel, CheckboxDescription, CheckboxVisible, CheckboxDisplayOrder, CheckboxEnabled, CheckboxLocked);
+			yield return new LobbyBooleanOption(map, "crates",
+				CheckboxLabel, CheckboxDescription, CheckboxVisible, CheckboxDisplayOrder, CheckboxEnabled, CheckboxLocked);
 		}
 
 		public override object Create(ActorInitializer init) { return new CrateSpawner(init.Self, this); }

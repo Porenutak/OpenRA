@@ -113,7 +113,7 @@ GAP:
 	MustBeDestroyed:
 		RequiredForShortGame: false
 	-AcceptsDeliveredCash:
-	Explodes:
+	FireWarheadsOnDeath:
 		Weapon: SmallBuildingExplode
 		EmptyWeapon: SmallBuildingExplode
 	HitShape:
@@ -224,7 +224,7 @@ SPEN:
 	ProductionBar:
 		ProductionType: Ship
 	Power:
-		Amount: -30
+		Amount: -20
 	DetectCloaked:
 		DetectionTypes: Underwater
 		Range: 10c0
@@ -344,7 +344,7 @@ SYRD:
 	ProductionBar:
 		ProductionType: Ship
 	Power:
-		Amount: -30
+		Amount: -20
 	DetectCloaked:
 		DetectionTypes: Underwater
 		Range: 10c0
@@ -404,7 +404,7 @@ IRON:
 		BuildLimit: 1
 		Description: actor-iron.description
 	Valued:
-		Cost: 1500
+		Cost: 2000
 	Tooltip:
 		Name: actor-iron.name
 	Building:
@@ -598,7 +598,7 @@ TSLA:
 		MaxCharges: 3
 		ReloadDelay: 120
 	Power:
-		Amount: -100
+		Amount: -80
 	DetectCloaked:
 		Range: 6c0
 		RequiresCondition: !disabled
@@ -917,9 +917,9 @@ FTUR:
 	Power:
 		Amount: -20
 	DetectCloaked:
-		Range: 6c0
+		Range: 5c0
 	ProvidesPrerequisite@buildingname:
-	Explodes:
+	FireWarheadsOnDeath:
 		Weapon: BuildingExplode
 		EmptyWeapon: BuildingExplode
 
@@ -1386,7 +1386,7 @@ SILO:
 	-SpawnActorsOnSell:
 	Power:
 		Amount: -10
-	Explodes:
+	FireWarheadsOnDeath:
 		Weapon: SmallBuildingExplode
 		EmptyWeapon: SmallBuildingExplode
 	WithResourceStoragePipsDecoration:
@@ -1562,7 +1562,7 @@ AFLD:
 		SelectTargetSpeechNotification: SelectTarget
 		EndChargeSpeechNotification: SpyPlaneReady
 		SelectTargetTextNotification: notification-select-target
-		EndChargeTextNotification: notifcation-spy-plane-ready
+		EndChargeTextNotification: notification-spy-plane-ready
 		CameraActor: camera.spyplane
 		CameraRemoveDelay: 150
 		UnitType: u2

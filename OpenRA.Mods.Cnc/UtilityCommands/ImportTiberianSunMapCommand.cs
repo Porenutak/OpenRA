@@ -10,6 +10,7 @@
 #endregion
 
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using OpenRA.Primitives;
 using OpenRA.Traits;
 
@@ -21,7 +22,7 @@ namespace OpenRA.Mods.Cnc.UtilityCommands
 
 		bool IUtilityCommand.ValidateArguments(string[] args) { return args.Length >= 2; }
 
-		[Desc("FILENAME", "Convert a Tiberian Sun map to the OpenRA format.")]
+		[Desc("FILENAME [AUTHOR]", "Convert a Tiberian Sun map to the OpenRA format.")]
 		void IUtilityCommand.Run(Utility utility, string[] args)
 		{
 			Run(utility, args);
@@ -208,11 +209,13 @@ namespace OpenRA.Mods.Cnc.UtilityCommands
 			{ 0x65, DamageState.Undamaged },
 		};
 
+		[SuppressMessage("Style", "IDE0230:Use UTF-8 string literal", Justification = "False positive")]
 		protected override Dictionary<byte, byte[]> ResourceFromOverlay { get; } = new()
 		{
 			// "tib" - Regular Tiberium
 			{
-				0x01, new byte[]
+				0x01,
+				new byte[]
 				{
 					0x66, 0x67, 0x68, 0x69, 0x6A, 0x6B, 0x6C, 0x6D, 0x6E, 0x6F,
 					0x70, 0x71, 0x72, 0x73, 0x74, 0x75, 0x76, 0x77, 0x78, 0x79
@@ -221,7 +224,8 @@ namespace OpenRA.Mods.Cnc.UtilityCommands
 
 			// "btib" - Blue Tiberium
 			{
-				0x02, new byte[]
+				0x02,
+				new byte[]
 				{
 					0x1B, 0x1C, 0x1D, 0x1E, 0x1F, 0x20, 0x21, 0x22, 0x23, 0x24, 0x25, 0x26,
 
@@ -267,7 +271,8 @@ namespace OpenRA.Mods.Cnc.UtilityCommands
 
 		#region Method overrides
 
-		protected override bool TryHandleOverlayToActorInner(CPos cell, byte[] overlayPack, CellLayer<int> overlayIndex, byte overlayType, out ActorReference actorReference)
+		protected override bool TryHandleOverlayToActorInner(
+			CPos cell, byte[] overlayPack, CellLayer<int> overlayIndex, byte overlayType, out ActorReference actorReference)
 		{
 			actorReference = null;
 			if (!OverlayToActor.TryGetValue(overlayType, out var actorType))

@@ -145,11 +145,11 @@
 		AttackAnythingCondition: stance-attackanything
 	AutoTargetPriority@DEFAULT:
 		RequiresCondition: !stance-attackanything
-		ValidTargets: Infantry, Vehicle, Creep, Water, Defense
+		ValidTargets: Infantry, Vehicle, Creep, Water, Support
 		InvalidTargets: NoAutoTarget
 	AutoTargetPriority@ATTACKANYTHING:
 		RequiresCondition: stance-attackanything
-		ValidTargets: Infantry, Vehicle, Creep, Water, Structure, Defense
+		ValidTargets: Infantry, Vehicle, Creep, Water, Structure, Support
 		InvalidTargets: NoAutoTarget
 
 ^AutoTargetGroundAssaultMove:
@@ -172,11 +172,11 @@
 		AttackAnythingCondition: stance-attackanything
 	AutoTargetPriority@DEFAULT:
 		RequiresCondition: !stance-attackanything
-		ValidTargets: Infantry, Vehicle, Creep, Water, Air, Defense
+		ValidTargets: Infantry, Vehicle, Creep, Water, Air, Support
 		InvalidTargets: NoAutoTarget
 	AutoTargetPriority@ATTACKANYTHING:
 		RequiresCondition: stance-attackanything
-		ValidTargets: Infantry, Vehicle, Creep, Water, Air, Structure, Defense
+		ValidTargets: Infantry, Vehicle, Creep, Water, Air, Structure, Support
 		InvalidTargets: NoAutoTarget
 
 ^AutoTargetAllAssaultMove:
@@ -253,7 +253,7 @@
 	AttackMove:
 	WithDamageOverlay:
 	WithFacingSpriteBody:
-	Explodes:
+	FireWarheadsOnDeath:
 		Weapon: UnitExplodeSmall
 		EmptyWeapon: UnitExplodeSmall
 	Guard:
@@ -308,7 +308,7 @@
 		Type: GroundPosition
 	ActorLostNotification:
 		TextNotification: notification-unit-lost
-	Explodes:
+	FireWarheadsOnDeath:
 		Weapon: HeliExplode
 		EmptyWeapon: HeliExplode
 	AttackMove:
@@ -467,6 +467,8 @@
 ^CivInfantry:
 	Inherits: ^Infantry
 	Inherits@selection: ^SelectableSupportUnit
+	Selectable:
+		Class: CivInfantry
 	Valued:
 		Cost: 10
 	Tooltip:
@@ -490,16 +492,22 @@
 		MinMoveDelay: 150
 		MaxMoveDelay: 750
 		AvoidTerrainTypes: Tiberium, BlueTiberium
+	WithInfantryBody:
+		IdleSequences: idle1
+		MinIdleDelay: 60
+		MaxIdleDelay: 220
 	MapEditorData:
 		Categories: Civilian infantry
 
 ^ArmedCivilian:
+	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
 	Inherits@selection: ^SelectableCombatUnit
 	Armament:
 		Weapon: Pistol
 	AttackFrontal:
 		FacingTolerance: 0
 	WithInfantryBody:
+		IdleSequences: idle1,idle2
 		DefaultAttackSequence: shoot
 
 ^DINO:
@@ -660,7 +668,7 @@
 		TextNotification: notification-unit-lost
 	AttackMove:
 	WithDamageOverlay:
-	Explodes:
+	FireWarheadsOnDeath:
 		Weapon: UnitExplodeShip
 		EmptyWeapon: UnitExplodeShip
 	Guard:
@@ -697,7 +705,7 @@
 		DamagedSounds: xplobig4.aud
 		DestroyedSounds: crumble.aud, xplobig4.aud
 	WithSpriteBody:
-	Explodes:
+	FireWarheadsOnDeath:
 		Type: Footprint
 		Weapon: BuildingExplode
 		EmptyWeapon: BuildingExplode
@@ -800,7 +808,7 @@
 		Types: building
 	CaptureNotification:
 		Notification: CivilianBuildingCaptured
-		TextNotification: notification-civilian-building-captured
+		TextNotification: notification-civ-building-captured
 	RepairableBuilding:
 		RepairPercent: 40
 		RepairStep: 1400
@@ -827,7 +835,7 @@
 	Interactable:
 	Tooltip:
 		GenericName: meta-civfield-generic-name
-	-Explodes:
+	-FireWarheadsOnDeath:
 	-ShakeOnDeath:
 	-SoundOnDamageTransition:
 	-Demolishable:
@@ -843,12 +851,12 @@
 		Condition: winter
 		TileSets: SNOW, WINTER
 	Tooltip@WINTER:
-		Name: meta-civhaystackorigloo.winter--name
+		Name: meta-civhaystackorigloo.winter-name
 		RequiresCondition: winter
 		GenericVisibility: None
 		ShowOwnerRow: false
 	Tooltip@SUMMER:
-		Name: meta-civhaystackorigloo.summer--name
+		Name: meta-civhaystackorigloo.summer-name
 		RequiresCondition: !winter
 		GenericVisibility: None
 		ShowOwnerRow: false
@@ -879,12 +887,12 @@
 		Condition: winter
 		TileSets: SNOW, WINTER
 	Tooltip@WINTER:
-		Name: meta-civhaystackorigloohusk.winter--name
+		Name: meta-civhaystackorigloohusk.winter-name
 		RequiresCondition: winter
 		GenericVisibility: None
 		ShowOwnerRow: false
 	Tooltip@SUMMER:
-		Name: meta-civhaystackorigloohusk.summer--name
+		Name: meta-civhaystackorigloohusk.summer-name
 		RequiresCondition: !winter
 		GenericVisibility: None
 		ShowOwnerRow: false
@@ -1082,7 +1090,7 @@
 	WithColoredOverlay@IDISABLE:
 		Color: 000000B4
 	ScriptTriggers:
-	Explodes:
+	FireWarheadsOnDeath:
 		Weapon: UnitExplodeSmall
 		EmptyWeapon: UnitExplodeSmall
 	WithIdleOverlay@Burns:
@@ -1160,7 +1168,7 @@
 	MapEditorData:
 		Categories: System
 
-^Defense:
+^Support:
 	Inherits: ^BaseBuilding
 	Inherits@selection: ^SelectableCombatBuilding
 	RenderRangeCircle:
@@ -1169,9 +1177,9 @@
 	MustBeDestroyed:
 		RequiredForShortGame: false
 	Targetable:
-		TargetTypes: Ground, C4, Structure, Defense
+		TargetTypes: Ground, C4, Structure, Support
 	MapEditorData:
-		Categories: Defense
+		Categories: Support
 	-CommandBarBlacklist:
 	-AcceptsDeliveredCash:
 

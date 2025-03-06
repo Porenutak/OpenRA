@@ -13,7 +13,9 @@ using System;
 using System.Collections.Generic;
 using OpenRA.Activities;
 using OpenRA.Graphics;
+using OpenRA.Mods.Common.Activities;
 using OpenRA.Mods.Common.Graphics;
+using OpenRA.Mods.Common.MapGenerator;
 using OpenRA.Mods.Common.Terrain;
 using OpenRA.Mods.Common.Widgets;
 using OpenRA.Primitives;
@@ -58,7 +60,7 @@ namespace OpenRA.Mods.Common.Traits
 	[RequireExplicitImplementation]
 	public interface INotifyOrderIssued
 	{
-		bool OrderIssued(World world, Target target);
+		bool OrderIssued(World world, string orderString, Target target);
 	}
 
 	[RequireExplicitImplementation]
@@ -219,19 +221,26 @@ namespace OpenRA.Mods.Common.Traits
 		bool OnDockTick(Actor self, Actor hostActor, IDockHost dock);
 		void OnDockCompleted(Actor self, Actor hostActor, IDockHost host);
 
-		/// <summary>Is this client allowed to dock.</summary>
+		/// <summary>Are we allowed to dock.</summary>
 		/// <remarks>
 		/// Does not check if <see cref="Traits.DockClientManager"/> is enabled.
 		/// Function should only be called from within <see cref="IDockClient"/> or <see cref="Traits.DockClientManager"/>.
 		/// </remarks>
-		bool IsDockingPossible(BitSet<DockType> type, bool forceEnter = false);
+		bool CanDock(BitSet<DockType> type, bool forceEnter = false);
 
-		/// <summary>Is this client allowed to dock to <paramref name="host"/>.</summary>
+		/// <summary>Are we allowed to dock to this <paramref name="host"/>.</summary>
 		/// <remarks>
 		/// Does not check if <see cref="Traits.DockClientManager"/> is enabled.
 		/// Function should only be called from within <see cref="IDockClient"/> or <see cref="Traits.DockClientManager"/>.
 		/// </remarks>
 		bool CanDockAt(Actor hostActor, IDockHost host, bool forceEnter = false, bool ignoreOccupancy = false);
+
+		/// <summary>Are we allowed to give a docking order for this <paramref name="host"/>.</summary>
+		/// <remarks>
+		/// Does not check if <see cref="Traits.DockClientManager"/> is enabled.
+		/// Function should only be called from within <see cref="IDockClient"/> or <see cref="Traits.DockClientManager"/>.
+		/// </remarks>
+		bool CanQueueDockAt(Actor hostActor, IDockHost host, bool forceEnter, bool isQueued);
 	}
 
 	public interface IDockHostInfo : ITraitInfoInterface { }
@@ -245,8 +254,6 @@ namespace OpenRA.Mods.Common.Traits
 		int ReservationCount { get; }
 		bool CanBeReserved { get; }
 		WPos DockPosition { get; }
-		int DockWait { get; }
-		WAngle DockAngle { get; }
 
 		/// <summary>Can this <paramref name="client"/> dock at this <see cref="IDockHost"/>.</summary>
 		/// <remarks>
@@ -262,17 +269,10 @@ namespace OpenRA.Mods.Common.Traits
 		void OnDockCompleted(Actor self, Actor clientActor, DockClientManager client);
 
 		/// <summary>If <paramref name="client"/> is not in range of <see cref="IDockHost"/> queues a child move activity and returns true. If in range returns false.</summary>
-		bool QueueMoveActivity(Activity moveToDockActivity, Actor self, Actor clientActor, DockClientManager client);
+		bool QueueMoveActivity(Activity moveToDockActivity, Actor self, Actor clientActor, DockClientManager client, MoveCooldownHelper moveCooldownHelper);
 
 		/// <summary>Should be called when in range of <see cref="IDockHost"/>.</summary>
 		void QueueDockActivity(Activity moveToDockActivity, Actor self, Actor clientActor, DockClientManager client);
-	}
-
-	public interface IDockHostDrag
-	{
-		bool IsDragRequired { get; }
-		WVec DragOffset { get; }
-		int DragLength { get; }
 	}
 
 	public interface IDockClientManagerInfo : ITraitInfoInterface { }
@@ -376,7 +376,8 @@ namespace OpenRA.Mods.Common.Traits
 		Color[] PresetColors { get; }
 		Color RandomPresetColor(MersenneTwister random, IReadOnlyCollection<Color> terrainColors, IReadOnlyCollection<Color> playerColors);
 		Color RandomValidColor(MersenneTwister random, IReadOnlyCollection<Color> terrainColors, IReadOnlyCollection<Color> playerColors);
-		Color MakeValid(Color color, MersenneTwister random, IReadOnlyCollection<Color> terrainColors, IReadOnlyCollection<Color> playerColors, Action<string> onError = null);
+		Color MakeValid(
+			Color color, MersenneTwister random, IReadOnlyCollection<Color> terrainColors, IReadOnlyCollection<Color> playerColors, Action<string> onError = null);
 		void ShowColorDropDown(DropDownButtonWidget dropdownButton, Color initialColor, string initialFaction, WorldRenderer worldRenderer, Action<Color> onExit);
 	}
 
@@ -690,17 +691,20 @@ namespace OpenRA.Mods.Common.Traits
 
 	public class EditorActorDropdown : EditorActorOption
 	{
-		public readonly Dictionary<string, string> Labels;
-		public readonly Func<EditorActorPreview, string> GetValue;
+		public readonly Func<EditorActorPreview, Dictionary<string, string>> GetLabels;
+		public readonly Func<EditorActorPreview, Dictionary<string, string>, string> GetValue;
 		public readonly Action<EditorActorPreview, string> OnChange;
 
+		/// <summary>
+		/// Creates dropdown for editing actor's metadata with dynamically created items.
+		/// </summary>
 		public EditorActorDropdown(string name, int displayOrder,
-			Dictionary<string, string> labels,
-			Func<EditorActorPreview, string> getValue,
+			Func<EditorActorPreview, Dictionary<string, string>> getLabels,
+			Func<EditorActorPreview, Dictionary<string, string>, string> getValue,
 			Action<EditorActorPreview, string> onChange)
 			: base(name, displayOrder)
 		{
-			Labels = labels;
+			GetLabels = getLabels;
 			GetValue = getValue;
 			OnChange = onChange;
 		}
@@ -726,6 +730,14 @@ namespace OpenRA.Mods.Common.Traits
 		Horizontal = 1,
 		Vertical = 2,
 		Turn = 4
+	}
+
+	public enum MoveResult
+	{
+		InProgress,
+		CompleteCanceled,
+		CompleteDestinationReached,
+		CompleteDestinationBlocked,
 	}
 
 	[RequireExplicitImplementation]
@@ -867,7 +879,8 @@ namespace OpenRA.Mods.Common.Traits
 
 	public interface IPositionableInfo : IOccupySpaceInfo
 	{
-		bool CanEnterCell(World world, Actor self, CPos cell, SubCell subCell = SubCell.FullCell, Actor ignoreActor = null, BlockedByActor check = BlockedByActor.All);
+		bool CanEnterCell(World world, Actor self, CPos cell,
+			SubCell subCell = SubCell.FullCell, Actor ignoreActor = null, BlockedByActor check = BlockedByActor.All);
 	}
 
 	public interface IPositionable : IOccupySpace
@@ -876,7 +889,8 @@ namespace OpenRA.Mods.Common.Traits
 		bool IsLeavingCell(CPos location, SubCell subCell = SubCell.Any);
 		bool CanEnterCell(CPos location, Actor ignoreActor = null, BlockedByActor check = BlockedByActor.All);
 		SubCell GetValidSubCell(SubCell preferred = SubCell.Any);
-		SubCell GetAvailableSubCell(CPos location, SubCell preferredSubCell = SubCell.Any, Actor ignoreActor = null, BlockedByActor check = BlockedByActor.All);
+		SubCell GetAvailableSubCell(CPos location,
+			SubCell preferredSubCell = SubCell.Any, Actor ignoreActor = null, BlockedByActor check = BlockedByActor.All);
 		void SetPosition(Actor self, CPos cell, SubCell subCell = SubCell.Any);
 		void SetPosition(Actor self, WPos pos);
 		void SetCenterPosition(Actor self, WPos pos);
@@ -931,5 +945,50 @@ namespace OpenRA.Mods.Common.Traits
 		/// <remarks>Path searches are not guaranteed to by symmetric,
 		/// the source and target locations cannot be swapped.</remarks>
 		bool PathExistsForLocomotor(Locomotor locomotor, CPos source, CPos target);
+
+		/// <summary>
+		/// Determines if a path exists between source and target.
+		/// Terrain and immovable actors are taken into account,
+		/// i.e. as if <see cref="BlockedByActor.Immovable"/> was given.
+		/// Implementations are permitted to only account for a subset of actors, for performance.
+		/// This would apply for any actor using the given <see cref="Locomotor"/>.
+		/// </summary>
+		/// <remarks>Path searches are not guaranteed to by symmetric,
+		/// the source and target locations cannot be swapped.
+		/// If this method returns false, there is guaranteed to be no path.
+		/// If it returns true, there *might* be a path.
+		/// </remarks>
+		bool PathMightExistForLocomotorBlockedByImmovable(Locomotor locomotor, CPos source, CPos target);
+	}
+
+	public class MapGenerationException : Exception
+	{
+		public MapGenerationException(string message)
+			: base(message) { }
+		public MapGenerationException(string message, Exception inner)
+			: base(message, inner) { }
+	}
+
+	public interface IMapGeneratorInfo : ITraitInfoInterface
+	{
+		string Type { get; }
+		string Name { get; }
+
+		/// <summary>
+		/// Get the generator settings available for this tileset.
+		/// Returns null if not compatible with the given tileset.
+		/// </summary>
+		MapGeneratorSettings GetSettings(ITerrainInfo terrainInfo);
+
+		/// <summary>
+		/// Generate or manipulate a supplied map in-place.
+		/// </summary>
+		/// <exception cref="YamlException">
+		/// May be thrown if the map settings are invalid. Map should be discarded.
+		/// </exception>
+		/// <exception cref="MapGenerationException">
+		/// Thrown if the map could not be generated with the requested configuration. Map should be discarded.
+		/// </exception>
+		void Generate(Map map, MiniYaml settings);
 	}
 }

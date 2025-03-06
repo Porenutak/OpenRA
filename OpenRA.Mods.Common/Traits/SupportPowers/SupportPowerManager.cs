@@ -39,7 +39,7 @@ namespace OpenRA.Mods.Common.Traits
 			Self = init.Self;
 			DevMode = Self.Trait<DeveloperMode>();
 			TechTree = Self.Trait<TechTree>();
-			RadarPings = Exts.Lazy(() => init.World.WorldActor.TraitOrDefault<RadarPings>());
+			RadarPings = Exts.Lazy(Self.World.WorldActor.TraitOrDefault<RadarPings>);
 
 			init.World.ActorAdded += ActorAdded;
 			init.World.ActorRemoved += ActorRemoved;
@@ -177,8 +177,8 @@ namespace OpenRA.Mods.Common.Traits
 			Key = key;
 			TotalTicks = info.ChargeInterval;
 			remainingSubTicks = info.StartFullyCharged ? 0 : TotalTicks * 100;
-			Name = info.Name == null ? string.Empty : TranslationProvider.GetString(info.Name);
-			Description = info.Description == null ? string.Empty : TranslationProvider.GetString(info.Description);
+			Name = info.Name == null ? string.Empty : FluentProvider.GetMessage(info.Name);
+			Description = info.Description == null ? string.Empty : FluentProvider.GetMessage(info.Description);
 
 			Manager = manager;
 		}
