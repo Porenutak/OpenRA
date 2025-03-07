@@ -324,6 +324,16 @@ DevBullet:
 Bazooka:
 	Inherits: ^Rocket
 
+Bazzoka_AA:
+	Inherits: ^Rocket
+	Range: 5c0
+	ValidTargets: Air
+	Projectile: Bullet
+		Speed: 450
+	Warhead@1Dam: SpreadDamage
+		ValidTargets: Air
+		Spread: 1c0
+
 Rocket:
 	Inherits: ^Rocket
 	ReloadDelay: 50
@@ -1165,7 +1175,7 @@ hideWeapon:
 ScareEnemy:
 	Warhead@condition: GrantExternalCondition
 		Duration: 300
-		Range: 5c0
+		Range: 6c0
 		Condition: scared
 		ValidRelationships: Enemy, Neutral
 	Warhead@effect: CreateEffect

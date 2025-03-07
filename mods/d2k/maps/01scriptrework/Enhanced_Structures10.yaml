@@ -671,7 +671,7 @@ light_factory:
 	RevealsShroud:
 		Range: 5c768
 	Power:
-		Amount: -100
+		Amount: -125
 	FireProjectilesOnDeath:
 		Weapons: Debris2, derbisRock01, Debris4
 		Pieces: 5, 7
@@ -1668,7 +1668,7 @@ palace:
 		OrderName: ProduceActorPower.officerMerged
 		SupportPowerPaletteOrder: 25
 	-ProduceActorPower@saboteur:
-	AirstrikePower@chaosbombMerged:
+	AirstrikePower@chaosbomb:
 		Icon: gascloud
 		Name: Chaos bomb
 		ChargeInterval: 7000
@@ -1676,7 +1676,8 @@ palace:
 		StartFullyCharged: false
 		PauseOnCondition: disabled
 		Prerequisites: ~techlevel.high, ~palace.saboteur
-		Description: Carryall with bomb that force units to kill each other.
+		Description: Drop Gas bomb on selected area.
+		RequiresCondition: ordos
 		UnitType: ornithopter.bomber
 		DisplayBeacon: True
 		CameraActor: camera

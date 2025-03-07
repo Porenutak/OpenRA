@@ -233,14 +233,6 @@ Player:
 		Visible: true
 		DisplayOrder: 7
 		Prerequisites: carryall.controllable
-	LobbyPrerequisiteCheckbox@SandStorms:
-		ID: sandstorms_enabled
-		Label: Sand Storms
-		Description: Enbalbe Sand Storms
-		Enabled: false
-		Visible: true
-		DisplayOrder: 8
-		Prerequisites: sandstorms_enabled
 	ExternalCondition@vanilla_factions_Only:
 		Condition: vanilla_factions_Only
 	ExternalCondition@subfactions:
@@ -277,6 +269,7 @@ Player:
 		DisallowPaused: true
 		BuildDurationModifier: 100
 		BlockedAudio: NoRoom
+		PayUpFront: true
 		BlockedTextNotification: No room for new unit.
 		QueuedAudio: Silent
 		OnHoldAudio: Silent

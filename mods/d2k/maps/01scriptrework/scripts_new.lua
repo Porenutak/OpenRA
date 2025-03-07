@@ -172,7 +172,7 @@ WorldLoaded = function()
 			Media.DisplayMessage("Use Alt or Ctrl modifier to select Carryalls. Use RMB to pick up. Use Deploy to unload", "Mentat",  HSLColor.DarkRed)
 		end)
 	end
-	-- sandstorm INIT
+	-- sandstorm INIT, disabled due of no sandstorm asset
 	if PlayerNeutral.HasPrerequisites({"sandstorms_enabled"}) then
 		SandStormSpawnpoints = PlayerNeutral.GetActorsByType("spawnpoint.sandstorm")
 		SandStormEnabled = true

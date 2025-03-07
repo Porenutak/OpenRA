@@ -47,7 +47,6 @@
 ^ScareEnemy:
 	ExternalCondition@scared:
 		Condition: scared
-		SourceCap: 1
 	WithDecoration@skullIconScared:
 		Image: pips
 		Sequence: pip-skull
@@ -1511,6 +1510,9 @@ trooper.vet2:
 	-Buildable:
 
 trooper:
+	AutoTargetPriority@air:
+		ValidTargets: Air
+		InvalidTargets: NoAutoTarget
 	AutoTargetPriority@bot:
 		InvalidTargets: Infantry
 		ValidTargets: Vehicle, Defense, Structure, Tank
@@ -1534,6 +1536,13 @@ trooper:
 	Armament@chaos_bomb_influence:
 		Weapon: Bazooka
 		LocalOffset: 128,0,256
+	Armament@Anti_Air:
+		Weapon: Bazzoka_AA
+		LocalOffset: 128,0,256
+		RequireCondition: AA_enabled
+	GrantConditionOnPrerequisite@AAGun_againstControlableCarryall
+		Prerequisites: carryall.controllable
+		Condition: AA_enabled
 	TakeCover:
 		ProneOffset: 324,0,-204
 	WithInfantryBody:
