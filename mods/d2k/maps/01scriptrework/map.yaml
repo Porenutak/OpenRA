@@ -99,9 +99,6 @@ Actors:
 	Actor19: silo
 		Owner: Multi0
 		Location: 16,20
-	Actor20: refinery
-		Owner: Multi0
-		Location: 10,20
 	Actor21: missile_tank
 		Owner: Creeps
 		Facing: 384
@@ -220,6 +217,9 @@ Actors:
 		Owner: Creeps
 		Facing: 384
 		Location: 4,13
+	Actor47: refinery_inverted
+		Owner: Multi0
+		Location: 15,15
 
 Rules: Enhanced_Units10.yaml, Enhanced_Starport10.yaml, Enhanced_Structures10.yaml, Enhanced_World10.yaml, Enhanced_Misc.yaml, Enhanced_AI.yaml, Enhanced_palettes.yaml, NewTiles.yaml, NeutralBuildings.yaml
 

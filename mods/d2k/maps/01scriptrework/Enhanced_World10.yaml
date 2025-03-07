@@ -228,7 +228,7 @@ Player:
 	LobbyPrerequisiteCheckbox@ControlableCheckBox:
 		ID: ControlableCarryalls
 		Label: Controlable carryalls
-		Description: When enabled you can control carryalls and trooper can fire on air units
+		Description: When enabled you can control carryalls. \n Troopers can fire on air units \n Controable carryalls have less HP
 		Enabled: false
 		Visible: true
 		DisplayOrder: 7

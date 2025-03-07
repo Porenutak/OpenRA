@@ -601,9 +601,6 @@ refinery_inverted:
 		Prerequisite: refinery
 	FreeActorWithDelivery:
 		DeliveryOffset: 0,0
-	DockHost:
-		Type: Unload
-		DockOffset: -1024,-1536,0
 
 silo:
 	Buildable:
@@ -650,8 +647,8 @@ silo:
 light_factory:
 	Inherits@damageVFX: ^DamagedBuildingsVFX
 	Buildable:
-		Prerequisites: refinery
-		BuildDuration: 390
+		Prerequisites: barracks
+		BuildDuration: 380
 	GrantConditionOnPrerequisite:
 		Condition: ArmorUpgrade
 		Prerequisites: upgrade.conyard
@@ -671,7 +668,7 @@ light_factory:
 	RevealsShroud:
 		Range: 5c768
 	Power:
-		Amount: -125
+		Amount: -100
 	FireProjectilesOnDeath:
 		Weapons: Debris2, derbisRock01, Debris4
 		Pieces: 5, 7

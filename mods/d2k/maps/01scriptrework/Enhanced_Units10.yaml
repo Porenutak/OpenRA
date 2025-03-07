@@ -578,13 +578,11 @@ quad.heavy:
 		BuildDuration: 360
 		Description: Heavy Missile Scout\n  Excellent vs Light Armor\n Modest vs Tanks\n Weak vs  Moving Targets, Infantry
 	Valued:
-		Cost: 500
+		Cost: 475
 	Armor:
 		Type: light
 	Tooltip:
 		Name: Heavy quad
-	Health:
-		HP: 12000
 	Mobile:
 		Locomotor: light_vehicle
 		TurnSpeed: 40
@@ -1226,6 +1224,8 @@ carryall.controllable:
 	-Interactable:
 	Selectable:
 		Priority: 5
+	Health:
+		HP: 11000
 	AutoCarryall:
 		AutoCarryCondition: !manual
 		CarryCondition: loaded
@@ -1763,7 +1763,7 @@ saboteur:
 		PauseOnCondition: SuicideAtt
 	-GrantChargedConditionOnToggle:
 	KillsSelf@SuicideKillCount:
-		Delay: 50
+		Delay: 45
 		RequiresCondition: SuicideAtt
 		GrantsCondition: kamikadze
 	GrantConditionOnDamageState@UNCLOAK:
@@ -1855,7 +1855,7 @@ mortar_inf:
 		DeployedCondition: deployed
 		UndeployedCondition: undeployed
 		Facing: 768
-		UndeployOnMove: false
+		UndeployOnMove: true
 		DeploySounds: audio/EBoD_MortarDeploy.wav
 		UndeploySounds: audio/EBoD_MortarUndeploy.wav
 		SkipMakeAnimation: false
