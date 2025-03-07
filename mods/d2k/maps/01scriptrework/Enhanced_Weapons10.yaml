@@ -311,7 +311,7 @@ DevBullet:
 		Spread: 700
 		Falloff: 100, 0
 		Versus:
-			none: 20
+			none: 15
 			wall: 60
 			building: 45
 			wood: 65
@@ -330,9 +330,11 @@ Bazzoka_AA:
 	ValidTargets: Air
 	Projectile: Bullet
 		Speed: 450
+		Width: 0c512
 	Warhead@1Dam: SpreadDamage
 		ValidTargets: Air
 		Spread: 1c0
+		Damage: 3200
 
 Rocket:
 	Inherits: ^Rocket

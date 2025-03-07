@@ -230,7 +230,7 @@ WorldLoaded = function()
 				CHOAMDelivery(produced.Owner)
 			-- Mercenary support power
 			elseif actor == "dummy_mercenary_spawnpoint" then
-				CHOAMDeliverCustomUnits(producer.Owner, ReinforcementSquads[4])
+				CHOAMDCondractionDelivery(producer.Owner, ReinforcementSquads[4])
 				produced.Destroy()
 			elseif actor=="dummy.trike" or actor=="dummy.quad" or actor=="dummy.harvester" or actor=="dummy.mcv" or actor=="dummy.combat_tank_a" or actor=="dummy.combat_tank_o" or actor=="dummy.combat_tank_h" or actor=="dummy.siege_tank" or actor=="dummy.missile_tank" or actor=="dummy.carryall" or actor=="dummy.combat_tank_cheap"or actor=="dummy.combat_tank_corrino" then
 				ExperimentalStarport(producer.Owner, produced)
@@ -247,19 +247,6 @@ WorldLoaded = function()
 	end)
 end
 
-
--- add free carryall at game start - not used anymore
-function addCarryToPlayer(player)
-
-	local actors = player.GetActorsByTypes({"mcv", "construction_yard", "choosefaction"})
-	for i, actor in pairs(actors) do
-		if (actor.Type == "mcv") or (actor.Type == "construction_yard") or (actor.Type == "choosefaction") then
-			Reinforcements.Reinforce(player, { "carryall" }, { actor.Owner.HomeLocation}, 10)
-			return
-		end
-	end
-	Reinforcements.Reinforce(player, { "carryall" }, { player.HomeLocation}, 10)
-end
 
 function wormSpawnFunction(owner)
     local actorsSpawner = owner.GetActorsByType("wormspawner")
@@ -606,9 +593,9 @@ function FilterPlayers(forPlayer)
 	return filteredPlayers
 end
 
-------------------------------------------------------------
---Experimental starport---Original D2k Starport behaviour---
-------------------------------------------------------------
+------------------------------------
+--Original D2k Starport behaviour---
+------------------------------------
 
 function ExperimentalStarport(player, dummy)
 	local playerInternalName = player.InternalName
@@ -798,7 +785,43 @@ function DeliveryNotifications(player)
 
 end
 
--- Reinforcements via Starport
+
+-----------------------------
+---DeliveryUnits inside transport, inside AirUnit
+-----------------------------
+function CHOAMDCondractionDelivery(player, squad)
+	local starport = SelectStarport(player)
+	if starport == nil then
+		ResetStartport(player)
+		return
+	end
+	local rallypoint = starport.RallyPoint
+	local path = {Map.ClosestEdgeCell(starport.Location),starport.Location + CVec.New(1,1)}
+	local locationWpos = Map.CenterOfCell(path[1])
+	local deliveryActor = Actor.Create("frigate_choam", true, {Owner = player, Facing = Angle.North, Location = path[1], CenterPosition = locationWpos + WVec.New(0,0,Actor.CruiseAltitude("frigate_choam")) ,Faction = player.Faction})
+	local insideTransport = Actor.Create("crawler", false, {Owner = player, Facing = Angle.North, Location = path[1], Faction = player.Faction})
+	for _, unit in pairs (squad) do
+		local actor = Actor.Create(unit, false, {Owner = player, Facing = Angle.North, Location = path[1], Faction = player.Faction})
+		insideTransport.LoadPassenger(actor);
+	end
+	deliveryActor.LoadPassenger(insideTransport)
+	deliveryActor.Move(path[2])
+	deliveryActor.UnloadPassengers()
+	Trigger.OnPassengerExited(deliveryActor,
+		function(transport, pass)
+			Media.PlaySpeechNotification(transport.Owner,"Reinforce")
+			if pass ~= nil and pass.HasProperty("Move") then
+				pass.Move(rallypoint);
+			end
+			if not transport.HasPassengers then
+				transport.Move(path[1])
+				transport.Destroy()
+			end
+		end)
+end
+--------------------------------
+-- Reinforcements via Starport--
+--------------------------------
 
 function CHOAMDeliverCustomUnits(player, squad)
 	local starport = SelectStarport(player)
@@ -1019,8 +1042,8 @@ function ActorsAddedToWorld(newlist,register)
 end
 
 ---------------------
---SandStorms
-------------------
+--SandStorms (WIP)---
+---------------------
 function SandStormInit()
 	local duration = Utils.RandomInteger(SandStormDuration[1], SandStormDuration[2])
 	SandStormEnabled = false

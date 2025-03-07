@@ -183,6 +183,43 @@ Actors:
 		Owner: Creeps
 		Facing: 384
 		Location: 28,20
+	Actor39: trooper
+		Owner: Multi0
+		Facing: 384
+		Location: 29,23
+		SubCell: 3
+	Actor40: trooper
+		Owner: Multi0
+		Facing: 384
+		Location: 29,23
+		SubCell: 1
+	Actor41: trooper
+		Owner: Multi0
+		Facing: 384
+		Location: 29,23
+		SubCell: 2
+	Actor42: trooper
+		Owner: Multi0
+		Facing: 384
+		Location: 29,23
+		SubCell: 4
+	Actor43: trooper
+		Owner: Multi0
+		Facing: 384
+		Location: 29,23
+		SubCell: 5
+	Actor44: missile_tank
+		Owner: Creeps
+		Facing: 384
+		Location: 3,10
+	Actor45: missile_tank
+		Owner: Creeps
+		Facing: 384
+		Location: 6,11
+	Actor46: missile_tank
+		Owner: Creeps
+		Facing: 384
+		Location: 4,13
 
 Rules: Enhanced_Units10.yaml, Enhanced_Starport10.yaml, Enhanced_Structures10.yaml, Enhanced_World10.yaml, Enhanced_Misc.yaml, Enhanced_AI.yaml, Enhanced_palettes.yaml, NewTiles.yaml, NeutralBuildings.yaml
 

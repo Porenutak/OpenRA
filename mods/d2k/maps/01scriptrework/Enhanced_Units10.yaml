@@ -461,7 +461,7 @@ trike:
 	Mobile:
 		Locomotor: light_vehicle
 		TurnSpeed: 40
-		Speed: 120 # just be 118 and higher otherwise attack move is broken
+		Speed: 125 # must be 118 and higher otherwise attack move is broken
 	Armament@damage:
 		FireDelay: 0
 		Weapon: HMG
@@ -511,7 +511,7 @@ raider:
 	Mobile:
 		Locomotor: light_vehicle
 		TurnSpeed: 40
-		Speed: 136
+		Speed: 141
 	WithMuzzleOverlay:
 	AutoTarget:
 		MinimumScanTimeInterval: 0
@@ -544,7 +544,7 @@ quad:
 		BuildDurationModifier: 100
 		Description: Missile Scout\n  Excellent vs Light Armor\n Modest vs Tanks\n Weak vs  Moving Targets, Infantry
 	Valued:
-		Cost: 450
+		Cost: 425
 	Health:
 		HP: 11000
 	Armor:
@@ -552,7 +552,7 @@ quad:
 	Mobile:
 		Locomotor: light_vehicle
 		TurnSpeed: 40
-		Speed: 95
+		Speed: 96
 	RevealsShroud:
 		Range: 6c0
 	Armament:
@@ -583,6 +583,8 @@ quad.heavy:
 		Type: light
 	Tooltip:
 		Name: Heavy quad
+	Health:
+		HP: 12000
 	Mobile:
 		Locomotor: light_vehicle
 		TurnSpeed: 40
@@ -607,7 +609,7 @@ stealth_raider:
 		Cost: 400
 	Mobile:
 		TurnSpeed: 32
-		Speed: 125
+		Speed: 140
 	RevealsShroud:
 		Range: 6c0
 	UpdatesPlayerStatistics:
@@ -1227,6 +1229,8 @@ carryall.controllable:
 	AutoCarryall:
 		AutoCarryCondition: !manual
 		CarryCondition: loaded
+	BlocksProjectiles:
+		RequiresCondition: airborne
 	GrantConditionOnDeploy@AUTO:
 		DeployedCondition: manual
 		CanDeployOnRamps: true
@@ -1496,19 +1500,6 @@ light_inf.vet3:
 		OverrideActor: light_inf
 	-Buildable:
 
-trooper.vet2:
-	Inherits: trooper
-	RenderSprites:
-		Image: trooper
-	ProducibleWithLevel:
-		Prerequisites: techlevel.medium
-		InitialLevels: 2
-	WithProductionIconOverlay:
-		Types: veteran
-	UpdatesPlayerStatistics:
-		OverrideActor: trooper
-	-Buildable:
-
 trooper:
 	AutoTargetPriority@air:
 		ValidTargets: Air
@@ -1539,7 +1530,7 @@ trooper:
 	Armament@Anti_Air:
 		Weapon: Bazzoka_AA
 		LocalOffset: 128,0,256
-		RequireCondition: AA_enabled
+		RequiresCondition: AA_enabled
 	GrantConditionOnPrerequisite@AAGun_againstControlableCarryall
 		Prerequisites: carryall.controllable
 		Condition: AA_enabled
@@ -1554,6 +1545,19 @@ trooper:
 		TargetRelationships: Enemy, Ally, Neutral
 		Name: secondary
 		RequiresCondition: chaos_bomb
+
+trooper.vet2:
+	Inherits: trooper
+	RenderSprites:
+		Image: trooper
+	ProducibleWithLevel:
+		Prerequisites: techlevel.medium
+		InitialLevels: 2
+	WithProductionIconOverlay:
+		Types: veteran
+	UpdatesPlayerStatistics:
+		OverrideActor: trooper
+	-Buildable:
 
 engineer:
 	Inherits@botLogic: ^BotLogicEngineer
@@ -1623,7 +1627,7 @@ grenadier:
 mpsardaukar:
 	Buildable:
 		Prerequisites: ~barracks.harkonnen, upgrade.barracks, high_tech_factory, ~techlevel.medium, ~factions.standard
-		BuildDuration: 165
+		BuildDuration: 160
 		Description: Elite assault infantry of Corrino\n  Strong vs Vehicles\n Modest vs Infantry, Tanks \n  Weak vs Artillery, Sonic Beams
 	Valued:
 		Cost: 200
@@ -1895,12 +1899,12 @@ assassin:
 	Inherits: ^Infantry
 	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
 	Valued:
-		Cost: 140
+		Cost: 150
 	Buildable:
 		Queue: Infantry
 		BuildPaletteOrder: 70
 		Prerequisites: ~!factions.standard, ~barracks.harkonnen, upgrade.barracks, high_tech_factory, ~techlevel.high
-		BuildDuration: 150
+		BuildDuration: 140
 		BuildDurationModifier: 60
 		Description: Infantry with long range rifle\n  Attacks only infantry\n  Inaccuracy is high at long range \n Can hide on Rough terrain
 	Tooltip:
@@ -2010,7 +2014,7 @@ fremen_fedaykin:
 	Buildable:
 		Queue: Infantry
 		Prerequisites: ~factions.subfaction_allowed, ~barracks.fremen, upgrade.barracks, high_tech_factory, ~techlevel.medium
-		BuildDuration: 155
+		BuildDuration: 150
 		BuildDurationModifier: 100
 
 mercenary:
@@ -2400,25 +2404,25 @@ hunter:
 		LocalOffset: -200,0,0
 		MuzzleSequence: muzzle
 
-crawler.light:
+crawler:
 	Inherits: ^Vehicle
 	Buildable:
 		Queue: Vehicle
-		Prerequisites: ~light.crawler, ~factions.subfaction_allowed, upgrade.light, outpost
+		Prerequisites: ~disabled
 		BuildDuration: 405
 		BuildDurationModifier: 100
 		BuildPaletteOrder: 60
 		Description: Light transporter \n Can transport 5 infantry units. \n Can hide while idle \n Can crush infantry
 	Health:
-		HP: 11000
+		HP: 13000
 	Valued:
-		Cost: 400
+		Cost: 500
 	Tooltip:
 		Name: Crawler
 	Armor:
 		Type: heavy
 	Mobile:
-		Speed: 100
+		Speed: 105
 		Locomotor: tank
 		PauseOnCondition: notmobile
 		TurnSpeed: 35
@@ -2440,8 +2444,7 @@ crawler.light:
 		Margin: 4, 3
 		RequiresSelection: true
 	Cloak:
-		InitialDelay: 85
-		CloakDelay: 85
+		CloakDelay: 10
 		UncloakOn: Attack, Unload, Infiltrate, Demolish, Move, Damage, Heal
 		IsPlayerPalette: true
 		PauseOnCondition: cloak-force-disabled
@@ -2719,13 +2722,6 @@ merged.hunter_fremen:
 		Prerequisites: ~factions.merged, upgrade.light, ~merged.fremen
 		BuildPaletteOrder: 50
 
-merged.crawler.light:
-	Inherits: crawler.light
-	RenderSprites:
-		Image: crawler.light
-	Buildable:
-		BuildPaletteOrder: 106
-		Prerequisites: ~merged.mercenary, ~factions.merged, ~techlevel.high, upgrade.light, light_factory
 
 merged.mortar_inf:
 	Inherits: mortar_inf

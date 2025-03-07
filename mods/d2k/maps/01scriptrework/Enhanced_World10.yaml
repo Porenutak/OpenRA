@@ -105,6 +105,7 @@ World:
 		CheckboxLocked: true
 		CheckboxVisible: false
 	SpawnStartingUnits:
+		StartingUnitsClass: light
 		DropdownDisplayOrder: 70
 	TimeLimitManager:
 		TimeLimitDisplayOrder: 3
@@ -146,16 +147,15 @@ World:
 		SmokeSequences: smokeFromRA01loop
 	StartingUnits@mcv:
 		Class: none
-		ClassName: MCV + carryall
+		ClassName: MCV
 		BaseActor: choosefaction
-		SupportActors: carryall
 		Factions: atreides, ordos, harkonnen, corrino, mercenary, smuggler, fremen
 	StartingUnits@lightatreides:
 		Class: light
-		ClassName: MCV + 2x Carryall
+		ClassName: MCV + Carryall
 		Factions: atreides, fremen
 		BaseActor: choosefaction
-		SupportActors: carryall, carryall
+		SupportActors: carryall
 		InnerSupportRadius: 3
 		OuterSupportRadius: 5
 	StartingUnits@lightharkonnen:
@@ -163,39 +163,39 @@ World:
 		ClassName: MCV + 2x Carryall
 		Factions: harkonnen, corrino
 		BaseActor: choosefaction
-		SupportActors: carryall, carryall
+		SupportActors: carryall
 		InnerSupportRadius: 3
 		OuterSupportRadius: 5
 	StartingUnits@lightordos:
 		Class: light
-		ClassName: MCV + 2x Carryall
+		ClassName: MCV + Carryall
 		Factions: ordos, mercenary, smuggler
 		BaseActor: choosefaction
-		SupportActors: carryall, carryall
+		SupportActors: carryall
 		InnerSupportRadius: 3
 		OuterSupportRadius: 5
 	StartingUnits@heavyatreides:
 		Class: heavy
-		ClassName: MCV + 3x Carryall
+		ClassName: MCV + 2x Carryall
 		Factions: atreides, fremen
 		BaseActor: choosefaction
-		SupportActors: carryall, carryall, carryall
+		SupportActors: carryall, carryall
 		InnerSupportRadius: 3
 		OuterSupportRadius: 5
 	StartingUnits@heavyharkonnen:
 		Class: heavy
-		ClassName: MCV + 3x Carryall
+		ClassName: MCV + 2x Carryall
 		Factions: harkonnen, corrino
 		BaseActor: choosefaction
-		SupportActors: carryall, carryall, carryall
+		SupportActors: carryall, carryall
 		InnerSupportRadius: 3
 		OuterSupportRadius: 5
 	StartingUnits@heavyordos:
 		Class: heavy
-		ClassName: MCV + 3x Carryall
+		ClassName: MCV + 2x Carryall
 		Factions: ordos, mercenary, smuggler
 		BaseActor: choosefaction
-		SupportActors: carryall, carryall, carryall
+		SupportActors: carryall, carryall
 		InnerSupportRadius: 3
 		OuterSupportRadius: 5
 	FlashPostProcessEffect:
@@ -228,8 +228,8 @@ Player:
 	LobbyPrerequisiteCheckbox@ControlableCheckBox:
 		ID: ControlableCarryalls
 		Label: Controlable carryalls
-		Description: When enabled you can controll carryalls.
-		Enabled: true
+		Description: When enabled you can control carryalls and trooper can fire on air units
+		Enabled: false
 		Visible: true
 		DisplayOrder: 7
 		Prerequisites: carryall.controllable

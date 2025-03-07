@@ -938,14 +938,14 @@ bison_tank.husk:
 	Health:
 		HP: 14000
 
-crawler_light.husk:
+crawler.husk:
 	Inherits: ^VehicleHusk
 	Tooltip:
 		Name: Crawler Husk
 	TransformOnCapture:
-		IntoActor: crawler.light
+		IntoActor: crawler
 	InfiltrateForTransform:
-		IntoActor: crawler.light
+		IntoActor: crawler
 
 
 deviator.husk:
@@ -1417,7 +1417,7 @@ thump:
 		HP: 1000
 	Carryable:
 	KillsSelf:
-		Delay: 100
+		Delay: 500
 		GrantsCondition: spawnworm
 		RequiresCondition: thump
 	AmbientSound:

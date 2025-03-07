@@ -2182,7 +2182,7 @@ upgrade.outpost:
 		BuildDurationModifier: 100
 		Description: Unlocks Jam ability
 	Valued:
-		Cost: 1500
+		Cost: 1000
 	RenderSprites:
 		Image: outpost.ordos
 	ProvidesPrerequisite@upgradename:
@@ -2202,7 +2202,7 @@ upgrade.outpost_fremen:
 		BuildDurationModifier: 100
 		Description: Unlocks Hide ability
 	Valued:
-		Cost: 1200
+		Cost: 1000
 	RenderSprites:
 		Image: outpost.atreides
 	ProvidesPrerequisite@upgradename:

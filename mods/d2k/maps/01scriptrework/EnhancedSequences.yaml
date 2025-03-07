@@ -2393,7 +2393,7 @@ purchase:
 		Start: 478
 		Offset: -30,-24
 
-crawler.light:
+crawler:
 	idle:
 		Filename: bits/TroopCrawler.shp
 		Start: 0
@@ -2402,7 +2402,7 @@ crawler.light:
 		Filename: bits/TroopCrawlerIcon.shp
 		Start: 0
 
-crawler_light.husk:
+crawler.husk:
 	idle:
 		Filename: bits/TroopCrawler.shp
 		Start: 0
@@ -2507,6 +2507,8 @@ light_inf:
 		Length: 18
 		Tick: 80
 		Offset: -16,-16
+	die-crushed:
+		Remap: 00000000
 
 trooper:
 	die6:
@@ -2515,6 +2517,8 @@ trooper:
 		Length: 18
 		Tick: 80
 		Offset: -16,-16
+	die-crushed:
+		Remap: 00000000
 
 thumper:
 	die6:
