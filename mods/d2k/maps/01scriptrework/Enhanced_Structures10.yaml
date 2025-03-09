@@ -1,6 +1,6 @@
 ^Building:
 	Inherits@SandStorm: ^SandStorm
-	Inherits@jammer: ^jammedvission_buildings
+	Inherits@jammer: ^jammed_building
 	InstantlyRepairable:
 		Types: Building
 	ProductionTimeMultiplier@craneBonus:
@@ -44,7 +44,7 @@
 		Palette: player
 		IsPlayerPalette: True
 
-^jammedvission_buildings:
+^jammed_building:
 	ExternalCondition@jammed:
 		Condition: jammed
 	RevealsShroud:
@@ -54,6 +54,13 @@
 		RevealGeneratedShroud: true
 	WithColoredOverlay@black:
 		Color: 3E202080
+		RequiresCondition: jammed
+	WithDecoration@jammerIcon:
+		Image: pips
+		Sequence: pip-jammer
+		Palette: disabled
+		Position: TopLeft
+		ValidRelationships: Ally, Enemy, Neutral
 		RequiresCondition: jammed
 
 ^DamagedBuildingsVFX:
@@ -366,7 +373,7 @@ wind_trap:
 barracks:
 	Inherits@damageVFX: ^DamagedBuildingsVFX
 	Buildable:
-		BuildDuration: 325
+		BuildDuration: 320
 	Valued:
 		Cost: 400
 	Health:
@@ -647,8 +654,8 @@ silo:
 light_factory:
 	Inherits@damageVFX: ^DamagedBuildingsVFX
 	Buildable:
-		Prerequisites: barracks
-		BuildDuration: 380
+		Prerequisites: refinery
+		BuildDuration: 390
 	GrantConditionOnPrerequisite:
 		Condition: ArmorUpgrade
 		Prerequisites: upgrade.conyard
@@ -668,7 +675,7 @@ light_factory:
 	RevealsShroud:
 		Range: 5c768
 	Power:
-		Amount: -100
+		Amount: -125
 	FireProjectilesOnDeath:
 		Weapons: Debris2, derbisRock01, Debris4
 		Pieces: 5, 7
@@ -1051,14 +1058,14 @@ starport:
 		Chance: 80
 	ProduceActorPower@contractors:
 		Name: Hire Contractors
-		Description: Anti Tank infantry with modest range. \n Can fire only when deployed \n Strong VS Vehicles, Tanks \n Modest VS infantry
+		Description: Spawn 5 anti-tank infantry inside Crawler. \n Crawler is stealth transport unit that can crush infantry
 		Icon: mercenary
 		PauseOnCondition: disabled
 		RequiresCondition: mercenary
 		Prerequisites: upgrade.starport, ~techlevel.superweapons, ~!factions.standard
 		Actors: dummy_mercenary_spawnpoint
 		Type: Starport
-		ChargeInterval: 3200
+		ChargeInterval: 2500
 		LaunchSpeechNotification: Reinforce
 		BlockedAudio: NoRoom
 		OrderName: ProduceActorPower.contractors
@@ -1325,7 +1332,7 @@ high_tech_factory:
 		Icon: lightStrike
 		Name: Light Air Strike
 		Prerequisites: ~techlevel.superweapons, upgrade.hightech, ~!factions.standard
-		ChargeInterval: 6900
+		ChargeInterval: 6500
 		Description: Ornithopters hit the target with MG guns
 		DisplayBeacon: True
 		SupportPowerPaletteOrder: 15
@@ -2025,7 +2032,7 @@ palace.corrino:
 		ChargeInterval: 5500
 		Icon: sardaukarVeterancy
 		PauseOnCondition: disabled
-		Prerequisites: ~techlevel.superweapons, ~factions.subfaction_allowed
+		Prerequisites: ~techlevel.superweapons
 		ReadyAudio: Reinforce
 		StartFullyCharged: false
 		LaunchSound: audio/HI_releaseTheSardaukar01.wav
@@ -2038,7 +2045,7 @@ palace.corrino:
 		EffectSequence:
 		Actor: dummy.true_sayer
 		Icon: true_sayer
-		Prerequisites: ~techlevel.superweapons, upgrade.hightech, ~factions.subfaction_allowed
+		Prerequisites: ~techlevel.superweapons
 		ChargeInterval: 4300
 		LifeTime: 500
 		StartFullyCharged: false
@@ -2301,24 +2308,7 @@ merged.corrino_palace:
 	RallyPoint:
 	ProvidesPrerequisite@corrinotech:
 		Prerequisite: merged.corrino
-	SpawnActorPower@CorrinoTrueSayer:
-		EffectImage: frigate.harkonnen
-		EffectSequence:
-		Actor: dummy.true_sayer
-		Icon: true_sayer
-		Prerequisites: ~techlevel.superweapons, factions.merged
-		ChargeInterval: 3900
-		LifeTime: 500
-		StartFullyCharged: false
-		DeploySound: audio/true_sayer.wav
-		LaunchSound: audio/true_sayer.wav
-		Name: Emperor's True Sayer
-		Description: Reveal target Area
-		SupportPowerPaletteOrder: 60
-		DisplayBeacon: True
-		OrderName: corrino.true_sayer
-		DisplayRadarPing: true
-		BlockedCursor: move-blocked
+
 
 merged.starport:
 	Inherits: starport

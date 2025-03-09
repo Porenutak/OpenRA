@@ -15,7 +15,7 @@
 			none: 110
 			wall: 10
 			building: 25
-			wood: 45
+			wood: 50
 			light: 35
 			heavy: 13
 			invulnerable: 0
@@ -81,14 +81,14 @@ HMGo_muzzle:
 M_HMG:
 	Inherits: ^MG
 	ReloadDelay: 48
-	Range: 4c0
+	Range: 4c112
 	Report: 20MMGUN1.WAV
 	InvalidTargets: Infantry
 	Warhead@1Dam: SpreadDamage
 		Damage: 2800
 		Versus:
 			none: 25
-			wall: 60
+			wall: 100
 			building: 50
 			light: 100
 			heavy: 50
@@ -164,7 +164,7 @@ Fremen_wormrider2:
 	Warhead@1Dam: SpreadDamage
 		Damage: 3510
 		Versus:
-			none: 85
+			none: 80
 			wall: 50
 			light: 60
 			building: 60
@@ -184,13 +184,13 @@ Fremen_wormrider2:
 		InaccuracyType: PerCellIncrement
 	Warhead@1Dam: SpreadDamage
 		Damage: 3375
-		Spread: 756
+		Spread: 900
 		Falloff: 100, 0
 		Versus:
 			none: 40
 			wall: 50
 			building: 50
-			wood: 65
+			wood: 60
 			heavy: 80
 			invulnerable: 0
 			cy: 20
@@ -226,7 +226,7 @@ Fremen_wormrider2:
 	Projectile: Bullet
 		Inaccuracy: 145
 	Warhead@1Dam: SpreadDamage
-		Spread: 1c112
+		Spread: 1c256
 
 80mm_double:
 	Inherits: ^Cannon
@@ -239,18 +239,17 @@ Fremen_wormrider2:
 		Damage: 3510
 		Versus:
 			none: 40
-			wall: 50
+			wall: 70
 			light: 80
 			building: 60
 			wood: 80
-			heavy: 100
 			invulnerable: 0
 			cy: 20
 			harvester: 50
 
 155mm:
 	Inherits: ^Cannon
-	ReloadDelay: 100
+	ReloadDelay: 96
 	Range: 7c512
 	MinRange: 2c0
 	Projectile: Bullet
@@ -267,7 +266,7 @@ Fremen_wormrider2:
 			wall: 70
 			building: 100
 			wood: 70
-			light: 40
+			light: 30
 			heavy: 20
 			invulnerable: 0
 			cy: 30
@@ -308,7 +307,7 @@ DevBullet:
 		Inaccuracy: 128
 	Warhead@1Dam: SpreadDamage
 		Damage: 3600
-		Spread: 700
+		Spread: 800
 		Falloff: 100, 0
 		Versus:
 			none: 15
@@ -389,8 +388,8 @@ Rocket_heavy:
 			none: 20
 			wall: 75
 			building: 60
-			wood: 70
-			light: 90
+			wood: 65
+			light: 80
 			heavy: 100
 			invulnerable: 0
 			cy: 30
@@ -425,7 +424,7 @@ clusterMissile:
 	BurstDelays: 20
 	ReloadDelay: 20
 	Range: 7c0
-	MinRange: 2c221
+	MinRange: 2c0
 	Projectile: Missile
 		Inaccuracy: 140
 		InaccuracyType: PerCellIncrement
@@ -444,13 +443,13 @@ clusterMissile:
 		ContrailStartColor: 181616C6
 	Warhead@1Dam: SpreadDamage
 		Damage: 3950
-		Spread: 1c450
+		Spread: 1c800
 		Versus:
 			none: 80
 			wall: 70
 			building: 80
-			wood: 100
-			light: 100
+			wood: 80
+			light: 80
 			heavy: 50
 			invulnerable: 0
 			cy: 30
@@ -489,6 +488,7 @@ DeviatorMissile:
 	Inherits: ^Missile
 	ReloadDelay: 176
 	Range: 6c0
+	InvalidTargets: Infantry, Structure
 	Projectile: Missile
 		RangeLimit: 7c0
 	Warhead@1Dam: SpreadDamage
@@ -542,20 +542,20 @@ Sound:
 		Falloff: 20, 100,  0, 0
 		Range: 0, 6c0, 7c512
 		BeyondTargetRange: 0c0
-		MinDistance: 7c0
+		MinDistance: 6c512
 		Color: 00FFFFC8
 	Warhead@1Dam: SpreadDamage
 		Range: 0, 32
 		Falloff: 100, 100
-		Damage: 1282
+		Damage: 1152
 		AffectsParent: false
 		ValidRelationships: Neutral, Enemy
 		Versus:
 			none: 195
-			wall: 120
-			building: 100
+			wall: 70
+			building: 60
 			wood: 110
-			light: 120
+			light: 100
 			heavy: 60
 			invulnerable: 0
 			cy: 70
@@ -632,7 +632,7 @@ Ornithopter_MG:
 	Inherits: HMG
 	ReloadDelay: 60
 	Range: 6c0
-	Burst: 8
+	Burst: 10
 	FirstBurstTargetOffset: -2984,0,0
 	FollowingBurstTargetOffset: 950,0,0
 	Warhead@1Dam: SpreadDamage
@@ -643,7 +643,7 @@ Ornithopter_MG:
 			wall: 10
 			building: 40
 			wood: 100
-			light: 50
+			light: 70
 			heavy: 20
 			invulnerable: 0
 			cy: 20
@@ -1054,7 +1054,7 @@ SniperRifle:
 	Warhead@1Dam: SpreadDamage
 		Spread: 200
 		Falloff: 100, 0
-		Damage: 8000
+		Damage: 9000
 		ValidTargets: Infantry
 		DamageTypes: Prone50Percent, TriggerProne, BulletDeath
 		DamageCalculationType: ClosestTargetablePosition

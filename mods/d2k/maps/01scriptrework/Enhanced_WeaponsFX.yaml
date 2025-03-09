@@ -317,10 +317,11 @@ ExplosionAircraft:
 		DamageTypes: Prone50Percent, TriggerProne, SmallExplosionDeath
 		Versus:
 			none: 100
-			light: 90
+			light: 80
 			heavy: 30
 			building: 120
 			harvester: 70
+			wood: 100
 			buildingWeak: 120
 			wall: 80
 			invulnerable: 0

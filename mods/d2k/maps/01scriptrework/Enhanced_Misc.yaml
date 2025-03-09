@@ -1,3 +1,6 @@
+spicebloom:
+	SpiceBloom:
+		Bursts:	2, 10
 ^Husk:
 	Health:
 		HP: 14000
@@ -11,9 +14,6 @@
 		ForceHealthPercentage: 15
 	Husk:
 		AllowedTerrain: Sand, Rock, Transition, Concrete, Spice, SpiceSand, SpiceBlobs, Dune
-	Targetable:
-		TargetTypes: Ground, Vehicle
-		RequiresForceFire: true
 	FireWarheadsOnDeath:
 		Weapon: huskExplode01
 		EmptyWeapon: huskExplode01
@@ -29,9 +29,6 @@
 		StartSequence: 1_start
 		IsDecoration: True
 		RequiresCondition: decoration1 || decoration3
-	InfiltrateForTransform:
-		Types: Husk
-		ForceHealthPercentage: 15
 	ChangesHealth:
 		Step: -30
 		StartIfBelow: 101
@@ -1417,7 +1414,7 @@ thump:
 		HP: 1000
 	Carryable:
 	KillsSelf:
-		Delay: 500
+		Delay: 300
 		GrantsCondition: spawnworm
 		RequiresCondition: thump
 	AmbientSound:

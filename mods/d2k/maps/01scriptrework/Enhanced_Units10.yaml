@@ -89,7 +89,7 @@
 	ExternalCondition@jammed:
 		Condition: jammed
 	ReloadDelayMultiplier@jammer:
-		Modifier: 120
+		Modifier: 200
 		RequiresCondition: jammed
 	InaccuracyMultiplier@jammer:
 		Modifier: 170
@@ -461,7 +461,7 @@ trike:
 	Mobile:
 		Locomotor: light_vehicle
 		TurnSpeed: 40
-		Speed: 125 # must be 118 and higher otherwise attack move is broken
+		Speed: 128
 	Armament@damage:
 		FireDelay: 0
 		Weapon: HMG
@@ -494,8 +494,8 @@ raider:
 		RequiresCondition: ignore-creeps
 	Buildable:
 		Prerequisites: ~light.raider
-		BuildDuration: 260
-		Description: Fast scout \n Strong vs Infantry\n  Weak vs Tanks, Rockets
+		BuildDuration: 250
+		Description: Fast scout \n Strong vs Infantry\n  Weak vs Tanks, Rockets \n Armor: none
 	Valued:
 		Cost: 350
 	RevealsShroud:
@@ -505,13 +505,13 @@ raider:
 	UpdatesPlayerStatistics:
 		AddToArmyValue: true
 	Health:
-		HP: 10000
+		HP: 9500
 	Armor:
 		Type: wood
 	Mobile:
 		Locomotor: light_vehicle
 		TurnSpeed: 40
-		Speed: 141
+		Speed: 145
 	WithMuzzleOverlay:
 	AutoTarget:
 		MinimumScanTimeInterval: 0
@@ -544,7 +544,7 @@ quad:
 		BuildDurationModifier: 100
 		Description: Missile Scout\n  Excellent vs Light Armor\n Modest vs Tanks\n Weak vs  Moving Targets, Infantry
 	Valued:
-		Cost: 425
+		Cost: 400
 	Health:
 		HP: 11000
 	Armor:
@@ -578,7 +578,7 @@ quad.heavy:
 		BuildDuration: 360
 		Description: Heavy Missile Scout\n  Excellent vs Light Armor\n Modest vs Tanks\n Weak vs  Moving Targets, Infantry
 	Valued:
-		Cost: 475
+		Cost: 450
 	Armor:
 		Type: light
 	Tooltip:
@@ -608,6 +608,8 @@ stealth_raider:
 	Mobile:
 		TurnSpeed: 32
 		Speed: 140
+	Health:
+		HP: 10000
 	RevealsShroud:
 		Range: 6c0
 	UpdatesPlayerStatistics:
@@ -648,7 +650,7 @@ siege_tank:
 	Armor:
 		Type: light
 	Mobile:
-		Speed: 38
+		Speed: 40
 		TurnSpeed: 12
 	RevealsShroud:
 		Range: 5c512
@@ -714,7 +716,7 @@ missile_tank:
 	Health:
 		HP: 13000
 	Armor:
-		Type: light
+		Type: wood
 	RevealsShroud:
 		Range: 5c512
 	Armament:
@@ -772,7 +774,7 @@ sonic_tank:
 		Type: light
 	Mobile:
 		TurnSpeed: 15
-		Speed: 28
+		Speed: 30
 	RevealsShroud:
 		Range: 5c768
 	Armament:
@@ -808,12 +810,12 @@ devastator:
 	Valued:
 		Cost: 1200
 	Health:
-		HP: 65000
+		HP: 60000
 	Armor:
 		Type: heavy
 	Mobile:
 		TurnSpeed: 12
-		Speed: 28
+		Speed: 30
 		Locomotor: devastator
 		RequiresCondition: !overload
 		PauseOnCondition: notmobile
@@ -878,7 +880,6 @@ deviator:
 		ValidTargets: Tank, Vehicle
 		InvalidTargets: Infantry, Structure, Defense
 		Priority: 50
-		RequiresCondition: ignore-creeps
 	Valued:
 		Cost: 1000
 	Buildable:
@@ -887,7 +888,7 @@ deviator:
 		Description: Fires a Gas which changes\nthe allegiance of enemy vehicles\n Gas leaks from Deviator husk dead\n weak vs everythink
 	Mobile:
 		TurnSpeed: 12
-		Speed: 49
+		Speed: 50
 	Health:
 		HP: 11000
 	Armor:
@@ -950,7 +951,7 @@ deviator:
 	Armor:
 		Type: heavy
 	Mobile:
-		Speed: 72
+		Speed: 75
 		TurnSpeed: 20
 	RevealsShroud:
 		Range: 5c0
@@ -1018,7 +1019,7 @@ combat_tank_h:
 	Tooltip:
 		Name: Harkonnen Combat Tank
 	Mobile:
-		Speed: 62
+		Speed: 64
 		TurnSpeed: 18
 		Locomotor: tank_harkonnen
 	SpeedMultiplier@HEAVYDAMAGE:
@@ -1062,7 +1063,7 @@ combat_tank_o:
 	Tooltip:
 		Name: Ordos Combat Tank
 	Mobile:
-		Speed: 82
+		Speed: 85
 		TurnSpeed: 22
 	Health:
 		HP: 19000
@@ -1095,7 +1096,7 @@ combat_tank_cheap:
 	Tooltip:
 		Name: Generic Combat Tank
 	Mobile:
-		Speed: 69
+		Speed: 72
 		Locomotor: tank
 	Health:
 		HP: 20000
@@ -1131,7 +1132,7 @@ combat_tank_corrino:
 	Health:
 		HP: 25000
 	Mobile:
-		Speed: 64
+		Speed: 68
 		Locomotor: tank_harkonnen
 	Armament:
 		Weapon: 80mm_corrino
@@ -1433,7 +1434,7 @@ ornithopter_o:
 		Repulsable: False
 		CruiseAltitude: 1920
 	AmmoPool:
-		Ammo: 16
+		Ammo: 20
 		AmmoCondition: ammo
 	Valued:
 		Cost: 500
@@ -1587,8 +1588,6 @@ engineer:
 		ValidRelationships: Enemy, Neutral, Ally
 	Captures@husks:
 		CaptureTypes: husk
-	Infiltrates:
-		ValidRelationships: Ally
 	-Armament@chaos_bomb_influence:
 	-Armament:
 
@@ -1652,6 +1651,9 @@ mpsardaukar:
 	SpeedMultiplier@corrinosupportposer:
 		Modifier: 135
 		RequiresCondition: stimpack
+	GrantCondition@boostmorale:
+		RequiresCondition: stimpack
+		Condition: rank-elite
 
 mpsardaukar.corrino:
 	Inherits: mpsardaukar
@@ -1712,6 +1714,9 @@ mpsardaukar.level2:
 		Prerequisites: ~disabled
 
 saboteur:
+	Selectable:
+		Priority: 8
+		PriorityModifiers: Ctrl, Alt
 	-Passenger:
 	ScriptTags:
 	Buildable:
@@ -1785,7 +1790,10 @@ saboteur:
 
 fremen:
 	Buildable:
-		Prerequisites: ~disabled
+		Queue: Infantry
+		BuildDuration: 150
+		BuildDurationModifier: 100
+		Prerequisites: ~factions.subfaction_allowed, ~barracks.fremen, upgrade.barracks, high_tech_factory, ~techlevel.medium
 	Mobile:
 		Speed: 43
 	Valued:
@@ -1796,8 +1804,8 @@ fremen:
 		Range: 4c768
 	AutoTarget:
 		ScanRadius: 7
-		InitialStance: HoldFire
-		InitialStanceAI: ReturnFire
+		InitialStance: Defend
+		InitialStanceAI: Defend
 	Armament@chaos_bomb_influence:
 		Weapon: Fremen_S
 	Armament@chaos_bomb_influence2:
@@ -1999,24 +2007,6 @@ officer:
 		Interval: 50
 		RequiresCondition: deployed
 
-fremen_fedaykin:
-	Inherits: fremen
-	RenderSprites:
-		Image: fremen
-	Tooltip:
-		Name: Fremen Fedaykin
-	AutoTarget:
-		ScanRadius: 7
-		InitialStance: Defend
-		InitialStanceAI: Defend
-	Valued:
-		Cost: 180
-	Buildable:
-		Queue: Infantry
-		Prerequisites: ~factions.subfaction_allowed, ~barracks.fremen, upgrade.barracks, high_tech_factory, ~techlevel.medium
-		BuildDuration: 150
-		BuildDurationModifier: 100
-
 mercenary:
 	Inherits: ^Infantry
 	Inherits: ^botDeployLogic
@@ -2113,7 +2103,7 @@ bison_tank:
 		BuildDuration: 560
 		BuildDurationModifier: 100
 		BuildPaletteOrder: 100
-		Description: Heavy double barrel tank licensed from IX \n Strong VS vehicles, Tanks \n Weak VS infantry
+		Description: Heavy double barrel tank licensed from IX \n Strong VS vehicles, Tanks, Defences \n Weak VS infantry
 	Health:
 		HP: 31000
 	RenderSprites:
@@ -2125,7 +2115,7 @@ bison_tank:
 	Armor:
 		Type: heavy
 	Mobile:
-		Speed: 52
+		Speed: 50
 		TurnSpeed: 20
 		Locomotor: tank
 		PauseOnCondition: notmobile
@@ -2154,6 +2144,9 @@ bison_tank:
 
 worm_rider:
 	Inherits: thumper
+	Selectable:
+		Priority: 8
+		PriorityModifiers: Ctrl, Alt
 	AttackFrontal@deploytargeting:
 		FacingTolerance: 0
 	GrantConditionOnBotOwner@bots:
@@ -2173,10 +2166,10 @@ worm_rider:
 		Position: BottomRight
 		Margin: 5, 6
 	Mobile:
-		Speed: 43
+		Speed: 45
 		PauseOnCondition: deployed
 	KillsSelf:
-		Delay: 500
+		Delay: 200
 		GrantsCondition: spawnWorm
 		RequiresCondition: deployed && desert_terain
 	GrantConditionOnDeploy:
@@ -2211,7 +2204,7 @@ mp_sandworm:
 	Tooltip:
 		Name: Sandworm
 	Health:
-		HP: 70000
+		HP: 90000
 	HitShape:
 		Type: Rectangle
 			TopLeft: -512, -512
@@ -2299,7 +2292,7 @@ mp_sandworm:
 		Condition: stop
 		ValidRelationships: Neutral, Enemy, Ally
 	SpawnActorOnDeath@rideEnds:
-		Actor: fremen_fedaykin
+		Actor: fremen
 		RequiresCondition: dispose
 		SkipMakeAnimations: false
 	Armament@1:
@@ -2338,51 +2331,21 @@ mp_sandworm:
 		RequiresCondition: human_player
 
 
-
-
-spire:
-	Inherits: quad
-	Buildable:
-		Prerequisites: ~disabled, upgrade.light, ~factions.subfaction_allowed, ~techlevel.medium
-		BuildDuration: 353
-		BuildDurationModifier: 100
-		Description: Heavy quad \n  Excellent vs Light Armor\n Modest vs Tanks\n Weak vs  Moving Targets, Infantry \n Slower speed, more HP, better damage
-	Valued:
-		Cost: 500
-	Health:
-		HP: 12000
-	Tooltip:
-		Name: Spire
-	Armor:
-		Type: light
-	Mobile:
-		Locomotor: light_vehicle
-		TurnSpeed: 40
-		Speed: 90
-	Armament:
-		Weapon: rocket_spike
-		LocalOffset: 128,64,64
-	Armament@secondrocket:
-		Weapon: rocket_spike
-		LocalOffset: 128,-64,64
-	Armament@chaos_bomb_influence:
-		Weapon: Rocket
-		LocalOffset: 128,64,64, 128,-64,64
-
-
 hunter:
 	Inherits: trike
 	Inherits@GAINSEXPERIENCE: ^GainsExperience
 	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
 	Buildable:
 		Prerequisites: light_factory, ~light.hunter, upgrade.light, ~!factions.standard
-		BuildPaletteOrder: 10
+		BuildPaletteOrder: 30
 		BuildDuration: 240
-		Description: Trike with turret \n  Stronger vs Troopers, moving targets\n Slower speed
+		Description: Trike with turret \n  Stronger vs Troopers, moving targets\n Armor: Light
 	Tooltip:
 		Name: Hunter
 	Valued:
 		Cost: 350
+	Armor:
+		Type: light
 	Turreted:
 		TurnSpeed: 25
 		Offset: -200,0,30
@@ -2394,7 +2357,7 @@ hunter:
 	RevealsShroud:
 		Range: 5c512
 	Mobile:
-		Speed: 113
+		Speed: 120
 	Armament@damage:
 		Weapon: HMG
 		LocalOffset: -200,0,0
@@ -2444,8 +2407,8 @@ crawler:
 		Margin: 4, 3
 		RequiresSelection: true
 	Cloak:
-		CloakDelay: 10
-		UncloakOn: Attack, Unload, Infiltrate, Demolish, Move, Damage, Heal
+		CloakDelay: 80
+		UncloakOn: Attack, Unload, Infiltrate, Demolish, Damage, Heal
 		IsPlayerPalette: true
 		PauseOnCondition: cloak-force-disabled
 	GrantConditionOnDamageState@UNCLOAK:
@@ -2460,20 +2423,20 @@ bombardment_tank:
 	Buildable:
 		Queue: Armor
 		Prerequisites: ~heavy.corrino, upgrade.heavy, research_centre, ~factions.subfaction_allowed
-		BuildDuration: 670
+		BuildDuration: 660
 		BuildDurationModifier: 100
 		BuildPaletteOrder: 105
 		Description: Heavy missile barrage affecting large area. \n Strong VS Infantry, Light armor \n Weak VS moving targets, tanks \n Ability: can fire 4 missile before reload \n High inaccuraty
 	Health:
 		HP: 21000
 	Valued:
-		Cost: 1200
+		Cost: 1050
 	Tooltip:
 		Name: Bombardment tank
 	Armor:
 		Type: light
 	Mobile:
-		Speed: 42
+		Speed: 43
 		TurnSpeed: 17
 	RevealsShroud:
 		Range: 5c512
@@ -2496,7 +2459,7 @@ bombardment_tank:
 	Armament:
 		Weapon: clusterMissile
 		LocalOffset: -200,128,171, -200,-128,171, -200,70,250, -200,-70,300
-		PauseOnCondition: ammo == 0
+		PauseOnCondition: ammo <= 1
 	Armament@chaos_bomb_influence:
 		Weapon: clusterMissile
 	WithAmmoPipsDecoration:
@@ -2537,7 +2500,7 @@ flamer:
 	Armor:
 		Type: light
 	Mobile:
-		Speed: 75
+		Speed: 78
 	RevealsShroud:
 		Range: 5c0
 	AttackFrontal:
@@ -2683,10 +2646,9 @@ sardaukar:
 
 
 
-merged.fremen_fedaykin:
-	Inherits: fremen_fedaykin
+merged.fremen_warrior:
+	Inherits: fremen
 	Buildable:
-		BuildDuration: 160
 		Prerequisites: ~techlevel.high, ~factions.merged, barracks, upgrade.barracks, high_tech_factory, ~merged.fremen
 	RenderSprites:
 		Image: fremen
