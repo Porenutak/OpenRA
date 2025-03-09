@@ -420,6 +420,7 @@ Player:
 		CheckForNewBasesDelay: 3000
 		PlaceDefenseTowardsEnemyChance: 80
 		MaxBaseRadius: 40
+		BarracksTypes: barracks
 		MaximumDefenseRadius: 30
 		NewProductionCashThreshold: 6000
 		InititalMinimumRefineryCount: 0
@@ -431,8 +432,8 @@ Player:
 			silo: 20
 			outpost: 1
 			high_tech_factory: 1
-			light_factory: 4
-			heavy_factory: 2
+			light_factory: 2
+			heavy_factory: 1
 			starport: 1
 			repair_pad: 1
 			repair_pad.bot: 1
