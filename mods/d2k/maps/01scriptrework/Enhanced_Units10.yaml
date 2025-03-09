@@ -197,12 +197,16 @@
 	ExternalCondition@wormIsnear:
 		Condition: worm_attack
 	ExternalCondition@stop:
-		Condition: stop
-	SpeedMultiplier@wormeated:
-		Modifier: 0
-		RequiresCondition: stop
+		Condition: notmobile
 	SpeedMultiplier@worm_eating:
 		Modifier: 20
+		RequiresCondition: worm_attack
+	Mobile:
+		PauseOnCondition: notmobile
+	ChangesHealth@wormattack:
+		PercentageStep: -1
+		Delay: 1
+		StartIfBelow: 110
 		RequiresCondition: worm_attack
 
 ^CliffAvalanche:
@@ -315,6 +319,16 @@
 	RevealsShroud:
 		RequiresCondition: !unitCapturated
 		RevealGeneratedShroud: false
+	Demolishable:
+		Condition: being-demolished
+	FireWarheadsOnDeath@sabotuerdemolition:
+		RequiresCondition: being-demolished
+		Type: CenterPosition
+		Weapon: PlasmaExplosion
+		EmptyWeapon: PlasmaExplosion
+	AmbientSound@saboteurCharge:
+		SoundFiles: audio/explodeSaboteurEmperor02.wav
+		RequiresCondition: being-demolished
 	RevealsShroud@whileCaptured:
 		Range: 3c512
 		RequiresCondition: unitCapturated
@@ -1746,7 +1760,7 @@ saboteur:
 		HP: 5000
 	Mobile:
 		Speed: 43
-		PauseOnCondition: SuicideAtt
+		PauseOnCondition: SuicideAtt || notmobile
 	Demolition:
 		DetonationDelay: 50
 		Flashes: 3
@@ -1793,6 +1807,7 @@ fremen:
 		Queue: Infantry
 		BuildDuration: 150
 		BuildDurationModifier: 100
+		BuildPaletteOrder: 45
 		Prerequisites: ~factions.subfaction_allowed, ~barracks.fremen, upgrade.barracks, high_tech_factory, ~techlevel.medium
 	Mobile:
 		Speed: 43
@@ -1857,7 +1872,7 @@ mortar_inf:
 		HP: 6500
 	Mobile:
 		Speed: 35
-		PauseOnCondition: deployed
+		PauseOnCondition: deployed || notmobile
 		RequireForceMoveCondition: !undeployed
 	GrantConditionOnDeploy:
 		DeployedCondition: deployed
@@ -1971,7 +1986,7 @@ officer:
 		HP: 7500
 	Mobile:
 		Speed: 41
-		PauseOnCondition: deployed
+		PauseOnCondition: deployed || notmobile
 	Armament:
 		Weapon: dummy.targeting
 	-Armament@chaos_bomb_influence:
@@ -2166,8 +2181,8 @@ worm_rider:
 		Position: BottomRight
 		Margin: 5, 6
 	Mobile:
-		Speed: 45
-		PauseOnCondition: deployed
+		Speed: 55
+		PauseOnCondition: deployed || notmobile
 	KillsSelf:
 		Delay: 200
 		GrantsCondition: spawnWorm
@@ -2204,7 +2219,7 @@ mp_sandworm:
 	Tooltip:
 		Name: Sandworm
 	Health:
-		HP: 90000
+		HP: 900000
 	HitShape:
 		Type: Rectangle
 			TopLeft: -512, -512
@@ -2214,7 +2229,7 @@ mp_sandworm:
 	RenderSprites:
 		Palette: terrain
 	Mobile:
-		Speed: 55
+		Speed: 60
 		TurnSpeed: 20
 		Locomotor: worm_mp
 		PauseOnCondition: makeAnimation
@@ -2284,12 +2299,12 @@ mp_sandworm:
 		Duration: 50
 		Radius: 2c512
 	ProximityExternalCondition:
-		Range: 1c412
+		Range: 1c612
 		Condition: worm_attack
 		ValidRelationships: Ally, Neutral, Enemy
 	ProximityExternalCondition@stop:
 		Range: 1c0
-		Condition: stop
+		Condition: notmobile
 		ValidRelationships: Neutral, Enemy, Ally
 	SpawnActorOnDeath@rideEnds:
 		Actor: fremen
@@ -2347,15 +2362,13 @@ hunter:
 	Armor:
 		Type: light
 	Turreted:
-		TurnSpeed: 25
+		TurnSpeed: 30
 		Offset: -200,0,30
 		RealignDelay: 0
 	-AttackFrontal:
 	WithMuzzleOverlay:
 	AttackTurreted:
 	WithSpriteTurret:
-	RevealsShroud:
-		Range: 5c512
 	Mobile:
 		Speed: 120
 	Armament@damage:
@@ -2459,7 +2472,7 @@ bombardment_tank:
 	Armament:
 		Weapon: clusterMissile
 		LocalOffset: -200,128,171, -200,-128,171, -200,70,250, -200,-70,300
-		PauseOnCondition: ammo <= 1
+		PauseOnCondition: ammo == 0
 	Armament@chaos_bomb_influence:
 		Weapon: clusterMissile
 	WithAmmoPipsDecoration:

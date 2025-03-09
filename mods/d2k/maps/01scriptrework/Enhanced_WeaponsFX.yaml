@@ -271,11 +271,6 @@ buildingExplosions05:
 
 buildingBigExplosion:
 	Inherits: PlasmaExplosion
-	Warhead@1Dam: SpreadDamage
-		Spread: 5c0
-		Damage: 5000
-		Falloff: 100, 10
-		ValidRelationships: Neutral, Enemy, Ally
 	Warhead@flash: FlashEffect
 		FlashType: flash
 		Duration: 20

@@ -422,8 +422,8 @@ Player:
 		MaxBaseRadius: 40
 		MaximumDefenseRadius: 30
 		NewProductionCashThreshold: 6000
-		InititalMinimumRefineryCount: 2
-		AdditionalMinimumRefineryCount: 1
+		InititalMinimumRefineryCount: 0
+		AdditionalMinimumRefineryCount: 3
 		MaxResourceCellsToCheck: 15
 		BuildingLimits:
 			barracks: 4
@@ -432,7 +432,7 @@ Player:
 			outpost: 1
 			high_tech_factory: 1
 			light_factory: 4
-			heavy_factory: 4
+			heavy_factory: 2
 			starport: 1
 			repair_pad: 1
 			repair_pad.bot: 1

@@ -662,7 +662,7 @@ light_factory:
 	Valued:
 		Cost: 700
 	Health:
-		HP: 41000
+		HP: 38000
 	GrantConditionOnPrerequisite@concreteON:
 		Condition: concrete_on
 		Prerequisites: global-auto-concrete
@@ -1328,11 +1328,11 @@ high_tech_factory:
 		Condition: invocate_worm
 		Factions: fremen
 	-AirstrikePower:
-	SpawnActorPower@ordosLightStrike:
+	SpawnActorPower@LightAirStrike:
 		Icon: lightStrike
 		Name: Light Air Strike
 		Prerequisites: ~techlevel.superweapons, upgrade.hightech, ~!factions.standard
-		ChargeInterval: 6500
+		ChargeInterval: 6000
 		Description: Ornithopters hit the target with MG guns
 		DisplayBeacon: True
 		SupportPowerPaletteOrder: 15
@@ -1346,6 +1346,26 @@ high_tech_factory:
 		LifeTime: -1
 		DisplayRadarPing: true
 		BlockedCursor: move-blocked
+	AirstrikePower@chaosbomb:
+		Icon: gascloud
+		Name: Chaos bomb
+		ChargeInterval: 7000
+		SquadSize: 1
+		StartFullyCharged: false
+		PauseOnCondition: disabled
+		Prerequisites: ~techlevel.high, upgrade.hightech
+		Description: Drop Gas bomb on selected area.
+		RequiresCondition: ordos
+		UnitType: ornithopter.bomber
+		DisplayBeacon: True
+		CameraActor: camera
+		CameraRemoveDelay: 75
+		ArrowSequence: arrow
+		UseDirectionalTarget: True
+		DirectionArrowAnimation: airstrike_direction
+		CircleSequence: circles
+		SupportPowerPaletteOrder: 35
+		OrderName: Orderproduction.chaosbombmerged
 	SpawnActorPower@BasicReinforce:
 		EffectImage: carryall.husk_on_land
 		EffectSequence:
@@ -1396,19 +1416,7 @@ high_tech_factory:
 		OrderName: harkonnen_reinforcements
 		RequiresCondition: harkonnen || corrino
 		BlockedCursor: move-blocked
-	ProduceActorPower@saboteur:
-		Name: Recruit Saboteur
-		Description: Sneaky infantry, pernamently cloak\n Can be detected by Outpost: 6 cell, Turrets: 3 cells, infantry: 2 cells\n  Special Ability: Destroy buildings \n selfkill ability: mass blast damage everthing in 6 cell Radius
-		Icon: saboteur
-		Prerequisites: ~techlevel.superweapons, upgrade.hightech
-		Actors: saboteur
-		Type: Infantry
-		ChargeInterval: 2250
-		ReadyAudio: Reinforce
-		BlockedAudio: NoRoom
-		OrderName: ProduceActorPower.Saboteursubfaction
-		SupportPowerPaletteOrder: 30
-		RequiresCondition: ordos
+
 	SpawnActorPower@thump:
 		EffectImage: Carryall
 		Actor: dummy.thump_spawmer
@@ -1457,7 +1465,7 @@ research_centre:
 		BuildDuration: 650
 		Prerequisites: outpost, heavy_factory, ~techlevel.high, ~research_center.allowed
 	Valued:
-		Cost: 1600
+		Cost: 1000
 	Health:
 		HP: 29000
 	GrantConditionOnPrerequisite:
@@ -1564,7 +1572,7 @@ palace:
 		Footprint: xx= xxx =xx
 		Dimensions: 3,3
 	Health:
-		HP: 35000
+		HP: 30000
 	HitShape:
 		Type: Rectangle
 			TopLeft: -1536, -512
@@ -1643,26 +1651,13 @@ palace:
 		TrailSequences: idle
 		SupportPowerPaletteOrder: 40
 		MissileImage: deathhand
-	ProduceActorPower@fremen:
-		Name: Recruit Fremen
-		Description: Elite infantry unit armed with assault rifles and rockets\n  Strong vs Infantry, Vehicles\n  Weak vs Artillery\n  Special Ability: Invisibility
-		Icon: fremen
-		PauseOnCondition: disabled
-		RequiresCondition: atreides
-		Prerequisites: ~techlevel.superweapons, ~palace.fremen, ~factions.standard
-		Actors: fremen, fremen, fremen, fremen
-		Type: Fremen
-		ChargeInterval: 2850
-		ReadyAudio: Reinforce
-		BlockedAudio: NoRoom
-		OrderName: ProduceActorPower.Fremen
-		SupportPowerPaletteOrder: 20
+	-ProduceActorPower@fremen:
 	ProduceActorPower@Officer:
 		Name: Recruit Officer
 		Description: Officer provides speed and armor bonus to nearby infantry \n Disable prone effect on infantry /n Scare enemy Infantry when deployed
 		Actors: officer
 		Type: Officer
-		ChargeInterval: 2500
+		ChargeInterval: 2250
 		Icon: officer
 		PauseOnCondition: disabled
 		RequiresCondition: atreides
@@ -1671,27 +1666,12 @@ palace:
 		BlockedAudio: NoRoom
 		OrderName: ProduceActorPower.officerMerged
 		SupportPowerPaletteOrder: 25
-	-ProduceActorPower@saboteur:
-	AirstrikePower@chaosbomb:
-		Icon: gascloud
-		Name: Chaos bomb
-		ChargeInterval: 7000
-		SquadSize: 1
-		StartFullyCharged: false
-		PauseOnCondition: disabled
-		Prerequisites: ~techlevel.high, ~palace.saboteur
-		Description: Drop Gas bomb on selected area.
-		RequiresCondition: ordos
-		UnitType: ornithopter.bomber
-		DisplayBeacon: True
-		CameraActor: camera
-		CameraRemoveDelay: 75
-		ArrowSequence: arrow
-		UseDirectionalTarget: True
-		DirectionArrowAnimation: airstrike_direction
-		CircleSequence: circles
-		SupportPowerPaletteOrder: 35
-		OrderName: Orderproduction.chaosbombmerged
+	ProduceActorPower@saboteur:
+		Name: Recruit Saboteur
+		Description: Sneaky infantry, pernamently cloak\n Can be detected by Outpost: 6 cell, Turrets: 3 cells, infantry: 2 cells\n  Special Ability: Destroy buildings \n selfkill ability: mass blast damage everthing in 6 cell Radius
+		Prerequisites: ~techlevel.superweapons
+		Actors: saboteur
+		ChargeInterval: 2250
 	Exit@1:
 		SpawnOffset: -704,768,0
 		ExitCell: -1,2
@@ -1890,7 +1870,7 @@ palace.atreides:
 		Range: 4c768
 	ProduceActorPower@Officer:
 		Name: Recruit Officer
-		Description: Officer provides speed and armor bonus to nearby infantry \n Disable prone effect on infantry
+		Description: Officer provides speed and armor bonus to nearby infantry \n When deployed scares near by enemy infantry.
 		Actors: officer
 		Type: Officer
 		ChargeInterval: 2500
@@ -1958,7 +1938,7 @@ palace.ordos:
 		SquadSize: 1
 		StartFullyCharged: false
 		Prerequisites: ~techlevel.high
-		Description: Carryall will drop bomb that force units to kill each other.
+		Description: Drop gas bomb that made all afected unit crazy.
 		UnitType: ornithopter.bomber
 		DisplayBeacon: True
 		CameraActor: camera
@@ -2026,7 +2006,7 @@ palace.corrino:
 	ProvidesPrerequisite@buildingname:
 	ProduceActorPower@releasethesardaukars:
 		Name: Rally Sardaukars
-		Description: Speed up Sardaukars production for short period of time \n Movement speed up for shortperiod of time \n
+		Description: Speed up Sardaukars production for short period of time \n Boost sardaukar morale and speed \n
 		Actors: dummy.sardaukar_production_speed_up
 		Type: Saudarkar
 		ChargeInterval: 5500

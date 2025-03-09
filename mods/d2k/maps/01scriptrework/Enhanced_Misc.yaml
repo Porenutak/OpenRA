@@ -1043,7 +1043,7 @@ dummygas08:
 	MapEditorData:
 		Categories: Husk
 	Targetable:
-		TargetTypes: Ground, Vehicle
+		TargetTypes: Ground, Structure, Husk
 		RequiresForceFire: true
 	Building:
 		Dimensions: 1,1

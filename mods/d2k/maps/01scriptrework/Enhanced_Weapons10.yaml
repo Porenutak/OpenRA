@@ -42,7 +42,7 @@ Fremen_S:
 M_LMG:
 	Inherits: ^MG
 	ReloadDelay: 48
-	Range: 3c312
+	Range: 4c0
 	ValidTargets: Infantry
 
 M_LMG_H:
@@ -112,9 +112,9 @@ Fremen_wormrider:
 	Range: 5c0
 	Report: FREMODD1.WAV
 	Projectile: AreaBeam
-		Width: 350
+		Width: 500
 		Duration: 2
-		DamageInterval: 1
+		DamageInterval: 2
 		Speed: 0c350, 0c500
 		MinDistance: 5c0
 		BeyondTargetRange: 0c512
@@ -126,7 +126,7 @@ Fremen_wormrider:
 	Warhead@1Dam: SpreadDamage
 		Range: 0, 32
 		Falloff: 100, 100
-		Damage: 950
+		Damage: 1500
 		AffectsParent: false
 		ValidRelationships: Neutral, Enemy, Ally
 		Versus:
@@ -139,7 +139,7 @@ Fremen_wormrider2:
 	Range: 5c0
 	Report: FREMODD1.WAV
 	Projectile: AreaBeam
-		Width: 350
+		Width: 500
 		Speed: 0c350, 0c500
 		Shape: Cylindrical
 		ZOffset: 2300
@@ -163,6 +163,7 @@ Fremen_wormrider2:
 		InaccuracyType: Absolute
 	Warhead@1Dam: SpreadDamage
 		Damage: 3510
+		Spread: 700
 		Versus:
 			none: 80
 			wall: 50
@@ -386,7 +387,7 @@ Rocket_heavy:
 		Falloff: 100, 10
 		Versus:
 			none: 20
-			wall: 75
+			wall: 70
 			building: 60
 			wood: 65
 			light: 80
