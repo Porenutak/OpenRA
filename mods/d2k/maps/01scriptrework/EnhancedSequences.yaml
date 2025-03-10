@@ -2264,9 +2264,15 @@ outpost.ordos:
 	invisible:
 		Filename: DATA.R16
 		Start: 38
+	active:
+		Filename: DATA.R16
+		Start: 38
 
 outpost.fremen:
 	invisible:
+		Filename: DATA.R16
+		Start: 38
+	active:
 		Filename: DATA.R16
 		Start: 38
 
@@ -2274,9 +2280,15 @@ outpost.harkonnen:
 	invisible:
 		Filename: DATA.R16
 		Start: 38
+	active:
+		Filename: DATA.R16
+		Start: 38
 
 outpost.atreides:
 	invisible:
+		Filename: DATA.R16
+		Start: 38
+	active:
 		Filename: DATA.R16
 		Start: 38
 
