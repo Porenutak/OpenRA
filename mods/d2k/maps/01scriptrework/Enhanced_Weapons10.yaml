@@ -227,7 +227,7 @@ Fremen_wormrider2:
 	Projectile: Bullet
 		Inaccuracy: 145
 	Warhead@1Dam: SpreadDamage
-		Spread: 1c256
+		Spread: 1c150
 
 80mm_double:
 	Inherits: ^Cannon
@@ -285,13 +285,13 @@ DevBullet:
 	ReloadDelay: 85
 		Speed: 281
 	Warhead@1Dam: SpreadDamage
-		Damage: 7800
+		Damage: 7900
 		Spread: 1c0
 		Versus:
 			none: 60
 			wall: 100
-			building: 80
-			wood: 100
+			building: 75
+			wood: 80
 			heavy: 100
 			invulnerable: 0
 			cy: 50
@@ -1055,7 +1055,7 @@ SniperRifle:
 	Warhead@1Dam: SpreadDamage
 		Spread: 200
 		Falloff: 100, 0
-		Damage: 9000
+		Damage: 8000
 		ValidTargets: Infantry
 		DamageTypes: Prone50Percent, TriggerProne, BulletDeath
 		DamageCalculationType: ClosestTargetablePosition
@@ -1171,7 +1171,7 @@ chaosbomb_from_husk:
 hideWeapon:
 	Warhead: GrantExternalCondition
 		Duration: 750
-		Range: 4c0
+		Range: 5c0
 		Condition: temporery_clock
 		ValidRelationships: Ally
 

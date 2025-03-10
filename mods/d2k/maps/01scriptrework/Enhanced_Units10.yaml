@@ -291,9 +291,14 @@
 	FirepowerMultiplier@officerAuraArmorbonus:
 		RequiresCondition: officerAura
 		Modifier: 110
+	GrantCondition@veterancy:
+		Condition: rank-elite
+		RequiresCondition: rally
+	ExternalCondition@rally:
+		Condition: rally
 	WithDecoration@RANK-underOfficerEffect:
 		Image: rank
-		Sequence: rank-veteran-2
+		Sequence: rank-veteran-1
 		Palette: effect
 		Position: BottomRight
 		Margin: 5, 6
@@ -556,6 +561,7 @@ quad:
 	Buildable:
 		Prerequisites: upgrade.light, ~light.quad, ~techlevel.medium
 		BuildDurationModifier: 100
+		BuildDuration: 325
 		Description: Missile Scout\n  Excellent vs Light Armor\n Modest vs Tanks\n Weak vs  Moving Targets, Infantry
 	Valued:
 		Cost: 400
@@ -1106,11 +1112,11 @@ combat_tank_cheap:
 		Prerequisites: ~factions.subfaction_allowed, ~heavy.cheap_tank
 		Description: Standard tank licensed by various manufacturers \n Modest speed, Low HP, Low rate of fire \n Cheap, faster building speed
 	Valued:
-		Cost: 600
+		Cost: 650
 	Tooltip:
 		Name: Generic Combat Tank
 	Mobile:
-		Speed: 72
+		Speed: 71
 		Locomotor: tank
 	Health:
 		HP: 20000
@@ -1146,7 +1152,7 @@ combat_tank_corrino:
 	Health:
 		HP: 25000
 	Mobile:
-		Speed: 68
+		Speed: 67
 		Locomotor: tank_harkonnen
 	Armament:
 		Weapon: 80mm_corrino
@@ -1805,7 +1811,7 @@ saboteur:
 fremen:
 	Buildable:
 		Queue: Infantry
-		BuildDuration: 150
+		BuildDuration: 155
 		BuildDurationModifier: 100
 		BuildPaletteOrder: 45
 		Prerequisites: ~factions.subfaction_allowed, ~barracks.fremen, upgrade.barracks, high_tech_factory, ~techlevel.medium
@@ -1935,7 +1941,7 @@ assassin:
 	Health:
 		HP: 5000
 	Mobile:
-		Speed: 38
+		Speed: 40
 		Voice: Move
 	RevealsShroud:
 		Range: 5c0
@@ -2003,6 +2009,12 @@ officer:
 		AffectsParent: true
 		ValidRelationships: Ally
 		Condition: officerAura
+	ProximityExternalCondition@rally:
+		Range: 5c0
+		AffectsParent: true
+		ValidRelationships: Ally
+		Condition: rally
+		RequiresCondition: deployed
 	-TakeCover:
 	WithIdleOverlay@sand:
 		Sequence: idle1
@@ -2015,8 +2027,8 @@ officer:
 		ActivatedCondition: deployed
 		CanCancelCondition: true
 		ChargeDuration: 1250
-		ChargeThreshhold: 1250
-		ConditionDuration: 375
+		ChargeThreshhold: 300
+		ConditionDuration: 450
 	FireWarheads@ScareEnemy:
 		Weapons: ScareEnemy
 		Interval: 50
@@ -2115,7 +2127,7 @@ bison_tank:
 	Buildable:
 		Queue: Armor
 		Prerequisites: ~heavy.bison, research_centre,upgrade.heavy, ~techlevel.high, ~factions.subfaction_allowed
-		BuildDuration: 560
+		BuildDuration: 580
 		BuildDurationModifier: 100
 		BuildPaletteOrder: 100
 		Description: Heavy double barrel tank licensed from IX \n Strong VS vehicles, Tanks, Defences \n Weak VS infantry
@@ -2499,7 +2511,7 @@ flamer:
 		RequiresCondition: bot-owned
 	Buildable:
 		Queue: Armor
-		BuildDuration: 600
+		BuildDuration: 610
 		BuildDurationModifier: 100
 		BuildPaletteOrder: 106
 		Prerequisites: ~heavy.smuggler, research_centre, upgrade.heavy

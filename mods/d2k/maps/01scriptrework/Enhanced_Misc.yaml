@@ -1411,7 +1411,7 @@ thump:
 	Mobile:
 		Speed: 0
 	Health:
-		HP: 1000
+		HP: 3000
 	Carryable:
 	KillsSelf:
 		Delay: 300
@@ -1422,7 +1422,7 @@ thump:
 		Interval: 60
 		RequiresCondition: thump
 	GrantConditionOnTerrain:
-		TerrainTypes: Sand, Spicem, Dune, SpiceSand
+		TerrainTypes: Sand, Spice, Dune, SpiceSand
 		Condition: thump
 	-Armament@chaos_bomb_influence:
 	-Armament:

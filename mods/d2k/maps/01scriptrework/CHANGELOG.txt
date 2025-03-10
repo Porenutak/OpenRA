@@ -1,3 +1,14 @@
+**** Enhanced D2k ver. 1.0 ****
+- add controllable carryalls option
+- rebalance support power for sub-factions.
+- trike, missile tank: revert wood armor from light
+- vehicles speed: all reverted to original
+- Siege tank: more dmg
+- Rocket and cannon weapons: more AoE as in Original D2k
+- Deviator: targets only vehicles
+
+For complet stats see manual
+
 0.95
 - trike: cost revert from 350$ to 300$
 - Light factory cost increased from 600$ to 700$

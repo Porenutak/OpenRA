@@ -94,7 +94,7 @@ World:
 	LuaScript:
 		Scripts: scripts_new.lua
 	MissionData:
-		Briefing: \n\n**** Enhanced D2k ver 0.96 **** \n\nFor more competitive and fun MP games \n\nHighlights: \n* New playable sub-factions: FREMENS, CORRINO, SMUGGLERS, MERCENARIES (Use Playable Factions Dropbox to activate) \n* Original D2k Starport and Airstrike implementation \n* New Map Options:  FreeCarryall, Worm Spawn, Factions options \n* Competitive balance, Super weapons rebalanced \n* Refinery with alternative docking angles. \n* Engineer can repair passages/buildings and capture husks \n* Better AI \n* new Neutral buildings, map Tilesets, VFX, SFX and decorations. \nAdditional Assets by SirCake, Fey, Kipp, N.N.> and Fed2k forum \nFULL CHANGELOG AT MAP FILE.
+		Briefing: \n\n**** Enhanced D2k 1.0 **** \n\nFor more competitive and fun MP games \n\nHighlights: \n* New playable sub-factions: FREMENS, CORRINO, SMUGGLERS, MERCENARIES (Use Factions Dropbox to activate) \n* Original D2k Starport and Airstrike implementation \n* New Map Options:  FreeCarryall, Worm Spawn, Controllable carryalls \n* Competitive balance, Super weapons rebalanced \n* Refinery with alternative docking angles. \n* Engineer can repair passages/buildings and capture husks \n* Better AI \n* new Neutral buildings, map Tilesets, VFX, SFX and decorations. \n Additional Assets by SirCake, Fey, Kipp, N.N.> and Fed2k forum \nFULL CHANGELOG AT MAP FILE.
 	MapOptions:
 		TechLevelDropdownVisible: false
 		TechLevel: unrestricted
