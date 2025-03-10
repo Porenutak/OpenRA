@@ -256,10 +256,8 @@ radar_station:
 		AreaTypes: building
 	DetectCloaked:
 		Range: 8c0
-		RequiresCondition: !disabled
 	RevealsShroud:
-		Range: 10c0
-		RequiresCondition: !disabled
+		Range: 11c0
 
 
 

@@ -217,8 +217,6 @@ World:
 
 Player:
 	DeveloperMode:
-		CheckboxEnabled: true
-		CheckboxLocked: true
 	Shroud:
 		ExploredMapCheckboxEnabled: true
 		FogCheckboxEnabled: true

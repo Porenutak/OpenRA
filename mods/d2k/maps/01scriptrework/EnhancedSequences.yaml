@@ -2766,7 +2766,7 @@ radar_station:
 		Offset: -16,-16
 	bib-Concrete:
 		Filename: EnhacedAssets.R8
-		Frames: 3, 4, 5, 6d
+		Frames: 3, 4, 5, 6
 		Length: 4
 		Offset: -16,-16
 miniing_rig:
