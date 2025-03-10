@@ -2733,8 +2733,8 @@ ecology_station:
 		Offset: -16,-16
 	bib-Concrete:
 		Filename: EnhacedAssets.R8
-		Frames: 7,8,9,10,11,12
-		Length: 6
+		Frames: 26,27,27,28,29,30,30,31
+		Length: 8
 		Offset: -16,-16
 	bib-SpiceSand:
 		Filename: BLOXWAST.R16
@@ -2744,7 +2744,7 @@ ecology_station:
 	bib-Sand:
 		Filename: BLOXWAST.R16
 		Frames: 652, 653, 367, 368, 672, 673, 387, 388
-		Length: 6
+		Length: 8
 		Offset: -16,-16
 
 
@@ -2766,7 +2766,7 @@ radar_station:
 		Offset: -16,-16
 	bib-Concrete:
 		Filename: EnhacedAssets.R8
-		Frames: 3, 4, 5, 6
+		Frames: 22, 23, 24, 25
 		Length: 4
 		Offset: -16,-16
 miniing_rig:

@@ -835,13 +835,13 @@ Actors:
 	Actor186: ecology_station
 		Owner: Neutral
 		Location: 15,9
-	Actor184: ecology_station
-		Owner: Neutral
-		Location: 10,17
 	Actor187: radar_station
 		Owner: Neutral
-		Location: 8,11
 		Health: 48
+		Location: 10,21
+	Actor184: ecology_station
+		Owner: Neutral
+		Location: 13,20
 
 Rules: Enhanced_Units10.yaml, Enhanced_Starport10.yaml, Enhanced_Structures10.yaml, Enhanced_World10.yaml, Enhanced_Misc.yaml, Enhanced_AI.yaml, Enhanced_palettes.yaml, NewTiles.yaml, NeutralBuildings.yaml
 

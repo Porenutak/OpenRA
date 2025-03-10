@@ -12,64 +12,6 @@ invisible_blocking_actor_editor:
 		ZOffset: -1
 		Offset: -16,-16
 
-rockpass01_left:
-	idle:
-		Filename: NewTiles_assets.R8
-		Start: 1
-		ZOffset: -2048
-		Offset: -48, -48
-
-rockpass01_right:
-	idle:
-		Filename: NewTiles_assets.R8
-		Start: 2
-		ZOffset: -2048
-		Offset: -48, -48
-
-rockpass01_top:
-	idle:
-		Filename: NewTiles_assets.R8
-		Start: 3
-		ZOffset: -2048
-		Offset: -48, -48
-
-rockpass01_bottom:
-	idle:
-		Filename: NewTiles_assets.R8
-		Start: 4
-		ZOffset: -2048
-		Offset: -48, -48
-
-
-rockpass01_destroyed_left:
-	idle:
-		Filename: NewTiles_assets.R8
-		Start: 6
-		ZOffset: -2048
-		Offset: -48, -48
-
-rockpass01_destroyed_right:
-	idle:
-		Filename: NewTiles_assets.R8
-		Start: 5
-		
-		ZOffset: -2048
-		Offset: -48, -48
-
-rockpass01_destroyed_top:
-	idle:
-		Filename: NewTiles_assets.R8
-		Start: 7
-		ZOffset: -2512
-		Offset: -48, -48
-
-rockpass01_destroyed_bottom:
-	idle:
-		Filename: NewTiles_assets.R8
-		Start: 8
-		ZOffset: -2048
-		Offset: -48, -48
-
 sandpass01_bottom:
 	idle:
 		Filename: NewTiles_assets.R8

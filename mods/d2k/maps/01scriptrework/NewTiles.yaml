@@ -1,31 +1,6 @@
-^new_tile_undestroyable:
-	Inherits@1: ^ExistsInWorld
-	Inherits@2: ^SpriteActor
-	FrozenUnderFog:
-	WithSpriteBody:
-	Building:
-		TerrainTypes: Rock, Concrete, Cliff, Sand, Rock, Transition, Spice, SpiceSand, Dune
-	RenderSprites:
-		Palette: terrain
-	Health:
-		HP: 20000
-	Armor:
-		Type: invulnerable
-	HitShape:
-		UseTargetableCellsOffsets: false
-		Type: Rectangle
-			TopLeft: -512, -512
-			BottomRight: 512, 512
-	MapEditorData:
-		Categories: Tiles
-	QuantizeFacingsFromSequence:
-	Interactable:
-	Tooltip:
-		Name: passage
-		ShowOwnerRow: false
 
-^new_tile_destroyable:
-	Inherits: ^new_tile_undestroyable
+^DestroyableTile:
+	Inherits: ^UndestroyableTile
 	Targetable:
 		TargetTypes: Ground, Cliff
 		RequiresForceFire: true
@@ -33,13 +8,6 @@
 		Type: wall
 	Health:
 		HP: 20000
-	Tooltip:
-		Name: passage (Destroable)
-	OwnerLostAction:
-		Action: ChangeOwner
-		Owner: Neutral
-	HitShape:
-		UseTargetableCellsOffsets: true
 	FireWarheadsOnDeath:
 		Type: CenterPosition
 		Weapon: cliffExplode01
@@ -52,318 +20,291 @@
 		Weapons: derbisRock01, derbisRock02, derbisRock03
 		Pieces: 1, 4
 		Range: 0c512, 2c0
-	MapEditorData:
-		Categories: Tiles-Destroable
 
-^new_tile_destroyed:
-	Inherits: ^new_tile_undestroyable
-	CaptureManager:
-	Building:
-	OwnerLostAction:
-		Action: ChangeOwner
-		Owner: Neutral
-	Tooltip:
-		Name: passage (repairable)
-	CaptureManager:
-	CapturableProgressBar:
-	CapturableProgressBlink:
-		Interval: 30
-	Capturable:
-		Types: cliff
-	HitShape:
-		UseTargetableCellsOffsets: true
-		Type: Rectangle
-			TopLeft: -1048, -1048
-			BottomRight: 1024, 1054
-	Targetable:
-		TargetTypes: Ground, Cliff
-		RequiresForceFire: true
-	MapEditorData:
-		Categories: Tiles-Repairable
 
 
 rockpass01_left:
-	Inherits: ^new_tile_undestroyable
+	Inherits: ^UndestroyableTile
 	Building:
 		Dimensions: 3,3
 		Footprint: xx= === xx=
 
 
 rockpass01_right:
-	Inherits: ^new_tile_undestroyable
+	Inherits: ^UndestroyableTile
 	Building:
 		Dimensions: 3,3
 		Footprint: =XX === =xx
 
 
 rockpass01_top:
-	Inherits: ^new_tile_undestroyable
+	Inherits: ^UndestroyableTile
 	Building:
 		Dimensions: 3,3
 		Footprint: x=x x=x ===
 
 
 sandpass01_bottom:
-	Inherits: ^new_tile_undestroyable
+	Inherits: ^UndestroyableTile
 	Building:
 		Dimensions: 1,2
 		Footprint: = =
 
 
 sandpass01_top:
-	Inherits: ^new_tile_undestroyable
+	Inherits: ^UndestroyableTile
 	Building:
 		Dimensions: 1,2
 		Footprint: _ _
 
 
 sandpass01_left:
-	Inherits: ^new_tile_undestroyable
+	Inherits: ^UndestroyableTile
 	Building:
 		Dimensions: 2,1
 		Footprint: __
 
 
 sandpass01_right:
-	Inherits: ^new_tile_undestroyable
+	Inherits: ^UndestroyableTile
 	Building:
 		Dimensions: 2,1
 		Footprint: __
 
 rockslip01_right:
-	Inherits: ^new_tile_undestroyable
+	Inherits: ^UndestroyableTile
 	Building:
 		Dimensions: 2,2
 		Footprint: XX __
 
 rockslip01_right_alter:
-	Inherits: ^new_tile_undestroyable
+	Inherits: ^UndestroyableTile
 	Building:
 		Dimensions: 2,2
 		Footprint: XX __
 
 rockslip01_top:
-	Inherits: ^new_tile_undestroyable
+	Inherits: ^UndestroyableTile
 	Building:
 		Dimensions: 2,2
 		Footprint: X_ X_
 
 rockslip01_left:
-	Inherits: ^new_tile_undestroyable
+	Inherits: ^UndestroyableTile
 	Building:
 		Dimensions: 2,2
 		Footprint: XX __
 
 rockslip02_top_right:
-	Inherits: ^new_tile_undestroyable
+	Inherits: ^UndestroyableTile
 	Building:
 		Dimensions: 3,2
 		Footprint: XX_ __X
 
 rockslip02_top_left:
-	Inherits: ^new_tile_undestroyable
+	Inherits: ^UndestroyableTile
 	Building:
 		Dimensions: 3,2
 		Footprint: ___ XX_
 
 
 merge_title01:
-	Inherits: ^new_tile_undestroyable
+	Inherits: ^UndestroyableTile
 	Building:
 		Dimensions: 2,2
 		Footprint: XX XX
 merge_title02:
-	Inherits: ^new_tile_undestroyable
+	Inherits: ^UndestroyableTile
 	Building:
 		Dimensions: 2,2
 		Footprint: XX XX
 merge_title03:
-	Inherits: ^new_tile_undestroyable
+	Inherits: ^UndestroyableTile
 	Building:
 		Dimensions: 2,2
 		Footprint: XX XX
 merge_title04:
-	Inherits: ^new_tile_undestroyable
+	Inherits: ^UndestroyableTile
 	Building:
 		Dimensions: 2,2
 		Footprint: XX XX
 
 transition_tile_01:
-	Inherits: ^new_tile_undestroyable
+	Inherits: ^UndestroyableTile
 	Building:
 		Dimensions: 3,2
 		Footprint: XXX XXX
 
 transition_tile_02:
-	Inherits: ^new_tile_undestroyable
+	Inherits: ^UndestroyableTile
 	Building:
 		Dimensions: 3,2
 		Footprint: XXX XXX
 
 transition_tile_03:
-	Inherits: ^new_tile_undestroyable
+	Inherits: ^UndestroyableTile
 	Building:
 		Dimensions: 3,2
 		Footprint: XXX XXX
 
 transition_tile_04:
-	Inherits: ^new_tile_undestroyable
+	Inherits: ^UndestroyableTile
 	Building:
 		Dimensions: 3,2
 		Footprint: XXX XXX
 
 transition_tile_05:
-	Inherits: ^new_tile_undestroyable
+	Inherits: ^UndestroyableTile
 	Building:
 		Dimensions: 3,2
 		Footprint: XXX XXX
 
 transition_tile_06:
-	Inherits: ^new_tile_undestroyable
+	Inherits: ^UndestroyableTile
 	Building:
 		Dimensions: 3,2
 		Footprint: XXX XXX
 
 bridge1_end_top_left:
-	Inherits: ^new_tile_undestroyable
+	Inherits: ^UndestroyableTile
 	Building:
 		Dimensions: 2,1
 		Footprint: X_
 
 bridge1_end_bottom_left:
-	Inherits: ^new_tile_undestroyable
+	Inherits: ^UndestroyableTile
 	Building:
 		Dimensions: 2,1
 		Footprint: X_
 
 bridge1_end_top:
-	Inherits: ^new_tile_undestroyable
+	Inherits: ^UndestroyableTile
 	Building:
 		Dimensions: 1,1
 		Footprint: _
 
 bridge1_end_bottom:
-	Inherits: ^new_tile_undestroyable
+	Inherits: ^UndestroyableTile
 	Building:
 		Dimensions: 1,1
 		Footprint: _
 
 bridge1_end_left:
-	Inherits: ^new_tile_undestroyable
+	Inherits: ^UndestroyableTile
 	Building:
 		Dimensions: 1,1
 		Footprint: _
 
 bridge1_end_right:
-	Inherits: ^new_tile_undestroyable
+	Inherits: ^UndestroyableTile
 	Building:
 		Dimensions: 1,1
 		Footprint: _
 
 platform_sand_bottom:
-	Inherits: ^new_tile_undestroyable
+	Inherits: ^UndestroyableTile
 	Building:
 		Dimensions: 1,1
 		Footprint: _
 
 platform_sand_bottom_left:
-	Inherits: ^new_tile_undestroyable
+	Inherits: ^UndestroyableTile
 	Building:
 		Dimensions: 2,2
 		Footprint: X_ X_
 
 platform_sand_bottom_right:
-	Inherits: ^new_tile_undestroyable
+	Inherits: ^UndestroyableTile
 	Building:
 		Dimensions: 2,2
 		Footprint: _X _X
 
 platform_rock_right_bottom:
-	Inherits: ^new_tile_undestroyable
+	Inherits: ^UndestroyableTile
 	Building:
 		Dimensions: 1,1
 		Footprint: _
 
 platform_rock_righ_top:
-	Inherits: ^new_tile_undestroyable
+	Inherits: ^UndestroyableTile
 	Building:
 		Dimensions: 1,1
 		Footprint: _
 
 bridge01_sand_right:
-	Inherits: ^new_tile_undestroyable
+	Inherits: ^UndestroyableTile
 	Building:
 		Dimensions: 1,1
 		Footprint: _
 
 sand_end01:
-	Inherits: ^new_tile_undestroyable
+	Inherits: ^UndestroyableTile
 	Building:
 		Dimensions: 2,2
 		Footprint: __ __
 
 signle_cell1:
-	Inherits: ^new_tile_undestroyable
+	Inherits: ^UndestroyableTile
 	Building:
 		Dimensions: 1,1
 		Footprint: _
 
 signle_cell2:
-	Inherits: ^new_tile_undestroyable
+	Inherits: ^UndestroyableTile
 	Building:
 		Dimensions: 2,1
 		Footprint: __
 
 signle_cell3:
-	Inherits: ^new_tile_undestroyable
+	Inherits: ^UndestroyableTile
 	Building:
 		Dimensions: 1,2
 		Footprint: _ _
 
 signle_cell4:
-	Inherits: ^new_tile_undestroyable
+	Inherits: ^UndestroyableTile
 	Building:
 		Dimensions: 2,1
 		Footprint: __
 
 platform_left_01:
-	Inherits: ^new_tile_undestroyable
+	Inherits: ^UndestroyableTile
 	Building:
 		Dimensions: 1,1
 		Footprint: _
 
 platform_left_02:
-	Inherits: ^new_tile_undestroyable
+	Inherits: ^UndestroyableTile
 	Building:
 		Dimensions: 1,1
 		Footprint: _
 
 platform_left_03:
-	Inherits: ^new_tile_undestroyable
+	Inherits: ^UndestroyableTile
 	Building:
 		Dimensions: 1,1
 		Footprint: _
 
 platform_right_01:
-	Inherits: ^new_tile_undestroyable
+	Inherits: ^UndestroyableTile
 	Building:
 		Dimensions: 1,1
 		Footprint: _
 
 platform_right_02:
-	Inherits: ^new_tile_undestroyable
+	Inherits: ^UndestroyableTile
 	Building:
 		Dimensions: 1,1
 		Footprint: _
 
 platform_right_03:
-	Inherits: ^new_tile_undestroyable
+	Inherits: ^UndestroyableTile
 	Building:
 		Dimensions: 1,1
 		Footprint: _
 
 custom_rock03_h_barracks:
-	Inherits: ^new_tile_undestroyable
+	Inherits: ^UndestroyableTile
 	RenderSprites:
 		Palette: terrain
 	Building:
@@ -373,7 +314,7 @@ custom_rock03_h_barracks:
 		Categories: Decorations
 
 custom_rock04_a_barracks:
-	Inherits: ^new_tile_undestroyable
+	Inherits: ^UndestroyableTile
 	RenderSprites:
 		Palette: terrain
 	Building:
@@ -383,7 +324,7 @@ custom_rock04_a_barracks:
 		Categories: Decorations
 
 custom_rock05_o_barracks:
-	Inherits: ^new_tile_undestroyable
+	Inherits: ^UndestroyableTile
 	RenderSprites:
 		Palette: terrain
 	Building:
@@ -393,13 +334,13 @@ custom_rock05_o_barracks:
 		Categories: Decorations
 
 bridge_tile01:
-	Inherits: ^new_tile_undestroyable
+	Inherits: ^UndestroyableTile
 	Building:
 		Dimensions: 1,1
 		Footprint: _
 
 tree01:
-	Inherits: ^new_tile_undestroyable
+	Inherits: ^UndestroyableTile
 	Building:
 		Dimensions: 1,1
 		Footprint: x
@@ -412,7 +353,7 @@ tree01:
 
 
 rock_decoration01:
-	Inherits: ^new_tile_undestroyable
+	Inherits: ^UndestroyableTile
 	Building:
 		Dimensions: 1,1
 		Footprint: _
