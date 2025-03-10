@@ -81,18 +81,6 @@ Actors:
 	Actor14: wind_trap
 		Owner: Multi0
 		Location: 18,15
-	Actor15: carryall.controllable
-		Owner: Multi0
-		Facing: 384
-		Location: 14,14
-	Actor16: carryall.controllable
-		Owner: Multi0
-		Facing: 384
-		Location: 16,16
-	Actor17: carryall.controllable
-		Owner: Multi0
-		Facing: 384
-		Location: 11,17
 	Actor18: silo
 		Owner: Multi0
 		Location: 16,21
@@ -161,21 +149,6 @@ Actors:
 		Facing: 384
 		Location: 29,31
 		SubCell: 5
-	Actor34: wormspawner
-		Owner: Creeps
-		Location: 18,10
-	Actor35: carryall
-		Owner: Creeps
-		Facing: 384
-		Location: 7,14
-	Actor36: carryall
-		Owner: Creeps
-		Facing: 384
-		Location: 5,19
-	Actor37: carryall
-		Owner: Creeps
-		Facing: 384
-		Location: 7,22
 	Actor38: carryall
 		Owner: Creeps
 		Facing: 384
@@ -734,34 +707,10 @@ Actors:
 		Owner: Multi0
 		Facing: 384
 		Location: 7,17
-	Actor152: combat_tank_o
-		Owner: Multi0
-		Facing: 384
-		Location: 10,17
-	Actor153: combat_tank_cheap
-		Owner: Multi0
-		Facing: 384
-		Location: 12,17
-	Actor154: combat_tank_corrino
-		Owner: Multi0
-		Facing: 384
-		Location: 14,17
-	Actor155: combat_tank_corrino
-		Owner: Multi0
-		Facing: 384
-		Location: 13,17
-	Actor156: combat_tank_cheap
-		Owner: Multi0
-		Facing: 384
-		Location: 11,17
 	Actor157: combat_tank_cheap
 		Owner: Multi0
 		Facing: 384
 		Location: 4,14
-	Actor158: combat_tank_cheap
-		Owner: Multi0
-		Facing: 384
-		Location: 7,14
 	Actor159: combat_tank_cheap
 		Owner: Multi0
 		Facing: 384
@@ -770,10 +719,129 @@ Actors:
 		Owner: Multi0
 		Facing: 384
 		Location: 12,14
-	Actor161: combat_tank_cheap
+	Actor162: light_inf
 		Owner: Multi0
 		Facing: 384
-		Location: 14,14
+		Location: 3,27
+		SubCell: 3
+	Actor163: light_inf
+		Owner: Multi0
+		Facing: 384
+		Location: 5,27
+		SubCell: 3
+	Actor164: light_inf
+		Owner: Multi0
+		Facing: 384
+		Location: 6,27
+		SubCell: 3
+	Actor165: light_inf
+		Owner: Multi0
+		Facing: 384
+		Location: 7,26
+		SubCell: 3
+	Actor166: light_inf
+		Owner: Multi0
+		Facing: 384
+		Location: 4,25
+		SubCell: 3
+	Actor167: light_inf
+		Owner: Multi0
+		Facing: 384
+		Location: 4,25
+		SubCell: 1
+	Actor168: light_inf
+		Owner: Multi0
+		Facing: 384
+		Location: 5,24
+		SubCell: 3
+	Actor169: light_inf
+		Owner: Multi0
+		Facing: 384
+		Location: 3,24
+		SubCell: 3
+	Actor170: light_inf
+		Owner: Multi0
+		Facing: 384
+		Location: 6,24
+		SubCell: 3
+	Actor171: light_inf
+		Owner: Multi0
+		Facing: 384
+		Location: 4,26
+		SubCell: 3
+	Actor172: light_inf
+		Owner: Multi0
+		Facing: 384
+		Location: 5,26
+		SubCell: 3
+	Actor173: light_inf
+		Owner: Multi0
+		Facing: 384
+		Location: 4,25
+		SubCell: 2
+	Actor174: light_inf
+		Owner: Multi0
+		Facing: 384
+		Location: 6,25
+		SubCell: 3
+	Actor175: light_inf
+		Owner: Multi0
+		Facing: 384
+		Location: 6,25
+		SubCell: 1
+	Actor176: light_inf
+		Owner: Multi0
+		Facing: 384
+		Location: 6,25
+		SubCell: 2
+	Actor177: light_inf
+		Owner: Multi0
+		Facing: 384
+		Location: 8,24
+		SubCell: 1
+	Actor178: light_inf
+		Owner: Multi0
+		Facing: 384
+		Location: 6,25
+		SubCell: 4
+	Actor179: light_inf
+		Owner: Multi0
+		Facing: 384
+		Location: 9,27
+		SubCell: 3
+	Actor180: light_inf
+		Owner: Multi0
+		Facing: 384
+		Location: 6,25
+		SubCell: 5
+	Actor181: light_inf
+		Owner: Multi0
+		Facing: 384
+		Location: 4,23
+		SubCell: 3
+	Actor182: light_inf
+		Owner: Multi0
+		Facing: 384
+		Location: 4,23
+		SubCell: 1
+	Actor183: light_inf
+		Owner: Multi0
+		Facing: 384
+		Location: 7,23
+		SubCell: 3
+	Actor185: miniing_rig
+		Owner: Neutral
+		Location: 12,10
+	Actor186: ecology_station
+		Owner: Neutral
+		Location: 15,9
+	Actor184: ecology_station
+		Owner: Neutral
+		Location: 10,17
+	Actor187: radar_station
+		Owner: Neutral
+		Location: 8,11
+		Health: 48
 
 Rules: Enhanced_Units10.yaml, Enhanced_Starport10.yaml, Enhanced_Structures10.yaml, Enhanced_World10.yaml, Enhanced_Misc.yaml, Enhanced_AI.yaml, Enhanced_palettes.yaml, NewTiles.yaml, NeutralBuildings.yaml
 

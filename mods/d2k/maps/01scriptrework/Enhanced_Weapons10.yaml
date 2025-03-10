@@ -1168,13 +1168,6 @@ chaosbomb_from_husk:
 		ImpactSounds: EXPLSML4.WAV
 		ImpactActors: false
 
-hideWeapon:
-	Warhead: GrantExternalCondition
-		Duration: 750
-		Range: 5c0
-		Condition: temporery_clock
-		ValidRelationships: Ally
-
 ScareEnemy:
 	Warhead@condition: GrantExternalCondition
 		Duration: 300

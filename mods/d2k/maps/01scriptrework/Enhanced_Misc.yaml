@@ -162,15 +162,6 @@ waypoint.reinforce_h:
 waypoint.reinforce_o:
 	Inherits: ^Dummy
 
-spawnpoint.sandstorm:
-	Inherits: ^Dummy
-	RenderSpritesEditorOnly:
-		Image: sandstorm
-	RequiresSpecificOwners:
-		ValidOwnerNames: Neutral
-	EditorOnlyTooltip:
-		Name: sandstorm spawnpoint
-
 dummy.sardaukar_production_speed_up:
 	Inherits: ^DummyVehicle
 	Buildable:
@@ -216,25 +207,15 @@ jammer_point:
 		Range: 9c0
 		ValidRelationships: Enemy, Neutral
 	ProximityExternalCondition@jammer:
-		Range: 6c0
+		Range: 6c512
 		Condition: jammed
 		ValidRelationships: Enemy, Neutral
 	JamsMissiles:
-		Range: 6c0
+		Range: 6c512
 		Chance: 90
 		DeflectionRelationships: Enemy, Neutral
 	RejectsOrders:
 
-dummy.hide_units:
-	Inherits: ^LivingDummy
-	RejectsOrders:
-	KillsSelf:
-		Delay: 1
-		GrantsCondition: hideActivator
-	FireWarheadsOnDeath:
-		Weapon: hideWeapon
-		EmptyWeapon: hideWeapon
-		RequiresCondition: hideActivator
 
 dummy_spam_actor:
 	Inherits: ^DummyVehicle
@@ -1362,36 +1343,6 @@ crater_big:
 		StartIfBelow: 101
 		Delay: 4
 	-Tooltip:
-
-sandstorm:
-	Inherits: ^SpriteActor
-	Inherits@adf: ^ExistsInWorld
-	WithSpriteBody:
-	RenderSprites:
-		Image: sandstorm
-	Aircraft:
-		Speed: 20
-	AlwaysVisible:
-	MapEditorData:
-		Categories: System
-	Wanders:
-		WanderMoveRadius: 5
-	Interactable:
-	AmbientSound:
-		SoundFiles: audio/wind_loop_medium_1.wav, audio/wind_loop_medium_2.wav
-	Health:
-		HP: 100
-	Armor:
-		Type: invulnerable
-	HitShape:
-	Tooltip:
-		Name: SandStorm
-		ShowOwnerRow: false
-	AppearsOnRadar:
-	ProximityExternalCondition:
-		Condition: sandstorm_dmg
-		Range: 2c0
-		ValidRelationships: Ally, Enemy, Neutral
 
 
 thump:

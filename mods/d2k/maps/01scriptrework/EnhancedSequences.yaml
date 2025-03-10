@@ -2719,14 +2719,56 @@ spice_sifter:
 
 ecology_station:
 	idle:
-		Filename: EnhacedAssets.R8
-		Start: 487
-		Offset: -26,-24
+		Filename: bits/Eco_station.R16
+		Offset: -64,-48
+		Remap: 54F94B
 	damaged-idle:
-		Filename: EnhacedAssets.R8
-		Start: 487
+		Filename: bits/Eco_station_destroyed.R16
 		Offset: -26,-24
+		Remap: 54F94B
+	bib:
+		Filename: EnhacedAssets.R8
+		Frames: 7,8,8,9,10,11,11,12
+		Length: 8
+		Offset: -16,-16
+	bib-Concrete:
+		Filename: EnhacedAssets.R8
+		Frames: 7,8,9,10,11,12
+		Length: 6
+		Offset: -16,-16
+	bib-SpiceSand:
+		Filename: BLOXWAST.R16
+		Frames: 652, 653, 367, 368, 672, 673, 387, 388
+		Length: 8
+		Offset: -16,-16
+	bib-Sand:
+		Filename: BLOXWAST.R16
+		Frames: 652, 653, 367, 368, 672, 673, 387, 388
+		Length: 6
+		Offset: -16,-16
 
+
+radar_station:
+	idle:
+		Filename: bits/Radar_station.R16
+		Offset: -45,-48
+		Scale: 0.9
+		Remap: 54F94B
+	idle-dish:
+		Filename: bits/Radar_station_dish.R16
+		Start: 0
+		Length: 30
+		Offset: -1,-20
+	bib:
+		Filename: EnhacedAssets.R8
+		Frames: 3, 4, 5, 6
+		Length: 4
+		Offset: -16,-16
+	bib-Concrete:
+		Filename: EnhacedAssets.R8
+		Frames: 3, 4, 5, 6d
+		Length: 4
+		Offset: -16,-16
 miniing_rig:
 	idle:
 		Filename: bits/MINIING_RIG.R16
@@ -2775,30 +2817,3 @@ building01_burned:
 		Length: 4
 		Offset: -16,-16
 
-radar_station_small:
-	idle:
-		Filename: EnhacedAssets.R8
-		Start: 490
-		Offset: -35,-45
-	idle-top:
-		Filename: EnhacedAssets.R8
-		Start: 491
-		Offset: -15,-45
-	bib:
-		Filename: EnhacedAssets.R8
-		Frames: 3, 4, 5, 6
-		Length: 4
-		Offset: -16,-16
-	bib-Concrete:
-		Filename: EnhacedAssets.R8
-		Frames: 3, 4, 5, 6
-		Length: 4
-		Offset: -16,-16
-
-sandstorm:
-	idle:
-		FilenamePattern: bits/sandstorm/storm-{0:D4}.png
-			Count: 30
-		ZOffset: 1024
-		Length: 30
-		Alpha: 0.5

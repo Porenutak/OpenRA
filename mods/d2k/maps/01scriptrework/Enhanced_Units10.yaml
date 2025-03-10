@@ -35,9 +35,9 @@
 
 ^temporarycloak:
 	ExternalCondition@temporeryclock:
-		Condition: temporery_clock
+		Condition: temporary_clock
 	Cloak@temporeryclock:
-		RequiresCondition: temporery_clock
+		RequiresCondition: temporary_clock
 		UncloakOn: Attack, Unload, Infiltrate, Demolish, Dock, Damage, Heal
 		InitialDelay: 10
 		CloakDelay: 30
@@ -302,7 +302,7 @@
 		Palette: effect
 		Position: BottomRight
 		Margin: 5, 6
-		RequiresCondition: officerAura
+		RequiresCondition: officerAura && !rally
 	TakeCover:
 		RequiresCondition: !officerAura
 	HitShape:
@@ -2027,7 +2027,7 @@ officer:
 		ActivatedCondition: deployed
 		CanCancelCondition: true
 		ChargeDuration: 1250
-		ChargeThreshhold: 300
+		ChargeThreshhold: 600
 		ConditionDuration: 450
 	FireWarheads@ScareEnemy:
 		Weapons: ScareEnemy

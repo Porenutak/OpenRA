@@ -913,16 +913,17 @@ outpost:
 		OrderName: SpawnActorPowerInfoOrder.jammer
 		SupportPowerPaletteOrder: 100
 		BlockedCursor: move-blocked
-	SpawnActorPower@hideunits:
-		EffectImage: carryall.husk_on_land
-		EffectSequence:
-		Actor: dummy.hide_units
+	GrantExternalConditionPower@hideunits:
+		Condition: temporary_clock
 		Name: Hide units
-		ChargeInterval: 300
+		ChargeInterval: 3400
+		Duration: 400
+		Dimensions: 6, 6
+		Footprint: __xx__ _xxxx_ xxxxxx xxxxxx _xxxx_ __xx__
 		Description: Hide units in selected area for short period of time
 		Prerequisites: ~upgrade.outpost_fremen, ~!factions.standard
 		Icon: hide_units
-		LaunchSound: audio/EBoD_hidenunits1.wav
+		OnFireSound: audio/EBoD_hidenunits1.wav
 		DisplayRadarPing: true
 		RequiresCondition: fremen
 		OrderName: SpawnActorPowerInfoOrder.hideunits

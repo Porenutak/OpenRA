@@ -49,6 +49,11 @@
 		Weapon: cliffExplode01
 		EmptyWeapon: cliffExplode01
 
+^DecorationBuildings:
+	Inherits@1: ^NeutralBuilding
+	MapEditorData:
+		Categories: buildings Decorations
+
 ^NeutralBuildingCapturable:
 	Inherits@1: ^ExistsInWorld
 	Inherits@2: ^SpriteActor
@@ -71,7 +76,7 @@
 	Armor:
 		Type: building
 	MapEditorData:
-		Categories: Neutral building Capturable
+		Categories: Neutral building
 	Targetable:
 		TargetTypes: Ground, C4, Structure
 		RequiresForceFire: false
@@ -113,6 +118,31 @@
 		DamagedSounds: EXPLSML1.WAV
 		DestroyedSounds: EXPLHG1.WAV
 
+^InfantryHealing:
+	ExternalCondition@healing:
+		Condition: healing
+	WithDecoration@REDCROSS:
+		Image: pips
+		Sequence: healt_cross
+		Position: BottomRight
+		Margin: 5, 5
+		RequiresCondition: healing && damaged
+		BlinkInterval: 32
+		BlinkPattern: Off, On
+		ValidRelationships: Ally, Neutral, Enemy
+	ChangesHealth@HOSPITAL:
+		Step: 400
+		Delay: 60
+		StartIfBelow: 100
+		DamageCooldown: 125
+		RequiresCondition: healing
+	GrantConditionOnDamageState@HOSPITAL:
+		Condition: damaged
+		ValidDamageStates: Light, Medium, Heavy, Critical
+
+
+^Infantry:
+	Inherits@healing: ^InfantryHealing
 
 crane:
 	Inherits: ^NeutralBuildingCapturable
@@ -163,7 +193,7 @@ spice_sifter:
 	TooltipDescription:
 		Description: Absorbs Spice obtained by the wind flow. Provides Passive income
 	CashTrickler:
-		Interval: 350
+		Interval: 300
 		Amount: 200
 		PauseOnCondition: lowpower || disabled
 	CashTricklerBar:
@@ -184,31 +214,37 @@ spice_sifter:
 
 radar_station:
 	Inherits: ^NeutralBuildingCapturable
-	Inherits@IDISABLE: ^DisableOnLowPowerOrPowerDown
 	Tooltip:
 		Name: Radar Station
 	TooltipDescription:
-		Description: Provides Vision and building range
-	Power:
-		Amount: -75
+		Description: Provides buildiable area, Provides vision
 	WithBuildingBib:
 	HitShape:
 		Type: Rectangle
-			TopLeft: -1536, -1024
-			BottomRight: 1536, 1024
+			TopLeft: -1024, -1024
+			BottomRight: 1024, 1024
 	Health:
 		HP: 30000
-	RenderSprites:
-		Image: outpost.harkonnen
+	FloatingSpriteEmitter@smoke_huge_atreides:
+		RequiresCondition: damaged
+		Image: smoke3
+		Lifetime: 15, 20
+		Speed: 5
+		Gravity: 60
+		Offset: 0 , -500, 0
+		SpawnFrequency: 2, 5
+		RandomFacing: true
+		RandomRate: 4
+		TurnRate: 3
+		Duration: 1224
 	D2kBuilding:
-		Dimensions: 3,2
-		Footprint: xxx xxx
+		Dimensions: 2,2
+		Footprint: xx xx
 		TerrainTypes: Rock, Concrete
 		BuildSounds: BUILD1.WAV
 	WithIdleOverlay@DISH:
 		RequiresCondition: !damaged
 		Sequence: idle-dish
-		PauseOnCondition: disabled
 	GrantConditionOnDamageState@DAMAGED:
 		Condition: damaged
 		ValidDamageStates: Heavy, Critical
@@ -225,49 +261,11 @@ radar_station:
 		Range: 10c0
 		RequiresCondition: !disabled
 
-radar_station_small:
-	Inherits: ^NeutralBuildingCapturable
-	Inherits@IDISABLE: ^DisableOnLowPowerOrPowerDown
-	Tooltip:
-		Name: Radar Station
-	TooltipDescription:
-		Description: Provides Vision
-	Power:
-		Amount: -75
-	WithBuildingBib:
-	HitShape:
-		Type: Rectangle
-			TopLeft: -1536, -1024
-			BottomRight: 1536, 1024
-	Health:
-		HP: 30000
-	RenderSprites:
-		Image: outpost.harkonnen
-	-D2kBuilding:
-	Building:
-		Dimensions: 3,2
-		Footprint: xxx xxx
-		TerrainTypes: Rock, Concrete
-	WithIdleOverlay@DISH:
-		Sequence: idle-top
-	FireWarheadsOnDeath:
-		Type: Footprint
-		Weapon: BuildingExplode
-		EmptyWeapon: BuildingExplode
-	GivesBuildableArea:
-		AreaTypes: building
-	Power:
-		Amount: -80
-	DetectCloaked:
-		Range: 8c0
-		RequiresCondition: !disabled
-	RevealsShroud:
-		Range: 10c0
-		RequiresCondition: !disabled
+
 
 
 building01:
-	Inherits: ^NeutralBuilding
+	Inherits: ^DecorationBuildings
 
 building01_burned:
 	Inherits: ^BuildingHusk
@@ -278,7 +276,7 @@ building01_burned:
 	-WithBuildingBib:
 
 fremen_temple:
-	Inherits: ^NeutralBuilding
+	Inherits: ^DecorationBuildings
 	RenderSprites:
 		Palette: terrain
 	Building:
@@ -288,49 +286,26 @@ fremen_temple:
 		Name: Fremen Temple
 		GenericVisibility: None
 
-^InfantryHealing:
-	ExternalCondition@healing:
-		Condition: healing
-	WithDecoration@REDCROSS:
-		Image: pips
-		Sequence: healt_cross
-		Position: BottomRight
-		Margin: 5, 5
-		RequiresCondition: healing && damaged
-		BlinkInterval: 32
-		BlinkPattern: Off, On
-		ValidRelationships: Ally, Neutral, Enemy
-	ChangesHealth@HOSPITAL:
-		Step: 400
-		Delay: 60
-		StartIfBelow: 100
-		DamageCooldown: 125
-		RequiresCondition: healing
-	GrantConditionOnDamageState@HOSPITAL:
-		Condition: damaged
-		ValidDamageStates: Light, Medium, Heavy, Critical
-
-
-^Infantry:
-	Inherits@healing: ^InfantryHealing
-
 ecology_station:
 	Inherits: ^NeutralBuilding
 	Inherits@selection: ^SelectableBuilding
 	-Interactable:
-	RenderSprites:
-		Image: custom_rock02_ecology_station
-		Palette: terrain
+	WithBuildingBib:
 	Armor:
 		Type: cy
 	Health:
-		HP: 25000
+		HP: 40000
+	HitShape:
+		UseTargetableCellsOffsets: true
+		Type: Rectangle
+			TopLeft: -2048, -1536
+			BottomRight: 2048, 1536
 	Building:
-		Dimensions: 3,3
-		Footprint: _X_ xxx xxx
+		Dimensions: 4,3
+		Footprint: _xx_ xxxx _xx_
 	ProximityExternalCondition@dhealign:
 		Condition: healing
-		Range: 5c0
+		Range: 7c0
 		ValidRelationships: Ally, Neutral, Enemy
 	Tooltip:
 		Name: Ecology Station
@@ -339,7 +314,7 @@ ecology_station:
 		Description: Heal nearby infantry units
 
 building_rock01:
-	Inherits: ^NeutralBuilding
+	Inherits: ^DecorationBuildings
 	RenderSprites:
 		Palette: terrain
 	Building:
@@ -347,7 +322,7 @@ building_rock01:
 		Footprint: _XX xxx xxx
 
 fremen_tent01:
-	Inherits: ^NeutralBuilding
+	Inherits: ^DecorationBuildings
 	RenderSprites:
 		Palette: terrain
 	Building:
