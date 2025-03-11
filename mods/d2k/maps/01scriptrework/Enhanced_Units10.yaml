@@ -664,7 +664,7 @@ siege_tank:
 		TargetFrozenActors: True
 		FacingTolerance: 0
 	Valued:
-		Cost: 750
+		Cost: 800
 	Health:
 		HP: 12000
 	Armor:

@@ -1462,10 +1462,10 @@ high_tech_factory:
 research_centre:
 	Inherits@IDISABLE: ^DisableOnLowPower
 	Buildable:
-		BuildDuration: 650
+		BuildDuration: 680
 		Prerequisites: outpost, heavy_factory, ~techlevel.high, ~research_center.allowed
 	Valued:
-		Cost: 1000
+		Cost: 1200
 	Health:
 		HP: 29000
 	GrantConditionOnPrerequisite:

@@ -420,11 +420,10 @@ Player:
 		CheckForNewBasesDelay: 3000
 		PlaceDefenseTowardsEnemyChance: 80
 		MaxBaseRadius: 40
-		BarracksTypes: barracks
 		MaximumDefenseRadius: 30
 		NewProductionCashThreshold: 6000
-		InititalMinimumRefineryCount: 0
-		AdditionalMinimumRefineryCount: 3
+		InititalMinimumRefineryCount: 2
+		AdditionalMinimumRefineryCount: 0
 		MaxResourceCellsToCheck: 15
 		BuildingLimits:
 			barracks: 4
