@@ -829,7 +829,7 @@ Actors:
 		Facing: 384
 		Location: 7,23
 		SubCell: 3
-	Actor185: miniing_rig
+	Actor185: mining_rig
 		Owner: Neutral
 		Location: 12,10
 	Actor186: ecology_station

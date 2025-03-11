@@ -1,6 +1,7 @@
 spicebloom:
 	SpiceBloom:
 		Bursts:	2, 10
+		Lifetime: 2500, 3000
 ^Husk:
 	Health:
 		HP: 14000

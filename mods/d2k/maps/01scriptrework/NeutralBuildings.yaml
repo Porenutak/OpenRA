@@ -206,6 +206,8 @@ spice_sifter:
 		Amount: 200
 		PauseOnCondition: lowpower || disabled
 	CashTricklerBar:
+	Armor:
+		Type: cy
 	WithIdleOverlay:
 		RequiresCondition: !damaged
 		PauseOnCondition: disabled
@@ -310,7 +312,7 @@ ecology_station:
 	Building:
 		Dimensions: 4,3
 		Footprint: _xx_ xxxx _xx_
-	ProximityExternalCondition@dhealign:
+	ProximityExternalCondition@dhealing:
 		Condition: healing
 		Range: 7c0
 		ValidRelationships: Ally, Neutral, Enemy
@@ -343,15 +345,15 @@ fremen_tent01:
 			TopLeft: -512, -512
 			BottomRight: 512, 512
 
-miniing_rig:
+mining_rig:
 	Inherits: ^NeutralBuildingCapturable
 	Tooltip:
-		Name: Miniing rig
+		Name: Mining rig
 	TooltipDescription:
 		Description: Provides passive income
 		ValidRelationships: none
 	Health:
-		HP: 13000
+		HP: 20000
 	CashTrickler:
 		Amount: 25
 		RequiresCondition: enabled
@@ -391,12 +393,12 @@ miniing_rig:
 		TurnRate: 3
 		Duration: 500
 	SpawnActorOnDeath:
-		Actor: miniing_rig.husk
+		Actor: mining_rig.husk
 		OwnerType: InternalName
 
 
 
-miniing_rig.husk:
+mining_rig.husk:
 	Inherits: ^NeutralBuildingCapturable
 	HitShape:
 		UseTargetableCellsOffsets: true
@@ -407,7 +409,7 @@ miniing_rig.husk:
 	Armor:
 		Type: invulnerable
 	Tooltip:
-		Name: Miniing rig (Destroyed)
+		Name: Mining rig (Destroyed)
 	TooltipDescription:
 		Description: Can be repaired by engineer
 	HitShape:
@@ -419,7 +421,7 @@ miniing_rig.husk:
 		Dimensions: 1,1
 		Footprint: x
 	TransformOnCapture:
-		IntoActor: miniing_rig
+		IntoActor: mining_rig
 	FloatingSpriteEmitter@SMOKE:
 		Image: smoke3
 		Lifetime: 15, 20

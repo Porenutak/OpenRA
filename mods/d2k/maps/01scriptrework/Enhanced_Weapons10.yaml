@@ -184,8 +184,8 @@ Fremen_wormrider2:
 		Inaccuracy: 133
 		InaccuracyType: PerCellIncrement
 	Warhead@1Dam: SpreadDamage
-		Damage: 3375
-		Spread: 900
+		Damage: 3240
+		Spread: 925
 		Falloff: 100, 0
 		Versus:
 			none: 40

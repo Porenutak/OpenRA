@@ -2781,20 +2781,20 @@ radar_station:
 		Frames: 22, 23, 24, 25
 		Length: 4
 		Offset: -16,-16
-miniing_rig:
+mining_rig:
 	idle:
-		Filename: bits/MINIING_RIG.R16
+		Filename: bits/MINING_RIG.R16
 		Start: 0
 		Offset: -16,-32
 		Remap: 54F94B
 	idle-overlay:
-		Filename: bits/MINIING_RIG_ANIMATION.R16
+		Filename: bits/MINING_RIG_ANIMATION.R16
 		Length: 52
 		Offset: -16, 16
 
-miniing_rig.husk:
+mining_rig.husk:
 	idle:
-		Filename: bits/MINIING_RIG_HUSK.R16
+		Filename: bits/MINING_RIG_HUSK.R16
 		Start: 0
 		Remap: 54F94B
 		Offset: -15,-32
