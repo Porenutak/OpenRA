@@ -129,7 +129,7 @@
 		RequiresCondition: healing && damaged
 		BlinkInterval: 32
 		BlinkPattern: Off, On
-		ValidRelationships: Ally, Neutral, Enemy
+		ValidRelationships: Ally
 	ChangesHealth@HOSPITAL:
 		Step: 400
 		Delay: 60
@@ -139,6 +139,15 @@
 	GrantConditionOnDamageState@HOSPITAL:
 		Condition: damaged
 		ValidDamageStates: Light, Medium, Heavy, Critical
+	GrantConditionOnPrerequisite@heal:
+		Condition: hospitalheal
+		Prerequisites: hospitalHealing
+	ChangesHealth@HOSPITAL:
+		Step: 300
+		Delay: 100
+		StartIfBelow: 100
+		DamageCooldown: 125
+		RequiresCondition: hospitalheal
 
 
 ^Infantry:
@@ -174,7 +183,7 @@ crane:
 			mercenary: crane.ordos
 	ProvidesPrerequisite:
 		Prerequisite: bonus.crane
-	TooltipDescription:
+	TooltipDescription@description:
 		Description: Provides buildable area. Speed up building production by 10%
 
 spice_sifter:
@@ -285,9 +294,8 @@ fremen_temple:
 		GenericVisibility: None
 
 ecology_station:
-	Inherits: ^NeutralBuilding
+	Inherits: ^NeutralBuildingCapturable
 	Inherits@selection: ^SelectableBuilding
-	-Interactable:
 	WithBuildingBib:
 	Armor:
 		Type: cy
@@ -298,6 +306,7 @@ ecology_station:
 		Type: Rectangle
 			TopLeft: -2048, -1536
 			BottomRight: 2048, 1536
+	-D2kBuilding:
 	Building:
 		Dimensions: 4,3
 		Footprint: _xx_ xxxx _xx_
@@ -305,11 +314,13 @@ ecology_station:
 		Condition: healing
 		Range: 7c0
 		ValidRelationships: Ally, Neutral, Enemy
+	ProvidesPrerequisite@heal:
+		Prerequisite: hospitalHealing
 	Tooltip:
 		Name: Ecology Station
-		GenericVisibility: None
-	TooltipDescription:
-		Description: Heal nearby infantry units
+		GenericName: Neutral Building
+	TooltipDescription@adf:
+		Description: Heal nearby infantry units. If captured heals all players infantry.
 
 building_rock01:
 	Inherits: ^DecorationBuildings
@@ -338,8 +349,9 @@ miniing_rig:
 		Name: Miniing rig
 	TooltipDescription:
 		Description: Provides passive income
+		ValidRelationships: none
 	Health:
-		HP: 15000
+		HP: 13000
 	CashTrickler:
 		Amount: 25
 		RequiresCondition: enabled

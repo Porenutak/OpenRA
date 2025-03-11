@@ -373,7 +373,7 @@ wind_trap:
 barracks:
 	Inherits@damageVFX: ^DamagedBuildingsVFX
 	Buildable:
-		BuildDuration: 320
+		BuildDuration: 315
 	Valued:
 		Cost: 400
 	Health:
@@ -655,7 +655,7 @@ light_factory:
 	Inherits@damageVFX: ^DamagedBuildingsVFX
 	Buildable:
 		Prerequisites: refinery
-		BuildDuration: 390
+		BuildDuration: 400
 	GrantConditionOnPrerequisite:
 		Condition: ArmorUpgrade
 		Prerequisites: upgrade.conyard

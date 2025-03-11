@@ -646,7 +646,7 @@ siege_tank:
 	Buildable:
 		Queue: Armor
 		Prerequisites: upgrade.heavy, ~techlevel.medium
-		BuildDuration: 400
+		BuildDuration: 390
 		BuildDurationModifier: 100
 		Description: Siege Artillery\n  High range, high Inaccuracy\n Strong vs Infantry, Buildings\n  Weak vs Tanks
 	AutoTargetPriority@bot:
@@ -664,7 +664,7 @@ siege_tank:
 		TargetFrozenActors: True
 		FacingTolerance: 0
 	Valued:
-		Cost: 800
+		Cost: 750
 	Health:
 		HP: 12000
 	Armor:

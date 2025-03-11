@@ -560,7 +560,7 @@ Sound:
 			heavy: 60
 			invulnerable: 0
 			cy: 70
-			harvester: 130
+			harvester: 100
 		DamageTypes: Prone50Percent, TriggerProne, SoundDeath
 	Warhead@3Concrete: DamagesConcrete
 		Damage: 1720
