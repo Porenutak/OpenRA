@@ -49,56 +49,18 @@ Actors:
 	Actor4: refinery
 		Owner: Multi0
 		Location: 16,23
-	Actor5: harvester
-		Owner: Multi0
-		Facing: 384
-		Location: 21,13
-	Actor6: harvester
-		Owner: Multi0
-		Facing: 384
-		Location: 23,13
-	Actor7: heavy_factory
-		Owner: Multi0
-		Location: 22,19
 	Actor8: starport
 		Owner: Multi0
 		Location: 12,24
-	Actor9: outpost
-		Owner: Multi0
-		Location: 22,16
-	Actor10: wind_trap
-		Owner: Multi0
-		Location: 20,19
-	Actor11: wind_trap
-		Owner: Multi0
-		Location: 18,19
 	Actor12: palace
 		Owner: Multi0
 		Location: 8,24
-	Actor13: wind_trap
-		Owner: Multi0
-		Location: 20,15
-	Actor14: wind_trap
-		Owner: Multi0
-		Location: 18,15
 	Actor18: silo
 		Owner: Multi0
 		Location: 16,21
 	Actor19: silo
 		Owner: Multi0
 		Location: 16,20
-	Actor21: missile_tank
-		Owner: Creeps
-		Facing: 384
-		Location: 4,3
-	Actor22: missile_tank
-		Owner: Creeps
-		Facing: 384
-		Location: 3,5
-	Actor23: missile_tank
-		Owner: Creeps
-		Facing: 384
-		Location: 7,3
 	Actor24: trooper
 		Owner: Creeps
 		Facing: 384
@@ -178,9 +140,6 @@ Actors:
 		Facing: 384
 		Location: 29,23
 		SubCell: 5
-	Actor47: refinery_inverted
-		Owner: Multi0
-		Location: 15,15
 	Actor48: light_inf
 		Owner: Creeps
 		Facing: 384
@@ -320,215 +279,10 @@ Actors:
 		Facing: 384
 		Location: 25,27
 		SubCell: 3
-	Actor76: officer
-		Location: 25,6
-		SubCell: 3
-		Facing: 384
-		Owner: Multi0
-	Actor77: light_inf
-		Owner: Neutral
-		Facing: 384
-		Location: 25,4
-		SubCell: 3
-	Actor78: light_inf
-		Owner: Neutral
-		Facing: 384
-		Location: 26,4
-		SubCell: 3
-	Actor79: light_inf
-		Owner: Neutral
-		Facing: 384
-		Location: 26,4
-		SubCell: 1
-	Actor80: light_inf
-		Owner: Neutral
-		Facing: 384
-		Location: 28,5
-		SubCell: 3
-	Actor81: light_inf
-		Owner: Neutral
-		Facing: 384
-		Location: 28,6
-		SubCell: 3
-	Actor82: light_inf
-		Owner: Neutral
-		Facing: 384
-		Location: 28,7
-		SubCell: 3
-	Actor83: light_inf
-		Owner: Neutral
-		Facing: 384
-		Location: 28,9
-		SubCell: 3
-	Actor84: light_inf
-		Owner: Neutral
-		Facing: 384
-		Location: 26,9
-		SubCell: 3
-	Actor85: light_inf
-		Owner: Neutral
-		Facing: 384
-		Location: 24,9
-		SubCell: 3
-	Actor86: light_inf
-		Owner: Neutral
-		Facing: 384
-		Location: 22,9
-		SubCell: 3
-	Actor87: light_inf
-		Owner: Neutral
-		Facing: 384
-		Location: 21,9
-		SubCell: 3
-	Actor88: light_inf
-		Owner: Neutral
-		Facing: 384
-		Location: 21,7
-		SubCell: 3
-	Actor89: light_inf
-		Owner: Neutral
-		Facing: 384
-		Location: 21,6
-		SubCell: 3
-	Actor90: light_inf
-		Owner: Neutral
-		Facing: 384
-		Location: 21,6
-		SubCell: 1
-	Actor91: light_inf
-		Owner: Neutral
-		Facing: 384
-		Location: 22,5
-		SubCell: 3
-	Actor92: light_inf
-		Owner: Neutral
-		Facing: 384
-		Location: 22,4
-		SubCell: 3
-	Actor93: light_inf
-		Owner: Neutral
-		Facing: 384
-		Location: 22,4
-		SubCell: 1
-	Actor94: light_inf
-		Owner: Neutral
-		Facing: 384
-		Location: 23,3
-		SubCell: 3
 	Actor95: light_inf
 		Owner: Neutral
 		Facing: 384
 		Location: 24,2
-		SubCell: 3
-	Actor96: light_inf
-		Owner: Neutral
-		Facing: 384
-		Location: 27,2
-		SubCell: 3
-	Actor97: light_inf
-		Owner: Neutral
-		Facing: 384
-		Location: 28,2
-		SubCell: 3
-	Actor98: light_inf
-		Owner: Neutral
-		Facing: 384
-		Location: 29,3
-		SubCell: 3
-	Actor99: light_inf
-		Owner: Neutral
-		Facing: 384
-		Location: 30,3
-		SubCell: 3
-	Actor100: light_inf
-		Owner: Neutral
-		Facing: 384
-		Location: 30,6
-		SubCell: 3
-	Actor101: light_inf
-		Owner: Neutral
-		Facing: 384
-		Location: 30,8
-		SubCell: 3
-	Actor102: light_inf
-		Owner: Neutral
-		Facing: 384
-		Location: 30,10
-		SubCell: 3
-	Actor103: light_inf
-		Owner: Neutral
-		Facing: 384
-		Location: 29,10
-		SubCell: 3
-	Actor104: light_inf
-		Owner: Neutral
-		Facing: 384
-		Location: 26,11
-		SubCell: 3
-	Actor105: light_inf
-		Owner: Neutral
-		Facing: 384
-		Location: 24,11
-		SubCell: 3
-	Actor106: light_inf
-		Owner: Neutral
-		Facing: 384
-		Location: 23,11
-		SubCell: 3
-	Actor107: light_inf
-		Owner: Neutral
-		Facing: 384
-		Location: 22,10
-		SubCell: 3
-	Actor108: light_inf
-		Owner: Neutral
-		Facing: 384
-		Location: 21,10
-		SubCell: 3
-	Actor109: light_inf
-		Owner: Neutral
-		Facing: 384
-		Location: 20,9
-		SubCell: 3
-	Actor110: light_inf
-		Owner: Neutral
-		Facing: 384
-		Location: 20,9
-		SubCell: 1
-	Actor111: light_inf
-		Owner: Neutral
-		Facing: 384
-		Location: 19,7
-		SubCell: 3
-	Actor112: light_inf
-		Owner: Neutral
-		Facing: 384
-		Location: 19,7
-		SubCell: 1
-	Actor113: light_inf
-		Owner: Neutral
-		Facing: 384
-		Location: 19,6
-		SubCell: 3
-	Actor114: light_inf
-		Owner: Neutral
-		Facing: 384
-		Location: 19,4
-		SubCell: 3
-	Actor115: light_inf
-		Owner: Neutral
-		Facing: 384
-		Location: 20,3
-		SubCell: 3
-	Actor116: light_inf
-		Owner: Neutral
-		Facing: 384
-		Location: 20,3
-		SubCell: 1
-	Actor117: light_inf
-		Owner: Neutral
-		Facing: 384
-		Location: 22,3
 		SubCell: 3
 	Actor118: light_inf
 		Owner: Neutral
@@ -540,26 +294,6 @@ Actors:
 		Facing: 384
 		Location: 24,2
 		SubCell: 1
-	Actor120: light_inf
-		Owner: Neutral
-		Facing: 384
-		Location: 26,2
-		SubCell: 3
-	Actor121: light_inf
-		Owner: Neutral
-		Facing: 384
-		Location: 27,2
-		SubCell: 1
-	Actor122: light_inf
-		Owner: Neutral
-		Facing: 384
-		Location: 28,3
-		SubCell: 3
-	Actor123: light_inf
-		Owner: Neutral
-		Facing: 384
-		Location: 30,4
-		SubCell: 3
 	Actor124: light_inf
 		Owner: Neutral
 		Facing: 384
@@ -590,51 +324,6 @@ Actors:
 		Facing: 384
 		Location: 31,11
 		SubCell: 3
-	Actor130: light_inf
-		Owner: Multi0
-		Facing: 384
-		Location: 24,7
-		SubCell: 3
-	Actor131: light_inf
-		Owner: Multi0
-		Facing: 384
-		Location: 22,6
-		SubCell: 3
-	Actor132: light_inf
-		Owner: Multi0
-		Facing: 384
-		Location: 22,5
-		SubCell: 1
-	Actor133: light_inf
-		Owner: Multi0
-		Facing: 384
-		Location: 23,5
-		SubCell: 3
-	Actor134: light_inf
-		Owner: Multi0
-		Facing: 384
-		Location: 25,5
-		SubCell: 3
-	Actor135: light_inf
-		Owner: Multi0
-		Facing: 384
-		Location: 26,5
-		SubCell: 3
-	Actor136: light_inf
-		Owner: Multi0
-		Facing: 384
-		Location: 27,7
-		SubCell: 3
-	Actor137: light_inf
-		Owner: Multi0
-		Facing: 384
-		Location: 26,7
-		SubCell: 3
-	Actor138: light_inf
-		Owner: Multi0
-		Facing: 384
-		Location: 26,7
-		SubCell: 1
 	Actor139: trooper
 		Owner: Creeps
 		Location: 16,32
@@ -699,26 +388,6 @@ Actors:
 		Owner: Multi0
 		Facing: 384
 		Location: 15,27
-	Actor150: combat_tank_a
-		Owner: Multi0
-		Facing: 384
-		Location: 4,17
-	Actor151: combat_tank_h
-		Owner: Multi0
-		Facing: 384
-		Location: 7,17
-	Actor157: combat_tank_cheap
-		Owner: Multi0
-		Facing: 384
-		Location: 4,14
-	Actor159: combat_tank_cheap
-		Owner: Multi0
-		Facing: 384
-		Location: 10,14
-	Actor160: combat_tank_cheap
-		Owner: Multi0
-		Facing: 384
-		Location: 12,14
 	Actor162: light_inf
 		Owner: Multi0
 		Facing: 384
@@ -832,9 +501,6 @@ Actors:
 	Actor185: mining_rig
 		Owner: Neutral
 		Location: 12,10
-	Actor186: ecology_station
-		Owner: Neutral
-		Location: 15,9
 	Actor187: radar_station
 		Owner: Neutral
 		Health: 48
@@ -842,6 +508,51 @@ Actors:
 	Actor184: ecology_station
 		Owner: Neutral
 		Location: 13,20
+	Actor186: ecology_station
+		Owner: Neutral
+		Location: 20,7
+	Actor99: crane
+		Owner: Neutral
+		Location: 11,15
+	Actor100: spice_sifter
+		Owner: Neutral
+		Location: 16,9
+	Actor101: mining_rig.husk
+		Owner: Neutral
+		Location: 10,10
+	Actor102: radar_station
+		Owner: Neutral
+		Location: 16,15
+	Actor103: engineer
+		Owner: Multi0
+		Facing: 384
+		Location: 11,12
+		SubCell: 3
+	Actor104: engineer
+		Owner: Multi0
+		Facing: 384
+		Location: 12,11
+		SubCell: 3
+	Actor105: engineer
+		Owner: Multi0
+		Facing: 384
+		Location: 17,11
+		SubCell: 3
+	Actor106: engineer
+		Owner: Multi0
+		Facing: 384
+		Location: 22,11
+		SubCell: 3
+	Actor107: engineer
+		Owner: Multi0
+		Facing: 384
+		Location: 18,17
+		SubCell: 3
+	Actor108: engineer
+		Owner: Multi0
+		Facing: 384
+		Location: 11,17
+		SubCell: 3
 
 Rules: Enhanced_Units10.yaml, Enhanced_Starport10.yaml, Enhanced_Structures10.yaml, Enhanced_World10.yaml, Enhanced_Misc.yaml, Enhanced_AI.yaml, Enhanced_palettes.yaml, NewTiles.yaml, NeutralBuildings.yaml
 

@@ -124,13 +124,13 @@ World:
 		DisplayOrder: 30
 	ScriptLobbyDropdown@factionoptions:
 		ID: fation_mode
-		Label: Playable Factions
-		Description: 1. Just vanilla D2k.  2. SUB+Main: Choose between Main faction or one of its sub-factions.  3. Merged: Subfaction tech tree is merged into your tech tree.
+		Label: Factions
+		Description: 1. Just vanilla factions. \n2. Choose between Main faction or one of its sub-factions. \n3.Subfaction will be merged into your.
 		Default: 0
 		Values:
-			0: Main factions only
-			1: With Subfactions
-			2: Subfactions Merged in Main
+			0: Main factions
+			1: Main and New factions
+			2: New faction inside Main
 		Visible: true
 		DisplayOrder: 2
 	SmudgeLayer@RockSmoke:

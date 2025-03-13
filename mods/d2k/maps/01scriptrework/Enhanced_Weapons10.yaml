@@ -17,7 +17,7 @@
 			building: 25
 			wood: 50
 			light: 35
-			heavy: 13
+			heavy: 12
 			invulnerable: 0
 			cy: 17
 			harvester: 20
@@ -260,7 +260,7 @@ Fremen_wormrider2:
 		ContrailLength: 10
 	Warhead@1Dam: SpreadDamage
 		Damage: 5200
-		Spread: 1c900
+		Spread: 2c0
 		Falloff: 100, 0
 		Versus:
 			none: 125
