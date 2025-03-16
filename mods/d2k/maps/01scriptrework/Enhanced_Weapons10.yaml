@@ -930,21 +930,15 @@ HarvesterSpiceExplosion:
 GrenDeath:
 	Warhead@1Dam: SpreadDamage
 		Damage: 1600
-		Spread: 1c412
+		Spread: 1c312
 
 SardDeath:
 	Warhead@1Dam: SpreadDamage
 		Damage: 3800
-		Spread: 625
+		Spread: 800
 		Versus:
 			none: 10
-			wall: 75
-			building: 60
-			wood: 65
-			light: 80
-			invulnerable: 0
-			cy: 30
-			harvester: 50
+			harvester: 80
 
 rocket_spike:
 	Inherits: Rocket
