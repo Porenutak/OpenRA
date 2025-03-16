@@ -13,11 +13,11 @@
 		Falloff: 100, 0
 		Versus:
 			none: 110
-			wall: 10
+			wall: 13
 			building: 25
 			wood: 50
 			light: 30
-			heavy: 12
+			heavy: 13
 			invulnerable: 0
 			cy: 17
 			harvester: 20
@@ -313,7 +313,7 @@ DevBullet:
 		Falloff: 100, 0
 		Versus:
 			none: 15
-			wall: 60
+			wall: 80
 			building: 40
 			wood: 55
 			light: 70

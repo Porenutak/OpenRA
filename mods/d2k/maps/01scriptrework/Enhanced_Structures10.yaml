@@ -1151,6 +1151,8 @@ medium_gun_turret:
 		MuzzleSequence: muzzle
 		Recoil: 200
 		RecoilRecovery: 25
+	Armor:
+		Type: wall
 	Power:
 		Amount: -50
 	DetectCloaked:
