@@ -463,7 +463,7 @@ trike:
 		RequiresCondition: ignore-creeps
 	Buildable:
 		Prerequisites: ~light.trike
-		BuildDuration: 255
+		BuildDuration: 250
 	AutoTarget:
 		MinimumScanTimeInterval: 0
 		MaximumScanTimeInterval: 0
@@ -478,7 +478,7 @@ trike:
 	Mobile:
 		Locomotor: light_vehicle
 		TurnSpeed: 40
-		Speed: 118
+		Speed: 120
 	Armament@damage:
 		FireDelay: 0
 		Weapon: HMG

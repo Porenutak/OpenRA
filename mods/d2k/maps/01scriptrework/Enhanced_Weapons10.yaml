@@ -16,7 +16,7 @@
 			wall: 10
 			building: 25
 			wood: 50
-			light: 35
+			light: 30
 			heavy: 12
 			invulnerable: 0
 			cy: 17
@@ -150,31 +150,6 @@ Fremen_wormrider2:
 		ValidRelationships: Neutral, Enemy, Ally
 
 
-110mm_Gun:
-	Inherits: ^Cannon
-	ReloadDelay: 140
-	Burst: 5
-	BurstDelays: 15
-	Range: 6c0
-	Report: TURRET1.WAV
-	Projectile: Bullet
-		Speed: 875
-		Blockable: false
-		InaccuracyType: Absolute
-	Warhead@1Dam: SpreadDamage
-		Damage: 3510
-		Spread: 700
-		Versus:
-			none: 80
-			wall: 50
-			light: 60
-			building: 60
-			wood: 80
-			heavy: 30
-			invulnerable: 0
-			cy: 20
-			harvester: 50
-
 ^Cannon:
 	ReloadDelay: 60
 	Range: 4c312
@@ -248,6 +223,31 @@ Fremen_wormrider2:
 			cy: 20
 			harvester: 50
 
+110mm_Gun:
+	Inherits: ^Cannon
+	ReloadDelay: 140
+	Burst: 5
+	BurstDelays: 15
+	Range: 6c0
+	Report: TURRET1.WAV
+	Projectile: Bullet
+		Speed: 875
+		Blockable: false
+		InaccuracyType: Absolute
+	Warhead@1Dam: SpreadDamage
+		Damage: 3510
+		Spread: 700
+		Versus:
+			none: 80
+			wall: 50
+			light: 60
+			building: 60
+			wood: 80
+			heavy: 30
+			invulnerable: 0
+			cy: 20
+			harvester: 50
+
 155mm:
 	Inherits: ^Cannon
 	ReloadDelay: 96
@@ -286,7 +286,7 @@ DevBullet:
 		Speed: 281
 	Warhead@1Dam: SpreadDamage
 		Damage: 7900
-		Spread: 1c0
+		Spread: 1c112
 		Versus:
 			none: 60
 			wall: 100
@@ -304,17 +304,17 @@ DevBullet:
 	Report: ROCKET1.WAV
 	Projectile: Bullet
 		Blockable: true
-		Speed: 300
+		Speed: 281
 		Inaccuracy: 128
 	Warhead@1Dam: SpreadDamage
 		Damage: 3600
-		Spread: 800
+		Spread: 930
 		Falloff: 100, 0
 		Versus:
 			none: 15
 			wall: 60
 			building: 45
-			wood: 65
+			wood: 60
 			light: 70
 			heavy: 100
 			invulnerable: 0
@@ -513,7 +513,7 @@ DeviatorMissile:
 		ValidRelationships: Enemy, Neutral
 	Warhead@Trigger: GrantExternalCondition
 		Condition: unitCapturated
-		Duration: 405
+		Duration: 375
 
 DeviatorGas:
 	Warhead@5OwnerChange: ChangeOwner
@@ -559,7 +559,7 @@ Sound:
 			light: 100
 			heavy: 60
 			invulnerable: 0
-			cy: 70
+			cy: 50
 			harvester: 100
 		DamageTypes: Prone50Percent, TriggerProne, SoundDeath
 	Warhead@3Concrete: DamagesConcrete
@@ -1047,7 +1047,7 @@ SniperRifle:
 	ReloadDelay: 120
 	AfterFireSound: audio/EBoD_infantry_reload_low.wav
 	AfterFireSoundDelay: 50
-	Range: 5c430
+	Range: 5c112
 	ValidTargets: Ground, Infantry
 	InvalidTargets: Vehicle, Tank, Structure, Wall, Husk, Creep
 	Projectile: InstantHit
@@ -1079,7 +1079,7 @@ flamethrower:
 		TrailInterval: 0
 		TrailDelay: 1
 	Warhead@1damage: SpreadDamage
-		Spread: 1c250
+		Spread: 1c450
 		Damage: 2000
 		Falloff: 100, 0
 		Versus:
@@ -1087,7 +1087,7 @@ flamethrower:
 			wall: 30
 			building: 80
 			wood: 100
-			light: 60
+			light: 65
 			heavy: 32
 			invulnerable: 0
 			cy: 25
