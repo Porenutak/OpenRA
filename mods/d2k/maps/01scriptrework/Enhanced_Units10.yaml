@@ -591,7 +591,7 @@ quad.heavy:
 	Buildable:
 		Prerequisites: upgrade.light, ~light.heavy_quad, ~techlevel.medium
 		BuildPaletteOrder: 25
-		BuildDuration: 360
+		BuildDuration: 364
 		Description: Heavy Missile Scout\n  Excellent vs Light Armor\n Modest vs Tanks\n Weak vs  Moving Targets, Infantry
 	Valued:
 		Cost: 450
@@ -602,7 +602,7 @@ quad.heavy:
 	Mobile:
 		Locomotor: light_vehicle
 		TurnSpeed: 40
-		Speed: 91
+		Speed: 89
 	RevealsShroud:
 		Range: 6c0
 	Armament:

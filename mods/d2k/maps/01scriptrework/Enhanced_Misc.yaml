@@ -1025,7 +1025,7 @@ dummygas08:
 	MapEditorData:
 		Categories: Husk
 	Targetable:
-		TargetTypes: Ground, Structure, Husk
+		TargetTypes: Ground, Husk
 		RequiresForceFire: true
 	Building:
 		Dimensions: 1,1

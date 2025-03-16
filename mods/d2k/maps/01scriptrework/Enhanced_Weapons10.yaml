@@ -60,7 +60,8 @@ HMG:
 		Damage: 2160
 		Spread: 700
 		Versus:
-			building: 30
+			building: 25
+			wood: 45
 			light: 30
 			invulnerable: 0
 	Warhead@3Concrete: DamagesConcrete
@@ -236,7 +237,7 @@ Fremen_wormrider2:
 		InaccuracyType: Absolute
 	Warhead@1Dam: SpreadDamage
 		Damage: 3510
-		Spread: 700
+		Spread: 950
 		Versus:
 			none: 80
 			wall: 50
@@ -313,8 +314,8 @@ DevBullet:
 		Versus:
 			none: 15
 			wall: 60
-			building: 45
-			wood: 60
+			building: 40
+			wood: 55
 			light: 70
 			heavy: 100
 			invulnerable: 0
@@ -360,7 +361,7 @@ Rocket:
 
 Rocket_heavy:
 	Inherits: Rocket
-	ReloadDelay: 70
+	ReloadDelay: 72
 	Burst: 3
 	BurstDelays: 7
 	Range: 4c0
@@ -713,7 +714,7 @@ grenade:
 			none: 125
 			building: 80
 			wall: 50
-			wood: 100
+			wood: 70
 			light: 30
 			heavy: 20
 			invulnerable: 0

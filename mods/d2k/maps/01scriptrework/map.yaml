@@ -554,6 +554,14 @@ Actors:
 		Owner: Multi0
 		Facing: 384
 		Location: 23,19
+	Actor130: mcv
+		Owner: Creeps
+		Facing: 384
+		Location: 22,14
+	Actor131: deviator
+		Owner: Multi0
+		Facing: 384
+		Location: 15,13
 
 Rules: Enhanced_Units10.yaml, Enhanced_Starport10.yaml, Enhanced_Structures10.yaml, Enhanced_World10.yaml, Enhanced_Misc.yaml, Enhanced_AI.yaml, Enhanced_palettes.yaml, NewTiles.yaml, NeutralBuildings.yaml
 

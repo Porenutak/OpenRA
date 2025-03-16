@@ -2199,7 +2199,7 @@ upgrade.research:
 		Name: Research center ungrade
 	Buildable:
 		BuildPaletteOrder: 50
-		Prerequisites: ~!choosefaction, ~research_centre.smuggler, ~!factions.standard, ~techlevel.high
+		Prerequisites: ~!choosefaction, ~research_centre.smuggler, ~factions.subfaction_allowed, factions.merged, ~techlevel.high
 		Queue: Upgrade
 		BuildLimit: 1
 		BuildDuration: 1000
