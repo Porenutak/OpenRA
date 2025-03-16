@@ -60,8 +60,7 @@ HMG:
 		Damage: 2160
 		Spread: 700
 		Versus:
-			building: 25
-			wood: 45
+			wood: 43
 			light: 30
 			invulnerable: 0
 	Warhead@3Concrete: DamagesConcrete
@@ -352,7 +351,7 @@ Rocket:
 			none: 25
 			wall: 60
 			building: 50
-			wood: 65
+			wood: 70
 			light: 100
 			heavy: 50
 			invulnerable: 0
