@@ -463,7 +463,7 @@ trike:
 		RequiresCondition: ignore-creeps
 	Buildable:
 		Prerequisites: ~light.trike
-		BuildDuration: 225
+		BuildDuration: 255
 	AutoTarget:
 		MinimumScanTimeInterval: 0
 		MaximumScanTimeInterval: 0
@@ -475,12 +475,10 @@ trike:
 		HP: 9000
 	Armor:
 		Type: wood
-	RevealsShroud:
-		Range: 7c0
 	Mobile:
 		Locomotor: light_vehicle
 		TurnSpeed: 40
-		Speed: 128
+		Speed: 118
 	Armament@damage:
 		FireDelay: 0
 		Weapon: HMG
@@ -513,12 +511,10 @@ raider:
 		RequiresCondition: ignore-creeps
 	Buildable:
 		Prerequisites: ~light.raider
-		BuildDuration: 250
+		BuildDuration: 275
 		Description: Fast scout \n Strong vs Infantry\n  Weak vs Tanks, Rockets \n Armor: none
 	Valued:
 		Cost: 350
-	RevealsShroud:
-		Range: 7c0
 	Tooltip:
 		Name: Raider Trike
 	UpdatesPlayerStatistics:
@@ -530,7 +526,7 @@ raider:
 	Mobile:
 		Locomotor: light_vehicle
 		TurnSpeed: 40
-		Speed: 145
+		Speed: 135
 	WithMuzzleOverlay:
 	AutoTarget:
 		MinimumScanTimeInterval: 0
@@ -561,7 +557,7 @@ quad:
 	Buildable:
 		Prerequisites: upgrade.light, ~light.quad, ~techlevel.medium
 		BuildDurationModifier: 100
-		BuildDuration: 325
+		BuildDuration: 340
 		Description: Missile Scout\n  Excellent vs Light Armor\n Modest vs Tanks\n Weak vs  Moving Targets, Infantry
 	Valued:
 		Cost: 400
@@ -621,17 +617,15 @@ stealth_raider:
 	Buildable:
 		Prerequisites: ~light.ordos, upgrade.light, high_tech_factory, ~techlevel.high
 		BuildPaletteOrder: 30
-		BuildDuration: 275
+		BuildDuration: 300
 		Description: Invisible Raider\n Can be detected by Infantry (1 cell), Turrets(2 cells), Outpost (5 cells)
 	Valued:
 		Cost: 400
 	Mobile:
 		TurnSpeed: 32
-		Speed: 140
+		Speed: 135
 	Health:
 		HP: 10000
-	RevealsShroud:
-		Range: 6c0
 	UpdatesPlayerStatistics:
 		AddToArmyValue: true
 	Cloak:
