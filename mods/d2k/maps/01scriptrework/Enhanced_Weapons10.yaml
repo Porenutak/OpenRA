@@ -1154,7 +1154,7 @@ chaosbomb_from_husk:
 	Warhead@extenalcondition: GrantExternalCondition
 		Condition: chaos_bomb
 		Duration: 300
-		Range: 5c0
+		Range: 3c0
 	Warhead@3Eff: CreateEffect
 		Explosions: gascloud
 		ExplosionPalette: player
