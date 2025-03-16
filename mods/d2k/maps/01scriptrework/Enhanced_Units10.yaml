@@ -1239,8 +1239,6 @@ carryall.controllable:
 	-Interactable:
 	Selectable:
 		Priority: 5
-	Health:
-		HP: 11000
 	AutoCarryall:
 		AutoCarryCondition: !manual
 		CarryCondition: loaded
@@ -1353,7 +1351,7 @@ ornithopter.bomber:
 		MinAirborneAltitude: 500
 		AirborneCondition: airborne
 		CruiseAltitude: 2500
-		Speed: 170
+		Speed: 165
 	Targetable@AIRBORNE:
 		TargetTypes: Air
 		RequiresCondition: airborne

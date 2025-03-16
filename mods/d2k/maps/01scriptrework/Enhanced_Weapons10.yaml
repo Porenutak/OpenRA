@@ -185,7 +185,7 @@ Fremen_wormrider2:
 		InaccuracyType: PerCellIncrement
 	Warhead@1Dam: SpreadDamage
 		Damage: 3240
-		Spread: 925
+		Spread: 1c0
 		Falloff: 100, 0
 		Versus:
 			none: 40
@@ -1154,7 +1154,7 @@ chaosbomb4:
 		-Image: BOMBS
 		Shadow: false
 	Warhead@extenalcondition: GrantExternalCondition
-		Range: 6c0
+		Range: 5c0
 
 chaosbomb_from_husk:
 	Warhead@extenalcondition: GrantExternalCondition
