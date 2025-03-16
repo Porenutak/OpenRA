@@ -200,9 +200,9 @@ spice_sifter:
 	Tooltip:
 		Name: Spice sifter
 	TooltipDescription:
-		Description: Absorbs Spice obtained by the wind flow. Provides Passive income
+		Description: Absorbs Spice obtained by the wind flow. Provides Passive income equivalent to 1 harvester
 	CashTrickler:
-		Interval: 300
+		Interval: 330
 		Amount: 200
 		PauseOnCondition: lowpower || disabled
 	CashTricklerBar:
@@ -350,12 +350,12 @@ mining_rig:
 	Tooltip:
 		Name: Mining rig
 	TooltipDescription:
-		Description: Provides passive income
+		Description: Provides small passive income. Can by rebuild when destroyed.
 		ValidRelationships: none
 	Health:
 		HP: 20000
 	CashTrickler:
-		Amount: 25
+		Amount: 15
 		RequiresCondition: enabled
 	GrantConditionOnCombatantOwner:
 		Condition: enabled
