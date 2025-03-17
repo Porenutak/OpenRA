@@ -655,7 +655,7 @@ light_factory:
 	Inherits@damageVFX: ^DamagedBuildingsVFX
 	Buildable:
 		Prerequisites: refinery
-		BuildDuration: 532
+		BuildDuration: 460
 	GrantConditionOnPrerequisite:
 		Condition: ArmorUpgrade
 		Prerequisites: upgrade.conyard
