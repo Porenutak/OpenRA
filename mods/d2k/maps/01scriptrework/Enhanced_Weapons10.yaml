@@ -1,7 +1,7 @@
 
 ^MG:
 	ReloadDelay: 36
-	Range: 3c112
+	Range: 3c224
 	Report: MGUN2.WAV
 	Projectile: InstantHit
 		Inaccuracy: 128
@@ -308,13 +308,13 @@ DevBullet:
 		Inaccuracy: 128
 	Warhead@1Dam: SpreadDamage
 		Damage: 3600
-		Spread: 930
+		Spread: 900
 		Falloff: 100, 0
 		Versus:
 			none: 15
 			wall: 80
 			building: 40
-			wood: 55
+			wood: 65
 			light: 70
 			heavy: 100
 			invulnerable: 0

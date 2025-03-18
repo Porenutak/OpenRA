@@ -929,18 +929,19 @@ crawler.husk:
 
 deviator.husk:
 	Inherits: ^VehicleHusk
-	ProximityExternalCondition@isHuskAlive:
-		Condition: devation_husk_still_alive
-		Range: 2c112
-		MaximumVerticalOffset: 1c0
-		AffectsParent: true
-		ValidRelationships: Ally, Neutral, Enemy
 	Tooltip:
 		Name: Deviator (Destroyed)
 	TransformOnCapture:
 		IntoActor: deviator
 	InfiltrateForTransform:
 		IntoActor: deviator
+	ExternalCondition@timedCondition:
+		Condition: gas_leak_timer
+	FireWarheads:
+		Weapons: DeviatorGas
+		StartCooldown: 75
+		Interval: 25
+		RequiresCondition: gas_leak_timer
 	WithIdleOverlay@Burns:
 		Image: smoke_m
 		-StartSequence:
@@ -951,58 +952,17 @@ deviator.husk:
 
 
 
-^dummygas:
+dummy.gas_leak:
 	Inherits: ^Dummy
-	ExternalCondition@huskCheck:
-		Condition: devation_husk_still_alive
-	FireWarheadsOnDeath:
-		Weapon: DeviatorGas
-		EmptyWeapon: DeviatorGas
-		RequiresCondition: devation_husk_still_alive
+	ProximityExternalCondition@isHuskAlive:
+		Condition: gas_leak_timer
+		Range: 1c112
+		MaximumVerticalOffset: 1c0
+		AffectsParent: true
+		ValidRelationships: Ally
 	KillsSelf:
-		Delay: 10
-	HitShape:
-		Type: Circle
-			Radius: 16
-	Health:
-		HP: 1
+		Delay: 380
 
-dummygas01:
-	Inherits: ^dummygas
-	KillsSelf:
-		Delay: 100
-
-dummygas02:
-	Inherits: ^dummygas
-	KillsSelf:
-		Delay: 130
-
-dummygas03:
-	Inherits: ^dummygas
-	KillsSelf:
-		Delay: 160
-
-dummygas04:
-	Inherits: ^dummygas
-	KillsSelf:
-		Delay: 200
-
-dummygas05:
-	Inherits: ^dummygas
-	KillsSelf:
-		Delay: 250
-dummygas06:
-	Inherits: ^dummygas
-	KillsSelf:
-		Delay: 300
-dummygas07:
-	Inherits: ^dummygas
-	KillsSelf:
-		Delay: 350
-dummygas08:
-	Inherits: ^dummygas
-	KillsSelf:
-		Delay: 390
 
 ^BuildingHusk:
 	Inherits@1: ^SpriteActor

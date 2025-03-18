@@ -140,8 +140,8 @@ Actors:
 		Owner: Creeps
 		Location: 31,4
 		SubCell: 3
-		Facing: 384
 		Stance: Defend
+		Facing: 384
 	Actor59: light_inf
 		Owner: Creeps
 		Location: 31,4
@@ -182,14 +182,6 @@ Actors:
 		Owner: Creeps
 		Facing: 384
 		Location: 20,28
-	Actor67: deviator.husk
-		Owner: Multi0
-		Facing: 384
-		Location: 21,28
-	Actor68: deviator.husk
-		Owner: Multi0
-		Facing: 384
-		Location: 22,28
 	Actor69: engineer
 		Owner: Multi0
 		Facing: 384
@@ -225,21 +217,6 @@ Actors:
 		Facing: 384
 		Location: 25,27
 		SubCell: 3
-	Actor95: light_inf
-		Owner: Neutral
-		Facing: 384
-		Location: 24,2
-		SubCell: 3
-	Actor118: light_inf
-		Owner: Neutral
-		Facing: 384
-		Location: 22,2
-		SubCell: 3
-	Actor119: light_inf
-		Owner: Neutral
-		Facing: 384
-		Location: 24,2
-		SubCell: 1
 	Actor124: light_inf
 		Owner: Neutral
 		Facing: 384
@@ -524,8 +501,8 @@ Actors:
 		Location: 25,20
 	Actor114: raider
 		Owner: Multi0
-		Facing: 384
 		Location: 25,18
+		Facing: 384
 	Actor115: stealth_raider
 		Owner: Multi0
 		Facing: 384
@@ -562,6 +539,80 @@ Actors:
 		Owner: Multi0
 		Facing: 384
 		Location: 15,13
+	Actor151: deviator
+		Owner: Creeps
+		Facing: 384
+		Location: 5,4
+	Actor152: combat_tank_a
+		Owner: Multi0
+		Facing: 384
+		Location: 3,14
+	Actor153: combat_tank_a
+		Owner: Multi0
+		Facing: 384
+		Location: 4,14
+	Actor154: combat_tank_a
+		Owner: Multi0
+		Facing: 384
+		Location: 5,14
+	Actor155: combat_tank_a
+		Owner: Multi0
+		Facing: 384
+		Location: 6,14
+	Actor156: combat_tank_a
+		Owner: Multi0
+		Facing: 384
+		Location: 7,14
+	Actor118: light_inf
+		Facing: 384
+		Owner: Creeps
+		Location: 31,17
+		SubCell: 3
+	Actor119: light_inf
+		Facing: 384
+		Owner: Creeps
+		Location: 31,17
+		SubCell: 1
+	Actor132: light_inf
+		Facing: 384
+		Owner: Creeps
+		Location: 31,17
+		SubCell: 2
+	Actor133: light_inf
+		Facing: 384
+		Owner: Creeps
+		Location: 31,17
+		SubCell: 4
+	Actor134: light_inf
+		Facing: 384
+		Owner: Creeps
+		Location: 31,17
+		SubCell: 5
+	Actor135: light_inf
+		Facing: 384
+		Owner: Creeps
+		Location: 31,18
+		SubCell: 3
+	Actor136: light_inf
+		Facing: 384
+		Owner: Creeps
+		Location: 31,18
+		SubCell: 1
+	Actor137: light_inf
+		Facing: 384
+		Owner: Creeps
+		Location: 31,18
+		SubCell: 2
+	Actor138: light_inf
+		Facing: 384
+		Owner: Creeps
+		Location: 31,18
+		SubCell: 4
+	Actor150: light_inf
+		Facing: 384
+		Owner: Creeps
+		Location: 31,18
+		SubCell: 5
 
 Rules: Enhanced_Units10.yaml, Enhanced_Starport10.yaml, Enhanced_Structures10.yaml, Enhanced_World10.yaml, Enhanced_Misc.yaml, Enhanced_AI.yaml, Enhanced_palettes.yaml, NewTiles.yaml, NeutralBuildings.yaml
 

@@ -463,7 +463,7 @@ trike:
 		RequiresCondition: ignore-creeps
 	Buildable:
 		Prerequisites: ~light.trike
-		BuildDuration: 250
+		BuildDuration: 230
 	AutoTarget:
 		MinimumScanTimeInterval: 0
 		MaximumScanTimeInterval: 0
@@ -511,7 +511,7 @@ raider:
 		RequiresCondition: ignore-creeps
 	Buildable:
 		Prerequisites: ~light.raider
-		BuildDuration: 275
+		BuildDuration: 255
 		Description: Fast scout \n Strong vs Infantry\n  Weak vs Tanks, Rockets \n Armor: none
 	Valued:
 		Cost: 350
@@ -557,7 +557,7 @@ quad:
 	Buildable:
 		Prerequisites: upgrade.light, ~light.quad, ~techlevel.medium
 		BuildDurationModifier: 100
-		BuildDuration: 340
+		BuildDuration: 325
 		Description: Missile Scout\n  Excellent vs Light Armor\n Modest vs Tanks\n Weak vs  Moving Targets, Infantry
 	Valued:
 		Cost: 400
@@ -922,27 +922,12 @@ deviator:
 		Range: 0c512, 4c512
 	SpawnActorOnDeath:
 		RequiresCondition: !worm_attack
+		SpawnAfterDefeat: false
+		OwnerType: Victim
 	SpawnActorOnDeath@dummygas1:
-		Actor: dummygas01
-		Offset: 0, 0
-	SpawnActorOnDeath@dummygas2:
-		Actor: dummygas02
-		Offset: 0, 0
-	SpawnActorOnDeath@dummygas3:
-		Actor: dummygas03
+		Actor: dummy.gas_leak
 		SpawnAfterDefeat: false
-	SpawnActorOnDeath@dummygas4:
-		Actor: dummygas04
-		SpawnAfterDefeat: false
-	SpawnActorOnDeath@dummygas5:
-		Actor: dummygas05
-		SpawnAfterDefeat: false
-	SpawnActorOnDeath@dummygas6:
-		Actor: dummygas06
-		SpawnAfterDefeat: false
-	SpawnActorOnDeath@dummygas7:
-		Actor: dummygas07
-		SpawnAfterDefeat: false
+		OwnerType: Victim
 
 ^combat_tank:
 	GrantRandomCondition:
@@ -965,7 +950,7 @@ deviator:
 	Armor:
 		Type: heavy
 	Mobile:
-		Speed: 75
+		Speed: 72
 		TurnSpeed: 20
 	RevealsShroud:
 		Range: 5c0
@@ -1033,7 +1018,7 @@ combat_tank_h:
 	Tooltip:
 		Name: Harkonnen Combat Tank
 	Mobile:
-		Speed: 64
+		Speed: 62
 		TurnSpeed: 18
 		Locomotor: tank_harkonnen
 	SpeedMultiplier@HEAVYDAMAGE:
@@ -1077,7 +1062,7 @@ combat_tank_o:
 	Tooltip:
 		Name: Ordos Combat Tank
 	Mobile:
-		Speed: 85
+		Speed: 82
 		TurnSpeed: 22
 	Health:
 		HP: 19000
@@ -1110,7 +1095,7 @@ combat_tank_cheap:
 	Tooltip:
 		Name: Generic Combat Tank
 	Mobile:
-		Speed: 71
+		Speed: 69
 		Locomotor: tank
 	Health:
 		HP: 20000
@@ -1146,7 +1131,7 @@ combat_tank_corrino:
 	Health:
 		HP: 25000
 	Mobile:
-		Speed: 67
+		Speed: 64
 		Locomotor: tank_harkonnen
 	Armament:
 		Weapon: 80mm_corrino
@@ -1176,7 +1161,7 @@ carryall.reinforce:
 	Tooltip:
 		Name: Carryall
 	Health:
-		HP: 15000
+		HP: 16000
 	Armor:
 		Type: light
 	Cloak:
