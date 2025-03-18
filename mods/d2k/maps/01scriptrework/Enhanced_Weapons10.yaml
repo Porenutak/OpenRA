@@ -17,7 +17,7 @@
 			building: 25
 			wood: 50
 			light: 30
-			heavy: 13
+			heavy: 12
 			invulnerable: 0
 			cy: 17
 			harvester: 20
@@ -180,7 +180,7 @@ Fremen_wormrider2:
 
 80mm_A:
 	Inherits: ^Cannon
-	Range: 5c112
+	Range: 5c0
 
 80mm_H:
 	Inherits: ^Cannon
@@ -192,8 +192,7 @@ Fremen_wormrider2:
 
 80mm_cheap:
 	Inherits: ^Cannon
-	ReloadDelay: 68
-	Range: 4c112
+	ReloadDelay: 65
 
 
 80mm_corrino:
@@ -308,7 +307,7 @@ DevBullet:
 		Inaccuracy: 128
 	Warhead@1Dam: SpreadDamage
 		Damage: 3600
-		Spread: 900
+		Spread: 930
 		Falloff: 100, 0
 		Versus:
 			none: 15
@@ -398,7 +397,7 @@ Rocket_heavy:
 
 mtank_pri:
 	Inherits: ^Missile
-	ReloadDelay: 145
+	ReloadDelay: 150
 	Burst: 2
 	BurstDelays: 30
 	Range: 8c0
@@ -444,16 +443,16 @@ clusterMissile:
 		ContrailStartColor: 181616C6
 	Warhead@1Dam: SpreadDamage
 		Damage: 3950
-		Spread: 1c800
+		Spread: 2c0
 		Versus:
 			none: 80
 			wall: 70
 			building: 80
-			wood: 80
+			wood: 60
 			light: 80
 			heavy: 50
 			invulnerable: 0
-			cy: 30
+			cy: 40
 			harvester: 60
 	Warhead@3Eff: CreateEffect
 		Explosions: sand, heavy_piff, med_explosion, tiny_explosion

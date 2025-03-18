@@ -463,7 +463,7 @@ trike:
 		RequiresCondition: ignore-creeps
 	Buildable:
 		Prerequisites: ~light.trike
-		BuildDuration: 230
+		BuildDuration: 225
 	AutoTarget:
 		MinimumScanTimeInterval: 0
 		MaximumScanTimeInterval: 0
@@ -617,7 +617,7 @@ stealth_raider:
 	Buildable:
 		Prerequisites: ~light.ordos, upgrade.light, high_tech_factory, ~techlevel.high
 		BuildPaletteOrder: 30
-		BuildDuration: 300
+		BuildDuration: 275
 		Description: Invisible Raider\n Can be detected by Infantry (1 cell), Turrets(2 cells), Outpost (5 cells)
 	Valued:
 		Cost: 400
@@ -667,7 +667,7 @@ siege_tank:
 		Speed: 40
 		TurnSpeed: 12
 	RevealsShroud:
-		Range: 5c512
+		Range: 6c0
 	Turreted:
 		TurnSpeed: 12
 		Offset: 0,0,-32
@@ -732,7 +732,7 @@ missile_tank:
 	Armor:
 		Type: wood
 	RevealsShroud:
-		Range: 5c856
+		Range: 6c0
 	Armament:
 		Weapon: mtank_pri
 		LocalOffset: -128,128,171, -128,-128,171
@@ -908,7 +908,7 @@ deviator:
 	Armor:
 		Type: light
 	RevealsShroud:
-		Range: 5c112
+		Range: 5c512
 	-RevealOnFire:
 	Armament:
 		Weapon: DeviatorMissile
@@ -1019,7 +1019,6 @@ combat_tank_h:
 		Name: Harkonnen Combat Tank
 	Mobile:
 		Speed: 62
-		TurnSpeed: 18
 		Locomotor: tank_harkonnen
 	SpeedMultiplier@HEAVYDAMAGE:
 		Modifier: 85
@@ -1087,15 +1086,15 @@ combat_tank_o:
 combat_tank_cheap:
 	Inherits: ^combat_tank
 	Buildable:
-		BuildDuration: 400
+		BuildDuration: 399
 		Prerequisites: ~factions.subfaction_allowed, ~heavy.cheap_tank
 		Description: Standard tank licensed by various manufacturers \n Modest speed, Low HP, Low rate of fire \n Cheap, faster building speed
 	Valued:
-		Cost: 650
+		Cost: 630
 	Tooltip:
 		Name: Generic Combat Tank
 	Mobile:
-		Speed: 69
+		Speed: 75
 		Locomotor: tank
 	Health:
 		HP: 20000
@@ -1905,12 +1904,12 @@ assassin:
 	Inherits: ^Infantry
 	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
 	Valued:
-		Cost: 150
+		Cost: 160
 	Buildable:
 		Queue: Infantry
 		BuildPaletteOrder: 70
 		Prerequisites: ~!factions.standard, ~barracks.harkonnen, upgrade.barracks, high_tech_factory, ~techlevel.high
-		BuildDuration: 140
+		BuildDuration: 160
 		BuildDurationModifier: 60
 		Description: Infantry with long range rifle\n  Attacks only infantry\n  Inaccuracy is high at long range \n Can hide on Rough terrain
 	Tooltip:
@@ -2430,7 +2429,7 @@ bombardment_tank:
 		BuildPaletteOrder: 105
 		Description: Heavy missile barrage affecting large area. \n Strong VS Infantry, Light armor \n Weak VS moving targets, tanks \n Ability: can fire 4 missile before reload \n High inaccuraty
 	Health:
-		HP: 21000
+		HP: 27000
 	Valued:
 		Cost: 1050
 	Tooltip:
@@ -2438,7 +2437,7 @@ bombardment_tank:
 	Armor:
 		Type: light
 	Mobile:
-		Speed: 43
+		Speed: 45
 		TurnSpeed: 17
 	RevealsShroud:
 		Range: 5c512

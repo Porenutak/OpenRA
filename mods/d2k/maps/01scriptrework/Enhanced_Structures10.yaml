@@ -373,7 +373,7 @@ wind_trap:
 barracks:
 	Inherits@damageVFX: ^DamagedBuildingsVFX
 	Buildable:
-		BuildDuration: 315
+		BuildDuration: 295
 	Valued:
 		Cost: 400
 	Health:
@@ -2008,8 +2008,8 @@ palace.corrino:
 	ProvidesPrerequisite@buildingname:
 	ProduceActorPower@releasethesardaukars:
 		Name: Rally Sardaukars
-		Description: Speed up Sardaukars production for short period of time \n Boost sardaukar morale and speed \n
-		Actors: dummy.sardaukar_production_speed_up
+		Description:  \n Boost sardaukar morale and speed \n Produce new sardaukars from palace \n Speed up Sardaukars production for short period of time
+		Actors: dummy.sardaukar_production_speed_up, mpsardaukar.level2, mpsardaukar.level2, mpsardaukar.level2, mpsardaukar.level2, mpsardaukar.level2, mpsardaukar.level2
 		Type: Saudarkar
 		ChargeInterval: 5500
 		Icon: sardaukarVeterancy
@@ -2119,7 +2119,7 @@ fremen_sietch:
 upgrade.conyard:
 	Buildable:
 		BuildDuration: 1200
-		Prerequisites: construction_yard, outpost, ~!choosefaction
+		Prerequisites: construction_yard, ~!choosefaction
 		Description: UPGRADE BUILDINGS ARMOR!!! \n Unlock Rocket Turret
 	Valued:
 		Cost: 1000

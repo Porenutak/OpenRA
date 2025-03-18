@@ -605,8 +605,8 @@ Player:
 		ConstructionYardTypes: construction_yard
 		IgnoredEnemyTargetTypes: Creep, Cliff, Air, Air_support, CapturedUnit
 		ProtectUnitScanRadius: 20
-		AssignRolesInterval: 75
-		AttackForceInterval: 150
+		AssignRolesInterval: 50
+		AttackForceInterval: 25
 		RushInterval: 1500
 		AirUnitsTypes: ornithopter
 		ProtectionTypes: mcv,engineer, harvester, construction_yard, wind_trap, barracks, refinery, silo, light_factory, heavy_factory, outpost, starport, medium_gun_turret, large_gun_turret, repair_pad, high_tech_factory, research_centre, palace, conyard.atreides, conyard.harkonnen, conyard.ordos, mcv.starport, harvester.starport
@@ -637,7 +637,7 @@ Player:
 		ProtectUnitScanRadius: 30
 		IdleScanRadius: 20
 		RushInterval: 1500
-		AssignRolesInterval: 70
+		AssignRolesInterval: 50
 		AirUnitsTypes: ornithopter
 		ProtectionTypes: mcv, harvester,engineer, concretea, concreteb, construction_yard, wind_trap, barracks, refinery, silo, light_factory, heavy_factory, outpost, starport, medium_gun_turret, large_gun_turret, repair_pad, high_tech_factory, research_centre, palace, conyard.atreides, conyard.harkonnen, conyard.ordos, mcv.starport, harvester.starport
 	UnitBuilderBotModule@omnius:

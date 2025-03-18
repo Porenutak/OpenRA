@@ -613,6 +613,43 @@ Actors:
 		Owner: Creeps
 		Location: 31,18
 		SubCell: 5
+	Actor157: light_inf
+		Owner: Multi0
+		Facing: 384
+		Location: 8,18
+		SubCell: 3
+	Actor158: light_inf
+		Owner: Multi0
+		Facing: 384
+		Location: 8,18
+		SubCell: 1
+	Actor159: light_inf
+		Owner: Multi0
+		Facing: 384
+		Location: 8,18
+		SubCell: 2
+	Actor160: light_inf
+		Owner: Multi0
+		Facing: 384
+		Location: 8,18
+		SubCell: 4
+	Actor161: light_inf
+		Owner: Multi0
+		Facing: 384
+		Location: 8,18
+		SubCell: 5
+	Actor188: combat_tank_o
+		Owner: Multi0
+		Facing: 384
+		Location: 7,18
+	Actor189: combat_tank_h
+		Owner: Multi0
+		Facing: 384
+		Location: 7,17
+	Actor190: combat_tank_a
+		Owner: Multi0
+		Facing: 384
+		Location: 7,19
 
 Rules: Enhanced_Units10.yaml, Enhanced_Starport10.yaml, Enhanced_Structures10.yaml, Enhanced_World10.yaml, Enhanced_Misc.yaml, Enhanced_AI.yaml, Enhanced_palettes.yaml, NewTiles.yaml, NeutralBuildings.yaml
 
