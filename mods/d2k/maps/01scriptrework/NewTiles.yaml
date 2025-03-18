@@ -21,7 +21,9 @@
 		Pieces: 1, 4
 		Range: 0c512, 2c0
 
-
+^UndestroyableTile:
+	RenderSprites:
+		Palette: terrain
 
 rockpass01_left:
 	Inherits: ^UndestroyableTile

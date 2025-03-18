@@ -1127,6 +1127,9 @@ function EarlyGameTrike (botPlayer)
 		return
 	end
 	--Media.Debug("early trike for:"..botPlayer.Name)
+	if botPlayer.GetActorsByType("heavy_factory")[1] ~= nil then
+		return
+	end
 	botPlayer.Build(TrikeBuild)
 end
 function EarlyGameTanks (botPlayer)
@@ -1135,6 +1138,9 @@ function EarlyGameTanks (botPlayer)
 		Trigger.AfterDelay(100, function()
 			EarlyGameTanks(botPlayer)
 		end)
+		return
+	end
+	if botPlayer.GetActorsByType("light_factory")[1] ~= nil then
 		return
 	end
 	--Media.Debug("early tanks for:"..botPlayer.Name)
