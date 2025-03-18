@@ -1114,7 +1114,7 @@ function EarlyGameInfantry (botPlayer)
 		end)
 		return
 	end
-	Media.Debug("early infantry for:"..botPlayer.Name)
+	--Media.Debug("early infantry for:"..botPlayer.Name)
 	botPlayer.Build(InfantryBuild)
 end
 
@@ -1126,7 +1126,7 @@ function EarlyGameTrike (botPlayer)
 		end)
 		return
 	end
-	Media.Debug("early trike for:"..botPlayer.Name)
+	--Media.Debug("early trike for:"..botPlayer.Name)
 	botPlayer.Build(TrikeBuild)
 end
 function EarlyGameTanks (botPlayer)
@@ -1137,7 +1137,7 @@ function EarlyGameTanks (botPlayer)
 		end)
 		return
 	end
-	Media.Debug("early tanks for:"..botPlayer.Name)
+	--Media.Debug("early tanks for:"..botPlayer.Name)
 	if botPlayer.HasPrerequisites({"heavy.harkonnen_combat"}) then
 		botPlayer.Build(VehicleBuild["harkonnen"])
 	end
