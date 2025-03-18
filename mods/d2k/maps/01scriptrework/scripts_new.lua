@@ -221,7 +221,9 @@ WorldLoaded = function()
 	do
 		IsAnyBotsHere = true
 		FindSaboteur(bot)
+		BotEarlyGame(bot);
 	end
+	-- bot early building queues
 	--Production trriggers - Starport, AI Engi, AI Repairing
 	Trigger.OnAnyProduction( function(producer, produced, productionQueue)
 			local actor = produced.Type
@@ -1073,4 +1075,82 @@ function SandStormInit()
 		SandStormEnabled = true
 		SandStormTimer = Utils.RandomInteger(SandStormInterval[1],SandStormInterval[2])
 	end)
+end
+
+InfantryBuild = {"light_inf","light_inf","light_inf","light_inf","light_inf",
+"light_inf","light_inf","light_inf","light_inf","light_inf",
+"light_inf","light_inf","light_inf","light_inf","light_inf",
+"light_inf","light_inf","light_inf","light_inf","light_inf",
+"light_inf","light_inf","light_inf","light_inf","light_inf",
+"light_inf","light_inf","light_inf","light_inf","light_inf"}
+
+TrikeBuild = {"trike","trike","trike","trike","trike","trike"}
+
+VehicleBuild = {}
+VehicleBuild["harkonnen"] = {"combat_tank_h","combat_tank_h","combat_tank_h"}
+VehicleBuild["ordos"] = {"combat_tank_o","combat_tank_o","combat_tank_o"}
+VehicleBuild["atreides"] = {"combat_tank_a","combat_tank_a","combat_tank_a"}
+VehicleBuild["cheap"] = {"combat_tank_cheap","combat_tank_cheap","combat_tank_cheap"}
+VehicleBuild["corrino"] = {"combat_tank_corrino","combat_tank_corrino","combat_tank_corrino"}
+
+function BotEarlyGame(botPlayer)
+	if string.find(botPlayer.Name, "Gladius") then
+		EarlyGameInfantry(botPlayer)
+	end
+	if string.find(botPlayer.Name, "Omnius") then
+		EarlyGameTrike(botPlayer)
+	end
+	if string.find(botPlayer.Name, "Vidious") then
+		EarlyGameTanks(botPlayer)
+	end
+
+end
+
+function EarlyGameInfantry (botPlayer)
+	local barracks = botPlayer.GetActorsByType("barracks")
+	if barracks[1] == nil then
+		Trigger.AfterDelay(100, function()
+			EarlyGameInfantry(botPlayer)
+		end)
+		return
+	end
+	Media.Debug("early infantry for:"..botPlayer.Name)
+	botPlayer.Build(InfantryBuild)
+end
+
+function EarlyGameTrike (botPlayer)
+	local light_factory = botPlayer.GetActorsByType("light_factory")
+	if light_factory[1] == nil then
+		Trigger.AfterDelay(100, function()
+			EarlyGameTrike(botPlayer)
+		end)
+		return
+	end
+	Media.Debug("early trike for:"..botPlayer.Name)
+	botPlayer.Build(TrikeBuild)
+end
+function EarlyGameTanks (botPlayer)
+	local heavy_factory = botPlayer.GetActorsByType("heavy_factory")
+	if heavy_factory[1] == nil then
+		Trigger.AfterDelay(100, function()
+			EarlyGameTanks(botPlayer)
+		end)
+		return
+	end
+	Media.Debug("early tanks for:"..botPlayer.Name)
+	if botPlayer.HasPrerequisites({"heavy.harkonnen_combat"}) then
+		botPlayer.Build(VehicleBuild["harkonnen"])
+	end
+	if botPlayer.HasPrerequisites({"heavy.ordos_combat"}) then
+		botPlayer.Build(VehicleBuild["ordos"])
+	end
+	if botPlayer.HasPrerequisites({"heavy.atreides_combat"}) then
+		botPlayer.Build(VehicleBuild["atreides"])
+	end
+	if botPlayer.HasPrerequisites({"heavy.cheap_tank"}) then
+		botPlayer.Build(VehicleBuild["cheap"])
+	end
+	if botPlayer.HasPrerequisites({"heavy.corrino_combat"}) then
+		botPlayer.Build(VehicleBuild["corrino"])
+	end
 end

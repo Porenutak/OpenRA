@@ -675,7 +675,7 @@ light_factory:
 	RevealsShroud:
 		Range: 5c768
 	Power:
-		Amount: -125
+		Amount: -100
 	FireProjectilesOnDeath:
 		Weapons: Debris2, derbisRock01, Debris4
 		Pieces: 5, 7
