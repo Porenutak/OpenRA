@@ -375,7 +375,7 @@ barracks:
 	Buildable:
 		BuildDuration: 295
 	Valued:
-		Cost: 400
+		Cost: 350
 	Health:
 		HP: 37000
 	GrantConditionOnPrerequisite:
