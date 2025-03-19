@@ -577,8 +577,6 @@ quad:
 		Locomotor: light_vehicle
 		TurnSpeed: 40
 		Speed: 96
-	RevealsShroud:
-		Range: 6c0
 	Armament:
 		Weapon: Rocket
 		LocalOffset: 128,64,64, 128,-64,64
@@ -611,8 +609,6 @@ quad.heavy:
 		Locomotor: light_vehicle
 		TurnSpeed: 40
 		Speed: 89
-	RevealsShroud:
-		Range: 6c0
 	Armament:
 		Weapon: Rocket_heavy
 		LocalOffset: 128,64,64, 128,-64,64, 128,0,0
@@ -675,7 +671,7 @@ siege_tank:
 		Speed: 40
 		TurnSpeed: 12
 	RevealsShroud:
-		Range: 6c0
+		Range: 6c112
 	Turreted:
 		TurnSpeed: 12
 		Offset: 0,0,-32
@@ -740,7 +736,7 @@ missile_tank:
 	Armor:
 		Type: wood
 	RevealsShroud:
-		Range: 6c0
+		Range: 6c112
 	Armament:
 		Weapon: mtank_pri
 		LocalOffset: -128,128,171, -128,-128,171
@@ -962,7 +958,7 @@ deviator:
 		Speed: 72
 		TurnSpeed: 20
 	RevealsShroud:
-		Range: 5c0
+		Range: 5c112
 	Turreted:
 		TurnSpeed: 20
 		RealignDelay: 0

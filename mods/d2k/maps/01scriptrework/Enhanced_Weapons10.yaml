@@ -285,7 +285,7 @@ DevBullet:
 		Speed: 281
 	Warhead@1Dam: SpreadDamage
 		Damage: 7900
-		Spread: 1c112
+		Spread: 1c0
 		Versus:
 			none: 60
 			wall: 100
@@ -537,7 +537,7 @@ Sound:
 		InaccuracyType: PerCellIncrement
 		Duration: 4
 		DamageInterval: 3
-		Width: 1000
+		Width: 1c0
 		Shape: Flat
 		Falloff: 20, 100,  0, 0
 		Range: 0, 6c0, 7c512

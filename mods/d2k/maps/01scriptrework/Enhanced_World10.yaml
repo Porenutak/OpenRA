@@ -72,7 +72,7 @@
 			Dune: 50
 	Locomotor@DEVASTATOR:
 		Name: devastator
-		Crushes: crate, infantry, spicebloom, wall
+		Crushes: crate, infantry, spicebloom, wall, husk
 		TerrainSpeeds:
 			Sand: 100
 			Rock: 100
@@ -84,7 +84,7 @@
 			Dune: 50
 	Locomotor@WORMMP:
 		Name: worm_mp
-		Crushes: crate, worm_dinner, spicebloom, vehicle
+		Crushes: crate, worm_dinner, spicebloom, vehicle, husk
 		TerrainSpeeds:
 			Sand: 100
 			Dune: 100

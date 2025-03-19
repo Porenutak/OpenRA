@@ -572,7 +572,7 @@ FindSaboteur = function(bot)
 			end
 		end
 	end
-	Trigger.AfterDelay(400, function ()
+	Trigger.AfterDelay(500, function ()
 		FindSaboteur(bot) end)
 end
 
