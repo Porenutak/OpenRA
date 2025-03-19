@@ -13,6 +13,8 @@ spicebloom:
 		Types: husk
 	TransformOnCapture:
 		ForceHealthPercentage: 15
+	-HiddenUnderFog:
+	AlwaysVisible:
 	Husk:
 		AllowedTerrain: Sand, Rock, Transition, Concrete, Spice, SpiceSand, SpiceBlobs, Dune
 	FireWarheadsOnDeath:

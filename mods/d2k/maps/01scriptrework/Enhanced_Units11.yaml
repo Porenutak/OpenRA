@@ -519,7 +519,7 @@ raider:
 		RequiresCondition: ignore-creeps
 	Buildable:
 		Prerequisites: ~light.raider
-		BuildDuration: 255
+		BuildDuration: 250
 		Description: Fast scout \n Strong vs Infantry\n  Weak vs Tanks, Rockets \n Armor: none
 	Valued:
 		Cost: 350
@@ -534,7 +534,7 @@ raider:
 	Mobile:
 		Locomotor: light_vehicle
 		TurnSpeed: 40
-		Speed: 135
+		Speed: 141
 	WithMuzzleOverlay:
 	AutoTarget:
 		MinimumScanTimeInterval: 0
@@ -898,6 +898,7 @@ deviator:
 		ValidTargets: Tank, Vehicle
 		InvalidTargets: Infantry, Structure, Defense
 		Priority: 50
+		RequiresCondition: ignore-creeps
 	Valued:
 		Cost: 1000
 	Buildable:
@@ -1461,7 +1462,7 @@ light_inf:
 	Health:
 		HP: 6000
 	Mobile:
-		Speed: 45
+		Speed: 43
 	Armament:
 		Weapon: LMG
 	Armament@chaos_bomb_influence:
@@ -1522,7 +1523,7 @@ trooper:
 	RevealsShroud:
 		Range: 4c768
 	Mobile:
-		Speed: 34
+		Speed: 32
 	Armament:
 		Weapon: Bazooka
 		LocalOffset: 128,0,256
@@ -1634,7 +1635,7 @@ mpsardaukar:
 	Health:
 		HP: 10000
 	Mobile:
-		Speed: 34
+		Speed: 32
 	Armament@PRIMARY:
 		Weapon: M_LMG_H
 	Armament@SECONDARY:
