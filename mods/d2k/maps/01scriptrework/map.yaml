@@ -37,24 +37,9 @@ Actors:
 	Actor0: mpspawn
 		Owner: Neutral
 		Location: 14,19
-	Actor1: barracks
-		Owner: Multi0
-		Location: 23,23
-	Actor2: wind_trap
-		Owner: Multi0
-		Location: 21,23
-	Actor3: wind_trap
-		Owner: Multi0
-		Location: 19,23
 	Actor4: refinery
 		Owner: Multi0
 		Location: 16,23
-	Actor8: starport
-		Owner: Multi0
-		Location: 12,24
-	Actor12: palace
-		Owner: Multi0
-		Location: 8,24
 	Actor18: silo
 		Owner: Multi0
 		Location: 16,21
@@ -166,22 +151,6 @@ Actors:
 		SubCell: 5
 		Facing: 384
 		Stance: Defend
-	Actor63: combat_tank_o.husk
-		Owner: Neutral
-		Facing: 384
-		Location: 17,28
-	Actor64: combat_tank_o.husk
-		Owner: Neutral
-		Facing: 384
-		Location: 18,28
-	Actor65: sonic_tank.husk
-		Owner: Creeps
-		Facing: 384
-		Location: 19,28
-	Actor66: sonic_tank.husk
-		Owner: Creeps
-		Facing: 384
-		Location: 20,28
 	Actor69: engineer
 		Owner: Multi0
 		Facing: 384
@@ -311,123 +280,9 @@ Actors:
 		Owner: Multi0
 		Facing: 384
 		Location: 15,27
-	Actor162: light_inf
-		Owner: Multi0
-		Facing: 384
-		Location: 3,27
-		SubCell: 3
-	Actor163: light_inf
-		Owner: Multi0
-		Facing: 384
-		Location: 5,27
-		SubCell: 3
-	Actor164: light_inf
-		Owner: Multi0
-		Facing: 384
-		Location: 6,27
-		SubCell: 3
-	Actor165: light_inf
-		Owner: Multi0
-		Facing: 384
-		Location: 7,26
-		SubCell: 3
-	Actor166: light_inf
-		Owner: Multi0
-		Facing: 384
-		Location: 4,25
-		SubCell: 3
-	Actor167: light_inf
-		Owner: Multi0
-		Facing: 384
-		Location: 4,25
-		SubCell: 1
-	Actor168: light_inf
-		Owner: Multi0
-		Facing: 384
-		Location: 5,24
-		SubCell: 3
-	Actor169: light_inf
-		Owner: Multi0
-		Facing: 384
-		Location: 3,24
-		SubCell: 3
-	Actor170: light_inf
-		Owner: Multi0
-		Facing: 384
-		Location: 6,24
-		SubCell: 3
-	Actor171: light_inf
-		Owner: Multi0
-		Facing: 384
-		Location: 4,26
-		SubCell: 3
-	Actor172: light_inf
-		Owner: Multi0
-		Facing: 384
-		Location: 5,26
-		SubCell: 3
-	Actor173: light_inf
-		Owner: Multi0
-		Facing: 384
-		Location: 4,25
-		SubCell: 2
-	Actor174: light_inf
-		Owner: Multi0
-		Facing: 384
-		Location: 6,25
-		SubCell: 3
-	Actor175: light_inf
-		Owner: Multi0
-		Facing: 384
-		Location: 6,25
-		SubCell: 1
-	Actor176: light_inf
-		Owner: Multi0
-		Facing: 384
-		Location: 6,25
-		SubCell: 2
-	Actor177: light_inf
-		Owner: Multi0
-		Facing: 384
-		Location: 8,24
-		SubCell: 1
-	Actor178: light_inf
-		Owner: Multi0
-		Facing: 384
-		Location: 6,25
-		SubCell: 4
-	Actor179: light_inf
-		Owner: Multi0
-		Facing: 384
-		Location: 9,27
-		SubCell: 3
-	Actor180: light_inf
-		Owner: Multi0
-		Facing: 384
-		Location: 6,25
-		SubCell: 5
-	Actor181: light_inf
-		Owner: Multi0
-		Facing: 384
-		Location: 4,23
-		SubCell: 3
-	Actor182: light_inf
-		Owner: Multi0
-		Facing: 384
-		Location: 4,23
-		SubCell: 1
-	Actor183: light_inf
-		Owner: Multi0
-		Facing: 384
-		Location: 7,23
-		SubCell: 3
 	Actor185: mining_rig
 		Owner: Neutral
 		Location: 12,10
-	Actor187: radar_station
-		Owner: Neutral
-		Health: 48
-		Location: 10,21
 	Actor184: ecology_station
 		Owner: Neutral
 		Location: 13,20
@@ -491,78 +346,20 @@ Actors:
 		Facing: 384
 		Location: 31,23
 		SubCell: 4
-	Actor111: trike
-		Owner: Multi0
-		Facing: 384
-		Location: 24,21
-	Actor113: trike
-		Owner: Multi0
-		Facing: 384
-		Location: 25,20
-	Actor114: raider
-		Owner: Multi0
-		Location: 25,18
-		Facing: 384
-	Actor115: stealth_raider
-		Owner: Multi0
-		Facing: 384
-		Location: 23,26
-	Actor116: raider
-		Owner: Multi0
-		Facing: 384
-		Location: 24,26
-	Actor117: trike
-		Owner: Multi0
-		Facing: 384
-		Location: 25,26
-	Actor120: trike
-		Owner: Multi0
-		Facing: 384
-		Location: 26,26
-	Actor121: hunter
-		Owner: Multi0
-		Facing: 384
-		Location: 25,19
-	Actor122: hunter
-		Owner: Multi0
-		Facing: 384
-		Location: 22,20
-	Actor123: hunter
-		Owner: Multi0
-		Facing: 384
-		Location: 23,19
 	Actor130: mcv
 		Owner: Creeps
 		Facing: 384
 		Location: 22,14
-	Actor131: deviator
-		Owner: Multi0
-		Facing: 384
-		Location: 15,13
-	Actor151: deviator
-		Owner: Creeps
-		Facing: 384
-		Location: 5,4
 	Actor152: combat_tank_a
 		Owner: Multi0
-		Facing: 384
 		Location: 3,14
+		Facing: 384
+		Stance: Defend
 	Actor153: combat_tank_a
 		Owner: Multi0
-		Facing: 384
 		Location: 4,14
-	Actor154: combat_tank_a
-		Owner: Multi0
 		Facing: 384
-		Location: 5,14
-	Actor155: combat_tank_a
-		Owner: Multi0
-		Facing: 384
-		Location: 6,14
-	Actor156: combat_tank_a
-		Owner: Multi0
-		Facing: 384
-		Location: 7,14
+		Stance: Defend
 	Actor118: light_inf
 		Facing: 384
 		Owner: Creeps
@@ -615,9 +412,9 @@ Actors:
 		SubCell: 5
 	Actor157: light_inf
 		Owner: Multi0
-		Facing: 384
 		Location: 8,18
 		SubCell: 3
+		Facing: 384
 	Actor158: light_inf
 		Owner: Multi0
 		Facing: 384
@@ -630,26 +427,58 @@ Actors:
 		SubCell: 2
 	Actor160: light_inf
 		Owner: Multi0
-		Facing: 384
 		Location: 8,18
 		SubCell: 4
+		Facing: 384
 	Actor161: light_inf
 		Owner: Multi0
 		Facing: 384
 		Location: 8,18
 		SubCell: 5
-	Actor188: combat_tank_o
+	Actor191: light_inf
+		Owner: Creeps
+		Facing: 384
+		Location: 3,11
+		SubCell: 3
+	Actor192: light_inf
+		Owner: Creeps
+		Facing: 384
+		Location: 5,11
+		SubCell: 3
+	Actor193: light_inf
+		Owner: Creeps
+		Facing: 384
+		Location: 5,11
+		SubCell: 1
+	Actor194: light_inf
+		Owner: Creeps
+		Facing: 384
+		Location: 6,11
+		SubCell: 3
+	Actor195: light_inf
+		Owner: Creeps
+		Facing: 384
+		Location: 6,11
+		SubCell: 1
+	Actor196: light_inf
+		Owner: Creeps
+		Facing: 384
+		Location: 6,11
+		SubCell: 2
+	Actor197: light_inf
+		Owner: Creeps
+		Facing: 384
+		Location: 7,11
+		SubCell: 3
+	Actor198: light_inf
+		Owner: Creeps
+		Facing: 384
+		Location: 4,11
+		SubCell: 3
+	Actor151: crawler
 		Owner: Multi0
 		Facing: 384
-		Location: 7,18
-	Actor189: combat_tank_h
-		Owner: Multi0
-		Facing: 384
-		Location: 7,17
-	Actor190: combat_tank_a
-		Owner: Multi0
-		Facing: 384
-		Location: 7,19
+		Location: 8,8
 
 Rules: Enhanced_Units10.yaml, Enhanced_Starport10.yaml, Enhanced_Structures10.yaml, Enhanced_World10.yaml, Enhanced_Misc.yaml, Enhanced_AI.yaml, Enhanced_palettes.yaml, NewTiles.yaml, NeutralBuildings.yaml
 

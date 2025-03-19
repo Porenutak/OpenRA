@@ -142,6 +142,14 @@
 		StartIfBelow: 105
 		RequiresCondition: start_repair
 
+^BotAutoCrusher:
+	ExternalCondition@autocrush:
+		Condition: auto_crush
+	RejectsOrders@autoCrush:
+		RequiresCondition: auto_crush
+		RemoveOrders: true
+
+
 ^botDeployLogic:
 	GrantConditionOnBotOwner@Imstupidbotthatcandeploy:
 		Condition: Imbot
@@ -930,6 +938,7 @@ deviator:
 		OwnerType: Victim
 
 ^combat_tank:
+	Inherits@AiAutocrush: ^BotAutoCrusher
 	GrantRandomCondition:
 		Conditions: Husk01, Husk02, Husk03, Husk04
 	AutoTargetPriority@bot:
@@ -1450,13 +1459,13 @@ light_inf:
 		RequiresCondition: bot-owned
 	Buildable:
 		Queue: Infantry
-		BuildDuration: 62
+		BuildDuration: 60
 	Valued:
 		Cost: 50
 	Health:
 		HP: 6000
 	Mobile:
-		Speed: 43
+		Speed: 45
 	Armament:
 		Weapon: LMG
 	Armament@chaos_bomb_influence:
@@ -1508,7 +1517,7 @@ trooper:
 		RequiresCondition: ignore-creeps
 	Buildable:
 		Prerequisites: upgrade.barracks, ~techlevel.medium
-		BuildDuration: 124
+		BuildDuration: 120
 		Description: Anti-tank infantry\n  Strong vs Tanks\n  Weak vs Infantry, Artillery, Moving targets
 	Valued:
 		Cost: 100
@@ -1517,7 +1526,7 @@ trooper:
 	RevealsShroud:
 		Range: 4c768
 	Mobile:
-		Speed: 31
+		Speed: 34
 	Armament:
 		Weapon: Bazooka
 		LocalOffset: 128,0,256
@@ -1629,7 +1638,7 @@ mpsardaukar:
 	Health:
 		HP: 10000
 	Mobile:
-		Speed: 31
+		Speed: 34
 	Armament@PRIMARY:
 		Weapon: M_LMG_H
 	Armament@SECONDARY:

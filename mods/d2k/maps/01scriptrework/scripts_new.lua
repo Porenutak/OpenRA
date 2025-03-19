@@ -3,6 +3,7 @@ IsAnyBotsHere = false
 CurrentConyards = {}
 CheckPlayerTechtree = false
 ActivePlayers = {}
+TankTypes = {"combat_tank_a","combat_tank_h","combat_tank_o","combat_tank_cheap","combat_tank_corrino"}
 PlayersThatNotchoosedyet = 0 --Numbver of players that didnt choose any subfaction yet
 FactionsMode = 0 -- default Faction mode: vannila
 local CallAirstrike -- must be local fuction. otherwise it crash when multiple AirStrikes are called at ones.
@@ -172,7 +173,7 @@ WorldLoaded = function()
 			Media.DisplayMessage("Use Alt or Ctrl modifier to select Carryalls. Use RMB to pick up. Use Deploy to unload", "Mentat",  HSLColor.DarkRed)
 		end)
 	end
-	-- sandstorm INIT, disabled due of no sandstorm asset
+	-- sandstorm INIT, disabled due of no sandstorm assets
 	if PlayerNeutral.HasPrerequisites({"sandstorms_enabled"}) then
 		SandStormSpawnpoints = PlayerNeutral.GetActorsByType("spawnpoint.sandstorm")
 		SandStormEnabled = true
@@ -221,9 +222,13 @@ WorldLoaded = function()
 	do
 		IsAnyBotsHere = true
 		FindSaboteur(bot)
-		BotEarlyGame(bot);
+		BotEarlyGame(bot)
+		local tanks = bot.GetActorsByTypes(TankTypes)
+		for _, tank in pairs(tanks) do
+			AutoCrusher(tank, bot)
+		end
 	end
-	-- bot early building queues
+
 	--Production trriggers - Starport, AI Engi, AI Repairing
 	Trigger.OnAnyProduction( function(producer, produced, productionQueue)
 			local actor = produced.Type
@@ -245,6 +250,9 @@ WorldLoaded = function()
 		if productionQueue == "Armor" or productionQueue== "Vehicle" then
 			CheckForRepair(produced, produced.MaxHealth, produced.Owner.InternalName)
 		end
+		 if Utils.Any(TankTypes, function (t) return t == actor end) then
+			AutoCrusher(produced, produced.Owner)
+		 end
 		end
 	end)
 end
@@ -595,6 +603,46 @@ function FilterPlayers(forPlayer)
 	return filteredPlayers
 end
 
+---------------
+---AI Crush logic
+-----------------
+
+function AutoCrusher (unit, bot)
+	if unit.IsDead then
+		return
+	end
+	local actors = Map.ActorsInCircle(unit.CenterPosition, WDist.FromCells(4), function (a)
+		return
+		a.IsDead == false and
+		a.IsInWorld == true and
+		a.Owner.IsAlliedWith(bot) == false
+	end)
+	local targets = Utils.Where(actors, function(a)
+		return
+		a.Type == "light_inf" or
+		a.Type == "trooper" or
+		a.Type == "grenadier" or
+		a.Type == "mpsardaukar" or
+		a.Type == "mortar_inf" or
+		a.Type == "assassin" or
+		a.Type == "fremen"
+	end)
+	if targets[1] ~= nil then
+		Media.Debug("Found crush targets for "..tostring(unit))
+		unit.GrantCondition("auto_crush", 150)
+		unit.Stop()
+		unit.Move(Utils.Random(targets).Location)
+		Trigger.AfterDelay(50, function ()
+			AutoCrusher(unit, bot)
+		end)
+	else
+		Trigger.AfterDelay(250, function ()
+			AutoCrusher(unit, bot)
+		end)
+	end
+end
+
+
 ------------------------------------
 --Original D2k Starport behaviour---
 ------------------------------------
@@ -707,7 +755,7 @@ function CHOAMDelivery(player)
 			function(carry, pass)
 				Media.PlaySpeechNotification(carry.Owner,"Reinforce")
 				if pass ~= nil then
-					-- triggered when actor is in the world (dont use OnAddedToWorld triger!!!)
+					-- triggered when actor is in the world (dont use OnAddedToWorld trigger!!!)
 					Trigger.AfterDelay(10, function()
 						if pass.HasProperty("AttackMove") then
 							pass.AttackMove(rallypoint,1)
@@ -1076,7 +1124,9 @@ function SandStormInit()
 		SandStormTimer = Utils.RandomInteger(SandStormInterval[1],SandStormInterval[2])
 	end)
 end
-
+----------------------------
+---Early Game Bot logic-----
+----------------------------
 InfantryBuild = {"light_inf","light_inf","light_inf","light_inf","light_inf",
 "light_inf","light_inf","light_inf","light_inf","light_inf",
 "light_inf","light_inf","light_inf","light_inf","light_inf",
@@ -1084,7 +1134,9 @@ InfantryBuild = {"light_inf","light_inf","light_inf","light_inf","light_inf",
 "light_inf","light_inf","light_inf","light_inf","light_inf",
 "light_inf","light_inf","light_inf","light_inf","light_inf"}
 
-TrikeBuild = {"trike","trike","trike","trike","trike","trike"}
+TrikeBuild = {}
+TrikeBuild["trike"] = {"trike","trike","trike","trike","trike","trike"}
+TrikeBuild["raider"] = {"raider","raider","raider","raider","raider","raider"}
 
 VehicleBuild = {}
 VehicleBuild["harkonnen"] = {"combat_tank_h","combat_tank_h","combat_tank_h"}
@@ -1126,11 +1178,15 @@ function EarlyGameTrike (botPlayer)
 		end)
 		return
 	end
-	--Media.Debug("early trike for:"..botPlayer.Name)
+	--Media.Debug("early trike for:"..botPlayer.Name
 	if botPlayer.GetActorsByType("heavy_factory")[1] ~= nil then
 		return
 	end
-	botPlayer.Build(TrikeBuild)
+
+	if botPlayer.HasPrerequisites({"light.raider"}) then
+		botPlayer.Build(TrikeBuild["raider"])
+	end
+	botPlayer.Build(TrikeBuild["trike"])
 end
 function EarlyGameTanks (botPlayer)
 	local heavy_factory = botPlayer.GetActorsByType("heavy_factory")
