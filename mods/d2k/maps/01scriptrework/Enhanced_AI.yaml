@@ -91,25 +91,13 @@ Player:
 					Types: Infantry
 					Attractiveness: 20
 					TargetMetric: Value
-					CheckRadius: 8c0
+					CheckRadius: 6c0
 				Consideration@4:
 					Against: Enemy
 					Types: Infantry, Vehicle
 					Attractiveness: 10
 					TargetMetric: Value
 					CheckRadius: 4c0
-				Consideration@5:
-					Against: Enemy
-					Types: Infantry, Vehicle, Tank
-					Attractiveness: 6
-					TargetMetric: Value
-					CheckRadius: 5c0
-				Consideration@2:
-					Against: Enemy
-					Types: Structure
-					Attractiveness: 1
-					TargetMetric: Value
-					CheckRadius: 10c0
 				Consideration@3:
 					Against: Ally
 					Types: Ground
@@ -424,7 +412,7 @@ Player:
 		MaximumDefenseRadius: 30
 		NewProductionCashThreshold: 6000
 		InititalMinimumRefineryCount: 2
-		BarracksTypes: heavy_factory
+		BarracksTypes: heavy_factory, merged.mercenary_factory
 		AdditionalMinimumRefineryCount: 2
 		MaxResourceCellsToCheck: 15
 		BuildingLimits:

@@ -223,10 +223,6 @@ WorldLoaded = function()
 		IsAnyBotsHere = true
 		FindSaboteur(bot)
 		BotEarlyGame(bot)
-		local tanks = bot.GetActorsByTypes(TankTypes)
-		for _, tank in pairs(tanks) do
-			AutoCrusher(tank, bot)
-		end
 	end
 
 	--Production trriggers - Starport, AI Engi, AI Repairing
@@ -628,11 +624,10 @@ function AutoCrusher (unit, bot)
 		a.Type == "fremen"
 	end)
 	if targets[1] ~= nil then
-		Media.Debug("Found crush targets for "..tostring(unit))
 		unit.GrantCondition("auto_crush", 150)
 		unit.Stop()
 		unit.Move(Utils.Random(targets).Location)
-		Trigger.AfterDelay(50, function ()
+		Trigger.AfterDelay(55, function ()
 			AutoCrusher(unit, bot)
 		end)
 	else

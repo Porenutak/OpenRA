@@ -163,7 +163,7 @@ Fremen_wormrider2:
 		Spread: 1c0
 		Falloff: 100, 0
 		Versus:
-			none: 40
+			none: 35
 			wall: 50
 			building: 50
 			wood: 60
@@ -241,7 +241,7 @@ Fremen_wormrider2:
 			wall: 50
 			light: 60
 			building: 60
-			wood: 80
+			wood: 70
 			heavy: 30
 			invulnerable: 0
 			cy: 20
@@ -355,7 +355,7 @@ Rocket:
 			heavy: 50
 			invulnerable: 0
 			cy: 20
-			harvester: 60
+			harvester: 50
 
 Rocket_heavy:
 	Inherits: Rocket
@@ -413,6 +413,7 @@ mtank_pri:
 MissleTowerNew:
 	Inherits: mtank_pri
 	Range: 7c212
+	ReloadDelay: 145
 	Projectile: Missile
 		VerticalRateOfTurn: 40
 	-MinRange:
@@ -965,10 +966,10 @@ rocket_spike:
 		Image: 155mm
 	Warhead@1Dam: SpreadDamage
 		Damage: 2500
-		Spread: 1c350
+		Spread: 1c512
 		Falloff: 100, 0
 		Versus:
-			none: 145
+			none: 140
 			wall: 40
 			building: 100
 			wood: 110

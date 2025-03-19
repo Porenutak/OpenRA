@@ -486,11 +486,11 @@ Actors:
 		Facing: 763
 		Location: 53,80
 
-Rules: Enhanced_Units10.yaml, Enhanced_Starport10.yaml, Enhanced_Structures10.yaml, Enhanced_World10.yaml, Enhanced_Misc.yaml, Enhanced_AI.yaml, Enhanced_palettes.yaml, NewTiles.yaml, NeutralBuildings.yaml
+Rules: Enhanced_Units11.yaml, Enhanced_Starport11.yaml, Enhanced_Structures11.yaml, Enhanced_World11.yaml, Enhanced_Misc.yaml, Enhanced_AI.yaml, Enhanced_palettes.yaml, NewTiles.yaml, NeutralBuildings.yaml
 
 Sequences: EnhancedSequences.yaml, Sequences_newTiles.yaml
 
-Weapons: Enhanced_Weapons10.yaml, Enhanced_WeaponsFX.yaml
+Weapons: Enhanced_Weapons11.yaml, Enhanced_WeaponsFX.yaml
 
 Voices: Enhanced_voices.yaml
 
