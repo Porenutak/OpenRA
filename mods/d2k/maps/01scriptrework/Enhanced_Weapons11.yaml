@@ -207,20 +207,13 @@ Fremen_wormrider2:
 	Inherits: ^Cannon
 	Burst: 2
 	Report: TURRET1.WAV
-	ReloadDelay: 60
+	ReloadDelay: 78
 	BurstDelays: 6
 	Range: 5c112
 	Warhead@1Dam: SpreadDamage
-		Damage: 3510
 		Versus:
-			none: 40
-			wall: 70
+			heavy: 100
 			light: 80
-			building: 60
-			wood: 80
-			invulnerable: 0
-			cy: 20
-			harvester: 50
 
 110mm_Gun:
 	Inherits: ^Cannon

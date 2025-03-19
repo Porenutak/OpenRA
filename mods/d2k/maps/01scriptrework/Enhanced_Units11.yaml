@@ -815,7 +815,7 @@ sonic_tank:
 devastator:
 	GrantConditionOnDamageState@forbot:
 		Condition: lowhp
-		ValidDamageStates: Critical
+		ValidDamageStates: Dead
 	GrantCondition@botselfdestruct:
 		Condition: overload
 		RequiresCondition: lowhp && bot-owned && !unitCapturated
@@ -2128,7 +2128,7 @@ bison_tank:
 		Locomotor: tank
 		PauseOnCondition: notmobile
 	RevealsShroud:
-		Range: 5c0
+		Range: 5c512
 	Armament:
 		Weapon: 80mm_double
 		Recoil: 128

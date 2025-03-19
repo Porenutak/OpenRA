@@ -297,194 +297,150 @@ Actors:
 		Owner: Multi0
 		Facing: 384
 		Location: 41,88
-	Actor77: combat_tank_o
-		Owner: Multi1
-		Location: 65,77
-		Facing: 259
-	Actor78: combat_tank_o
-		Owner: Multi1
-		Facing: 259
-		Location: 65,78
-	Actor79: combat_tank_o
-		Owner: Multi1
-		Facing: 259
-		Location: 65,79
-	Actor80: combat_tank_o
-		Owner: Multi1
-		Facing: 259
-		Location: 65,80
-	Actor82: combat_tank_o
-		Owner: Multi1
-		Facing: 259
-		Location: 65,83
-	Actor84: combat_tank_o
-		Owner: Multi1
-		Facing: 259
-		Location: 65,82
-	Actor86: combat_tank_o
-		Owner: Multi1
-		Facing: 259
-		Location: 65,81
-	Actor95: combat_tank_o
-		Owner: Multi1
-		Facing: 259
-		Location: 65,84
-	Actor99: combat_tank_o
-		Owner: Multi1
-		Facing: 259
-		Location: 65,86
-	Actor100: combat_tank_o
-		Owner: Multi1
-		Facing: 259
-		Location: 65,85
-	Actor101: combat_tank_o
-		Owner: Multi1
-		Facing: 259
-		Location: 66,79
-	Actor102: combat_tank_o
-		Owner: Multi1
-		Facing: 259
-		Location: 66,78
-	Actor105: combat_tank_o
-		Owner: Multi1
-		Facing: 259
-		Location: 66,77
-	Actor108: combat_tank_o
-		Owner: Multi1
-		Facing: 259
-		Location: 66,85
-	Actor109: combat_tank_o
-		Owner: Multi1
-		Facing: 259
-		Location: 66,86
-	Actor110: combat_tank_o
-		Owner: Multi1
-		Facing: 259
-		Location: 66,84
-	Actor111: combat_tank_o
-		Owner: Multi1
-		Facing: 259
-		Location: 66,81
-	Actor112: combat_tank_o
-		Owner: Multi1
-		Facing: 259
-		Location: 66,82
-	Actor118: combat_tank_o
-		Owner: Multi1
-		Facing: 259
-		Location: 66,83
-	Actor119: combat_tank_o
-		Owner: Multi1
-		Facing: 259
-		Location: 66,80
-	Actor120: quad
+	Actor120: bison_tank
 		Owner: Multi0
-		Location: 51,77
-		Facing: 763
-	Actor121: quad
-		Owner: Multi0
-		Facing: 763
 		Location: 51,78
-	Actor122: quad
+		Facing: 770
+	Actor121: bison_tank
 		Owner: Multi0
-		Facing: 763
+		Facing: 770
 		Location: 51,79
-	Actor124: quad
+	Actor122: bison_tank
 		Owner: Multi0
-		Facing: 763
+		Facing: 770
 		Location: 51,80
-	Actor125: quad
+	Actor124: bison_tank
 		Owner: Multi0
-		Facing: 763
+		Facing: 770
 		Location: 51,81
-	Actor126: quad
+	Actor125: bison_tank
 		Owner: Multi0
-		Facing: 763
+		Facing: 770
 		Location: 51,82
-	Actor127: quad
+	Actor126: bison_tank
 		Owner: Multi0
-		Facing: 763
+		Facing: 770
 		Location: 51,83
-	Actor128: quad
+	Actor127: bison_tank
 		Owner: Multi0
-		Facing: 763
+		Facing: 770
 		Location: 51,84
-	Actor129: quad
+	Actor128: bison_tank
 		Owner: Multi0
-		Facing: 763
+		Facing: 770
 		Location: 51,85
-	Actor130: quad
+	Actor129: bison_tank
 		Owner: Multi0
-		Facing: 763
+		Facing: 770
 		Location: 51,86
-	Actor131: quad
+	Actor130: bison_tank
 		Owner: Multi0
-		Facing: 763
+		Facing: 770
+		Location: 51,87
+	Actor131: bison_tank
+		Owner: Multi0
+		Facing: 770
 		Location: 52,79
-	Actor132: quad
+	Actor132: bison_tank
 		Owner: Multi0
-		Facing: 763
+		Facing: 770
 		Location: 52,78
-	Actor133: quad
+	Actor133: bison_tank
 		Owner: Multi0
-		Facing: 763
-		Location: 52,77
-	Actor134: quad
+		Facing: 770
+		Location: 52,87
+	Actor134: bison_tank
 		Owner: Multi0
-		Facing: 763
+		Facing: 770
 		Location: 52,86
-	Actor135: quad
+	Actor135: bison_tank
 		Owner: Multi0
-		Facing: 763
+		Facing: 770
 		Location: 52,85
-	Actor136: quad
+	Actor136: bison_tank
 		Owner: Multi0
-		Facing: 763
+		Facing: 770
 		Location: 52,84
-	Actor137: quad
+	Actor137: bison_tank
 		Owner: Multi0
-		Facing: 763
+		Facing: 770
 		Location: 52,83
-	Actor138: quad
+	Actor138: bison_tank
 		Owner: Multi0
-		Facing: 763
+		Facing: 770
 		Location: 52,82
-	Actor139: quad
+	Actor139: bison_tank
 		Owner: Multi0
-		Facing: 763
+		Facing: 770
 		Location: 52,81
-	Actor140: quad
+	Actor140: bison_tank
 		Owner: Multi0
-		Facing: 763
+		Facing: 770
 		Location: 52,80
-	Actor141: quad
-		Owner: Multi0
-		Facing: 763
-		Location: 53,79
-	Actor142: quad
-		Owner: Multi0
-		Facing: 763
-		Location: 53,78
-	Actor143: quad
-		Owner: Multi0
-		Facing: 763
-		Location: 53,77
-	Actor147: quad
-		Owner: Multi0
-		Facing: 763
-		Location: 53,83
-	Actor148: quad
-		Owner: Multi0
-		Facing: 763
-		Location: 53,82
-	Actor149: quad
-		Owner: Multi0
-		Facing: 763
-		Location: 53,81
-	Actor150: quad
-		Owner: Multi0
-		Facing: 763
-		Location: 53,80
+	Actor95: devastator
+		Owner: Multi1
+		Location: 66,79
+		Facing: 245
+	Actor99: devastator
+		Owner: Multi1
+		Facing: 245
+		Location: 66,80
+	Actor100: devastator
+		Owner: Multi1
+		Facing: 245
+		Location: 66,81
+	Actor101: devastator
+		Owner: Multi1
+		Facing: 245
+		Location: 66,82
+	Actor102: devastator
+		Owner: Multi1
+		Facing: 245
+		Location: 66,83
+	Actor105: devastator
+		Owner: Multi1
+		Facing: 245
+		Location: 66,84
+	Actor108: devastator
+		Owner: Multi1
+		Facing: 245
+		Location: 66,85
+	Actor109: devastator
+		Owner: Multi1
+		Facing: 245
+		Location: 66,86
+	Actor110: devastator
+		Owner: Multi1
+		Facing: 245
+		Location: 66,87
+	Actor111: devastator
+		Owner: Multi1
+		Facing: 245
+		Location: 66,88
+	Actor112: devastator
+		Owner: Multi1
+		Facing: 245
+		Location: 67,79
+	Actor118: devastator
+		Owner: Multi1
+		Facing: 245
+		Location: 67,84
+	Actor119: devastator
+		Owner: Multi1
+		Facing: 245
+		Location: 67,83
+	Actor141: devastator
+		Owner: Multi1
+		Facing: 245
+		Location: 67,82
+	Actor142: devastator
+		Owner: Multi1
+		Facing: 245
+		Location: 67,81
+	Actor143: devastator
+		Owner: Multi1
+		Facing: 245
+		Location: 67,80
 
 Rules: Enhanced_Units11.yaml, Enhanced_Starport11.yaml, Enhanced_Structures11.yaml, Enhanced_World11.yaml, Enhanced_Misc.yaml, Enhanced_AI.yaml, Enhanced_palettes.yaml, NewTiles.yaml, NeutralBuildings.yaml
 
