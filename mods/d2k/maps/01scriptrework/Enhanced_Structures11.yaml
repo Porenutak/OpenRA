@@ -375,7 +375,7 @@ barracks:
 	Buildable:
 		BuildDuration: 295
 	Valued:
-		Cost: 300
+		Cost: 350
 	Health:
 		HP: 37000
 	GrantConditionOnPrerequisite:
@@ -477,7 +477,7 @@ refinery:
 	Selectable:
 		Bounds: 2500, 2048, -256, 0
 	Health:
-		HP: 40000
+		HP: 43000
 	GrantConditionOnPrerequisite@concreteON:
 		Condition: concrete_on
 		Prerequisites: global-auto-concrete
@@ -655,7 +655,7 @@ light_factory:
 	Inherits@damageVFX: ^DamagedBuildingsVFX
 	Buildable:
 		Prerequisites: refinery
-		BuildDuration: 460
+		BuildDuration: 410
 	GrantConditionOnPrerequisite:
 		Condition: ArmorUpgrade
 		Prerequisites: upgrade.conyard
@@ -877,7 +877,7 @@ outpost:
 		Range: 4c0
 		RequiresCondition: disabled
 	Power:
-		Amount: -125
+		Amount: -100
 	DetectCloaked:
 		Range: 7c0
 		RequiresCondition: !disabled

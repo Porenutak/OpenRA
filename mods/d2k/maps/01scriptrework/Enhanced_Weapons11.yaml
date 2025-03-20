@@ -1,7 +1,7 @@
 
 ^MG:
 	ReloadDelay: 36
-	Range: 3c224
+	Range: 3c112
 	Report: MGUN2.WAV
 	Projectile: InstantHit
 		Inaccuracy: 128
@@ -58,7 +58,6 @@ HMG:
 		Inaccuracy: 135
 	Warhead@1Dam: SpreadDamage
 		Damage: 2160
-		Spread: 700
 		Versus:
 			wood: 43
 			light: 30
@@ -251,7 +250,7 @@ Fremen_wormrider2:
 		LaunchAngle: 85
 		ContrailLength: 10
 	Warhead@1Dam: SpreadDamage
-		Damage: 5200
+		Damage: 5100
 		Spread: 2c0
 		Falloff: 100, 0
 		Versus:
@@ -300,13 +299,13 @@ DevBullet:
 		Inaccuracy: 128
 	Warhead@1Dam: SpreadDamage
 		Damage: 3600
-		Spread: 930
+		Spread: 900
 		Falloff: 100, 0
 		Versus:
 			none: 15
 			wall: 80
 			building: 40
-			wood: 65
+			wood: 55
 			light: 70
 			heavy: 100
 			invulnerable: 0
