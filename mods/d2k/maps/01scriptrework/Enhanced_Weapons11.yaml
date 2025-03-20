@@ -481,7 +481,7 @@ DeviatorMissile:
 	Inherits: ^Missile
 	ReloadDelay: 176
 	Range: 6c0
-	InvalidTargets: Infantry, Structure
+	InvalidTargets: Structure
 	Projectile: Missile
 		RangeLimit: 7c0
 	Warhead@1Dam: SpreadDamage
