@@ -149,6 +149,12 @@
 		RequiresCondition: auto_crush
 		RemoveOrders: true
 
+^BotTrikeMicro:
+	ExternalCondition@autocrush:
+		Condition: bot_micro
+	RejectsOrders@autoCrush:
+		RequiresCondition: bot_micro
+		RemoveOrders: true
 
 ^botDeployLogic:
 	GrantConditionOnBotOwner@Imstupidbotthatcandeploy:
@@ -464,6 +470,7 @@ harvester:
 
 
 trike:
+	Inherits@botMicro: ^BotTrikeMicro
 	AutoTargetPriority@bot:
 		ValidTargets: Infantry, Structure
 		InvalidTargets: Tank
@@ -512,6 +519,7 @@ trike:
 
 
 raider:
+	Inherits@botMicro: ^BotTrikeMicro
 	AutoTargetPriority@bot:
 		ValidTargets: Infantry, Structure
 		InvalidTargets: Tank
@@ -557,6 +565,7 @@ raider:
 		Modifier: 75
 
 quad:
+	Inherits@botMicro: ^BotTrikeMicro
 	AutoTargetPriority@bot:
 		ValidTargets: Vehicle, Structure, Tank
 		InvalidTargets: Infantry
@@ -1166,7 +1175,7 @@ carryall.reinforce:
 	Tooltip:
 		Name: Carryall
 	Health:
-		HP: 16000
+		HP: 20000
 	Armor:
 		Type: light
 	Cloak:

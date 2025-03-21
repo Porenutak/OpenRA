@@ -608,7 +608,7 @@ OrniBomb_multipass:
 		Acceleration: 0, 0, 0
 		Shadow: true
 	Warhead@1Dam: SpreadDamage
-		Damage: 7000
+		Damage: 5500
 		ValidTargets: Air_support, Ground
 		Versus:
 			none: 90

@@ -299,7 +299,7 @@ Player:
 	BaseBuilderBotModule@omnius:
 		RequiresCondition: enable-omnius-ai
 		BuildingQueues: Building, Upgrade
-		MinimumExcessPower: 1
+		MinimumExcessPower: 0
 		MaximumExcessPower: 200
 		ExcessPowerIncrement: 40
 		ExcessPowerIncreaseThreshold: 4
@@ -315,19 +315,19 @@ Player:
 		MaximumFailedPlacementAttempts: 4
 		MaxResourceCellsToCheck: 20
 		PlaceDefenseTowardsEnemyChance: 70
-		AdditionalMinimumRefineryCount: 2
+		AdditionalMinimumRefineryCount: 3
 		InititalMinimumRefineryCount: 1
 		MinimumDefenseRadius: 5
 		MaximumDefenseRadius: 30
 		CheckForNewBasesDelay: 4000
 		BuildingLimits:
 			silo: 20
-			barracks: 4
+			barracks: 5
 			refinery: 25
 			outpost: 1
 			high_tech_factory: 1
-			light_factory: 2
-			heavy_factory: 5
+			light_factory: 3
+			heavy_factory: 4
 			starport: 1
 			repair_pad: 1
 			repair_pad.bot: 1
@@ -345,7 +345,7 @@ Player:
 			upgrade.outpost_fremen: 1
 			upgrade.outpost: 1
 		BuildingFractions:
-			barracks: 1
+			barracks: 5
 			refinery: 20
 			medium_gun_turret: 8
 			outpost: 1
@@ -353,7 +353,7 @@ Player:
 			wind_trap: 1
 			large_gun_turret: 6
 			light_factory: 10
-			heavy_factory: 2
+			heavy_factory: 1
 			starport: 1
 			repair_pad: 1
 			repair_pad.bot: 1
@@ -396,8 +396,8 @@ Player:
 		RequiresCondition: enable-vidious-ai
 		BuildingQueues: Building, Upgrade
 		MinimumExcessPower: 0
-		MaximumExcessPower: 210
-		ExcessPowerIncrement: 10
+		MaximumExcessPower: 110
+		ExcessPowerIncrement: 30
 		ExcessPowerIncreaseThreshold: 4
 		ConstructionYardTypes: construction_yard
 		RefineryTypes: refinery, refinery_inverted
@@ -421,8 +421,8 @@ Player:
 			silo: 20
 			outpost: 1
 			high_tech_factory: 1
-			light_factory: 2
-			heavy_factory: 1
+			light_factory: 3
+			heavy_factory: 4
 			starport: 1
 			repair_pad: 1
 			repair_pad.bot: 1
@@ -447,7 +447,7 @@ Player:
 			high_tech_factory: 1
 			large_gun_turret: 10
 			light_factory: 1
-			heavy_factory: 7
+			heavy_factory: 15
 			starport: 1
 			repair_pad: 1
 			repair_pad.bot: 1
@@ -585,23 +585,24 @@ Player:
 		CheckCaptureTargetsForVisibility: false
 	SquadManagerBotModule@omnius:
 		RequiresCondition: enable-omnius-ai
-		SquadSize: 20
-		SquadSizeRandomBonus: 20
+		SquadSize: 7
+		SquadSizeRandomBonus: 30
 		MaxBaseRadius: 40
-		ProtectionScanRadius: 15
+		ProtectionScanRadius: 10
 		ExcludeFromSquadsTypes: saboteur,frigate_choam, engineer, dummy.generic, harvester, mcv, mcv.starport, frigate.harkonnen, carryall, carryall.reinforce, carryall.reinforce_with_sound
 		ConstructionYardTypes: construction_yard
 		IgnoredEnemyTargetTypes: Creep, Cliff, Air, Air_support, CapturedUnit
 		ProtectUnitScanRadius: 20
-		AssignRolesInterval: 50
-		AttackForceInterval: 25
+		AssignRolesInterval: 30
+		MinimumAttackForceDelay: 50
+		AttackForceInterval: 75
 		RushInterval: 1500
 		AirUnitsTypes: ornithopter
-		ProtectionTypes: mcv,engineer, harvester, construction_yard, wind_trap, barracks, refinery, silo, light_factory, heavy_factory, outpost, starport, medium_gun_turret, large_gun_turret, repair_pad, high_tech_factory, research_centre, palace, conyard.atreides, conyard.harkonnen, conyard.ordos, mcv.starport, harvester.starport
+		ProtectionTypes: mcv, harvester, construction_yard, wind_trap, barracks, refinery, silo, light_factory, heavy_factory, outpost, starport, medium_gun_turret, large_gun_turret, repair_pad, high_tech_factory, research_centre, palace, conyard.atreides, conyard.harkonnen, conyard.ordos, mcv.starport, harvester.starport
 	SquadManagerBotModule@vidious:
 		RequiresCondition: enable-vidious-ai
 		SquadSize: 15
-		SquadSizeRandomBonus: 30
+		SquadSizeRandomBonus: 50
 		MaxBaseRadius: 80
 		ExcludeFromSquadsTypes: saboteur, frigate_choam, engineer, dummy.generic, harvester, mcv, mcv.starport, frigate.harkonnen, carryall, carryall.reinforce, carryall.reinforce_with_sound
 		ConstructionYardTypes: construction_yard
@@ -611,12 +612,12 @@ Player:
 		AttackScanRadius: 10
 		AssignRolesInterval: 50
 		AttackForceInterval: 50
-		RushInterval: 1000
+		RushInterval: 2000
 		AirUnitsTypes: ornithopter
 		ProtectionTypes: saboteur, engineer,mcv, harvester, concretea, concreteb, construction_yard, wind_trap, barracks, refinery, silo, light_factory, heavy_factory, outpost, starport, medium_gun_turret, large_gun_turret, repair_pad, high_tech_factory, research_centre, palace, conyard.atreides, conyard.harkonnen, conyard.ordos, mcv.starport, harvester.starport
 	SquadManagerBotModule@gladius:
 		RequiresCondition: enable-gladius-ai
-		SquadSize: 20
+		SquadSize: 25
 		SquadSizeRandomBonus: 10
 		MaxBaseRadius: 100
 		ExcludeFromSquadsTypes: saboteur, engineer,frigate_choam, dummy.generic, harvester, mcv, mcv.starport, frigate.harkonnen, carryall, carryall.reinforce, carryall.reinforce_with_sound
@@ -640,7 +641,7 @@ Player:
 			mpsardaukar: 20
 			grenadier: 20
 			harvester: 40
-			dummy.harvester: 10
+			dummy.harvester: 1
 			dummy.trike: 10
 			dummy.quad: 10
 			dummy.siege_tank: 60
@@ -724,7 +725,7 @@ Player:
 			mpsardaukar: 20
 			grenadier: 20
 			harvester: 30
-			dummy.harvester: 15
+			dummy.harvester: 10
 			dummy.trike: 10
 			dummy.quad: 10
 			dummy.siege_tank: 50
@@ -792,7 +793,7 @@ Player:
 			harvester: 30
 			dummy.trike: 10
 			dummy.quad: 20
-			dummy.harvester: 15
+			dummy.harvester: 10
 			dummy.siege_tank: 60
 			dummy.missile_tank: 60
 			dummy.combat_tank_a: 40

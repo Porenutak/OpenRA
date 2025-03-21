@@ -3,6 +3,7 @@ IsAnyBotsHere = false
 CurrentConyards = {}
 CheckPlayerTechtree = false
 ActivePlayers = {}
+MicroUnitTypes = {"trike", "raider", "quad", "stealth_raider", "hunter", "quad.heavy"}
 TankTypes = {"combat_tank_a","combat_tank_h","combat_tank_o","combat_tank_cheap","combat_tank_corrino"}
 PlayersThatNotchoosedyet = 0 --Numbver of players that didnt choose any subfaction yet
 FactionsMode = 0 -- default Faction mode: vannila
@@ -244,10 +245,13 @@ WorldLoaded = function()
 				EnginnerLogic(produced)
 			end
 		if productionQueue == "Armor" or productionQueue== "Vehicle" then
-			CheckForRepair(produced, produced.MaxHealth, produced.Owner.InternalName)
+			CheckForRepair(produced, produced.Owner.InternalName)
 		end
 		 if Utils.Any(TankTypes, function (t) return t == actor end) then
 			AutoCrusher(produced, produced.Owner)
+		 end
+		 if Utils.Any(MicroUnitTypes, function (t) return t == actor end) then
+			TrikeMicro(produced)
 		 end
 		end
 	end)
@@ -440,30 +444,28 @@ end
 ---AI scripts--engi/Saboteur/repairing
 -----------------------------
 
-function CheckForRepair(actor, maxHP, internalName)
-	Trigger.AfterDelay(300, function()
-		if not actor.IsDead then
-			if maxHP * 0.4 > actor.Health then
-				if RepairPadList[internalName] ~= nil then
-					if not RepairPadList[internalName].IsDead then
-						local token = actor.GrantCondition("reject_control", 3000) -- if unit stuck, expire after 3000 ticks
-					--Media.Debug("send to repair_pad "..tostring(actor))
-					actor.Stop()
-					actor.Move(RepairPadList[internalName].Location + CVec.New(1,1), 2)
-					actor.CallFunc(function ()
-						if not actor.IsDead then
-							actor.RevokeCondition(token)
-							CheckForRepair(actor, maxHP, internalName)
-						end
-					end)
-					end
-				else
-					CheckForRepair(actor, maxHP, internalName)
-				end
-			else
-				CheckForRepair(actor, maxHP, internalName)
+function CheckForRepair(actor, internalName)
+	if  actor.IsDead then
+		return
+	end
+
+	if actor.Health < actor.MaxHealth * 0.4 and RepairPadList[internalName] ~= nil and not RepairPadList[internalName].IsDead then
+		local token = actor.GrantCondition("reject_control", 2500) -- if unit stuck, expire after 3000 ticks
+		--Media.Debug("send to repair_pad "..tostring(actor))
+		actor.Stop()
+		actor.Move(RepairPadList[internalName].Location + CVec.New(1,1), 2)
+		actor.CallFunc(function ()
+			if not actor.IsDead then
+				actor.RevokeCondition(token)
+				Trigger.AfterDelay(500, function()
+					CheckForRepair(actor, internalName)
+				end)
 			end
-		end
+		end)
+		return
+	end
+	Trigger.AfterDelay(300, function()
+		CheckForRepair(actor, internalName)
 	end)
 end
 
@@ -605,6 +607,13 @@ end
 
 function AutoCrusher (unit, bot)
 	if unit.IsDead then
+		return
+	end
+	if unit.Health < unit.MaxHealth *0.25 and RepairPadList[unit.Owner.InternalName] ~= nil then
+		CheckForRepair(unit, unit.Owner.InternalName)
+		Trigger.AfterDelay(500, function ()
+			AutoCrusher(unit, bot)
+		end)
 		return
 	end
 	local actors = Map.ActorsInCircle(unit.CenterPosition, WDist.FromCells(4), function (a)
@@ -1131,7 +1140,7 @@ InfantryBuild = {"light_inf","light_inf","light_inf","light_inf","light_inf",
 
 TrikeBuild = {}
 TrikeBuild["trike"] = {"trike","trike","trike","trike","trike","trike"}
-TrikeBuild["raider"] = {"raider","raider","raider","raider","raider","raider"}
+TrikeBuild["raider"] = {"raider","raider","raider","raider","raider"}
 
 VehicleBuild = {}
 VehicleBuild["harkonnen"] = {"combat_tank_h","combat_tank_h","combat_tank_h"}
@@ -1184,7 +1193,7 @@ function EarlyGameTrike (botPlayer)
 	botPlayer.Build(TrikeBuild["trike"])
 end
 function EarlyGameTanks (botPlayer)
-	local heavy_factory = botPlayer.GetActorsByType("heavy_factory")
+	local heavy_factory = botPlayer.GetActorsByTypes({"heavy_factory","merged.mercenary_factory"})
 	if heavy_factory[1] == nil then
 		Trigger.AfterDelay(100, function()
 			EarlyGameTanks(botPlayer)
@@ -1193,6 +1202,10 @@ function EarlyGameTanks (botPlayer)
 	end
 	if botPlayer.GetActorsByType("light_factory")[1] ~= nil then
 		return
+	end
+	local refinery  = botPlayer.GetActorsByTypes({"refinery", "refinery_inverted"})
+	if refinery[2] ~= nil and not refinery[1].IsDead then
+		refinery[1].Sell()
 	end
 	--Media.Debug("early tanks for:"..botPlayer.Name)
 	if botPlayer.HasPrerequisites({"heavy.harkonnen_combat"}) then
@@ -1210,4 +1223,23 @@ function EarlyGameTanks (botPlayer)
 	if botPlayer.HasPrerequisites({"heavy.corrino_combat"}) then
 		botPlayer.Build(VehicleBuild["corrino"])
 	end
+end
+
+function TrikeMicro(trike)
+	if trike.IsDead then return end
+
+	Trigger.OnDamaged(trike, function(actor, attacker, damage)
+		if (actor.IsDead == false and attacker.IsDead == false and actor.Health < actor.MaxHealth * 0.6 and attacker.HasProperty("Location")) then
+			Trigger.ClearAll(actor)
+			local retreatPos = CPos.New(actor.Location.X * 2 - attacker.Location.X, actor.Location.Y * 2 - attacker.Location.Y)
+			--Media.Debug("retreating to"..tostring(retreatPos))
+			actor.GrantCondition("bot_micro", 120)
+			actor.Stop()
+			actor.Move(retreatPos)
+			actor.AttackMove(attacker.Location)
+			Trigger.AfterDelay(150, function()
+				TrikeMicro(trike)
+			end)
+		end
+	end)
 end

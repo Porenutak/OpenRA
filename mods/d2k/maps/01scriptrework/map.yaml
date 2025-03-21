@@ -2,7 +2,7 @@ MapFormat: 12
 
 RequiresMod: d2k
 
-Title: Habbanya Erg Pro - test
+Title: test
 
 Author: Westwood Studios, NN
 
@@ -345,111 +345,95 @@ Actors:
 		Owner: Multi0
 		Facing: 384
 		Location: 34,110
-	Actor95: raider
-		Owner: Multi0
-		Location: 51,77
-		Facing: 770
-	Actor99: raider
-		Owner: Multi0
-		Facing: 770
-		Location: 51,78
-	Actor100: raider
-		Owner: Multi0
-		Facing: 770
-		Location: 51,79
-	Actor101: raider
-		Owner: Multi0
-		Facing: 770
-		Location: 51,80
-	Actor102: raider
-		Owner: Multi0
-		Facing: 770
-		Location: 51,81
-	Actor105: raider
-		Owner: Multi0
-		Facing: 770
-		Location: 51,82
-	Actor108: raider
-		Owner: Multi0
-		Facing: 770
-		Location: 51,83
-	Actor109: raider
-		Owner: Multi0
-		Facing: 770
-		Location: 51,84
-	Actor110: raider
-		Owner: Multi0
-		Facing: 770
-		Location: 51,85
-	Actor111: raider
-		Owner: Multi0
-		Facing: 770
-		Location: 51,86
 	Actor112: raider
 		Owner: Multi0
-		Facing: 770
 		Location: 52,77
-	Actor118: raider
+		Facing: 770
+	Actor178: raider
+		Owner: Multi0
+		Location: 53,77
+		Facing: 770
+	Actor179: raider
 		Owner: Multi0
 		Facing: 770
-		Location: 52,78
-	Actor119: raider
+		Location: 53,78
+	Actor180: raider
 		Owner: Multi0
 		Facing: 770
-		Location: 52,79
-	Actor120: raider
+		Location: 53,79
+	Actor181: raider
 		Owner: Multi0
 		Facing: 770
-		Location: 52,80
-	Actor121: raider
+		Location: 53,80
+	Actor182: raider
 		Owner: Multi0
 		Facing: 770
-		Location: 52,81
-	Actor122: raider
+		Location: 53,81
+	Actor183: raider
 		Owner: Multi0
 		Facing: 770
-		Location: 52,82
-	Actor124: raider
+		Location: 53,82
+	Actor184: raider
 		Owner: Multi0
 		Facing: 770
-		Location: 52,83
-	Actor125: raider
+		Location: 53,83
+	Actor185: raider
 		Owner: Multi0
 		Facing: 770
-		Location: 52,84
-	Actor126: raider
+		Location: 53,84
+	Actor186: raider
 		Owner: Multi0
 		Facing: 770
-		Location: 52,85
-	Actor127: raider
+		Location: 53,85
+	Actor187: raider
 		Owner: Multi0
 		Facing: 770
-		Location: 52,86
-	Actor128: trooper
+		Location: 53,86
+	Actor108: trooper
 		Owner: Multi1
 		Facing: 384
 		Location: 66,77
 		SubCell: 3
-	Actor129: trooper
+	Actor109: trooper
 		Owner: Multi1
 		Facing: 384
 		Location: 66,77
 		SubCell: 1
-	Actor130: trooper
+	Actor110: trooper
 		Owner: Multi1
 		Facing: 384
 		Location: 66,77
 		SubCell: 2
-	Actor131: trooper
+	Actor111: trooper
 		Owner: Multi1
 		Facing: 384
 		Location: 66,77
 		SubCell: 4
-	Actor132: trooper
+	Actor128: trooper
 		Owner: Multi1
 		Facing: 384
 		Location: 66,77
 		SubCell: 5
+	Actor129: trooper
+		Owner: Multi1
+		Facing: 384
+		SubCell: 5
+		Location: 66,78
+	Actor130: trooper
+		Owner: Multi1
+		Facing: 384
+		SubCell: 4
+		Location: 66,78
+	Actor131: trooper
+		Owner: Multi1
+		Facing: 384
+		SubCell: 2
+		Location: 66,78
+	Actor132: trooper
+		Owner: Multi1
+		Facing: 384
+		SubCell: 1
+		Location: 66,78
 	Actor133: trooper
 		Owner: Multi1
 		Facing: 384
@@ -458,23 +442,23 @@ Actors:
 	Actor134: trooper
 		Owner: Multi1
 		Facing: 384
-		SubCell: 1
-		Location: 66,78
+		SubCell: 5
+		Location: 66,79
 	Actor135: trooper
 		Owner: Multi1
 		Facing: 384
-		SubCell: 2
-		Location: 66,78
+		SubCell: 4
+		Location: 66,79
 	Actor136: trooper
 		Owner: Multi1
 		Facing: 384
-		SubCell: 4
-		Location: 66,78
+		SubCell: 2
+		Location: 66,79
 	Actor137: trooper
 		Owner: Multi1
 		Facing: 384
-		SubCell: 5
-		Location: 66,78
+		SubCell: 1
+		Location: 66,79
 	Actor138: trooper
 		Owner: Multi1
 		Facing: 384
@@ -483,23 +467,23 @@ Actors:
 	Actor139: trooper
 		Owner: Multi1
 		Facing: 384
-		SubCell: 1
-		Location: 66,79
+		SubCell: 5
+		Location: 66,80
 	Actor140: trooper
 		Owner: Multi1
 		Facing: 384
-		SubCell: 2
-		Location: 66,79
+		SubCell: 4
+		Location: 66,80
 	Actor141: trooper
 		Owner: Multi1
 		Facing: 384
-		SubCell: 4
-		Location: 66,79
+		SubCell: 2
+		Location: 66,80
 	Actor142: trooper
 		Owner: Multi1
 		Facing: 384
-		SubCell: 5
-		Location: 66,79
+		SubCell: 1
+		Location: 66,80
 	Actor143: trooper
 		Owner: Multi1
 		Facing: 384
@@ -508,23 +492,23 @@ Actors:
 	Actor144: trooper
 		Owner: Multi1
 		Facing: 384
-		SubCell: 1
-		Location: 66,80
+		SubCell: 5
+		Location: 66,81
 	Actor145: trooper
 		Owner: Multi1
 		Facing: 384
-		SubCell: 2
-		Location: 66,80
+		SubCell: 4
+		Location: 66,81
 	Actor146: trooper
 		Owner: Multi1
 		Facing: 384
-		SubCell: 4
-		Location: 66,80
+		SubCell: 2
+		Location: 66,81
 	Actor147: trooper
 		Owner: Multi1
 		Facing: 384
-		SubCell: 5
-		Location: 66,80
+		SubCell: 1
+		Location: 66,81
 	Actor148: trooper
 		Owner: Multi1
 		Facing: 384
@@ -533,23 +517,23 @@ Actors:
 	Actor149: trooper
 		Owner: Multi1
 		Facing: 384
-		SubCell: 1
-		Location: 66,81
+		SubCell: 5
+		Location: 66,82
 	Actor150: trooper
 		Owner: Multi1
 		Facing: 384
-		SubCell: 2
-		Location: 66,81
+		SubCell: 4
+		Location: 66,82
 	Actor151: trooper
 		Owner: Multi1
 		Facing: 384
-		SubCell: 4
-		Location: 66,81
+		SubCell: 2
+		Location: 66,82
 	Actor152: trooper
 		Owner: Multi1
 		Facing: 384
-		SubCell: 5
-		Location: 66,81
+		SubCell: 1
+		Location: 66,82
 	Actor153: trooper
 		Owner: Multi1
 		Facing: 384
@@ -558,23 +542,23 @@ Actors:
 	Actor154: trooper
 		Owner: Multi1
 		Facing: 384
-		SubCell: 1
-		Location: 66,82
+		SubCell: 5
+		Location: 66,83
 	Actor155: trooper
 		Owner: Multi1
 		Facing: 384
-		SubCell: 2
-		Location: 66,82
+		SubCell: 4
+		Location: 66,83
 	Actor156: trooper
 		Owner: Multi1
-		SubCell: 4
-		Location: 66,82
 		Facing: 384
+		SubCell: 2
+		Location: 66,83
 	Actor157: trooper
 		Owner: Multi1
 		Facing: 384
-		SubCell: 5
-		Location: 66,82
+		SubCell: 1
+		Location: 66,83
 	Actor158: trooper
 		Owner: Multi1
 		Facing: 384
@@ -583,23 +567,23 @@ Actors:
 	Actor159: trooper
 		Owner: Multi1
 		Facing: 384
-		SubCell: 1
-		Location: 66,83
+		SubCell: 5
+		Location: 66,84
 	Actor160: trooper
 		Owner: Multi1
 		Facing: 384
-		SubCell: 2
-		Location: 66,83
+		SubCell: 4
+		Location: 66,84
 	Actor161: trooper
 		Owner: Multi1
 		Facing: 384
-		SubCell: 4
-		Location: 66,83
+		SubCell: 2
+		Location: 66,84
 	Actor162: trooper
 		Owner: Multi1
 		Facing: 384
-		SubCell: 5
-		Location: 66,83
+		SubCell: 1
+		Location: 66,84
 	Actor163: trooper
 		Owner: Multi1
 		Facing: 384
@@ -608,23 +592,90 @@ Actors:
 	Actor164: trooper
 		Owner: Multi1
 		Facing: 384
-		SubCell: 1
-		Location: 66,84
+		SubCell: 3
+		Location: 66,85
 	Actor165: trooper
 		Owner: Multi1
 		Facing: 384
-		SubCell: 2
-		Location: 66,84
+		SubCell: 1
+		Location: 66,85
 	Actor166: trooper
 		Owner: Multi1
-		SubCell: 4
 		Facing: 384
-		Location: 66,84
+		SubCell: 2
+		Location: 66,85
 	Actor167: trooper
 		Owner: Multi1
 		Facing: 384
+		SubCell: 4
+		Location: 66,85
+	Actor168: trooper
+		Owner: Multi1
+		Facing: 384
 		SubCell: 5
-		Location: 66,84
+		Location: 66,85
+	Actor169: stealth_raider
+		Owner: Multi0
+		Facing: 384
+		Location: 54,73
+	Actor170: stealth_raider
+		Owner: Multi0
+		Facing: 384
+		Location: 54,74
+	Actor171: quad
+		Owner: Multi0
+		Facing: 384
+		Location: 55,76
+	Actor172: quad
+		Owner: Multi0
+		Facing: 384
+		Location: 53,76
+	Actor173: quad
+		Owner: Multi0
+		Facing: 384
+		Location: 53,76
+	Actor174: quad
+		Owner: Multi0
+		Facing: 384
+		Location: 56,75
+	Actor175: quad
+		Owner: Multi0
+		Facing: 384
+		Location: 56,75
+	Actor176: quad
+		Owner: Multi0
+		Facing: 384
+		Location: 56,74
+	Actor177: quad
+		Owner: Multi0
+		Facing: 384
+		Location: 55,74
+	Actor188: quad
+		Owner: Multi0
+		Facing: 384
+		Location: 54,75
+	Actor189: hunter
+		Owner: Multi0
+		Facing: 384
+		Location: 57,73
+	Actor190: hunter
+		Owner: Multi0
+		Facing: 384
+		Location: 57,75
+	Actor191: hunter
+		Owner: Multi0
+		Facing: 384
+		Location: 57,77
+	Actor192: hunter
+		Owner: Multi0
+		Facing: 384
+		Location: 58,74
+	Actor193: repair_pad.bot
+		Owner: Multi0
+		Location: 18,125
+	Actor194: wind_trap
+		Owner: Multi0
+		Location: 19,120
 
 Rules: Enhanced_Units11.yaml, Enhanced_Starport11.yaml, Enhanced_Structures11.yaml, Enhanced_World11.yaml, Enhanced_Misc.yaml, Enhanced_AI.yaml, Enhanced_palettes.yaml, NewTiles.yaml, NeutralBuildings.yaml
 
