@@ -534,7 +534,7 @@ raider:
 	Mobile:
 		Locomotor: light_vehicle
 		TurnSpeed: 40
-		Speed: 141
+		Speed: 140
 	WithMuzzleOverlay:
 	AutoTarget:
 		MinimumScanTimeInterval: 0
