@@ -1523,7 +1523,7 @@ trooper:
 		RequiresCondition: ignore-creeps
 	Buildable:
 		Prerequisites: upgrade.barracks, ~techlevel.medium
-		BuildDuration: 120
+		BuildDuration: 125
 		Description: Anti-tank infantry\n  Strong vs Tanks\n  Weak vs Infantry, Artillery, Moving targets
 	Valued:
 		Cost: 100
@@ -2000,12 +2000,6 @@ officer:
 		AffectsParent: true
 		ValidRelationships: Ally
 		Condition: officerAura
-	ProximityExternalCondition@rally:
-		Range: 5c0
-		AffectsParent: true
-		ValidRelationships: Ally
-		Condition: rally
-		RequiresCondition: deployed
 	-TakeCover:
 	WithIdleOverlay@sand:
 		Sequence: idle1
@@ -2022,6 +2016,10 @@ officer:
 		ConditionDuration: 450
 	FireWarheads@ScareEnemy:
 		Weapons: ScareEnemy
+		Interval: 50
+		RequiresCondition: deployed
+	FireWarheads@rally:
+		Weapons: Rally
 		Interval: 50
 		RequiresCondition: deployed
 

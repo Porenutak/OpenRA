@@ -16,7 +16,7 @@
 			wall: 13
 			building: 25
 			wood: 50
-			light: 30
+			light: 35
 			heavy: 12
 			invulnerable: 0
 			cy: 17
@@ -242,7 +242,7 @@ Fremen_wormrider2:
 155mm:
 	Inherits: ^Cannon
 	ReloadDelay: 96
-	Range: 7c512
+	Range: 7c356
 	MinRange: 2c0
 	Projectile: Bullet
 		Inaccuracy: 180
@@ -613,7 +613,7 @@ OrniBomb_multipass:
 		Versus:
 			none: 90
 			wall: 170
-			building: 70
+			building: 100
 			wood: 100
 			light: 110
 			heavy: 120
@@ -1160,6 +1160,16 @@ ScareEnemy:
 		Range: 6c0
 		Condition: scared
 		ValidRelationships: Enemy, Neutral
+	Warhead@effect: CreateEffect
+		Explosions: aura
+		ExplosionPalette: player_anim_ts
+		UsePlayerPalette: True
+Rally:
+	Warhead@condition: GrantExternalCondition
+		Duration: 150
+		Range: 5c0
+		Condition: rally
+		ValidRelationships: Ally
 	Warhead@effect: CreateEffect
 		Explosions: aura
 		ExplosionPalette: player_anim_ts
