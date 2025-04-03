@@ -27,6 +27,7 @@
 		TerrainSpeeds:
 			Sand: 100
 			Rock: 100
+			Platform: 100
 			Transition: 100
 			Concrete: 100
 			SpiceSand: 100
@@ -41,6 +42,7 @@
 			Sand: 100
 			Rock: 100
 			Transition: 100
+			Platform: 110
 			Concrete: 100
 			SpiceSand: 100
 			Spice: 100
@@ -52,6 +54,7 @@
 		TerrainSpeeds:
 			Sand: 100
 			Rock: 100
+			Platform: 110
 			Transition: 100
 			Concrete: 100
 			SpiceSand: 100
@@ -64,6 +67,7 @@
 		TerrainSpeeds:
 			Sand: 100
 			Rock: 100
+			Platform: 100
 			Transition: 100
 			Concrete: 100
 			SpiceSand: 100
