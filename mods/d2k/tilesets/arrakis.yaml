@@ -59,6 +59,10 @@ Terrain:
 		TargetTypes: Ground
 		AcceptsSmudgeType: SandCrater
 		Color: D0C0A0
+	TerrainType@Platform:
+		Type: Platform
+		TargetTypes: Ground
+		Color: BDBDBD
 
 Templates:
 	Template@0:
@@ -5661,8 +5665,8 @@ Templates:
 		Size: 2,1
 		Categories: Sand-Platform
 		Tiles:
-			0: Rock
-			1: Rock
+			0: Platform
+			1: Platform
 	Template@1017:
 		Id: 1017
 		Images: customtiles.r16
@@ -5670,7 +5674,7 @@ Templates:
 		Size: 1,1
 		Categories: Sand-Platform
 		Tiles:
-			0: Rock
+			0: Platform
 	Template@1018:
 		Id: 1018
 		Images: customtiles.r16
@@ -5678,7 +5682,7 @@ Templates:
 		Size: 1,1
 		Categories: Sand-Platform
 		Tiles:
-			0: Rock
+			0: Platform
 	Template@1019:
 		Id: 1019
 		Images: BLOXBGBS.R16
@@ -6629,9 +6633,9 @@ Templates:
 		Categories: Sand-Platform
 		Tiles:
 			0: Cliff
-			1: Rock
+			1: Platform
 			2: Cliff
-			3: Rock
+			3: Platform
 	Template@1131:
 		Id: 1131
 		Images: customtiles.r16
@@ -6639,9 +6643,9 @@ Templates:
 		Size: 2,2
 		Categories: Sand-Platform
 		Tiles:
-			0: Rock
+			0: Platform
 			1: Cliff
-			2: Rock
+			2: Platform
 			3: Cliff
 	Template@1132:
 		Id: 1132
@@ -6650,7 +6654,7 @@ Templates:
 		Size: 1,1
 		Categories: Sand-Platform
 		Tiles:
-			0: Rock
+			0: Platform
 	Template@1133:
 		Id: 1133
 		Images: customtiles.r16
@@ -6658,7 +6662,7 @@ Templates:
 		Size: 1,1
 		Categories: Sand-Platform
 		Tiles:
-			0: Rock
+			0: Platform
 	Template@1134:
 		Id: 1134
 		Images: customtiles.r16
@@ -6666,7 +6670,7 @@ Templates:
 		Size: 1,1
 		Categories: Sand-Platform
 		Tiles:
-			0: Rock
+			0: Platform
 	Template@1135:
 		Id: 1135
 		Images: customtiles.r16
@@ -6674,7 +6678,7 @@ Templates:
 		Size: 1,1
 		Categories: Sand-Platform
 		Tiles:
-			0: Rock
+			0: Platform
 	Template@1136:
 		Id: 1136
 		Images: customtiles.r16

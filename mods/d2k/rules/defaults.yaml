@@ -479,7 +479,7 @@
 	D2kBuilding:
 		Dimensions: 1,1
 		Footprint: x
-		TerrainTypes: Rock, Concrete
+		TerrainTypes: Rock, Concrete, Platform
 		BuildSounds: BUILD1.WAV
 		ConcretePrerequisites: global-auto-concrete
 	D2kActorPreviewPlaceBuildingPreview:
