@@ -373,7 +373,7 @@ wind_trap:
 barracks:
 	Inherits@damageVFX: ^DamagedBuildingsVFX
 	Buildable:
-		BuildDuration: 295
+		BuildDuration: 300
 	Valued:
 		Cost: 350
 	Health:
@@ -862,10 +862,6 @@ heavy_factory:
 
 outpost:
 	Inherits@damageVFX: ^DamagedBuildingsVFX
-	Buildable:
-		BuildDuration: 312
-	Valued:
-		Cost: 750
 	Health:
 		HP: 37000
 	Armor:
@@ -877,7 +873,7 @@ outpost:
 		Range: 4c0
 		RequiresCondition: disabled
 	Power:
-		Amount: -100
+		Amount: -75
 	DetectCloaked:
 		Range: 7c0
 		RequiresCondition: !disabled

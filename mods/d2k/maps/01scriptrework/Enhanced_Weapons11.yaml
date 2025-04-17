@@ -59,7 +59,6 @@ HMG:
 	Warhead@1Dam: SpreadDamage
 		Damage: 2160
 		Versus:
-			wood: 43
 			light: 30
 			invulnerable: 0
 	Warhead@3Concrete: DamagesConcrete
