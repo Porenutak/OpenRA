@@ -63,4 +63,9 @@ ActivateAI = function()
 
 	ProduceUnits(Harkonnen, HarkonnenBarracks, delay, infantryToBuild, AttackGroupSize[Difficulty], attackThresholdSize)
 	ProduceUnits(Harkonnen, HarkonnenHeavyFact, delay, tanksToBuild, AttackGroupSize[Difficulty], attackThresholdSize)
+	Trigger.OnProduction(HarkonnenHeavyFact, function (producer, produced)
+		if produced.Type == "combat_tank_h" and producer.Owner.IsBot then
+			AICrushLogic(produced, producer.Owner)
+		end
+	end)
 end

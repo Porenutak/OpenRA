@@ -8,7 +8,12 @@
 ]]
 
 Difficulty = Map.LobbyOptionOrDefault("difficulty", "normal")
-
+CrushChance =
+{
+	easy = 10,
+	normal = 30,
+	hard = 50
+}
 --- Prepare basic messages for a player's win, loss, or objective updates.
 ---@param player player
 InitObjectives = function(player)
@@ -276,4 +281,44 @@ ProduceUnits = function(player, factory, delay, toBuild, attackSize, attackThres
 			SendAttack(player, attackSize)
 		end
 	end)
+end
+
+--- Periodically checks for nearby infantry units to crush.
+---@param unit actor
+---@param bot player
+function AICrushLogic(unit, bot)
+	if unit.IsDead then
+		return
+	end
+	if Utils.RandomInteger(0,100) >= CrushChance[Difficulty] then
+		Trigger.AfterDelay(200, function ()
+			AICrushLogic(unit, bot)
+		end)
+		return
+	end
+	local actors = Map.ActorsInCircle(unit.CenterPosition, WDist.FromCells(5), function (a)
+		return
+		a.IsDead == false and
+		a.IsInWorld == true and
+		a.Owner.IsAlliedWith(bot) == false
+	end)
+	local targets = Utils.Where(actors, function(a)
+		return
+		a.Type == "light_inf" or
+		a.Type == "trooper" or
+		a.Type == "engineer" and
+		Map.TerrainType(a.Location) ~= "Rough"
+	end)
+	if targets[1] ~= nil then
+		unit.Stop()
+		unit.Move(Utils.Random(targets).Location)
+		Trigger.AfterDelay(55, function ()
+			AICrushLogic(unit, bot)
+		end)
+		IdleHunt(unit)
+	else
+		Trigger.AfterDelay(200, function ()
+			AICrushLogic(unit, bot)
+		end)
+	end
 end
