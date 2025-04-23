@@ -739,6 +739,10 @@ Debris:
 			cy: 20
 			harvester: 50
 
+Debris2:
+	Warhead@1Dam: SpreadDamage
+		Spread: 1c0
+
 DeathHandClusterDebris:
 	Inherits: Debris2
 	Range: 7c0
@@ -751,8 +755,8 @@ DeathHandClusterDebris:
 		BounceCount: 1
 		ContrailLength: 0
 	Warhead@1Dam: SpreadDamage
-		Damage: 4000
-		Spread: 1c562
+		Damage: 3500
+		Spread: 2c0
 		Versus:
 			none: 150
 			wall: 80
