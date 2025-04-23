@@ -8,7 +8,12 @@
 ]]
 
 Difficulty = Map.LobbyOptionOrDefault("difficulty", "normal")
-
+CrushChance =
+{
+	easy = 10,
+	normal = 30,
+	hard = 50
+}
 --- Prepare basic messages for a player's win, loss, or objective updates.
 ---@param player player
 InitObjectives = function(player)
@@ -276,4 +281,108 @@ ProduceUnits = function(player, factory, delay, toBuild, attackSize, attackThres
 			SendAttack(player, attackSize)
 		end
 	end)
+end
+
+--- Periodically checks for nearby infantry units to crush.
+---@param unit actor
+---@param bot player
+function AICrushLogic(unit, bot)
+	if unit.IsDead then
+		return
+	end
+	if Utils.RandomInteger(1,101) >= CrushChance[Difficulty] then
+		Trigger.AfterDelay(200, function ()
+			AICrushLogic(unit, bot)
+		end)
+		return
+	end
+	local actors = Map.ActorsInCircle(unit.CenterPosition, WDist.FromCells(5), function (a)
+		return
+		a.Owner.IsAlliedWith(bot) == false
+	end)
+	local targets = Utils.Where(actors, function(a)
+		return
+		a.Type == "light_inf" or
+		a.Type == "trooper" or
+		a.Type == "engineer" and
+		Map.TerrainType(a.Location) ~= "Rough"
+	end)
+	if targets[1] ~= nil then
+		unit.Stop()
+		unit.Move(Utils.Random(targets).Location)
+		Trigger.AfterDelay(55, function ()
+			AICrushLogic(unit, bot)
+		end)
+		unit.Hunt()
+	else
+		Trigger.AfterDelay(200, function ()
+			AICrushLogic(unit, bot)
+		end)
+	end
+end
+
+--- Select factories and unit types where crush logic should apply
+--- @param crusherTypes string[] list of units which use crush logic
+--- @param crusherFactories actor[] list of factories that produce crusher types
+function ActivateCrusherOnProductions(crusherTypes, crusherFactories)
+	Utils.Do(crusherFactories, function(factory)
+		Trigger.OnProduction(factory, function(producer, produced)
+			if not producer.Owner.IsBot then
+				return
+			end
+
+			local crusher = Utils.Any(crusherTypes, function(ct) return produced.Type == ct end)
+
+			if crusher then
+				AICrushLogic(produced, producer.Owner)
+			end
+		end)
+	end)
+end
+
+function ActivateBaseRebuilder(player, base, rebuildTypes)
+	player.GrantCondition("base-rebuilder-active")
+	FindNewBuilding(player, base, rebuildTypes)
+end
+
+function FindNewBuilding(player, base, rebuildTypes)
+	Trigger.AfterDelay(300, function()
+		Media.DisplayMessage("checking")
+		for buildingType, productionTypes in pairs (rebuildTypes) do
+			local buildings = player.GetActorsByType(buildingType)
+			for j, building in ipairs (buildings) do
+				if not Table_contains(base, building) then
+					--Media.DisplayMessage("found new building"..building.Type)
+					table.insert(base,building)
+					if #productionTypes > 0 then
+						local productionToBuild = function() return { Utils.Random(productionTypes) } end
+						ProduceUnits(player, building, delay, productionToBuild, AttackGroupSize[Difficulty], AttackThresholdSize)
+					end
+				end
+			end
+		end
+		FindNewBuilding(player, base, rebuildTypes)
+	end)
+end
+
+function IdleHuntOnBaseDestroyed(player, base)
+	local baseChecked = Utils.Where(base, function(building) return not building.IsDead end)
+	Trigger.OnAllKilledOrCaptured(baseChecked, function()
+		if Utils.Any(base, function(building) return not building.IsDead end)
+		then
+			IdleHuntOnBaseDestroyed(player, base)
+		else
+			--Media.DisplayMessage("no building Idle hunt")
+			Utils.Do(player.GetGroundAttackers(), IdleHunt)
+		end
+	end)
+end
+
+function Table_contains(tbl, obj)
+    for _, v in pairs(tbl) do
+        if v == obj then
+            return true
+        end
+    end
+    return false
 end

@@ -7,7 +7,7 @@
    information, see COPYING.
 ]]
 
-AtreidesBase = { AConyard, AOutpost, ARefinery, AHeavyFactory, ALightFactory, AGunt1, AGunt2, ABarracks, ASilo, APower1, APower2, APower3, APower4, APower5, APower6 }
+AtreidesBase = { AConyard, AOutpost, ARefinery, AHeavyFactory, ALightFactory, AGunt1, AGunt2, ABarracks, APower1, APower2, APower3, APower4, APower5, APower6 }
 FremenBase = { FGunt1, FGunt2 }
 
 BaseAreaTriggers =
@@ -164,11 +164,7 @@ WorldLoaded = function()
 
 	Camera.Position = HConyard.CenterPosition
 	FremenAttackLocation = HConyard.Location
-
-	Trigger.OnAllKilledOrCaptured(AtreidesBase, function()
-		Utils.Do(Atreides.GetGroundAttackers(), IdleHunt)
-	end)
-
+	IdleHuntOnBaseDestroyed(Atreides, AtreidesBase)
 	Trigger.OnAllKilled(Sietches, function()
 		SietchesAreDestroyed = true
 	end)

@@ -67,3 +67,6 @@ sandworm:
 
 harvester:
 	-MustBeDestroyed:
+
+silo:
+	-MustBeDestroyed:
