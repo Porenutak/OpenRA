@@ -54,6 +54,8 @@ fremen-sietch-under-attack = The Fremen Sietch is under attack!
 
 ## atreides-05, harkonnen-06ab, harkonnen09ab
 smugglers-annihilated = The Smugglers have been annihilated!
+starport-destroyed = Ordos Starport Destroyed
+destroy-ordos-base = Destroy Ordos Base
 
 ## atreides-05
 incoming-mercenary-force = Hostile mercenary force incoming.
@@ -76,6 +78,11 @@ smuggler-leader = Smuggler Leader.
 were-warned-will-pay = You were warned. Now you will pay.
 destroy-smugglers-mercenaries = Destroy the Smugglers and their mercenaries.
 capture-harkonnen-barracks-release-hostages = Capture the Harkonnen barracks to release the hostages.
+
+
+## atreides-06
+destroy-smugglers = Destroy Smugglers
+destroy-ordos-starport = Detroy Ordos Starport
 
 ## harkonnen-01ab, harkonnen-03ab
 eliminate-atreides-units-reinforcements = Eliminate all Atreides forces and reinforcements in the area.
