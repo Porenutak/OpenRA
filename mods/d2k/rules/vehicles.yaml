@@ -102,6 +102,8 @@ harvester:
 		RequiresCondition: harvester-empty
 	WithHarvestOverlay:
 	WithDockingAnimation:
+		DockSequence: dock-se
+		DockLoopSequence: dock-se-loop
 	AttractsWorms:
 		Intensity: 700
 	ChangesHealth:
