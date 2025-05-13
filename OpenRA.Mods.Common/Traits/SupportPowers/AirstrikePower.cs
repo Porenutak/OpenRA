@@ -57,7 +57,7 @@ namespace OpenRA.Mods.Common.Traits
 		[Desc("Weapon range offset to apply during the beacon clock calculation.")]
 		public readonly WDist BeaconDistanceOffset = WDist.FromCells(6);
 
-		static object LoadSquad(MiniYaml yaml)
+		public static object LoadSquad(MiniYaml yaml)
 		{
 			var ret = new List<AirstrikePowerSquadMember>();
 
@@ -93,7 +93,7 @@ namespace OpenRA.Mods.Common.Traits
 			SendAirstrike(self, order.Target.CenterPosition, facing);
 		}
 
-		public Actor[] SendAirstrike(Actor self, WPos target, WAngle? facing = null)
+		public virtual Actor[] SendAirstrike(Actor self, WPos target, WAngle? facing = null)
 		{
 			var aircraft = new List<Actor>();
 			if (!facing.HasValue)
@@ -227,7 +227,7 @@ namespace OpenRA.Mods.Common.Traits
 			return aircraft.ToArray();
 		}
 
-		void RemoveCamera(Actor camera)
+		public void RemoveCamera(Actor camera)
 		{
 			if (camera == null)
 				return;
@@ -236,7 +236,7 @@ namespace OpenRA.Mods.Common.Traits
 			camera.QueueActivity(new RemoveSelf());
 		}
 
-		void RemoveBeacon(Beacon beacon)
+		public void RemoveBeacon(Beacon beacon)
 		{
 			if (beacon == null)
 				return;

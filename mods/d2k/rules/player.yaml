@@ -126,7 +126,6 @@ Player:
 		AllyTextNotification: notification-ally-under-attack
 	Shroud:
 		FogCheckboxDisplayOrder: 3
-		FogCheckboxEnabled: false
 	LobbyPrerequisiteCheckbox@AUTOCONCRETE:
 		ID: autoconcrete
 		Label: checkbox-automatic-concrete.label

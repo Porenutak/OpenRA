@@ -994,7 +994,7 @@ high_tech_factory:
 		Prerequisite: hightech.atreides
 		Factions: atreides
 	ProvidesPrerequisite@buildingname:
-	AirstrikePower:
+	D2kAirstrikePower:
 		Icon: ornistrike
 		Name: actor-high-tech-factory.airstrikepower-name
 		ChargeInterval: 7500
@@ -1009,6 +1009,7 @@ high_tech_factory:
 		SupportPowerPaletteOrder: 10
 		EndChargeTextNotification: notification-airstrike-ready
 		SelectTargetTextNotification: notification-select-target
+		Strikes: 3
 		Squad:
 			SquadMember@0:
 				UnitType: ornithopter

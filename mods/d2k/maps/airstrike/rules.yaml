@@ -1,7 +1,7 @@
 high_tech_factory:
 	D2kAirstrikePower@1:
 		Icon: ornistrike
-		Name: actor-high-tech-factory.airstrikepower-name
+		Name: trangle, row target
 		Prerequisites: wind_trap
 		ChargeInterval: 1
 		Description: actor-high-tech-factory.airstrikepower-description
@@ -16,21 +16,26 @@ high_tech_factory:
 		EndChargeTextNotification: notification-airstrike-ready
 		SelectTargetTextNotification: notification-select-target
 		Strikes: 3
+		PivotOffSet: -1024, 0, 0
 		Squad:
 			SquadMember@0:
 				UnitType: ornithopter
-				SpawnOffset: -1536, -1024, 0
-				TargetOffset: 0, -1024, 0
+				SpawnOffset: -1024, -1024, 0
+				TargetOffset: -1024, -1024, 0
 			SquadMember@1:
 				UnitType: ornithopter
 			SquadMember@2:
 				UnitType: ornithopter
-				SpawnOffset: -1536, 1024, 0
-				TargetOffset: 0, 1024, 0
+				SpawnOffset: -1024, 1024, 0
+				TargetOffset: -1024, 1024, 0
+			SquadMember@3:
+				UnitType: ornithopter
+				SpawnOffset: -2048, 0, 0
+				TargetOffset: -2048, 0, 0
 		OrderName: kokotina
 	D2kAirstrikePower@2:
 		Icon: ornistrike
-		Name: actor-high-tech-factory.airstrikepower-name
+		Name: more triangle
 		Prerequisites: wind_trap
 		ChargeInterval: 1
 		Description: actor-high-tech-factory.airstrikepower-description
@@ -48,40 +53,42 @@ high_tech_factory:
 		Squad:
 			SquadMember@0:
 				UnitType: ornithopter
-				SpawnOffset: -1536, -1024, 0
-				TargetOffset: 0, -1024, 0
+				SpawnOffset: -1500, -1000, 0
+				TargetOffset: 0, -1000, 0
 			SquadMember@1:
 				UnitType: ornithopter
 				SpawnOffset: 0, 0, 0
 			SquadMember@2:
 				UnitType: ornithopter
-				SpawnOffset: -1536, 1024, 0
-				TargetOffset: 0, 1024, 0
+				SpawnOffset: -1500, 1000, 0
+				TargetOffset: 0, 1000, 0
 			SquadMember@3:
 				UnitType: ornithopter
-				SpawnOffset: -3000, -1024, 0
-				TargetOffset: 0, -1024, 0
-			SquadMember@4:
-				UnitType: ornithopter
-				SpawnOffset: -1500, 0, 0
+				SpawnOffset: -3000, -2000, 0
+				TargetOffset: 0, -2000, 0
 			SquadMember@5:
 				UnitType: ornithopter
-				SpawnOffset: -3000, 1024, 0
-				TargetOffset: 0, 1024, 0
+				SpawnOffset: -3000, 2000, 0
+				TargetOffset: 0, 2000, 0
 			SquadMember@6:
 				UnitType: ornithopter
-				SpawnOffset: -4500, -1024, 0
-				TargetOffset: 0, -1024, 0
-			SquadMember@7:
-				UnitType: ornithopter
-				SpawnOffset: -3000, 0, 0
+				SpawnOffset: -4500, -3000, 0
+				TargetOffset: 0, -3000, 0
 			SquadMember@8:
 				UnitType: ornithopter
-				SpawnOffset: -4500, 1024, 0
-				TargetOffset: 0, 1024, 0
+				SpawnOffset: -4500, 3000, 0
+				TargetOffset: 0, 3000, 0
+			SquadMember@9:
+				UnitType: ornithopter
+				SpawnOffset: -6000, -4500, 0
+				TargetOffset: 0, -4500, 0
+			SquadMember@10:
+				UnitType: ornithopter
+				SpawnOffset: -6000, 4500, 0
+				TargetOffset: 0, 4500, 0
 	D2kAirstrikePower@3:
 		Icon: ornistrike
-		Name: actor-high-tech-factory.airstrikepower-name
+		Name: collum
 		Prerequisites: wind_trap
 		ChargeInterval: 1
 		Description: actor-high-tech-factory.airstrikepower-description
@@ -99,40 +106,31 @@ high_tech_factory:
 		Squad:
 			SquadMember@0:
 				UnitType: ornithopter
-				SpawnOffset: -1536, -1024, 0
-				TargetOffset: 0, -1024, 0
+				SpawnOffset: 0, 0, 0
+				TargetOffset: 0, 0, 0
 			SquadMember@1:
 				UnitType: ornithopter
-				SpawnOffset: 0, 0, 0
+				SpawnOffset: -1500, 0, 0
+				TargetOffset: 0, 0, 0
 			SquadMember@2:
 				UnitType: ornithopter
-				SpawnOffset: -1536, 1024, 0
-				TargetOffset: 0, 1024, 0
+				SpawnOffset: -3000, 0, 0
+				TargetOffset: 0, 0, 0
 			SquadMember@3:
 				UnitType: ornithopter
-				SpawnOffset: -3000, -1024, 0
-				TargetOffset: 0, -1024, 0
+				SpawnOffset: -4500, 0, 0
+				TargetOffset: 0, 0, 0
 			SquadMember@4:
 				UnitType: ornithopter
-				SpawnOffset: -1500, 0, 0
+				SpawnOffset: -6000, 0, 0
+				TargetOffset: 0, 0, 0
 			SquadMember@5:
 				UnitType: ornithopter
-				SpawnOffset: -3000, 1024, 0
-				TargetOffset: 0, 1024, 0
-			SquadMember@6:
-				UnitType: ornithopter
-				SpawnOffset: -4500, -1024, 0
-				TargetOffset: 0, -1024, 0
-			SquadMember@7:
-				UnitType: ornithopter
-				SpawnOffset: -3000, 0, 0
-			SquadMember@8:
-				UnitType: ornithopter
-				SpawnOffset: -4500, 1024, 0
-				TargetOffset: 0, 1024, 0
+				SpawnOffset: -7500, 0, 0
+				TargetOffset: 0, 0, 0
 	D2kAirstrikePower@4:
 		Icon: ornistrike
-		Name: actor-high-tech-factory.airstrikepower-name
+		Name: big triangle
 		Prerequisites: wind_trap
 		ChargeInterval: 1
 		Description: actor-high-tech-factory.airstrikepower-description
@@ -143,44 +141,122 @@ high_tech_factory:
 		CircleSequence: circles
 		UseDirectionalTarget: True
 		DirectionArrowAnimation: ornidirection
-		SupportPowerPaletteOrder: 130
+		SupportPowerPaletteOrder: 120
 		EndChargeTextNotification: notification-airstrike-ready
 		SelectTargetTextNotification: notification-select-target
 		OrderName: kokotina4
+		PivotOffSet: -5000,0,0
 		Squad:
 			SquadMember@0:
 				UnitType: ornithopter
-				SpawnOffset: -1536, -1024, 0
-				TargetOffset: 0, -1024, 0
+				SpawnOffset: -5000, -7500, 0
+				TargetOffset: -5000, -7500, 0
 			SquadMember@1:
 				UnitType: ornithopter
-				SpawnOffset: 0, 0, 0
 			SquadMember@2:
 				UnitType: ornithopter
-				SpawnOffset: -1536, 1024, 0
-				TargetOffset: 0, 1024, 0
+				SpawnOffset: -5000, 7500, 0
+				TargetOffset: -5000, 7500, 0
+	D2kAirstrikePower@smile:
+		Icon: ornistrike
+		Name: Smile
+		Prerequisites: wind_trap
+		ChargeInterval: 1
+		Description: actor-high-tech-factory.airstrikepower-description
+		DisplayBeacon: True
+		CameraActor: camera
+		CameraRemoveDelay: 60
+		ArrowSequence: arrow
+		CircleSequence: circles
+		UseDirectionalTarget: True
+		DirectionArrowAnimation: ornidirection
+		SupportPowerPaletteOrder: 120
+		EndChargeTextNotification: notification-airstrike-ready
+		SelectTargetTextNotification: notification-select-target
+		OrderName: kokotina5
+		PivotOffSet: -5084,0,0
+		StrafeOutLength: 12048
+		Squad:
+			SquadMember@0:
+				UnitType: ornithopter
+			SquadMember@1:
+				UnitType: ornithopter
+				SpawnOffset: -1024, -1024, 0
+				TargetOffset: -1024, -1024, 0
+			SquadMember@105:
+				UnitType: ornithopter
+				SpawnOffset: -1024, 1024, 0
+				TargetOffset: -1024, 1024, 0
+			SquadMember@2:
+				UnitType: ornithopter
+				SpawnOffset: -2048, -2048, 0
+				TargetOffset: -2048, -2048, 0
+			SquadMember@223:
+				UnitType: ornithopter
+				SpawnOffset: -2048, 2048, 0
+				TargetOffset: -2048, 2048, 0
 			SquadMember@3:
 				UnitType: ornithopter
-				SpawnOffset: -3000, -1024, 0
-				TargetOffset: 0, -1024, 0
+				SpawnOffset: -3072, -3072, 0
+				TargetOffset: -3072, -3072, 0
 			SquadMember@4:
 				UnitType: ornithopter
-				SpawnOffset: -1500, 0, 0
+				SpawnOffset: -3072, 3072, 0
+				TargetOffset: -3072, 3072, 0
 			SquadMember@5:
 				UnitType: ornithopter
-				SpawnOffset: -3000, 1024, 0
-				TargetOffset: 0, 1024, 0
+				SpawnOffset: -4096, -4096, 0
+				TargetOffset: -4096, -4096, 0
 			SquadMember@6:
 				UnitType: ornithopter
-				SpawnOffset: -4500, -1024, 0
-				TargetOffset: 0, -1024, 0
-			SquadMember@7:
-				UnitType: ornithopter
-				SpawnOffset: -3000, 0, 0
+				SpawnOffset: -4096, 4096, 0
+				TargetOffset: -4096, 4096, 0
 			SquadMember@8:
 				UnitType: ornithopter
-				SpawnOffset: -4500, 1024, 0
-				TargetOffset: 0, 1024, 0
+				SpawnOffset: -5120, 5120, 0
+				TargetOffset: -5120, 5120, 0
+			SquadMember@70:
+				UnitType: ornithopter
+				SpawnOffset: -5120, -5120, 0
+				TargetOffset: -5120, -5120, 0
+			SquadMember@7:
+				UnitType: ornithopter
+				SpawnOffset: -6144, -4096, 0
+				TargetOffset: -6144, -4096, 0
+			SquadMember@89:
+				UnitType: ornithopter
+				SpawnOffset: -6144, 4096, 0
+				TargetOffset: -6144, 4096, 0
+			SquadMember@9:
+				UnitType: ornithopter
+				SpawnOffset: -7168, -3072, 0
+				TargetOffset: -7168, -3072, 0
+			SquadMember@10:
+				UnitType: ornithopter
+				SpawnOffset: -7168, 3072, 0
+				TargetOffset: -7168, 3072, 0
+			SquadMember@11:
+				UnitType: ornithopter
+				SpawnOffset: -8192, -2048, 0
+				TargetOffset: -8192, -2048, 0
+			SquadMember@12:
+				UnitType: ornithopter
+				SpawnOffset: -8192, 2048, 0
+				TargetOffset: -8192, 2048, 0
+			SquadMember@13:
+				UnitType: ornithopter
+				SpawnOffset: -9216, -1024, 0
+				TargetOffset: -9216, -1024, 0
+			SquadMember@14:
+				UnitType: ornithopter
+				SpawnOffset: -9216, 1024, 0
+				TargetOffset: -9216, 1024, 0
+			SquadMember@15:
+				UnitType: ornithopter
+				SpawnOffset: -10240, 0, 0
+				TargetOffset: -10240, 0, 0
+
+
 
 Player:
 	DeveloperMode:
