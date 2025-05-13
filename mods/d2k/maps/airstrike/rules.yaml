@@ -1,0 +1,191 @@
+high_tech_factory:
+	D2kAirstrikePower@1:
+		Icon: ornistrike
+		Name: actor-high-tech-factory.airstrikepower-name
+		Prerequisites: wind_trap
+		ChargeInterval: 1
+		Description: actor-high-tech-factory.airstrikepower-description
+		DisplayBeacon: True
+		CameraActor: camera
+		CameraRemoveDelay: 60
+		ArrowSequence: arrow
+		CircleSequence: circles
+		UseDirectionalTarget: True
+		DirectionArrowAnimation: ornidirection
+		SupportPowerPaletteOrder: 100
+		EndChargeTextNotification: notification-airstrike-ready
+		SelectTargetTextNotification: notification-select-target
+		Strikes: 3
+		Squad:
+			SquadMember@0:
+				UnitType: ornithopter
+				SpawnOffset: -1536, -1024, 0
+				TargetOffset: 0, -1024, 0
+			SquadMember@1:
+				UnitType: ornithopter
+			SquadMember@2:
+				UnitType: ornithopter
+				SpawnOffset: -1536, 1024, 0
+				TargetOffset: 0, 1024, 0
+		OrderName: kokotina
+	D2kAirstrikePower@2:
+		Icon: ornistrike
+		Name: actor-high-tech-factory.airstrikepower-name
+		Prerequisites: wind_trap
+		ChargeInterval: 1
+		Description: actor-high-tech-factory.airstrikepower-description
+		DisplayBeacon: True
+		CameraActor: camera
+		CameraRemoveDelay: 60
+		ArrowSequence: arrow
+		CircleSequence: circles
+		UseDirectionalTarget: True
+		DirectionArrowAnimation: ornidirection
+		SupportPowerPaletteOrder: 110
+		EndChargeTextNotification: notification-airstrike-ready
+		SelectTargetTextNotification: notification-select-target
+		OrderName: kokotina2
+		Squad:
+			SquadMember@0:
+				UnitType: ornithopter
+				SpawnOffset: -1536, -1024, 0
+				TargetOffset: 0, -1024, 0
+			SquadMember@1:
+				UnitType: ornithopter
+				SpawnOffset: 0, 0, 0
+			SquadMember@2:
+				UnitType: ornithopter
+				SpawnOffset: -1536, 1024, 0
+				TargetOffset: 0, 1024, 0
+			SquadMember@3:
+				UnitType: ornithopter
+				SpawnOffset: -3000, -1024, 0
+				TargetOffset: 0, -1024, 0
+			SquadMember@4:
+				UnitType: ornithopter
+				SpawnOffset: -1500, 0, 0
+			SquadMember@5:
+				UnitType: ornithopter
+				SpawnOffset: -3000, 1024, 0
+				TargetOffset: 0, 1024, 0
+			SquadMember@6:
+				UnitType: ornithopter
+				SpawnOffset: -4500, -1024, 0
+				TargetOffset: 0, -1024, 0
+			SquadMember@7:
+				UnitType: ornithopter
+				SpawnOffset: -3000, 0, 0
+			SquadMember@8:
+				UnitType: ornithopter
+				SpawnOffset: -4500, 1024, 0
+				TargetOffset: 0, 1024, 0
+	D2kAirstrikePower@3:
+		Icon: ornistrike
+		Name: actor-high-tech-factory.airstrikepower-name
+		Prerequisites: wind_trap
+		ChargeInterval: 1
+		Description: actor-high-tech-factory.airstrikepower-description
+		DisplayBeacon: True
+		CameraActor: camera
+		CameraRemoveDelay: 60
+		ArrowSequence: arrow
+		CircleSequence: circles
+		UseDirectionalTarget: True
+		DirectionArrowAnimation: ornidirection
+		SupportPowerPaletteOrder: 120
+		EndChargeTextNotification: notification-airstrike-ready
+		SelectTargetTextNotification: notification-select-target
+		OrderName: kokotina3
+		Squad:
+			SquadMember@0:
+				UnitType: ornithopter
+				SpawnOffset: -1536, -1024, 0
+				TargetOffset: 0, -1024, 0
+			SquadMember@1:
+				UnitType: ornithopter
+				SpawnOffset: 0, 0, 0
+			SquadMember@2:
+				UnitType: ornithopter
+				SpawnOffset: -1536, 1024, 0
+				TargetOffset: 0, 1024, 0
+			SquadMember@3:
+				UnitType: ornithopter
+				SpawnOffset: -3000, -1024, 0
+				TargetOffset: 0, -1024, 0
+			SquadMember@4:
+				UnitType: ornithopter
+				SpawnOffset: -1500, 0, 0
+			SquadMember@5:
+				UnitType: ornithopter
+				SpawnOffset: -3000, 1024, 0
+				TargetOffset: 0, 1024, 0
+			SquadMember@6:
+				UnitType: ornithopter
+				SpawnOffset: -4500, -1024, 0
+				TargetOffset: 0, -1024, 0
+			SquadMember@7:
+				UnitType: ornithopter
+				SpawnOffset: -3000, 0, 0
+			SquadMember@8:
+				UnitType: ornithopter
+				SpawnOffset: -4500, 1024, 0
+				TargetOffset: 0, 1024, 0
+	D2kAirstrikePower@4:
+		Icon: ornistrike
+		Name: actor-high-tech-factory.airstrikepower-name
+		Prerequisites: wind_trap
+		ChargeInterval: 1
+		Description: actor-high-tech-factory.airstrikepower-description
+		DisplayBeacon: True
+		CameraActor: camera
+		CameraRemoveDelay: 60
+		ArrowSequence: arrow
+		CircleSequence: circles
+		UseDirectionalTarget: True
+		DirectionArrowAnimation: ornidirection
+		SupportPowerPaletteOrder: 130
+		EndChargeTextNotification: notification-airstrike-ready
+		SelectTargetTextNotification: notification-select-target
+		OrderName: kokotina4
+		Squad:
+			SquadMember@0:
+				UnitType: ornithopter
+				SpawnOffset: -1536, -1024, 0
+				TargetOffset: 0, -1024, 0
+			SquadMember@1:
+				UnitType: ornithopter
+				SpawnOffset: 0, 0, 0
+			SquadMember@2:
+				UnitType: ornithopter
+				SpawnOffset: -1536, 1024, 0
+				TargetOffset: 0, 1024, 0
+			SquadMember@3:
+				UnitType: ornithopter
+				SpawnOffset: -3000, -1024, 0
+				TargetOffset: 0, -1024, 0
+			SquadMember@4:
+				UnitType: ornithopter
+				SpawnOffset: -1500, 0, 0
+			SquadMember@5:
+				UnitType: ornithopter
+				SpawnOffset: -3000, 1024, 0
+				TargetOffset: 0, 1024, 0
+			SquadMember@6:
+				UnitType: ornithopter
+				SpawnOffset: -4500, -1024, 0
+				TargetOffset: 0, -1024, 0
+			SquadMember@7:
+				UnitType: ornithopter
+				SpawnOffset: -3000, 0, 0
+			SquadMember@8:
+				UnitType: ornithopter
+				SpawnOffset: -4500, 1024, 0
+				TargetOffset: 0, 1024, 0
+
+Player:
+	DeveloperMode:
+		CheckboxEnabled: true
+		CheckboxLocked: true
+	Shroud:
+		FogCheckboxDisplayOrder: 3
+		ExploredMapCheckboxEnabled: true

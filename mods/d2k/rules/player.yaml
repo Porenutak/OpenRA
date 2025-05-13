@@ -118,12 +118,15 @@ Player:
 		CashTickUpNotification: CashTickUp
 		CashTickDownNotification: CashTickDown
 	DeveloperMode:
+		CheckboxEnabled: true
+		CheckboxLocked: true
 		CheckboxDisplayOrder: 8
 	BaseAttackNotifier:
 		TextNotification: notification-base-under-attack
 		AllyTextNotification: notification-ally-under-attack
 	Shroud:
 		FogCheckboxDisplayOrder: 3
+		FogCheckboxEnabled: false
 	LobbyPrerequisiteCheckbox@AUTOCONCRETE:
 		ID: autoconcrete
 		Label: checkbox-automatic-concrete.label

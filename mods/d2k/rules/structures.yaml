@@ -997,7 +997,6 @@ high_tech_factory:
 	AirstrikePower:
 		Icon: ornistrike
 		Name: actor-high-tech-factory.airstrikepower-name
-		Prerequisites: ~techlevel.superweapons, upgrade.hightech
 		ChargeInterval: 7500
 		Description: actor-high-tech-factory.airstrikepower-description
 		DisplayBeacon: True
