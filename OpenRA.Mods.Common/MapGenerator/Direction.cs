@@ -304,6 +304,47 @@ namespace OpenRA.Mods.Common.MapGenerator
 			}
 		}
 
+		/// <summary>
+		/// Convert a short string, like "None", "R", "RD", etc to a direction.
+		/// Defaults to Direction.None if parsing fails.
+		/// </summary>
+		public static bool TryParse(string s, out int direction)
+		{
+			switch (s)
+			{
+				case "None":
+					direction = None;
+					return true;
+				case "R":
+					direction = R;
+					return true;
+				case "RD":
+					direction = RD;
+					return true;
+				case "D":
+					direction = D;
+					return true;
+				case "LD":
+					direction = LD;
+					return true;
+				case "L":
+					direction = L;
+					return true;
+				case "LU":
+					direction = LU;
+					return true;
+				case "U":
+					direction = U;
+					return true;
+				case "RU":
+					direction = RU;
+					return true;
+				default:
+					direction = None;
+					return false;
+			}
+		}
+
 		/// <summary>Count the number of set bits in a direction mask.</summary>
 		public static int Count(int dm)
 		{

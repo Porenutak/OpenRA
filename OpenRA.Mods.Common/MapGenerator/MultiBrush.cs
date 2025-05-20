@@ -212,6 +212,18 @@ namespace OpenRA.Mods.Common.MapGenerator
 				: (MatchesType(Start, matcher) || MatchesType(End, matcher));
 		public bool HasEndType(string matcher)
 			=> MatchesType(End, matcher);
+
+		public static int TypeDirection(string type)
+		{
+			if (!Direction.TryParse(type.Split('.')[^1], out var direction))
+				throw new InvalidOperationException("MultiBrushSegment has invalid direction");
+			return direction;
+		}
+
+		public int StartDirection
+			=> TypeDirection(Start);
+		public int EndDirection
+			=> TypeDirection(End);
 	}
 
 	/// <summary>A super template that can be used to paint both tiles and actors.</summary>
