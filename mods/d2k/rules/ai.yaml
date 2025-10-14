@@ -85,28 +85,33 @@ Player:
 		ResourceCreatorTypes: spicebloom.spawnpoint, spicebloom
 		HarvesterTypes: harvester
 		EnemyBaseBuildingTypes: construction_yard, refinery, barracks, wind_trap, light_factory, heavy_factory, outpost, starport, medium_gun_turret, large_gun_turret
+		ResourceMapStrideRadius: 15
+		HarvesterEnemyAvoidanceRadius: 7168
 	BaseBuilderBotModule@omnius:
 		RequiresCondition: enable-omnius-ai
 		BuildingQueues: Building, Upgrade
 		MinimumExcessPower: 60
 		MaximumExcessPower: 250
 		ExcessPowerIncrement: 50
-		ExcessPowerIncreaseThreshold: 4
+		ExcessPowerIncreaseThreshold: 5
 		MaxBaseRadius: 40
 		ConstructionYardTypes: construction_yard
 		RefineryTypes: refinery
 		PowerTypes: wind_trap
 		ProductionTypes: light_factory, heavy_factory, barracks, starport
+		TechTypes: outpost, upgrade.heavy, research_centre, palace, upgrade.hightech
 		SiloTypes: silo
-		DefenseTypes: medium_gun_turret,large_gun_turret
+		DefenseTypes: medium_gun_turret, large_gun_turret
 		SellRefineryInterval: -1
+		MaxResourceCellsToCheck: 6
+		MaxRefineryPerIndice: 4
 		BuildingLimits:
 			barracks: 3
-			refinery: 4
+			refinery: 8
 			outpost: 1
 			high_tech_factory: 1
-			light_factory: 2
-			heavy_factory: 2
+			light_factory: 3
+			heavy_factory: 3
 			starport: 1
 			repair_pad: 1
 			research_centre: 1
@@ -157,15 +162,21 @@ Player:
 		PowerTypes: wind_trap
 		ProductionTypes: light_factory, heavy_factory, barracks, starport
 		SiloTypes: silo
-		DefenseTypes: medium_gun_turret,large_gun_turret
-		SellRefineryInterval: -1
+		TechTypes: outpost, upgrade.heavy, research_centre, palace, upgrade.hightech
+		DefenseTypes: medium_gun_turret, large_gun_turret
+		SellRefineryInterval: 5000
+		MaxResourceCellsToCheck: 6
+		MaxRefineryPerIndice: 4
+		InititalMinimumRefineryCount: 0
+		AdditionalMinimumRefineryCount: 3
+		ProductionMinCashRequirement: 1000
 		BuildingLimits:
 			barracks: 3
-			refinery: 4
+			refinery: 8
 			outpost: 1
 			high_tech_factory: 1
-			light_factory: 2
-			heavy_factory: 2
+			light_factory: 3
+			heavy_factory: 3
 			starport: 1
 			repair_pad: 1
 			research_centre: 1
@@ -194,11 +205,12 @@ Player:
 			upgrade.heavy: 1
 			upgrade.hightech: 1
 		BuildingDelays:
-			upgrade.conyard: 12000
+			upgrade.conyard: 20000
 			repair_pad: 10000
 			outpost: 11000
 			upgrade.barracks: 8000
-			upgrade.heavy: 10000
+			upgrade.heavy: 15000
+			upgrade.light: 8000
 			high_tech_factory: 13000
 			starport: 20000
 	BaseBuilderBotModule@gladius:
@@ -207,22 +219,25 @@ Player:
 		MinimumExcessPower: 60
 		MaximumExcessPower: 250
 		ExcessPowerIncrement: 50
-		ExcessPowerIncreaseThreshold: 4
+		ExcessPowerIncreaseThreshold: 5
 		MaxBaseRadius: 40
 		ConstructionYardTypes: construction_yard
 		RefineryTypes: refinery
 		PowerTypes: wind_trap
 		ProductionTypes: light_factory, heavy_factory, barracks, starport
 		SiloTypes: silo
-		DefenseTypes: medium_gun_turret,large_gun_turret
+		TechTypes: outpost, upgrade.heavy, research_centre, palace, upgrade.hightech
+		DefenseTypes: medium_gun_turret, large_gun_turret
 		SellRefineryInterval: -1
+		MaxResourceCellsToCheck: 6
+		MaxRefineryPerIndice: 4
 		BuildingLimits:
 			barracks: 3
-			refinery: 4
+			refinery: 8
 			outpost: 1
 			high_tech_factory: 1
-			light_factory: 2
-			heavy_factory: 2
+			light_factory: 3
+			heavy_factory: 3
 			starport: 1
 			repair_pad: 1
 			research_centre: 1
