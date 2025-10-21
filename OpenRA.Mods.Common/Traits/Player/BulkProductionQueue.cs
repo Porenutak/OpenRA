@@ -52,7 +52,7 @@ namespace OpenRA.Mods.Common.Traits
 		static readonly ActorInfo[] NoItems = [];
 
 		readonly Actor self;
-		readonly BulkProductionQueueInfo info;
+		public new readonly BulkProductionQueueInfo Info;
 
 		protected readonly List<(ActorInfo Actor, int Resources, int Cash)> ActorsReadyForDelivery = [];
 		public int DeliveryDelay { get; private set; } = 0;
@@ -65,7 +65,7 @@ namespace OpenRA.Mods.Common.Traits
 			: base(init, info)
 		{
 			self = init.Self;
-			this.info = info;
+			Info = info;
 			if (info.DeliveryProgressNotifications.Length != 0)
 				notificationInterval = info.DeliveryDelay / info.DeliveryProgressNotifications.Length;
 		}
@@ -80,7 +80,7 @@ namespace OpenRA.Mods.Common.Traits
 				if (x.Trait.IsTraitDisabled)
 					continue;
 
-				if (x.Actor.Owner != self.Owner || !x.Trait.Info.Produces.Contains(Info.Type))
+				if (x.Actor.Owner != self.Owner || !x.Trait.Info.Produces.Contains(base.Info.Type))
 					continue;
 
 				Enabled |= IsValidFaction;
@@ -117,7 +117,7 @@ namespace OpenRA.Mods.Common.Traits
 
 		public override IEnumerable<ActorInfo> BuildableItems()
 		{
-			return Enabled && ActorsReadyForDelivery.Count != info.MaxCapacity && !deliveryProcessStarted ? base.BuildableItems() : NoItems;
+			return Enabled && ActorsReadyForDelivery.Count != Info.MaxCapacity && !deliveryProcessStarted ? base.BuildableItems() : NoItems;
 		}
 
 		public override TraitPair<Production> MostLikelyProducer()
@@ -139,7 +139,7 @@ namespace OpenRA.Mods.Common.Traits
 			var bi = unit.TraitInfo<BuildableInfo>();
 
 			// Some units may request a specific production type, which is ignored if the AllTech cheat is enabled
-			var type = developerMode.AllTech ? Info.Type : (bi.BuildAtProductionType ?? Info.Type);
+			var type = developerMode.AllTech ? base.Info.Type : (bi.BuildAtProductionType ?? base.Info.Type);
 
 			var producers = self.World.ActorsWithTrait<Production>()
 				.Where(x => x.Actor.Owner == self.Owner
@@ -154,7 +154,7 @@ namespace OpenRA.Mods.Common.Traits
 				anyProducers = true;
 				if (p.Trait.IsTraitPaused)
 					continue;
-				if (ActorsReadyForDelivery.Count <= info.MaxCapacity)
+				if (ActorsReadyForDelivery.Count <= Info.MaxCapacity)
 				{
 					var item = Queue.First(i => i.Done && i.Item == unit.Name);
 					ActorsReadyForDelivery.Add((unit, item.ResourcesPaid, item.TotalCost - item.ResourcesPaid));
@@ -182,7 +182,7 @@ namespace OpenRA.Mods.Common.Traits
 					var bi = unit.TraitInfo<BuildableInfo>();
 
 					// Not built by this queue
-					if (!bi.Queue.Contains(Info.Type))
+					if (!bi.Queue.Contains(base.Info.Type))
 						return;
 
 					// You can't build that
@@ -193,11 +193,11 @@ namespace OpenRA.Mods.Common.Traits
 					var fromLimit = int.MaxValue;
 					if (!developerMode.AllTech)
 					{
-						if (Info.QueueLimit > 0)
-							fromLimit = Info.QueueLimit - Queue.Count;
+						if (base.Info.QueueLimit > 0)
+							fromLimit = base.Info.QueueLimit - Queue.Count;
 
-						if (Info.ItemLimit > 0)
-							fromLimit = Math.Min(fromLimit, Info.ItemLimit - Queue.Count(i => i.Item == order.TargetString));
+						if (base.Info.ItemLimit > 0)
+							fromLimit = Math.Min(fromLimit, base.Info.ItemLimit - Queue.Count(i => i.Item == order.TargetString));
 
 						if (bi.BuildLimit > 0)
 						{
@@ -215,7 +215,7 @@ namespace OpenRA.Mods.Common.Traits
 					var amountToBuild = Math.Min(fromLimit, order.ExtraData);
 					for (var n = 0; n < amountToBuild; n++)
 					{
-						if (Info.PayUpFront && cost > playerResources.GetCashAndResources())
+						if (base.Info.PayUpFront && cost > playerResources.GetCashAndResources())
 							return;
 						BeginProduction(new ProductionItem(this, order.TargetString, cost, playerPower, () => self.World.AddFrameEndTask(_ =>
 						{
@@ -237,7 +237,7 @@ namespace OpenRA.Mods.Common.Traits
 					ReturnOrder(order.TargetString, order.ExtraData);
 					break;
 				case "PurchaseOrder":
-					if (!deliveryProcessStarted && order.TargetString == info.Type)
+					if (!deliveryProcessStarted && order.TargetString == Info.Type)
 						StartDeliveryProcess();
 					break;
 			}
@@ -245,7 +245,7 @@ namespace OpenRA.Mods.Common.Traits
 
 		public void DeliverFinished()
 		{
-			if (info.RefundUndeliveredActors || !deliveryProcessStarted)
+			if (Info.RefundUndeliveredActors || !deliveryProcessStarted)
 				ReturnOrder();
 			ActorsReadyForDelivery.Clear();
 			deliveryProcessStarted = false;
@@ -265,11 +265,11 @@ namespace OpenRA.Mods.Common.Traits
 		{
 			ClearQueue();
 			deliveryProcessStarted = true;
-			DeliveryDelay = info.DeliveryDelay;
+			DeliveryDelay = Info.DeliveryDelay;
 			var rules = self.World.Map.Rules;
-			Game.Sound.PlayNotification(rules, self.Owner, "Speech", info.StartDeliveryNotification, self.Owner.Faction.InternalName);
-			if (info.StartDeliveryTextNotification != null)
-				TextNotificationsManager.AddTransientLine(self.Owner, info.StartDeliveryTextNotification);
+			Game.Sound.PlayNotification(rules, self.Owner, "Speech", Info.StartDeliveryNotification, self.Owner.Faction.InternalName);
+			if (Info.StartDeliveryTextNotification != null)
+				TextNotificationsManager.AddTransientLine(self.Owner, Info.StartDeliveryTextNotification);
 		}
 
 		protected void DeliveryHasArrived()
@@ -282,7 +282,7 @@ namespace OpenRA.Mods.Common.Traits
 				.OrderByDescending(x => x.Actor.Trait<PrimaryBuilding>().IsPrimary)
 				.ThenByDescending(x => x.Actor.ActorID);
 			var p = producers.FirstOrDefault();
-			p.Trait?.DeliverOrder(p.Actor, ActorsReadyForDelivery, Info.Type, this);
+			p.Trait?.DeliverOrder(p.Actor, ActorsReadyForDelivery, base.Info.Type, this);
 		}
 
 		public void ReturnOrder(string itemName = null, uint numberToCancel = 1)
@@ -315,10 +315,10 @@ namespace OpenRA.Mods.Common.Traits
 			if (notificationInterval == 0)
 			{
 				Game.Sound.PlayNotification(self.World.Map.Rules, self.Owner, "Speech",
-				info.DeliveryProgressNotifications[notificationIndex], self.Owner.Faction.InternalName);
-				notificationInterval = info.DeliveryDelay / info.DeliveryProgressNotifications.Length;
+				Info.DeliveryProgressNotifications[notificationIndex], self.Owner.Faction.InternalName);
+				notificationInterval = Info.DeliveryDelay / Info.DeliveryProgressNotifications.Length;
 				notificationIndex++;
-				if (info.DeliveryProgressNotifications.Length == notificationIndex)
+				if (Info.DeliveryProgressNotifications.Length == notificationIndex)
 				{
 					notificationIndex = 0;
 					return;

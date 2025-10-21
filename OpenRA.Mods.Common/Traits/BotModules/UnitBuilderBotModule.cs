@@ -50,7 +50,7 @@ namespace OpenRA.Mods.Common.Traits
 	{
 		public const int FeedbackTime = 30; // ticks; = a bit over 1s. must be >= netlag.
 
-		readonly World world;
+		protected readonly World World;
 		readonly Player player;
 
 		readonly List<string> queuedBuildRequests = [];
@@ -66,9 +66,9 @@ namespace OpenRA.Mods.Common.Traits
 		public UnitBuilderBotModule(Actor self, UnitBuilderBotModuleInfo info)
 			: base(info)
 		{
-			world = self.World;
+			World = self.World;
 			player = self.Owner;
-			unitsToBuild = new ActorIndex.OwnerAndNames(world, info.UnitsToBuild.Keys, player);
+			unitsToBuild = new ActorIndex.OwnerAndNames(World, info.UnitsToBuild.Keys, player);
 		}
 
 		protected override void Created(Actor self)
@@ -83,6 +83,11 @@ namespace OpenRA.Mods.Common.Traits
 		}
 
 		void IBotTick.BotTick(IBot bot)
+		{
+			BotTick(bot);
+		}
+
+		protected virtual void BotTick(IBot bot)
 		{
 			// PERF: We shouldn't be queueing new units when we're low on cash
 			if (playerResources.GetCashAndResources() < Info.ProductionMinCashRequirement || requestPause.Any(rp => rp.PauseUnitProduction))
@@ -155,7 +160,7 @@ namespace OpenRA.Mods.Common.Traits
 		// In cases where we want to build a specific unit but don't know the queue name (because there's more than one possibility)
 		void BuildUnit(IBot bot, string name, ILookup<string, ProductionQueue> queuesByCategory)
 		{
-			var actorInfo = world.Map.Rules.Actors[name];
+			var actorInfo = World.Map.Rules.Actors[name];
 			if (actorInfo == null)
 				return;
 
@@ -180,7 +185,7 @@ namespace OpenRA.Mods.Common.Traits
 
 		ActorInfo ChooseRandomUnitToBuild(ProductionQueue queue)
 		{
-			var buildableThings = queue.BuildableItems().Shuffle(world.LocalRandom).ToArray();
+			var buildableThings = queue.BuildableItems().Shuffle(World.LocalRandom).ToArray();
 			if (buildableThings.Length == 0)
 				return null;
 
@@ -191,7 +196,7 @@ namespace OpenRA.Mods.Common.Traits
 			foreach (var unit in buildableThings)
 			{
 				if (!Info.UnitsToBuild.TryGetValue(unit.Name, out var share) ||
-					(Info.UnitDelays != null && Info.UnitDelays.TryGetValue(unit.Name, out var delay) && delay > world.WorldTick))
+					(Info.UnitDelays != null && Info.UnitDelays.TryGetValue(unit.Name, out var delay) && delay > World.WorldTick))
 					continue;
 
 				var unitCount = allUnits.Count(a => a.Info.Name == unit.Name);
