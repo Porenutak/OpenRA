@@ -12,7 +12,7 @@ Sound:
 		MinDistance: 6c0
 	Warhead@1Dam: SpreadDamage
 		Falloff: 100, 0
-		Spread: 1c756
+		Spread: 1c900
 		Damage: 800
 		AffectsParent: false
 		ValidRelationships: Neutral, Enemy, Ally
@@ -468,3 +468,6 @@ DeviatorGas:
 		Explosions: deviator
 		ExplosionPalette: player
 		UsePlayerPalette: true
+	Warhead@Trigger: GrantExternalCondition
+		Condition: unit-captured
+		Duration: 160

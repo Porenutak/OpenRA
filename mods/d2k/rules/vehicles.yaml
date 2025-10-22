@@ -569,7 +569,7 @@ deviator:
 		TurnSpeed: 12
 		Speed: 53
 	Health:
-		HP: 12500
+		HP: 11000
 	Armor:
 		Type: wood
 	Encyclopedia:

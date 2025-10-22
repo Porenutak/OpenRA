@@ -87,7 +87,7 @@ devastator.husk:
 deviator.husk:
 	Inherits: ^VehicleHusk
 	Health:
-		HP: 10000
+		HP: 4000
 	Tooltip:
 		Name: actor-deviator-husk-name
 	ThrowsParticle@turret:

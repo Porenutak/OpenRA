@@ -1026,7 +1026,7 @@ medium_gun_turret:
 		Bounds: 1024, 1024
 		DecorationBounds: 1024, 1280, 0, -256
 	Health:
-		HP: 24000
+		HP: 23000
 	Encyclopedia:
 		Description: actor-medium-gun-turret.encyclopedia
 		Category: Buildings
@@ -1092,7 +1092,7 @@ large_gun_turret:
 		Bounds: 1024, 1024
 		DecorationBounds: 1024, 1280, 0, -256
 	Health:
-		HP: 27000
+		HP: 26000
 	Armor:
 		Type: wall
 	RevealsShroud:
