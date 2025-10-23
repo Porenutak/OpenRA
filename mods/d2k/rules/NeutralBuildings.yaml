@@ -1,0 +1,133 @@
+^NeutralBuildingCapturable:
+	Inherits@1: ^ExistsInWorld
+	Inherits@2: ^SpriteActor
+	Inherits@selection: ^SelectableBuilding
+	FrozenUnderFog:
+	WithSpriteBody:
+	Huntable:
+	HitShape:
+		UseTargetableCellsOffsets: true
+		Type: Rectangle
+			TopLeft: -512, -1024
+			BottomRight: 512, 512
+	Building:
+		Dimensions: 1,1
+		Footprint: x
+		TerrainTypes: Rock, Concrete
+		BuildSounds: BUILD1.WAV
+	Armor:
+		Type: building
+	MapEditorData:
+		Categories: Neutral buildings
+	Targetable:
+		TargetTypes: Ground, C4, Structure
+		RequiresForceFire: false
+	CaptureManager:
+	RevealsShroud:
+		Range: 4c0
+	Capturable:
+		Types: building
+	FireWarheadsOnDeath:
+		Type: Footprint
+		Weapon: BuildingExplode
+		EmptyWeapon: BuildingExplode
+	InstantlyRepairable:
+	Demolishable:
+	RevealOnDeath:
+		Duration: 100
+		Radius: 4c768
+	OwnerLostAction:
+		Action: ChangeOwner
+	FireProjectilesOnDeath:
+		Weapons: Debris, Debris2, Debris3, Debris4
+		Pieces: 2, 5
+		Range: 1c512, 4c0
+	FireWarheadsOnDeath:
+		Type: Footprint
+		Weapon: BuildingExplode
+		EmptyWeapon: BuildingExplode
+	SoundOnDamageTransition:
+		DamagedSounds: EXPLSML1.WAV
+		DestroyedSounds: EXPLHG1.WAV
+
+
+
+mining_rig:
+	Inherits: ^NeutralBuildingCapturable
+	Tooltip:
+		Name: Mining rig
+	TooltipDescription:
+		Description: Provides passive income. Can by rebuild when destroyed.
+		ValidRelationships: none
+	Health:
+		HP: 20000
+	CashTrickler:
+		Amount: 10
+		RequiresCondition: enabled
+	GrantConditionOnCombatantOwner:
+		Condition: enabled
+	WithIdleOverlay:
+		RequiresCondition: enabled
+	FireWarheadsOnDeath:
+		Type: Footprint
+		Weapon: BuildingExplode
+		EmptyWeapon: BuildingExplode
+	FireProjectilesOnDeath@spice:
+		Weapons: SpiceExplosion
+		Pieces: 1, 3
+		Range: 1c0, 3c0
+	GrantConditionOnDamageState@HEAVY:
+		Condition: heavy-damage
+	FloatingSpriteEmitter@SMOKE:
+		RequiresCondition: heavy-damage
+		Image: smoke3
+		Lifetime: 15, 20
+		Speed: 3
+		Gravity: 50
+		SpawnFrequency: 5, 15
+		RandomFacing: true
+		RandomRate: 4
+		Offset: 0, 0, 600
+		TurnRate: 3
+		Duration: 500
+	SpawnActorOnDeath:
+		Actor: mining_rig.husk
+		OwnerType: InternalName
+
+
+
+mining_rig.husk:
+	Inherits: ^NeutralBuildingCapturable
+	HitShape:
+		UseTargetableCellsOffsets: true
+		Type: Rectangle
+			TopLeft: -512, -1024
+			BottomRight: 1024, 512
+	-D2kBuilding:
+	Armor:
+		Type: invulnerable
+	Tooltip:
+		Name: Mining rig (Destroyed)
+	TooltipDescription:
+		Description: Can be repaired by engineer
+	HitShape:
+		UseTargetableCellsOffsets: true
+		Type: Rectangle
+			TopLeft: -512, -1024
+			BottomRight: 512, 512
+	Building:
+		Dimensions: 1,1
+		Footprint: x
+	TransformOnCapture:
+		IntoActor: mining_rig
+	FloatingSpriteEmitter@SMOKE:
+		Image: smoke3
+		Lifetime: 15, 20
+		Speed: 3
+		Gravity: 50
+		SpawnFrequency: 5, 10
+		RandomFacing: true
+		RandomRate: 4
+		Offset: 0, 0, 200
+		TurnRate: 3
+		Duration: 500
