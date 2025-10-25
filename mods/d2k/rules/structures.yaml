@@ -367,8 +367,9 @@ refinery:
 		TickRate: 20
 	DockHost:
 		Type: Unload
-		DockAngle: 384
+		DockAngle: 640
 		DockOffset: 1c0,512,0
+		DockedClientCondition: docked_se
 	StoresPlayerResources:
 		Capacity: 2000
 	CustomSellValue:
@@ -429,8 +430,12 @@ refinery:
 	WithDamageOverlay@Fire2Ordos:
 		Offset: 0, -200, 0
 
+
 refinery_nw:
 	Inherits: refinery
+	ProximityExternalCondition:
+		Condition: docking_nw
+		Range: 2c0
 	Buildable:
 		Prerequisites: ~disabled
 		Queue: Building
@@ -454,6 +459,7 @@ refinery_nw:
 		Type: Unload
 		DockAngle: 128
 		DockOffset: -1c0,-512,0
+		DockedClientCondition: docked_nw
 	D2kBuilding:
 		Footprint: === =xx xx=
 		Dimensions: 3,3
@@ -473,6 +479,9 @@ refinery_nw:
 
 refinery_ne:
 	Inherits: refinery
+	ProximityExternalCondition:
+		Condition: docking_ne
+		Range: 2c0
 	Buildable:
 		Prerequisites: ~disabled
 		Queue: Building
@@ -496,6 +505,7 @@ refinery_ne:
 		Type: Unload
 		DockAngle: 896
 		DockOffset: 1c0,-512,0
+		DockedClientCondition: docked_ne
 	D2kBuilding:
 		Footprint: === xx= =xx
 		Dimensions: 3,3
@@ -515,6 +525,9 @@ refinery_ne:
 
 refinery_sw:
 	Inherits: refinery
+	ProximityExternalCondition:
+		Condition: docking_sw
+		Range: 2c0
 	Buildable:
 		Prerequisites: ~disabled
 		Queue: Building
@@ -535,6 +548,7 @@ refinery_sw:
 		Type: Unload
 		DockAngle: 384
 		DockOffset: -1c0,512,0
+		DockedClientCondition: docked_sw
 	D2kBuilding:
 		Footprint: xx= =xx ===
 		Dimensions: 3,3

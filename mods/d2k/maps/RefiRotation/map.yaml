@@ -1,0 +1,89 @@
+MapFormat: 12
+
+RequiresMod: d2k
+
+Title: RefiRotation
+
+Author: Your name here
+
+Tileset: ARRAKIS
+
+MapSize: 66,66
+
+Bounds: 1,1,64,64
+
+Visibility: Lobby
+
+Categories: Conquest
+
+Players:
+	PlayerReference@Neutral:
+		Name: Neutral
+		OwnsWorld: True
+		NonCombatant: True
+		Faction: Random
+	PlayerReference@Creeps:
+		Name: Creeps
+		NonCombatant: True
+		Faction: Random
+		Enemies: Multi0
+	PlayerReference@Multi0:
+		Name: Multi0
+		Playable: True
+		Faction: Random
+		Enemies: Creeps
+
+Actors:
+	Actor0: mpspawn
+		Owner: Neutral
+		Location: 23,33
+	Actor1: refinery
+		Owner: Multi0
+		Location: 36,27
+		FreeActor: False
+	Actor2: refinery_nw
+		Owner: Multi0
+		Location: 33,26
+		FreeActor: False
+	Actor3: refinery_ne
+		Owner: Multi0
+		Location: 36,31
+		FreeActor: False
+	Actor4: refinery_sw
+		Owner: Multi0
+		Location: 33,31
+		FreeActor: False
+	Actor5: harvester
+		Owner: Multi0
+		Facing: 384
+		Location: 39,24
+	Actor6: harvester
+		Owner: Multi0
+		Facing: 384
+		Location: 43,26
+	Actor7: harvester
+		Owner: Multi0
+		Facing: 384
+		Location: 44,30
+	Actor8: harvester
+		Owner: Multi0
+		Location: 43,31
+		Facing: 384
+	Actor9: wind_trap
+		Owner: Multi0
+		Location: 22,40
+	Actor10: wind_trap
+		Owner: Multi0
+		Location: 25,40
+	Actor11: wind_trap
+		Owner: Multi0
+		Location: 28,40
+	Actor12: wind_trap
+		Owner: Multi0
+		Location: 32,41
+	Actor13: wind_trap
+		Owner: Multi0
+		Location: 36,40
+	Actor14: wind_trap
+		Owner: Multi0
+		Location: 32,36
