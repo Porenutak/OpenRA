@@ -161,7 +161,6 @@ WorldLoaded = function()
 	KillAtreides = AddPrimaryObjective(Harkonnen, "destroy-atreides")
 	KillFremen = AddPrimaryObjective(Harkonnen, "destroy-fremen")
 	KillHarkonnen = AddPrimaryObjective(Atreides, "")
-
 	Camera.Position = HConyard.CenterPosition
 	FremenAttackLocation = HConyard.Location
 	IdleHuntOnBaseDestroyed(Atreides, AtreidesBase)

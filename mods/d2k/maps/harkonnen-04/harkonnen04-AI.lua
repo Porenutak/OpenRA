@@ -7,6 +7,7 @@
    information, see COPYING.
 ]]
 EarlyGameStage = DateTime.Minutes(6)
+
 InitialProductionDelay = {
 		easy = DateTime.Seconds(150),
 		normal = DateTime.Seconds(100),
@@ -50,10 +51,33 @@ RebuildBuildingstypes =
 AttackThresholdSize = AttackGroupSize[Difficulty] * 2.5
 
 ActivateAI = function()
+	AlreadyDefending[Atreides] = {}
+	AlreadyDefending[Fremen] = {}
+	GuardSquad[Atreides] = {}
+	GuardSquad[Fremen] = {}
+	GuarSquadUnitLimit[Atreides] = AttackThresholdSize
+	GuarSquadUnitLimit[Fremen] = 0
+
 	IdlingUnits[Fremen] = { }
 	IdlingUnits[Atreides] = Utils.Concat(Reinforcements.Reinforce(Atreides, InitialAtreidesReinforcements[1], AtreidesPaths[2]), Reinforcements.Reinforce(Atreides, InitialAtreidesReinforcements[2], AtreidesPaths[3]))
+	AddUnitsToPatrolSquad(Atreides, #IdlingUnits[Atreides])
 	FremenProduction()
-
+	DefensePerimeter[Atreides] = GetCellsInRectangle(CPos.New(4,67), CPos.New(50, 87))
+--[[
+	Trigger.OnEnteredFootprint(DefensePerimeter[Atreides], function(intruder, id)
+		if Atreides.IsAlliedWith(intruder.Owner) or AlreadyDefending[Atreides][id]
+		then
+			Media.Debug("false positive "..tostring(intruder))
+			return
+		end
+		Media.Debug("INTRUDER "..tostring(intruder))
+		CheckArea(Atreides, intruder.Location)
+		AlreadyDefending[Atreides][id] = true
+		Trigger.AfterDelay(1000, function()
+			AlreadyDefending[Atreides][id] = false
+		end)
+	end)
+]]
 	DefendAndRepairBase(Atreides, AtreidesBase, 0.75, AttackGroupSize[Difficulty])
 	DefendAndRepairBase(Fremen, FremenBase, 0.75, AttackGroupSize[Difficulty])
 

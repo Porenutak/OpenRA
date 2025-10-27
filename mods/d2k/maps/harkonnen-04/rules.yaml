@@ -1,12 +1,18 @@
 Player:
 	PlayerResources:
 		DefaultCash: 5000
+	DeveloperMode:
+		CheckboxEnabled: true
+		CheckboxLocked: true
 	ExternalCondition@AI:
 		Condition: base-rebuilder-active
+	ProvidesPrerequisite@autoConreteForBots:
+		Prerequisite: global-auto-concrete
+			RequiresCondition: base-rebuilder-active
 	BaseBuilderBotModule@campaing:
 		RequiresCondition: base-rebuilder-active
 		BuildingQueues: Building, Upgrade
-		MinimumExcessPower: 0
+		MinimumExcessPower: 100
 		MaximumExcessPower: 250
 		MaxBaseRadius: 40
 		ConstructionYardTypes: construction_yard
@@ -39,6 +45,7 @@ World:
 		BriefingVideo: H_BR04_E.VQA
 	MapOptions:
 		TechLevel: low
+		GameSpeed: fastest
 	ScriptLobbyDropdown@difficulty:
 		ID: difficulty
 		Label: dropdown-difficulty.label
@@ -47,7 +54,7 @@ World:
 			easy: options-difficulty.easy
 			normal: options-difficulty.normal
 			hard: options-difficulty.hard
-		Default: easy
+		Default: hard
 
 carryall.reinforce:
 	Cargo:

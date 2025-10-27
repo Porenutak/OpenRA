@@ -113,6 +113,12 @@ end
 ---@type table<player, actor[]>
 IdlingUnits = { }
 
+---@type table<player, integer>
+GuarSquadUnitLimit = { }
+
+---@type table<player, actor[]>
+GuardSquad = { }
+
 --- Is a bot currently using idle units to attack or defend?
 ---@type table<player, boolean>
 Attacking = { }
@@ -124,6 +130,14 @@ HoldProduction = { }
 --- Was a bot's last harvester eaten by a sandworm?
 ---@type table<player, boolean>
 LastHarvesterEaten = { }
+
+--- cells area arond the base for patroling squads
+---@type table<player, CPos[]>
+DefensePerimeter = { }
+
+--- Is this actor already defended?
+---@type table<player, boolean[]>
+AlreadyDefending = { }
 
 --- Gather units from a bot's idle unit pool, up to a certain group size.
 ---@param owner player
@@ -167,41 +181,139 @@ SendAttack = function(owner, size)
 	end)
 end
 
+AddUnitsToPatrolSquad = function(owner, size)
+
+	RemoveDeadActors(GuardSquad[owner])
+	local newRecruits = SetupAttackGroup(owner, size)
+	Utils.Do(newRecruits, function(recruit)
+		table.insert(GuardSquad[owner],recruit)
+		SelectRoutine(owner, recruit)
+		--Media.Debug("adding new unit to patrol "..tostring(recruit).." Totalsize: "..#PatrolSquad[owner])
+	end)
+end
+
+
+
+SelectRoutine = function(owner, unit)
+	Trigger.ClearAll(unit)
+	Trigger.AfterDelay(1, function()
+		if unit.IsDead then return end
+		DefensePerimeterRoutine(owner, unit)
+		Trigger.OnKilled(unit, function(killer)
+			RemoveDeadActors(GuardSquad[owner])
+				CheckArea(owner, killer.Location)
+		end)
+	end)
+end
+
+CheckArea = function(owner, targetArea)
+	Media.Debug("checking area "..tostring(targetArea))
+	RemoveDeadActors(GuardSquad[owner])
+	local squad = Utils.Take(Utils.RandomInteger(1 , #GuardSquad[owner]), GuardSquad[owner])
+	Utils.Do(squad, function(unit)
+		Trigger.ClearAll(unit)
+		unit.Stop()
+		unit.AttackMove(targetArea)
+		unit.CallFunc(function()
+			FindTargetsInArea(owner, unit)
+		end)
+	end)
+end
+
+FindTargetsInArea = function(owner, unit)
+	if unit.IsDead then return end
+	local enemies = Map.ActorsInCircle(unit.CenterPosition, WDist.FromCells(10), function(a)
+		return
+			a.IsInWorld
+			and not a.IsDead
+			and not a.Owner.IsAlliedWith(unit.Owner)
+			and a.Owner.InternalName ~= "Neutral"
+			and a.Owner.InternalName ~= "Creep"
+	end)
+	Media.Debug("actor: "..tostring(unit).." Find targets "..tostring(#enemies))
+	if #enemies > 0 then
+		unit.Wait(10)
+		unit.Hunt()
+	else
+		unit.Wait(Utils.RandomInteger(200 , 500))
+		unit.CallFunc(function()
+			if unit.IsDead then
+				RemoveDeadActors(GuardSquad[owner])
+			end
+			SelectRoutine(owner, unit)
+			Media.Debug("Return for routine "..tostring(unit))
+		end)
+	end
+end
+
+DefensePerimeterRoutine = function(owner, unit)
+	if unit.IsDead then return end
+	local targetCell = Utils.Random(DefensePerimeter[owner])
+	unit.AttackMove(targetCell, 2)
+	unit.Wait(Utils.RandomInteger(100, 300))
+	unit.CallFunc(function ()
+		DefensePerimeterRoutine(owner, unit)
+	end)
+end
+
+EscortHarvester = function(owner, unit)
+	local harvesters = owner.GetActorsByType("harvester")
+	Media.Debug("Escorting harvester"..tostring(unit))
+	if #harvesters > 0 then
+		unit.Guard(Utils.Random(harvesters))
+		unit.Wait(300)
+		unit.CallFunc(function()
+			SelectRoutine(owner, unit)
+		end)
+	end
+
+end
 --- Prepare a unit to call for help if attacked.
 ---@param unit actor
 ---@param defendingPlayer player
 ---@param defenderCount integer
 DefendActor = function(unit, defendingPlayer, defenderCount)
+	--AlreadyDefending[defendingPlayer][unit] = false
 	Trigger.OnDamaged(unit, function(self, attacker)
 		if unit.Owner ~= defendingPlayer then
 			return
 		end
-
+		if AlreadyDefending[defendingPlayer][unit] then
+			Media.Debug("Already defending this actor")
+			return
+		end
 		-- Don't try to attack spiceblooms
 		if attacker and attacker.Type == "spicebloom" then
 			return
 		end
-
-		if Attacking[defendingPlayer] then
-			return
+		local guards = {}
+		RemoveDeadActors(GuardSquad[defendingPlayer])
+		if #GuardSquad[defendingPlayer] > defenderCount then
+			guards = Utils.Take(defenderCount, GuardSquad[defendingPlayer])
+		else
+			-- if theres not enough units in patrolSquad, recriut new ones.
+			guards = SetupAttackGroup(defendingPlayer, defenderCount)
+			if #guards <= 0 then return end
+			Utils.Do(guards, function(guard)
+				table.insert(GuardSquad[defendingPlayer], guard)
+			end)
 		end
-		Attacking[defendingPlayer] = true
-
-		local Guards = SetupAttackGroup(defendingPlayer, defenderCount)
-
-		if #Guards <= 0 then
-			Attacking[defendingPlayer] = false
-			return
-		end
-
-		Utils.Do(Guards, function(unit)
-			if not self.IsDead then
-				unit.AttackMove(self.Location)
+		AlreadyDefending[defendingPlayer][unit] = true
+		Trigger.AfterDelay(1000, function() AlreadyDefending[defendingPlayer][unit] = false end)
+		Utils.Do(guards, function(guard)
+			if not guard.IsDead then
+				Media.Debug("protection actor: "..tostring(unit).." with"..tostring(guard))
+				--Trigger.Clear(guard, "OnKilled")
+				guard.Stop()
+				guard.AttackMove(self.Location)
+				Trigger.OnIdle(guard, function()
+					FindTargetsInArea(defendingPlayer, guard)
+				end)
+				guard.CallFunc( function()
+				end)
 			end
-			IdleHunt(unit)
 		end)
 
-		Trigger.OnAllRemovedFromWorld(Guards, function() Attacking[defendingPlayer] = false end)
 	end)
 end
 
@@ -250,7 +362,6 @@ DefendAndRepairBase = function(owner, baseBuildings, modifier, defenderCount)
 		if actor.IsDead then
 			return
 		end
-
 		DefendActor(actor, owner, defenderCount)
 		RepairBuilding(owner, actor, modifier)
 	end)
@@ -276,8 +387,10 @@ ProduceUnits = function(player, factory, delay, toBuild, attackSize, attackThres
 	player.Build(toBuild(), function(unit)
 		IdlingUnits[player][#IdlingUnits[player] + 1] = unit[1]
 		Trigger.AfterDelay(delay(), function() ProduceUnits(player, factory, delay, toBuild, attackSize, attackThresholdSize) end)
-
-		if #IdlingUnits[player] >= attackThresholdSize then
+		if GuarSquadUnitLimit[player] >= #GuardSquad[player] and Utils.RandomInteger(1, 100) < 50 then
+			AddUnitsToPatrolSquad(player, 1)
+		elseif #IdlingUnits[player] >= attackThresholdSize then
+			local desiredUnits = GuarSquadUnitLimit[player] - #GuardSquad[player]
 			SendAttack(player, attackSize)
 		end
 	end)
@@ -347,13 +460,14 @@ end
 
 function FindNewBuilding(player, base, rebuildTypes)
 	Trigger.AfterDelay(300, function()
-		Media.DisplayMessage("checking")
+		--Media.DisplayMessage("checking")
 		for buildingType, productionTypes in pairs (rebuildTypes) do
 			local buildings = player.GetActorsByType(buildingType)
 			for j, building in ipairs (buildings) do
 				if not Table_contains(base, building) then
 					--Media.DisplayMessage("found new building"..building.Type)
 					table.insert(base,building)
+					DefendAndRepairBase(player,{building}, 0.75, AttackGroupSize[Difficulty])
 					if #productionTypes > 0 then
 						local productionToBuild = function() return { Utils.Random(productionTypes) } end
 						ProduceUnits(player, building, delay, productionToBuild, AttackGroupSize[Difficulty], AttackThresholdSize)
@@ -379,10 +493,39 @@ function IdleHuntOnBaseDestroyed(player, base)
 end
 
 function Table_contains(tbl, obj)
-    for _, v in pairs(tbl) do
-        if v == obj then
-            return true
-        end
-    end
-    return false
+	for _, v in pairs(tbl) do
+		if v == obj then
+			return true
+		end
+	end
+	return false
+end
+--- returns array of CPos cells inside a regtangle
+--- @param topLeft CPos
+--- @param bottomRight CPos
+GetCellsInRectangle = function (topLeft, bottomRight)
+	local cells = {}
+	local index = 1
+	for x = topLeft.X, bottomRight.X, 1 do
+		for y = topLeft.Y, bottomRight.Y, 1 do
+			local cell = CPos.New(x, y)
+			if Map.TerrainType(cell) ~= "Cliff" and Map.TerrainType(cell) ~= "Rough" then
+				cells[index] = cell
+				--Media.Debug("cell is"..tostring(cells[index]))
+				index = index + 1
+			end
+		end
+	end
+	return cells
+end
+
+---remove dead actors from table
+---@param actors actor[] list of actors in GuardSquad[player] table
+RemoveDeadActors = function (actors)
+	for i = #actors, 1, -1 do
+		if actors[i].IsDead then
+			Media.Debug("removing dead actor")
+			table.remove(actors, i)
+		end
+	end
 end

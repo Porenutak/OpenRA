@@ -37,22 +37,22 @@ Players:
 		Enemies: Atreides, Fremen, Creeps
 	PlayerReference@Atreides:
 		Name: Atreides
+		Bot: campaign
 		LockFaction: True
 		Faction: atreides
 		LockColor: True
 		Color: 5A7394
 		Allies: Fremen
 		Enemies: Harkonnen, Creeps
-		Bot: campaign
 	PlayerReference@Fremen:
 		Name: Fremen
+		Bot: campaign
 		LockFaction: True
 		Faction: fremen
 		LockColor: True
 		Color: 848484
 		Allies: Atreides
 		Enemies: Harkonnen, Creeps
-		Bot: campaign
 
 Actors:
 	Actor0: spicebloom.spawnpoint
@@ -316,9 +316,6 @@ Actors:
 	Actor86: fremen
 		Location: 22,90
 		Owner: Fremen
-	HarkonnenRally: waypoint
-		Owner: Neutral
-		Location: 70,42
 	HarkonnenEntry: waypoint
 		Owner: Neutral
 		Location: 71,42
@@ -376,6 +373,15 @@ Actors:
 	AtreidesEntry3: waypoint
 		Owner: Neutral
 		Location: 22,91
+	Actor6: crate
+		Owner: Neutral
+		Location: 25,12
+	HarkonnenRally: waypoint
+		Owner: Neutral
+		Location: 68,42
+	Actor8: crate
+		Owner: Neutral
+		Location: 8,18
 
 Rules: d2k|rules/campaign-rules.yaml, d2k|rules/campaign-tooltips.yaml, d2k|rules/campaign-palettes.yaml, rules.yaml
 
