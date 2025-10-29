@@ -45,12 +45,39 @@ LateAttackDelays =
 OrdosInfantryTypes = { "light_inf", "light_inf", "light_inf", "trooper", "trooper" }
 OrdosVehicleTypes = { "raider", "raider", "quad" }
 OrdosTankType = { "combat_tank_o" }
+RebuildBuildingstypes =
+{
+	wind_trap = {},
+	barracks = OrdosInfantryTypes,
+	refinery = {},
+	outpost = {},
+	light_factory = OrdosVehicleTypes,
+	heavy_factory = OrdosTankType
+}
 
 ActivateAI = function()
+	AlreadyDefending[OrdosMain] = {}
+	AlreadyDefending[OrdosSmall] = {}
+	AlreadyDefending[Corrino] = {}
+	GuardSquad[OrdosMain] = {}
+	GuardSquad[OrdosSmall] = {}
+	GuardSquad[Corrino] = {}
+	GuarSquadUnitLimit[OrdosMain] = AttackGroupSize[Difficulty] * 2
+	GuarSquadUnitLimit[OrdosSmall] = AttackGroupSize[Difficulty]
+	GuarSquadUnitLimit[Corrino] = 0
+	DefensePerimeter[OrdosMain] = GetCellsInRectangle(CPos.New(52,9), CPos.New(70, 38))
+	DefensePerimeter[OrdosSmall] = GetCellsInRectangle(CPos.New(3,70), CPos.New(24, 70))
+	PatrolPoints[OrdosMain] = { OPatrol1, OPatrol2, OPatrol3, OrdosRally4}
+	PatrolPoints[OrdosSmall] = { OrdosRally1, OrdosRally2, OrdosRally3, OrdosRally4 }
+	
+
 	IdlingUnits[OrdosMain] = Utils.Concat(Reinforcements.Reinforce(OrdosMain, InitialOrdosReinforcements[1], InitialOrdosPaths[1]), Reinforcements.Reinforce(OrdosMain, InitialOrdosReinforcements[2], InitialOrdosPaths[2]))
 	IdlingUnits[OrdosSmall] = Reinforcements.Reinforce(OrdosSmall, InitialOrdosReinforcements[1], InitialOrdosPaths[3])
 	IdlingUnits[Corrino] = { CSardaukar1, CSardaukar2, CSardaukar3, CSardaukar4, CSardaukar5 }
 
+	AddUnitsToPatrolSquad(OrdosMain, #IdlingUnits[OrdosMain])
+	AddUnitsToPatrolSquad(OrdosSmall, #IdlingUnits[OrdosSmall])
+	ActivateBaseRebuilder(OrdosMain, OrdosMainBase, RebuildBuildingstypes)
 	DefendAndRepairBase(OrdosMain, OrdosMainBase, 0.75, AttackGroupSize[Difficulty])
 	DefendAndRepairBase(OrdosSmall, OrdosSmallBase, 0.75, AttackGroupSize[Difficulty])
 	DefendAndRepairBase(Corrino, CorrinoBase, 0.75, AttackGroupSize[Difficulty])

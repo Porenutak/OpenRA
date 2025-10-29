@@ -116,6 +116,9 @@ IdlingUnits = { }
 ---@type table<player, integer>
 GuarSquadUnitLimit = { }
 
+--- Collection of a bot's spare units from production and reinforcement.
+--- These units are used for base/harvester defense periodical checks.
+--- They are not used for attacking
 ---@type table<player, actor[]>
 GuardSquad = { }
 
@@ -138,6 +141,9 @@ DefensePerimeter = { }
 --- Is this actor already defended?
 ---@type table<player, boolean[]>
 AlreadyDefending = { }
+--- Is this actor already defended?
+---@type table<player, actor[]>
+PatrolPoints = { }
 
 --- Gather units from a bot's idle unit pool, up to a certain group size.
 ---@param owner player
@@ -198,11 +204,25 @@ SelectRoutine = function(owner, unit)
 	Trigger.ClearAll(unit)
 	Trigger.AfterDelay(1, function()
 		if unit.IsDead then return end
-		DefensePerimeterRoutine(owner, unit)
+		if Utils.RandomInteger(1,100) < 60 then
+			DefensePerimeterRoutine(owner, unit)
+		else
+			CheckPointRoutine(owner, unit)
+		end
 		Trigger.OnKilled(unit, function(killer)
 			RemoveDeadActors(GuardSquad[owner])
 				CheckArea(owner, killer.Location)
 		end)
+	end)
+end
+
+CheckPointRoutine = function(owner, unit)
+	if PatrolPoints[owner] == nil then return end
+	local targetCell = Utils.Random(PatrolPoints[owner]).Location
+	unit.AttackMove(targetCell, 0)
+	unit.Wait(Utils.RandomInteger(600, 1000))
+	unit.CallFunc(function ()
+		CheckPointRoutine(owner, unit)
 	end)
 end
 
@@ -250,7 +270,7 @@ DefensePerimeterRoutine = function(owner, unit)
 	if unit.IsDead then return end
 	local targetCell = Utils.Random(DefensePerimeter[owner])
 	unit.AttackMove(targetCell, 2)
-	unit.Wait(Utils.RandomInteger(100, 300))
+	unit.Wait(Utils.RandomInteger(200, 400))
 	unit.CallFunc(function ()
 		DefensePerimeterRoutine(owner, unit)
 	end)
@@ -279,7 +299,6 @@ DefendActor = function(unit, defendingPlayer, defenderCount)
 			return
 		end
 		if AlreadyDefending[defendingPlayer][unit] then
-			Media.Debug("Already defending this actor")
 			return
 		end
 		-- Don't try to attack spiceblooms
@@ -308,8 +327,6 @@ DefendActor = function(unit, defendingPlayer, defenderCount)
 				guard.AttackMove(self.Location)
 				Trigger.OnIdle(guard, function()
 					FindTargetsInArea(defendingPlayer, guard)
-				end)
-				guard.CallFunc( function()
 				end)
 			end
 		end)
@@ -390,7 +407,6 @@ ProduceUnits = function(player, factory, delay, toBuild, attackSize, attackThres
 		if GuarSquadUnitLimit[player] >= #GuardSquad[player] and Utils.RandomInteger(1, 100) < 50 then
 			AddUnitsToPatrolSquad(player, 1)
 		elseif #IdlingUnits[player] >= attackThresholdSize then
-			local desiredUnits = GuarSquadUnitLimit[player] - #GuardSquad[player]
 			SendAttack(player, attackSize)
 		end
 	end)
@@ -460,17 +476,17 @@ end
 
 function FindNewBuilding(player, base, rebuildTypes)
 	Trigger.AfterDelay(300, function()
-		--Media.DisplayMessage("checking")
 		for buildingType, productionTypes in pairs (rebuildTypes) do
 			local buildings = player.GetActorsByType(buildingType)
 			for j, building in ipairs (buildings) do
 				if not Table_contains(base, building) then
-					--Media.DisplayMessage("found new building"..building.Type)
+					Media.DisplayMessage("found new building"..building.Type)
 					table.insert(base,building)
 					DefendAndRepairBase(player,{building}, 0.75, AttackGroupSize[Difficulty])
 					if #productionTypes > 0 then
 						local productionToBuild = function() return { Utils.Random(productionTypes) } end
-						ProduceUnits(player, building, delay, productionToBuild, AttackGroupSize[Difficulty], AttackThresholdSize)
+						local delay = function() return 100 end
+						ProduceUnits(player, building, delay , productionToBuild, AttackGroupSize[Difficulty], AttackGroupSize[Difficulty] * 2.5)
 					end
 				end
 			end
@@ -529,3 +545,4 @@ RemoveDeadActors = function (actors)
 		end
 	end
 end
+

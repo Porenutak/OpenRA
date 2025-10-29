@@ -213,6 +213,11 @@ Tick = function()
 			ProtectHarvester(units[1], OrdosSmall, AttackGroupSize[Difficulty])
 		end
 	end
+	if IdlingUnits[OrdosMain] ~= nil and GuardSquad[OrdosMain] ~= nil then
+		UserInterface.SetMissionText("Main: "..tostring(OrdosMain.Cash+OrdosMain.
+		Resources).."     idleunits: "..tostring(#IdlingUnits[OrdosMain]).."     GuardSquad: "..tostring(#GuardSquad[OrdosMain].."\n\n".."Small: "..tostring(OrdosSmall.Cash+OrdosSmall.
+		Resources).."     idleunits: "..tostring(#IdlingUnits[OrdosSmall]).."     GuardSquad: "..tostring(#GuardSquad[OrdosSmall])))
+	end
 end
 
 WorldLoaded = function()

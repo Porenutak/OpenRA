@@ -19,9 +19,14 @@ Player:
 		Visible: False
 	DeveloperMode:
 		CheckboxVisible: False
+		CheckboxEnabled: true
+		CheckboxLocked: true
 	ModularBot@CampaignAI:
 		Name: bot-campaign-ai.name
 		Type: campaign
+	ProvidesPrerequisite@autoConreteForBots:
+		Prerequisite: global-auto-concrete
+			RequiresCondition: base-rebuilder-active
 
 World:
 	-CrateSpawner:
@@ -70,3 +75,7 @@ harvester:
 
 silo:
 	-MustBeDestroyed:
+
+crate:
+	Crate:
+		Duration: 0

@@ -9,7 +9,6 @@
 
 AtreidesBase = { AConyard, AOutpost, ARefinery, AHeavyFactory, ALightFactory, AGunt1, AGunt2, ABarracks, APower1, APower2, APower3, APower4, APower5, APower6 }
 FremenBase = { FGunt1, FGunt2 }
-
 BaseAreaTriggers =
 {
 	{ CPos.New(27, 38), CPos.New(26, 38), CPos.New(26, 39), CPos.New(25, 39), CPos.New(25, 40), CPos.New(25, 41), CPos.New(24, 41), CPos.New(24, 42) },
@@ -149,6 +148,10 @@ Tick = function()
 			LastHarvesterEaten[Atreides] = false
 			ProtectHarvester(units[1], Atreides, AttackGroupSize[Difficulty])
 		end
+	end
+	if IdlingUnits[Atreides] ~= nil and GuardSquad[Atreides] ~= nil then
+		UserInterface.SetMissionText("Atreides: "..tostring(Atreides.Cash+Atreides.
+		Resources).."     idleunits: "..tostring(#IdlingUnits[Atreides]).."     GuardSquad: "..tostring(#GuardSquad[Atreides]))
 	end
 end
 

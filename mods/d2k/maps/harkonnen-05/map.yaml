@@ -37,31 +37,31 @@ Players:
 		Enemies: Ordos Main Base, Ordos Small Base, Corrino, Creeps
 	PlayerReference@Ordos Main Base:
 		Name: Ordos Main Base
+		Bot: campaign
 		LockFaction: True
 		Faction: ordos
 		LockColor: True
 		Color: 5A9473
 		Allies: Ordos Small Base, Corrino
 		Enemies: Harkonnen, Creeps
-		Bot: campaign
 	PlayerReference@Ordos Small Base:
 		Name: Ordos Small Base
+		Bot: campaign
 		LockFaction: True
 		Faction: ordos
 		LockColor: True
 		Color: 5A9473
 		Allies: Ordos Main Base, Corrino
 		Enemies: Harkonnen, Creeps
-		Bot: campaign
 	PlayerReference@Corrino:
 		Name: Corrino
+		Bot: campaign
 		LockFaction: True
 		Faction: corrino
 		LockColor: True
 		Color: 73007B
 		Allies: Ordos Main Base, Ordos Small Base
 		Enemies: Harkonnen, Creeps
-		Bot: campaign
 
 Actors:
 	Actor0: wall
@@ -460,9 +460,6 @@ Actors:
 	OrdosEntry12: waypoint
 		Owner: Neutral
 		Location: 28,81
-	OrdosRally1: waypoint
-		Owner: Neutral
-		Location: 29,67
 	OrdosEntry1: waypoint
 		Owner: Neutral
 		Location: 29,81
@@ -514,6 +511,39 @@ Actors:
 	HarkonnenEntry2: waypoint
 		Owner: Neutral
 		Location: 2,29
+	OrdosRally1: waypoint
+		Owner: Neutral
+		Location: 28,70
+	OPatrol2: waypoint
+		Owner: Neutral
+		Location: 63,51
+	OPatrol1: waypoint
+		Owner: Neutral
+		Location: 37,42
+	Actor9: crate
+		Owner: Neutral
+		Location: 49,53
+	Actor10: crate
+		Owner: Neutral
+		Location: 48,54
+	Actor11: light_inf
+		Owner: Ordos Small Base
+		Facing: 384
+		Location: 47,53
+		SubCell: 3
+	Actor14: light_inf
+		Owner: Ordos Small Base
+		Facing: 384
+		Location: 48,51
+		SubCell: 3
+	Actor16: trooper
+		Owner: Ordos Small Base
+		Facing: 384
+		Location: 48,52
+		SubCell: 3
+	OPatrol3: waypoint
+		Owner: Neutral
+		Location: 37,13
 
 Rules: d2k|rules/campaign-rules.yaml, d2k|rules/campaign-tooltips.yaml, d2k|rules/campaign-palettes.yaml, rules.yaml
 

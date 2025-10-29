@@ -1,14 +1,8 @@
 Player:
 	PlayerResources:
 		DefaultCash: 5000
-	DeveloperMode:
-		CheckboxEnabled: true
-		CheckboxLocked: true
 	ExternalCondition@AI:
 		Condition: base-rebuilder-active
-	ProvidesPrerequisite@autoConreteForBots:
-		Prerequisite: global-auto-concrete
-			RequiresCondition: base-rebuilder-active
 	BaseBuilderBotModule@campaing:
 		RequiresCondition: base-rebuilder-active
 		BuildingQueues: Building, Upgrade

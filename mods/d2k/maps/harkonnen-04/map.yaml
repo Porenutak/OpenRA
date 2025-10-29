@@ -382,6 +382,21 @@ Actors:
 	Actor8: crate
 		Owner: Neutral
 		Location: 8,18
+	APatrolPoint03: waypoint
+		Owner: Neutral
+		Location: 46,68
+	APatrolPoint01: waypoint
+		Owner: Neutral
+		Location: 26,64
+	APatrolPoint02: waypoint
+		Owner: Neutral
+		Location: 38,60
+	APatrolPoint04: waypoint
+		Owner: Neutral
+		Location: 54,79
+	APatrolPoint05: waypoint
+		Owner: Neutral
+		Location: 16,52
 
 Rules: d2k|rules/campaign-rules.yaml, d2k|rules/campaign-tooltips.yaml, d2k|rules/campaign-palettes.yaml, rules.yaml
 
