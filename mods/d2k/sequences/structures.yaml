@@ -119,6 +119,8 @@ large_gun_turret:
 		Offset: -30,-24
 
 conyard.atreides:
+	Defaults:
+		Scale: 1.5
 	idle:
 		Filename: DATA.R16
 		Start: 2807
@@ -171,6 +173,8 @@ conyard.atreides:
 		Offset: -30,-24
 
 repair_pad.atreides:
+	Defaults:
+		Scale: 1.5
 	make:
 		Filename: DATA.R16
 		Start: 4634
@@ -214,6 +218,8 @@ repair_pad.atreides:
 		Offset: -30,-24
 
 repair_pad.harkonnen:
+	Defaults:
+		Scale: 1.5
 	make:
 		Filename: DATA.R16
 		Start: 4634
@@ -257,6 +263,8 @@ repair_pad.harkonnen:
 		Offset: -30,-24
 
 repair_pad.ordos:
+	Defaults:
+		Scale: 1.5
 	make:
 		Filename: DATA.R16
 		Start: 4634
@@ -300,6 +308,8 @@ repair_pad.ordos:
 		Offset: -30,-24
 
 starport.atreides:
+	Defaults:
+		Scale: 1.5
 	idle:
 		Filename: DATA.R16
 		Start: 2919
@@ -354,6 +364,8 @@ starport.atreides:
 		Offset: -30,-24
 
 power.atreides:
+	Defaults:
+		Scale: 1.5
 	idle:
 		Filename: DATA.R16
 		Start: 2771
@@ -404,6 +416,8 @@ power.atreides:
 		Offset: -30,-24
 
 barracks.atreides:
+	Defaults:
+		Scale: 1.5
 	idle:
 		Filename: DATA.R16
 		Start: 2773
@@ -442,6 +456,8 @@ barracks.atreides:
 		Offset: -30,-24
 
 outpost.atreides:
+	Defaults:
+		Scale: 1.5
 	idle:
 		Filename: DATA.R16
 		Start: 2769
@@ -486,6 +502,8 @@ outpost.atreides:
 		Offset: -30,-24
 
 refinery.atreides:
+	Defaults:
+		Scale: 1.5
 	idle:
 		Filename: DATA.R16
 		Start: 2809
@@ -542,6 +560,8 @@ refinery.atreides:
 		BlendMode: Additive
 
 silo.atreides:
+	Defaults:
+		Scale: 1.5
 	idle:
 		Filename: DATA.R16
 		Start: 2814
@@ -582,6 +602,7 @@ silo.atreides:
 hightech.atreides:
 	Defaults:
 		Offset: -48,80
+		Scale: 1.5
 	idle:
 		Filename: DATA.R16
 		Start: 2812
@@ -630,6 +651,8 @@ hightech.atreides:
 		Offset: -30,-24
 
 research.atreides:
+	Defaults:
+		Scale: 1.5
 	idle:
 		Filename: DATA.R16
 		Start: 2917
@@ -674,6 +697,8 @@ research.atreides:
 		Offset: -30,-24
 
 research.harkonnen:
+	Defaults:
+		Scale: 1.5
 	idle:
 		Filename: DATA.R16
 		Start: 3077
@@ -718,6 +743,8 @@ research.harkonnen:
 		Offset: -30,-24
 
 research.ordos:
+	Defaults:
+		Scale: 1.5
 	idle:
 		Filename: DATA.R16
 		Start: 3237
@@ -762,6 +789,8 @@ research.ordos:
 		Offset: -30,-24
 
 palace.atreides:
+	Defaults:
+		Scale: 1.5
 	idle:
 		Filename: DATA.R16
 		Start: 2924
@@ -804,6 +833,8 @@ palace.atreides:
 		Offset: -30,-24
 
 light.atreides:
+	Defaults:
+		Scale: 1.5
 	idle:
 		Filename: DATA.R16
 		Start: 2921
@@ -871,6 +902,8 @@ light.atreides:
 		Offset: -30,-24
 
 heavy.atreides:
+	Defaults:
+		Scale: 1.5
 	idle:
 		Filename: DATA.R16
 		Start: 2766
@@ -930,6 +963,8 @@ heavy.atreides:
 		Offset: -30,-24
 
 conyard.harkonnen:
+	Defaults:
+		Scale: 1.5
 	idle:
 		Filename: DATA.R16
 		Start: 2967
@@ -982,6 +1017,8 @@ conyard.harkonnen:
 		Offset: -30,-24
 
 starport.harkonnen:
+	Defaults:
+		Scale: 1.5
 	idle:
 		Filename: DATA.R16
 		Start: 3079
@@ -1036,6 +1073,8 @@ starport.harkonnen:
 		Offset: -30,-24
 
 power.harkonnen:
+	Defaults:
+		Scale: 1.5
 	idle:
 		Filename: DATA.R16
 		Start: 2931
@@ -1086,6 +1125,8 @@ power.harkonnen:
 		Offset: -30,-24
 
 barracks.harkonnen:
+	Defaults:
+		Scale: 1.5
 	idle:
 		Filename: DATA.R16
 		Start: 2933
@@ -1124,6 +1165,8 @@ barracks.harkonnen:
 		Offset: -30,-24
 
 outpost.harkonnen:
+	Defaults:
+		Scale: 1.5
 	idle:
 		Filename: DATA.R16
 		Start: 2929
@@ -1168,6 +1211,8 @@ outpost.harkonnen:
 		Offset: -30,-24
 
 refinery.harkonnen:
+	Defaults:
+		Scale: 1.5
 	idle:
 		Filename: DATA.R16
 		Start: 2969
@@ -1224,6 +1269,8 @@ refinery.harkonnen:
 		BlendMode: Additive
 
 silo.harkonnen:
+	Defaults:
+		Scale: 1.5
 	idle:
 		Filename: DATA.R16
 		Start: 2974
@@ -1262,6 +1309,8 @@ silo.harkonnen:
 		Offset: -30,-24
 
 hightech.harkonnen:
+	Defaults:
+		Scale: 1.5
 	Defaults:
 		Offset: -48,80
 	idle:
@@ -1305,6 +1354,8 @@ hightech.harkonnen:
 		Offset: -30,-24
 
 palace.harkonnen:
+	Defaults:
+		Scale: 1.5
 	idle:
 		Filename: DATA.R16
 		Start: 3084
@@ -1353,6 +1404,8 @@ palace.harkonnen:
 		Offset: -30,-24
 
 light.harkonnen:
+	Defaults:
+		Scale: 1.5
 	idle:
 		Filename: DATA.R16
 		Start: 3081
@@ -1412,6 +1465,8 @@ light.harkonnen:
 		Offset: -30,-24
 
 heavy.harkonnen:
+	Defaults:
+		Scale: 1.5
 	idle:
 		Filename: DATA.R16
 		Start: 2926
@@ -1471,6 +1526,8 @@ heavy.harkonnen:
 		Offset: -30,-24
 
 conyard.ordos:
+	Defaults:
+		Scale: 1.5
 	idle:
 		Filename: DATA.R16
 		Start: 3127
@@ -1523,6 +1580,8 @@ conyard.ordos:
 		Offset: -30,-24
 
 starport.ordos:
+	Defaults:
+		Scale: 1.5
 	idle:
 		Filename: DATA.R16
 		Start: 3239
@@ -1577,6 +1636,8 @@ starport.ordos:
 		Offset: -30,-24
 
 power.ordos:
+	Defaults:
+		Scale: 1.5
 	idle:
 		Filename: DATA.R16
 		Start: 3091
@@ -1627,6 +1688,8 @@ power.ordos:
 		Offset: -30,-24
 
 barracks.ordos:
+	Defaults:
+		Scale: 1.5
 	idle:
 		Filename: DATA.R16
 		Start: 3093
@@ -1665,6 +1728,8 @@ barracks.ordos:
 		Offset: -30,-24
 
 outpost.ordos:
+	Defaults:
+		Scale: 1.5
 	idle:
 		Filename: DATA.R16
 		Start: 3089
@@ -1709,6 +1774,8 @@ outpost.ordos:
 		Offset: -30,-24
 
 refinery.ordos:
+	Defaults:
+		Scale: 1.5
 	idle:
 		Filename: DATA.R16
 		Start: 3129
@@ -1765,6 +1832,8 @@ refinery.ordos:
 		BlendMode: Additive
 
 silo.ordos:
+	Defaults:
+		Scale: 1.5
 	idle:
 		Filename: DATA.R16
 		Start: 3134
@@ -1803,6 +1872,8 @@ silo.ordos:
 		Offset: -30,-24
 
 hightech.ordos:
+	Defaults:
+		Scale: 1.5
 	Defaults:
 		Offset: -48,80
 	idle:
@@ -1846,6 +1917,8 @@ hightech.ordos:
 		Offset: -30,-24
 
 palace.ordos:
+	Defaults:
+		Scale: 1.5
 	idle:
 		Filename: DATA.R16
 		Start: 3244
@@ -1888,6 +1961,8 @@ palace.ordos:
 		Offset: -30,-24
 
 light.ordos:
+	Defaults:
+		Scale: 1.5
 	idle:
 		Filename: DATA.R16
 		Start: 3241
@@ -1947,6 +2022,8 @@ light.ordos:
 		Offset: -30,-24
 
 heavy.ordos:
+	Defaults:
+		Scale: 1.5
 	idle:
 		Filename: DATA.R16
 		Start: 3086
@@ -2006,6 +2083,8 @@ heavy.ordos:
 		Offset: -30,-24
 
 palace.corrino:
+	Defaults:
+		Scale: 1.5
 	idle:
 		Filename: DATA.R16
 		Start: 3252
@@ -2046,6 +2125,8 @@ palace.corrino:
 		Tick: 100
 
 starport.smuggler:
+	Defaults:
+		Scale: 1.5
 	idle:
 		Filename: DATA.R16
 		Start: 3247
@@ -2100,6 +2181,8 @@ starport.smuggler:
 		Offset: -30,-24
 
 heavy.mercenary:
+	Defaults:
+		Scale: 1.5
 	idle:
 		Filename: DATA.R16
 		Start: 3249
