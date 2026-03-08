@@ -42,17 +42,8 @@ Actors:
 	Actor0: spicebloom.spawnpoint
 		Location: 30,7
 		Owner: Neutral
-	Actor1: spicebloom.spawnpoint
-		Location: 82,11
-		Owner: Neutral
-	Actor3: spicebloom.spawnpoint
-		Location: 17,15
-		Owner: Neutral
 	Actor4: spicebloom.spawnpoint
 		Location: 42,18
-		Owner: Neutral
-	Actor5: spicebloom.spawnpoint
-		Location: 88,18
 		Owner: Neutral
 	Actor6: spicebloom.spawnpoint
 		Location: 49,25
@@ -107,22 +98,10 @@ Actors:
 	Actor28: starport
 		Owner: Neutral
 		Location: 46,46
-	Actor29: harvester
-		Owner: Neutral
-		Facing: 96
-		Location: 62,87
-	Actor30: harvester
-		Owner: Neutral
-		Facing: 96
-		Location: 75,29
 	Actor31: harvester
 		Owner: Neutral
 		Facing: 96
 		Location: 31,7
-	Actor32: harvester
-		Owner: Neutral
-		Facing: 96
-		Location: 18,64
 	Actor35: wormspawner
 		Owner: Creeps
 		Location: 4,31
@@ -608,12 +587,12 @@ Actors:
 		SubCell: 3
 	Actor170: missile_tank
 		Owner: Multi0
-		Facing: 384
 		Location: 55,66
+		Facing: 384
 	Actor171: siege_tank
 		Owner: Multi0
-		Facing: 384
 		Location: 51,55
+		Facing: 384
 	Actor174: light_inf
 		Owner: Multi0
 		Facing: 384
@@ -1064,11 +1043,6 @@ Actors:
 		Facing: 384
 		Location: 25,42
 		SubCell: 3
-	Actor289: trooper
-		Owner: Neutral
-		Facing: 384
-		Location: 25,42
-		SubCell: 1
 	Actor290: trooper
 		Owner: Neutral
 		Facing: 384
@@ -1729,40 +1703,6 @@ Actors:
 		Owner: Creeps
 		Facing: 384
 		Location: 68,58
-	Actor519: mpsardaukar
-		Owner: Neutral
-		Facing: 384
-		Location: 85,85
-		SubCell: 3
-	Actor520: mpsardaukar
-		Owner: Neutral
-		Facing: 384
-		Location: 85,86
-		SubCell: 3
-	Actor521: mpsardaukar
-		Owner: Neutral
-		Facing: 384
-		Location: 86,85
-		SubCell: 3
-	Actor522: mpsardaukar
-		Owner: Neutral
-		Facing: 384
-		Location: 87,85
-		SubCell: 3
-	Actor523: mpsardaukar
-		Owner: Neutral
-		Facing: 384
-		Location: 88,85
-		SubCell: 3
-	Actor524: mpsardaukar
-		Owner: Neutral
-		Facing: 384
-		Location: 84,85
-		SubCell: 3
-	Actor525: combat_tank_a
-		Owner: Multi0
-		Facing: 384
-		Location: 82,85
 	Actor526: trooper
 		Owner: Creeps
 		Location: 35,54
@@ -1777,9 +1717,9 @@ Actors:
 		Stance: AttackAnything
 	Actor528: trooper
 		Owner: Creeps
-		Facing: 384
 		Location: 10,56
 		SubCell: 3
+		Facing: 384
 	Actor529: trooper
 		Owner: Creeps
 		Facing: 384
@@ -1962,9 +1902,242 @@ Actors:
 		Owner: Multi0
 		Facing: 384
 		Location: 13,27
+	Actor2: missile_tank
+		Owner: Creeps
+		Facing: 384
+		Location: 89,42
+	Actor8: missile_tank
+		Owner: Creeps
+		Facing: 384
+		Location: 89,41
+	Actor10: devastator
+		Location: 76,42
+		Owner: Multi0
+		Facing: 763
+	Actor33: siege_tank
+		Location: 79,30
+		Facing: 770
+		Owner: Multi0
+	Actor34: siege_tank
+		Facing: 770
+		Owner: Multi0
+		Location: 79,29
+	Actor36: siege_tank
+		Facing: 770
+		Owner: Multi0
+		Location: 79,28
+	Actor37: siege_tank
+		Facing: 770
+		Owner: Multi0
+		Location: 79,27
+	Actor50: siege_tank
+		Facing: 770
+		Owner: Multi0
+		Location: 79,26
+	Actor51: siege_tank
+		Facing: 770
+		Owner: Multi0
+		Location: 79,25
+	Actor52: missile_tank
+		Owner: Creeps
+		Facing: 384
+		Location: 89,43
+	Actor56: missile_tank
+		Owner: Creeps
+		Facing: 384
+		Location: 89,44
+	Actor57: missile_tank
+		Owner: Creeps
+		Facing: 384
+		Location: 89,45
+	Actor58: devastator
+		Owner: Multi0
+		Facing: 763
+		Location: 76,43
+	Actor59: devastator
+		Owner: Multi0
+		Facing: 763
+		Location: 76,41
+	Actor60: devastator
+		Owner: Multi0
+		Facing: 763
+		Location: 76,40
+	Actor61: trooper
+		Owner: Creeps
+		Facing: 384
+		Location: 10,56
+		SubCell: 4
+	Actor62: trooper
+		Owner: Creeps
+		Facing: 384
+		Location: 10,56
+		SubCell: 5
+	Actor32: combat_tank_a
+		Owner: Multi0
+		Facing: 384
+		Location: 9,66
+	Actor172: combat_tank_h
+		Owner: Multi0
+		Facing: 384
+		Location: 10,66
+	Actor173: combat_tank_o
+		Owner: Multi0
+		Facing: 384
+		Location: 11,66
+	Actor183: siege_tank
+		Owner: Multi0
+		Facing: 384
+		Location: 21,56
+	Actor289: trooper
+		Owner: Neutral
+		Facing: 384
+		Location: 25,42
+		SubCell: 1
+	Actor1: stealth_raider
+		Owner: Multi0
+		Facing: 384
+		Location: 80,12
+	Actor5: deviator
+		Owner: Multi0
+		Facing: 384
+		Location: 79,14
+	Actor184: missile_tank
+		Owner: Creeps
+		Facing: 384
+		Location: 89,6
+	Actor3: siege_tank
+		Owner: Creeps
+		Location: 13,3
+		Facing: 511
+	Actor185: siege_tank
+		Owner: Creeps
+		Facing: 511
+		Location: 14,3
+	Actor186: siege_tank
+		Owner: Creeps
+		Facing: 511
+		Location: 15,3
+	Actor187: siege_tank
+		Owner: Creeps
+		Facing: 511
+		Location: 16,3
+	Actor188: siege_tank
+		Owner: Creeps
+		Facing: 511
+		Location: 17,3
+	Actor189: sonic_tank
+		Owner: Multi0
+		Location: 15,11
+		Facing: 1023
+	Actor194: quad
+		Owner: Multi0
+		Facing: 384
+		Location: 78,16
+	Actor195: quad
+		Owner: Multi0
+		Facing: 384
+		Location: 78,17
+	Actor196: quad
+		Owner: Multi0
+		Facing: 384
+		Location: 78,18
+	Actor197: quad
+		Owner: Multi0
+		Facing: 384
+		Location: 78,19
+	Actor198: quad
+		Owner: Multi0
+		Facing: 384
+		Location: 78,20
+	Actor199: quad
+		Owner: Multi0
+		Facing: 384
+		Location: 78,21
+	Actor200: quad
+		Owner: Multi0
+		Facing: 384
+		Location: 78,22
+	Actor201: quad
+		Owner: Multi0
+		Facing: 384
+		Location: 78,15
+	Actor202: missile_tank
+		Owner: Creeps
+		Facing: 259
+		Location: 90,24
+	Actor203: missile_tank
+		Owner: Creeps
+		Facing: 259
+		Location: 90,22
+	Actor204: missile_tank
+		Owner: Creeps
+		Facing: 252
+		Location: 90,21
+	Actor205: missile_tank
+		Owner: Creeps
+		Facing: 259
+		Location: 90,20
+	Actor206: missile_tank
+		Owner: Creeps
+		Facing: 265
+		Location: 90,23
+	Actor18: sonic_tank
+		Owner: Creeps
+		Facing: 265
+		Location: 89,21
+	Actor19: sonic_tank
+		Owner: Creeps
+		Facing: 384
+		Location: 89,20
+	Actor24: sonic_tank
+		Owner: Creeps
+		Facing: 259
+		Location: 89,22
+	Actor25: sonic_tank
+		Owner: Creeps
+		Facing: 245
+		Location: 89,23
+	Actor30: sonic_tank
+		Owner: Creeps
+		Facing: 231
+		Location: 89,24
+	Actor29: combat_tank_h
+		Owner: Multi0
+		Location: 80,25
+		Facing: 777
+		TurretFacing: 1023
+	Actor190: combat_tank_h
+		Owner: Multi0
+		Facing: 777
+		TurretFacing: 1023
+		Location: 80,26
+	Actor191: combat_tank_h
+		Owner: Multi0
+		Facing: 777
+		TurretFacing: 1023
+		Location: 80,27
+	Actor192: combat_tank_h
+		Owner: Multi0
+		Facing: 777
+		TurretFacing: 1023
+		Location: 80,28
+	Actor193: combat_tank_h
+		Owner: Multi0
+		Facing: 777
+		TurretFacing: 1023
+		Location: 80,29
+	Actor207: combat_tank_h
+		Owner: Multi0
+		Facing: 777
+		TurretFacing: 1023
+		Location: 80,30
 
 Rules: Units.yaml, Structures.yaml
-
-Weapons: Weapons.yaml
+	Player:
+		DeveloperMode:
+			CheckboxEnabled: true
+			CheckboxLocked: true
 
 FluentMessages: map.ftl
+
+Weapons: Weapons.yaml

@@ -17,9 +17,13 @@ HMGo_muzzle:
 	Warhead@1Dam: SpreadDamage
 		Versus:
 			wood: 45
+			building: 50
 			harvester: 50
 
 mtank_pri:
+	ReloadDelay: 130
+	Burst: 2
+	BurstDelays: 130
 	Range: 7c900
 	MinRange: 1c112
 	Projectile: Missile
@@ -29,7 +33,7 @@ DeviatorMissile:
 
 
 ^Cannon:
-	Range: 4c750
+	Range: 4c900
 	Warhead@1Dam: SpreadDamage
 		Damage: 2800
 		Spread: 1c0
@@ -39,7 +43,7 @@ DeviatorMissile:
 
 80mm_A:
 	Inherits: ^Cannon
-	Range: 5c224
+	Range: 5c336
 
 80mm_H:
 	Inherits: ^Cannon
@@ -66,6 +70,13 @@ DeathHand:
 		FlashType: flash
 		Duration: 20
 
+Sound:
+	ReloadDelay: 90
+	Warhead@1Dam: SpreadDamage
+		Versus:
+			none: 100
+			light: 85
+		DamageTypes: Prone80Percent, TriggerProne, SoundDeath
 
 SardDeath:
 

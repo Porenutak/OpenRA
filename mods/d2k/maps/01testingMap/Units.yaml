@@ -17,6 +17,7 @@ World:
 	Crushable:
 		WarnProbability: 60
 
+
 trike:
 	RevealsShroud:
 		Range: 6c0
@@ -33,3 +34,6 @@ devastator:
 	Valued:
 		Cost: 1100
 
+combat_tank_h:
+	Health:
+		HP: 29000

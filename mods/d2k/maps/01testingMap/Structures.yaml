@@ -24,3 +24,9 @@ light_factory:
 barracks:
 	Health:
 		HP: 30000
+
+refinery:
+	CustomSellValue:
+		Value: 300
+	SpawnActorsOnSell:
+		ValuePercent: 65
