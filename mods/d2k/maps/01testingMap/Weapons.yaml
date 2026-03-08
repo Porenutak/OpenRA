@@ -1,0 +1,81 @@
+^MG:
+	Range: 3c112
+	Warhead@1Dam: SpreadDamage
+		Versus:
+			wood: 65
+			building: 35
+			light: 30
+
+HMG:
+	Inherits: ^MG
+
+HMG_muzzle:
+
+HMGo_muzzle:
+
+^Rocket:
+	Warhead@1Dam: SpreadDamage
+		Versus:
+			wood: 45
+			harvester: 50
+
+mtank_pri:
+	Range: 7c900
+	MinRange: 1c112
+	Projectile: Missile
+		RangeLimit: 10c0
+
+DeviatorMissile:
+
+
+^Cannon:
+	Range: 4c750
+	Warhead@1Dam: SpreadDamage
+		Damage: 2800
+		Spread: 1c0
+		Versus:
+			none: 25
+		DamageTypes: Prone80Percent, TriggerProne, SmallExplosionDeath
+
+80mm_A:
+	Inherits: ^Cannon
+	Range: 5c224
+
+80mm_H:
+	Inherits: ^Cannon
+
+80mm_O:
+	Inherits: ^Cannon
+	ReloadDelay: 44
+
+110mm_Gun:
+
+
+155mm:
+	Range: 6c900
+	ReloadDelay: 90
+
+
+DeathHand:
+	Warhead@Cluster: FireCluster
+		Weapon: DeathHandCluster
+		RandomClusterCount: 30
+		Dimensions: 6,6
+		Footprint: xXxXxX xxXXxx xXXXXx xxXXxx xXxxXx XxXxXx
+	Warhead@flash: FlashEffect
+		FlashType: flash
+		Duration: 20
+
+
+SardDeath:
+
+DeathHandCluster:
+	Warhead@1Dam: SpreadDamage
+		Versus:
+			none: 90
+			wall: 100
+
+OrniBomb:
+	Warhead@1Dam: SpreadDamage
+		Versus:
+			wall: 100

@@ -1,0 +1,35 @@
+Player:
+	LobbyPrerequisiteCheckbox@AUTOCONCRETE:
+		ID: autoconcrete
+		Label: checkbox-automatic-concrete.label
+		Description: checkbox-automatic-concrete.description
+		Enabled: True
+		Locked: True
+		DisplayOrder: 7
+		Prerequisites: global-auto-concrete
+
+World:
+	MissionData:
+		Briefing: briefing
+	MapOptions:
+
+^Infantry:
+	Crushable:
+		WarnProbability: 60
+
+trike:
+	RevealsShroud:
+		Range: 6c0
+
+raider:
+	RevealsShroud:
+		Range: 6c0
+
+sonic_tank:
+	Valued:
+		Cost: 1200
+
+devastator:
+	Valued:
+		Cost: 1100
+
