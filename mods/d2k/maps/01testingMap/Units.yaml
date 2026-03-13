@@ -17,14 +17,18 @@ World:
 	Crushable:
 		WarnProbability: 60
 
+light_inf:
+	RenderRangeCircle:
 
 trike:
 	RevealsShroud:
 		Range: 6c0
+	RenderRangeCircle:
 
 raider:
 	RevealsShroud:
 		Range: 6c0
+	RenderRangeCircle:
 
 sonic_tank:
 	Valued:
