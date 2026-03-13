@@ -84,10 +84,6 @@ Actors:
 	Actor22: mpspawn
 		Owner: Neutral
 		Location: 63,13
-	Actor26: refinery
-		Owner: Neutral
-		Location: 41,5
-		FreeActor: False
 	Actor27: refinery
 		Owner: Neutral
 		Location: 5,54
@@ -1739,38 +1735,6 @@ Actors:
 		Owner: Multi0
 		Facing: 384
 		Location: 15,54
-	Actor417: raider
-		Owner: Creeps
-		Location: 88,63
-		Facing: 245
-	Actor418: raider
-		Owner: Creeps
-		Facing: 245
-		Location: 88,64
-	Actor419: raider
-		Owner: Creeps
-		Facing: 245
-		Location: 88,65
-	Actor420: raider
-		Owner: Creeps
-		Facing: 245
-		Location: 88,66
-	Actor421: raider
-		Owner: Creeps
-		Facing: 245
-		Location: 88,67
-	Actor429: raider
-		Owner: Creeps
-		Facing: 245
-		Location: 88,68
-	Actor439: raider
-		Owner: Creeps
-		Facing: 245
-		Location: 89,67
-	Actor440: raider
-		Owner: Creeps
-		Facing: 245
-		Location: 89,66
 	Actor441: devastator
 		Owner: Multi0
 		Facing: 384
@@ -2008,50 +1972,10 @@ Actors:
 		Facing: 777
 		TurretFacing: 1023
 		Location: 80,30
-	Actor438: raider
-		Owner: Creeps
-		Facing: 245
-		Location: 89,68
-	Actor437: raider
-		Owner: Creeps
-		Facing: 245
-		Location: 89,69
-	Actor430: raider
-		Owner: Creeps
-		Facing: 245
-		Location: 88,69
-	Actor431: raider
-		Owner: Creeps
-		Facing: 245
-		Location: 88,70
-	Actor436: raider
-		Owner: Creeps
-		Facing: 245
-		Location: 89,70
-	Actor434: raider
-		Owner: Creeps
-		Facing: 245
-		Location: 89,72
-	Actor432: raider
-		Owner: Creeps
-		Facing: 245
-		Location: 88,71
-	Actor435: raider
-		Owner: Creeps
-		Facing: 245
-		Location: 89,71
 	Actor433: raider
-		Owner: Creeps
 		Location: 88,72
+		Owner: Multi1
 		Facing: 245
-	Actor443: raider
-		Owner: Creeps
-		Facing: 245
-		Location: 89,65
-	Actor444: raider
-		Owner: Creeps
-		Facing: 245
-		Location: 89,64
 	Actor445: light_inf
 		Facing: 384
 		Owner: Multi0
@@ -2550,6 +2474,142 @@ Actors:
 		Owner: Multi0
 		Facing: 1023
 		Location: 26,15
+	Actor418: raider
+		Owner: Multi1
+		Facing: 245
+		Location: 88,71
+	Actor420: raider
+		Owner: Multi1
+		Facing: 245
+		Location: 88,70
+	Actor421: raider
+		Facing: 245
+		Owner: Multi1
+		Location: 89,69
+	Actor429: raider
+		Owner: Multi1
+		Facing: 245
+		Location: 88,69
+	Actor430: raider
+		Facing: 245
+		Owner: Multi1
+		Location: 89,68
+	Actor431: raider
+		Owner: Multi1
+		Facing: 245
+		Location: 88,68
+	Actor432: raider
+		Facing: 245
+		Owner: Multi1
+		Location: 89,67
+	Actor435: raider
+		Owner: Multi1
+		Facing: 245
+		Location: 88,67
+	Actor436: raider
+		Facing: 245
+		Owner: Multi1
+		Location: 89,66
+	Actor437: raider
+		Owner: Multi1
+		Facing: 245
+		Location: 88,66
+	Actor438: raider
+		Facing: 245
+		Owner: Multi1
+		Location: 89,65
+	Actor439: raider
+		Owner: Multi1
+		Facing: 245
+		Location: 88,65
+	Actor440: raider
+		Facing: 245
+		Owner: Multi1
+		Location: 89,64
+	Actor443: raider
+		Owner: Multi1
+		Location: 88,64
+		Facing: 245
+	Actor444: raider
+		Owner: Multi1
+		Facing: 245
+		Location: 88,63
+	Actor419: raider
+		Facing: 245
+		Owner: Multi1
+		Location: 89,70
+	Actor417: raider
+		Facing: 245
+		Owner: Multi1
+		Location: 89,71
+	Actor434: raider
+		Location: 89,72
+		Facing: 245
+		Owner: Multi1
+	Actor26: sonic_tank
+		Owner: Creeps
+		Location: 42,3
+		Facing: 511
+	Actor556: sonic_tank
+		Owner: Creeps
+		Facing: 511
+		Location: 43,3
+	Actor557: sonic_tank
+		Owner: Creeps
+		Facing: 511
+		Location: 44,3
+	Actor558: sonic_tank
+		Owner: Creeps
+		Facing: 511
+		Location: 45,3
+	Actor559: quad
+		Owner: Multi0
+		Location: 38,14
+		Facing: 1023
+	Actor560: quad
+		Owner: Multi0
+		Facing: 1023
+		Location: 39,14
+	Actor561: quad
+		Owner: Multi0
+		Facing: 1023
+		Location: 40,14
+	Actor562: quad
+		Owner: Multi0
+		Facing: 1023
+		Location: 41,14
+	Actor563: quad
+		Owner: Multi0
+		Facing: 1023
+		Location: 42,14
+	Actor564: quad
+		Owner: Multi0
+		Facing: 1023
+		Location: 43,14
+	Actor565: quad
+		Owner: Multi0
+		Facing: 1023
+		Location: 44,14
+	Actor566: quad
+		Owner: Multi0
+		Facing: 1023
+		Location: 45,14
+	Actor567: quad
+		Owner: Multi0
+		Facing: 1023
+		Location: 46,14
+	Actor568: quad
+		Owner: Multi0
+		Facing: 1023
+		Location: 47,14
+	Actor569: quad
+		Owner: Multi0
+		Facing: 1023
+		Location: 40,15
+	Actor570: quad
+		Owner: Multi0
+		Facing: 1023
+		Location: 41,15
 
 Rules: Units.yaml, Structures.yaml
 	Player:

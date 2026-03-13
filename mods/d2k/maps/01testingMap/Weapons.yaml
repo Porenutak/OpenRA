@@ -1,5 +1,5 @@
 ^MG:
-	Range: 3c112
+	Range: 3c512
 	Warhead@1Dam: SpreadDamage
 		Versus:
 			wood: 65
@@ -8,10 +8,13 @@
 
 HMG:
 	Inherits: ^MG
+	Range: 4c0
 
 HMG_muzzle:
+	Range: 4c0
 
 HMGo_muzzle:
+	Range: 4c0
 
 ^Rocket:
 	Warhead@1Dam: SpreadDamage
