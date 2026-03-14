@@ -1,5 +1,5 @@
 ^MG:
-	Range: 3c512
+	Range: 3c315
 	Warhead@1Dam: SpreadDamage
 		Versus:
 			wood: 65

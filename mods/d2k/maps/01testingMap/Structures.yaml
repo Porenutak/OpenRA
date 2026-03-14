@@ -1,11 +1,3 @@
-medium_gun_turret:
-	Health:
-		HP: 21000
-
-large_gun_turret:
-	Health:
-		HP: 24000
-
 wall:
 	Health:
 		HP: 15000
@@ -29,4 +21,4 @@ refinery:
 	CustomSellValue:
 		Value: 300
 	SpawnActorsOnSell:
-		ValuePercent: 65
+		ValuePercent: 75
