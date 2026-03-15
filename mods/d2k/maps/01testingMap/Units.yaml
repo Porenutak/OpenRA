@@ -70,26 +70,36 @@ World:
 		WarnProbability: 60
 
 light_inf:
-	RenderRangeCircle:
+
 
 trike:
 	RevealsShroud:
 		Range: 6c0
-	RenderRangeCircle:
+
 
 raider:
 	RevealsShroud:
 		Range: 6c0
-	RenderRangeCircle:
+
 
 sonic_tank:
 	Valued:
-		Cost: 1200
+		Cost: 1100
 
 devastator:
+	Buildable:
+		Queue: Armor
+		BuildPaletteOrder: 100
+		Prerequisites: ~heavy.harkonnen, research_centre, ~techlevel.high
+		BuildDuration: 600
 	Valued:
 		Cost: 1100
+	Health:
+		HP: 50000
 
 combat_tank_h:
 	Health:
 		HP: 29000
+
+deviator.husk:
+	-FireWarheads:

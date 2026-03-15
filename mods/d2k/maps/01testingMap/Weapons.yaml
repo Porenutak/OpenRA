@@ -1,5 +1,5 @@
 ^MG:
-	Range: 3c315
+	#Range: 3c315
 	Warhead@1Dam: SpreadDamage
 		Versus:
 			wood: 65
@@ -16,6 +16,7 @@ HMG_muzzle:
 HMGo_muzzle:
 	Range: 4c0
 
+
 ^Rocket:
 	Warhead@1Dam: SpreadDamage
 		Versus:
@@ -24,9 +25,9 @@ HMGo_muzzle:
 			harvester: 50
 
 mtank_pri:
-	ReloadDelay: 130
+	ReloadDelay: 128
 	Burst: 2
-	BurstDelays: 130
+	BurstDelays: 128
 	Range: 7c900
 	MinRange: 1c112
 	Projectile: Missile
