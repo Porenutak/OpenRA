@@ -1,10 +1,7 @@
 wall:
 	Health:
 		HP: 15000
-
-palace:
-	ProduceActorPower@saboteur:
-		ChargeInterval: 2000
+	-RevealsShroud:
 
 light_factory:
 	Valued:
@@ -22,3 +19,4 @@ refinery:
 		Value: 300
 	SpawnActorsOnSell:
 		ValuePercent: 75
+

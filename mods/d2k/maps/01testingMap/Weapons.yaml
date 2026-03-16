@@ -1,10 +1,9 @@
 ^MG:
-	#Range: 3c315
 	Warhead@1Dam: SpreadDamage
 		Versus:
 			wood: 65
 			building: 35
-			light: 30
+			light: 35
 
 HMG:
 	Inherits: ^MG
@@ -38,12 +37,7 @@ DeviatorMissile:
 
 ^Cannon:
 	Range: 4c900
-	Warhead@1Dam: SpreadDamage
-		Damage: 2800
-		Spread: 1c0
-		Versus:
-			none: 25
-		DamageTypes: Prone80Percent, TriggerProne, SmallExplosionDeath
+
 
 80mm_A:
 	Inherits: ^Cannon
@@ -54,10 +48,12 @@ DeviatorMissile:
 
 80mm_O:
 	Inherits: ^Cannon
-	ReloadDelay: 44
 
 110mm_Gun:
 
+M_HMG:
+	Warhead@1Dam: SpreadDamage
+		Spread: 1c0
 
 155mm:
 	Range: 6c900
@@ -68,29 +64,18 @@ DeathHand:
 	Warhead@Cluster: FireCluster
 		Weapon: DeathHandCluster
 		RandomClusterCount: 30
-		Dimensions: 6,6
-		Footprint: xXxXxX xxXXxx xXXXXx xxXXxx xXxxXx XxXxXx
-	Warhead@flash: FlashEffect
-		FlashType: flash
-		Duration: 20
+
 
 Sound:
-	ReloadDelay: 90
 	Warhead@1Dam: SpreadDamage
 		Versus:
-			none: 100
-			light: 85
+			light: 90
 		DamageTypes: Prone80Percent, TriggerProne, SoundDeath
 
 SardDeath:
 
 DeathHandCluster:
-	Warhead@1Dam: SpreadDamage
-		Versus:
-			none: 90
-			wall: 100
+
 
 OrniBomb:
-	Warhead@1Dam: SpreadDamage
-		Versus:
-			wall: 100
+
