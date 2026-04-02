@@ -421,9 +421,9 @@
 	WithDeathAnimation:
 		DeathTypes:
 			ExplosionDeath: 1
-			SoundDeath: 2
+			SoundDeath: 4
 			SmallExplosionDeath: 3
-			BulletDeath: 4
+			BulletDeath: 2
 		CrushedSequence: die-crushed
 	AttackMove:
 	Passenger:
