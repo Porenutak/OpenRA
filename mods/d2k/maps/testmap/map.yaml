@@ -1,0 +1,225 @@
+MapFormat: 12
+
+RequiresMod: d2k
+
+Title: test map
+
+Author: Your name here
+
+Tileset: ARRAKIS
+
+MapSize: 130,130
+
+Bounds: 1,1,128,128
+
+Visibility: Lobby
+
+Categories: Conquest
+
+Players:
+	PlayerReference@Neutral:
+		Name: Neutral
+		OwnsWorld: True
+		NonCombatant: True
+		Faction: Random
+	PlayerReference@Creeps:
+		Name: Creeps
+		NonCombatant: True
+		Faction: Random
+		Enemies: Multi0
+	PlayerReference@Multi0:
+		Name: Multi0
+		Playable: True
+		Faction: Random
+		Enemies: Creeps
+
+Actors:
+	Actor0: mpspawn
+		Owner: Neutral
+		Location: 53,70
+	Actor1: light_inf
+		Owner: Multi0
+		Facing: 384
+		Location: 52,64
+		SubCell: 3
+	Actor2: light_inf
+		Owner: Multi0
+		Facing: 384
+		Location: 52,64
+		SubCell: 1
+	Actor3: light_inf
+		Owner: Multi0
+		Facing: 384
+		Location: 52,64
+		SubCell: 2
+	Actor4: light_inf
+		Owner: Multi0
+		Facing: 384
+		Location: 52,64
+		SubCell: 4
+	Actor5: light_inf
+		Owner: Multi0
+		Facing: 384
+		Location: 53,64
+		SubCell: 3
+	Actor6: light_inf
+		Owner: Multi0
+		Facing: 384
+		Location: 53,64
+		SubCell: 1
+	Actor7: light_inf
+		Owner: Multi0
+		Facing: 384
+		Location: 53,64
+		SubCell: 2
+	Actor8: light_inf
+		Owner: Multi0
+		Facing: 384
+		Location: 53,64
+		SubCell: 4
+	Actor9: light_inf
+		Owner: Multi0
+		Facing: 384
+		Location: 54,64
+		SubCell: 3
+	Actor10: light_inf
+		Owner: Multi0
+		Facing: 384
+		Location: 54,64
+		SubCell: 1
+	Actor11: light_inf
+		Owner: Multi0
+		Facing: 384
+		Location: 54,64
+		SubCell: 2
+	Actor12: light_inf
+		Owner: Multi0
+		Facing: 384
+		Location: 55,64
+		SubCell: 3
+	Actor13: light_inf
+		Owner: Multi0
+		Facing: 384
+		Location: 55,64
+		SubCell: 1
+	Actor14: light_inf
+		Owner: Multi0
+		Facing: 384
+		Location: 55,64
+		SubCell: 2
+	Actor15: light_inf
+		Owner: Multi0
+		Facing: 384
+		Location: 55,64
+		SubCell: 4
+	Actor16: light_inf
+		Owner: Multi0
+		Facing: 384
+		Location: 56,64
+		SubCell: 3
+	Actor17: light_inf
+		Owner: Multi0
+		Facing: 384
+		Location: 56,64
+		SubCell: 1
+	Actor18: light_inf
+		Owner: Multi0
+		Facing: 384
+		Location: 56,64
+		SubCell: 2
+	Actor19: light_inf
+		Owner: Multi0
+		Facing: 384
+		Location: 56,64
+		SubCell: 4
+	Actor20: light_inf
+		Owner: Multi0
+		Facing: 384
+		Location: 57,64
+		SubCell: 3
+	Actor21: light_inf
+		Owner: Multi0
+		Facing: 384
+		Location: 57,64
+		SubCell: 1
+	Actor22: light_inf
+		Owner: Multi0
+		Facing: 384
+		Location: 57,64
+		SubCell: 2
+	Actor23: light_inf
+		Owner: Multi0
+		Facing: 384
+		Location: 58,64
+		SubCell: 3
+	Actor24: light_inf
+		Owner: Multi0
+		Facing: 384
+		Location: 58,64
+		SubCell: 1
+	Actor25: light_inf
+		Owner: Multi0
+		Facing: 384
+		Location: 58,64
+		SubCell: 2
+	Actor26: light_inf
+		Owner: Multi0
+		Facing: 384
+		Location: 58,64
+		SubCell: 4
+	Actor27: trike
+		Owner: Multi0
+		Facing: 384
+		Location: 52,66
+	Actor28: sonic_tank
+		Owner: Multi0
+		Facing: 384
+		Location: 53,66
+	Actor29: devastator
+		Owner: Multi0
+		Facing: 384
+		Location: 54,66
+	Actor30: combat_tank_o
+		Owner: Multi0
+		Facing: 384
+		Location: 56,66
+	Actor31: quad
+		Owner: Multi0
+		Facing: 384
+		Location: 58,66
+	Actor32: siege_tank
+		Owner: Multi0
+		Facing: 384
+		Location: 57,66
+	Actor33: trooper
+		Owner: Multi0
+		Facing: 384
+		Location: 59,66
+		SubCell: 3
+	Actor34: trooper
+		Owner: Multi0
+		Facing: 384
+		Location: 59,66
+		SubCell: 1
+	Actor35: trooper
+		Owner: Multi0
+		Facing: 384
+		Location: 59,66
+		SubCell: 2
+	Actor36: trooper
+		Owner: Multi0
+		Facing: 384
+		Location: 59,66
+		SubCell: 4
+	Actor37: wall
+		Owner: Neutral
+		Location: 62,67
+	Actor38: wall
+		Owner: Neutral
+		Location: 62,66
+	Actor39: wall
+		Owner: Neutral
+		Location: 62,65
+	Actor40: wall
+		Owner: Neutral
+		Location: 62,64
