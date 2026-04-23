@@ -4,7 +4,7 @@ Player:
 		Label: checkbox-automatic-concrete.label
 		Description: checkbox-automatic-concrete.description
 		Enabled: True
-		Locked: True
+		Locked: False
 		DisplayOrder: 7
 		Prerequisites: global-auto-concrete
 
@@ -65,10 +65,6 @@ World:
 		Briefing: briefing
 	MapOptions:
 
-^Infantry:
-	Crushable:
-		WarnProbability: 60
-
 light_inf:
 
 
@@ -80,9 +76,6 @@ trike:
 raider:
 	RevealsShroud:
 		Range: 6c0
-	Mobile:
-		TurnSpeed: 40
-		Speed: 145
 
 
 sonic_tank:
@@ -90,12 +83,14 @@ sonic_tank:
 		Cost: 1100
 
 devastator:
-	Buildable:
-		BuildDuration: 600
 	Valued:
-		Cost: 1100
+		Cost: 1150
 	Health:
 		HP: 50000
+
+deviator:
+	RevealsShroud:
+		Range: 5c512
 
 combat_tank_h:
 	Health:

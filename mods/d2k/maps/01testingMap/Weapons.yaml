@@ -1,27 +1,18 @@
 ^MG:
 	Warhead@1Dam: SpreadDamage
-		Versus:
-			wood: 65
-			building: 35
-			light: 35
+
 
 HMG:
 	Inherits: ^MG
 	Range: 4c0
 
-HMG_muzzle:
-	Range: 4c0
-
-HMGo_muzzle:
-	Range: 4c0
 
 
 ^Rocket:
 	Warhead@1Dam: SpreadDamage
 		Versus:
-			wood: 45
-			building: 50
-			harvester: 50
+			wood: 50
+
 
 mtank_pri:
 	ReloadDelay: 128
@@ -57,19 +48,13 @@ M_HMG:
 
 155mm:
 	Range: 6c900
-	ReloadDelay: 90
+	ReloadDelay: 95
 
 
-DeathHand:
-	Warhead@Cluster: FireCluster
-		Weapon: DeathHandCluster
-		RandomClusterCount: 30
 
 
 Sound:
 	Warhead@1Dam: SpreadDamage
-		Versus:
-			light: 90
 		DamageTypes: Prone80Percent, TriggerProne, SoundDeath
 
 SardDeath:
