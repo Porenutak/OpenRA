@@ -7,6 +7,8 @@ Player:
 		Locked: False
 		DisplayOrder: 7
 		Prerequisites: global-auto-concrete
+	PlaceBuilding:
+		ToggleVariantKey: ToggleVariant
 
 ^BaseWorld:
 	Locomotor@FOOT:

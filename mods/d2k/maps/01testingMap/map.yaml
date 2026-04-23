@@ -3179,3 +3179,5 @@ Rules: Units.yaml, Structures.yaml
 FluentMessages: map.ftl
 
 Weapons: Weapons.yaml
+
+Sequences: Sequences.yaml
