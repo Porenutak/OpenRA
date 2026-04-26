@@ -1727,14 +1727,6 @@ Actors:
 		Owner: Multi0
 		Facing: 384
 		Location: 37,60
-	Actor533: raider
-		Owner: Multi0
-		Facing: 384
-		Location: 16,55
-	Actor534: trike
-		Owner: Multi0
-		Facing: 384
-		Location: 15,54
 	Actor441: devastator
 		Owner: Multi0
 		Facing: 384
@@ -3169,6 +3161,121 @@ Actors:
 		Facing: 384
 		Location: 65,10
 		SubCell: 3
+	Actor685: trooper
+		Owner: Multi0
+		Facing: 384
+		Location: 9,70
+		SubCell: 3
+	Actor686: trooper
+		Owner: Multi0
+		Facing: 384
+		Location: 9,70
+		SubCell: 1
+	Actor687: trooper
+		Owner: Multi0
+		Facing: 384
+		Location: 9,70
+		SubCell: 2
+	Actor688: trooper
+		Owner: Multi0
+		Facing: 384
+		Location: 9,70
+		SubCell: 4
+	Actor689: trooper
+		Owner: Multi0
+		Facing: 384
+		Location: 9,70
+		SubCell: 5
+	Actor690: trooper
+		Owner: Multi0
+		Facing: 384
+		Location: 11,70
+		SubCell: 3
+	Actor691: trooper
+		Owner: Multi0
+		Facing: 384
+		Location: 11,70
+		SubCell: 1
+	Actor692: trooper
+		Owner: Multi0
+		Facing: 384
+		Location: 11,70
+		SubCell: 2
+	Actor693: trooper
+		Owner: Multi0
+		Facing: 384
+		Location: 11,70
+		SubCell: 4
+	Actor694: trooper
+		Owner: Multi0
+		Facing: 384
+		Location: 11,70
+		SubCell: 5
+	Actor695: trooper
+		Owner: Creeps
+		Facing: 384
+		Location: 10,56
+	Actor696: trooper
+		Owner: Creeps
+		Facing: 384
+		Location: 8,56
+		SubCell: 3
+	Actor697: trooper
+		Owner: Creeps
+		Facing: 384
+		Location: 9,55
+		SubCell: 3
+	Actor698: trooper
+		Owner: Creeps
+		Facing: 384
+		Location: 10,55
+		SubCell: 3
+	Actor699: trooper
+		Owner: Creeps
+		Facing: 384
+		Location: 12,56
+		SubCell: 3
+	Actor700: trooper
+		Owner: Creeps
+		Facing: 384
+		Location: 11,58
+		SubCell: 3
+	Actor701: trooper
+		Owner: Creeps
+		Facing: 384
+		Location: 9,57
+		SubCell: 3
+	Actor702: trooper
+		Owner: Creeps
+		Facing: 384
+		Location: 8,57
+		SubCell: 3
+	Actor703: trooper
+		Owner: Creeps
+		Facing: 384
+		Location: 10,57
+		SubCell: 3
+	Actor704: trooper
+		Owner: Creeps
+		Facing: 384
+		Location: 11,55
+		SubCell: 3
+	Actor534: trike
+		Owner: Multi0
+		Facing: 384
+		Location: 18,54
+	Actor533: raider
+		Owner: Multi0
+		Facing: 384
+		Location: 19,55
+	Actor705: trike
+		Owner: Multi0
+		Facing: 384
+		Location: 18,53
+	Actor706: trike
+		Owner: Multi0
+		Facing: 384
+		Location: 18,52
 
 Rules: Units.yaml, Structures.yaml
 	Player:
@@ -3178,6 +3285,6 @@ Rules: Units.yaml, Structures.yaml
 
 FluentMessages: map.ftl
 
-Weapons: Weapons.yaml
-
 Sequences: Sequences.yaml
+
+Weapons: Weapons.yaml

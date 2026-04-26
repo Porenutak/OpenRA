@@ -9,6 +9,12 @@ Player:
 		Prerequisites: global-auto-concrete
 	PlaceBuilding:
 		ToggleVariantKey: ToggleVariant
+	BaseBuilderBotModule@omnius:
+		RefineryTypes: refinery, refinery_nw, refinery_ne, refinery_sw
+	BaseBuilderBotModule@vidious:
+		RefineryTypes: refinery, refinery_nw, refinery_ne, refinery_sw
+	BaseBuilderBotModule@gladius:
+		RefineryTypes: refinery, refinery_nw, refinery_ne, refinery_sw
 
 ^BaseWorld:
 	Locomotor@FOOT:
@@ -71,14 +77,29 @@ light_inf:
 
 
 trike:
+	Valued:
+		Cost: 275
 	RevealsShroud:
 		Range: 6c0
 
+
+^combat_tank:
+
+siege_tank:
+	Health:
+		HP: 12000
 
 raider:
+	Valued:
+		Cost: 300
 	RevealsShroud:
 		Range: 6c0
 
+quad:
+	Valued:
+		Cost: 350
+
+trooper:
 
 sonic_tank:
 	Valued:

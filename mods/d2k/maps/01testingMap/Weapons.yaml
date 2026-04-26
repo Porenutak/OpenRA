@@ -1,17 +1,10 @@
 ^MG:
 
-
-
 HMG:
-	Inherits: ^MG
-	Range: 4c0
-
-
+	Range: 3c875
 
 ^Rocket:
-	Warhead@1Dam: SpreadDamage
-		Versus:
-			wood: 50
+	Range: 3c512
 
 
 mtank_pri:
@@ -27,15 +20,15 @@ DeviatorMissile:
 
 
 ^Cannon:
-	Range: 4c900
-
+	Warhead@1Dam: SpreadDamage
+		Damage: 2700
+		Versus:
+			none: 25
 
 80mm_A:
-	Inherits: ^Cannon
-	Range: 5c336
+
 
 80mm_H:
-	Inherits: ^Cannon
 
 80mm_O:
 	Inherits: ^Cannon
@@ -47,7 +40,7 @@ M_HMG:
 		Spread: 1c0
 
 155mm:
-	Range: 6c900
+	Range: 6c512
 	ReloadDelay: 95
 
 
