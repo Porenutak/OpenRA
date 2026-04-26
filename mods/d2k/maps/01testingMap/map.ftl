@@ -14,5 +14,6 @@ briefing =    **** PLAYTEST BALANCE ITERATION  ver. 6 ****
  - light factory cost revert from 600$ to 500$
  - Sonic Tank: Warhead trigger prone damage reduction.
  - Refinery: fix wrong sell value
+ - Siege/Missile/Combat tank -8% vision.
 
   check  github PR #22415 for more details

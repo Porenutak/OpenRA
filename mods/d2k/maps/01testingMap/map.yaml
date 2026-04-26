@@ -88,9 +88,6 @@ Actors:
 		Owner: Neutral
 		Location: 5,54
 		FreeActor: False
-	Actor28: starport
-		Owner: Neutral
-		Location: 46,46
 	Actor35: wormspawner
 		Owner: Creeps
 		Location: 4,31
@@ -189,12 +186,6 @@ Actors:
 	Actor70: barracks
 		Owner: Multi0
 		Location: 61,15
-	Actor71: refinery
-		Owner: Multi0
-		Location: 62,23
-	Actor72: refinery
-		Owner: Multi0
-		Location: 58,23
 	Actor73: heavy_factory
 		Owner: Multi0
 		Location: 63,7
@@ -574,14 +565,6 @@ Actors:
 		Facing: 384
 		Location: 11,25
 		SubCell: 3
-	Actor170: missile_tank
-		Owner: Multi0
-		Location: 55,66
-		Facing: 384
-	Actor171: siege_tank
-		Owner: Multi0
-		Location: 51,55
-		Facing: 384
 	Actor174: light_inf
 		Owner: Multi0
 		Facing: 384
@@ -1663,21 +1646,9 @@ Actors:
 		Owner: Multi0
 		Facing: 384
 		Location: 23,46
-	Actor422: wind_trap
-		Owner: Multi0
-		Location: 30,70
-	Actor423: wind_trap
-		Owner: Multi0
-		Location: 32,70
 	Actor424: wind_trap
 		Owner: Multi0
 		Location: 34,75
-	Actor425: wind_trap
-		Owner: Multi0
-		Location: 34,70
-	Actor426: wind_trap
-		Owner: Multi0
-		Location: 34,66
 	Actor427: outpost
 		Owner: Multi0
 		Location: 41,78
@@ -1719,14 +1690,6 @@ Actors:
 		Facing: 384
 		Location: 10,56
 		SubCell: 2
-	Actor531: raider
-		Owner: Multi0
-		Facing: 384
-		Location: 38,60
-	Actor532: trike
-		Owner: Multi0
-		Facing: 384
-		Location: 37,60
 	Actor441: devastator
 		Owner: Multi0
 		Facing: 384
@@ -1735,66 +1698,6 @@ Actors:
 		Owner: Multi0
 		Facing: 384
 		Location: 13,27
-	Actor2: missile_tank
-		Owner: Creeps
-		Facing: 384
-		Location: 89,42
-	Actor8: missile_tank
-		Owner: Creeps
-		Facing: 384
-		Location: 89,41
-	Actor10: devastator
-		Location: 76,42
-		Owner: Multi0
-		Facing: 763
-	Actor33: siege_tank
-		Location: 79,30
-		Facing: 770
-		Owner: Multi0
-	Actor34: siege_tank
-		Facing: 770
-		Owner: Multi0
-		Location: 79,29
-	Actor36: siege_tank
-		Facing: 770
-		Owner: Multi0
-		Location: 79,28
-	Actor37: siege_tank
-		Facing: 770
-		Owner: Multi0
-		Location: 79,27
-	Actor50: siege_tank
-		Facing: 770
-		Owner: Multi0
-		Location: 79,26
-	Actor51: siege_tank
-		Facing: 770
-		Owner: Multi0
-		Location: 79,25
-	Actor52: missile_tank
-		Owner: Creeps
-		Facing: 384
-		Location: 89,43
-	Actor56: missile_tank
-		Owner: Creeps
-		Facing: 384
-		Location: 89,44
-	Actor57: missile_tank
-		Owner: Creeps
-		Facing: 384
-		Location: 89,45
-	Actor58: devastator
-		Owner: Multi0
-		Facing: 763
-		Location: 76,43
-	Actor59: devastator
-		Owner: Multi0
-		Facing: 763
-		Location: 76,41
-	Actor60: devastator
-		Owner: Multi0
-		Facing: 763
-		Location: 76,40
 	Actor61: trooper
 		Owner: Creeps
 		Facing: 384
@@ -1918,36 +1821,6 @@ Actors:
 		Owner: Creeps
 		Facing: 231
 		Location: 89,24
-	Actor29: combat_tank_h
-		Owner: Multi0
-		Location: 80,25
-		Facing: 777
-		TurretFacing: 1023
-	Actor190: combat_tank_h
-		Owner: Multi0
-		Facing: 777
-		TurretFacing: 1023
-		Location: 80,26
-	Actor191: combat_tank_h
-		Owner: Multi0
-		Facing: 777
-		TurretFacing: 1023
-		Location: 80,27
-	Actor192: combat_tank_h
-		Owner: Multi0
-		Facing: 777
-		TurretFacing: 1023
-		Location: 80,28
-	Actor193: combat_tank_h
-		Owner: Multi0
-		Facing: 777
-		TurretFacing: 1023
-		Location: 80,29
-	Actor207: combat_tank_h
-		Owner: Multi0
-		Facing: 777
-		TurretFacing: 1023
-		Location: 80,30
 	Actor445: light_inf
 		Facing: 384
 		Owner: Multi0
@@ -2774,14 +2647,6 @@ Actors:
 		Owner: Multi0
 		Facing: 384
 		Location: 63,72
-	Actor432: stealth_raider
-		Owner: Multi0
-		Facing: 384
-		Location: 82,38
-	Actor433: deviator
-		Owner: Multi0
-		Facing: 384
-		Location: 80,37
 	Actor434: raider
 		Owner: Creeps
 		Facing: 384
@@ -3276,6 +3141,36 @@ Actors:
 		Owner: Multi0
 		Facing: 384
 		Location: 18,52
+	Actor171: siege_tank
+		Owner: Multi0
+		Facing: 384
+		Location: 38,47
+	Actor170: missile_tank
+		Owner: Multi0
+		Facing: 384
+		Location: 53,47
+	Actor28: combat_tank_a
+		Owner: Multi0
+		Location: 66,47
+		Facing: 384
+	Actor2: quad
+		Owner: Multi0
+		Facing: 384
+		Location: 79,47
+	Actor8: trooper
+		Owner: Multi0
+		Facing: 384
+		Location: 47,35
+		SubCell: 3
+	Actor10: light_inf
+		Owner: Multi0
+		Facing: 384
+		Location: 62,35
+		SubCell: 3
+	Actor532: trike
+		Owner: Multi0
+		Facing: 384
+		Location: 78,36
 
 Rules: Units.yaml, Structures.yaml
 	Player:

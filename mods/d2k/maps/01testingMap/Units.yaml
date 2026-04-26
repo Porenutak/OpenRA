@@ -75,6 +75,9 @@ World:
 
 light_inf:
 
+trooper:
+	RevealsShroud:
+		Range: 4c324
 
 trike:
 	Valued:
@@ -84,10 +87,18 @@ trike:
 
 
 ^combat_tank:
+	RevealsShroud:
+		Range: 5c512
 
 siege_tank:
 	Health:
 		HP: 12000
+	RevealsShroud:
+		Range: 6c128
+
+missile_tank:
+	RevealsShroud:
+		Range: 6c128
 
 raider:
 	Valued:
@@ -118,6 +129,8 @@ deviator:
 combat_tank_h:
 	Health:
 		HP: 29000
+	RevealsShroud:
+		Range: 5c512
 
 deviator.husk:
 	-FireWarheads:
