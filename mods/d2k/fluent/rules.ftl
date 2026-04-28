@@ -114,6 +114,7 @@ notification-unit-lost = Unit lost.
 notification-unit-promoted = Unit promoted.
 notification-enemy-building-captured = Enemy building captured.
 notification-primary-building-selected = Primary building selected.
+meta-bridge-name = Bridge
 
 ## aircraft.yaml
 actor-carryall-reinforce =

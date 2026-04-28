@@ -259,6 +259,8 @@ World:
 		TerrainFlashImage: moveflsh
 		TerrainFlashSequence: idle
 		TerrainFlashPalette: effect
+	LegacyBridgeLayer:
+		Bridges: bridge1
 
 EditorWorld:
 	Inherits: ^BaseWorld

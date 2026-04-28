@@ -1,0 +1,65 @@
+World:
+	BridgeLayer:
+
+^Bridge:
+	HitShape:
+		UseTargetableCellsOffsets: true
+		Type: Rectangle
+			TopLeft: -512, -512
+			BottomRight: 512, 512
+	Tooltip:
+		Name: meta-bridge-name
+		ShowOwnerRow: false
+	Targetable:
+		TargetTypes: Ground, Bridge
+		RequiresForceFire: true
+	Building:
+		Footprint: _ _ _ _
+		Dimensions: 1,4
+	Health:
+		HP: 10000
+	Armor:
+		Type: Wall
+	ScriptTriggers:
+	BodyOrientation:
+		QuantizedFacings: 1
+	Interactable:
+	ShakeOnDeath:
+		Duration: 15
+		Intensity: 6
+
+^ExplosiveBridge:
+	ExplosionOnDamageTransition@COLLAPSED:
+		DamageState: Dead
+		Weapon: BuildingExplode
+	SoundOnDamageTransition:
+		DamagedSounds: EXPLSML1.WAV
+		DestroyedSounds: EXPLHG1.WAV
+	FireWarheadsOnDeath:
+		Type: Footprint
+		Weapon: BuildingExplode
+		EmptyWeapon: BuildingExplode
+
+bridge1:
+	Inherits: ^Bridge
+	Inherits@EXPLOSIVE: ^ExplosiveBridge
+	Bridge:
+		Long: true
+		ShorePieces: br1,br2
+		Template: 1158
+		DamagedTemplate: 1161
+		DestroyedTemplate: 1163
+		DestroyedPlusNorthTemplate: 1160
+		DestroyedPlusSouthTemplate: 1157
+		DestroyedPlusBothTemplate: 1168
+		NorthOffset: 1,0
+		SouthOffset: 0,1
+
+bridge_end_west:
+	Inherits: ^Bridge
+	Inherits@EXPLOSIVE: ^ExplosiveBridge
+	Bridge:
+		Template: 1161
+		DamagedTemplate: 1161
+		DestroyedTemplate: 1163
+		SouthOffset: 1,0
