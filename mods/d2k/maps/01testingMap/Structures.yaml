@@ -224,3 +224,19 @@ refinery_sw:
 		Offset: 1200, 200, 0
 	WithDamageOverlay@Fire2Ordos:
 		Offset: 0, -200, 0
+
+upgrade.barracks:
+	Buildable:
+		BuildDuration: 700
+
+upgrade.light:
+	Buildable:
+		BuildDuration: 800
+
+upgrade.heavy:
+	Buildable:
+		BuildDuration: 900
+
+upgrade.hightech:
+	Buildable:
+		BuildDuration: 1100

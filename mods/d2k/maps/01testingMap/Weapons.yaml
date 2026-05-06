@@ -1,4 +1,6 @@
 ^MG:
+	Projectile: InstantHit
+		Blockable: true
 
 HMG:
 	Range: 3c875
@@ -6,11 +8,14 @@ HMG:
 ^Rocket:
 	Range: 3c512
 
+^Missile:
+	Projectile: Missile
+		InaccuracyType: Absolute
 
 mtank_pri:
-	ReloadDelay: 128
+	ReloadDelay: 115
 	Burst: 2
-	BurstDelays: 128
+	BurstDelays: 115
 	Range: 7c900
 	MinRange: 1c112
 	Projectile: Missile
@@ -41,10 +46,7 @@ M_HMG:
 
 155mm:
 	Range: 6c512
-	ReloadDelay: 95
-
-
-
+	ReloadDelay: 90
 
 Sound:
 	Warhead@1Dam: SpreadDamage
@@ -53,7 +55,6 @@ Sound:
 SardDeath:
 
 DeathHandCluster:
-
 
 OrniBomb:
 
