@@ -1,0 +1,153 @@
+Player:
+	LobbyPrerequisiteCheckbox@AUTOCONCRETE:
+		ID: autoconcrete
+		Label: checkbox-automatic-concrete.label
+		Description: checkbox-automatic-concrete.description
+		Enabled: True
+		Locked: False
+		DisplayOrder: 7
+		Prerequisites: global-auto-concrete
+	PlaceBuilding:
+		ToggleVariantKey: ToggleVariant
+	BaseBuilderBotModule@omnius:
+		RefineryTypes: refinery, refinery_nw, refinery_ne, refinery_sw
+	BaseBuilderBotModule@vidious:
+		RefineryTypes: refinery, refinery_nw, refinery_ne, refinery_sw
+	BaseBuilderBotModule@gladius:
+		RefineryTypes: refinery, refinery_nw, refinery_ne, refinery_sw
+	ClassicProductionQueue@Building:
+		BuildTimeSpeedReduction: 100, 75, 50
+	ClassicProductionQueue@Infantry:
+		BuildTimeSpeedReduction: 100, 75, 50
+	ClassicProductionQueue@Vehicle:
+		BuildTimeSpeedReduction: 100, 75, 50
+	ClassicProductionQueue@Armor:
+		BuildTimeSpeedReduction: 100, 75, 50
+	ClassicProductionQueue@Aircraft:
+		BuildTimeSpeedReduction: 100, 75, 50
+
+^BaseWorld:
+	Locomotor@FOOT:
+		Name: foot
+		Crushes: crate, spicebloom
+		SharesCell: true
+		TerrainSpeeds:
+			Sand: 100
+			Rock: 100
+			Transition: 100
+			Concrete: 100
+			SpiceSand: 100
+			Spice: 100
+			SpiceBlobs: 100
+			Dune: 80
+			Rough: 70
+	Locomotor@VEHICLE:
+		Name: vehicle
+		Crushes: crate, spicebloom
+		TerrainSpeeds:
+			Sand: 90
+			Rock: 100
+			Transition: 100
+			Concrete: 100
+			SpiceSand: 90
+			Spice: 90
+			SpiceBlobs: 90
+			Dune: 50
+	Locomotor@TANK:
+		Name: tank
+		Crushes: crate, infantry, spicebloom
+		TerrainSpeeds:
+			Sand: 100
+			Rock: 100
+			Transition: 100
+			Concrete: 100
+			SpiceSand: 100
+			Spice: 100
+			SpiceBlobs: 100
+			Dune: 70
+	Locomotor@DEVASTATOR:
+		Name: devastator
+		Crushes: crate, infantry, spicebloom, wall
+		TerrainSpeeds:
+			Sand: 100
+			Rock: 100
+			Transition: 100
+			Concrete: 100
+			SpiceSand: 100
+			Spice: 100
+			SpiceBlobs: 100
+			Dune: 70
+
+World:
+	MissionData:
+		Briefing: briefing
+	MapOptions:
+
+light_inf:
+
+trooper:
+	RevealsShroud:
+		Range: 4c324
+
+trike:
+	Valued:
+		Cost: 300
+	RevealsShroud:
+		Range: 6c0
+
+
+^combat_tank:
+	RevealsShroud:
+		Range: 5c512
+
+siege_tank:
+	Health:
+		HP: 12000
+	RevealsShroud:
+		Range: 6c128
+
+missile_tank:
+	RevealsShroud:
+		Range: 6c128
+
+raider:
+	Valued:
+		Cost: 325
+	RevealsShroud:
+		Range: 6c0
+
+quad:
+	Valued:
+		Cost: 350
+
+trooper:
+
+sonic_tank:
+	Valued:
+		Cost: 1100
+
+devastator:
+	Valued:
+		Cost: 1050
+	Health:
+		HP: 50000
+
+deviator:
+	RevealsShroud:
+		Range: 5c512
+
+combat_tank_h:
+	Health:
+		HP: 29000
+	RevealsShroud:
+		Range: 5c512
+	SpeedMultiplier@HEAVYDAMAGE:
+		RequiresCondition: heavy-damage
+		Modifier: 80
+
+deviator.husk:
+	-FireWarheads:
+
+fremen:
+	RevealsShroud:
+		Range: 5c0

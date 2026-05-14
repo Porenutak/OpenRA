@@ -1,0 +1,60 @@
+^MG:
+	Projectile: InstantHit
+		Blockable: true
+
+HMG:
+	Range: 3c875
+
+^Rocket:
+	Range: 3c512
+
+^Missile:
+	Projectile: Missile
+		InaccuracyType: Absolute
+
+mtank_pri:
+	ReloadDelay: 115
+	Burst: 2
+	BurstDelays: 115
+	Range: 7c900
+	MinRange: 1c112
+	Projectile: Missile
+		RangeLimit: 10c0
+
+DeviatorMissile:
+
+
+^Cannon:
+	Warhead@1Dam: SpreadDamage
+		Damage: 2700
+		Versus:
+			none: 25
+
+80mm_A:
+
+
+80mm_H:
+
+80mm_O:
+	Inherits: ^Cannon
+
+110mm_Gun:
+
+M_HMG:
+	Warhead@1Dam: SpreadDamage
+		Spread: 1c0
+
+155mm:
+	Range: 6c512
+	ReloadDelay: 90
+
+Sound:
+	Warhead@1Dam: SpreadDamage
+		DamageTypes: Prone80Percent, TriggerProne, SoundDeath
+
+SardDeath:
+
+DeathHandCluster:
+
+OrniBomb:
+
