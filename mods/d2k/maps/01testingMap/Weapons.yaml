@@ -48,6 +48,7 @@ M_HMG:
 	Range: 6c512
 	ReloadDelay: 90
 
+
 Sound:
 	Warhead@1Dam: SpreadDamage
 		DamageTypes: Prone80Percent, TriggerProne, SoundDeath

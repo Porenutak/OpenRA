@@ -519,3 +519,17 @@ refinery_sw.ordos:
 		Offset: -10, -20
 		Tick: 100
 		BlendMode: Additive
+
+iconchevrons:
+	Veterancy_L1:
+		Filename: bits/iconchevrons.shp
+		Offset: 43, 6
+		Start: 0
+	Veterancy_L2:
+		Filename: bits/iconchevrons.shp
+		Start: 1
+		Offset: 43, 6
+	Veterancy_L3:
+		Filename: bits/iconchevrons.shp
+		Start: 2
+		Offset: 43, 6

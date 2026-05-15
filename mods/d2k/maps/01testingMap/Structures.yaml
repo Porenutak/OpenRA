@@ -1,3 +1,12 @@
+concretea:
+	D2kBuilding:
+		Footprint: xx xx xx
+		Dimensions: 2,3
+
+concreteb:
+	D2kBuilding:
+		Footprint: xxx xxx xxx xxx
+		Dimensions: 3,4
 wall:
 	Health:
 		HP: 15000
@@ -225,18 +234,261 @@ refinery_sw:
 	WithDamageOverlay@Fire2Ordos:
 		Offset: 0, -200, 0
 
+palace:
+	ProvidesPrerequisite@atreides:
+		Prerequisite: palace.atreides
+		Factions: atreides
+	-ProduceActorPower@fremen:
+
 upgrade.barracks:
 	Buildable:
 		BuildDuration: 700
+		Prerequisites: barracks, ~!upgrade.barracks
 
 upgrade.light:
 	Buildable:
 		BuildDuration: 800
+		Prerequisites: light_factory, ~!upgrade.light
 
 upgrade.heavy:
 	Buildable:
 		BuildDuration: 900
+		Prerequisites: heavy_factory, ~!upgrade.heavy
 
 upgrade.hightech:
 	Buildable:
 		BuildDuration: 1100
+
+upgrade.barracks.vet1:
+	Interactable:
+	ScriptTriggers:
+	WithProductionIconOverlay:
+		Types: Veterancy_L1
+	Tooltip:
+		Name: actor-upgrade-barracks-vet1.name
+	Buildable:
+		BuildPaletteOrder: 50
+		Prerequisites: barracks, ~upgrade.barracks, outpost, ~!upgrade.barracks.vet1
+		Queue: Upgrade
+		BuildLimit: 1
+		BuildDuration: 1000
+		BuildDurationModifier: 100
+		Description: actor-upgrade-barracks-vet1.description
+	Valued:
+		Cost: 500
+	RenderSprites:
+		Image: barracks.ordos
+		FactionImages:
+			atreides: barracks.atreides
+			fremen: barracks.atreides
+			harkonnen: barracks.harkonnen
+			corrino: barracks.harkonnen
+	ProvidesPrerequisite@upgradename:
+
+upgrade.barracks.vet2:
+	Interactable:
+	ScriptTriggers:
+	WithProductionIconOverlay:
+		Types: Veterancy_L2
+	Tooltip:
+		Name: actor-upgrade-barracks-vet2.name
+	Buildable:
+		BuildPaletteOrder: 50
+		Prerequisites: barracks, high_tech_factory, ~upgrade.barracks.vet1, ~!upgrade.barracks.vet2
+		Queue: Upgrade
+		BuildLimit: 1
+		BuildDuration: 1200
+		BuildDurationModifier: 100
+		Description: actor-upgrade-barracks-vet2.description
+	Valued:
+		Cost: 600
+	RenderSprites:
+		Image: barracks.ordos
+		FactionImages:
+			atreides: barracks.atreides
+			fremen: barracks.atreides
+			harkonnen: barracks.harkonnen
+			corrino: barracks.harkonnen
+	ProvidesPrerequisite@upgradename:
+
+upgrade.barracks.vet3:
+	Interactable:
+	ScriptTriggers:
+	WithProductionIconOverlay:
+		Types: Veterancy_L3
+	Tooltip:
+		Name: actor-upgrade-barracks-vet3.name
+	Buildable:
+		BuildPaletteOrder: 50
+		Prerequisites: barracks, palace, ~upgrade.barracks.vet1, ~upgrade.barracks.vet2
+		Queue: Upgrade
+		BuildLimit: 1
+		BuildDuration: 1500
+		BuildDurationModifier: 100
+		Description: actor-upgrade-barracks-vet3.description
+	Valued:
+		Cost: 700
+	RenderSprites:
+		Image: barracks.ordos
+		FactionImages:
+			atreides: barracks.atreides
+			fremen: barracks.atreides
+			harkonnen: barracks.harkonnen
+			corrino: barracks.harkonnen
+	ProvidesPrerequisite@upgradename:
+
+upgrade.light.vet1:
+	Interactable:
+	ScriptTriggers:
+	WithProductionIconOverlay:
+		Types: Veterancy_L1
+	Tooltip:
+		Name: actor-upgrade-light-vet1.name
+	Buildable:
+		BuildPaletteOrder: 50
+		Prerequisites: light_factory, ~upgrade.light, outpost, ~!upgrade.light.vet1
+		Queue: Upgrade
+		BuildLimit: 1
+		BuildDuration: 800
+		BuildDurationModifier: 100
+		Description: actor-upgrade-light-vet2.description
+	Valued:
+		Cost: 300
+	RenderSprites:
+		Image: light.ordos
+		FactionImages:
+			atreides: light.atreides
+			fremen: light.atreides
+			harkonnen: light.harkonnen
+			corrino: light.harkonnen
+	ProvidesPrerequisite@upgradename:
+
+upgrade.light.vet2:
+	Interactable:
+	ScriptTriggers:
+	WithProductionIconOverlay:
+		Types: Veterancy_L2
+	Tooltip:
+		Name: actor-upgrade-light-vet2.name
+	Buildable:
+		BuildPaletteOrder: 50
+		Prerequisites: light_factory, ~upgrade.light, high_tech_factory, ~upgrade.light.vet1,~!upgrade.light.vet2
+		Queue: Upgrade
+		BuildLimit: 1
+		BuildDuration: 900
+		BuildDurationModifier: 100
+		Description: actor-upgrade-light-vet3.description
+	Valued:
+		Cost: 400
+	RenderSprites:
+		Image: light.ordos
+		FactionImages:
+			atreides: light.atreides
+			fremen: light.atreides
+			harkonnen: light.harkonnen
+			corrino: light.harkonnen
+	ProvidesPrerequisite@upgradename:
+
+upgrade.light.vet3:
+	Interactable:
+	ScriptTriggers:
+	WithProductionIconOverlay:
+		Types: Veterancy_L3
+	Tooltip:
+		Name: actor-upgrade-light-vet3.name
+	Buildable:
+		BuildPaletteOrder: 50
+		Prerequisites: light_factory, ~upgrade.light, palace, ~upgrade.light.vet1,~upgrade.light.vet2
+		Queue: Upgrade
+		BuildLimit: 1
+		BuildDuration: 1000
+		BuildDurationModifier: 100
+		Description: actor-upgrade-light-vet3.description
+	Valued:
+		Cost: 500
+	RenderSprites:
+		Image: light.ordos
+		FactionImages:
+			atreides: light.atreides
+			fremen: light.atreides
+			harkonnen: light.harkonnen
+			corrino: light.harkonnen
+	ProvidesPrerequisite@upgradename:
+
+upgrade.heavy.vet1:
+	Interactable:
+	ScriptTriggers:
+	WithProductionIconOverlay:
+		Types: Veterancy_L1
+	Tooltip:
+		Name: actor-upgrade-heavy-vet1.name
+	Buildable:
+		BuildPaletteOrder: 50
+		Prerequisites: heavy_factory, ~upgrade.heavy, high_tech_factory, ~!upgrade.heavy.vet1
+		Queue: Upgrade
+		BuildLimit: 1
+		BuildDuration: 1000
+		BuildDurationModifier: 100
+		Description: actor-upgrade-heavy-vet2.description
+	Valued:
+		Cost: 500
+	RenderSprites:
+		Image: heavy.ordos
+		FactionImages:
+			atreides: heavy.atreides
+			fremen: heavy.atreides
+			harkonnen: heavy.harkonnen
+			corrino: heavy.harkonnen
+	ProvidesPrerequisite@upgradename:
+
+upgrade.heavy.vet2:
+	Interactable:
+	ScriptTriggers:
+	WithProductionIconOverlay:
+		Types: Veterancy_L2
+	Tooltip:
+		Name: actor-upgrade-heavy-vet2.name
+	Buildable:
+		BuildPaletteOrder: 50
+		Prerequisites: heavy_factory, ~upgrade.heavy, research_centre, ~upgrade.heavy.vet1, ~!upgrade.heavy.vet2
+		Queue: Upgrade
+		BuildLimit: 1
+		BuildDuration: 1200
+		BuildDurationModifier: 100
+		Description: actor-upgrade-heavy-vet2.description
+	Valued:
+		Cost: 600
+	RenderSprites:
+		Image: heavy.ordos
+		FactionImages:
+			atreides: heavy.atreides
+			fremen: heavy.atreides
+			harkonnen: heavy.harkonnen
+			corrino: heavy.harkonnen
+	ProvidesPrerequisite@upgradename:
+
+upgrade.heavy.vet3:
+	Interactable:
+	ScriptTriggers:
+	WithProductionIconOverlay:
+		Types: Veterancy_L3
+	Tooltip:
+		Name: actor-upgrade-heavy-vet3.name
+	Buildable:
+		BuildPaletteOrder: 50
+		Prerequisites: heavy_factory, ~upgrade.heavy, palace, ~upgrade.heavy.vet2
+		Queue: Upgrade
+		BuildLimit: 1
+		BuildDuration: 1500
+		BuildDurationModifier: 100
+		Description: actor-upgrade-heavy-vet3.description
+	Valued:
+		Cost: 700
+	RenderSprites:
+		Image: heavy.ordos
+		FactionImages:
+			atreides: heavy.atreides
+			fremen: heavy.atreides
+			harkonnen: heavy.harkonnen
+			corrino: heavy.harkonnen
+	ProvidesPrerequisite@upgradename:

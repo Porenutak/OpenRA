@@ -25,6 +25,27 @@ Player:
 		BuildTimeSpeedReduction: 100, 75, 50
 	ClassicProductionQueue@Aircraft:
 		BuildTimeSpeedReduction: 100, 75, 50
+	ProductionIconOverlayManager@level1:
+		Type: Veterancy_L1
+		Image: iconchevrons
+		Sequence: Veterancy_L1
+		Palette: temperat
+	ProductionIconOverlayManager@level2:
+		Type: Veterancy_L2
+		Image: iconchevrons
+		Sequence: Veterancy_L2
+		Palette: temperat
+	ProductionIconOverlayManager@level3:
+		Type: Veterancy_L3
+		Image: iconchevrons
+		Palette: temperat
+		Sequence: Veterancy_L3
+
+^Palettes:
+	PaletteFromFile@fromRA:
+		Name: temperat
+		ShadowIndex: 1
+		Filename: bits/temperat.pal
 
 ^BaseWorld:
 	Locomotor@FOOT:
@@ -48,7 +69,7 @@ Player:
 			Sand: 90
 			Rock: 100
 			Transition: 100
-			Concrete: 100
+			Concrete: 110
 			SpiceSand: 90
 			Spice: 90
 			SpiceBlobs: 90
@@ -60,7 +81,7 @@ Player:
 			Sand: 100
 			Rock: 100
 			Transition: 100
-			Concrete: 100
+			Concrete: 110
 			SpiceSand: 100
 			Spice: 100
 			SpiceBlobs: 100
@@ -83,56 +104,227 @@ World:
 		Briefing: briefing
 	MapOptions:
 
+^Vehicle:
+	Mobile:
+		CanMoveBackward: true
+		MaxBackwardCells: 15
+		BackwardDuration: 10
+
+^GainsExperience:
+	-DamageMultiplier@RANK-1:
+	-DamageMultiplier@RANK-2:
+	-DamageMultiplier@RANK-3:
+	-DamageMultiplier@RANK-ELITE:
+	FirepowerMultiplier@RANK-1:
+		RequiresCondition: rank-veteran == 1
+		Modifier: 105
+	FirepowerMultiplier@RANK-2:
+		RequiresCondition: rank-veteran == 2
+		Modifier: 110
+	FirepowerMultiplier@RANK-3:
+		RequiresCondition: rank-veteran == 3
+		Modifier: 115
+	FirepowerMultiplier@RANK-ELITE:
+		RequiresCondition: rank-elite
+		Modifier: 125
+	-SpeedMultiplier@RANK-1:
+	-SpeedMultiplier@RANK-2:
+	-SpeedMultiplier@RANK-3:
+	-SpeedMultiplier@RANK-ELITE:
+	ReloadDelayMultiplier@RANK-1:
+		RequiresCondition: rank-veteran == 1
+		Modifier: 95
+	ReloadDelayMultiplier@RANK-2:
+		RequiresCondition: rank-veteran == 2
+		Modifier: 90
+	ReloadDelayMultiplier@RANK-3:
+		RequiresCondition: rank-veteran == 3
+		Modifier: 85
+	ReloadDelayMultiplier@RANK-ELITE:
+		RequiresCondition: rank-elite
+		Modifier: 80
+	-InaccuracyMultiplier@RANK-1:
+	-InaccuracyMultiplier@RANK-2:
+	-InaccuracyMultiplier@RANK-3:
+	-InaccuracyMultiplier@RANK-ELITE:
+	ChangesHealth@ELITE:
+		Step: 0
+		PercentageStep: 4
+		Delay: 125
+		StartIfBelow: 50
+		DamageCooldown: 125
+		RequiresCondition: rank-veteran == 3
+
+^InfantryVeterancy:
+	WithProductionIconOverlay@rank1:
+		Types: Veterancy_L1
+		Prerequisites: upgrade.barracks.vet1, !upgrade.barracks.vet2, !upgrade.barracks.vet3
+	ProducibleWithLevel@rank1:
+		InitialLevels: 1
+		Prerequisites: upgrade.barracks.vet1, !upgrade.barracks.vet2, !upgrade.barracks.vet3
+	WithProductionIconOverlay@rank2:
+		Types: Veterancy_L2
+		Prerequisites: upgrade.barracks.vet1, upgrade.barracks.vet2, !upgrade.barracks.vet3
+	ProducibleWithLevel@rank2:
+		InitialLevels: 2
+		Prerequisites: upgrade.barracks.vet1, upgrade.barracks.vet2, !upgrade.barracks.vet3
+	WithProductionIconOverlay@rank3:
+		Types: Veterancy_L3
+		Prerequisites: upgrade.barracks.vet1, upgrade.barracks.vet2, upgrade.barracks.vet3
+	ProducibleWithLevel@rank3:
+		InitialLevels: 3
+		Prerequisites: upgrade.barracks.vet1, upgrade.barracks.vet2, upgrade.barracks.vet3
+	InaccuracyMultiplier@RANK-1:
+		RequiresCondition: rank-veteran == 1
+		Modifier: 90
+	InaccuracyMultiplier@RANK-2:
+		RequiresCondition: rank-veteran == 2
+		Modifier: 80
+	InaccuracyMultiplier@RANK-3:
+		RequiresCondition: rank-veteran == 3
+		Modifier: 70
+	InaccuracyMultiplier@RANK-ELITE:
+		RequiresCondition: rank-elite
+		Modifier: 50
+
+^VehicleVeterancy:
+	WithProductionIconOverlay@rank1:
+		Types: Veterancy_L1
+		Prerequisites: upgrade.light.vet1, !upgrade.light.vet2, !upgrade.light.vet3
+	ProducibleWithLevel@rank1:
+		InitialLevels: 1
+		Prerequisites: upgrade.light.vet1, !upgrade.light.vet2, !upgrade.light.vet3
+	WithProductionIconOverlay@rank2:
+		Types: Veterancy_L2
+		Prerequisites: upgrade.light.vet1, upgrade.light.vet2, !upgrade.light.vet3
+	ProducibleWithLevel@rank2:
+		InitialLevels: 2
+		Prerequisites: upgrade.light.vet1, upgrade.light.vet2, !upgrade.light.vet3
+	WithProductionIconOverlay@rank3:
+		Types: Veterancy_L3
+		Prerequisites: upgrade.light.vet1, upgrade.light.vet2, upgrade.light.vet3
+	ProducibleWithLevel@rank3:
+		InitialLevels: 3
+		Prerequisites: upgrade.light.vet1, upgrade.light.vet2, upgrade.light.vet3
+	SpeedMultiplier@RANK-1:
+		RequiresCondition: rank-veteran == 1
+		Modifier: 105
+	SpeedMultiplier@RANK-2:
+		RequiresCondition: rank-veteran == 2
+		Modifier: 110
+	SpeedMultiplier@RANK-3:
+		RequiresCondition: rank-veteran == 3
+		Modifier: 115
+	SpeedMultiplier@RANK-ELITE:
+		RequiresCondition: rank-elite
+		Modifier: 125
+
+^TankVeterancy:
+	WithProductionIconOverlay@rank1:
+		Types: Veterancy_L1
+		Prerequisites: upgrade.heavy.vet1, !upgrade.heavy.vet2, !upgrade.heavy.vet3
+	ProducibleWithLevel@rank1:
+		InitialLevels: 1
+		Prerequisites: upgrade.heavy.vet1, !upgrade.heavy.vet2, !upgrade.heavy.vet3
+	WithProductionIconOverlay@rank2:
+		Types: Veterancy_L2
+		Prerequisites: upgrade.heavy.vet1, upgrade.heavy.vet2, !upgrade.heavy.vet3
+	ProducibleWithLevel@rank2:
+		InitialLevels: 2
+		Prerequisites: upgrade.heavy.vet1, upgrade.heavy.vet2, !upgrade.heavy.vet3
+	WithProductionIconOverlay@rank3:
+		Types: Veterancy_L3
+		Prerequisites: upgrade.heavy.vet1, upgrade.heavy.vet2, upgrade.heavy.vet3
+	ProducibleWithLevel@rank3:
+		InitialLevels: 3
+		Prerequisites: upgrade.heavy.vet1, upgrade.heavy.vet2, upgrade.heavy.vet3
+
+
 light_inf:
+	Inherits@rankInfantry: ^InfantryVeterancy
 
 trooper:
+	Inherits@rankInfantry: ^InfantryVeterancy
 	RevealsShroud:
 		Range: 4c324
 
+grenadier:
+	Inherits@rankInfantry: ^InfantryVeterancy
+	Buildable:
+		Prerequisites: ~barracks.ordos, upgrade.barracks, high_tech_factory, ~techlevel.medium
+
+fremen:
+	Inherits@rankInfantry: ^InfantryVeterancy
+	Inherits: ^Infantry
+	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
+	Tooltip:
+		Name: actor-fremen.name
+	UpdatesPlayerStatistics:
+		AddToArmyValue: true
+	Valued:
+		Cost: 185
+	Buildable:
+		Queue: Infantry
+		BuildPaletteOrder: 80
+		BuildAtProductionType: Fremen
+		BuildDuration: 150
+		BuildDurationModifier: 100
+		Prerequisites: ~barracks.atreides, upgrade.barracks, palace.atreides,
+		Description: actor-fremen.description
+
+sardaukar:
+	Inherits@rankInfantry: ^InfantryVeterancy
+
 trike:
+	Inherits@ranks: ^VehicleVeterancy
 	Valued:
 		Cost: 300
 	RevealsShroud:
 		Range: 6c0
 
-
-^combat_tank:
-	RevealsShroud:
-		Range: 5c512
-
-siege_tank:
-	Health:
-		HP: 12000
-	RevealsShroud:
-		Range: 6c128
-
-missile_tank:
-	RevealsShroud:
-		Range: 6c128
-
 raider:
+	Inherits@ranks: ^VehicleVeterancy
 	Valued:
 		Cost: 325
 	RevealsShroud:
 		Range: 6c0
 
 quad:
+	Inherits@ranks: ^VehicleVeterancy
 	Valued:
 		Cost: 350
 
-trooper:
+^combat_tank:
+	Inherits@ranks: ^TankVeterancy
+	RevealsShroud:
+		Range: 5c512
+
+siege_tank:
+	Inherits@ranks: ^TankVeterancy
+	Health:
+		HP: 12000
+	RevealsShroud:
+		Range: 6c128
+
+missile_tank:
+	Inherits@ranks: ^TankVeterancy
+	RevealsShroud:
+		Range: 6c128
 
 sonic_tank:
+	Inherits@ranks: ^TankVeterancy
 	Valued:
 		Cost: 1100
 
 devastator:
+	Inherits@ranks: ^TankVeterancy
 	Valued:
 		Cost: 1050
 	Health:
 		HP: 50000
 
 deviator:
+	Inherits@ranks: ^TankVeterancy
 	RevealsShroud:
 		Range: 5c512
 
@@ -148,6 +340,87 @@ combat_tank_h:
 deviator.husk:
 	-FireWarheads:
 
-fremen:
-	RevealsShroud:
-		Range: 5c0
+trike.starport:
+	WithProductionIconOverlay:
+		Types: Veterancy_L3
+	ProducibleWithLevel:
+		InitialLevels: 3
+	-WithProductionIconOverlay@rank1:
+	-WithProductionIconOverlay@rank2:
+	-WithProductionIconOverlay@rank3:
+	-ProducibleWithLevel@rank1:
+	-ProducibleWithLevel@rank2:
+	-ProducibleWithLevel@rank3:
+
+quad.starport:
+	WithProductionIconOverlay:
+		Types: Veterancy_L3
+	ProducibleWithLevel:
+		InitialLevels: 3
+	-WithProductionIconOverlay@rank1:
+	-WithProductionIconOverlay@rank2:
+	-WithProductionIconOverlay@rank3:
+	-ProducibleWithLevel@rank1:
+	-ProducibleWithLevel@rank2:
+	-ProducibleWithLevel@rank3:
+
+siege_tank.starport:
+	WithProductionIconOverlay:
+		Types: Veterancy_L1
+	ProducibleWithLevel:
+		InitialLevels: 1
+	-WithProductionIconOverlay@rank1:
+	-WithProductionIconOverlay@rank2:
+	-WithProductionIconOverlay@rank3:
+	-ProducibleWithLevel@rank1:
+	-ProducibleWithLevel@rank2:
+	-ProducibleWithLevel@rank3:
+
+missile_tank.starport:
+	WithProductionIconOverlay:
+		Types: Veterancy_L1
+	ProducibleWithLevel:
+		InitialLevels: 1
+	-WithProductionIconOverlay@rank1:
+	-WithProductionIconOverlay@rank2:
+	-WithProductionIconOverlay@rank3:
+	-ProducibleWithLevel@rank1:
+	-ProducibleWithLevel@rank2:
+	-ProducibleWithLevel@rank3:
+
+combat_tank_a.starport:
+	WithProductionIconOverlay:
+		Types: Veterancy_L2
+	ProducibleWithLevel:
+		InitialLevels: 2
+	-WithProductionIconOverlay@rank1:
+	-WithProductionIconOverlay@rank2:
+	-WithProductionIconOverlay@rank3:
+	-ProducibleWithLevel@rank1:
+	-ProducibleWithLevel@rank2:
+	-ProducibleWithLevel@rank3:
+
+combat_tank_h.starport:
+	WithProductionIconOverlay:
+		Types: Veterancy_L2
+	ProducibleWithLevel:
+		InitialLevels: 2
+	-WithProductionIconOverlay@rank1:
+	-WithProductionIconOverlay@rank2:
+	-WithProductionIconOverlay@rank3:
+	-ProducibleWithLevel@rank1:
+	-ProducibleWithLevel@rank2:
+	-ProducibleWithLevel@rank3:
+
+combat_tank_o.starport:
+	ProducibleWithLevel:
+		InitialLevels: 2
+	WithProductionIconOverlay:
+		Types: Veterancy_L2
+	-WithProductionIconOverlay@rank1:
+	-WithProductionIconOverlay@rank2:
+	-WithProductionIconOverlay@rank3:
+	-ProducibleWithLevel@rank1:
+	-ProducibleWithLevel@rank2:
+	-ProducibleWithLevel@rank3:
+
