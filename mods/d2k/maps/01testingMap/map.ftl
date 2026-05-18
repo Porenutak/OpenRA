@@ -1,10 +1,10 @@
 ## rules.yaml
-briefing =    **** Experimental Pro mod ver. 1 ****
+briefing =    **** Experimental Pro mod ver. 0.1 ****
  - Based on basic balance 8
+ - Per build production!
  - Grenadier is now Ordos unit
  - Fremen is now buildable unit
  - Concrete size 2x3. large concrete 3x4. Concrete speed up vehicles by 10%
- - Trike and quad carrie one light infantry, if unload vehicle is disabled.
  - Veterancy levels can by trained in upgrade tab
  - Outpost provides reinforcements.
  - Starport units are spawned with veterancy level 1. Trike/Quead with level 2.
@@ -83,3 +83,11 @@ actor-upgrade-heavy-vet3 =
     +15% Damage
     -15% Reload time
     +15% Armor
+
+actor-wpdummy = (dummy)
+
+actor-assassin =
+    .name = Assassin
+    .description = Cloak unit with long range rifle
+    Attacks only infantry
+    weak vs everything

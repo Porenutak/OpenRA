@@ -17,14 +17,10 @@ Player:
 		RefineryTypes: refinery, refinery_nw, refinery_ne, refinery_sw
 	ClassicProductionQueue@Building:
 		BuildTimeSpeedReduction: 100, 75, 50
-	ClassicProductionQueue@Infantry:
-		BuildTimeSpeedReduction: 100, 75, 50
-	ClassicProductionQueue@Vehicle:
-		BuildTimeSpeedReduction: 100, 75, 50
-	ClassicProductionQueue@Armor:
-		BuildTimeSpeedReduction: 100, 75, 50
-	ClassicProductionQueue@Aircraft:
-		BuildTimeSpeedReduction: 100, 75, 50
+	-ClassicProductionQueue@Infantry:
+	-ClassicProductionQueue@Vehicle:
+	-ClassicProductionQueue@Armor:
+	-ClassicProductionQueue@Aircraft:
 	ProductionIconOverlayManager@level1:
 		Type: Veterancy_L1
 		Image: iconchevrons
@@ -109,6 +105,8 @@ World:
 		CanMoveBackward: true
 		MaxBackwardCells: 15
 		BackwardDuration: 10
+	AmbientSound@onBeingDemolished:
+		SoundFiles: audio/explodeSaboteurEmperor02.wav
 
 ^GainsExperience:
 	-DamageMultiplier@RANK-1:
@@ -278,7 +276,7 @@ sardaukar:
 trike:
 	Inherits@ranks: ^VehicleVeterancy
 	Valued:
-		Cost: 300
+		Cost: 275
 	RevealsShroud:
 		Range: 6c0
 
@@ -342,9 +340,9 @@ deviator.husk:
 
 trike.starport:
 	WithProductionIconOverlay:
-		Types: Veterancy_L3
+		Types: Veterancy_L2
 	ProducibleWithLevel:
-		InitialLevels: 3
+		InitialLevels: 2
 	-WithProductionIconOverlay@rank1:
 	-WithProductionIconOverlay@rank2:
 	-WithProductionIconOverlay@rank3:
@@ -354,9 +352,9 @@ trike.starport:
 
 quad.starport:
 	WithProductionIconOverlay:
-		Types: Veterancy_L3
+		Types: Veterancy_L2
 	ProducibleWithLevel:
-		InitialLevels: 3
+		InitialLevels: 2
 	-WithProductionIconOverlay@rank1:
 	-WithProductionIconOverlay@rank2:
 	-WithProductionIconOverlay@rank3:
@@ -390,9 +388,9 @@ missile_tank.starport:
 
 combat_tank_a.starport:
 	WithProductionIconOverlay:
-		Types: Veterancy_L2
+		Types: Veterancy_L1
 	ProducibleWithLevel:
-		InitialLevels: 2
+		InitialLevels: 1
 	-WithProductionIconOverlay@rank1:
 	-WithProductionIconOverlay@rank2:
 	-WithProductionIconOverlay@rank3:
@@ -402,9 +400,9 @@ combat_tank_a.starport:
 
 combat_tank_h.starport:
 	WithProductionIconOverlay:
-		Types: Veterancy_L2
+		Types: Veterancy_L1
 	ProducibleWithLevel:
-		InitialLevels: 2
+		InitialLevels: 1
 	-WithProductionIconOverlay@rank1:
 	-WithProductionIconOverlay@rank2:
 	-WithProductionIconOverlay@rank3:
@@ -414,9 +412,9 @@ combat_tank_h.starport:
 
 combat_tank_o.starport:
 	ProducibleWithLevel:
-		InitialLevels: 2
+		InitialLevels: 1
 	WithProductionIconOverlay:
-		Types: Veterancy_L2
+		Types: Veterancy_L1
 	-WithProductionIconOverlay@rank1:
 	-WithProductionIconOverlay@rank2:
 	-WithProductionIconOverlay@rank3:
@@ -424,3 +422,66 @@ combat_tank_o.starport:
 	-ProducibleWithLevel@rank2:
 	-ProducibleWithLevel@rank3:
 
+dummy_reinforcements:
+	EditorOnlyTooltip:
+		Name: actor-wpdummy
+	MapEditorData:
+		Categories: system
+	Interactable:
+	Immobile:
+		OccupiesSpace: false
+	RenderSpritesEditorOnly:
+		Image: waypoint
+	WithSpriteBody:
+	BodyOrientation:
+		QuantizedFacings: 1
+	OwnerLostAction:
+		Action: Dispose
+
+saboteur:
+
+
+assassin:
+	Inherits: ^Infantry
+	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
+	Valued:
+		Cost: 120
+	Buildable:
+		Queue: Infantry
+		BuildPaletteOrder: 70
+		Prerequisites: ~disabled
+		BuildDuration: 140
+		BuildDurationModifier: 60
+		Description:
+	Tooltip:
+		Name: actor-assassin.name
+	Health:
+		HP: 5000
+	Mobile:
+		Speed: 38
+	RevealsShroud:
+		Range: 5c0
+	Armament:
+		Weapon: SniperRifle
+		FireDelay: 2
+	Armament@chaos_bomb_influence:
+		Weapon: SniperRifle
+		FireDelay: 2
+	AttackFrontal:
+		FacingTolerance: 0
+	WithInfantryBody:
+		DefaultAttackSequence: shoot
+		MinIdleDelay: 90
+		MaxIdleDelay: 200
+	Cloak:
+		InitialDelay: 120
+		CloakDelay: 120
+		UncloakOn: Move, Damage, Attack
+		IsPlayerPalette: true
+		RequiresCondition: !cloak-force-disabled
+	GrantConditionOnDamageState@UNCLOAK:
+		Condition: cloak-force-disabled
+		ValidDamageStates: Critical
+	-MustBeDestroyed:
+	Voiced:
+		VoiceSet: SaboteurVoice

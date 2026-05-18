@@ -59,3 +59,22 @@ DeathHandCluster:
 
 OrniBomb:
 
+SniperRifle:
+	Report: audio/FIREWORKS.WAV
+	ReloadDelay: 120
+	AfterFireSound: audio/EBoD_infantry_reload_low.wav
+	AfterFireSoundDelay: 50
+	Range: 5c0
+	ValidTargets: Ground, Infantry
+	InvalidTargets: Vehicle, Tank, Structure, Wall, Husk, Creep
+	Projectile: InstantHit
+		Inaccuracy: 220
+	Warhead@1Dam: SpreadDamage
+		Spread: 300
+		Falloff: 100, 0
+		Damage: 9000
+		ValidTargets: Infantry
+		DamageTypes: Prone50Percent, TriggerProne, BulletDeath
+		DamageCalculationType: ClosestTargetablePosition
+	Warhead@3Eff: CreateEffect
+		Explosions: piffs

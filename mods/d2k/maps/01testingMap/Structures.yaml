@@ -12,16 +12,63 @@ wall:
 		HP: 15000
 	-RevealsShroud:
 
+barracks:
+	Health:
+		HP: 30000
+	ProductionQueue:
+		Type: Infantry
+		LowPowerModifier: 300
+		DisplayOrder: 1
+		Group: Infantry
+		ReadyAudio: UnitReady
+		ReadyTextNotification: notification-unit-ready
+		BlockedAudio: NoRoom
+		BlockedTextNotification: notification-no-room-for-new-unit
+		QueuedAudio: Training
+		OnHoldAudio: OnHold
+		CancelledAudio: Cancelled
+
 light_factory:
 	Valued:
 		Cost: 500
 	Buildable:
 		BuildDuration: 350
+	ProductionQueue:
+		Type: Vehicle
+		LowPowerModifier: 300
+		ReadyAudio: UnitReady
+		ReadyTextNotification: notification-unit-ready
+		BlockedAudio: NoRoom
+		BlockedTextNotification: notification-no-room-for-new-unit
+		QueuedAudio: Training
+		OnHoldAudio: OnHold
+		CancelledAudio: Cancelled
 
+heavy_factory:
+	ProductionQueue:
+		Type: Armor
+		LowPowerModifier: 300
+		ReadyAudio: UnitReady
+		ReadyTextNotification: notification-unit-ready
+		BlockedAudio: NoRoom
+		BlockedTextNotification: notification-no-room-for-new-unit
+		QueuedAudio: Training
+		OnHoldAudio: OnHold
+		CancelledAudio: Cancelled
 
-barracks:
-	Health:
-		HP: 30000
+high_tech_factory:
+	ProductionQueue:
+		Type: Aircraft
+		LowPowerModifier: 300
+		ReadyAudio: UnitReady
+		ReadyTextNotification: notification-unit-ready
+		BlockedAudio: NoRoom
+		BlockedTextNotification: notification-no-room-for-new-unit
+		QueuedAudio: Training
+		OnHoldAudio: OnHold
+		CancelledAudio: Cancelled
+
+outpost:
 
 silo:
 	Buildable:

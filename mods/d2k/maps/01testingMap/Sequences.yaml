@@ -533,3 +533,98 @@ iconchevrons:
 		Filename: bits/iconchevrons.shp
 		Start: 2
 		Offset: 43, 6
+
+
+assassin:
+	stand:
+		Filename: bits/Assassin.shp
+		Start: 193
+		Stride: 2
+		Facings: 8
+	idle1:
+		Filename: bits/Assassin.shp
+		Start: 385
+		Length: 15
+		Tick: 100
+	idle2:
+		Filename: bits/Assassin.shp
+		Start: 400
+		Length: 8
+		Tick: 100
+	run:
+		Filename: bits/Assassin.shp
+		Start: 16
+		Length: 6
+		Facings: 8
+		Tick: 100
+	shoot:
+		Filename: bits/Assassin.shp
+		Start: 64
+		Length: 16
+		Facings: 8
+		Tick: 100
+	prone-stand:
+		Filename: bits/Assassin.shp
+		Start: 208
+		Stride: 4
+		Facings: 8
+	prone-run:
+		Filename: bits/Assassin.shp
+		Start: 208
+		Length: 4
+		Facings: 8
+		Tick: 100
+	standup:
+		Filename: bits/Assassin.shp
+		Start: 240
+		Length: 2
+		Facings: 8
+	prone-shoot:
+		Filename: bits/Assassin.shp
+		Start: 256
+		Length: 16
+		Facings: 8
+	die1:
+		Filename: bits/Assassin.shp
+		Start: 416
+		Length: 8
+		Tick: 80
+	die2:
+		Filename: bits/Assassin.shp
+		Start: 424
+		Length: 8
+		Tick: 80
+	die3:
+		Filename: bits/Assassin.shp
+		Start: 432
+		Length: 8
+		Tick: 80
+	die4:
+		Filename: bits/Assassin.shp
+		Start: 440
+		Length: 12
+		Tick: 80
+	die-crushed:
+		Filename: DATA.R16
+		Frames: 2698, 2705, 2712, 2719, 2726, 2733, 2740, 2747
+		Tick: 800
+		ZOffset: -511
+	icon:
+		Filename: bits/Assassin.png
+		Start: 0
+		Offset: -30,-24
+
+icon:
+	infantry_reinforcement:
+		Filename: bits/AirReinforcementsIcons.shp
+		Start: 2
+		Lenght: 1
+
+invisible:
+	idle:
+		Filename: DATA.R16
+		Start: 38
+	icon:
+		Filename: DATA.R16
+		Start: 102
+		Offset: -16,-16
