@@ -422,7 +422,7 @@ Actors:
 	CPower3: wind_trap
 		Location: 98,33
 		Owner: Corrino
-	AConYard2: construction_yard
+	AConYard2: conyard.atreides
 		Location: 49,34
 		Owner: Atreides Small Base
 	Actor119: wall
