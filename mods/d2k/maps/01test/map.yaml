@@ -1,0 +1,217 @@
+MapFormat: 12
+
+RequiresMod: d2k
+
+Title: test
+
+Author: SirCake
+
+Tileset: ARRAKIS
+
+MapSize: 102,86
+
+Bounds: 1,1,100,82
+
+Visibility: Lobby
+
+Categories: Balance2026_v8
+
+Players:
+	PlayerReference@Neutral:
+		Name: Neutral
+		OwnsWorld: True
+		NonCombatant: True
+		Faction: Random
+	PlayerReference@Creeps:
+		Name: Creeps
+		NonCombatant: True
+		Faction: Random
+		Enemies: Multi0
+	PlayerReference@Multi0:
+		Name: Multi0
+		Playable: True
+		Faction: Random
+		Enemies: Creeps
+
+Actors:
+	Actor0: refinery
+		Owner: Neutral
+		Location: 30,71
+	Actor2: wormspawner
+		Owner: Neutral
+		Location: 11,7
+	Actor3: wormspawner
+		Owner: Neutral
+		Location: 92,7
+	Actor4: wormspawner
+		Owner: Neutral
+		Location: 91,74
+	Actor5: wormspawner
+		Owner: Neutral
+		Location: 10,75
+	Actor8: spicebloom.spawnpoint
+		Owner: Neutral
+		Location: 8,55
+	Actor9: spicebloom.spawnpoint
+		Owner: Neutral
+		Location: 9,46
+	Actor12: spicebloom.spawnpoint
+		Owner: Neutral
+		Location: 14,17
+	Actor18: spicebloom.spawnpoint
+		Owner: Neutral
+		Location: 50,40
+	Actor20: spicebloom.spawnpoint
+		Owner: Neutral
+		Location: 31,60
+	Actor26: spicebloom.spawnpoint
+		Owner: Neutral
+		Location: 35,11
+	Actor27: spicebloom.spawnpoint
+		Owner: Neutral
+		Location: 36,17
+	Actor30: refinery
+		Owner: Neutral
+		Location: 69,71
+	Actor7: mpspawn
+		Owner: Neutral
+		Location: 19,51
+	Actor23: spicebloom.spawnpoint
+		Owner: Neutral
+		Location: 93,55
+	Actor25: spicebloom.spawnpoint
+		Owner: Neutral
+		Location: 92,46
+	Actor19: spicebloom.spawnpoint
+		Owner: Neutral
+		Location: 66,11
+	Actor21: spicebloom.spawnpoint
+		Owner: Neutral
+		Location: 65,17
+	Actor22: spicebloom.spawnpoint
+		Owner: Neutral
+		Location: 86,17
+	Actor28: spicebloom.spawnpoint
+		Owner: Neutral
+		Location: 72,29
+	Actor29: spicebloom.spawnpoint
+		Owner: Neutral
+		Location: 27,29
+	Actor31: spicebloom.spawnpoint
+		Owner: Neutral
+		Location: 50,80
+	Actor32: spicebloom.spawnpoint
+		Owner: Neutral
+		Location: 50,39
+	Actor33: spicebloom.spawnpoint
+		Owner: Neutral
+		Location: 50,41
+	Actor34: spicebloom.spawnpoint
+		Owner: Neutral
+		Location: 70,60
+	Actor1: construction_yard
+		Owner: Multi0
+		Location: 15,50
+	Actor6: barracks
+		Owner: Multi0
+		Location: 15,55
+	Actor10: wind_trap
+		Owner: Multi0
+		Location: 22,51
+	Actor11: wind_trap
+		Owner: Multi0
+		Location: 20,51
+	Actor13: wind_trap
+		Owner: Multi0
+		Location: 20,54
+	Actor14: wind_trap
+		Owner: Multi0
+		Location: 22,54
+	Actor15: light_inf
+		Owner: Multi0
+		Facing: 384
+		Location: 8,58
+		SubCell: 3
+	Actor16: light_inf
+		Owner: Multi0
+		Facing: 384
+		Location: 9,57
+		SubCell: 3
+	Actor17: light_inf
+		Owner: Multi0
+		Facing: 384
+		Location: 10,56
+		SubCell: 3
+	Actor24: light_inf
+		Owner: Multi0
+		Facing: 384
+		Location: 11,55
+		SubCell: 3
+	Actor35: light_inf
+		Owner: Multi0
+		Facing: 384
+		Location: 11,57
+		SubCell: 3
+	Actor36: light_inf
+		Owner: Multi0
+		Facing: 384
+		Location: 14,58
+		SubCell: 3
+	Actor37: light_inf
+		Owner: Multi0
+		Facing: 384
+		Location: 16,59
+		SubCell: 3
+	Actor38: light_inf
+		Owner: Multi0
+		Facing: 384
+		Location: 17,60
+		SubCell: 3
+	Actor39: light_inf
+		Owner: Multi0
+		Facing: 384
+		Location: 20,60
+		SubCell: 3
+	Actor40: light_inf
+		Owner: Multi0
+		Facing: 384
+		Location: 22,61
+		SubCell: 3
+	Actor41: light_inf
+		Owner: Multi0
+		Facing: 384
+		Location: 23,61
+		SubCell: 3
+	Actor42: light_inf
+		Owner: Multi0
+		Facing: 384
+		Location: 24,60
+		SubCell: 3
+	Actor43: light_inf
+		Owner: Multi0
+		Facing: 384
+		Location: 25,58
+		SubCell: 3
+	Actor44: light_inf
+		Owner: Multi0
+		Facing: 384
+		Location: 25,58
+		SubCell: 1
+	Actor45: light_inf
+		Owner: Multi0
+		Facing: 384
+		Location: 22,58
+		SubCell: 3
+	Actor46: light_inf
+		Owner: Multi0
+		Facing: 384
+		Location: 22,58
+		SubCell: 1
+
+Rules: Units.yaml, Structures.yaml
+
+FluentMessages: map.ftl
+
+Sequences: Sequences.yaml
+
+Weapons: Weapons.yaml

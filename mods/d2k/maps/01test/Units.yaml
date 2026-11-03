@@ -1,0 +1,263 @@
+^Palettes:
+	PaletteFromFile:
+		Name: terrain
+		Filename: PALETTE.BIN
+	PaletteFromFile@d2k:
+		Name: d2k
+		Filename: PALETTE.BIN
+		ShadowIndex: 1
+		CursorPalette: true
+	PaletteFromFile@chrome:
+		Name: chrome
+		Filename: PALETTE.BIN
+		ShadowIndex: 3
+		AllowModifiers: false
+	PaletteFromFile@effect:
+		Name: effect
+		Filename: PALETTE.BIN
+		ShadowIndex: 1
+		AllowModifiers: false
+	ColorPickerPalette@colorpicker:
+		Name: colorpicker
+		BasePalette: d2k
+		RemapIndex: 255, 254, 253, 252, 251, 250, 249, 248, 247, 246, 245, 244, 243, 242, 241, 240
+		AllowModifiers: false
+	PlayerColorPalette:
+		BasePalette: d2k
+		RemapIndex: 255, 254, 253, 252, 251, 250, 249, 248, 247, 246, 245, 244, 243, 242, 241, 240
+	MenuPostProcessEffect:
+		FadeInLength: 4
+	FlashPostProcessEffect:
+	ColorPickerColorShift:
+		BasePalette: colorpicker
+		MinHue: 0.32
+		MaxHue: 0.34
+	PlayerColorShift:
+		BasePalette: player
+	PaletteFromFile@temperat:
+		Name: temperat
+		Filename: bits/temperat.pal
+		ShadowIndex: 1
+		CursorPalette: true
+
+Player:
+	ProductionIconOverlayManager@level1:
+		Image: iconchevrons
+		Sequence: level1
+		Type: Veterancy_level_1
+		Palette: temperat
+	ProductionIconOverlayManager@level2:
+		Image: iconchevrons
+		Sequence: level2
+		Type: Veterancy_level_2
+		Palette: temperat
+	ProductionIconOverlayManager@level3:
+		Image: iconchevrons
+		Sequence: level3
+		Type: Veterancy_level_3
+		Palette: temperat
+
+
+World:
+	MissionData:
+		Briefing: briefing
+
+^InfantryTraining:
+	ProducibleWithLevel@level1:
+		Prerequisites: veterancy1.barracks
+		InitialLevels: 1
+	ProducibleWithLevel@level2:
+		Prerequisites: veterancy2.barracks
+		InitialLevels: 1
+	ProducibleWithLevel@level3:
+		Prerequisites: veterancy3.barracks
+		InitialLevels: 1
+	WithProductionIconOverlay@level1:
+		Types: Veterancy_level_1
+		Prerequisites: veterancy1.barracks, !veterancy2.barracks, !veterancy3.barracks
+	WithProductionIconOverlay@level2:
+		Types: Veterancy_level_2
+		Prerequisites: veterancy2.barracks, !veterancy3.barracks
+	WithProductionIconOverlay@level3:
+		Types: Veterancy_level_3
+		Prerequisites: veterancy3.barracks
+
+^VehicleTraining:
+	ProducibleWithLevel@level1:
+		Prerequisites: veterancy1.light
+		InitialLevels: 1
+	ProducibleWithLevel@level2:
+		Prerequisites: veterancy2.light
+		InitialLevels: 1
+	ProducibleWithLevel@level3:
+		Prerequisites: veterancy3.light
+		InitialLevels: 1
+	WithProductionIconOverlay@level1:
+		Types: Veterancy_level_1
+		Prerequisites: veterancy1.light, !veterancy2.light, !veterancy3.light
+	WithProductionIconOverlay@level2:
+		Types: Veterancy_level_2
+		Prerequisites: veterancy2.light, !veterancy3.light
+	WithProductionIconOverlay@level3:
+		Types: Veterancy_level_3
+		Prerequisites: veterancy3.light
+
+^TankTraining:
+	ProducibleWithLevel@level1:
+		Prerequisites: veterancy1.heavy
+		InitialLevels: 1
+	ProducibleWithLevel@level2:
+		Prerequisites: veterancy2.heavy
+		InitialLevels: 1
+	ProducibleWithLevel@level3:
+		Prerequisites: veterancy3.heavy
+		InitialLevels: 1
+	WithProductionIconOverlay@level1:
+		Types: Veterancy_level_1
+		Prerequisites: veterancy1.heavy, !veterancy2.heavy, !veterancy3.heavy
+	WithProductionIconOverlay@level2:
+		Types: Veterancy_level_2
+		Prerequisites: veterancy2.heavy, !veterancy3.heavy
+	WithProductionIconOverlay@level3:
+		Types: Veterancy_level_3
+		Prerequisites: veterancy3.heavy
+
+light_inf:
+	Inherits@veterancy: ^InfantryTraining
+
+trooper:
+	Inherits@veterancy: ^InfantryTraining
+
+grenadier:
+	Inherits@veterancy: ^InfantryTraining
+	Buildable:
+		Prerequisites: ~barracks.ordos, upgrade.barracks, high_tech_factory, ~techlevel.medium
+		BuildDuration: 94
+
+
+
+fremen:
+	Inherits@veterancy: ^InfantryTraining
+	Buildable:
+		Prerequisites: ~barracks.atreides, upgrade.barracks, high_tech_factory, ~techlevel.medium
+		BuildDuration: 155
+		BuildPaletteOrder: 30
+		BuildDurationModifier: 100
+	Valued:
+		Cost: 185
+
+mpsardaukar:
+	Inherits@veterancy: ^InfantryTraining
+
+trike:
+	Inherits@veterancy: ^VehicleTraining
+
+quad:
+	Inherits@veterancy: ^VehicleTraining
+
+raider:
+	Inherits@veterancy: ^VehicleTraining
+
+^combat_tank:
+	Inherits@veterancy: ^TankTraining
+
+siege_tank:
+	Inherits@veterancy: ^TankTraining
+
+missile_tank:
+	Inherits@veterancy: ^TankTraining
+
+sonic_tank:
+	Inherits@veterancy: ^TankTraining
+
+
+devastator:
+	Inherits@veterancy: ^TankTraining
+
+deviator:
+	Inherits@veterancy: ^TankTraining
+
+
+trike.starport:
+	-ProducibleWithLevel@level1:
+	-ProducibleWithLevel@level2:
+	-ProducibleWithLevel@level3:
+	ProducibleWithLevel@starport:
+		InitialLevels: 2
+	-WithProductionIconOverlay@level1:
+	-WithProductionIconOverlay@level3:
+	WithProductionIconOverlay@level2:
+		Types: Veterancy_level_2
+		-Prerequisites:
+
+quad.starport:
+	-ProducibleWithLevel@level1:
+	-ProducibleWithLevel@level2:
+	-ProducibleWithLevel@level3:
+	ProducibleWithLevel@starport:
+		InitialLevels: 2
+	-WithProductionIconOverlay@level1:
+	-WithProductionIconOverlay@level3:
+	WithProductionIconOverlay@level2:
+		Types: Veterancy_level_2
+		-Prerequisites:
+
+combat_tank_a.starport:
+	-ProducibleWithLevel@level1:
+	-ProducibleWithLevel@level2:
+	-ProducibleWithLevel@level3:
+	ProducibleWithLevel@starport:
+		InitialLevels: 1
+	-WithProductionIconOverlay@level3:
+	-WithProductionIconOverlay@level2:
+	WithProductionIconOverlay@level1:
+		Types: Veterancy_level_1
+		-Prerequisites:
+
+combat_tank_h.starport:
+	-ProducibleWithLevel@level1:
+	-ProducibleWithLevel@level2:
+	-ProducibleWithLevel@level3:
+	ProducibleWithLevel@starport:
+		InitialLevels: 1
+	-WithProductionIconOverlay@level3:
+	-WithProductionIconOverlay@level2:
+	WithProductionIconOverlay@level1:
+		Types: Veterancy_level_1
+		-Prerequisites:
+
+combat_tank_o.starport:
+	-ProducibleWithLevel@level1:
+	-ProducibleWithLevel@level2:
+	-ProducibleWithLevel@level3:
+	ProducibleWithLevel@starport:
+		InitialLevels: 1
+	-WithProductionIconOverlay@level3:
+	-WithProductionIconOverlay@level2:
+	WithProductionIconOverlay@level1:
+		Types: Veterancy_level_1
+		-Prerequisites:
+
+siege_tank.starport:
+	-ProducibleWithLevel@level1:
+	-ProducibleWithLevel@level2:
+	-ProducibleWithLevel@level3:
+	ProducibleWithLevel@starport:
+		InitialLevels: 1
+	-WithProductionIconOverlay@level3:
+	-WithProductionIconOverlay@level2:
+	WithProductionIconOverlay@level1:
+		Types: Veterancy_level_1
+		-Prerequisites:
+
+missile_tank.starport:
+	-ProducibleWithLevel@level1:
+	-ProducibleWithLevel@level2:
+	-ProducibleWithLevel@level3:
+	ProducibleWithLevel@starport:
+		InitialLevels: 1
+	-WithProductionIconOverlay@level3:
+	-WithProductionIconOverlay@level2:
+	WithProductionIconOverlay@level1:
+		Types: Veterancy_level_1
+		-Prerequisites:

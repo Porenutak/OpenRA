@@ -1,0 +1,435 @@
+wall:
+	Health:
+		HP: 15000
+	-RevealsShroud:
+
+light_factory:
+
+
+
+barracks:
+
+
+silo:
+
+
+refinery:
+	PlaceBuildingVariants:
+		Actors: refinery_sw, refinery_nw, refinery_ne
+		Facings: 128, 896, 384
+	CustomSellValue:
+		Value: 300
+	SpawnActorsOnSell:
+		ValuePercent: 75
+
+refinery_nw:
+	Inherits: refinery
+	PlaceBuildingVariants:
+		Actors: refinery, refinery_sw, refinery_ne
+		Facings: 128, 896, 384
+	Buildable:
+		BuildPaletteOrder: 310
+		Description: actor-refinery.description
+	RenderSprites:
+		Image: refinery_nw.ordos
+		FactionImages:
+			atreides: refinery_nw.atreides
+			fremen: refinery_nw.atreides
+			harkonnen: refinery_nw.harkonnen
+			corrino: refinery_nw.harkonnen
+	WithIdleOverlay@middle:
+		Sequence: idle-middle
+		RequiresCondition: !build-incomplete
+	DockHost:
+		Type: Unload
+		DockAngle: 128
+		DockOffset: -1c0,-512,0
+	D2kBuilding:
+		Footprint: === =xx xx=
+		Dimensions: 3,3
+		LocalCenterOffset: 0, 512,0
+	HitShape:
+		Type: Rectangle
+			TopLeft: -512, -1024
+			BottomRight: 1536, 0
+	HitShape@BOTTOM:
+		Type: Rectangle
+			TopLeft: -1536, 0
+			BottomRight: 512, 1048
+	ProvidesPrerequisite:
+		Prerequisite: refinery
+	FreeActorWithDelivery:
+		DeliveryOffset: 0,0
+	FloatingSpriteEmitter@SmokeSmallAtreides:
+		Offset: -900, 200, 0
+	FloatingSpriteEmitter@SmokeHugeAtreides:
+		Offset: 700,-612,0
+	WithDamageOverlay@Fire1_Atreides:
+		Offset: 950, 600,0
+	WithDamageOverlay@Fire2_atreides:
+		Offset: 500, -800, 0
+		LoopSequence: 2
+	FloatingSpriteEmitter@SmokeHugeHarkonnen:
+		Offset: 1100,-800,0
+	FloatingSpriteEmitter@SmokeSmallHarkonnen:
+		Offset: -512, -512,0
+	WithDamageOverlay@Fire1Harkonnen:
+		Offset: 1200, 1000,0
+	WithDamageOverlay@Fire2Harkonnen:
+		Offset: 450, -450, 0
+		LoopSequence: 2
+	FloatingSpriteEmitter@SmokeHugeOrdos:
+		Offset: 400, -900, 0
+		Gravity: 70
+	FloatingSpriteEmitter@SmokeSmallOrdos:
+		Offset: -250, 250, 0
+		SpawnFrequency: 3, 13
+	WithDamageOverlay@Fire1Ordos:
+		Offset: 700, 300, 0
+	WithDamageOverlay@Fire2Ordos:
+		Offset: 0, -200, 0
+
+refinery_ne:
+	Inherits: refinery
+	Buildable:
+		Prerequisites: ~disabled
+		Queue: Building
+		BuildPaletteOrder: 310
+		Description: actor-refinery.description
+	RenderSprites:
+		Image: refinery_ne.ordos
+		FactionImages:
+			atreides: refinery_ne.atreides
+			fremen: refinery_ne.atreides
+			harkonnen: refinery_ne.harkonnen
+			corrino: refinery_ne.harkonnen
+	WithIdleOverlay@middle:
+		Sequence: idle-middle
+		RequiresCondition: !build-incomplete
+	DockHost:
+		Type: Unload
+		DockAngle: 896
+		DockOffset: 1c0,-512,0
+	D2kBuilding:
+		Footprint: === xx= =xx
+		Dimensions: 3,3
+		LocalCenterOffset: 0, 512,0
+	HitShape:
+		Type: Rectangle
+			TopLeft: -1536, -1024
+			BottomRight: 512, 0
+	HitShape@BOTTOM:
+		Type: Rectangle
+			TopLeft: -512, 0
+			BottomRight: 1536, 1048
+	ProvidesPrerequisite:
+		Prerequisite: refinery
+	FreeActorWithDelivery:
+		DeliveryOffset: 2,0
+	FloatingSpriteEmitter@SmokeSmallAtreides:
+		Offset: 1150, 250, 0
+	FloatingSpriteEmitter@SmokeHugeAtreides:
+		Offset: -200,-1024,0
+	WithDamageOverlay@Fire1_Atreides:
+		Offset: 0, 1024,0
+	WithDamageOverlay@Fire2_atreides:
+		Offset: -500, -100, 2000
+		LoopSequence: 4
+	FloatingSpriteEmitter@SmokeHugeHarkonnen:
+		Offset: 1100,0,0
+	FloatingSpriteEmitter@SmokeSmallHarkonnen:
+		Offset: -1024, -1024,0
+	WithDamageOverlay@Fire1Harkonnen:
+		Offset: 0, 1000,0
+	WithDamageOverlay@Fire2Harkonnen:
+		Offset: 2048, -1024, 0
+		LoopSequence: 2
+	FloatingSpriteEmitter@SmokeHugeOrdos:
+		Offset: -700, -1050, 0
+		Gravity: 70
+	FloatingSpriteEmitter@SmokeSmallOrdos:
+		Offset: 0, -300, 0
+		SpawnFrequency: 3, 13
+	WithDamageOverlay@Fire1Ordos:
+		Offset: 900, -900, 0
+	WithDamageOverlay@Fire2Ordos:
+		Offset: 900, 0, 0
+
+refinery_sw:
+	Inherits: refinery
+	Buildable:
+		Prerequisites: ~disabled
+		Queue: Building
+		BuildPaletteOrder: 310
+		Description: actor-refinery.description
+	RenderSprites:
+		Image: refinery_sw.ordos
+		FactionImages:
+			atreides: refinery_sw.atreides
+			fremen: refinery_sw.atreides
+			harkonnen: refinery_sw.harkonnen
+			corrino: refinery_sw.harkonnen
+	Selectable:
+		Bounds: 3072, 2048
+	DockHost:
+		Type: Unload
+		DockAngle: 384
+		DockOffset: -1c0,512,0
+	D2kBuilding:
+		Footprint: xx= =xx ===
+		Dimensions: 3,3
+		LocalCenterOffset: 0,-512,0
+	HitShape:
+		Type: Rectangle
+			TopLeft: -1536, -1024
+			BottomRight: 512, 0
+	HitShape@BOTTOM:
+		Type: Rectangle
+			TopLeft: -512, 0
+			BottomRight: 1536, 1024
+	ProvidesPrerequisite:
+		Prerequisite: refinery
+	FreeActorWithDelivery:
+		DeliveryOffset: 0,2
+	FloatingSpriteEmitter@SmokeSmallAtreides:
+		Offset: -500, -800, 0
+	FloatingSpriteEmitter@SmokeHugeAtreides:
+		Offset: 700,-612,0
+	WithDamageOverlay@Fire1_Atreides:
+		Offset: 950, 600,0
+	WithDamageOverlay@Fire2_atreides:
+		Offset: 1700, -450, 0
+		LoopSequence: 2
+	FloatingSpriteEmitter@SmokeHugeHarkonnen:
+		Offset: 1200,50,0
+	FloatingSpriteEmitter@SmokeSmallHarkonnen:
+		Offset: -1024, -1024,0
+	WithDamageOverlay@Fire1Harkonnen:
+		Offset: -300, 1100,0
+	WithDamageOverlay@Fire2Harkonnen:
+		Offset: 1700, -1024, 0
+		LoopSequence: 2
+	FloatingSpriteEmitter@SmokeHugeOrdos:
+		Offset: 300, -1050, 0
+		Gravity: 70
+	FloatingSpriteEmitter@SmokeSmallOrdos:
+		Offset: -250, 250, 0
+		SpawnFrequency: 3, 13
+	WithDamageOverlay@Fire1Ordos:
+		Offset: 1200, 200, 0
+	WithDamageOverlay@Fire2Ordos:
+		Offset: 0, -200, 0
+
+
+high_tech_factory:
+	-AirstrikePower:
+
+palace:
+	-ProduceActorPower@fremen:
+	AirstrikePower:
+		Icon: ornistrike
+		Name: actor-high-tech-factory.airstrikepower-name
+		Prerequisites: ~techlevel.superweapons
+		RequiresCondition: atreides
+		PauseOnCondition: disabled
+		ChargeInterval: 7500
+		SquadSize: 3
+		SquadOffset: -1536, 1024, 0
+		Description: actor-high-tech-factory.airstrikepower-description
+		UnitType: ornithopter
+		DisplayBeacon: True
+		CameraActor: camera
+		CameraRemoveDelay: 60
+		ArrowSequence: arrow
+		CircleSequence: circles
+		UseDirectionalTarget: True
+		DirectionArrowAnimation: ornidirection
+		SupportPowerPaletteOrder: 10
+		EndChargeTextNotification: notification-airstrike-ready
+		SelectTargetTextNotification: notification-select-target
+
+upgrade.barracks:
+
+upgrade.light:
+
+upgrade.heavy:
+
+upgrade.hightech:
+	Buildable:
+		BuildPaletteOrder: 50
+		Prerequisites: ~disabled
+
+veterancy1.barracks:
+	Inherits: upgrade.barracks
+	Tooltip:
+		Name: training-upgrade
+	Buildable:
+		BuildPaletteOrder: 50
+		Prerequisites: barracks, ~upgrade.barracks, outpost, ~!veterancy1.barracks
+		Queue: Upgrade
+		BuildLimit: 1
+		BuildDuration: 1200
+		BuildDurationModifier: 100
+		Description: improve-infantry-1
+	Valued:
+		Cost: 600
+	RenderSprites:
+		Image: barracks.ordos
+		FactionImages:
+			atreides: barracks.atreides
+			fremen: barracks.atreides
+			harkonnen: barracks.harkonnen
+			corrino: barracks.harkonnen
+	ProvidesPrerequisite@upgradename:
+	WithProductionIconOverlay:
+		Types: Veterancy_level_1
+
+veterancy2.barracks:
+	Inherits: upgrade.barracks
+	Tooltip:
+		Name: training-upgrade
+	Buildable:
+		BuildPaletteOrder: 50
+		Prerequisites: barracks, upgrade.barracks, research_centre, ~veterancy1.barracks, ~!veterancy2.barracks
+		Queue: Upgrade
+		BuildLimit: 1
+		BuildDuration: 1200
+		BuildDurationModifier: 100
+		Description: improve-infantry-2
+	Valued:
+		Cost: 800
+	RenderSprites:
+		Image: barracks.ordos
+		FactionImages:
+			atreides: barracks.atreides
+			fremen: barracks.atreides
+			harkonnen: barracks.harkonnen
+			corrino: barracks.harkonnen
+	ProvidesPrerequisite@upgradename:
+	WithProductionIconOverlay:
+		Types: Veterancy_level_2
+
+veterancy3.barracks:
+	Inherits: upgrade.barracks
+	Tooltip:
+		Name: training-upgrade
+	Buildable:
+		BuildPaletteOrder: 50
+		Prerequisites: barracks, upgrade.barracks, palace, ~veterancy1.barracks, ~veterancy2.barracks
+		Queue: Upgrade
+		BuildLimit: 1
+		BuildDuration: 1200
+		BuildDurationModifier: 100
+		Description: improve-infantry-3
+	Valued:
+		Cost: 1000
+	RenderSprites:
+		Image: barracks.ordos
+		FactionImages:
+			atreides: barracks.atreides
+			fremen: barracks.atreides
+			harkonnen: barracks.harkonnen
+			corrino: barracks.harkonnen
+	ProvidesPrerequisite@upgradename:
+	WithProductionIconOverlay:
+		Types: Veterancy_level_3
+
+veterancy1.light:
+	Inherits: upgrade.light
+	Tooltip:
+		Name: training-upgrade
+	Buildable:
+		BuildPaletteOrder: 50
+		Prerequisites: light_factory, ~upgrade.light, outpost, ~!veterancy1.light
+		Queue: Upgrade
+		BuildLimit: 1
+		BuildDuration: 1200
+		BuildDurationModifier: 100
+		Description: improve-vehicles-1
+	Valued:
+		Cost: 500
+	ProvidesPrerequisite@upgradename:
+	WithProductionIconOverlay:
+		Types: Veterancy_level_1
+
+veterancy2.light:
+	Inherits: upgrade.light
+	Tooltip:
+		Name: training-upgrade
+	Buildable:
+		BuildPaletteOrder: 50
+		Prerequisites: light_factory, upgrade.light, research_centre, ~veterancy1.light, ~!veterancy2.light
+		BuildDuration: 1200
+		BuildDurationModifier: 100
+		Description: improve-vehicles-2
+	Valued:
+		Cost: 700
+	ProvidesPrerequisite@upgradename:
+	WithProductionIconOverlay:
+		Types: Veterancy_level_2
+
+veterancy3.light:
+	Inherits: upgrade.light
+	Tooltip:
+		Name: training-upgrade
+	Buildable:
+		BuildPaletteOrder: 50
+		Prerequisites: light_factory, upgrade.light, palace, ~veterancy1.light, ~veterancy2.light
+		BuildDuration: 1200
+		BuildDurationModifier: 100
+		Description: improve-vehicles-3
+	Valued:
+		Cost: 9000
+	ProvidesPrerequisite@upgradename:
+	WithProductionIconOverlay:
+		Types: Veterancy_level_3
+
+veterancy1.heavy:
+	Inherits: upgrade.heavy
+	Tooltip:
+		Name: training-upgrade
+	Buildable:
+		BuildPaletteOrder: 50
+		Prerequisites: heavy_factory, ~upgrade.heavy, outpost, ~!veterancy1.heavy
+		Queue: Upgrade
+		BuildLimit: 1
+		BuildDuration: 1200
+		BuildDurationModifier: 100
+		Description: improve-tanks-1
+	Valued:
+		Cost: 700
+	ProvidesPrerequisite@upgradename:
+	WithProductionIconOverlay:
+		Types: Veterancy_level_1
+
+veterancy2.heavy:
+	Inherits: upgrade.heavy
+	Tooltip:
+		Name: training-upgrade
+	Buildable:
+		BuildPaletteOrder: 50
+		Prerequisites: heavy_factory, upgrade.heavy, research_centre, ~veterancy1.heavy, ~!veterancy2.heavy
+		BuildDuration: 1200
+		BuildDurationModifier: 100
+		Description: improve-tanks-2
+	Valued:
+		Cost: 900
+	ProvidesPrerequisite@upgradename:
+	WithProductionIconOverlay:
+		Types: Veterancy_level_2
+
+veterancy3.heavy:
+	Inherits: upgrade.heavy
+	Tooltip:
+		Name: training-upgrade
+	Buildable:
+		BuildPaletteOrder: 50
+		Prerequisites: heavy_factory, upgrade.heavy, palace, ~veterancy1.heavy, ~veterancy2.heavy
+		BuildDuration: 1200
+		BuildDurationModifier: 100
+		Description: improve-tanks-3
+	Valued:
+		Cost: 1200
+	ProvidesPrerequisite@upgradename:
+	WithProductionIconOverlay:
+		Types: Veterancy_level_3
