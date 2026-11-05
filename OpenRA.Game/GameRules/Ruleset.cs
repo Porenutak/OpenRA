@@ -37,7 +37,8 @@ namespace OpenRA
 			IReadOnlyDictionary<string, SoundInfo> notifications,
 			IReadOnlyDictionary<string, MusicInfo> music,
 			ITerrainInfo terrainInfo,
-			IReadOnlyDictionary<string, MiniYamlNode> modelSequences)
+			IReadOnlyDictionary<string, MiniYamlNode> modelSequences,
+			List<MiniYamlNode> chrome)
 		{
 			Actors = new ActorInfoDictionary(actors);
 			Weapons = weapons;
@@ -143,7 +144,7 @@ namespace OpenRA
 					k => k);
 
 				// The default ruleset does not include a preferred tileset
-				ruleset = new Ruleset(actors, weapons, voices, notifications, music, null, modelSequences);
+				ruleset = new Ruleset(actors, weapons, voices, notifications, music, null, modelSequences, null);
 			}
 
 			if (modData.IsOnMainThread)
@@ -168,12 +169,12 @@ namespace OpenRA
 			var dr = modData.DefaultRules;
 			var terrainInfo = modData.DefaultTerrainInfo[tileSet];
 
-			return new Ruleset(dr.Actors, dr.Weapons, dr.Voices, dr.Notifications, dr.Music, terrainInfo, dr.ModelSequences);
+			return new Ruleset(dr.Actors, dr.Weapons, dr.Voices, dr.Notifications, dr.Music, terrainInfo, dr.ModelSequences, null);
 		}
 
 		public static Ruleset Load(ModData modData, IReadOnlyFileSystem fileSystem, string tileSet,
 			MiniYaml mapRules, MiniYaml mapWeapons, MiniYaml mapVoices, MiniYaml mapNotifications,
-			MiniYaml mapMusic, MiniYaml mapModelSequences)
+			MiniYaml mapMusic, MiniYaml mapModelSequences, MiniYaml mapChrome)
 		{
 			var m = modData.Manifest;
 			var dr = modData.DefaultRules;
@@ -205,7 +206,10 @@ namespace OpenRA
 					modelSequences = MergeOrDefault("ModelSequences", fileSystem, m.ModelSequences, mapModelSequences, dr.ModelSequences,
 						k => k);
 
-				ruleset = new Ruleset(actors, weapons, voices, notifications, music, terrainInfo, modelSequences);
+				var stringPool = new HashSet<string>();
+				var chrome = MiniYaml.Merge(modData.Manifest.Chrome
+				.Select(s => MiniYaml.FromStream(fileSystem.Open(s), s, stringPool: stringPool)));
+				ruleset = new Ruleset(actors, weapons, voices, notifications, music, terrainInfo, modelSequences, chrome);
 			}
 
 			if (modData.IsOnMainThread)

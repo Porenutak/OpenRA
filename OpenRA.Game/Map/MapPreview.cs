@@ -97,6 +97,7 @@ namespace OpenRA
 			public MiniYaml SequenceDefinitions;
 			public MiniYaml ModelSequenceDefinitions;
 			public MiniYaml FluentMessageDefinitions;
+			public MiniYaml ChromeDefinitions;
 
 			public FluentBundle FluentBundle { get; private set; }
 			public ActorInfo WorldActorInfo { get; private set; }
@@ -129,6 +130,7 @@ namespace OpenRA
 				SequenceDefinitions = LoadRuleSection(yaml, "Sequences");
 				ModelSequenceDefinitions = LoadRuleSection(yaml, "ModelSequences");
 				FluentMessageDefinitions = LoadRuleSection(yaml, "FluentMessages");
+				ChromeDefinitions = LoadRuleSection(yaml, "Chrome");
 
 				try
 				{
@@ -246,6 +248,7 @@ namespace OpenRA
 		public MiniYaml RuleDefinitions => innerData.RuleDefinitions;
 		public MiniYaml WeaponDefinitions => innerData.WeaponDefinitions;
 		public MiniYaml SequenceDefinitions => innerData.SequenceDefinitions;
+		public MiniYaml ChromeDefinitions => innerData.ChromeDefinitions;
 
 		public ActorInfo WorldActorInfo => innerData.WorldActorInfo;
 		public ActorInfo PlayerActorInfo => innerData.PlayerActorInfo;
@@ -317,7 +320,7 @@ namespace OpenRA
 		{
 			return Ruleset.Load(modData, this, TileSet, innerData.RuleDefinitions,
 				innerData.WeaponDefinitions, innerData.VoiceDefinitions, innerData.NotificationDefinitions,
-				innerData.MusicDefinitions, innerData.ModelSequenceDefinitions);
+				innerData.MusicDefinitions, innerData.ModelSequenceDefinitions, ChromeDefinitions);
 		}
 
 		public MapPreview(ModData modData, string uid, MapGridType gridType, MapCache cache)

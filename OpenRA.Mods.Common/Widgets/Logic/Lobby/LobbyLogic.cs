@@ -742,6 +742,10 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 			// We don't have the map
 			else if (map.Status != MapStatus.DownloadAvailable && Game.Settings.Game.AllowDownloading)
 				modData.MapCache.QueryRemoteMapDetails(services.MapRepository, [uid]);
+			factions.Clear();
+
+			foreach (var f in map.WorldActorInfo.TraitInfos<FactionInfo>())
+				factions.Add(f.InternalName, new LobbyFaction { Selectable = f.Selectable, Name = f.Name, Side = f.Side, Description = f.Description });
 		}
 
 		void UpdatePlayerList()

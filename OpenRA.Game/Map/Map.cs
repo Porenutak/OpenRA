@@ -180,6 +180,7 @@ namespace OpenRA
 			new("Voices", nameof(VoiceDefinitions), required: false),
 			new("Music", nameof(MusicDefinitions), required: false),
 			new("Notifications", nameof(NotificationDefinitions), required: false),
+			new("Chrome", nameof(ChromeDefinitions), required: false),
 		];
 
 		// Format versions
@@ -230,6 +231,7 @@ namespace OpenRA
 		public MiniYaml VoiceDefinitions;
 		public MiniYaml MusicDefinitions;
 		public MiniYaml NotificationDefinitions;
+		public MiniYaml ChromeDefinitions;
 
 		public readonly Dictionary<CPos, TerrainTile> ReplacedInvalidTerrainTiles = [];
 
@@ -459,7 +461,7 @@ namespace OpenRA
 			try
 			{
 				Rules = Ruleset.Load(modData, this, Tileset, RuleDefinitions, WeaponDefinitions,
-					VoiceDefinitions, NotificationDefinitions, MusicDefinitions, ModelSequenceDefinitions);
+					VoiceDefinitions, NotificationDefinitions, MusicDefinitions, ModelSequenceDefinitions, ChromeDefinitions);
 			}
 			catch (Exception e)
 			{

@@ -1,0 +1,35 @@
+^BaseWorld:
+	Faction@Corrino:
+		Name: faction-corrino.name
+		InternalName: corrino
+		Selectable: true
+	Faction@Mercenaries:
+		Name: faction-mercenaries.name
+		InternalName: mercenary
+		Selectable: true
+	Faction@Smugglers:
+		Name: faction-smugglers.name
+		InternalName: smuggler
+		Selectable: true
+	Faction@Fremen:
+		Name: faction-fremen.name
+		InternalName: fremen
+		Selectable: true
+	Faction@jahoda:
+		Name: Velka Jahoda
+		InternalName: jahoda
+		Selectable: true
+
+
+World:
+	ActorSpawnManager:
+		Minimum: 1
+		InitialDelay: 0
+	StartingUnits@mcv:
+		Class: none
+		ClassName: options-starting-units.mcv-only
+		BaseActor: mcv
+		Factions: atreides, ordos, harkonnen, corrino, smuggler, mercenary, fremen, jahoda
+sandworm:
+	Sandworm:
+		ChanceToDisappear: 0

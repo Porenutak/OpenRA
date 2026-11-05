@@ -73,6 +73,11 @@ radar-atreides:
 	Regions:
 		insignia: 227, 26, 100, 100
 
+radar-jahoda:
+	Inherits: ^Chrome
+	Regions:
+		insignia: 227, 26, 100, 100
+
 radar-ordos:
 	Inherits: ^Chrome
 	Regions:
@@ -203,6 +208,7 @@ flags:
 	Inherits: ^Glyphs
 	Regions:
 		atreides: 234, 59, 22, 21
+		jahoda: 234, 59, 22, 21
 		harkonnen: 234, 81, 22, 21
 		ordos: 234, 103, 22, 21
 		corrino: 234, 125, 22, 21
