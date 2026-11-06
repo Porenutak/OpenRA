@@ -1,0 +1,175 @@
+
+World:
+	LuaScript:
+		Scripts: scripts_AI_Starport.lua
+	MissionData:
+		Briefing: \n\n ****Playtest balance **** \n\n Aditional changelog: 
+	MapOptions:
+		TechLevelDropdownVisible: true
+		TechLevel: unrestricted
+		ShortGameCheckboxVisible: true
+		GameSpeed: fast
+	MapCreeps:
+		CheckboxEnabled: true
+		CheckboxLocked: true
+		CheckboxVisible: false
+	SpawnStartingUnits:
+		DropdownDisplayOrder: 70
+		StartingUnitsClass: light
+	TimeLimitManager:
+		TimeLimitDisplayOrder: 3
+	CrateSpawner:
+		CheckboxEnabled: false
+	ScriptLobbyDropdown@WormsSpawnDelay:
+		ID: WormsSpawnDelay
+		Label: Spawn Worms
+		Description: Spawn worms options
+		Default: 0
+		Values:
+			5: After 5 min
+			10: After 10 min
+			15: After 15 min
+			0: Never
+		Locked: false
+		Visible: true
+		DisplayOrder: 30
+	FlashPostProcessEffect:
+		Type: flash
+		Color: E2DD8F4D
+	TerrainLighting:
+	StartingUnits@mcv:
+		Class: none
+		ClassName: MCV
+		BaseActor: mcv
+		Factions: atreides, ordos, harkonnen, corrino, mercenary, smuggler, fremen
+	StartingUnits@lightatreides:
+		Class: light
+		ClassName: MCV + Carryall
+		Factions: atreides, fremen
+		BaseActor: mcv
+		SupportActors: carryall
+		InnerSupportRadius: 3
+		OuterSupportRadius: 5
+	StartingUnits@lightharkonnen:
+		Class: light
+		ClassName: MCV + 2x Carryall
+		Factions: harkonnen, corrino
+		BaseActor: mcv
+		SupportActors: carryall
+		InnerSupportRadius: 3
+		OuterSupportRadius: 5
+	StartingUnits@lightordos:
+		Class: light
+		ClassName: MCV + Carryall
+		Factions: ordos, mercenary, smuggler
+		BaseActor: mcv
+		SupportActors: carryall
+		InnerSupportRadius: 3
+		OuterSupportRadius: 5
+	StartingUnits@heavyatreides:
+		Class: heavy
+		ClassName: MCV + 2x Carryall
+		Factions: atreides, fremen
+		BaseActor: mcv
+		SupportActors: carryall, carryall
+		InnerSupportRadius: 3
+		OuterSupportRadius: 5
+	StartingUnits@heavyharkonnen:
+		Class: heavy
+		ClassName: MCV + 2x Carryall
+		Factions: harkonnen, corrino
+		BaseActor: mcv
+		SupportActors: carryall, carryall
+		InnerSupportRadius: 3
+		OuterSupportRadius: 5
+	StartingUnits@heavyordos:
+		Class: heavy
+		ClassName: MCV + 2x Carryall
+		Factions: ordos, mercenary, smuggler
+		BaseActor: mcv
+		SupportActors: carryall, carryall
+		InnerSupportRadius: 3
+		OuterSupportRadius: 5
+
+
+
+
+Player:
+	DeveloperMode:
+	Shroud:
+		ExploredMapCheckboxEnabled: true
+		FogCheckboxEnabled: true
+		FogCheckboxLocked: true
+	LobbyPrerequisiteCheckbox@AUTOCONCRETE:
+		Enabled: True
+	ExternalCondition@frigateCheck:
+		Condition: frigate_not_empty
+	ProvidesPrerequisite@frigatenotempty:
+		Prerequisite: frigate.not_empty
+		RequiresCondition: frigate_not_empty
+	ExternalCondition@frigatefull:
+		Condition: frigate_full
+	ClassicProductionQueue@Infantry:
+		BuildTimeSpeedReduction: 100, 80, 60, 45
+	ClassicProductionQueue@Building:
+		BuildTimeSpeedReduction: 100, 75, 50
+	ClassicProductionQueue@Vehicle:
+		BuildTimeSpeedReduction: 100, 75, 50
+	ClassicProductionQueue@Armor:
+		BuildTimeSpeedReduction: 100, 75, 50
+	ClassicProductionQueue@Aircraft:
+		BuildTimeSpeedReduction: 100, 75, 50
+	ClassicProductionQueue@Starport:
+		Type: Starport
+		DisplayOrder: 4
+		DisallowPaused: true
+		BuildDurationModifier: 100
+		BlockedAudio: NoRoom
+		PayUpFront: true
+		BlockedTextNotification: No room for new unit.
+		QueuedAudio:
+		OnHoldAudio:
+		CancelledAudio:
+		QueueLimit: 6
+	PlaceBuilding:
+		ToggleVariantKey: ToggleVariant
+	ProductionIconOverlayManager:
+		Image: iconchevrons
+		Sequence: veteran
+		Type: veteran
+	ProvidesPrerequisite@FrigateFULL:
+		RequiresCondition: frigate_full
+		Prerequisite: frigate.full
+	ProductionIconOverlayManager@StarportsOverlay1:
+		Image: choam_unit_number
+		Sequence: 1
+		Type: 1
+	ProductionIconOverlayManager@StarportsOverlay2:
+		Image: choam_unit_number
+		Sequence: 2
+		Type: 2
+	ProductionIconOverlayManager@StarportsOverlay3:
+		Image: choam_unit_number
+		Sequence: 3
+		Type: 3
+	ProductionIconOverlayManager@StarportsOverlay4:
+		Image: choam_unit_number
+		Sequence: 4
+		Type: 4
+	ProductionIconOverlayManager@StarportsOverlay5:
+		Image: choam_unit_number
+		Sequence: 5
+		Type: 5
+	ProductionIconOverlayManager@StarportsOverlay6:
+		Image: choam_unit_number
+		Sequence: 6
+		Type: 6
+
+
+
+
+wormspawner:
+	ExternalCondition:
+		Condition: WormSpamDelayed
+	ActorSpawner:
+		RequiresCondition: WormSpamDelayed

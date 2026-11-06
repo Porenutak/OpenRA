@@ -1,0 +1,490 @@
+skullicon:
+	idle:
+		Filename: bits/ScullIconTD01.shp
+		Length: *
+
+purchase:
+	icon:
+		Filename: EnhacedAssets.R8
+		Start: 478
+		Offset: -30,-24
+
+saboteur:
+	active:
+		Filename: DATA.R16
+		Start: 3839
+		Length: 14
+		Tick: 80
+		BlendMode: Additive
+
+iconchevrons:
+	veteran:
+		Filename: EnhacedAssets.R8
+		Start: 741
+		Offset: 0,0
+
+invisible:
+	idle:
+		Filename: DATA.R16
+		Start: 38
+	icon:
+		Filename: DATA.R16
+		Start: 102
+		Offset: -16,-16
+
+#numbers of items u buy at starport
+choam_unit_number:
+	1:
+		Filename: DATA.R16
+		Start: 18
+	2:
+		Filename: DATA.R16
+		Start: 19
+	3:
+		Filename: DATA.R16
+		Start: 20
+	4:
+		Filename: DATA.R16
+		Start: 21
+	5:
+		Filename: DATA.R16
+		Start: 22
+	6:
+		Filename: DATA.R16
+		Start: 23
+
+frigate:
+	icon:
+		Filename: DATA.R16
+		Start: 4290
+		Offset: -30,-24
+
+refinery_invert.atreidis:
+	idle:
+		Filename: EnhacedAssets.R8
+		Start: 304
+		Offset: -48,-32
+		ZOffset: -600
+	idle-front:
+		Filename: EnhacedAssets.R8
+		Start: 305
+		Offset: -48,-32
+		ZOffset: 600
+	idle-top:
+		Filename: EnhacedAssets.R8
+		Start: 306
+		Offset: -48,-32
+		ZOffset: 1024
+	damaged-idle:
+		Filename: EnhacedAssets.R8
+		Start: 304
+		Offset: -48,-32
+		ZOffset: -600
+	damaged-idle-top:
+		Filename: EnhacedAssets.R8
+		Start: 307
+		Offset: -48,-32
+		ZOffset: 1024
+	bib:
+		Filename: EnhacedAssets.R8
+		Frames: 7,8,9,10,11,12
+		Length: 6
+		Offset: -16,-16
+		ZOffset: -700
+	bib-Concrete:
+		Filename: EnhacedAssets.R8
+		Frames: 26,27,28,29,30,31
+		Length: 6
+		Offset: -16,-16
+		ZOffset: -700
+	make:
+		Filename: DATA.R16
+		Start: 4495
+		Length: 11
+		Offset: -48,96
+		ZOffset: 1500
+	crumble-overlay:
+		Filename: DATA.R16
+		Start: 4505
+		Length: 12
+		Offset: -48,96
+		Tick: 100
+		ZOffset: 1500
+	icon:
+		Filename: EnhacedAssets.R8
+		Start: 308
+		Offset: -30,-24
+	smoke:
+		Filename: DATA.R16
+		Start: 4138
+		Length: 14
+		Offset: 13, 16
+		Tick: 100
+		BlendMode: Additive
+
+refinery_invert.ordos:
+	idle:
+		Filename: EnhacedAssets.R8
+		Start: 311
+		Offset: -54,-26
+		ZOffset: -600
+	idle-front:
+		Filename: EnhacedAssets.R8
+		Start: 312
+		Offset: -54,-26
+		ZOffset: 1000
+	idle-top:
+		Filename: EnhacedAssets.R8
+		Start: 313
+		Offset: -54,-22
+		ZOffset: 1024
+	damaged-idle:
+		Filename: EnhacedAssets.R8
+		Start: 311
+		Offset: -48,-22
+		ZOffset: -600
+	damaged-idle-top:
+		Filename: EnhacedAssets.R8
+		Start: 314
+		Offset: -54,-22
+		ZOffset: 1024
+	bib:
+		Filename: BLOXBASE.R16
+		Frames: 611, 612, 613, 631, 632, 633
+		Length: 6
+		Offset: -16,-16
+	bib-Concrete:
+		Filename: BLOXBASE.R16
+		Frames: 643, 644, 645, 663, 664, 665
+		Length: 6
+		Offset: -16,-16
+	make:
+		Filename: DATA.R16
+		Start: 4495
+		Length: 11
+		Offset: -48,96
+		ZOffset: 1500
+	crumble-overlay:
+		Filename: DATA.R16
+		Start: 4505
+		Length: 12
+		Offset: -48,96
+		Tick: 100
+		ZOffset: 1500
+	icon:
+		Filename: EnhacedAssets.R8
+		Start: 310
+		Offset: -30,-24
+	smoke:
+		Filename: DATA.R16
+		Start: 4138
+		Length: 14
+		Offset: 13, 16
+		Tick: 100
+		BlendMode: Additive
+
+
+refinery_invert.harkonnen:
+	idle:
+		Filename: EnhacedAssets.R8
+		Start: 315
+		Offset: -54,-26
+		ZOffset: -600
+	idle-front:
+		Filename: EnhacedAssets.R8
+		Start: 316
+		Offset: -54,-26
+		ZOffset: 1000
+	idle-top:
+		Filename: EnhacedAssets.R8
+		Start: 317
+		Offset: -54,-22
+		ZOffset: 1024
+	damaged-idle:
+		Filename: EnhacedAssets.R8
+		Start: 315
+		Offset: -48,-22
+		ZOffset: -600
+	damaged-idle-top:
+		Filename: EnhacedAssets.R8
+		Start: 318
+		Offset: -54,-22
+		ZOffset: 1024
+	bib:
+		Filename: EnhacedAssets.R8
+		Frames: 7,8,9,10,11,12
+		Length: 6
+		Offset: -16,-16
+		ZOffset: -700
+	bib-Concrete:
+		Filename: EnhacedAssets.R8
+		Frames: 26,27,28,29,30,31
+		Length: 6
+		Offset: -16,-16
+	make:
+		Filename: DATA.R16
+		Start: 4495
+		Length: 11
+		Offset: -48,96
+		ZOffset: 1500
+	crumble-overlay:
+		Filename: DATA.R16
+		Start: 4505
+		Length: 12
+		Offset: -48,96
+		Tick: 100
+		ZOffset: 1500
+	icon:
+		Filename: EnhacedAssets.R8
+		Start: 309
+		Offset: -30,-24
+	smoke:
+		Filename: DATA.R16
+		Start: 4138
+		Length: 14
+		Offset: 13, 16
+		Tick: 100
+		BlendMode: Additive
+
+mining_rig:
+	idle:
+		Filename: bits/MINING_RIG.R16
+		Start: 0
+		Offset: -16,-32
+		Remap: 54F94B
+	idle-overlay:
+		Filename: bits/MINING_RIG_ANIMATION.R16
+		Length: 52
+		Offset: -16, 16
+
+mining_rig.husk:
+	idle:
+		Filename: bits/MINING_RIG_HUSK.R16
+		Start: 0
+		Remap: 54F94B
+		Offset: -15,-32
+
+crane.atreides:
+	idle:
+		Filename: bits/Crane.shp
+		Start: 0
+		Offset: 0, -10
+	make:
+		Filename: DATA.R16
+		Start: 4373
+		Length: 30
+		Offset: -63,64
+	crumble-overlay:
+		Filename: DATA.R16
+		Start: 4403
+		Length: 12
+		Offset: -48,64
+		Tick: 170
+	damaged-idle:
+		Filename: bits/Crane.shp
+		Start: 3
+		Offset: 0, -10
+	bib:
+		Filename: EnhacedAssets.R8
+		Frames: 3, 4, 5, 6
+		Length: 4
+		Offset: -16,-16
+	bib-Concrete:
+		Filename: EnhacedAssets.R8
+		Frames: 22, 23, 24, 25
+		Length: 4
+		Offset: -16,-16
+	icon:
+		Filename: DATA.R16
+		Start: 4310
+		Offset: -30,-24
+
+crane.harkonnen:
+	idle:
+		Filename: bits/Crane.shp
+		Start: 1
+		Offset: 0, -10
+	make:
+		Filename: DATA.R16
+		Start: 4373
+		Length: 30
+		Offset: -63,64
+	bib:
+		Filename: EnhacedAssets.R8
+		Frames: 3, 4, 5, 6
+		Length: 4
+		Offset: -16,-16
+	bib-Concrete:
+		Filename: EnhacedAssets.R8
+		Frames: 22, 23, 24, 25
+		Length: 4
+		Offset: -16,-16
+	crumble-overlay:
+		Filename: DATA.R16
+		Start: 4403
+		Length: 12
+		Offset: -48,64
+		Tick: 170
+	damaged-idle:
+		Filename: bits/Crane.shp
+		Start: 4
+		Offset: 0, -10
+	icon:
+		Filename: DATA.R16
+		Start: 4311
+		Offset: -30,-24
+
+crane.ordos:
+	idle:
+		Filename: bits/Crane.shp
+		Start: 1
+		Offset: 0 ,-10
+	make:
+		Filename: DATA.R16
+		Start: 4373
+		Length: 30
+		Offset: -63,64
+	crumble-overlay:
+		Filename: DATA.R16
+		Start: 4403
+		Length: 12
+		Offset: -48,64
+		Tick: 170
+	bib:
+		Filename: EnhacedAssets.R8
+		Frames: 3, 4, 5, 6
+		Length: 4
+		Offset: -16,-16
+	bib-Concrete:
+		Filename: EnhacedAssets.R8
+		Frames: 22, 23, 24, 25
+		Length: 4
+		Offset: -16,-16
+	damaged-idle:
+		Filename: bits/Crane.shp
+		Start: 2
+		Offset: 0, -10
+	icon:
+		Filename: DATA.R16
+		Start: 4312
+		Offset: -30,-24
+
+spice_sifter:
+	idle:
+		Filename: EnhacedAssets.R8
+		Start: 480
+		Offset: -32,-40
+	damaged-idle:
+		Filename: EnhacedAssets.R8
+		Start: 481
+		Offset: -32,-40
+	bib:
+		Filename: EnhacedAssets.R8
+		Frames: 3, 4, 5, 6
+		Length: 4
+		Offset: -16,-16
+	bib-Concrete:
+		Filename: EnhacedAssets.R8
+		Frames: 22, 23, 24, 25
+		Length: 4
+		Offset: -16,-16
+	bib-SpiceSand:
+		Filename: EnhacedAssets.R8
+		Frames: 492, 493, 494, 495, 496, 497
+		Length: 6
+		Offset: -16,-16
+	bib-Sand:
+		Filename: EnhacedAssets.R8
+		Frames: 492, 493, 494, 495, 496, 497
+		Length: 6
+		Offset: -16,-16
+	idle-overlay:
+		Filename: EnhacedAssets.R8
+		Start: 482
+		Offset: -32,-40
+		Length: 5
+		Tick: 100
+
+ecology_station:
+	idle:
+		Filename: bits/Eco_station.R16
+		Offset: -64,-48
+		Remap: 54F94B
+	damaged-idle:
+		Filename: bits/Eco_station_destroyed.R16
+		Offset: -26,-24
+		Remap: 54F94B
+	bib:
+		Filename: EnhacedAssets.R8
+		Frames: 7,8,8,9,10,11,11,12
+		Length: 8
+		Offset: -16,-16
+	bib-Concrete:
+		Filename: EnhacedAssets.R8
+		Frames: 26,27,27,28,29,30,30,31
+		Length: 8
+		Offset: -16,-16
+	bib-SpiceSand:
+		Filename: BLOXWAST.R16
+		Frames: 652, 653, 367, 368, 672, 673, 387, 388
+		Length: 8
+		Offset: -16,-16
+	bib-Sand:
+		Filename: BLOXWAST.R16
+		Frames: 652, 653, 367, 368, 672, 673, 387, 388
+		Length: 8
+		Offset: -16,-16
+
+
+radar_station:
+	idle:
+		Filename: bits/Radar_station.R16
+		Offset: -45,-48
+		Scale: 0.9
+		Remap: 54F94B
+	idle-dish:
+		Filename: bits/Radar_station_dish.R16
+		Start: 0
+		Length: 30
+		Offset: -1,-20
+	bib:
+		Filename: EnhacedAssets.R8
+		Frames: 3, 4, 5, 6
+		Length: 4
+		Offset: -16,-16
+	bib-Concrete:
+		Filename: EnhacedAssets.R8
+		Frames: 22, 23, 24, 25
+		Length: 4
+		Offset: -16,-16
+
+
+building01:
+	idle:
+		Filename: EnhacedAssets.R8
+		Start: 488
+		Offset: -15,-8
+	damaged-idle:
+		Filename: EnhacedAssets.R8
+		Start: 488
+		Offset: -15,-8
+
+building01_burned:
+	idle:
+		Filename: EnhacedAssets.R8
+		Start: 489
+		Offset: -15,-8
+	damaged-idle:
+		Filename: EnhacedAssets.R8
+		Start: 489
+		Offset: -15,-8
+	bib:
+		Filename: EnhacedAssets.R8
+		Frames: 3, 4, 5, 6
+		Length: 4
+		Offset: -16,-16
+	bib-Concrete:
+		Filename: EnhacedAssets.R8
+		Frames: 22, 23, 24, 25
+		Length: 4
+		Offset: -16,-16

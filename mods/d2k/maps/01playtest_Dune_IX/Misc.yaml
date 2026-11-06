@@ -1,0 +1,175 @@
+^Husk:
+	Health:
+		HP: 8000
+
+^VehicleHusk:
+	ChangesHealth:
+		Step: -30
+		StartIfBelow: 101
+		Delay: 4
+	TransformOnCapture:
+		ForceHealthPercentage: 15
+	InfiltrateForTransform:
+		Types: Husk
+		ForceHealthPercentage: 15
+
+mcv.husk:
+	Inherits: ^VehicleHusk
+	Health:
+		HP: 11000
+
+devastator.husk:
+	Health:
+		HP: 10500
+
+deviator.husk:
+	Health:
+		HP: 10000
+
+sonic_tank.husk:
+	Health:
+		HP: 9000
+
+carryall.husk:
+	FallsToEarth:
+		Explosion: ExplosionAircraft
+	Contrail@1:
+		Offset: -300,-383,0
+		StartColor: 000000
+		StartColorUsePlayerColor: false
+	Contrail@2:
+		Offset: -598,383,0
+		StartColor: 000000
+		StartColorUsePlayerColor: false
+	SpawnActorOnDeath@debris:
+		Actor: dummy.shrapnels
+		OwnerType: InternalName
+
+carryall.huskVTOL:
+	FallsToEarth:
+		Moves: False
+		Velocity: 0c128
+		Explosion: ExplosionAircraft
+	SpawnActorOnDeath@debris:
+		Actor: dummy.shrapnels
+		OwnerType: InternalName
+
+ornithopter.husk:
+	FallsToEarth:
+		MaximumSpinSpeed: 1
+		Explosion: ExplosionAircraft
+	Contrail@1:
+		Offset: -300,-383,0
+		StartColor: 000000
+		StartWidth: 0c128
+		StartColorUsePlayerColor: false
+	Contrail@2:
+		Offset: -598,383,0
+		StartColor: 000000
+		StartWidth: 0c80
+		StartColorUsePlayerColor: false
+	SpawnActorOnDeath@debris:
+		Actor: dummy.shrapnels
+		OwnerType: InternalName
+
+^Dummy:
+	EditorOnlyTooltip:
+		Name: wpdummy
+	MapEditorData:
+		Categories: system
+	AlwaysVisible:
+	Interactable:
+	Immobile:
+		OccupiesSpace: false
+	RenderSpritesEditorOnly:
+		Image: waypoint
+	WithSpriteBody:
+	BodyOrientation:
+		QuantizedFacings: 1
+	OwnerLostAction:
+		Action: Dispose
+
+dummy.shrapnels:
+	Inherits: ^Dummy
+	KillsSelf:
+		Delay: 0
+	HitShape:
+		Type: Circle
+			Radius: 16
+	Health:
+		HP: 1
+	FireProjectilesOnDeath@derbisshort:
+		Weapons: Debris, Debris2
+		Pieces: 1, 3
+		Range: 1c0, 2c512
+	FireProjectilesOnDeath@derbislong:
+		Weapons: Debris, Debris2, Debris3, Debris4
+		Pieces: 2, 4
+		Range: 3c0, 6c0
+
+deviator.husk:
+	Inherits: ^VehicleHusk
+	ExternalCondition@GasActivator:
+		Condition: gas_activator
+	FireWarheads:
+		Weapons: DeviatorGas
+		Interval: 50
+		StartCooldown: 100
+		RequiresCondition: gas_activator
+
+
+gas.activator:
+	Inherits: ^Dummy
+	ProximityExternalCondition:
+		Condition: gas_activator
+		Range: 1c0
+		AffectsParent: true
+		ValidRelationships: Ally
+	KillsSelf:
+		Delay: 350
+		RemoveInstead: true
+
+^DummyVehicle:
+	Inherits@1: ^ExistsInWorld
+	Inherits@2: ^SpriteActor
+	Interactable:
+	Mobile:
+		TurnSpeed: 20
+		Locomotor: vehicle
+		Speed: 20
+		PauseOnCondition: notmobile
+	Targetable:
+		TargetTypes: Ground, Vehicle, C4
+	Passenger:
+		CargoType: Vehicle
+	HiddenUnderFog:
+	WithFacingSpriteBody:
+	HitShape:
+		Type: Circle
+			Radius: 16
+	AutoCarryable:
+		CarriedCondition: notmobile
+		LockedCondition: notmobile
+	RejectsOrders:
+
+dummy.generic:
+	Inherits: ^DummyVehicle
+	Targetable:
+		TargetTypes: Ground, Air_support
+		RequiresForceFire: true
+	RenderSprites:
+		Image: invisible
+	GrantCondition@dontmoveDammit:
+		Condition: notmobile
+	Health:
+		HP: 1000000
+	Armor:
+		Type: invulnerable
+
+
+waypoint.airtstrike_a:
+	Inherits: ^Dummy
+	RenderSpritesEditorOnly:
+
+
+

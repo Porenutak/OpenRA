@@ -1,0 +1,352 @@
+MapFormat: 11
+
+RequiresMod: d2k
+
+Title: Dune IX - basicbalance1.9
+
+Author: AntRazor
+
+Tileset: ARRAKIS
+
+MapSize: 132,132
+
+Bounds: 2,2,128,128
+
+Visibility: Lobby
+
+Categories: basicbalance1.9
+
+Players:
+	PlayerReference@Neutral:
+		Name: Neutral
+		OwnsWorld: True
+		NonCombatant: True
+		Faction: Random
+	PlayerReference@Creeps:
+		Name: Creeps
+		NonCombatant: True
+		Faction: Random
+		Enemies: Multi0, Multi1, Multi2, Multi3, Multi4, Multi5
+	PlayerReference@Multi0:
+		Name: Multi0
+		Playable: True
+		Faction: Random
+		Enemies: Creeps
+	PlayerReference@Multi1:
+		Name: Multi1
+		Playable: True
+		Faction: Random
+		Enemies: Creeps
+	PlayerReference@Multi2:
+		Name: Multi2
+		Playable: True
+		Faction: Random
+		Enemies: Creeps
+	PlayerReference@Multi3:
+		Name: Multi3
+		Playable: True
+		Faction: Random
+		Enemies: Creeps
+	PlayerReference@Multi4:
+		Name: Multi4
+		Playable: True
+		Faction: Random
+		Enemies: Creeps
+	PlayerReference@Multi5:
+		Name: Multi5
+		Playable: True
+		Faction: Random
+		Enemies: Creeps
+
+Actors:
+	Actor0: spicebloom.spawnpoint
+		Location: 22,4
+		Owner: Neutral
+	Actor1: spicebloom.spawnpoint
+		Location: 106,4
+		Owner: Neutral
+	Actor2: spicebloom.spawnpoint
+		Location: 65,5
+		Owner: Neutral
+	Actor3: spicebloom.spawnpoint
+		Location: 82,6
+		Owner: Neutral
+	Actor4: spicebloom.spawnpoint
+		Location: 89,7
+		Owner: Neutral
+	Actor5: spicebloom.spawnpoint
+		Location: 10,8
+		Owner: Neutral
+	Actor6: spicebloom.spawnpoint
+		Location: 48,8
+		Owner: Neutral
+	Actor7: spicebloom.spawnpoint
+		Location: 122,8
+		Owner: Neutral
+	Actor8: spicebloom.spawnpoint
+		Location: 40,9
+		Owner: Neutral
+	Actor9: spicebloom.spawnpoint
+		Location: 84,12
+		Owner: Neutral
+	Actor10: spicebloom.spawnpoint
+		Location: 44,14
+		Owner: Neutral
+	Actor11: spicebloom.spawnpoint
+		Location: 66,16
+		Owner: Neutral
+	Actor12: spicebloom.spawnpoint
+		Location: 6,17
+		Owner: Neutral
+	Actor13: spicebloom.spawnpoint
+		Location: 66,21
+		Owner: Neutral
+	Actor14: spicebloom.spawnpoint
+		Location: 125,23
+		Owner: Neutral
+	Actor15: spicebloom.spawnpoint
+		Location: 43,28
+		Owner: Neutral
+	Actor16: spicebloom.spawnpoint
+		Location: 90,28
+		Owner: Neutral
+	Actor17: wormspawner
+		Location: 66,31
+		Owner: Creeps
+	Actor18: spicebloom.spawnpoint
+		Location: 48,34
+		Owner: Neutral
+	Actor19: spicebloom.spawnpoint
+		Location: 62,34
+		Owner: Neutral
+	Actor20: spicebloom.spawnpoint
+		Location: 71,34
+		Owner: Neutral
+	Actor21: spicebloom.spawnpoint
+		Location: 94,34
+		Owner: Neutral
+	Actor22: spicebloom.spawnpoint
+		Location: 40,35
+		Owner: Neutral
+	Actor23: spicebloom.spawnpoint
+		Location: 88,35
+		Owner: Neutral
+	Actor24: spicebloom.spawnpoint
+		Location: 24,37
+		Owner: Neutral
+	Actor25: spicebloom.spawnpoint
+		Location: 109,37
+		Owner: Neutral
+	Actor26: spicebloom.spawnpoint
+		Location: 103,41
+		Owner: Neutral
+	Actor27: spicebloom.spawnpoint
+		Location: 18,42
+		Owner: Neutral
+	Actor28: spicebloom.spawnpoint
+		Location: 29,42
+		Owner: Neutral
+	Actor29: spicebloom.spawnpoint
+		Location: 114,42
+		Owner: Neutral
+	Actor30: spicebloom.spawnpoint
+		Location: 24,46
+		Owner: Neutral
+	Actor31: spicebloom.spawnpoint
+		Location: 109,46
+		Owner: Neutral
+	Actor32: spicebloom.spawnpoint
+		Location: 44,47
+		Owner: Neutral
+	Actor33: spicebloom.spawnpoint
+		Location: 60,47
+		Owner: Neutral
+	Actor34: spicebloom.spawnpoint
+		Location: 36,48
+		Owner: Neutral
+	Actor35: spicebloom.spawnpoint
+		Location: 86,48
+		Owner: Neutral
+	Actor36: spicebloom.spawnpoint
+		Location: 93,49
+		Owner: Neutral
+	Actor37: spicebloom.spawnpoint
+		Location: 11,52
+		Owner: Neutral
+	Actor38: spicebloom.spawnpoint
+		Location: 40,53
+		Owner: Neutral
+	Actor39: spicebloom.spawnpoint
+		Location: 120,53
+		Owner: Neutral
+	Actor40: spicebloom.spawnpoint
+		Location: 88,54
+		Owner: Neutral
+	Actor41: wormspawner
+		Location: 66,58
+		Owner: Creeps
+	Actor48: spicebloom.spawnpoint
+		Location: 5,64
+		Owner: Neutral
+	Actor51: spicebloom.spawnpoint
+		Location: 125,65
+		Owner: Neutral
+	Actor52: spicebloom.spawnpoint
+		Location: 43,72
+		Owner: Neutral
+	Actor53: spicebloom.spawnpoint
+		Location: 91,74
+		Owner: Neutral
+	Actor54: spicebloom.spawnpoint
+		Location: 48,78
+		Owner: Neutral
+	Actor55: spicebloom.spawnpoint
+		Location: 66,78
+		Owner: Neutral
+	Actor56: spicebloom.spawnpoint
+		Location: 120,78
+		Owner: Neutral
+	Actor57: spicebloom.spawnpoint
+		Location: 40,79
+		Owner: Neutral
+	Actor58: spicebloom.spawnpoint
+		Location: 96,80
+		Owner: Neutral
+	Actor59: spicebloom.spawnpoint
+		Location: 72,81
+		Owner: Neutral
+	Actor60: spicebloom.spawnpoint
+		Location: 88,81
+		Owner: Neutral
+	Actor61: spicebloom.spawnpoint
+		Location: 24,82
+		Owner: Neutral
+	Actor62: spicebloom.spawnpoint
+		Location: 109,82
+		Owner: Neutral
+	Actor63: spicebloom.spawnpoint
+		Location: 60,85
+		Owner: Neutral
+	Actor64: spicebloom.spawnpoint
+		Location: 18,86
+		Owner: Neutral
+	Actor65: spicebloom.spawnpoint
+		Location: 29,86
+		Owner: Neutral
+	Actor66: spicebloom.spawnpoint
+		Location: 103,86
+		Owner: Neutral
+	Actor67: spicebloom.spawnpoint
+		Location: 114,86
+		Owner: Neutral
+	Actor68: spicebloom.spawnpoint
+		Location: 24,91
+		Owner: Neutral
+	Actor69: spicebloom.spawnpoint
+		Location: 72,91
+		Owner: Neutral
+	Actor70: spicebloom.spawnpoint
+		Location: 109,91
+		Owner: Neutral
+	Actor71: spicebloom.spawnpoint
+		Location: 45,93
+		Owner: Neutral
+	Actor72: spicebloom.spawnpoint
+		Location: 87,93
+		Owner: Neutral
+	Actor73: spicebloom.spawnpoint
+		Location: 37,94
+		Owner: Neutral
+	Actor74: spicebloom.spawnpoint
+		Location: 61,94
+		Owner: Neutral
+	Actor75: spicebloom.spawnpoint
+		Location: 94,94
+		Owner: Neutral
+	Actor76: spicebloom.spawnpoint
+		Location: 41,99
+		Owner: Neutral
+	Actor77: wormspawner
+		Location: 66,99
+		Owner: Creeps
+	Actor78: spicebloom.spawnpoint
+		Location: 89,99
+		Owner: Neutral
+	Actor79: spicebloom.spawnpoint
+		Location: 60,102
+		Owner: Neutral
+	Actor80: spicebloom.spawnpoint
+		Location: 73,104
+		Owner: Neutral
+	Actor81: spicebloom.spawnpoint
+		Location: 125,108
+		Owner: Neutral
+	Actor82: spicebloom.spawnpoint
+		Location: 5,110
+		Owner: Neutral
+	Actor83: spicebloom.spawnpoint
+		Location: 61,114
+		Owner: Neutral
+	Actor84: spicebloom.spawnpoint
+		Location: 71,114
+		Owner: Neutral
+	Actor85: spicebloom.spawnpoint
+		Location: 43,117
+		Owner: Neutral
+	Actor86: spicebloom.spawnpoint
+		Location: 89,119
+		Owner: Neutral
+	Actor87: spicebloom.spawnpoint
+		Location: 10,122
+		Owner: Neutral
+	Actor88: spicebloom.spawnpoint
+		Location: 122,122
+		Owner: Neutral
+	Actor89: spicebloom.spawnpoint
+		Location: 48,123
+		Owner: Neutral
+	Actor90: spicebloom.spawnpoint
+		Location: 40,124
+		Owner: Neutral
+	Actor91: spicebloom.spawnpoint
+		Location: 94,125
+		Owner: Neutral
+	Actor92: spicebloom.spawnpoint
+		Location: 105,125
+		Owner: Neutral
+	Actor93: spicebloom.spawnpoint
+		Location: 24,126
+		Owner: Neutral
+	Actor94: spicebloom.spawnpoint
+		Location: 60,126
+		Owner: Neutral
+	Actor95: spicebloom.spawnpoint
+		Location: 72,126
+		Owner: Neutral
+	Actor96: spicebloom.spawnpoint
+		Location: 86,126
+		Owner: Neutral
+	Actor97: mpspawn
+		Owner: Neutral
+		Location: 23,19
+	Actor98: mpspawn
+		Owner: Neutral
+		Location: 22,63
+	Actor99: mpspawn
+		Owner: Neutral
+		Location: 109,64
+	Actor100: mpspawn
+		Owner: Neutral
+		Location: 109,19
+	Actor101: mpspawn
+		Owner: Neutral
+		Location: 109,111
+	Actor102: mpspawn
+		Owner: Neutral
+		Location: 23,110
+
+Rules: Units.yaml, Structures.yaml, Misc.yaml, World.yaml, AI.yaml, original_Starport.yaml, NewTiles.yaml, NeutralBuildings.yaml
+
+Sequences: Sequences.yaml, Sequences_newTiles.yaml
+
+Weapons: Weapons.yaml

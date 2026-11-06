@@ -1,0 +1,187 @@
+^Building:
+	FireWarheadsOnDeath@sabotuerDemolition:
+		RequiresCondition: being-demolished
+		Type: CenterPosition
+		Weapon: PlasmaSaboteur
+		EmptyWeapon: PlasmaSaboteur
+	AmbientSound@onSuicide:
+		SoundFiles: audio/explodeSaboteurEmperor02.wav
+		RequiresCondition: being-demolished
+	RepairableBuilding:
+		RepairStep: 300
+
+construction_yard:
+	Power:
+		Amount: 50
+	StoresPlayerResources:
+		Capacity: 1000
+
+wind_trap:
+	Health:
+		HP: 28000
+
+barracks:
+	Buildable:
+		BuildDuration: 290
+	Valued:
+		Cost: 300
+	Health:
+		HP: 32000
+	Power:
+		Amount: -50
+
+light_factory:
+	Buildable:
+		BuildDuration: 400
+	Valued:
+		Cost: 500
+	Power:
+		Amount: -100
+
+
+repair_pad:
+	Inherits: ^Building
+	Buildable:
+		Queue: Building
+		Prerequisites: heavy_factory, ~techlevel.medium
+
+outpost:
+	RevealsShroud:
+		Range: 11c0
+		RequiresCondition: !disabled
+	RevealsShroud@lowpower:
+		Range: 4c0
+		RequiresCondition: disabled
+	DetectCloaked:
+		Range: 6c0
+		RequiresCondition: !disabled
+	Power:
+		Amount: -75
+
+heavy_factory:
+	Valued:
+		Cost: 1200
+
+high_tech_factory:
+	AirstrikePower:
+		SquadOffset: -1024, 1024, 0
+		ChargeInterval: 7500
+
+refinery:
+	PlaceBuildingVariants:
+		Actors: refinery_inverted
+		Facings: 384, 896
+	Armor:
+		Type: building
+
+
+refinery_inverted:
+	Inherits: refinery
+	PlaceBuildingVariants:
+		Actors: refinery
+		Facings: 896, 384
+	Buildable:
+		Queue: Building
+		BuildPaletteOrder: 310
+		Description: Refinery with docking from north side
+	RenderSprites:
+		Image: refinery_invert.ordos
+		FactionImages:
+			atreides: refinery_invert.atreidis
+			fremen: refinery_invert.atreidis
+			harkonnen: refinery_invert.harkonnen
+			corrino: refinery_invert.harkonnen
+	WithIdleOverlay@front:
+		Sequence: idle-front
+		RequiresCondition: !build-incomplete
+	Selectable:
+		Bounds: 3072, 2048, 0, 1024
+	WithIdleOverlay@top:
+		Sequence: idle-top
+		RequiresCondition: !build-incomplete
+	Refinery:
+		TickRate: 20
+	Tooltip:
+		Name: Spice Refinery Inverted
+	D2kBuilding:
+		Footprint: === =xx xx=
+		Dimensions: 3,3
+		LocalCenterOffset: 0,-512,0
+	HitShape:
+		Type: Rectangle
+			TopLeft: -512, 0
+			BottomRight: 1536, 1024
+	HitShape@BOTTOM:
+		Type: Rectangle
+			TopLeft: -1536, 1024
+			BottomRight: 512, 2048
+	ProvidesPrerequisite:
+		Prerequisite: refinery
+	FreeActorWithDelivery:
+		DeliveryOffset: 0,0
+	DockHost:
+		Type: Unload
+		DockAngle: 128
+		DockOffset: -1024,512,0
+
+silo:
+	Buildable:
+		BuildPaletteOrder: 800
+
+
+wall:
+	Valued:
+		Cost: 100
+
+medium_gun_turret:
+	Buildable:
+		Prerequisites: barracks
+		BuildDuration: 310
+	DetectCloaked:
+		Range: 5c0
+	Armor:
+		Type: wall
+	RevealsShroud:
+		Range: 5c512
+	Health:
+		HP: 24000
+
+
+large_gun_turret:
+	Buildable:
+		BuildDuration: 380
+	DetectCloaked:
+		Range: 5c0
+	Armor:
+		Type: wall
+	RevealsShroud:
+		Range: 6c768
+	Health:
+		HP: 27000
+
+
+palace:
+	ProduceActorPower@fremen:
+		Actors: fremen, fremen, fremen, fremen, fremen
+	NukePower:
+		DetonationAltitude: 6c0
+		RemoveMissileOnDetonation: True
+		CameraRemoveDelay: 90
+
+upgrade.barracks:
+	Buildable:
+		BuildDuration: 700
+	Valued:
+		Cost: 500
+
+upgrade.light:
+	Buildable:
+		BuildDuration: 800
+
+upgrade.heavy:
+	Buildable:
+		BuildDuration: 900
+
+sietch:
+	-FireWarheadsOnDeath@sabotuerDemolition:
+	-AmbientSound@onSuicide:

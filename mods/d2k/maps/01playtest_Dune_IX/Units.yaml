@@ -1,0 +1,478 @@
+
+
+^BotLogicEngineer:
+	ExternalCondition@giveControl:
+		Condition: reject_control
+	ScriptTags:
+	RejectsOrders:
+		RequiresCondition: reject_control
+
+
+^AutoTargetGround:
+	AutoTarget:
+		AttackAnythingCondition: stance-attackanything
+	AutoTargetPriority@DEFAULT:
+		ValidTargets: Infantry, Vehicle, Water, Defense, Tank
+	AutoTargetPriority@ATTACKANYTHING:
+		ValidTargets: Infantry, Vehicle, Water, Structure, Defense, Tank
+	AutoTargetPriority@CREEPS:
+		ValidTargets: Creep
+
+^AutoTargetAll:
+	AutoTarget:
+		AttackAnythingCondition: stance-attackanything
+	AutoTargetPriority@DEFAULT:
+		RequiresCondition: !stance-attackanything
+		ValidTargets: Infantry, Vehicle, Tank, Water, Air, Defense
+	AutoTargetPriority@ATTACKANYTHING:
+		RequiresCondition: stance-attackanything
+		ValidTargets: Infantry, Vehicle, Tank, Water, Air, Structure, Defense
+	AutoTargetPriority@CREEPS:
+		ValidTargets: Creep
+
+^AutoTargetGroundAssaultMove:
+	AutoTargetPriority@Bot_walls:
+		RequiresCondition: ignore-creeps
+		ValidTargets: Wall
+
+^AutoTargetAllAssaultMove:
+	AutoTargetPriority@Bot_walls:
+		RequiresCondition: ignore-creeps
+		ValidTargets: Wall
+
+^BotTrikeMicro:
+	ExternalCondition@autocrush:
+		Condition: bot_micro
+	RejectsOrders@autoCrush:
+		RequiresCondition: bot_micro
+		RemoveOrders: true
+
+^Vehicle:
+	Demolishable:
+		Condition: being-demolished
+	AmbientSound@onSuicide:
+		SoundFiles: audio/explodeSaboteurEmperor02.wav
+		RequiresCondition: being-demolished
+	FireWarheadsOnDeath@sabotuerDemolition:
+		RequiresCondition: being-demolished
+		Type: CenterPosition
+		Weapon: PlasmaSaboteur
+		EmptyWeapon: PlasmaSaboteur
+	ExternalCondition:
+		Condition: unitCapturated
+	Targetable:
+		TargetTypes: Ground, Vehicle, C4
+		RequiresCondition: !unitCapturated
+	Targetable@CAPTURED:
+		TargetTypes: CapturedUnit, Ground
+		RequiresCondition: unitCapturated
+
+^Tank:
+	Targetable:
+		TargetTypes: Ground, C4, Tank
+	GrantConditionOnDamageState@HEAVY:
+		ValidDamageStates: Critical
+	SpeedMultiplier@HEAVYDAMAGE:
+		Modifier: 75
+
+
+^BotAutoCrusher:
+	ExternalCondition@autocrush:
+		Condition: auto_crush
+	RejectsOrders@autoCrush:
+		RequiresCondition: auto_crush
+		RemoveOrders: true
+
+^Infantry:
+	TakeCover:
+		DamageModifiers:
+			Prone50Percent: 50
+			Prone80Percent: 80
+
+thumper:
+	Buildable:
+		Queue: Infantry
+		BuildPaletteOrder: 150
+
+engineer:
+	Inherits@botLogic: ^BotLogicEngineer
+	Buildable:
+		Prerequisites: upgrade.barracks, ~techlevel.medium
+		BuildPaletteOrder: 80
+		BuildDuration: 150
+
+
+carryall.reinforce:
+	Health:
+		HP: 20000
+	Valued:
+		Cost: 1000
+	Aircraft:
+		Speed: 170
+		TurnSpeed: 16
+		IdleTurnSpeed: 5
+		IdleSpeed: 115
+
+ornithopter:
+	Health:
+		HP: 8000
+
+ornithopter_a:
+	Inherits: ornithopter
+	RenderSprites:
+		Image: ornithopter
+	-AttackBomber:
+	Aircraft:
+		AltitudeVelocity: 2c0
+	AttackAircraft:
+		AttackType: Strafe
+		StrafeRunLength: 4c0
+		OpportunityFire: false
+		ForceFireIgnoresActors: true
+		Voice: Attack
+		FacingTolerance: 512
+		PersistentTargeting: false
+		AbortOnResupply: true
+	Armament:
+		Weapon: OrniBomb_multipass
+		PauseOnCondition: !ammo
+	Health:
+		HP: 8000
+	Armor:
+		Type: light
+	Aircraft:
+		Speed: 224
+		TurnSpeed: 10
+		Repulsable: False
+		CruiseAltitude: 1920
+	AmmoPool:
+		Ammo: 15
+		AmmoCondition: ammo
+	Valued:
+		Cost: 500
+
+light_inf:
+	AutoTargetPriority@bot:
+		ValidTargets: Infantry, Structure
+		InvalidTargets: Tank
+		Priority: 50
+		RequiresCondition: bot-owned
+	AutoTargetPriority@bot2:
+		ValidTargets: Vehicle
+		Priority: 20
+		RequiresCondition: bot-owned
+	Buildable:
+		BuildDuration: 62
+	-RevealOnFire:
+
+
+trooper:
+	AutoTargetPriority@bot:
+		InvalidTargets: Infantry
+		ValidTargets: Vehicle, Defense, Structure, Tank
+		Priority: 50
+		RequiresCondition: bot-owned
+	Buildable:
+		BuildDuration: 124
+		Prerequisites: upgrade.barracks
+	-RevealOnFire:
+
+grenadier:
+	AutoTargetPriority@bot:
+		ValidTargets: Infantry, Structure
+		InvalidTargets: Tank
+		Priority: 50
+		RequiresCondition: bot-owned
+	GrantConditionOnAttack@firing:
+		Condition: attack
+	FireWarheadsOnDeath:
+		Weapon: GrenDeath
+		EmptyWeapon: GrenDeath
+		DamageSource: Killer
+		RequiresCondition: attack
+
+
+sardaukar:
+	AutoTargetPriority@bot:
+		ValidTargets: Vehicle, Tank, Structure
+		InvalidTargets: Tank
+		Priority: 50
+		RequiresCondition: bot-owned
+
+mpsardaukar:
+	Inherits: sardaukar
+	Buildable:
+		Queue: Infantry
+		BuildPaletteOrder: 70
+
+
+fremen:
+
+
+trike:
+	Inherits@AImicro: ^BotTrikeMicro
+	AutoTargetPriority@bot:
+		ValidTargets: Infantry, Structure
+		InvalidTargets: Tank
+		Priority: 50
+		RequiresCondition: bot-owned
+	AutoTarget:
+		MinimumScanTimeInterval: 0
+		MaximumScanTimeInterval: 0
+	Valued:
+		Cost: 275
+	RevealsShroud:
+		Range: 6c0
+	Armament@damage:
+		Weapon: HMG
+	Armament@muzzle:
+		Weapon: HMG_muzzle
+		MuzzleSequence: muzzle
+
+
+raider:
+	Inherits@AImicro: ^BotTrikeMicro
+	AutoTargetPriority@bot:
+		ValidTargets: Infantry, Structure
+		InvalidTargets: Tank
+		Priority: 50
+		RequiresCondition: bot-owned
+	AutoTarget:
+		MinimumScanTimeInterval: 0
+		MaximumScanTimeInterval: 0
+	Buildable:
+		BuildDuration: 255
+	Valued:
+		Cost: 325
+	Health:
+		HP: 9200
+	RevealsShroud:
+		Range: 5c768
+	Mobile:
+		TurnSpeed: 40
+		Speed: 140
+
+stealth_raider:
+	Buildable:
+		BuildDuration: 275
+	Valued:
+		Cost: 350
+	Health:
+		HP: 10000
+	Mobile:
+		TurnSpeed: 40
+		Speed: 140
+	-RevealOnFire:
+
+quad:
+	Inherits@AImicro: ^BotTrikeMicro
+	AutoTargetPriority@bot:
+		ValidTargets: Vehicle, Structure, Tank
+		InvalidTargets: Infantry
+		Priority: 50
+		RequiresCondition: bot-owned
+	Valued:
+		Cost: 350
+	RevealsShroud:
+		Range: 4c768
+	-RevealOnFire:
+
+^combat_tank:
+	Inherits@autocrusher: ^BotAutoCrusher
+	AutoTargetPriority@bot:
+		InvalidTargets: Infantry
+		ValidTargets: Vehicle, Defense, Structure, Tank
+		Priority: 10
+		RequiresCondition: bot-owned
+	Health:
+		HP: 22000
+	RevealsShroud:
+		Range: 5c512
+	-RevealOnFire:
+
+combat_tank_o:
+	Health:
+		HP: 19000
+
+combat_tank_h:
+	Health:
+		HP: 29000
+
+
+siege_tank:
+	AutoTargetPriority@bot:
+		ValidTargets: Infantry, Defense
+		InvalidTargets: Tanks
+		Priority: 50
+		RequiresCondition: bot-owned
+	AutoTargetPriority@bot2:
+		ValidTargets: Vehicle
+		InvalidTargets: Tanks
+		Priority: 10
+		RequiresCondition: bot-owned
+	Buildable:
+		BuildDuration: 475
+	RevealsShroud:
+		Range: 6c256
+	Valued:
+		Cost: 800
+	Health:
+		HP: 12000
+	Mobile:
+		Speed: 40
+	AttackFrontal:
+		ForceFireIgnoresActors: True
+		TargetFrozenActors: True
+	-RevealOnFire:
+
+missile_tank:
+	AutoTargetPriority@bot:
+		ValidTargets: Tank, Defense, Air
+		InvalidTargets: Infantry
+		Priority: 50
+		RequiresCondition: bot-owned
+	AutoTargetPriority@bot2:
+		ValidTargets: Structure, Vehicle
+		InvalidTargets: Infantry
+		Priority: 20
+		RequiresCondition: bot-owned
+	Mobile:
+		Speed: 60
+	AttackFrontal:
+		ForceFireIgnoresActors: True
+		TargetFrozenActors: True
+	-RevealOnFire:
+
+devastator:
+	ExternalCondition:
+		Condition: unitCapturated
+	Buildable:
+		BuildDuration: 625
+	Valued:
+		Cost: 1050
+	GrantConditionOnDeploy@REACTOR:
+		DeployedCondition: overload
+		PauseOnCondition: overload
+		RequiresCondition: !unitCapturated
+	SpawnActorOnDeath:
+		RequiresCondition: !meltdown
+	RevealsShroud:
+		Range: 5c512
+	KillsSelf@MELTDOWN:
+		Delay: 150
+		RequiresCondition: overload
+		GrantsCondition: meltdown
+	ChangesHealth:
+		Step: 40
+	Health:
+		HP: 50000
+	AmbientSound@onMeltDown:
+		SoundFiles: audio/DevastatorMeltdown01.wav
+		RequiresCondition: overload
+	FireProjectilesOnDeath@TrowOnMeldown:
+		Weapons: Debris2, ExplosiveDebris, Debris4
+		Pieces: 7, 15
+		Range: 3c512, 7c0
+		RequiresCondition: meltdown
+	FireProjectilesOnDeath@standart:
+		Weapons: Debris, Debris3, ExplosiveDebris
+		Pieces: 1, 2
+		RequiresCondition: !meltdown
+
+sonic_tank:
+	AutoTargetPriority@bot:
+		ValidTargets: Vehicle, Defense, Structure, Infantry
+		InvalidTargets: Tank
+		Priority: 50
+		RequiresCondition: bot-owned
+	Buildable:
+		BuildDuration: 600
+
+
+
+deviator:
+	AutoTargetPriority@bot:
+		ValidTargets: Tank, Vehicle
+		InvalidTargets: Infantry, Structure, Defense
+		Priority: 50
+		RequiresCondition: bot-owned
+	RevealsShroud:
+		Range: 5c768
+	Health:
+		HP: 12000
+	SpawnActorOnDeath:
+		Actor: deviator.husk
+		OwnerType: Victim
+		EffectiveOwnerFromOwner: true
+
+saboteur:
+	Selectable:
+		Priority: 8
+		PriorityModifiers: Ctrl, Alt
+	ScriptTags:
+	Buildable:
+		Prerequisites: ~disabled
+		Description: Always cloaked. \n Destroy buildings \n SelfKill explosion
+	UpdatesPlayerStatistics:
+		AddToArmyValue: true
+	RevealsShroud:
+		Range: 4c768
+	WithDecoration@ScullIcon:
+		Image: skullicon
+		Sequence: idle
+		ValidRelationships: Enemy, Neutral, Ally
+		Palette: effect
+		Position: BottomRight
+		Margin: 5, 6
+	WithInfantryBody:
+		RequiresCondition: !SuicideAtt
+	WithIdleOverlay:
+		Sequence: active
+		RequiresCondition: SuicideAtt
+	WithIdleOverlay@prone:
+		StartSequence: standup
+		Sequence: prone-stand
+		RequiresCondition: SuicideAtt
+	Health:
+		HP: 5000
+	Mobile:
+		Speed: 43
+		PauseOnCondition: SuicideAtt
+	Demolition:
+		DetonationDelay: 50
+		Flashes: 3
+		EnterBehaviour: Suicide
+	ChangesHealth:
+		Step: 40
+		Delay: 3
+		StartIfBelow: 50
+	Cloak:
+		InitialDelay: 100
+		CloakDelay: 100
+		CloakSound: STEALTH1.WAV
+		UncloakOn: Attack, Unload, Infiltrate, Demolish, Damage, Heal
+		IsPlayerPalette: true
+		PauseOnCondition: cloak-force-disabled
+		RequiresCondition: !SuicideAtt
+	FireWarheadsOnDeath@Selfkill:
+		Weapon: PlasmaSaboteur
+		EmptyWeapon: PlasmaSaboteur
+		RequiresCondition: kamikadze
+	GrantConditionOnDeploy:
+		DeployedCondition: SuicideAtt
+		PauseOnCondition: SuicideAtt
+	-GrantChargedConditionOnToggle:
+	KillsSelf@SuicideKillCount:
+		Delay: 45
+		RequiresCondition: SuicideAtt
+		GrantsCondition: kamikadze
+	GrantConditionOnDamageState@UNCLOAK:
+		Condition: cloak-force-disabled
+		ValidDamageStates: Critical
+	Voiced:
+		VoiceSet: SaboteurVoice
+	AmbientSound@onSuicide:
+		SoundFiles: audio/explodeSaboteurEmperor02.wav
+		RequiresCondition: SuicideAtt
+	TakeCover:
+		RequiresCondition: SuicideAtt
