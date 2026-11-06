@@ -16,7 +16,7 @@
 mcv.husk:
 	Inherits: ^VehicleHusk
 	Health:
-		HP: 11000
+		HP: 13000
 
 devastator.husk:
 	Health:
@@ -109,25 +109,8 @@ dummy.shrapnels:
 
 deviator.husk:
 	Inherits: ^VehicleHusk
-	ExternalCondition@GasActivator:
-		Condition: gas_activator
-	FireWarheads:
-		Weapons: DeviatorGas
-		Interval: 50
-		StartCooldown: 100
-		RequiresCondition: gas_activator
 
 
-gas.activator:
-	Inherits: ^Dummy
-	ProximityExternalCondition:
-		Condition: gas_activator
-		Range: 1c0
-		AffectsParent: true
-		ValidRelationships: Ally
-	KillsSelf:
-		Delay: 350
-		RemoveInstead: true
 
 ^DummyVehicle:
 	Inherits@1: ^ExistsInWorld

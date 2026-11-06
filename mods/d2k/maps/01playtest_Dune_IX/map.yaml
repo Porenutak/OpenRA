@@ -2,7 +2,7 @@ MapFormat: 11
 
 RequiresMod: d2k
 
-Title: Dune IX - basicbalance1.9
+Title: Dune IX - platest
 
 Author: AntRazor
 
@@ -14,7 +14,7 @@ Bounds: 2,2,128,128
 
 Visibility: Lobby
 
-Categories: basicbalance1.9
+Categories: playtest
 
 Players:
 	PlayerReference@Neutral:

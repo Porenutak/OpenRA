@@ -611,6 +611,11 @@ function CHOAMDelivery(player)
 					Trigger.AfterDelay(10, function()
 						if pass.HasProperty("AttackMove") then
 							pass.AttackMove(rallypoint,1)
+							if pass.Type == "trike" or pass.Type == "quad" then
+								pass.GiveLevels(2, false)
+							else
+								pass.GiveLevels(1, false)
+							end
 						elseif pass.HasProperty("FindResources") then
 							pass.Move(rallypoint)
 							pass.FindResources()

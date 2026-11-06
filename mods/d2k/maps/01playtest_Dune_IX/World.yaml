@@ -3,7 +3,7 @@ World:
 	LuaScript:
 		Scripts: scripts_AI_Starport.lua
 	MissionData:
-		Briefing: \n\n ****Playtest balance **** \n\n Aditional changelog: 
+		Briefing: \n\n ****Playtest balance **** \n\n Experimental: \n - Training upgrades for each production building. \n Starport unit spawn with veterancy rank 1
 	MapOptions:
 		TechLevelDropdownVisible: true
 		TechLevel: unrestricted
@@ -164,6 +164,21 @@ Player:
 		Image: choam_unit_number
 		Sequence: 6
 		Type: 6
+	ProductionIconOverlayManager@level1:
+		Image: iconchevrons
+		Sequence: level1
+		Type: Veterancy_level_1
+		Palette: temperat
+	ProductionIconOverlayManager@level2:
+		Image: iconchevrons
+		Sequence: level2
+		Type: Veterancy_level_2
+		Palette: temperat
+	ProductionIconOverlayManager@level3:
+		Image: iconchevrons
+		Sequence: level3
+		Type: Veterancy_level_3
+		Palette: temperat
 
 
 
@@ -173,3 +188,71 @@ wormspawner:
 		Condition: WormSpamDelayed
 	ActorSpawner:
 		RequiresCondition: WormSpamDelayed
+
+
+^Palettes:
+	PaletteFromFile@temperat:
+		Name: temperat
+		Filename: temperat.pal
+		ShadowIndex: 1
+
+
+^InfantryTraining:
+	ProducibleWithLevel@level1:
+		Prerequisites: veterancy1.barracks
+		InitialLevels: 1
+	ProducibleWithLevel@level2:
+		Prerequisites: veterancy2.barracks
+		InitialLevels: 1
+	ProducibleWithLevel@level3:
+		Prerequisites: veterancy3.barracks
+		InitialLevels: 1
+	WithProductionIconOverlay@level1:
+		Types: Veterancy_level_1
+		Prerequisites: veterancy1.barracks, !veterancy2.barracks, !veterancy3.barracks
+	WithProductionIconOverlay@level2:
+		Types: Veterancy_level_2
+		Prerequisites: veterancy2.barracks, !veterancy3.barracks
+	WithProductionIconOverlay@level3:
+		Types: Veterancy_level_3
+		Prerequisites: veterancy3.barracks
+
+^VehicleTraining:
+	ProducibleWithLevel@level1:
+		Prerequisites: veterancy1.light
+		InitialLevels: 1
+	ProducibleWithLevel@level2:
+		Prerequisites: veterancy2.light
+		InitialLevels: 1
+	ProducibleWithLevel@level3:
+		Prerequisites: veterancy3.light
+		InitialLevels: 1
+	WithProductionIconOverlay@level1:
+		Types: Veterancy_level_1
+		Prerequisites: veterancy1.light, !veterancy2.light, !veterancy3.light
+	WithProductionIconOverlay@level2:
+		Types: Veterancy_level_2
+		Prerequisites: veterancy2.light, !veterancy3.light
+	WithProductionIconOverlay@level3:
+		Types: Veterancy_level_3
+		Prerequisites: veterancy3.light
+
+^TankTraining:
+	ProducibleWithLevel@level1:
+		Prerequisites: veterancy1.heavy
+		InitialLevels: 1
+	ProducibleWithLevel@level2:
+		Prerequisites: veterancy2.heavy
+		InitialLevels: 1
+	ProducibleWithLevel@level3:
+		Prerequisites: veterancy3.heavy
+		InitialLevels: 1
+	WithProductionIconOverlay@level1:
+		Types: Veterancy_level_1
+		Prerequisites: veterancy1.heavy, !veterancy2.heavy, !veterancy3.heavy
+	WithProductionIconOverlay@level2:
+		Types: Veterancy_level_2
+		Prerequisites: veterancy2.heavy, !veterancy3.heavy
+	WithProductionIconOverlay@level3:
+		Types: Veterancy_level_3
+		Prerequisites: veterancy3.heavy

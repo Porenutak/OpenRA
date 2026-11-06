@@ -185,3 +185,178 @@ upgrade.heavy:
 sietch:
 	-FireWarheadsOnDeath@sabotuerDemolition:
 	-AmbientSound@onSuicide:
+
+veterancy1.barracks:
+	Inherits: upgrade.barracks
+	Tooltip:
+		Name: training-upgrade
+	Buildable:
+		BuildPaletteOrder: 50
+		Prerequisites: barracks, outpost, ~!veterancy1.barracks
+		Queue: Upgrade
+		BuildLimit: 1
+		BuildDuration: 1200
+		BuildDurationModifier: 100
+		Description: improve-infantry-1
+	Valued:
+		Cost: 600
+	RenderSprites:
+		Image: barracks.ordos
+		FactionImages:
+			atreides: barracks.atreides
+			fremen: barracks.atreides
+			harkonnen: barracks.harkonnen
+			corrino: barracks.harkonnen
+	ProvidesPrerequisite@upgradename:
+	WithProductionIconOverlay:
+		Types: Veterancy_level_1
+
+veterancy2.barracks:
+	Inherits: upgrade.barracks
+	Tooltip:
+		Name: training-upgrade
+	Buildable:
+		BuildPaletteOrder: 50
+		Prerequisites: barracks, research_centre, ~veterancy1.barracks, ~!veterancy2.barracks
+		Queue: Upgrade
+		BuildLimit: 1
+		BuildDuration: 1200
+		BuildDurationModifier: 100
+		Description: improve-infantry-2
+	Valued:
+		Cost: 800
+	RenderSprites:
+		Image: barracks.ordos
+		FactionImages:
+			atreides: barracks.atreides
+			fremen: barracks.atreides
+			harkonnen: barracks.harkonnen
+			corrino: barracks.harkonnen
+	ProvidesPrerequisite@upgradename:
+	WithProductionIconOverlay:
+		Types: Veterancy_level_2
+
+veterancy3.barracks:
+	Inherits: upgrade.barracks
+	Tooltip:
+		Name: training-upgrade
+	Buildable:
+		BuildPaletteOrder: 50
+		Prerequisites: barracks, palace, ~veterancy1.barracks, ~veterancy2.barracks
+		Queue: Upgrade
+		BuildLimit: 1
+		BuildDuration: 1200
+		BuildDurationModifier: 100
+		Description: improve-infantry-3
+	Valued:
+		Cost: 1000
+	RenderSprites:
+		Image: barracks.ordos
+		FactionImages:
+			atreides: barracks.atreides
+			fremen: barracks.atreides
+			harkonnen: barracks.harkonnen
+			corrino: barracks.harkonnen
+	ProvidesPrerequisite@upgradename:
+	WithProductionIconOverlay:
+		Types: Veterancy_level_3
+
+veterancy1.light:
+	Inherits: upgrade.light
+	Tooltip:
+		Name: training-upgrade
+	Buildable:
+		BuildPaletteOrder: 50
+		Prerequisites: light_factory, outpost, ~!veterancy1.light
+		Queue: Upgrade
+		BuildLimit: 1
+		BuildDuration: 1200
+		BuildDurationModifier: 100
+		Description: improve-vehicles-1
+	Valued:
+		Cost: 500
+	ProvidesPrerequisite@upgradename:
+	WithProductionIconOverlay:
+		Types: Veterancy_level_1
+
+veterancy2.light:
+	Inherits: upgrade.light
+	Tooltip:
+		Name: training-upgrade
+	Buildable:
+		BuildPaletteOrder: 50
+		Prerequisites: light_factory, research_centre, ~veterancy1.light, ~!veterancy2.light
+		BuildDuration: 1200
+		BuildDurationModifier: 100
+		Description: improve-vehicles-2
+	Valued:
+		Cost: 700
+	ProvidesPrerequisite@upgradename:
+	WithProductionIconOverlay:
+		Types: Veterancy_level_2
+
+veterancy3.light:
+	Inherits: upgrade.light
+	Tooltip:
+		Name: training-upgrade
+	Buildable:
+		BuildPaletteOrder: 50
+		Prerequisites: light_factory, palace, ~veterancy1.light, ~veterancy2.light
+		BuildDuration: 1200
+		BuildDurationModifier: 100
+		Description: improve-vehicles-3
+	Valued:
+		Cost: 9000
+	ProvidesPrerequisite@upgradename:
+	WithProductionIconOverlay:
+		Types: Veterancy_level_3
+
+veterancy1.heavy:
+	Inherits: upgrade.heavy
+	Tooltip:
+		Name: training-upgrade
+	Buildable:
+		BuildPaletteOrder: 50
+		Prerequisites: heavy_factory, outpost, ~!veterancy1.heavy
+		Queue: Upgrade
+		BuildLimit: 1
+		BuildDuration: 1200
+		BuildDurationModifier: 100
+		Description: improve-tanks-1
+	Valued:
+		Cost: 700
+	ProvidesPrerequisite@upgradename:
+	WithProductionIconOverlay:
+		Types: Veterancy_level_1
+
+veterancy2.heavy:
+	Inherits: upgrade.heavy
+	Tooltip:
+		Name: training-upgrade
+	Buildable:
+		BuildPaletteOrder: 50
+		Prerequisites: heavy_factory, research_centre, ~veterancy1.heavy, ~!veterancy2.heavy
+		BuildDuration: 1200
+		BuildDurationModifier: 100
+		Description: improve-tanks-2
+	Valued:
+		Cost: 900
+	ProvidesPrerequisite@upgradename:
+	WithProductionIconOverlay:
+		Types: Veterancy_level_2
+
+veterancy3.heavy:
+	Inherits: upgrade.heavy
+	Tooltip:
+		Name: training-upgrade
+	Buildable:
+		BuildPaletteOrder: 50
+		Prerequisites: heavy_factory, palace, ~veterancy1.heavy, ~veterancy2.heavy
+		BuildDuration: 1200
+		BuildDurationModifier: 100
+		Description: improve-tanks-3
+	Valued:
+		Cost: 1200
+	ProvidesPrerequisite@upgradename:
+	WithProductionIconOverlay:
+		Types: Veterancy_level_3

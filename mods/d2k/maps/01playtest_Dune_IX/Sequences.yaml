@@ -488,3 +488,18 @@ building01_burned:
 		Frames: 22, 23, 24, 25
 		Length: 4
 		Offset: -16,-16
+
+
+iconchevrons:
+	level1:
+		Filename: bits/iconchevrons.shp
+		Start: 0
+		Offset: 40, 6
+	level2:
+		Filename: bits/iconchevrons.shp
+		Start: 1
+		Offset: 40, 6
+	level3:
+		Filename: bits/iconchevrons.shp
+		Start: 2
+		Offset: 40, 6

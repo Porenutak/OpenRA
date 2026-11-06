@@ -152,6 +152,7 @@ ornithopter_a:
 		Cost: 500
 
 light_inf:
+	Inherits@veterancy: ^InfantryTraining
 	AutoTargetPriority@bot:
 		ValidTargets: Infantry, Structure
 		InvalidTargets: Tank
@@ -167,6 +168,7 @@ light_inf:
 
 
 trooper:
+	Inherits@veterancy: ^InfantryTraining
 	AutoTargetPriority@bot:
 		InvalidTargets: Infantry
 		ValidTargets: Vehicle, Defense, Structure, Tank
@@ -178,6 +180,7 @@ trooper:
 	-RevealOnFire:
 
 grenadier:
+	Inherits@veterancy: ^InfantryTraining
 	AutoTargetPriority@bot:
 		ValidTargets: Infantry, Structure
 		InvalidTargets: Tank
@@ -193,6 +196,7 @@ grenadier:
 
 
 sardaukar:
+	Inherits@veterancy: ^InfantryTraining
 	AutoTargetPriority@bot:
 		ValidTargets: Vehicle, Tank, Structure
 		InvalidTargets: Tank
@@ -207,9 +211,11 @@ mpsardaukar:
 
 
 fremen:
+	Inherits@veterancy: ^InfantryTraining
 
 
 trike:
+	Inherits@veterancy: ^VehicleTraining
 	Inherits@AImicro: ^BotTrikeMicro
 	AutoTargetPriority@bot:
 		ValidTargets: Infantry, Structure
@@ -231,6 +237,7 @@ trike:
 
 
 raider:
+	Inherits@veterancy: ^VehicleTraining
 	Inherits@AImicro: ^BotTrikeMicro
 	AutoTargetPriority@bot:
 		ValidTargets: Infantry, Structure
@@ -253,6 +260,7 @@ raider:
 		Speed: 140
 
 stealth_raider:
+	Inherits@veterancy: ^VehicleTraining
 	Buildable:
 		BuildDuration: 275
 	Valued:
@@ -265,6 +273,7 @@ stealth_raider:
 	-RevealOnFire:
 
 quad:
+	Inherits@veterancy: ^VehicleTraining
 	Inherits@AImicro: ^BotTrikeMicro
 	AutoTargetPriority@bot:
 		ValidTargets: Vehicle, Structure, Tank
@@ -278,6 +287,7 @@ quad:
 	-RevealOnFire:
 
 ^combat_tank:
+	Inherits@veterancy: ^TankTraining
 	Inherits@autocrusher: ^BotAutoCrusher
 	AutoTargetPriority@bot:
 		InvalidTargets: Infantry
@@ -300,6 +310,7 @@ combat_tank_h:
 
 
 siege_tank:
+	Inherits@veterancy: ^TankTraining
 	AutoTargetPriority@bot:
 		ValidTargets: Infantry, Defense
 		InvalidTargets: Tanks
@@ -326,6 +337,7 @@ siege_tank:
 	-RevealOnFire:
 
 missile_tank:
+	Inherits@veterancy: ^TankTraining
 	AutoTargetPriority@bot:
 		ValidTargets: Tank, Defense, Air
 		InvalidTargets: Infantry
@@ -344,6 +356,7 @@ missile_tank:
 	-RevealOnFire:
 
 devastator:
+	Inherits@veterancy: ^TankTraining
 	ExternalCondition:
 		Condition: unitCapturated
 	Buildable:
@@ -380,6 +393,7 @@ devastator:
 		RequiresCondition: !meltdown
 
 sonic_tank:
+	Inherits@veterancy: ^TankTraining
 	AutoTargetPriority@bot:
 		ValidTargets: Vehicle, Defense, Structure, Infantry
 		InvalidTargets: Tank
@@ -391,6 +405,7 @@ sonic_tank:
 
 
 deviator:
+	Inherits@veterancy: ^TankTraining
 	AutoTargetPriority@bot:
 		ValidTargets: Tank, Vehicle
 		InvalidTargets: Infantry, Structure, Defense
@@ -476,3 +491,4 @@ saboteur:
 		RequiresCondition: SuicideAtt
 	TakeCover:
 		RequiresCondition: SuicideAtt
+

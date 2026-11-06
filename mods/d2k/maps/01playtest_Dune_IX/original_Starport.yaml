@@ -140,6 +140,8 @@ dummy.trike:
 	Inherits@overlay: ^Overlay_external_conditions
 	Inherits@starport: ^Starport_icon_numbers
 	Inherits: ^StarportDummy
+	WithProductionIconOverlay@level2:
+		Types: Veterancy_level_2
 	RenderSprites:
 		Image: trike
 	ProvidesPrerequisite@trike1:
@@ -185,6 +187,8 @@ dummy.quad:
 	Inherits@starport: ^Starport_icon_numbers
 	RenderSprites:
 		Image: quad
+	WithProductionIconOverlay@level2:
+		Types: Veterancy_level_2
 	ProvidesPrerequisite@trike1:
 		Prerequisite: starport.quad_1
 		RequiresCondition: order_1
@@ -310,6 +314,8 @@ dummy.siege_tank:
 	Inherits@overlay: ^Overlay_external_conditions
 	Inherits@starport: ^Starport_icon_numbers
 	Inherits: ^StarportDummy
+	WithProductionIconOverlay@level1:
+		Types: Veterancy_level_1
 	RenderSprites:
 		Image: siege_tank
 	ProvidesPrerequisite@trike1:
@@ -352,6 +358,8 @@ dummy.missile_tank:
 	Inherits@overlay: ^Overlay_external_conditions
 	Inherits@starport: ^Starport_icon_numbers
 	Inherits: ^StarportDummy
+	WithProductionIconOverlay@level1:
+		Types: Veterancy_level_1
 	RenderSprites:
 		Image: missile_tank
 	ProvidesPrerequisite@trike1:
@@ -394,6 +402,8 @@ dummy.combat_tank_a:
 	Inherits@overlay: ^Overlay_external_conditions
 	Inherits@starport: ^Starport_icon_numbers
 	Inherits: ^StarportDummy
+	WithProductionIconOverlay@level1:
+		Types: Veterancy_level_1
 	RenderSprites:
 		Image: combat_tank_a
 	ProvidesPrerequisite@trike1:
@@ -436,6 +446,8 @@ dummy.combat_tank_h:
 	Inherits@overlay: ^Overlay_external_conditions
 	Inherits: ^StarportDummy
 	Inherits@starport: ^Starport_icon_numbers
+	WithProductionIconOverlay@level1:
+		Types: Veterancy_level_1
 	RenderSprites:
 		Image: combat_tank_h
 	ProvidesPrerequisite@trike1:
@@ -479,6 +491,8 @@ dummy.combat_tank_o:
 	Inherits@overlay: ^Overlay_external_conditions
 	Inherits@starport: ^Starport_icon_numbers
 	Inherits: ^StarportDummy
+	WithProductionIconOverlay@level1:
+		Types: Veterancy_level_1
 	RenderSprites:
 		Image: combat_tank_o
 	ProvidesPrerequisite@trike1:
