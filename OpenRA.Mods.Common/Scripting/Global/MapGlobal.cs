@@ -99,6 +99,12 @@ namespace OpenRA.Mods.Common.Scripting
 			return Context.World.Map.GetTerrainInfo(cell).Type;
 		}
 
+		[Desc("Returns the type of the terrain at the target cell.")]
+		public int TileID(CPos cell)
+		{
+			return Context.World.Map.GetTerrainIndex(cell);
+		}
+
 		[Desc("Returns true if there is only one human player.")]
 		public bool IsSinglePlayer => Context.World.LobbyInfo.NonBotPlayers.Count() == 1;
 

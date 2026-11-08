@@ -1,0 +1,652 @@
+World:
+	#LuaScript:
+	#	Scripts: test.lua
+
+camera.all:
+	Inherits: camera
+	RenderSpritesEditorOnly:
+		Image: camera
+	WithSpriteBody:
+	RevealsMap:
+	ProvidesRadar:
+
+label_default:
+	Inherits: medium_gun_turret
+	ExternalCondition@DUMMY:
+		Condition: dummy
+	RenderSprites:
+		Image: medium_gun_turret
+	-Tooltip:
+	-Buildable:
+	-RevealsShroud:
+	-Selectable:
+	-Power:
+	Interactable:
+		Bounds: 1024, 1024
+	D2kBuilding:
+		Footprint: _
+	WithSpriteBody:
+		RequiresCondition: dummy
+	WithTextDecoration:
+		Text: Default Text
+		Position: Center
+		Color: FFFFFF
+
+label_cliff:
+	Inherits: label_default
+	RenderSprites:
+		Image: medium_gun_turret
+	WithTextDecoration:
+		Text: Cliff
+		Color: FF4500
+
+label_concrete:
+	Inherits: label_default
+	RenderSprites:
+		Image: medium_gun_turret
+	WithTextDecoration:
+		Text: Concrete
+		Color: CE8C42
+
+label_dune:
+	Inherits: label_default
+	RenderSprites:
+		Image: medium_gun_turret
+	WithTextDecoration:
+		Text: Dune
+		Color: EFDE8C
+
+label_ice:
+	Inherits: label_default
+	RenderSprites:
+		Image: medium_gun_turret
+	WithTextDecoration:
+		Text: Ice
+		Color: FFFFFF
+
+label_rock:
+	Inherits: label_default
+	RenderSprites:
+		Image: medium_gun_turret
+	WithTextDecoration:
+		Text: Rock
+		Color: FFFF00
+
+label_rough:
+	Inherits: label_default
+	RenderSprites:
+		Image: medium_gun_turret
+	WithTextDecoration:
+		Text: Rough
+		Color: 00FFFF
+
+label_sand:
+	Inherits: label_default
+	RenderSprites:
+		Image: medium_gun_turret
+	WithTextDecoration:
+		Text: Sand
+		Color: D0C0A0
+
+label_spice:
+	Inherits: label_default
+	RenderSprites:
+		Image: medium_gun_turret
+	WithTextDecoration:
+		Text: Spice
+		Color: D0C0A0
+
+label_transition:
+	Inherits: label_default
+	RenderSprites:
+		Image: medium_gun_turret
+	WithTextDecoration:
+		Text: Transition
+		Color: CFA664
+
+label_spicesand:
+	Inherits: label_default
+	RenderSprites:
+		Image: medium_gun_turret
+	WithTextDecoration:
+		Text: SpiceSand
+		Color: D0C0A0
+
+label_10:
+	Inherits: label_default
+	RenderSprites:
+		Image: medium_gun_turret
+	WithTextDecoration:
+		Text: 10
+
+label_16:
+	Inherits: label_default
+	RenderSprites:
+		Image: medium_gun_turret
+	WithTextDecoration:
+		Text: 16
+
+label_17:
+	Inherits: label_default
+	RenderSprites:
+		Image: medium_gun_turret
+	WithTextDecoration:
+		Text: 17
+
+label_22:
+	Inherits: label_default
+	RenderSprites:
+		Image: medium_gun_turret
+	WithTextDecoration:
+		Text: 22
+
+label_23:
+	Inherits: label_default
+	RenderSprites:
+		Image: medium_gun_turret
+	WithTextDecoration:
+		Text: 23
+
+label_24:
+	Inherits: label_default
+	RenderSprites:
+		Image: medium_gun_turret
+	WithTextDecoration:
+		Text: 24
+
+label_25:
+	Inherits: label_default
+	RenderSprites:
+		Image: medium_gun_turret
+	WithTextDecoration:
+		Text: 25
+
+label_27:
+	Inherits: label_default
+	RenderSprites:
+		Image: medium_gun_turret
+	WithTextDecoration:
+		Text: 27
+
+label_35:
+	Inherits: label_default
+	RenderSprites:
+		Image: medium_gun_turret
+	WithTextDecoration:
+		Text: 35
+
+label_38:
+	Inherits: label_default
+	RenderSprites:
+		Image: medium_gun_turret
+	WithTextDecoration:
+		Text: 38
+
+label_39:
+	Inherits: label_default
+	RenderSprites:
+		Image: medium_gun_turret
+	WithTextDecoration:
+		Text: 39
+
+label_47:
+	Inherits: label_default
+	RenderSprites:
+		Image: medium_gun_turret
+	WithTextDecoration:
+		Text: 47
+
+label_48:
+	Inherits: label_default
+	RenderSprites:
+		Image: medium_gun_turret
+	WithTextDecoration:
+		Text: 48
+
+label_49:
+	Inherits: label_default
+	RenderSprites:
+		Image: medium_gun_turret
+	WithTextDecoration:
+		Text: 49
+
+label_50:
+	Inherits: label_default
+	RenderSprites:
+		Image: medium_gun_turret
+	WithTextDecoration:
+		Text: 50
+
+label_68:
+	Inherits: label_default
+	RenderSprites:
+		Image: medium_gun_turret
+	WithTextDecoration:
+		Text: 68
+
+label_69:
+	Inherits: label_default
+	RenderSprites:
+		Image: medium_gun_turret
+	WithTextDecoration:
+		Text: 69
+
+label_181:
+	Inherits: label_default
+	RenderSprites:
+		Image: medium_gun_turret
+	WithTextDecoration:
+		Text: 181
+
+label_182:
+	Inherits: label_default
+	RenderSprites:
+		Image: medium_gun_turret
+	WithTextDecoration:
+		Text: 182
+
+label_183:
+	Inherits: label_default
+	RenderSprites:
+		Image: medium_gun_turret
+	WithTextDecoration:
+		Text: 183
+
+label_184:
+	Inherits: label_default
+	RenderSprites:
+		Image: medium_gun_turret
+	WithTextDecoration:
+		Text: 184
+
+label_185:
+	Inherits: label_default
+	RenderSprites:
+		Image: medium_gun_turret
+	WithTextDecoration:
+		Text: 185
+
+label_186:
+	Inherits: label_default
+	RenderSprites:
+		Image: medium_gun_turret
+	WithTextDecoration:
+		Text: 186
+
+label_187:
+	Inherits: label_default
+	RenderSprites:
+		Image: medium_gun_turret
+	WithTextDecoration:
+		Text: 187
+
+label_188:
+	Inherits: label_default
+	RenderSprites:
+		Image: medium_gun_turret
+	WithTextDecoration:
+		Text: 188
+
+label_189:
+	Inherits: label_default
+	RenderSprites:
+		Image: medium_gun_turret
+	WithTextDecoration:
+		Text: 189
+
+label_190:
+	Inherits: label_default
+	RenderSprites:
+		Image: medium_gun_turret
+	WithTextDecoration:
+		Text: 190
+
+label_191:
+	Inherits: label_default
+	RenderSprites:
+		Image: medium_gun_turret
+	WithTextDecoration:
+		Text: 191
+
+label_193:
+	Inherits: label_default
+	RenderSprites:
+		Image: medium_gun_turret
+	WithTextDecoration:
+		Text: 193
+
+label_200:
+	Inherits: label_default
+	RenderSprites:
+		Image: medium_gun_turret
+	WithTextDecoration:
+		Text: 200
+
+label_202:
+	Inherits: label_default
+	RenderSprites:
+		Image: medium_gun_turret
+	WithTextDecoration:
+		Text: 202
+
+label_206:
+	Inherits: label_default
+	RenderSprites:
+		Image: medium_gun_turret
+	WithTextDecoration:
+		Text: 206
+
+label_208:
+	Inherits: label_default
+	RenderSprites:
+		Image: medium_gun_turret
+	WithTextDecoration:
+		Text: 208
+
+label_217:
+	Inherits: label_default
+	RenderSprites:
+		Image: medium_gun_turret
+	WithTextDecoration:
+		Text: 217
+
+label_219:
+	Inherits: label_default
+	RenderSprites:
+		Image: medium_gun_turret
+	WithTextDecoration:
+		Text: 219
+
+label_220:
+	Inherits: label_default
+	RenderSprites:
+		Image: medium_gun_turret
+	WithTextDecoration:
+		Text: 220
+
+label_221:
+	Inherits: label_default
+	RenderSprites:
+		Image: medium_gun_turret
+	WithTextDecoration:
+		Text: 221
+
+label_222:
+	Inherits: label_default
+	RenderSprites:
+		Image: medium_gun_turret
+	WithTextDecoration:
+		Text: 222
+
+label_223:
+	Inherits: label_default
+	RenderSprites:
+		Image: medium_gun_turret
+	WithTextDecoration:
+		Text: 223
+
+label_248:
+	Inherits: label_default
+	RenderSprites:
+		Image: medium_gun_turret
+	WithTextDecoration:
+		Text: 248
+
+label_252:
+	Inherits: label_default
+	RenderSprites:
+		Image: medium_gun_turret
+	WithTextDecoration:
+		Text: 252
+
+label_271:
+	Inherits: label_default
+	RenderSprites:
+		Image: medium_gun_turret
+	WithTextDecoration:
+		Text: 271
+
+label_273:
+	Inherits: label_default
+	RenderSprites:
+		Image: medium_gun_turret
+	WithTextDecoration:
+		Text: 273
+
+label_412:
+	Inherits: label_default
+	RenderSprites:
+		Image: medium_gun_turret
+	WithTextDecoration:
+		Text: 412
+
+label_413:
+	Inherits: label_default
+	RenderSprites:
+		Image: medium_gun_turret
+	WithTextDecoration:
+		Text: 413
+
+label_445:
+	Inherits: label_default
+	RenderSprites:
+		Image: medium_gun_turret
+	WithTextDecoration:
+		Text: 445
+
+label_602:
+	Inherits: label_default
+	RenderSprites:
+		Image: medium_gun_turret
+	WithTextDecoration:
+		Text: 602
+
+label_603:
+	Inherits: label_default
+	RenderSprites:
+		Image: medium_gun_turret
+	WithTextDecoration:
+		Text: 603
+
+label_604:
+	Inherits: label_default
+	RenderSprites:
+		Image: medium_gun_turret
+	WithTextDecoration:
+		Text: 604
+
+label_605:
+	Inherits: label_default
+	RenderSprites:
+		Image: medium_gun_turret
+	WithTextDecoration:
+		Text: 605
+
+label_607:
+	Inherits: label_default
+	RenderSprites:
+		Image: medium_gun_turret
+	WithTextDecoration:
+		Text: 607
+
+label_608:
+	Inherits: label_default
+	RenderSprites:
+		Image: medium_gun_turret
+	WithTextDecoration:
+		Text: 608
+
+label_610:
+	Inherits: label_default
+	RenderSprites:
+		Image: medium_gun_turret
+	WithTextDecoration:
+		Text: 610
+
+label_611:
+	Inherits: label_default
+	RenderSprites:
+		Image: medium_gun_turret
+	WithTextDecoration:
+		Text: 611
+
+label_612:
+	Inherits: label_default
+	RenderSprites:
+		Image: medium_gun_turret
+	WithTextDecoration:
+		Text: 612
+
+label_615:
+	Inherits: label_default
+	RenderSprites:
+		Image: medium_gun_turret
+	WithTextDecoration:
+		Text: 615
+
+label_616:
+	Inherits: label_default
+	RenderSprites:
+		Image: medium_gun_turret
+	WithTextDecoration:
+		Text: 616
+
+label_623:
+	Inherits: label_default
+	RenderSprites:
+		Image: medium_gun_turret
+	WithTextDecoration:
+		Text: 623
+
+label_624:
+	Inherits: label_default
+	RenderSprites:
+		Image: medium_gun_turret
+	WithTextDecoration:
+		Text: 624
+
+label_626:
+	Inherits: label_default
+	RenderSprites:
+		Image: medium_gun_turret
+	WithTextDecoration:
+		Text: 626
+
+label_627:
+	Inherits: label_default
+	RenderSprites:
+		Image: medium_gun_turret
+	WithTextDecoration:
+		Text: 627
+
+label_628:
+	Inherits: label_default
+	RenderSprites:
+		Image: medium_gun_turret
+	WithTextDecoration:
+		Text: 628
+
+label_629:
+	Inherits: label_default
+	RenderSprites:
+		Image: medium_gun_turret
+	WithTextDecoration:
+		Text: 629
+
+label_636:
+	Inherits: label_default
+	RenderSprites:
+		Image: medium_gun_turret
+	WithTextDecoration:
+		Text: 636
+
+label_639:
+	Inherits: label_default
+	RenderSprites:
+		Image: medium_gun_turret
+	WithTextDecoration:
+		Text: 639
+
+label_832:
+	Inherits: label_default
+	RenderSprites:
+		Image: medium_gun_turret
+	WithTextDecoration:
+		Text: 832
+
+label_833:
+	Inherits: label_default
+	RenderSprites:
+		Image: medium_gun_turret
+	WithTextDecoration:
+		Text: 833
+
+label_836:
+	Inherits: label_default
+	RenderSprites:
+		Image: medium_gun_turret
+	WithTextDecoration:
+		Text: 836
+
+label_837:
+	Inherits: label_default
+	RenderSprites:
+		Image: medium_gun_turret
+	WithTextDecoration:
+		Text: 837
+
+label_844:
+	Inherits: label_default
+	RenderSprites:
+		Image: medium_gun_turret
+	WithTextDecoration:
+		Text: 844
+
+label_847:
+	Inherits: label_default
+	RenderSprites:
+		Image: medium_gun_turret
+	WithTextDecoration:
+		Text: 847
+
+label_848:
+	Inherits: label_default
+	RenderSprites:
+		Image: medium_gun_turret
+	WithTextDecoration:
+		Text: 848
+
+label_848:
+	Inherits: label_default
+	RenderSprites:
+		Image: medium_gun_turret
+	WithTextDecoration:
+		Text: 848
+
+label_849:
+	Inherits: label_default
+	RenderSprites:
+		Image: medium_gun_turret
+	WithTextDecoration:
+		Text: 849
+
+label_852:
+	Inherits: label_default
+	RenderSprites:
+		Image: medium_gun_turret
+	WithTextDecoration:
+		Text: 852
+
+label_853:
+	Inherits: label_default
+	RenderSprites:
+		Image: medium_gun_turret
+	WithTextDecoration:
+		Text: 853
+
+label_1076:
+	Inherits: label_default
+	RenderSprites:
+		Image: medium_gun_turret
+	WithTextDecoration:
+		Text: 1076
