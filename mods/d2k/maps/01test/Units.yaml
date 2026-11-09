@@ -36,9 +36,8 @@
 		BasePalette: player
 	PaletteFromFile@temperat:
 		Name: temperat
-		Filename: bits/temperat.pal
+		Filename: temperat.pal
 		ShadowIndex: 1
-		CursorPalette: true
 
 Player:
 	ProductionIconOverlayManager@level1:

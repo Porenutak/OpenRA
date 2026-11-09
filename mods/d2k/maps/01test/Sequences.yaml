@@ -1,27 +1,26 @@
-
 refinery_nw.atreides:
 	idle:
 		Filename: bits/refineryangles/refineryatreidesbottom_nw.png
-		Offset: 12,-14
-		ZOffset: -1024
+		Offset: 12,18
+		ZOffset: 0
 		Remap: 54F94B
 	idle-middle:
 		Filename: bits/refineryangles/refineryatreidesmiddle_nw.png
-		Offset: 12,-14
+		Offset: 12,18
 		Remap: 54F94B
 	idle-top:
 		Filename: bits/refineryangles/refineryatreidestop_nw.png
-		Offset: 12,-14
+		Offset: 12,18
 		Remap: 54F94B
 		ZOffset: 1024
 	damaged-idle:
 		Filename: bits/refineryangles/refineryatreidesbottom_nw.png
-		Offset: 12,-14
+		Offset: 12,18
 		ZOffset: -1024
 		Remap: 54F94B
 	damaged-idle-top:
 		Filename: bits/refineryangles/refineryatreidestopdamaged_nw.png
-		Offset: 12,-14
+		Offset: 12,18
 		Remap: 54F94B
 		ZOffset: 1024
 	bib:
@@ -38,13 +37,13 @@ refinery_nw.atreides:
 		Filename: DATA.R16
 		Start: 4495
 		Length: 11
-		Offset: -54,64
+		Offset: -54,90
 		ZOffset: 1500
 	crumble-overlay:
 		Filename: DATA.R16
 		Start: 4505
 		Length: 12
-		Offset: -54,64
+		Offset: -54,90
 		Tick: 100
 		ZOffset: 1500
 	icon:
@@ -55,149 +54,33 @@ refinery_nw.atreides:
 		Filename: DATA.R16
 		Start: 4138
 		Length: 14
-		Offset: 13, -16
-		Tick: 100
-		BlendMode: Additive
-
-refinery_ne.atreides:
-	idle:
-		Filename: bits/refineryangles/refineryatreidesbottom_ne.png
-		Offset: 0,-14
-		ZOffset: -1024
-		Remap: 54F94B
-	idle-middle:
-		Filename: bits/refineryangles/refineryatreidesmiddle_ne.png
-		Offset: 0,-14
-		Remap: 54F94B
-	idle-top:
-		Filename: bits/refineryangles/refineryatreidestop_ne.png
-		Offset: 0,-14
-		Remap: 54F94B
-		ZOffset: 1024
-	damaged-idle:
-		Filename: bits/refineryangles/refineryatreidesbottom_ne.png
-		Offset: 0,-14
-		ZOffset: -1024
-		Remap: 54F94B
-	damaged-idle-top:
-		Filename: bits/refineryangles/refineryatreidestopdamaged_ne.png
-		Offset: 0,-14
-		Remap: 54F94B
-		ZOffset: 1024
-	bib:
-		Filename: BLOXBASE.R16
-		Frames: 611, 612, 613, 631, 632, 633
-		Length: 6
-		Offset: -16,-16
-	bib-Concrete:
-		Filename: BLOXBASE.R16
-		Frames: 643, 644, 645, 663, 664, 665
-		Length: 6
-		Offset: -16,-16
-	make:
-		Filename: DATA.R16
-		Start: 4495
-		Length: 11
-		Offset: -60,64
-		ZOffset: 1500
-	crumble-overlay:
-		Filename: DATA.R16
-		Start: 4505
-		Length: 12
-		Offset: -60,64
-		Tick: 100
-		ZOffset: 1500
-	icon:
-		Filename: DATA.R16
-		Start: 4330
-		Offset: -30,-24
-	smoke:
-		Filename: DATA.R16
-		Start: 4138
-		Length: 14
-		FlipX: true
-		Offset: -10, -13
-		Tick: 100
-		BlendMode: Additive
-
-refinery_sw.atreides:
-	idle:
-		Filename: bits/refineryangles/refineryatreidesbottom_sw.png
-		Offset: 0,-16
-		Remap: 54F94B
-	idle-top:
-		Filename: bits/refineryangles/refineryatreidestop_sw.png
-		Offset: 0,-16
-		Remap: 54F94B
-		ZOffset: 1024
-	damaged-idle:
-		Filename: bits/refineryangles/refineryatreidesbottom_sw.png
-		Offset: 0,-16
-		Remap: 54F94B
-	damaged-idle-top:
-		Filename: bits/refineryangles/refineryatreidestopdamaged_sw.png
-		Offset: 0,-16
-		Remap: 54F94B
-		ZOffset: 1024
-	bib:
-		Filename: BLOXBASE.R16
-		Frames: 611, 612, 613, 631, 632, 633
-		Length: 6
-		Offset: -16,-16
-	bib-Concrete:
-		Filename: BLOXBASE.R16
-		Frames: 643, 644, 645, 663, 664, 665
-		Length: 6
-		Offset: -16,-16
-	make:
-		Filename: DATA.R16
-		Start: 4495
-		Length: 11
-		Offset: -58,64
-		ZOffset: 1500
-	crumble-overlay:
-		Filename: DATA.R16
-		Start: 4505
-		Length: 12
-		Offset: -58,64
-		Tick: 100
-		ZOffset: 1500
-	icon:
-		Filename: DATA.R16
-		Start: 4330
-		Offset: -30,-24
-	smoke:
-		Filename: DATA.R16
-		Start: 4138
-		Length: 14
-		FlipX: true
-		Offset: -10, -13
+		Offset: 13, 0
 		Tick: 100
 		BlendMode: Additive
 
 refinery_nw.harkonnen:
 	idle:
 		Filename: bits/refineryangles/refineryharkonnenbottom_nw.png
-		Offset: 10,-10
-		ZOffset: -1024
+		Offset: 10,22
+		ZOffset: 0
 		Remap: 54F94B
 	idle-middle:
 		Filename: bits/refineryangles/refineryharkonnenmiddle_nw.png
-		Offset: 10,-10
+		Offset: 10,22
 		Remap: 54F94B
 	idle-top:
 		Filename: bits/refineryangles/refineryharkonnentop_nw.png
-		Offset: 10,-10
+		Offset: 10,22
 		Remap: 54F94B
 		ZOffset: 1024
 	damaged-idle:
 		Filename: bits/refineryangles/refineryharkonnenbottom_nw.png
-		Offset: 10,-10
+		Offset: 10,22
 		ZOffset: -1024
 		Remap: 54F94B
 	damaged-idle-top:
 		Filename: bits/refineryangles/refineryharkonnendamaged_nw.png
-		Offset: 10,-10
+		Offset: 10,22
 		ZOffset: 1024
 		Remap: 54F94B
 	bib:
@@ -218,14 +101,14 @@ refinery_nw.harkonnen:
 		Filename: DATA.R16
 		Start: 4505
 		Length: 12
-		Offset: -54,54
+		Offset: -54,86
 		Tick: 100
 		ZOffset: 1500
 	make:
 		Filename: DATA.R16
 		Start: 4495
 		Length: 11
-		Offset: -54,54
+		Offset: -54,86
 		ZOffset: 1500
 	smoke:
 		Filename: DATA.R16
@@ -235,142 +118,29 @@ refinery_nw.harkonnen:
 		Tick: 100
 		BlendMode: Additive
 
-refinery_ne.harkonnen:
-	idle:
-		Filename: bits/refineryangles/refineryharkonnenbottom_ne.png
-		Offset: 0,-14
-		ZOffset: -1024
-		Remap: 54F94B
-	idle-middle:
-		Filename: bits/refineryangles/refineryharkonnenmiddle_ne.png
-		Offset: 0,-14
-		Remap: 54F94B
-	idle-top:
-		Filename: bits/refineryangles/refineryharkonnentop_ne.png
-		Offset: 0,-14
-		Remap: 54F94B
-		ZOffset: 1024
-	damaged-idle:
-		Filename: bits/refineryangles/refineryharkonnenbottom_ne.png
-		Offset: 0,-14
-		ZOffset: -1024
-		Remap: 54F94B
-	damaged-idle-top:
-		Filename: bits/refineryangles/refineryharkonnentopdamaged_ne.png
-		Offset: 0,-14
-		Remap: 54F94B
-		ZOffset: 1024
-	bib:
-		Filename: BLOXBASE.R16
-		Frames: 611, 612, 613, 631, 632, 633
-		Length: 6
-		Offset: -16,-16
-	bib-Concrete:
-		Filename: BLOXBASE.R16
-		Frames: 643, 644, 645, 663, 664, 665
-		Length: 6
-		Offset: -16,-16
-	make:
-		Filename: DATA.R16
-		Start: 4495
-		Length: 11
-		Offset: -60,54
-		ZOffset: 1500
-	crumble-overlay:
-		Filename: DATA.R16
-		Start: 4505
-		Length: 12
-		Offset: -60,54
-		Tick: 100
-		ZOffset: 1500
-	icon:
-		Filename: DATA.R16
-		Start: 4330
-		Offset: -30,-24
-	smoke:
-		Filename: DATA.R16
-		Start: 4138
-		Length: 14
-		FlipX: true
-		Offset: -10, -23
-		Tick: 100
-		BlendMode: Additive
-
-refinery_sw.harkonnen:
-	idle:
-		Filename: bits/refineryangles/refineryharkonnenbottom_sw.png
-		Offset: 3,-6
-		Remap: 54F94B
-	idle-top:
-		Filename: bits/refineryangles/refineryharkonnentop_sw.png
-		Offset: 3,-6
-		Remap: 54F94B
-		ZOffset: 1024
-	damaged-idle-top:
-		Filename: bits/refineryangles/refineryharkonnentopdamaged_sw.png
-		Offset: 3,-6
-		Remap: 54F94B
-		ZOffset: 1024
-	bib:
-		Filename: BLOXBASE.R16
-		Frames: 611, 612, 613, 631, 632, 633
-		Length: 6
-		Offset: -16,-16
-	bib-Concrete:
-		Filename: BLOXBASE.R16
-		Frames: 643, 644, 645, 663, 664, 665
-		Length: 6
-		Offset: -16,-16
-	make:
-		Filename: DATA.R16
-		Start: 4495
-		Length: 11
-		Offset: -58,54
-		ZOffset: 1500
-	crumble-overlay:
-		Filename: DATA.R16
-		Start: 4505
-		Length: 12
-		Offset: -58,54
-		Tick: 100
-		ZOffset: 1500
-	icon:
-		Filename: DATA.R16
-		Start: 4330
-		Offset: -30,-24
-	smoke:
-		Filename: DATA.R16
-		Start: 4138
-		Length: 14
-		FlipX: true
-		Offset: -10, -23
-		Tick: 100
-		BlendMode: Additive
-
-
 refinery_nw.ordos:
 	idle:
 		Filename: bits/refineryangles/refineryordosbottom_nw.png
-		Offset: 10,-6
-		ZOffset: -1024
+		Offset: 10,26
+		ZOffset: 0
 		Remap: 54F94B
 	idle-middle:
 		Filename: bits/refineryangles/refineryordosmiddle_nw.png
-		Offset: 10,-6
+		Offset: 10,26
 		Remap: 54F94B
 	idle-top:
 		Filename: bits/refineryangles/refineryordostop_nw.png
-		Offset: 10,-6
+		Offset: 10,26
 		Remap: 54F94B
 		ZOffset: 1024
 	damaged-idle:
 		Filename: bits/refineryangles/refineryordosbottom_nw.png
-		Offset: 10,-6
+		Offset: 10,26
 		ZOffset: -1024
 		Remap: 54F94B
 	damaged-idle-top:
 		Filename: bits/refineryangles/refineryordosdamaged_nw.png
-		Offset: 10,-6
+		Offset: 10,26
 		Remap: 54F94B
 		ZOffset: 1024
 	bib:
@@ -387,13 +157,13 @@ refinery_nw.ordos:
 		Filename: DATA.R16
 		Start: 4495
 		Length: 11
-		Offset: -54,64
+		Offset: -54,96
 		ZOffset: 1500
 	crumble-overlay:
 		Filename: DATA.R16
 		Start: 4505
 		Length: 12
-		Offset: -54,64
+		Offset: -54,96
 		Tick: 100
 		ZOffset: 1500
 	icon:
@@ -404,119 +174,7 @@ refinery_nw.ordos:
 		Filename: DATA.R16
 		Start: 4138
 		Length: 14
-		Offset: 13, -19
-		Tick: 100
-		BlendMode: Additive
-
-refinery_ne.ordos:
-	idle:
-		Filename: bits/refineryangles/refineryordosbottom_ne.png
-		Offset: 3,-7
-		ZOffset: -1024
-		Remap: 54F94B
-	idle-middle:
-		Filename: bits/refineryangles/refineryordosmiddle_ne.png
-		Offset: 3,-7
-		Remap: 54F94B
-	idle-top:
-		Filename: bits/refineryangles/refineryordostop_ne.png
-		Offset: 3,-5
-		Remap: 54F94B
-		ZOffset: 1024
-	damaged-idle:
-		Filename: bits/refineryangles/refineryordosbottom_ne.png
-		Offset: 3,-7
-		ZOffset: -1024
-		Remap: 54F94B
-	damaged-idle-top:
-		Filename: bits/refineryangles/refineryordostopdamaged_ne.png
-		Offset: 3,-7
-		Remap: 54F94B
-		ZOffset: 1024
-	bib:
-		Filename: BLOXBASE.R16
-		Frames: 611, 612, 613, 631, 632, 633
-		Length: 6
-		Offset: -16,-16
-	bib-Concrete:
-		Filename: BLOXBASE.R16
-		Frames: 643, 644, 645, 663, 664, 665
-		Length: 6
-		Offset: -16,-16
-	make:
-		Filename: DATA.R16
-		Start: 4495
-		Length: 11
-		Offset: -54,54
-		ZOffset: 1500
-	crumble-overlay:
-		Filename: DATA.R16
-		Start: 4505
-		Length: 12
-		Offset: -54,54
-		Tick: 100
-		ZOffset: 1500
-	icon:
-		Filename: DATA.R16
-		Start: 4330
-		Offset: -30,-24
-	smoke:
-		Filename: DATA.R16
-		Start: 4138
-		Length: 14
-		FlipX: true
-		Offset: -10, -16
-		Tick: 100
-		BlendMode: Additive
-
-refinery_sw.ordos:
-	idle:
-		Filename: bits/refineryangles/refineryordosbottom_sw.png
-		Offset: 3,-6
-		Remap: 54F94B
-	idle-top:
-		Filename: bits/refineryangles/refineryordostop_sw.png
-		Offset: 3,-6
-		Remap: 54F94B
-		ZOffset: 1024
-	damaged-idle-top:
-		Filename: bits/refineryangles/refineryordostopdamaged_sw.png
-		Offset: 3,-6
-		Remap: 54F94B
-		ZOffset: 1024
-	bib:
-		Filename: BLOXBASE.R16
-		Frames: 611, 612, 613, 631, 632, 633
-		Length: 6
-		Offset: -16,-16
-	bib-Concrete:
-		Filename: BLOXBASE.R16
-		Frames: 643, 644, 645, 663, 664, 665
-		Length: 6
-		Offset: -16,-16
-	make:
-		Filename: DATA.R16
-		Start: 4495
-		Length: 11
-		Offset: -58,54
-		ZOffset: 1500
-	crumble-overlay:
-		Filename: DATA.R16
-		Start: 4505
-		Length: 12
-		Offset: -58,54
-		Tick: 100
-		ZOffset: 1500
-	icon:
-		Filename: DATA.R16
-		Start: 4330
-		Offset: -30,-24
-	smoke:
-		Filename: DATA.R16
-		Start: 4138
-		Length: 14
-		FlipX: true
-		Offset: -10, -20
+		Offset: 13, 13
 		Tick: 100
 		BlendMode: Additive
 
