@@ -61,34 +61,6 @@ refinery_nw:
 		Prerequisite: refinery
 	FreeActorWithDelivery:
 		DeliveryOffset: 0,0
-	FloatingSpriteEmitter@SmokeSmallAtreides:
-		Offset: -900, 712, 0
-	FloatingSpriteEmitter@SmokeHugeAtreides:
-		Offset: 700,-112,0
-	WithDamageOverlay@Fire1_Atreides:
-		Offset: -512, 600,0
-	WithDamageOverlay@Fire2_atreides:
-		Offset: -1024, -800, 0
-		LoopSequence: 2
-	FloatingSpriteEmitter@SmokeHugeHarkonnen:
-		Offset: 1100,-288,0
-	FloatingSpriteEmitter@SmokeSmallHarkonnen:
-		Offset: -512, 0,0
-	WithDamageOverlay@Fire1Harkonnen:
-		Offset: -350, 1000,0
-	WithDamageOverlay@Fire2Harkonnen:
-		Offset: -1024, -450, 0
-		LoopSequence: 2
-	FloatingSpriteEmitter@SmokeHugeOrdos:
-		Offset: 400, -288, 0
-		Gravity: 70
-	FloatingSpriteEmitter@SmokeSmallOrdos:
-		Offset: -250, 762, 0
-		SpawnFrequency: 3, 13
-	WithDamageOverlay@Fire1Ordos:
-		Offset: -1000, 300, 0
-	WithDamageOverlay@Fire2Ordos:
-		Offset: -1524, -200, 0
 
 
 high_tech_factory:
