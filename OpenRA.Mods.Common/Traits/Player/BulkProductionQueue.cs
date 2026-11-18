@@ -19,13 +19,20 @@ namespace OpenRA.Mods.Common.Traits
 {
 	[TraitLocation(SystemActors.Player)]
 	[Desc("Attach this to the player actor (not a building!) to define a new shared build queue.",
-		"Allows you to build multiple actors before delivery",
+		"Allows you to build multiple actors from Stock",
+		"Stock replenishment is tight to BuildDuration inside Buildable Trait",
 		"Will work together with the `ProductionBulkAirDrop` trait on the actor that actually does the production.",
 		"You will also want to add `PrimaryBuilding` to let the user choose where new units should exit.")]
 	public class BulkProductionQueueInfo : ProductionQueueInfo, Requires<TechTreeInfo>, Requires<PlayerResourcesInfo>
 	{
 		[Desc("Maximum order capacity.")]
 		public readonly int MaxCapacity = 6;
+
+		[Desc("Maximum stock capacity per unit.")]
+		public readonly int MaxStockCapacity = 5;
+
+		[Desc("Should game start with full stockpiles?")]
+		public readonly bool StartFullyStocked = false;
 
 		[Desc("Delivery delay in ticks.")]
 		public readonly int DeliveryDelay = 1500;
@@ -56,11 +63,15 @@ namespace OpenRA.Mods.Common.Traits
 		readonly BulkProductionQueueInfo info;
 
 		protected readonly List<(ActorInfo Actor, int Resources, int Cash)> ActorsReadyForDelivery = [];
+
+		protected List<(ActorInfo Actor, int Count)> stocks = [];
 		public int DeliveryDelay { get; private set; } = 0;
 		protected int notificationInterval = 0;
 		protected int notificationIndex = 0;
 
 		protected bool deliveryProcessStarted = false;
+
+		public bool RestockingEnabled = true;
 
 		public BulkProductionQueue(ActorInitializer init, BulkProductionQueueInfo info)
 			: base(init, info)
@@ -69,10 +80,21 @@ namespace OpenRA.Mods.Common.Traits
 			this.info = info;
 			if (info.DeliveryProgressNotifications.Length != 0)
 				notificationInterval = info.DeliveryDelay / info.DeliveryProgressNotifications.Length;
+
+			foreach (var item in AllBuildables(Info.Type))
+			{
+				if (info.StartFullyStocked)
+					stocks.Add((item, info.MaxCapacity));
+				else
+					stocks.Add((item, 0));
+			}
 		}
 
 		protected override void Tick(Actor self)
 		{
+			if (RestockingEnabled)
+				ReplenishmentLogic();
+
 			// PERF: Avoid LINQ.
 			Enabled = false;
 			var isActive = false;
@@ -91,7 +113,6 @@ namespace OpenRA.Mods.Common.Traits
 			if (!Enabled)
 			{
 				DeliverFinished();
-				ClearQueue();
 			}
 			else
 			{
@@ -116,6 +137,9 @@ namespace OpenRA.Mods.Common.Traits
 			TickInner(self, !isActive);
 		}
 
+		protected override void TickInner(Actor self, bool allProductionPaused)
+		{ }
+
 		public override IEnumerable<ActorInfo> AllItems()
 		{
 			return Enabled ? base.AllItems() : NoItems;
@@ -123,67 +147,41 @@ namespace OpenRA.Mods.Common.Traits
 
 		public override IEnumerable<ActorInfo> BuildableItems()
 		{
-			return Enabled && ActorsReadyForDelivery.Count != info.MaxCapacity && !deliveryProcessStarted ? base.BuildableItems() : NoItems;
+			if (!Enabled || ActorsReadyForDelivery.Count == info.MaxCapacity
+				|| deliveryProcessStarted)
+				return NoItems;
+			if (!Info.PayUpFront && developerMode.AllTech)
+				return Producible.Keys;
+			if (Info.PayUpFront && developerMode.AllTech)
+				return Producible.Keys.Where(a => GetProductionCost(a) <= playerResources.GetCashAndResources() || IsInQueue(a));
+			var buildableProducibles = Producible.Where(a => a.Value.Buildable).Select(a => a.Key)
+				.Where(a => stocks.FirstOrDefault(s => s.Actor.Name == a.Name).Count > 0);
+			if (Info.PayUpFront)
+				return buildableProducibles.Where(a => GetProductionCost(a) <= playerResources.GetCashAndResources() || IsInQueue(a));
+
+			return buildableProducibles;
 		}
 
 		public override TraitPair<Production> MostLikelyProducer()
 		{
-			var productionActor = self.World.ActorsWithTrait<Production>()
+			return self.World.ActorsWithTrait<Production>()
 				.Where(x => x.Actor.Owner == self.Owner
 					&& !x.Trait.IsTraitDisabled && x.Trait.Info.Produces.Contains(Info.Type))
 				.OrderBy(x => x.Trait.IsTraitPaused)
 				.ThenByDescending(x => x.Actor.Trait<PrimaryBuilding>().IsPrimary)
 				.ThenByDescending(x => x.Actor.ActorID)
 				.FirstOrDefault();
-
-			return productionActor;
-		}
-
-		protected override bool BuildUnit(ActorInfo unit)
-		{
-			// Find a production structure to build this actor
-			var bi = unit.TraitInfo<BuildableInfo>();
-
-			// Some units may request a specific production type, which is ignored if the AllTech cheat is enabled
-			var type = developerMode.AllTech ? Info.Type : (bi.BuildAtProductionType ?? Info.Type);
-
-			var producers = self.World.ActorsWithTrait<Production>()
-				.Where(x => x.Actor.Owner == self.Owner
-					&& !x.Trait.IsTraitDisabled
-					&& x.Trait.Info.Produces.Contains(type))
-					.OrderByDescending(x => x.Actor.Trait<PrimaryBuilding>().IsPrimary)
-				.OrderByDescending(x => x.Actor.Trait<PrimaryBuilding>().IsPrimary)
-				.ThenByDescending(x => x.Actor.ActorID);
-			var anyProducers = false;
-			foreach (var p in producers)
-			{
-				anyProducers = true;
-				if (p.Trait.IsTraitPaused)
-					continue;
-				if (ActorsReadyForDelivery.Count <= info.MaxCapacity)
-				{
-					var item = Queue.First(i => i.Done && i.Item == unit.Name);
-					ActorsReadyForDelivery.Add((unit, item.ResourcesPaid, item.TotalCost - item.ResourcesPaid));
-					EndProduction(item);
-					return true;
-				}
-			}
-
-			if (!anyProducers)
-				CancelProduction(unit.Name, 1);
-
-			return false;
 		}
 
 		public override void ResolveOrder(Actor self, Order order)
 		{
 			if (!Enabled)
 				return;
-
 			var rules = self.World.Map.Rules;
 			switch (order.OrderString)
 			{
 				case "StartProduction":
+
 					var unit = rules.Actors[order.TargetString];
 					var bi = unit.TraitInfo<BuildableInfo>();
 
@@ -199,17 +197,10 @@ namespace OpenRA.Mods.Common.Traits
 					var fromLimit = int.MaxValue;
 					if (!developerMode.AllTech)
 					{
-						if (Info.QueueLimit > 0)
-							fromLimit = Info.QueueLimit - Queue.Count;
-
-						if (Info.ItemLimit > 0)
-							fromLimit = Math.Min(fromLimit, Info.ItemLimit - Queue.Count(i => i.Item == order.TargetString));
-
 						if (bi.BuildLimit > 0)
 						{
-							var inQueue = Queue.Count(pi => pi.Item == order.TargetString);
 							var owned = self.Owner.World.ActorsHavingTrait<Buildable>().Count(a => a.Info.Name == order.TargetString && a.Owner == self.Owner);
-							fromLimit = Math.Min(fromLimit, bi.BuildLimit - (inQueue + owned));
+							fromLimit = Math.Min(fromLimit, bi.BuildLimit - owned);
 						}
 
 						if (fromLimit <= 0)
@@ -221,24 +212,26 @@ namespace OpenRA.Mods.Common.Traits
 					var amountToBuild = Math.Min(fromLimit, order.ExtraData);
 					for (var n = 0; n < amountToBuild; n++)
 					{
-						if (Info.PayUpFront && cost > playerResources.GetCashAndResources())
+						var stock = stocks.FirstOrDefault(a => a.Actor == unit);
+						if (stock.Count == 0)
 							return;
-						BeginProduction(new ProductionItem(this, order.TargetString, cost, playerPower, () => self.World.AddFrameEndTask(_ =>
-						{
-							// Make sure the item hasn't been invalidated between the ProductionItem ticking and this FrameEndTask running
-							if (!Queue.Any(i => i.Done && i.Item == unit.Name))
-								return;
-							BuildUnit(unit);
-						})), !order.Queued);
+						if (cost > playerResources.GetCashAndResources())
+							return;
+						RemoveStock(stock.Actor, stock.Count);
+
+						var resourcePaid = 0;
+						if (playerResources.Resources > 0 && playerResources.Resources <= cost)
+							resourcePaid = playerResources.Resources;
+						else if (playerResources.Resources > cost)
+							resourcePaid = cost;
+						playerResources.TakeCash(cost);
+
+						ActorsReadyForDelivery.Add((unit, resourcePaid, GetProductionCost(unit) - resourcePaid));
 					}
 
 					break;
 				case "PauseProduction":
-					PauseProduction(order.TargetString, order.ExtraData != 0);
-					break;
 				case "CancelProduction":
-					CancelProduction(order.TargetString, order.ExtraData);
-					break;
 				case "ReturnOrder":
 					ReturnOrder(order.TargetString, order.ExtraData);
 					break;
@@ -255,6 +248,7 @@ namespace OpenRA.Mods.Common.Traits
 				ReturnOrder();
 			ActorsReadyForDelivery.Clear();
 			deliveryProcessStarted = false;
+			RestockingEnabled = true;
 		}
 
 		public bool HasDeliveryStarted()
@@ -269,13 +263,14 @@ namespace OpenRA.Mods.Common.Traits
 
 		protected void StartDeliveryProcess()
 		{
-			ClearQueue();
 			deliveryProcessStarted = true;
 			DeliveryDelay = info.DeliveryDelay;
 			var rules = self.World.Map.Rules;
 			Game.Sound.PlayNotification(rules, self.Owner, "Speech", info.StartDeliveryNotification, self.Owner.Faction.InternalName);
 			if (info.StartDeliveryTextNotification != null)
 				TextNotificationsManager.AddTransientLine(self.Owner, info.StartDeliveryTextNotification);
+			RestockingEnabled = true;
+			// TODO REMOVE ACTORS FROM ActorsReadyForDelivery
 		}
 
 		protected void DeliveryHasArrived()
@@ -295,13 +290,17 @@ namespace OpenRA.Mods.Common.Traits
 		{
 			if (itemName == null)
 			{
-				foreach (var actorData in ActorsReadyForDelivery)
+				for (var i = ActorsReadyForDelivery.Count - 1; i >= 0; i--)
 				{
-					playerResources.RefundResources(actorData.Resources);
-					playerResources.RefundCash(actorData.Cash);
+					playerResources.RefundResources(ActorsReadyForDelivery[i].Resources);
+					playerResources.RefundCash(ActorsReadyForDelivery[i].Cash);
+					var stock = stocks.FirstOrDefault(a => a.Actor.Name == ActorsReadyForDelivery[i].Actor.Name);
+
+					// Actor need to removed before stock
+					ActorsReadyForDelivery.RemoveAt(i);
+					AddStock(stock.Actor, stock.Count);
 				}
 
-				ActorsReadyForDelivery.Clear();
 				return;
 			}
 
@@ -313,6 +312,9 @@ namespace OpenRA.Mods.Common.Traits
 				playerResources.RefundResources(actor.Resources);
 				playerResources.RefundCash(actor.Cash);
 				ActorsReadyForDelivery.Remove(actor);
+				var stock = stocks.FirstOrDefault(a => a.Actor.Name == itemName);
+				stock.Count++;
+				stocks[stocks.FindIndex(a => a.Actor.Name == itemName)] = stock;
 			}
 		}
 
@@ -332,6 +334,102 @@ namespace OpenRA.Mods.Common.Traits
 			}
 
 			notificationInterval--;
+		}
+
+		public override bool IsProducing(ProductionItem item)
+		{
+			return Queue.Contains(item);
+		}
+
+		protected void AddStock(ActorInfo stock, int counter)
+		{
+			counter++;
+			var finishedStocks = counter + ActorsReadyForDelivery.Count(a => a.Actor.Name == stock.Name);
+
+			if (finishedStocks == info.MaxStockCapacity && Queue.Any(a => a.Item == stock.Name))
+				Queue.Remove(Queue.FirstOrDefault(a => a.Item == stock.Name));
+
+			if (finishedStocks > info.MaxStockCapacity)
+				return;
+			stocks[stocks.FindIndex(a => a.Actor.Name == stock.Name)] = (stock, counter);
+		}
+
+		public override bool CanQueue(ActorInfo actor, out string notificationAudio, out string notificationText)
+		{
+			// these notifications are irrelevant in Bulkproduction
+			notificationAudio = null;
+			notificationText = null;
+
+			if (!HasDeliveryStarted() && stocks.FirstOrDefault(a => a.Actor.Name == actor.Name).Count > 0)
+				return true;
+
+			return false;
+		}
+
+		protected void RemoveStock(ActorInfo stock, int count)
+		{
+			if (count < 0)
+				return;
+			count--;
+			stocks[stocks.FindIndex(a => a.Actor.Name == stock.Name)] = (stock, count);
+		}
+
+		protected void ReplenishmentLogic()
+		{
+			if (StocksFull())
+			{
+				RestockingEnabled = false;
+				return;
+			}
+
+			foreach (var stock in stocks)
+			{
+				if (stock.Count + GetActorsReadyForDelivery().Count(a => a.Actor.Name == stock.Actor.Name) == info.MaxStockCapacity)
+					continue;
+
+				// check if stock is already queued
+				var item = Queue.FirstOrDefault(q => q.Item == stock.Actor.Name);
+				if (item == null)
+				{
+					// Is AddFrameEndTask nesesary here?
+					BeginProduction(new ProductionItem(this, stock.Actor.Name,
+					 0, playerPower, () => self.World.AddFrameEndTask(_ =>
+						{
+							// Make sure the item hasn't been invalidated between the ProductionItem ticking and this FrameEndTask running
+							if (!Queue.Any(q => q.Done && q.Item == stock.Actor.Name))
+								return;
+							var finishedItem = Queue.First(q => q.Done && q.Item == stock.Actor.Name);
+
+							// stock count can change between production tick
+							var actualStock = stocks.FirstOrDefault(a => a.Actor.Name == stock.Actor.Name);
+							AddStock(actualStock.Actor, actualStock.Count);
+							EndProduction(finishedItem);
+						})), false);
+				}
+				else
+				{
+					var before = item.RemainingTime;
+					item.Tick(playerResources);
+				}
+			}
+		}
+
+		public bool StocksFull()
+		{
+			foreach (var stock in stocks)
+			{
+				var reserverdItems = GetActorsReadyForDelivery().Count(a => a.Actor.Name == stock.Actor.Name);
+
+				if (stock.Count + reserverdItems < info.MaxStockCapacity)
+					return false;
+			}
+
+			return true;
+		}
+
+		public List<(ActorInfo Actor, int Count)> GetStocks()
+		{
+			return stocks;
 		}
 	}
 }

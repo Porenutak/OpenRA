@@ -53,6 +53,7 @@ namespace OpenRA.Mods.Common.Widgets
 		public readonly Vector2 QueuedOffset = new(4, 2);
 
 		public readonly Vector2 BulkOffset = new(4, 2);
+		public readonly Vector2 StockOffset = new(3, 35);
 		public readonly TextAlign QueuedTextAlign = TextAlign.Left;
 
 		public readonly string ClickSound = ChromeMetrics.Get<string>("ClickSound");
@@ -411,6 +412,25 @@ namespace OpenRA.Mods.Common.Widgets
 
 		bool HandleMiddleClick(ProductionItem item, ProductionIcon icon, int handleCount)
 		{
+			if (CurrentQueue is BulkProductionQueue bulkProductionQueue && !bulkProductionQueue.HasDeliveryStarted())
+			{
+				var readyActors = bulkProductionQueue.GetActorsReadyForDelivery()
+					.Where(a => a.Actor.Name == icon.Name);
+				if (readyActors.Any())
+				{
+					World.IssueOrder(
+						new Order("ReturnOrder", CurrentQueue.Actor, false)
+						{
+							ExtraData = (uint)handleCount,
+							TargetString = icon.Name
+						});
+					Game.Sound.PlayNotification(World.Map.Rules, World.LocalPlayer, "Sounds", ClickSound, null);
+					return true;
+				}
+				else
+					return false;
+			}
+
 			if (item != null)
 			{
 				// Directly cancel, skipping "on-hold"
@@ -564,7 +584,7 @@ namespace OpenRA.Mods.Common.Widgets
 					WidgetUtils.DrawSpriteCentered(pio.Sprite, worldRenderer.Palette(pio.Palette), icon.Pos + iconOffset + pio.Offset(IconSize.ToVector2()));
 
 				// Build progress
-				if (icon.Queued.Count > 0)
+				if (icon.Queued.Count > 0 && currentQueue is not BulkProductionQueue)
 				{
 					var first = icon.Queued[0];
 					clock.PlayFetchIndex(ClockSequence,
@@ -584,19 +604,16 @@ namespace OpenRA.Mods.Common.Widgets
 			foreach (var icon in icons.Values)
 			{
 				var total = icon.Queued.Count;
-				if (total > 0)
+				if (total > 0 && CurrentQueue is not BulkProductionQueue)
 				{
 					var first = icon.Queued[0];
 					var waiting = !CurrentQueue.IsProducing(first) && !first.Done;
 					if (first.Done)
 					{
-						if (CurrentQueue is not BulkProductionQueue)
-						{
-							if (ReadyTextStyle == ReadyTextStyleOptions.Solid || orderManager.LocalFrameNumber * worldRenderer.World.Timestep / 360 % 2 == 0)
-								overlayFont.DrawTextWithContrast(ReadyText, icon.Pos + readyOffset, TextColor, Color.Black, 1);
-							else if (ReadyTextStyle == ReadyTextStyleOptions.AlternatingColor)
-								overlayFont.DrawTextWithContrast(ReadyText, icon.Pos + readyOffset, ReadyTextAltColor, Color.Black, 1);
-						}
+						if (ReadyTextStyle == ReadyTextStyleOptions.Solid || orderManager.LocalFrameNumber * worldRenderer.World.Timestep / 360 % 2 == 0)
+							overlayFont.DrawTextWithContrast(ReadyText, icon.Pos + readyOffset, TextColor, Color.Black, 1);
+						else if (ReadyTextStyle == ReadyTextStyleOptions.AlternatingColor)
+							overlayFont.DrawTextWithContrast(ReadyText, icon.Pos + readyOffset, ReadyTextAltColor, Color.Black, 1);
 					}
 					else if (first.Paused)
 						overlayFont.DrawTextWithContrast(HoldText,
@@ -633,8 +650,14 @@ namespace OpenRA.Mods.Common.Widgets
 				{
 					var readyActors = bulkProductionQueue.GetActorsReadyForDelivery().
 						Count(a => a.Actor.Name == icon.Name);
-					overlayFont.DrawTextWithContrast(readyActors.ToString(NumberFormatInfo.CurrentInfo),
-						icon.Pos + BulkOffset, TextColor, Color.Black, 1);
+					if (readyActors > 0)
+						overlayFont.DrawTextWithContrast(readyActors.ToString(NumberFormatInfo.CurrentInfo),
+							icon.Pos + BulkOffset, TextColor, Color.Black, 1);
+
+					var stockCount = bulkProductionQueue.GetStocks()
+							.FirstOrDefault(s => s.Actor.Name == icon.Name).Count;
+					overlayFont.DrawTextWithContrast("In Stock: " + stockCount.ToString(NumberFormatInfo.CurrentInfo),
+						icon.Pos + StockOffset, TextColor, Color.Black, 1);
 				}
 			}
 		}
